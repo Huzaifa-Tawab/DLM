@@ -1,0 +1,29 @@
+import React from "react";
+import "./header.css";
+import { useNavigate } from "react-router-dom";
+function Header() {
+  const navi = useNavigate();
+  return (
+    <div className="Header">
+      <div
+        className="logo"
+        onClick={() => {
+          navi("/");
+        }}
+      >
+        <h1>Dyna LM</h1>
+      </div>
+      <div className="login">
+        <button
+          onClick={() => {
+            navi("/login");
+          }}
+        >
+          Login
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default Header;
