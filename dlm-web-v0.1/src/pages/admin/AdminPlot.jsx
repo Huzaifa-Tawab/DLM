@@ -12,9 +12,9 @@ function AdminPlot() {
   const [PlotDetails, setPlotDetails] = useState({});
   const [isLoading, setisLoading] = useState(true);
   useEffect(() => {
-    getPlotData();
+    getPlotDetails();
   }, []);
-  async function getPlotData() {
+  async function getPlotDetails() {
     const docRef = doc(db, "Plots", id);
     const docSnap = await getDoc(docRef);
 
@@ -24,7 +24,44 @@ function AdminPlot() {
       setisLoading(false);
     }
   }
-  return isLoading ? <Loader /> : <></>;
+  return isLoading ? (
+    <Loader />
+  ) : (
+    <>
+      <div>
+        <h1>Plot Information</h1>
+        <ul>
+          <li>
+            <strong>Plot Size:</strong> {PlotDetails.PlotSize}
+          </li>
+          <li>
+            <strong>Agent ID:</strong> {PlotDetails.AgentId}
+          </li>
+          <li>
+            <strong>Customer ID:</strong> {PlotDetails.CustomerId}
+          </li>
+          <li>
+            <strong>City/Town:</strong> {PlotDetails.CityTown}
+          </li>
+          <li>
+            <strong>Address:</strong> {PlotDetails.Address}
+          </li>
+          <li>
+            <strong>File Number:</strong> {PlotDetails.FileNumber}
+          </li>
+          <li>
+            <strong>Category:</strong> {PlotDetails.Category}
+          </li>
+          <li>
+            <strong>Paid Amount:</strong> {PlotDetails.PaidAmount}
+          </li>
+          <li>
+            <strong>Total Amount:</strong> {PlotDetails.TotalAmount}
+          </li>
+        </ul>
+      </div>
+    </>
+  );
 }
 
 export default AdminPlot;
