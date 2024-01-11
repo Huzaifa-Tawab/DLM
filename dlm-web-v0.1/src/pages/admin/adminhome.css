@@ -1,0 +1,41 @@
+.Admin-Home-table> input{
+    margin: 20px;
+    width: 30%;
+    height: 4vh;
+    background: #fff;
+    border-radius: 20px;
+    border: none;
+    /* padding: 5px; */
+    color: black;
+}
+.Admin-Home-table{
+    text-align: center;
+    
+}
+.avatar-image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.avatar-table{
+    width: 25px;
+}
+.adminhome-table{
+    background: #fff;
+    color: black;
+    margin: 20px 50px;
+    width: 90%;
+    /* border: 1px solid #000; */
+    border-radius: 5px;
+}
+th, td{
+    height: 40px;
+    border-bottom: 1px solid #ddd
+}
+.button-view{
+    background: #EFF6FF;
+    color: blue;
+    text-decoration: underline;
+
+}

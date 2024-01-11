@@ -1,0 +1,23 @@
+.footer{
+    background: #fff;
+    color: black;
+    padding: 30px 50px 10px 50px;
+
+}
+.footer-data{
+}
+.footrbar{
+    display: flex;
+    justify-content: space-between;
+    /* padding: 50px; */
+}
+.policy{
+    display: flex;
+}
+.policy> p{
+    padding: 0px 20px;
+}
+.divider{
+    margin-top: 20px;
+    border-bottom: 1px solid #ddd;
+}

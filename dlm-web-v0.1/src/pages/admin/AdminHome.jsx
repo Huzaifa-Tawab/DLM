@@ -5,6 +5,9 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
 import Loader from "../../components/loader/Loader";
 import { useNavigate } from "react-router-dom";
+import Footer from "../../components/Footer/Footer";
+import './adminhome.css'
+import avatar from '../../Assets/avatar.png'
 
 function AdminHome() {
   const navigate = useNavigate();
@@ -53,29 +56,31 @@ function AdminHome() {
           <div className="Admin-Home-table">
             <input
               type="text"
+              placeholder="Search"
               onChange={(e) => filterData(e.target.value)}
               className="input-field"
             />
-            <table>
+          <div className="table">
+            <table className="adminhome-table">
               <thead>
                 <tr>
                   <th>Name</th>
                   <th>Phone Number</th>
-                  <th>Cnic No</th>
-                  <th>Plots</th>
-                  <th>actions</th>
+                  <th>CNIC No</th>
+                  <th>No of Plots</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredCustomersData.map((e) => {
                   return (
                     <tr key={e.Cnic}>
-                      <td>{e.Name}</td>
+                      <td className="avatar-image"><img src={avatar} alt="avatar" className="avatar-table"/>{e.Name}</td>
                       <td>{e.PhNo}</td>
                       <td>{e.Cnic}</td>
                       <td>{e.Plots.length}</td>
                       <td>
-                        <button
+                        <button className="button-view"
                           onClick={() => {
                             navigate(`/details/client/${e.Cnic}`);
                           }}
@@ -88,9 +93,11 @@ function AdminHome() {
                 })}
               </tbody>
             </table>
+            </div>
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

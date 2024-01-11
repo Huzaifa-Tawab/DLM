@@ -74,7 +74,7 @@ const Home = () => {
         if (docSnap.data()["Plots"].includes(referenceId)) {
           console.log("Ref OK");
 
-          navigate("/plot/details", {
+          navigate("/details/plot", {
             state: {
               img: docSnap.data()["imgUrl"],
               name: docSnap.data()["Name"],
