@@ -4,8 +4,10 @@ import { useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
 import Loader from "../../components/loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 function AdminHome() {
+  const navigate = useNavigate();
   const [CustomersData, setCustomersData] = useState([]);
   const [isLoading, setisLoading] = useState(true);
   useEffect(() => {
@@ -47,7 +49,13 @@ function AdminHome() {
                       <td>{e.Cnic}</td>
                       <td>{e.Plots.length}</td>
                       <td>
-                        <button>View</button>
+                        <button
+                          onClick={() => {
+                            navigate(`/details/client/${e.Cnic}`);
+                          }}
+                        >
+                          View
+                        </button>
                       </td>
                     </tr>
                   );
