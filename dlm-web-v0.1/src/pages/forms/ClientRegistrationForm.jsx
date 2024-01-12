@@ -71,6 +71,8 @@ const ClientRegistrationForm = () => {
     CnicKin: "",
     Gmail: "",
     PhNoKin: "",
+    Plots: [],
+    Documents: [],
     agree: false,
   });
   const [File, setFile] = useState();
