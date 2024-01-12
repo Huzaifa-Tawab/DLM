@@ -74,10 +74,10 @@ const Login = () => {
       console.log("Document data:", docSnap.data());
       switch (docSnap.data()["Type"]) {
         case "Admin":
-          navi("/home/admin");
+          navi("/admin/home");
           break;
         case "Sub Admin":
-          navi("/home/sub-admin");
+          navi("sub-admin/home");
 
           break;
 
