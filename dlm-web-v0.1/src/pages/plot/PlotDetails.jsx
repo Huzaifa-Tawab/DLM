@@ -3,6 +3,9 @@ import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { db } from "../../firebase";
 import { useState } from "react";
+import './plotdetails.css'
+import Header from "../../components/header/Header";
+import Footer from "../../components/Footer/Footer";
 
 function PlotDetails() {
   const location = useLocation();
@@ -19,14 +22,22 @@ function PlotDetails() {
     }
   }
   return (
-    <div>
-      <img src={location.state.img} alt="" />
+    <>
+    <Header/>
+    <div className="Plot">
+      <div className="owner">
+      <img src={location.state.img} alt="Avatar" className="avatar"/>
       <h1>{location.state.name}</h1>
-      <h1>Payed {PlotDetail.PayedAmount}PKR</h1>
-      <h1>Size {PlotDetail.PlotSize}</h1>
-      <h1>File {PlotDetail.FileNumber}</h1>
-      <h1>Total {PlotDetail.TotalAmount}PKR</h1>
+      </div>
+      <div className="plot-details">
+     <div className="details"><span>Total</span><h1> {PlotDetail.TotalAmount}PKR</h1></div> 
+        <div className="details"><span>Piad</span> <h1>{PlotDetail.PaidAmount}PKR</h1></div>
+    <div className="details"><span>Plot Size</span>  <h1>{PlotDetail.PlotSize}</h1></div>
+     <div className="details"><span>File No</span> <h1> {PlotDetail.FileNumber}</h1></div>
+      </div>
     </div>
+    <Footer/>
+    </>
   );
 }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import "./header.css";
+import logo from '../../Assets/logo.png'
 import { useNavigate } from "react-router-dom";
 function Header() {
   const navi = useNavigate();
@@ -11,7 +12,7 @@ function Header() {
           navi("/");
         }}
       >
-        <h1>Dyna LM</h1>
+        <img src={logo} alt="" />
       </div>
       <div className="login">
         <button

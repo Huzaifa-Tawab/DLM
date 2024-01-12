@@ -3,6 +3,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
+import './clientdetails.css'
+import avatar from '../../Assets/avatar.png'
+import Header from "../../components/header/Header";
+import Footer from "../../components/Footer/Footer";
 
 function ClientDetails() {
   const navigate = useNavigate();
@@ -55,71 +59,117 @@ function ClientDetails() {
     <Loader />
   ) : (
     <>
+    <Header/>
       <div className="ClientDetails">
         <div>
-          <h1>User Information</h1>
-          <ul>
-            <li>
-              <strong>Name:</strong> {userData.Name}
-            </li>
-            <li>
-              <strong>Father's Name:</strong> {userData.FName}
-            </li>
-            <li>
-              <strong>Gender:</strong> {userData.Gender}
-            </li>
-            <li>
-              <strong>DOB:</strong> {userData.Dob}
-            </li>
-            <li>
-              <strong>CNIC:</strong> {userData.Cnic}
-            </li>
-            <li>
-              <strong>Phone Number:</strong> {userData.PhNo}
-            </li>
-            <li>
-              <strong>Town City:</strong> {userData["Town City"]}
-            </li>
-            <li>
-              <strong>Kin Relation:</strong> {userData.kinRelation}
-            </li>
-            <li>
-              <strong>Next of Kin:</strong> {userData.nextOfKin}
-            </li>
-            <li>
-              <strong>Address:</strong> {userData.Adress}
-            </li>
-            <li>
-              <strong>Plots:</strong>
-              {Plots.map((plot) => (
-                <div key={plot.id}>{plot.id}</div>
-              ))}
-            </li>
-            <li>
-              <strong>Documents:</strong>
-              <ul>
-                {userData.Documents &&
-                  Object.entries(userData.Documents).map(([key, value]) => (
-                    <li key={key}>
-                      <strong>{key}:</strong>
-                      <a href={value} target="_blank" rel="noopener noreferrer">
-                        Link
-                      </a>
-                    </li>
-                  ))}
-              </ul>
-            </li>
-            <li>
-              <strong>Image:</strong>
-              <img
+        <div className="info-box">
+          <div className="client-pic">
+        
+             
+              <img className="avatar"
                 src={userData.imgUrl}
                 alt="User"
                 style={{ maxWidth: "200px" }}
               />
-            </li>
-          </ul>
+              <br />
+              <span>info@infogmail.com</span>
+              <br />
+              <span>+92 317 5545690</span>
+          
+
+            </div>
+          <div className="info-box-2">
+          <h1>Customer Information</h1>
+            <div className="data-client">
+              <div className="row">
+             <h2> Name: {userData.Name}</h2>
+             <h2> Father's Name: {userData.FName}</h2>
+              
+              </div>
+              <div className="row">
+             <h2> Gender: {userData.Gender}</h2>
+              <h2>DOB: {userData.Dob}</h2>
+              </div>
+              <div className="row">
+            <h2>  CNIC:{userData.Cnic}</h2>
+             <h2> Phone Number:{userData.PhNo}</h2>
+              </div>
+              <div className="row">
+             <h2> Town City:{userData["Town City"]}</h2>
+            <h2>  Kin Relation:{userData.kinRelation}</h2>
+              </div>
+              <div className="row">
+           <h2>   Next of Kin:{userData.nextOfKin}</h2>
+             <h2> Address:{userData.Adress}</h2>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+        <div className="documents">
+              <h1>Documents</h1>
+                {userData.Documents &&
+                  Object.entries(userData.Documents).map(([key, value]) => (
+                    <h2 className="doc-align" key={key}>
+                    <h2>{key}</h2>
+                      <a href={value} target="_blank" rel="noopener noreferrer">
+                        Link
+                      </a>
+                    </h2>
+                  ))}
+            </div>
+            <div className="plot-details">
+              <div className="plot-card">
+                <div className="cards">
+              <h1>Plots</h1>
+              {Plots.map((plot) => (
+                <div key={plot.id}>{plot.id}</div>
+              ))}
+              <div className="plot-des"></div>
+              <span><img src={""} alt="" />Category</span>
+              <div className="view-more">
+                <h2>####</h2>
+                <button>View</button>
+              </div>
+              </div>
+
+              <div className="cards">
+              <h1>Plots</h1>
+              {Plots.map((plot) => (
+                <div key={plot.id}>{plot.id}</div>
+              ))}
+              <div className="plot-des"></div>
+              <span><img src={""} alt="" />Category</span>
+              <div className="view-more">
+                <h2>####</h2>
+                <button>View</button>
+              </div>
+              </div>
+
+              <div className="cards">
+              <h1>Plots</h1>
+              {Plots.map((plot) => (
+                <div key={plot.id}>{plot.id}</div>
+              ))}
+              <div className="plot-des"></div>
+              <span><img src={""} alt="" />Category</span>
+              <div className="view-more">
+                <h2>####</h2>
+                <button>View</button>
+              </div>
+              </div>
+              </div>
+              
+            </div>
+            <div className="add-plot">
+              <button>Add Plot</button>
+              </div>
+
         </div>
       </div>
+      <Footer/>
     </>
   );
 }
