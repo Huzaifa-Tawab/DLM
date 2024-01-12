@@ -1,77 +1,87 @@
-.ClientDetails{
-    color: black;
-    margin: 20px;
+.ClientDetails {
+  color: black;
+  margin: 20px;
 }
-.info-box{
-   display: flex;
+.info-box {
+  display: flex;
 }
-.client-pic{
-    width: 35%;
-    background: #fff;
-    text-align: center;
-    margin: 10px;
-    border-radius: 10px;
+.client-pic {
+  width: 35%;
+  background: #fff;
+  text-align: center;
+  margin: 10px;
+  border-radius: 10px;
+}
+.clients-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.clients-buttons button {
+  background: #a5a5a5;
+  width: 80px;
+  height: 80px;
+}
+.clients-buttons button img {
+  height: 50%;
+}
+.info-box-2 {
+  width: 65%;
+  background: #fff;
+  margin: 10px;
+  border-radius: 10px;
+  padding: 20px;
+}
+.row {
+  display: flex;
+  justify-content: space-evenly;
+}
+.documents {
+  background: #fff;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 20px 50px;
+}
+.doc-align {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px 0 20px;
+  background: #f6f8f9;
+  border-radius: 10px;
+  height: 60px;
+}
+.plot-card {
+  display: flex;
+  justify-content: space-around;
+}
+.cards {
+  background: #fff;
+  padding: 10px 50px;
+  margin: 20px;
+  width: 20%;
+}
+.plot-des {
+  background: gray;
+  height: 50px;
+}
 
+.view-more {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.info-box-2{
-    width: 65%;
-    background: #fff;
-    margin: 10px;
-    border-radius: 10px;
-    padding: 20px;
+.view-more > button {
+  background: #f4b266;
+  width: 8vw;
+  height: 8vh;
 }
-.row{
-
-    display: flex;
-    justify-content: space-evenly;
-
+.add-plot {
+  text-align: center;
 }
-.documents{
-    background: #fff;
-    border-radius: 10px;
-    margin: 10px;
-    padding: 20px 50px;
-}
-.doc-align{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0  50px 0 20px;
-    background: #F6F8F9;
-    border-radius: 10px;
-    height: 60px;
-}
-.plot-card{
-    display: flex;
-    justify-content: space-around;
-}
-.cards{
-    background: #fff;
-    padding: 10px 50px;
-    margin: 20px;
-    width: 20%;
-   
-}
-.plot-des{
-    background: gray;
-    height: 50px;
-}
-
-.view-more{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.view-more> button{
-    background: #F4B266;
-    width: 8vw;
-    height: 8vh;
-}
-.add-plot{
-    text-align: center;
-}
-.add-plot> button{
-    width: 20vw;
-    height: 10vh;
-    background: #F4B266;
+.add-plot > button {
+  width: 20vw;
+  height: 10vh;
+  background: #f4b266;
 }

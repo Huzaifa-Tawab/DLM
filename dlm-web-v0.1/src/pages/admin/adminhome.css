@@ -1,41 +1,43 @@
-.Admin-Home-table> input{
-    margin: 20px;
-    width: 30%;
-    height: 4vh;
-    background: #fff;
-    border-radius: 20px;
-    border: none;
-    /* padding: 5px; */
-    color: black;
+.Admin-Home {
+  height: 90vh;
 }
-.Admin-Home-table{
-    text-align: center;
-    
+.Admin-Home-table > input {
+  margin: 20px;
+  width: 30%;
+  height: 4vh;
+  background: #fff;
+  border-radius: 20px;
+  border: none;
+  /* padding: 5px; */
+  color: black;
 }
-.avatar-image{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+.Admin-Home-table {
+  text-align: center;
 }
-.avatar-table{
-    width: 25px;
+.avatar-image {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
 }
-.adminhome-table{
-    background: #fff;
-    color: black;
-    margin: 20px 50px;
-    width: 90%;
-    /* border: 1px solid #000; */
-    border-radius: 5px;
+.avatar-table {
+  width: 25px;
 }
-th, td{
-    height: 40px;
-    border-bottom: 1px solid #ddd
+.adminhome-table {
+  background: #fff;
+  color: black;
+  margin: 20px 50px;
+  width: 90%;
+  /* border: 1px solid #000; */
+  border-radius: 5px;
 }
-.button-view{
-    background: #EFF6FF;
-    color: blue;
-    text-decoration: underline;
-
+th,
+td {
+  height: 40px;
+  border-bottom: 1px solid #ddd;
+}
+.button-view {
+  background: #eff6ff;
+  color: blue;
+  text-decoration: underline;
 }
