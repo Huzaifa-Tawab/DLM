@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { db, storage } from "../../firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import './clientform.css'
+import Header from "../../components/header/Header";
+import Footer from "../../components/Footer/Footer";
 
 const ErrorMessage = ({ message }) => (
   <span style={{ color: "red", fontSize: "0.8em" }}>{message}</span>
@@ -35,7 +38,7 @@ const RadioInput = ({ label, name, value, checked, onChange }) => (
   </label>
 );
 
-const CheckboxInput = ({ label, name, checked, onChange }) => (
+const CheckboxInput = ({ label, name, checked, onChange, error }) => (
   <div style={{ marginBottom: "10px" }}>
     <label style={{ display: "block" }}>
       <input
@@ -46,15 +49,78 @@ const CheckboxInput = ({ label, name, checked, onChange }) => (
       />{" "}
       {label}
     </label>
+    {error && <ErrorMessage message={error} />}
   </div>
 );
 
-const FileInput = ({ label, name, onChange }) => (
-  <div style={{ marginBottom: "10px" }}>
-    <label style={{ display: "block", marginBottom: "5px" }}>{label}:</label>
-    <input type="file" name={name} onChange={onChange} />
-  </div>
-);
+const FileInput = ({ label, onChange, previewUrl, error}) => {
+  const [isEditMode, setEditMode] = useState(false);
+
+  const handleClick = () => {
+    setEditMode(true);
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    onChange(file);
+    setEditMode(false);
+  };
+
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' , justifyContent: "flex-end"}}>
+      {previewUrl ? (
+        <img
+          src={previewUrl}
+          alt="Avatar Preview"
+          style={{
+            width: '150px',
+            height: '150px',
+            objectFit: 'cover',
+            borderRadius: '50%',
+            cursor: 'pointer',
+          }}
+          onClick={handleClick}
+        />
+      ) : (
+        <div
+          style={{
+            width: '150px',
+            height: '150px',
+            backgroundColor: '#ccc',
+            borderRadius: '50%',
+            cursor: 'pointer',
+            textAlign: 'center',
+            lineHeight: '150px',
+            fontSize: '16px',
+          }}
+          onClick={handleClick}
+        >
+          Add Profile Picture
+        </div>
+      )}
+    {error && <ErrorMessage message={error} />}
+
+
+      {isEditMode && (
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            opacity: 0,
+            cursor: 'pointer',
+          }}
+        />
+      )}
+    </div>
+  );
+};
+
 
 const ClientRegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -79,6 +145,22 @@ const ClientRegistrationForm = () => {
 
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
+  const [avatarPreview, setAvatarPreview] = useState(null);
+
+  const handleFileChange = (file) => {
+    setFile(file);
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setAvatarPreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setAvatarPreview(null);
+    }
+  };
+
 
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
@@ -114,6 +196,33 @@ const ClientRegistrationForm = () => {
     if (!data.Cnic.trim()) {
       errors.Cnic = "CNIC is required";
     }
+    if (!data.phNo.trim()) {
+      errors.phNo = "Phone No is required";
+    }
+    if (!data.TownCity.trim()) {
+      errors.TownCity = "Please specify your city/town";
+    }
+    if (!data.Address.trim()) {
+      errors.Address = "Please enter you living address";
+    }
+    if (!data.Dob.trim()) {
+      errors.Dob = "Please enter you Dob";
+    }
+    if (!data.PhNoKin.trim()) {
+      errors.PhNoKin = "Please enter kin phone number";
+    }
+    if (!data.KinRelation.trim()) {
+      errors.KinRelation = "Please specify relation with kin";
+    }
+    if (!data.CnicKin.trim()) {
+      errors.CnicKin = "Please enter kin CNIC";
+    }
+    if (!data.NexttoKin.trim()) {
+      errors.NexttoKin = "Please enter Kin name";
+    }
+    
+ 
+  
 
     // Add more validation rules as needed
 
@@ -148,71 +257,86 @@ const ClientRegistrationForm = () => {
       }
     );
   }
+  
 
   return (
-    <div style={{ maxWidth: "500px", margin: "auto" }}>
-      <h1 style={{ textAlign: "center" }}>Registration Form</h1>
-      <form onSubmit={handleSubmit}>
-        <FileInput
-          label="Upload Profile Image"
-          name="imgUrl"
-          onChange={(e) => {
-            setFile(e.target.files[0]);
-          }}
-        />
-
-        <TextInput
+    <>
+    <Header/>
+    <div className="container">
+      <h1 className="title" style={{ textAlign: "justify" }}>Registration Form</h1>
+      <div className="content">
+      <form action="#" onSubmit={handleSubmit}>
+        
+      <FileInput
+              label="Upload Profile Image"
+              onChange={handleFileChange}
+              previewUrl={avatarPreview}
+            />
+          <div className="user-details">
+          <div className="input-box">
+          <TextInput
           label="Name"
           name="Name"
           value={formData.Name}
           onChange={handleChange}
           error={errors.Name}
         />
-
-        <TextInput
+          </div>
+          <div className="input-box">
+          <TextInput
           label="Father's Name"
           name="FName"
           value={formData.FName}
           onChange={handleChange}
           error={errors.FName}
         />
-
-        <TextInput
+          </div>
+          <div className="input-box">
+          <TextInput
           label="CNIC"
           name="Cnic"
           value={formData.Cnic}
           onChange={handleChange}
           error={errors.Cnic}
         />
-
-        <TextInput
+          </div>
+          <div className="input-box">
+            <TextInput
           label="Phone Number"
           name="phNo"
           value={formData.phNo}
           onChange={handleChange}
+          error={errors.phNo}
         />
 
-        <div style={{ marginBottom: "10px" }}>
-          <label style={{ display: "block", marginBottom: "5px" }}>
-            Gender:
-          </label>
-          <RadioInput
-            label="Male"
+          </div>
+          </div>
+          <div class="gender-details">
+          <input type="radio" id="dot-1"   label="Male"
             name="Gender"
             value="male"
             checked={formData.Gender === "male"}
-            onChange={handleChange}
-          />
-          <RadioInput
-            label="Female"
+            onChange={handleChange}/>
+          <input type="radio" id="dot-2"  label="Female"
             name="Gender"
             value="female"
             checked={formData.Gender === "female"}
-            onChange={handleChange}
-          />
+            onChange={handleChange}/>
+          <span class="gender-title">Gender</span>
+          <div class="category">
+            <label for="dot-1">
+            <span class="dot one"></span>
+            <span class="gender">Male</span>
+          </label>
+          <label for="dot-2">
+            <span class="dot two"></span>
+            <span class="gender">Female</span>
+          </label>
+          </div>
         </div>
-
-        <div style={{ marginBottom: "10px" }}>
+          <div className="user-details">
+          <div className="input-box">
+          <div style={{ marginBottom: "10px" }}>
           <label style={{ display: "block", marginBottom: "5px" }}>
             Date of Birth:
           </label>
@@ -221,63 +345,159 @@ const ClientRegistrationForm = () => {
             name="Dob"
             value={formData.Dob}
             onChange={handleChange}
+
             style={{ width: "100%", padding: "8px" }}
+          error={errors.Dob}
+
           />
         </div>
-
-        <div style={{ marginBottom: "10px" }}>
-          <label style={{ display: "block", marginBottom: "5px" }}>
-            Address:
-          </label>
-          <textarea
-            name="Address"
-            value={formData.Address}
-            onChange={handleChange}
-            style={{ width: "100%", padding: "8px" }}
-          ></textarea>
-        </div>
-
-        <TextInput
+          </div>
+          <div className="input-box">
+          <TextInput
           label="City/Town"
           name="TownCity"
           value={formData.TownCity}
           onChange={handleChange}
-        />
+          error={errors.TownCity}
 
-        <TextInput
-          label="Next of Kin"
-          name="NexttoKin"
-          value={formData.NexttoKin}
-          onChange={handleChange}
         />
+          </div>
+          <div className="input-box">
+          <div style={{ marginBottom: "10px" }}>
+          <label style={{ display: "block", marginBottom: "5px" }}>
+            Address:
+          </label>
+          <input
 
-        <TextInput
-          label="Relation with Kin"
-          name="KinRelation"
-          value={formData.KinRelation}
-          onChange={handleChange}
-        />
+            name="Address"
+            value={formData.Address}
+            onChange={handleChange}
+            
 
-        <CheckboxInput
-          label="I agree"
+
+            style={{ width: "100%", padding: "8px" }}
+          error={errors.Address}
+
+          ></input>
+        </div>
+          </div>
+       
+
+        </div>
+        <div className="download-pdf">
+        <a href={"/pdfs/sample.pdf"}>Download privacy policy</a>
+
+          </div>
+          <div className="check-box">
+          <CheckboxInput
+          label="I have read and agreed to privacy policy"
           name="agree"
           checked={formData.agree}
           onChange={handleChange}
+          
         />
+        </div>
+        <div className="title">
+          <h2>Kin Details</h2>
+        </div>
 
-        <a href={"/pdfs/sample.pdf"}>Download</a>
+        <div className="user-details">
+          <div className="input-box">
+          <TextInput
+          label="Name"
+          name="NexttoKin"
+          value={formData.NexttoKin}
+          onChange={handleChange}
+          error={errors.NexttoKin}
+        />
+          </div>
+          <div className="input-box">
+          <TextInput
+          label="Relation"
+          name="KinRelation"
+          value={formData.KinRelation}
+          onChange={handleChange}
+          error={errors.KinRelation}
+        />
+          </div>
+          <div className="input-box">
+          <TextInput
+          label="Phone No"
+          name="PhNoKin"
+          value={formData.PhNoKin}
+          onChange={handleChange}
+          error={errors.PhNoKin}
+        />
+          </div>
+          <div className="input-box">
+          <TextInput
+          label="CNIC No"
+          name="CnicKin"
+          value={formData.CnicKin}
+          onChange={handleChange}
+          error={errors.CnicKin}
+        />
+          </div>
 
-        <div>
+        </div>
+      
+
+        
+
+        
+
+        
+        {/* <div className="gender-detasils" style={{ marginBottom: "10px" }}>
+          <label style={{ display: "block", marginBottom: "5px" }}>
+            Gender:
+          </label>
+          <div className="category">
+            <div className="dot-one">
+          <RadioInput
+            label="Male"
+            name="Gender"
+            value="male"
+            checked={formData.Gender === "male"}
+            onChange={handleChange}
+          />
+          </div>
+          <RadioInput
+            label="Female"
+            name="Gender"
+            value="female"
+            checked={formData.Gender === "female"}
+            onChange={handleChange}
+          />
+          </div>
+        </div> */}
+          
+       
+
+       
+
+       
+
+       
+
+     
+
+      
+
+
+        <div className="button">
           <button
             type="submit"
             disabled={!isFormValid}
             style={{ padding: "10px" }}
           >
-            Submit
+            Save & Next
           </button>
         </div>
       </form>
+      </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 
