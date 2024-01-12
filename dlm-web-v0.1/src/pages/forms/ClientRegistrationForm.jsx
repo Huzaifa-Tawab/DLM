@@ -1,7 +1,8 @@
 import { doc, setDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { db } from "../../firebase";
+import { db, storage } from "../../firebase";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
 const ErrorMessage = ({ message }) => (
   <span style={{ color: "red", fontSize: "0.8em" }}>{message}</span>
