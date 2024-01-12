@@ -1,4 +1,11 @@
-import { collection, doc, getDocs, setDoc } from "firebase/firestore";
+import {
+  arrayUnion,
+  collection,
+  doc,
+  getDocs,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { db } from "../../firebase";
@@ -8,6 +15,7 @@ import { template } from "lodash";
 const PlotRegistrationForm = () => {
   const [fileNumber, setfileNumber] = useState("");
   const [AgentsList, setAgentsList] = useState([]);
+  const [CatagoryList, setCatagoryList] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
   const id = location.state.Cuid;
@@ -17,7 +25,7 @@ const PlotRegistrationForm = () => {
       const number = await generateRandomNumber("Plots");
       setfileNumber(number);
     };
-
+    getCatagories();
     generateNumber();
     getAgents();
   }, []);
@@ -57,7 +65,13 @@ const PlotRegistrationForm = () => {
 
   const createPlot = async () => {
     await setDoc(doc(db, "Plots", fileNumber), formData);
+    updateAgent();
     navigate(`/details/plot/${fileNumber}`);
+  };
+  const updateAgent = async () => {
+    await updateDoc(doc(db, "Agent", formData.AgentId), {
+      Plots: arrayUnion(fileNumber),
+    });
   };
   async function getAgents() {
     const querySnapshot = await getDocs(collection(db, "Agent"));
@@ -68,7 +82,16 @@ const PlotRegistrationForm = () => {
     });
     setAgentsList(agents);
   }
-
+  async function getCatagories() {
+    const querySnapshot = await getDocs(collection(db, "PlotCategories"));
+    const cat = [];
+    querySnapshot.forEach((doc) => {
+      let temp = { id: doc.id, name: doc.data() };
+      cat.push(temp);
+    });
+    setCatagoryList(cat);
+  }
+  console.log(CatagoryList);
   return (
     <div style={{ maxWidth: "500px", margin: "auto" }}>
       <h1 style={{ textAlign: "center" }}>Plot Registration Form</h1>

@@ -54,7 +54,6 @@ const FileInput = ({ label, name, onChange }) => (
     <input type="file" name={name} onChange={onChange} />
   </div>
 );
-// ... (previous imports)
 
 const ClientRegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -72,8 +71,8 @@ const ClientRegistrationForm = () => {
     Gmail: "",
     PhNoKin: "",
     agree: false,
-    imgUrl: "",
   });
+  const [File, setFile] = useState();
 
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
@@ -92,7 +91,7 @@ const ClientRegistrationForm = () => {
     const validationErrors = validateForm(formData);
     if (Object.keys(validationErrors).length === 0) {
       console.log("Form submitted:", formData);
-      createClient();
+      uploadToFirebase();
     } else {
       setErrors(validationErrors);
     }
@@ -124,6 +123,28 @@ const ClientRegistrationForm = () => {
     await setDoc(doc(db, "Customers", formData.Cnic), formData);
     navigate(`/details/client/${formData.Cnic}`);
   };
+  function uploadToFirebase() {
+    const storageRef = ref(storage, `/ProfilePhotos/${formData.Cnic}`);
+    const uploadTask = uploadBytesResumable(storageRef, File);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const percent = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+      },
+      (err) => console.log(err),
+      () => {
+        // download url
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          console.log(url);
+          formData["imgUrl"] = url;
+          createClient();
+        });
+      }
+    );
+  }
 
   return (
     <div style={{ maxWidth: "500px", margin: "auto" }}>
@@ -132,7 +153,9 @@ const ClientRegistrationForm = () => {
         <FileInput
           label="Upload Profile Image"
           name="imgUrl"
-          onChange={handleChange}
+          onChange={(e) => {
+            setFile(e.target.files[0]);
+          }}
         />
 
         <TextInput
