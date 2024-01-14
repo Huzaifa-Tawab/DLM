@@ -2,8 +2,16 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
-import { doc, getDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import { db } from "../../firebase";
+import AddTransactions from "../../components/Modals/AddTransactions";
 
 function AdminPlot() {
   const prams = useParams();
@@ -11,8 +19,12 @@ function AdminPlot() {
 
   const [PlotDetails, setPlotDetails] = useState({});
   const [isLoading, setisLoading] = useState(true);
+  const [Transactions, setTransactions] = useState([]);
+  const [showDocModal, setShowDocModal] = useState(false);
+
   useEffect(() => {
     getPlotDetails();
+    getTransactions();
   }, []);
   async function getPlotDetails() {
     const docRef = doc(db, "Plots", id);
@@ -24,6 +36,28 @@ function AdminPlot() {
       setisLoading(false);
     }
   }
+  async function getTransactions() {
+    const q = query(collection(db, "Transactions"), where("FileNo", "==", id));
+
+    const querySnapshot = await getDocs(q);
+
+    let temp = [];
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+      let single = doc.data();
+      single["id"] = doc.id;
+      temp.push(single);
+    });
+    setTransactions(temp);
+  }
+  const openDocModal = () => {
+    setShowDocModal(true);
+  };
+
+  const closeDocModal = () => {
+    setShowDocModal(false);
+  };
   return isLoading ? (
     <Loader />
   ) : (
@@ -59,7 +93,37 @@ function AdminPlot() {
             <strong>Total Amount:</strong> {PlotDetails.TotalAmount}
           </li>
         </ul>
+        <div>
+          {Transactions.map((item, index) => (
+            <div key={index}>
+              <p>Penalty: {item.Penalty}</p>
+              <p>Invoce ID: {item.id}</p>
+              <p>Amount Paid: {item.AmountPaid}</p>
+              <p>Date: {item.Date.seconds}</p>
+              <p>Paid To: {item["Agent Name"]}</p>
+              <p>File No: {item.FileNo}</p>
+              <hr />
+            </div>
+          ))}
+        </div>
+        <button
+          onClick={() => {
+            setShowDocModal(true);
+            console.log("it is runnig");
+            console.log(showDocModal);
+          }}
+        >
+          Add
+        </button>
       </div>
+      <AddTransactions
+        showModal={showDocModal}
+        onClose={closeDocModal}
+        cid={PlotDetails.CustomerId}
+        aid={PlotDetails.AgentId}
+        pid={PlotDetails.FileNumber}
+        cata={PlotDetails.Category}
+      />
     </>
   );
 }

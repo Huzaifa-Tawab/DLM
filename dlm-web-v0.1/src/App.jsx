@@ -9,6 +9,7 @@ import ClientDetails from "./pages/admin/ClientDetails";
 import AdminPlot from "./pages/admin/AdminPlot";
 import ClientRegistrationFrom from "./pages/forms/ClientRegistrationForm";
 import PlotRegistrationForm from "./pages/forms/PlotRegistrationForm";
+import AgentRegistrationForm from "./pages/forms/AgentRegistrationForm";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/details/client/:id" element={<ClientDetails />} />
         <Route path="/create/client/" element={<ClientRegistrationFrom />} />
         <Route path="/create/plot/" element={<PlotRegistrationForm />} />
+        <Route path="/create/agent/" element={<AgentRegistrationForm />} />
         {/* <Route path="*" element={<NoPage />} />  */}
       </Routes>
     </BrowserRouter>

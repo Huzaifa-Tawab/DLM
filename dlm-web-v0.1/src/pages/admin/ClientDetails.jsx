@@ -155,59 +155,35 @@ function ClientDetails() {
                 </h2>
               ))}
           </div>
-          <div className="plot-details">
-            <div className="plot-card">
-              <div className="cards">
-                <h1>Plots</h1>
-                {Plots.map((plot) => (
-                  <div key={plot.id}>{plot.id}</div>
-                ))}
-                <div className="plot-des"></div>
-                <span>
-                  <img src={""} alt="" />
-                  Category
-                </span>
-                <div className="view-more">
-                  <h2>####</h2>
-                  <button>View</button>
-                </div>
-              </div>
+          <div className="plots">
+            <h1>Plots Details</h1>
+            <div className="plot-cards">
+              {Plots.map(
+                (plot) => (
+                  console.log(plot),
+                  (
+                    <div className="card">
+                      <h2>{plot.id}</h2>
+                      <div className="row-start">
+                        <span>Category :</span>
+                        <h2>{plot.Category}</h2>
+                      </div>
+                      <div className="plot-des"></div>
 
-              <div className="cards">
-                <h1>Plots</h1>
-                {Plots.map((plot) => (
-                  <div key={plot.id}>{plot.id}</div>
-                ))}
-                <div className="plot-des"></div>
-                <span>
-                  <img src={""} alt="" />
-                  Category
-                </span>
-                <div className="view-more">
-                  <h2>####</h2>
-                  <button>View</button>
-                </div>
-              </div>
-
-              <div className="cards">
-                <h1>Plots</h1>
-                {Plots.map((plot) => (
-                  <div key={plot.id}>{plot.id}</div>
-                ))}
-                <div className="plot-des"></div>
-                <span>
-                  <img src={""} alt="" />
-                  Category
-                </span>
-                <div className="view-more">
-                  <h2>####</h2>
-                  <button>View</button>
-                </div>
-              </div>
+                      <div className="view-more">
+                        <button
+                          onClick={() => {
+                            navigate(`/details/plot/${plot.id}`);
+                          }}
+                        >
+                          View
+                        </button>
+                      </div>
+                    </div>
+                  )
+                )
+              )}
             </div>
-          </div>
-          <div className="add-plot">
-            <button>Add Plot</button>
           </div>
         </div>
       </div>

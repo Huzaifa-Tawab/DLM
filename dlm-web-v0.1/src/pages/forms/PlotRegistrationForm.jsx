@@ -3,6 +3,7 @@ import {
   collection,
   doc,
   getDocs,
+  serverTimestamp,
   setDoc,
   updateDoc,
 } from "firebase/firestore";
@@ -11,7 +12,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { db } from "../../firebase";
 import generateRandomNumber from "../../../RandomNumber";
 import { template } from "lodash";
-import './clientform.css'
+import "./clientform.css";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/header/Header";
 
@@ -25,7 +26,7 @@ const PlotRegistrationForm = () => {
 
   useEffect(() => {
     const generateNumber = async () => {
-      const number = await generateRandomNumber("Plots");
+      const number = await generateRandomNumber("Plots", "DLM");
       setfileNumber(number);
     };
     getCatagories();
@@ -43,6 +44,7 @@ const PlotRegistrationForm = () => {
     PaidAmount: "",
     PlotSize: "5Marla",
     TotalAmount: "",
+    creationTime: serverTimestamp(),
   });
 
   const handleChange = (e) => {
@@ -97,132 +99,138 @@ const PlotRegistrationForm = () => {
   console.log(CatagoryList);
   return (
     <>
-    <Header/>
-    <div className="container">
-      <h1 className="title" style={{ textAlign: "justify" }}>Plot Registration Form</h1>
-      <div className="content">
-      <form action="#" onSubmit={handleSubmit}>
-        <div className="user-details" style={{ marginBottom: "10px" }}>
-        <div className="input-box">
-        <div style={{ marginBottom: "10px" }}>
-          <label style={{ display: "block", marginBottom: "5px" }}>
-            File Number:
-          </label>
-          <input
-            disabled
-            type="text"
-            name="FileNumber"
-            value={fileNumber}
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </div>
-        </div>
-          <div className="input-box">
-          <div style={{ marginBottom: "10px" }}>
-          <label style={{ display: "block", marginBottom: "5px" }}>
-            Plot Size:
-          </label>
-          <input
-            type="text"
-            name="PlotSize"
-            value={formData.PlotSize}
-            onChange={handleChange}
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </div>
-          </div>
-          
-          <div className="input-box">
-          <div style={{ marginBottom: "10px" }}>
-          <label style={{ display: "block", marginBottom: "5px" }}>
-            City/Town:
-          </label>
-          <input
-            type="text"
-            name="CityTown"
-            value={formData.CityTown}
-            onChange={handleChange}
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </div>
-          </div>
-          <div className="input-box">
-          <label style={{ display: "block", marginBottom: "5px" }}>
-            Address:
-          </label>
-          <input
-            type="text"
-            name="Address"
-            value={formData.Address}
-            onChange={handleChange}
-            style={{ width: "100%", padding: "8px" }}
-          />
-          </div>
-          
-          <div className="input-box">
-          <div style={{ marginBottom: "10px" }}>
-          <label style={{ display: "block", marginBottom: "5px" }}>
-            Paid Amount:
-          </label>
-          <input
-            type="text"
-            name="PaidAmount"
-            value={formData.PaidAmount}
-            onChange={handleChange}
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </div>
-          </div>
-          <div className="input-box">
-          <div style={{ marginBottom: "10px" }}>
-          <label style={{ display: "block", marginBottom: "5px" }}>
-            Total Amount:
-          </label>
-          <input
-            type="text"
-            name="TotalAmount"
-            value={formData.TotalAmount}
-            onChange={handleChange}
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </div>
-          </div>
-        </div>
-          <div class="gender-details">
-          <input type="radio" name="gender" id="dot-1"/>
-          <input type="radio" name="gender" id="dot-2"/>
-          <input type="radio" name="gender" id="dot-3"/>
-          <input type="radio" name="gender" id="dot-4"/>
-          <label class="gender-title" style={{ display: "block", marginBottom: "5px" }}>Category</label>
-          <div class="category">
-            <label for="dot-1">
-            <span class="dot one"></span>
-            <span class="gender">A</span>
-          </label>
-          <label for="dot-2">
-            <span class="dot two"></span>
-            <span class="gender">B</span>
-          </label>
-          <label for="dot-3">
-            <span class="dot three"></span>
-            <span class="gender">C</span>
-            </label>
-            <label for="dot-4">
-            <span class="dot four"></span>
-            <span class="gender">D</span>
-            </label>
-          </div>
-          </div>
-        <div className="button">
-          <button type="submit" style={{ padding: "10px" }}>
-            Submit
-          </button>
-        </div>
-      </form>
-      </div>
+      <Header />
+      <div className="container">
+        <h1 className="title" style={{ textAlign: "justify" }}>
+          Plot Registration Form
+        </h1>
+        <div className="content">
+          <form action="#" onSubmit={handleSubmit}>
+            <div className="user-details" style={{ marginBottom: "10px" }}>
+              <div className="input-box">
+                <div style={{ marginBottom: "10px" }}>
+                  <label style={{ display: "block", marginBottom: "5px" }}>
+                    File Number:
+                  </label>
+                  <input
+                    disabled
+                    type="text"
+                    name="FileNumber"
+                    value={fileNumber}
+                    style={{ width: "100%", padding: "8px" }}
+                  />
+                </div>
+              </div>
+              <div className="input-box">
+                <div style={{ marginBottom: "10px" }}>
+                  <label style={{ display: "block", marginBottom: "5px" }}>
+                    Plot Size:
+                  </label>
+                  <input
+                    type="text"
+                    name="PlotSize"
+                    value={formData.PlotSize}
+                    onChange={handleChange}
+                    style={{ width: "100%", padding: "8px" }}
+                  />
+                </div>
+              </div>
 
-    </div>
-    <Footer/>
+              <div className="input-box">
+                <div style={{ marginBottom: "10px" }}>
+                  <label style={{ display: "block", marginBottom: "5px" }}>
+                    City/Town:
+                  </label>
+                  <input
+                    type="text"
+                    name="CityTown"
+                    value={formData.CityTown}
+                    onChange={handleChange}
+                    style={{ width: "100%", padding: "8px" }}
+                  />
+                </div>
+              </div>
+              <div className="input-box">
+                <label style={{ display: "block", marginBottom: "5px" }}>
+                  Address:
+                </label>
+                <input
+                  type="text"
+                  name="Address"
+                  value={formData.Address}
+                  onChange={handleChange}
+                  style={{ width: "100%", padding: "8px" }}
+                />
+              </div>
+
+              <div className="input-box">
+                <div style={{ marginBottom: "10px" }}>
+                  <label style={{ display: "block", marginBottom: "5px" }}>
+                    Paid Amount:
+                  </label>
+                  <input
+                    type="text"
+                    name="PaidAmount"
+                    value={formData.PaidAmount}
+                    onChange={handleChange}
+                    style={{ width: "100%", padding: "8px" }}
+                  />
+                </div>
+              </div>
+              <div className="input-box">
+                <div style={{ marginBottom: "10px" }}>
+                  <label style={{ display: "block", marginBottom: "5px" }}>
+                    Total Amount:
+                  </label>
+                  <input
+                    type="text"
+                    name="TotalAmount"
+                    value={formData.TotalAmount}
+                    onChange={handleChange}
+                    style={{ width: "100%", padding: "8px" }}
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="gender-details">
+              <input type="radio" name="gender" id="dot-1" />
+              <input type="radio" name="gender" id="dot-2" />
+              <input type="radio" name="gender" id="dot-3" />
+              <input type="radio" name="gender" id="dot-4" />
+              <label
+                class="gender-title"
+                style={{ display: "block", marginBottom: "5px" }}
+              >
+                Category
+              </label>
+              <div class="category">
+                <label for="dot-1">
+                  <span class="dot one"></span>
+                  <span class="gender">A</span>
+                </label>
+                <label for="dot-2">
+                  <span class="dot two"></span>
+                  <span class="gender">B</span>
+                </label>
+                <label for="dot-3">
+                  <span class="dot three"></span>
+                  <span class="gender">C</span>
+                </label>
+                <label for="dot-4">
+                  <span class="dot four"></span>
+                  <span class="gender">D</span>
+                </label>
+              </div>
+            </div>
+            <div className="button">
+              <button type="submit" style={{ padding: "10px" }}>
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <Footer />
     </>
   );
 };
