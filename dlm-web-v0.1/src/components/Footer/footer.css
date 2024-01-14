@@ -1,10 +1,20 @@
 .footer{
-    background: #fff;
-    color: black;
+    /* background: #fff;
+    color: black; */
+    background: #201F1F;
     padding: 30px 50px 10px 50px;
 
 }
-.footer-data{
+.footer-data span{
+    color: rgba(255, 255, 255, 0.60);
+
+/* Medium/Type@16 */
+font-family: Plus Jakarta Sans;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: 150%; /* 24px */
+letter-spacing: -0.32px;
 }
 .footrbar{
     display: flex;
@@ -20,4 +30,14 @@
 .divider{
     margin-top: 20px;
     border-bottom: 1px solid #ddd;
+}
+.footrbar p{
+    color: #ECECEC;
+text-align: right;
+font-family: Plus Jakarta Sans;
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: 150%; /* 24px */
+letter-spacing: -0.32px;
 }
