@@ -9,6 +9,7 @@ import edit from "../../assets/edit.png";
 import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
 import AddDocs from "../../components/Modals/AddDocs";
+import { PiBuildingsBold } from "react-icons/pi";
 
 function ClientDetails() {
   const navigate = useNavigate();
@@ -164,11 +165,15 @@ function ClientDetails() {
                   (
                     <div className="card">
                       <h2>{plot.id}</h2>
+                      
+                      <div className="plot-des"></div>
+                      
                       <div className="row-start">
+                      <PiBuildingsBold className="buildlogo"/>
                         <span>Category :</span>
                         <h2>{plot.Category}</h2>
                       </div>
-                      <div className="plot-des"></div>
+                      
 
                       <div className="view-more">
                         <button
