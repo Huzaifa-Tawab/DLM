@@ -10,6 +10,9 @@ import AdminPlot from "./pages/admin/AdminPlot";
 import ClientRegistrationFrom from "./pages/forms/ClientRegistrationForm";
 import PlotRegistrationForm from "./pages/forms/PlotRegistrationForm";
 import AgentRegistrationForm from "./pages/forms/AgentRegistrationForm";
+import AgentRoutes from "./agentRoutes";
+import AdminRoutes from "./adminRoutes";
+import AdminAgents from "./pages/admin/AdminAgents";
 
 function App() {
   return (
@@ -17,14 +20,22 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/admin/home" element={<AdminHome />} />
-        <Route path="/details/plot/:id" element={<AdminPlot />} />
-        <Route path="/sub-admin/" element={<SubAdmin />} />
         <Route path="/details/plot" element={<PlotDetails />} />
+        <Route path="/create/client/" element={<ClientRegistrationFrom />} />
+
+        <Route element={<AgentRoutes />}>
+          <Route path="/sub-admin/" element={<SubAdmin />} />
+          <Route path="/create/plot/" element={<PlotRegistrationForm />} />
+        </Route>
+        {/* <Route element={<AdminRoutes />}> */}
+        <Route path="/create/agent/" element={<AgentRegistrationForm />} />
+        <Route path="/admin/agents" element={<AdminAgents />} />
+        <Route path="/admin/home" element={<AdminHome />} />
         <Route path="/details/client/:id" element={<ClientDetails />} />
         <Route path="/create/client/" element={<ClientRegistrationFrom />} />
         <Route path="/create/plot/" element={<PlotRegistrationForm />} />
-        <Route path="/create/agent/" element={<AgentRegistrationForm />} />
+        <Route path="/details/plot/:id" element={<AdminPlot />} />
+        {/* </Route> */}
         {/* <Route path="*" element={<NoPage />} />  */}
       </Routes>
     </BrowserRouter>

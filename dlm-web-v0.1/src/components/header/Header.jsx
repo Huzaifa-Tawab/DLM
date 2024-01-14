@@ -1,7 +1,7 @@
 import React from "react";
 import "./header.css";
-import logo from '../../Assets/logo.png'
-import { useNavigate } from "react-router-dom";
+import logo from "../../Assets/logo.png";
+import { Link, useNavigate } from "react-router-dom";
 function Header() {
   const navi = useNavigate();
   return (
@@ -13,6 +13,9 @@ function Header() {
         }}
       >
         <img src={logo} alt="" />
+      </div>
+      <div className="Nav-links">
+        <Link to={"/admin/agents"}>agents</Link>
       </div>
       <div className="login">
         <button
