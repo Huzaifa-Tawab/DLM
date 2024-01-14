@@ -1,12 +1,13 @@
 import { doc, setDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { db, storage } from "../../firebase";
+import { auth, db, storage } from "../../firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import "./clientform.css";
 import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
 import generateRandomString from "../../../RandomString";
+import { getAuth } from "firebase/auth";
 
 const ErrorMessage = ({ message }) => (
   <span style={{ color: "red", fontSize: "0.8em" }}>{message}</span>
@@ -148,6 +149,8 @@ const AgentRegistrationForm = () => {
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [avatarPreview, setAvatarPreview] = useState(null);
+  const [Email, setEmail] = useState("");
+  const [Pass, setPass] = useState("");
 
   useEffect(() => {
     const getInvId = async () => {
@@ -181,14 +184,14 @@ const AgentRegistrationForm = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const validationErrors = validateForm(formData);
-    if (Object.keys(validationErrors).length === 0) {
-      console.log("Form submitted:", formData);
-      uploadToFirebase();
-    } else {
-      setErrors(validationErrors);
-    }
+    // e.preventDefault();
+    // const validationErrors = validateForm(formData);
+    // if (Object.keys(validationErrors).length === 0) {
+    console.log("Form submitted:", formData);
+    createUser();
+    // } else {
+    //   setErrors(validationErrors);
+    // }
   };
 
   const validateForm = (data) => {
@@ -214,11 +217,12 @@ const AgentRegistrationForm = () => {
     if (!data.Address.trim()) {
       errors.Address = "Please enter you living address";
     }
-    if (!data.Dob.trim()) {
-      errors.Dob = "Please enter you Dob";
+    if (!Email) {
+      errors.Email = "Please enter Email";
     }
-
-    // Add more validation rules as needed
+    if (!Pass) {
+      errors.Pass = "Please enter you Dob";
+    }
 
     return errors;
   };
@@ -250,6 +254,23 @@ const AgentRegistrationForm = () => {
         });
       }
     );
+  }
+  function createUser() {
+    console.log("hello");
+    auth
+      .createUser({
+        uid: formData.Cnic,
+        email: Email,
+        password: Pass,
+      })
+      .then((userRecord) => {
+        // See the UserRecord reference doc for the contents of userRecord.
+        console.log("Successfully created new user:", userRecord.uid);
+        // uploadToFirebase();
+      })
+      .catch((error) => {
+        console.log("Error creating new user:", error);
+      });
   }
 
   return (
@@ -283,6 +304,28 @@ const AgentRegistrationForm = () => {
                   value={formData.FName}
                   onChange={handleChange}
                   error={errors.FName}
+                />
+              </div>
+              <div className="input-box">
+                <TextInput
+                  label="Email"
+                  name="Email"
+                  value={Email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                  error={errors.Email}
+                />
+              </div>
+              <div className="input-box">
+                <TextInput
+                  label="Password"
+                  name="Password"
+                  value={Pass}
+                  onChange={(e) => {
+                    setPass(e.target.value);
+                  }}
+                  error={errors.Pass}
                 />
               </div>
               <div className="input-box">

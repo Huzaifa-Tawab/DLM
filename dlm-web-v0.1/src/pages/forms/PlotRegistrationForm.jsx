@@ -135,6 +135,35 @@ const PlotRegistrationForm = () => {
                   />
                 </div>
               </div>
+              <div className="input-box">
+                <div style={{ marginBottom: "10px" }}>
+                  <label style={{ display: "block", marginBottom: "5px" }}>
+                    Plot Size:
+                  </label>
+                  <input
+                    type="text"
+                    name="PlotSize"
+                    value={formData.PlotSize}
+                    onChange={handleChange}
+                    style={{ width: "100%", padding: "8px" }}
+                  />
+                </div>
+              </div>
+
+              <div className="input-box">
+                <div style={{ marginBottom: "10px" }}>
+                  <label style={{ display: "block", marginBottom: "5px" }}>
+                    Plot Size:
+                  </label>
+                  <input
+                    type="text"
+                    name="PlotSize"
+                    value={formData.PlotSize}
+                    onChange={handleChange}
+                    style={{ width: "100%", padding: "8px" }}
+                  />
+                </div>
+              </div>
 
               <div className="input-box">
                 <div style={{ marginBottom: "10px" }}>
@@ -201,7 +230,7 @@ const PlotRegistrationForm = () => {
                 class="gender-title"
                 style={{ display: "block", marginBottom: "5px" }}
               >
-                Category
+                Adjustment
               </label>
               <div class="category">
                 <label for="dot-1">
