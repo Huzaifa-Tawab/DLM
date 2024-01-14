@@ -8,6 +8,7 @@ import Footer from "../../components/Footer/Footer";
 import "./adminhome.css";
 import avatar from "../../Assets/avatar.png";
 import { debounce } from "lodash";
+import arrow from "../../Assets/Plus.png";
 
 function AdminHome() {
   const navigate = useNavigate();
@@ -64,7 +65,14 @@ function AdminHome() {
     <>
       <Header />
       <div className="Admin-Home">
+      <div className="hero--head">
+            <h1>Customers</h1>
+            <button>Add New
+            <img src={arrow}></img>
+            </button>
+          </div>
         <div className="Admin-Home-content">
+          
           <div className="Admin-Home-table">
             <input
               type="text"
@@ -75,11 +83,11 @@ function AdminHome() {
             <div className="table">
               <table className="adminhome-table">
                 <thead>
-                  <tr>
+                  <tr className="hed">
                     <th>Name</th>
                     <th>Phone Number</th>
                     <th>CNIC No</th>
-                    <th>No of Plots</th>
+                    <th>Plots</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -96,13 +104,13 @@ function AdminHome() {
                       </td>
                       <td>{e.PhNo}</td>
                       <td>{e.Cnic}</td>
-                      <td>{e.Plots.length}</td>
+                      <td className="tddr">{e.Plots.length}</td>
                       <td>
                         <button
                           className="button-view"
                           onClick={() => navigate(`/details/client/${e.Cnic}`)}
                         >
-                          View
+                          View Details
                         </button>
                       </td>
                     </tr>
