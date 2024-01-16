@@ -8,6 +8,8 @@ import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
 import generateRandomString from "../../../RandomString";
 import { getAuth } from "firebase/auth";
+// const axios = require("axios");
+import axios from "axios";
 
 const ErrorMessage = ({ message }) => (
   <span style={{ color: "red", fontSize: "0.8em" }}>{message}</span>
@@ -155,7 +157,6 @@ const AgentRegistrationForm = () => {
   useEffect(() => {
     const getInvId = async () => {
       const id = await generateRandomString("INV", "Agent", "");
-
       setInvoiceID(id);
     };
     getInvId();
@@ -188,7 +189,7 @@ const AgentRegistrationForm = () => {
     const validationErrors = validateForm(formData);
     if (Object.keys(validationErrors).length === 0) {
       console.log("Form submitted:", formData);
-      // createUser();
+      createAgentAccount();
     } else {
       setErrors(validationErrors);
     }
@@ -220,14 +221,11 @@ const AgentRegistrationForm = () => {
     if (!Email) {
       errors.Email = "Please enter Email";
     }
-    if (!Pass) {
-      errors.Pass = "Please enter you Dob";
+    if (!Pass || Pass.length < 7) {
+      errors.Pass = "Please enter you Pass minimum 8 ";
     }
-
     return errors;
   };
-
-  const isFormValid = Object.keys(errors).length === 0;
 
   const createClient = async () => {
     await setDoc(doc(db, "Agent", formData.Cnic), formData);
@@ -255,24 +253,35 @@ const AgentRegistrationForm = () => {
       }
     );
   }
-  // function createUser() {
-  //   console.log("hello");
-  //   auth
-  //     .createUser({
-  //       uid: formData.Cnic,
-  //       email: Email,
-  //       password: Pass,
-  //     })
-  //     .then((userRecord) => {
-  //       // See the UserRecord reference doc for the contents of userRecord.
-  //       console.log("Successfully created new user:", userRecord.uid);
-  //       // uploadToFirebase();
-  //     })
-  //     .catch((error) => {
-  //       console.log("Error creating new user:", error);
-  //     });
-  // }
 
+  function createAgentAccount() {
+    console.log("runing");
+    let data = JSON.stringify({
+      email: Email,
+      password: Pass,
+      uid: formData.Cnic,
+    });
+
+    let config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: "http://localhost:8000/createUser",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        createClient();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   return (
     <>
       <Header />
@@ -457,7 +466,7 @@ const AgentRegistrationForm = () => {
             <div className="button">
               <button
                 type="submit"
-                disabled={!isFormValid}
+                // disabled={!isFormValid}
                 style={{ padding: "10px" }}
               >
                 Save & Next
