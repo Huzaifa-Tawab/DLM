@@ -26,7 +26,7 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
   const [penalty, setPenalty] = useState(0);
   const [NumberOfPenelties, setNumberOfPenelties] = useState(0);
   const [Amount, setAmount] = useState(0);
-  const [PAmount, setPAmount] = useState(0);
+  const [PendingInstallments, setPendingInstallments] = useState(0);
 
   useEffect(() => {
     getDataFromDb();
@@ -46,7 +46,6 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
   async function getDataFromDb() {
     let installmentAmount = 0;
     let i = 1;
-    let penalty = 0;
     let lastpaymentTime;
     const PlotdocSnap = await getDoc(doc(db, "Plots", pid));
     const CatadocSnap = await getDoc(doc(db, "PlotCategories", cata));
@@ -63,35 +62,29 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
         (dateNow.getFullYear() - dateLast.getFullYear()) * 12 +
         (dateNow.getMonth() - dateLast.getMonth());
       console.log("Month Difference:", monthDifference);
+      let penalty = 0;
       if (monthDifference >= 2 && dateNow.getDate() >= 10) {
         // Apply penalty for the initial 2 months
-        let penalty = 1000;
+        penalty = 1000;
         i = 2;
         // Add 500 for every month beyond the initial 2 months
         for (i; i < monthDifference; i++) {
           penalty += 500;
         }
       }
+      setPenalty(penalty);
+      setNumberOfPenelties(i);
     }
     if (CatadocSnap.exists()) {
       setcatagory(CatadocSnap.data());
       installmentAmount = CatadocSnap.data().InstallmentAmount;
       console.log(CatadocSnap.data());
+      setAmount(installmentAmount);
     }
     if (AdocSnap.exists()) {
       console.log(AdocSnap.data());
       setDoc(AdocSnap.data());
     }
-
-    console.log(".............");
-    console.log("_____________");
-    let temp = installmentAmount * i;
-    console.log(temp);
-    console.log(penalty);
-    setPenalty(penalty);
-    setNumberOfPenelties(i);
-    setAmount(installmentAmount * i + penalty);
-    console.log("_____________");
   }
   function uploadToFirebase() {
     const storageRef = ref(storage, `/Transactions/${pid}/${getDate()}`);
@@ -123,42 +116,13 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
     let catagory = {};
     let plot = {};
     let agent = {};
-
+    console.log("cata1", cata);
     const PlotCategoriesSnap = await getDoc(doc(db, "PlotCategories", cata));
     if (PlotCategoriesSnap.exists()) {
       catagory = PlotCategoriesSnap.data();
-      paidAmount = catagory.InstallmentAmount + catagory.PaidAmount;
+      console.log("cata", catagory);
     }
 
-    const customerSnap = await getDoc(doc(db, "Customers", cid));
-    if (customerSnap.exists()) {
-      customer = customerSnap.data();
-
-      let lastpaymentTime = customerSnap.data().lastPayment;
-
-      const dateLast = new Date(lastpaymentTime.seconds * 1000);
-      const dateNow = new Date(); // Use the current date
-
-      // Calculate the difference in months
-      const monthDifference =
-        (dateNow.getFullYear() - dateLast.getFullYear()) * 12 +
-        (dateNow.getMonth() - dateLast.getMonth());
-
-      // console.log("Month Difference:", monthDifference);
-
-      if (monthDifference >= 2 && dateNow.getDate() >= 10) {
-        // Apply penalty for the initial 2 months
-        let penalty = 1000;
-
-        // Add 500 for every month beyond the initial 2 months
-        for (let i = 2; i < monthDifference; i++) {
-          penalty += 500;
-        }
-
-        // console.log("Penalty Applied:", penalty);
-        setPAmount(penalty);
-      }
-    }
     const PlotdocSnap = await getDoc(doc(db, "Plots", pid));
     if (PlotdocSnap.exists()) {
       plot = PlotdocSnap.data();
@@ -177,7 +141,7 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       );
       TSize = querySnapshotT.size;
     }
-
+    console.log(randomNum);
     await setDoc(doc(db, "Transactions", randomNum), {
       fileNumber: pid,
       agentID: aid,
@@ -187,13 +151,15 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       proof: url,
       penalty: penalty,
       payment: catagory.InstallmentAmount,
-      time: serverTimestamp(),
       nature: "installment",
+      installmentNo: Plot.installmentNo,
     });
 
     await updateDoc(doc(db, "Plots", pid), {
       lastPayment: serverTimestamp(),
-      paidAmount: paidAmount,
+      paidAmount:
+        parseInt(Plot.paidAmount) + parseInt(Amount) + parseInt(penalty),
+      installmentNo: parseInt(Plot.installmentNo) + 1,
     });
 
     onClose();
@@ -221,6 +187,15 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
           <p>Pnaly</p>
           <input disabled type="number" value={penalty} />
         </div>
+        <div className="textfieldgroup-col">
+          <p>Total</p>
+          <input
+            disabled
+            type="number"
+            value={parseInt(Amount) + parseInt(penalty)}
+          />
+        </div>
+
         <input type="file" onChange={handleChange} accept="/image/*" />
         <button onClick={handleUpload}>Submit</button>
         <p>{percent} "% done"</p>

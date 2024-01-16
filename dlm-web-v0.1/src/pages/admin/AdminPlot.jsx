@@ -37,7 +37,10 @@ function AdminPlot() {
     }
   }
   async function getTransactions() {
-    const q = query(collection(db, "Transactions"), where("FileNo", "==", id));
+    const q = query(
+      collection(db, "Transactions"),
+      where("fileNumber", "==", id)
+    );
 
     const querySnapshot = await getDocs(q);
 
@@ -94,17 +97,44 @@ function AdminPlot() {
           </li>
         </ul>
         <div>
-          {Transactions.map((item, index) => (
-            <div key={index}>
-              <p>Penalty: {item.Penalty}</p>
-              <p>Invoce ID: {item.id}</p>
-              <p>Amount Paid: {item.AmountPaid}</p>
-              <p>Date: {item.Date.seconds}</p>
-              <p>Paid To: {item["Agent Name"]}</p>
-              <p>File No: {item.FileNo}</p>
-              <hr />
-            </div>
-          ))}
+          <ul style={{ background: "red", margin: "10px" }}>
+            {Transactions.map((transaction, index) => (
+              <li key={index}>
+                <strong>Proof:</strong>{" "}
+                <a
+                  href={transaction.proof}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {transaction.proof}
+                </a>
+                <br />
+                <strong>Penalty:</strong> {transaction.penalty}
+                <br />
+                <strong>Agent Name:</strong> {transaction.agentName}
+                <br />
+                <strong>File Number:</strong> {transaction.fileNumber}
+                <br />
+                <strong>Agent ID:</strong> {transaction.agentID}
+                <br />
+                <strong>Nature:</strong> {transaction.nature}
+                <br />
+                <strong>Customer ID:</strong> {transaction.customerID}
+                <br />
+                <strong>Payment:</strong> {transaction.payment}
+                <br />
+                <strong>Time:</strong>{" "}
+                {/* {new Date(
+                  transaction.time.seconds * 1000 +
+                    transaction.time.nanoseconds / 1000000
+                ).toLocaleString()} */}
+                <br />
+                <strong>Customer Name:</strong> {transaction.customerName}
+                <br />
+                <hr />
+              </li>
+            ))}
+          </ul>
         </div>
         <button
           onClick={() => {

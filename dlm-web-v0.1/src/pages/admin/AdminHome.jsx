@@ -100,13 +100,13 @@ function AdminHome() {
                     <tr key={e.Cnic}>
                       <td className="avatar-image">
                         <img
-                          src={avatar}
+                          src={e.imgUrl}
                           alt="avatar"
                           className="avatar-table"
                         />
                         {e.Name}
                       </td>
-                      <td>{e.PhNo}</td>
+                      <td>{e.phNo}</td>
                       <td>{e.Cnic}</td>
                       <td className="tddr">{e.Plots.length}</td>
                       <td>

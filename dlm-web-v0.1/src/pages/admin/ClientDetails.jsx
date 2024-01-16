@@ -130,15 +130,15 @@ function ClientDetails() {
                 </div>
                 <div className="row">
                   <h2> CNIC:{userData.Cnic}</h2>
-                  <h2> Phone Number:{userData.PhNo}</h2>
+                  <h2> Phone Number:{userData.phNo}</h2>
                 </div>
                 <div className="row">
-                  <h2> Town City:{userData["Town City"]}</h2>
-                  <h2> Kin Relation:{userData.kinRelation}</h2>
+                  <h2> Town City:{userData["TownCity"]}</h2>
+                  <h2> Kin Relation:{userData.KinRelation}</h2>
                 </div>
                 <div className="row">
-                  <h2> Next of Kin:{userData.nextOfKin}</h2>
-                  <h2> Address:{userData.Adress}</h2>
+                  <h2> Next of Kin:{userData.NexttoKin}</h2>
+                  <h2> Address:{userData.Address}</h2>
                 </div>
               </div>
             </div>
@@ -165,15 +165,14 @@ function ClientDetails() {
                   (
                     <div className="card">
                       <h2>{plot.id}</h2>
-                      
+
                       <div className="plot-des"></div>
-                      
+
                       <div className="row-start">
-                      <PiBuildingsBold className="buildlogo"/>
+                        <PiBuildingsBold className="buildlogo" />
                         <span>Category :</span>
                         <h2>{plot.Category}</h2>
                       </div>
-                      
 
                       <div className="view-more">
                         <button

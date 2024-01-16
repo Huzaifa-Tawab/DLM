@@ -11,7 +11,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { db } from "../../firebase";
 import generateRandomNumber from "../../../RandomNumber";
-import { template } from "lodash";
+
 import "./clientform.css";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/header/Header";
@@ -24,12 +24,19 @@ const PlotRegistrationForm = () => {
   const navigate = useNavigate();
   const id = location.state.Cuid;
   const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
-  const handleOptionChange = (event) => {
-    const selectedIndex = event.target.value;
-    setSelectedOptionIndex(
-      selectedIndex !== "" ? parseInt(selectedIndex, 10) : null
-    );
-  };
+  const userid = localStorage.getItem("id");
+  const name = localStorage.getItem("Name");
+  const [Address, setAdress] = useState("");
+  const [Catagory, setCatagory] = useState("");
+  const [CityTown, setCityTown] = useState("");
+  const [PaidAmount, setPaidAmount] = useState("");
+  const [PlotSize, setPlotsize] = useState("");
+  const [TotalAmount, setTotalAmount] = useState("");
+  const [possessionAmount, setpossessionAmount] = useState("");
+  const [InstallmentMonth, setInstallmentMonth] = useState("");
+  const [OtherAmountTitle, setOtherAmountTitle] = useState("None");
+  const [OtherAmount, setOtherAmount] = useState("0");
+
   useEffect(() => {
     const generateNumber = async () => {
       const number = await generateRandomNumber("Plots", "DLM");
@@ -39,58 +46,45 @@ const PlotRegistrationForm = () => {
     generateNumber();
     getAgents();
   }, []);
-  const userid = localStorage.getItem("id");
-  const name = localStorage.getItem("Name");
-  const [formData, setFormData] = useState({
-    Address: "",
-    AgentId: userid,
-    AgentName: name,
-    Category: "null",
-    CityTown: "",
-    CustomerId: id,
-    FileNumber: fileNumber,
-    PaidAmount: "",
-    PlotSize: "5Marla",
-    TotalAmount: "",
-    possessionAmount:'',
-    InstallmentMonth:'',
-    Amount:'',
-    Title:'',    
-    creationTime: serverTimestamp(),
-  });
-  const [Address, setAdress] = useState("");
-  const [AgentId, setAgentId] = useState("");
-  const [AgentName, setAgentName] = useState("");
-  const [Category, setCategory] = useState("");
-  const [CityTown, setCityTown] = useState("");
-  const [CustocmerId, setCustomerId] = useState("");
-  const [FileNumber, setFileNumber] = useState("");
-  const [PaidAmount, setPaidAmount] = useState("");
-  const [PlotSize, setPlotsize] = useState("");
-  const [TotalAmount, setTotalAmount] = useState("");
-  const [possessionAmount, setpossessionAmount] = useState("");
-  const [InstallmentMonth, setInstallmentMonth] = useState("");
-  const [Title, setTitle] = useState("");
-  const [Amount, setAmount] = useState("");
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
 
+  const handleOptionChange = (event) => {
+    const selectedIndex = event.target.value;
+    setSelectedOptionIndex(
+      selectedIndex !== "" ? parseInt(selectedIndex, 10) : null
+    );
+    setCatagory(CatagoryList[selectedIndex].name);
+    setpossessionAmount(CatagoryList[selectedIndex].PossessionAmount);
+    setInstallmentMonth(CatagoryList[selectedIndex].InstallmentAmount);
+    setPaidAmount(CatagoryList[selectedIndex].DownPayment);
+    setTotalAmount(CatagoryList[selectedIndex].TotalAmount);
+
+    console.log(CatagoryList[selectedIndex].name);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    formData["FileNumber"] = fileNumber;
-
-    console.log("Form submitted:", formData);
     await createPlot();
   };
 
   const createPlot = async () => {
-    await setDoc(doc(db, "Plots", fileNumber), formData);
+    await setDoc(doc(db, "Plots", fileNumber), {
+      Address: Address,
+      AgentId: userid,
+      AgentName: name,
+      Category: Catagory,
+      CityTown: CityTown,
+      CustomerId: id,
+      FileNumber: fileNumber,
+      paidAmount: PaidAmount,
+      PlotSize: PlotSize,
+      TotalAmount: TotalAmount,
+      PossessionAmount: possessionAmount,
+      installmentNo: 1,
+      OtherAmount: OtherAmount,
+      OtherAmountTitle: OtherAmountTitle,
+      creationTime: serverTimestamp(),
+      lastPayment: serverTimestamp(),
+    });
     updateAgent();
     updateCust();
     navigate(`/details/plot/${fileNumber}`);
@@ -163,7 +157,7 @@ const PlotRegistrationForm = () => {
                     style={{ width: "100%", padding: "8px" }}
                   />
                 </div>
-              </div>              
+              </div>
               <div className="input-box">
                 <div style={{ marginBottom: "10px" }}>
                   <label style={{ display: "block", marginBottom: "5px" }}>
@@ -195,7 +189,7 @@ const PlotRegistrationForm = () => {
                 />
               </div>
               <div className="input-box">
-                <div style={{marginBottom: "10px" }}>
+                <div style={{ marginBottom: "10px" }}>
                   <label style={{ display: "block", marginBottom: "5px" }}>
                     Catageory:
                   </label>
@@ -216,13 +210,13 @@ const PlotRegistrationForm = () => {
                   </select>
                 </div>
               </div>
-          
-            <div className="input-box"></div>
-                           
-            <div className="input-box">
+
+              <div className="input-box"></div>
+
+              <div className="input-box">
                 <div style={{ marginBottom: "10px" }}>
                   <label style={{ display: "block", marginBottom: "5px" }}>
-                   Plot Value:
+                    Plot Value:
                   </label>
                   <input
                     type="text"
@@ -234,7 +228,7 @@ const PlotRegistrationForm = () => {
                     style={{ width: "100%", padding: "8px" }}
                   />
                 </div>
-              </div> 
+              </div>
               <div className="input-box">
                 <div style={{ marginBottom: "10px" }}>
                   <label style={{ display: "block", marginBottom: "5px" }}>
@@ -250,18 +244,16 @@ const PlotRegistrationForm = () => {
                     style={{ width: "100%", padding: "8px" }}
                   />
                 </div>
-              </div>           
+              </div>
               <div className="input-box">
                 <label style={{ display: "block", marginBottom: "5px" }}>
-                Possession Amount:
+                  Possession Amount:
                 </label>
                 <input
                   type="text"
                   name="PossessionAmount"
                   value={possessionAmount}
-                  onChange={(e) => {
-                    setpossessionAmount(e.target.value);
-                  }}
+                  disabled
                   style={{ width: "100%", padding: "8px" }}
                 />
               </div>
@@ -273,9 +265,7 @@ const PlotRegistrationForm = () => {
                   type="text"
                   name="InstallmentMonth"
                   value={InstallmentMonth}
-                  onChange={(e) => {
-                    setInstallmentMonth(e.target.value);
-                  }}
+                  disabled
                   style={{ width: "100%", padding: "8px" }}
                 />
               </div>
@@ -285,10 +275,10 @@ const PlotRegistrationForm = () => {
                 </label>
                 <input
                   type="text"
-                  name="Title"
-                  value={Title}
+                  name="OtherAmountTitle"
+                  value={OtherAmountTitle}
                   onChange={(e) => {
-                    setTitle(e.target.value);
+                    setOtherAmountTitle(e.target.value);
                   }}
                   style={{ width: "100%", padding: "8px" }}
                 />
@@ -299,20 +289,16 @@ const PlotRegistrationForm = () => {
                 </label>
                 <input
                   type="text"
-                  name="Amount"
-                  value={Amount}
+                  name="OtherAmount"
+                  value={OtherAmount}
                   onChange={(e) => {
-                    setAmount(e.target.value);
+                    setOtherAmount(e.target.value);
                   }}
                   style={{ width: "100%", padding: "8px" }}
                 />
               </div>
-
-              
-              
             </div>
-          
-              
+
             <div class="gender-details">
               <input type="radio" name="gender" id="dot-1" />
               <input type="radio" name="gender" id="dot-2" />
@@ -343,7 +329,7 @@ const PlotRegistrationForm = () => {
                 </label>
               </div>
             </div>
-        
+
             <div className="button">
               <button type="submit" style={{ padding: "10px" }}>
                 Submit
