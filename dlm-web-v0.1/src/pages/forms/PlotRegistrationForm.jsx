@@ -47,11 +47,15 @@ const PlotRegistrationForm = () => {
     AgentName: name,
     Category: "null",
     CityTown: "",
-    CustocmerId: id,
+    CustomerId: id,
     FileNumber: fileNumber,
     PaidAmount: "",
     PlotSize: "5Marla",
     TotalAmount: "",
+    possessionAmount:'',
+    InstallmentMonth:'',
+    Amount:'',
+    Title:'',    
     creationTime: serverTimestamp(),
   });
   const [Address, setAdress] = useState("");
@@ -64,6 +68,10 @@ const PlotRegistrationForm = () => {
   const [PaidAmount, setPaidAmount] = useState("");
   const [PlotSize, setPlotsize] = useState("");
   const [TotalAmount, setTotalAmount] = useState("");
+  const [possessionAmount, setpossessionAmount] = useState("");
+  const [InstallmentMonth, setInstallmentMonth] = useState("");
+  const [Title, setTitle] = useState("");
+  const [Amount, setAmount] = useState("");
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -139,6 +147,7 @@ const PlotRegistrationForm = () => {
                   />
                 </div>
               </div>
+              {/*  */}
               <div className="input-box">
                 <div style={{ marginBottom: "10px" }}>
                   <label style={{ display: "block", marginBottom: "5px" }}>
@@ -154,45 +163,7 @@ const PlotRegistrationForm = () => {
                     style={{ width: "100%", padding: "8px" }}
                   />
                 </div>
-              </div>
-              <div className="input-box">
-                <div style={{ marginBottom: "10px" }}>
-                  <label style={{ display: "block", marginBottom: "5px" }}>
-                    Plot Size:
-                  </label>
-                  <input
-                    type="text"
-                    name="PlotSize"
-                    value={formData.PlotSize}
-                    onChange={handleChange}
-                    style={{ width: "100%", padding: "8px" }}
-                  />
-                </div>
-              </div>
-
-              <div className="input-box">
-                <div style={{ marginBottom: "10px" }}>
-                  <label style={{ display: "block", marginBottom: "5px" }}>
-                    Plot Size:
-                  </label>
-                  <select
-                    value={
-                      selectedOptionIndex !== null ? selectedOptionIndex : ""
-                    }
-                    onChange={handleOptionChange}
-                  >
-                    <option value="" disabled>
-                      Select a category
-                    </option>
-                    {CatagoryList.map((option, index) => (
-                      <option key={index} value={index}>
-                        {option.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
+              </div>              
               <div className="input-box">
                 <div style={{ marginBottom: "10px" }}>
                   <label style={{ display: "block", marginBottom: "5px" }}>
@@ -216,41 +187,132 @@ const PlotRegistrationForm = () => {
                 <input
                   type="text"
                   name="Address"
-                  value={formData.Address}
-                  onChange={handleChange}
+                  value={Address}
+                  onChange={(e) => {
+                    setAdress(e.target.value);
+                  }}
                   style={{ width: "100%", padding: "8px" }}
                 />
               </div>
-
               <div className="input-box">
-                <div style={{ marginBottom: "10px" }}>
+                <div style={{marginBottom: "10px" }}>
                   <label style={{ display: "block", marginBottom: "5px" }}>
-                    Paid Amount:
+                    Catageory:
                   </label>
-                  <input
-                    type="text"
-                    name="PaidAmount"
-                    value={formData.PaidAmount}
-                    onChange={handleChange}
-                    style={{ width: "100%", padding: "8px" }}
-                  />
+                  <select
+                    value={
+                      selectedOptionIndex !== null ? selectedOptionIndex : ""
+                    }
+                    onChange={handleOptionChange}
+                  >
+                    <option value="" disabled>
+                      Select a category
+                    </option>
+                    {CatagoryList.map((option, index) => (
+                      <option key={index} value={index}>
+                        {option.name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
-              <div className="input-box">
+          
+            <div className="input-box"></div>
+                           
+            <div className="input-box">
                 <div style={{ marginBottom: "10px" }}>
                   <label style={{ display: "block", marginBottom: "5px" }}>
-                    Total Amount:
+                   Plot Value:
                   </label>
                   <input
                     type="text"
                     name="TotalAmount"
-                    value={formData.TotalAmount}
-                    onChange={handleChange}
+                    value={TotalAmount}
+                    onChange={(e) => {
+                      setTotalAmount(e.target.value);
+                    }}
                     style={{ width: "100%", padding: "8px" }}
                   />
                 </div>
+              </div> 
+              <div className="input-box">
+                <div style={{ marginBottom: "10px" }}>
+                  <label style={{ display: "block", marginBottom: "5px" }}>
+                    Down Payment:
+                  </label>
+                  <input
+                    type="text"
+                    name="PaidAmount"
+                    value={PaidAmount}
+                    onChange={(e) => {
+                      setPaidAmount(e.target.value);
+                    }}
+                    style={{ width: "100%", padding: "8px" }}
+                  />
+                </div>
+              </div>           
+              <div className="input-box">
+                <label style={{ display: "block", marginBottom: "5px" }}>
+                Possession Amount:
+                </label>
+                <input
+                  type="text"
+                  name="PossessionAmount"
+                  value={possessionAmount}
+                  onChange={(e) => {
+                    setpossessionAmount(e.target.value);
+                  }}
+                  style={{ width: "100%", padding: "8px" }}
+                />
               </div>
+              <div className="input-box">
+                <label style={{ display: "block", marginBottom: "5px" }}>
+                  Installment/Month:
+                </label>
+                <input
+                  type="text"
+                  name="InstallmentMonth"
+                  value={InstallmentMonth}
+                  onChange={(e) => {
+                    setInstallmentMonth(e.target.value);
+                  }}
+                  style={{ width: "100%", padding: "8px" }}
+                />
+              </div>
+              <div className="input-box">
+                <label style={{ display: "block", marginBottom: "5px" }}>
+                  Title:
+                </label>
+                <input
+                  type="text"
+                  name="Title"
+                  value={Title}
+                  onChange={(e) => {
+                    setTitle(e.target.value);
+                  }}
+                  style={{ width: "100%", padding: "8px" }}
+                />
+              </div>
+              <div className="input-box">
+                <label style={{ display: "block", marginBottom: "5px" }}>
+                  Amount:
+                </label>
+                <input
+                  type="text"
+                  name="Amount"
+                  value={Amount}
+                  onChange={(e) => {
+                    setAmount(e.target.value);
+                  }}
+                  style={{ width: "100%", padding: "8px" }}
+                />
+              </div>
+
+              
+              
             </div>
+          
+              
             <div class="gender-details">
               <input type="radio" name="gender" id="dot-1" />
               <input type="radio" name="gender" id="dot-2" />
@@ -281,6 +343,7 @@ const PlotRegistrationForm = () => {
                 </label>
               </div>
             </div>
+        
             <div className="button">
               <button type="submit" style={{ padding: "10px" }}>
                 Submit
