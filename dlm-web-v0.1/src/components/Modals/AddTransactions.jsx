@@ -20,14 +20,13 @@ import getDate from "../../../GetDDMMYY";
 function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
   const [percent, setPercent] = useState(0);
   const [file, setFile] = useState();
-  const [agent, setagent] = useState({});
-  const [customer, setcustomer] = useState({});
   const [Plot, setPlot] = useState({});
   const [catagory, setcatagory] = useState({});
   // Handle file upload event and update state
   const [penalty, setPenalty] = useState(0);
   const [NumberOfPenelties, setNumberOfPenelties] = useState(0);
   const [Amount, setAmount] = useState(0);
+  const [PAmount, setPAmount] = useState(0);
 
   useEffect(() => {
     getDataFromDb();
@@ -52,7 +51,6 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
     const PlotdocSnap = await getDoc(doc(db, "Plots", pid));
     const CatadocSnap = await getDoc(doc(db, "PlotCategories", cata));
     const AdocSnap = await getDoc(doc(db, "Agent", aid));
-
     if (PlotdocSnap.exists()) {
       setPlot(PlotdocSnap.data());
       console.log(PlotdocSnap.data());
@@ -117,18 +115,88 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
     );
   }
   async function uploadTansaction(url) {
+    let randomNum = 0;
+    let TSize = 1;
+    let paidAmount = 0;
+    let penalty = 0;
+    let customer = {};
+    let catagory = {};
+    let plot = {};
+    let agent = {};
+
+    const PlotCategoriesSnap = await getDoc(doc(db, "PlotCategories", cata));
+    if (PlotCategoriesSnap.exists()) {
+      catagory = PlotCategoriesSnap.data();
+      paidAmount = catagory.InstallmentAmount + catagory.PaidAmount;
+    }
+
+    const customerSnap = await getDoc(doc(db, "Customers", cid));
+    if (customerSnap.exists()) {
+      customer = customerSnap.data();
+
+      let lastpaymentTime = customerSnap.data().lastPayment;
+
+      const dateLast = new Date(lastpaymentTime.seconds * 1000);
+      const dateNow = new Date(); // Use the current date
+
+      // Calculate the difference in months
+      const monthDifference =
+        (dateNow.getFullYear() - dateLast.getFullYear()) * 12 +
+        (dateNow.getMonth() - dateLast.getMonth());
+
+      // console.log("Month Difference:", monthDifference);
+
+      if (monthDifference >= 2 && dateNow.getDate() >= 10) {
+        // Apply penalty for the initial 2 months
+        let penalty = 1000;
+
+        // Add 500 for every month beyond the initial 2 months
+        for (let i = 2; i < monthDifference; i++) {
+          penalty += 500;
+        }
+
+        // console.log("Penalty Applied:", penalty);
+        setPAmount(penalty);
+      }
+    }
+    const PlotdocSnap = await getDoc(doc(db, "Plots", pid));
+    if (PlotdocSnap.exists()) {
+      plot = PlotdocSnap.data();
+    }
+    const AgentSnap = await getDoc(doc(db, "Agent", aid));
+    if (AgentSnap.exists()) {
+      agent = AgentSnap.data();
+    }
+    while (!TSize == 0) {
+      randomNum = `INV-${
+        agent.InvId + (Math.floor(Math.random() * 1000000) + 1)
+      }`;
+
+      const querySnapshotT = await getDocs(
+        query(collection(db, "Transactions"), where("id", "==", randomNum))
+      );
+      TSize = querySnapshotT.size;
+    }
+
     await setDoc(doc(db, "Transactions", randomNum), {
       fileNumber: pid,
       agentID: aid,
+      agentName: agent.Name + " " + agent.FName,
+      customerName: customer.Name + " " + customer.FName,
+      customerID: cid,
       proof: url,
       penalty: penalty,
       payment: catagory.InstallmentAmount,
+      time: serverTimestamp(),
+      nature: "installment",
     });
 
     await updateDoc(doc(db, "Plots", pid), {
       lastPayment: serverTimestamp(),
       paidAmount: paidAmount,
     });
+
+    onClose();
   }
   return (
     <Modal

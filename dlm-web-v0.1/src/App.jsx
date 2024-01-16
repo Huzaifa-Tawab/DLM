@@ -15,6 +15,8 @@ import AdminRoutes from "./adminRoutes";
 import AdminAgents from "./pages/admin/AdminAgents";
 import AdminExpense from "./pages/admin/AdminExpense";
 import NotFound from "./pages/notfound/NotFound";
+import AdminInvoives from "./pages/admin/AdminInvoives";
+import AdminStore from "./pages/admin/AdminStore";
 
 function App() {
   return (
@@ -26,14 +28,16 @@ function App() {
         <Route path="/create/client/" element={<ClientRegistrationFrom />} />
         <Route path="/404" element={<NotFound />} />
 
-        <Route element={<AgentRoutes />}>
-          <Route path="/sub-admin/" element={<SubAdmin />} />
-          <Route path="/create/plot/" element={<PlotRegistrationForm />} />
-        </Route>
+        {/* <Route element={<AgentRoutes />}> */}
+        <Route path="/sub-admin/" element={<SubAdmin />} />
+        <Route path="/create/plot/" element={<PlotRegistrationForm />} />
+        {/* </Route> */}
         {/* <Route element={<AdminRoutes />}> */}
         <Route path="/create/agent/" element={<AgentRegistrationForm />} />
         <Route path="/admin/agents" element={<AdminAgents />} />
         <Route path="/admin/home" element={<AdminHome />} />
+        <Route path="/admin/invoices" element={<AdminInvoives />} />
+        <Route path="/admin/store" element={<AdminStore />} />
         <Route path="/details/client/:id" element={<ClientDetails />} />
         <Route path="/create/client/" element={<ClientRegistrationFrom />} />
         <Route path="/create/plot/" element={<PlotRegistrationForm />} />

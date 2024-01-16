@@ -46,21 +46,24 @@ function AddDocs({ showModal, onClose, uid, olddocs }) {
       () => {
         // download url
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          console.log(url);
           olddocs[fileName] = url;
-          UpdateData();
+          UpdateData(olddocs);
         });
       }
     );
   }
-  async function UpdateData() {
+  async function UpdateData(docs) {
+    console.log("cnic", uid);
     const Documents = doc(db, "Customers", uid);
 
     // Set the "capital" field of the city 'DC'
+    console.log("Docs", docs);
     await updateDoc(Documents, {
-      Documents: olddocs,
+      Documents: docs,
+    }).then((e) => {
+      console.log("red", e);
     });
-    onClose();
+    // onClose();
   }
   return (
     <Modal

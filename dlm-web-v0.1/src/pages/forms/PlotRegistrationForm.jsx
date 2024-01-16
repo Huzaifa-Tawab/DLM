@@ -23,7 +23,13 @@ const PlotRegistrationForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const id = location.state.Cuid;
-
+  const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
+  const handleOptionChange = (event) => {
+    const selectedIndex = event.target.value;
+    setSelectedOptionIndex(
+      selectedIndex !== "" ? parseInt(selectedIndex, 10) : null
+    );
+  };
   useEffect(() => {
     const generateNumber = async () => {
       const number = await generateRandomNumber("Plots", "DLM");
@@ -33,20 +39,31 @@ const PlotRegistrationForm = () => {
     generateNumber();
     getAgents();
   }, []);
-
+  const userid = localStorage.getItem("id");
+  const name = localStorage.getItem("Name");
   const [formData, setFormData] = useState({
     Address: "",
-    AgentId: "",
+    AgentId: userid,
+    AgentName: name,
     Category: "null",
-    CityTown: "Islamabad",
-    CustomerId: id,
+    CityTown: "",
+    CustocmerId: id,
     FileNumber: fileNumber,
     PaidAmount: "",
     PlotSize: "5Marla",
     TotalAmount: "",
     creationTime: serverTimestamp(),
   });
-
+  const [Address, setAdress] = useState("");
+  const [AgentId, setAgentId] = useState("");
+  const [AgentName, setAgentName] = useState("");
+  const [Category, setCategory] = useState("");
+  const [CityTown, setCityTown] = useState("");
+  const [CustocmerId, setCustomerId] = useState("");
+  const [FileNumber, setFileNumber] = useState("");
+  const [PaidAmount, setPaidAmount] = useState("");
+  const [PlotSize, setPlotsize] = useState("");
+  const [TotalAmount, setTotalAmount] = useState("");
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -58,10 +75,6 @@ const PlotRegistrationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!fileNumber) {
-      // Handle error condition, fileNumber is not available
-      return;
-    }
     formData["FileNumber"] = fileNumber;
 
     console.log("Form submitted:", formData);
@@ -71,10 +84,16 @@ const PlotRegistrationForm = () => {
   const createPlot = async () => {
     await setDoc(doc(db, "Plots", fileNumber), formData);
     updateAgent();
+    updateCust();
     navigate(`/details/plot/${fileNumber}`);
   };
   const updateAgent = async () => {
     await updateDoc(doc(db, "Agent", formData.AgentId), {
+      Plots: arrayUnion(fileNumber),
+    });
+  };
+  const updateCust = async () => {
+    await updateDoc(doc(db, "Customers", id), {
       Plots: arrayUnion(fileNumber),
     });
   };
@@ -91,8 +110,7 @@ const PlotRegistrationForm = () => {
     const querySnapshot = await getDocs(collection(db, "PlotCategories"));
     const cat = [];
     querySnapshot.forEach((doc) => {
-      let temp = { id: doc.id, name: doc.data() };
-      cat.push(temp);
+      cat.push(doc.data());
     });
     setCatagoryList(cat);
   }
@@ -129,8 +147,10 @@ const PlotRegistrationForm = () => {
                   <input
                     type="text"
                     name="PlotSize"
-                    value={formData.PlotSize}
-                    onChange={handleChange}
+                    value={PlotSize}
+                    onChange={(e) => {
+                      setPlotsize(e.target.value);
+                    }}
                     style={{ width: "100%", padding: "8px" }}
                   />
                 </div>
@@ -155,13 +175,21 @@ const PlotRegistrationForm = () => {
                   <label style={{ display: "block", marginBottom: "5px" }}>
                     Plot Size:
                   </label>
-                  <input
-                    type="text"
-                    name="PlotSize"
-                    value={formData.PlotSize}
-                    onChange={handleChange}
-                    style={{ width: "100%", padding: "8px" }}
-                  />
+                  <select
+                    value={
+                      selectedOptionIndex !== null ? selectedOptionIndex : ""
+                    }
+                    onChange={handleOptionChange}
+                  >
+                    <option value="" disabled>
+                      Select a category
+                    </option>
+                    {CatagoryList.map((option, index) => (
+                      <option key={index} value={index}>
+                        {option.name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
 
@@ -173,8 +201,10 @@ const PlotRegistrationForm = () => {
                   <input
                     type="text"
                     name="CityTown"
-                    value={formData.CityTown}
-                    onChange={handleChange}
+                    value={CityTown}
+                    onChange={(e) => {
+                      setCityTown(e.target.value);
+                    }}
                     style={{ width: "100%", padding: "8px" }}
                   />
                 </div>

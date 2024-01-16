@@ -17,9 +17,9 @@ function Header() {
       <div className="Nav-links">
         <Link to={"/admin/home"}>home</Link>
         <Link to={"/admin/agents"}>agents</Link>
-        <Link to={"/"}>Invoces</Link>
+        <Link to={"/admin/invoices"}>Invoces</Link>
         <Link to={"/admin/expense"}>Expenses</Link>
-        <Link to={"/"}>Store</Link>
+        <Link to={"/admin/store"}>Store</Link>
       </div>
       <div className="login">
         <button

@@ -5,23 +5,22 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
 import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
-import "./adminhome.css";
-import avatar from "../../Assets/avatar.png";
 import { debounce } from "lodash";
-import arrow from "../../Assets/Plus.png";
+import AddStoreItem from "../../components/Modals/AddStoreItem";
 
-function AdminHome() {
+function AdminStore() {
   const navigate = useNavigate();
   const [CustomersData, setCustomersData] = useState([]);
   const [filteredCustomersData, setFilteredCustomersData] = useState([]);
   const [isLoading, setisLoading] = useState(true);
+  const [showDocModal, setShowDocModal] = useState(false);
 
   useEffect(() => {
     getCustomersData();
   }, []);
 
   async function getCustomersData() {
-    const querySnapshot = await getDocs(collection(db, "Customers"));
+    const querySnapshot = await getDocs(collection(db, "Store"));
     const newCustomersData = [];
     querySnapshot.forEach((doc) => {
       newCustomersData.push(doc.data());
@@ -37,11 +36,8 @@ function AdminHome() {
       if (searchText && searchText.length > 0) {
         newData = CustomersData.filter(
           (data) =>
-            data.Name.toLowerCase().includes(searchText.toLowerCase()) ||
-            data.Cnic.toLowerCase().includes(searchText.toLowerCase()) ||
-            data.Plots.some((plot) =>
-              plot.toLowerCase().includes(searchText.toLowerCase())
-            )
+            data.agent.toLowerCase().includes(searchText.toLowerCase()) ||
+            data.title.toLowerCase().includes(searchText.toLowerCase())
         );
       }
       setFilteredCustomersData(newData);
@@ -58,65 +54,61 @@ function AdminHome() {
     () => filteredCustomersData,
     [filteredCustomersData]
   );
+  function getDate(seconds) {
+    let date = new Date(seconds * 1000);
+    let temp = date.toLocaleDateString();
+    console.log(temp);
+    return temp;
+  }
+  const openDocModal = () => {
+    setShowDocModal(true);
+  };
 
+  const closeDocModal = () => {
+    setShowDocModal(false);
+  };
   return isLoading ? (
     <Loader />
   ) : (
     <>
       <Header />
       <div className="Admin-Home">
-        <div className="hero--head">
-          <h1>Customers</h1>
-          <button
-            onClick={() => {
-              navigate("/create/client");
-            }}
-          >
-            Add New
-            <img src={arrow}></img>
-          </button>
-        </div>
         <div className="Admin-Home-content">
           <div className="Admin-Home-table">
             <input
               type="text"
-              placeholder="Search"
+              placeholder="Search item name/Uploaded By"
               onChange={(e) => debouncedFilterData(e.target.value)}
               className="input-field"
             />
             <div className="table">
-              <table className="adminhome-table">
+              <button
+                onClick={() => {
+                  setShowDocModal(true);
+                }}
+              >
+                add new
+              </button>
+              <table className="adminAgents-table">
                 <thead>
-                  <tr className="hed">
-                    <th>Name</th>
-                    <th>Phone Number</th>
-                    <th>CNIC No</th>
-                    <th>Plots</th>
-                    <th>Actions</th>
+                  <tr>
+                    <th>Sr No</th>
+                    <th>Item Name</th>
+                    <th>Office</th>
+                    <th>Uploaded By</th>
+                    <th>Uploaded At</th>
+                    <th>Description</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredCustomersDataMemoized.map((e) => (
-                    <tr key={e.Cnic}>
-                      <td className="avatar-image">
-                        <img
-                          src={avatar}
-                          alt="avatar"
-                          className="avatar-table"
-                        />
-                        {e.Name}
-                      </td>
-                      <td>{e.PhNo}</td>
-                      <td>{e.Cnic}</td>
-                      <td className="tddr">{e.Plots.length}</td>
-                      <td>
-                        <button
-                          className="button-view"
-                          onClick={() => navigate(`/details/client/${e.Cnic}`)}
-                        >
-                          View Details
-                        </button>
-                      </td>
+                  {filteredCustomersDataMemoized.map((e, index) => (
+                    <tr key={index}>
+                      <td>{index}</td>
+                      <td>{e.title}</td>
+                      <td>{e.office}</td>
+                      <td>{e.agent}</td>
+                      <td>{getDate(e.date.seconds)}</td>
+                      <td>{e.decs}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -126,8 +118,9 @@ function AdminHome() {
         </div>
       </div>
       <Footer />
+      <AddStoreItem showModal={showDocModal} onClose={closeDocModal} />
     </>
   );
 }
 
-export default AdminHome;
+export default AdminStore;

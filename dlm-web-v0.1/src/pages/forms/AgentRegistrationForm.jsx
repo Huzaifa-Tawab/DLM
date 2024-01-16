@@ -184,14 +184,14 @@ const AgentRegistrationForm = () => {
   };
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
-    // const validationErrors = validateForm(formData);
-    // if (Object.keys(validationErrors).length === 0) {
-    console.log("Form submitted:", formData);
-    createUser();
-    // } else {
-    //   setErrors(validationErrors);
-    // }
+    e.preventDefault();
+    const validationErrors = validateForm(formData);
+    if (Object.keys(validationErrors).length === 0) {
+      console.log("Form submitted:", formData);
+      // createUser();
+    } else {
+      setErrors(validationErrors);
+    }
   };
 
   const validateForm = (data) => {
@@ -250,28 +250,28 @@ const AgentRegistrationForm = () => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           console.log(url);
           formData["imgUrl"] = url;
-          createClient();
+          // createClient();
         });
       }
     );
   }
-  function createUser() {
-    console.log("hello");
-    auth
-      .createUser({
-        uid: formData.Cnic,
-        email: Email,
-        password: Pass,
-      })
-      .then((userRecord) => {
-        // See the UserRecord reference doc for the contents of userRecord.
-        console.log("Successfully created new user:", userRecord.uid);
-        // uploadToFirebase();
-      })
-      .catch((error) => {
-        console.log("Error creating new user:", error);
-      });
-  }
+  // function createUser() {
+  //   console.log("hello");
+  //   auth
+  //     .createUser({
+  //       uid: formData.Cnic,
+  //       email: Email,
+  //       password: Pass,
+  //     })
+  //     .then((userRecord) => {
+  //       // See the UserRecord reference doc for the contents of userRecord.
+  //       console.log("Successfully created new user:", userRecord.uid);
+  //       // uploadToFirebase();
+  //     })
+  //     .catch((error) => {
+  //       console.log("Error creating new user:", error);
+  //     });
+  // }
 
   return (
     <>
@@ -368,11 +368,11 @@ const AgentRegistrationForm = () => {
               />
               <span class="gender-title">Gender</span>
               <div class="category">
-                <label for="dot-1">
+                <label htmlfor="dot-1">
                   <span class="dot one"></span>
                   <span class="gender">Male</span>
                 </label>
-                <label for="dot-2">
+                <label htmlfor="dot-2">
                   <span class="dot two"></span>
                   <span class="gender">Female</span>
                 </label>
