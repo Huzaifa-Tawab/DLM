@@ -1,0 +1,12 @@
+.custom-modal-container {
+  border-radius: 10px;
+}
+.closebutton {
+  position: absolute;
+  right: 10px;
+}
+.closebutton img {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}

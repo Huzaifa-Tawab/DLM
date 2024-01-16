@@ -52,6 +52,7 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
     const PlotdocSnap = await getDoc(doc(db, "Plots", pid));
     const CatadocSnap = await getDoc(doc(db, "PlotCategories", cata));
     const AdocSnap = await getDoc(doc(db, "Agent", aid));
+
     if (PlotdocSnap.exists()) {
       setPlot(PlotdocSnap.data());
       console.log(PlotdocSnap.data());
@@ -114,6 +115,20 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
         });
       }
     );
+  }
+  async function uploadTansaction(url) {
+    await setDoc(doc(db, "Transactions", randomNum), {
+      fileNumber: pid,
+      agentID: aid,
+      proof: url,
+      penalty: penalty,
+      payment: catagory.InstallmentAmount,
+    });
+
+    await updateDoc(doc(db, "Plots", pid), {
+      lastPayment: serverTimestamp(),
+      paidAmount: paidAmount,
+    });
   }
   return (
     <Modal

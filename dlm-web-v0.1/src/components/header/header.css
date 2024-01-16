@@ -8,10 +8,14 @@
   align-items: center;
   /* border: 1px solid rgba(195, 212, 233, 0.4);
   background: var(--Primary-0, #fff); */
-    border: 1px solid rgba(195, 212, 233, 0.40);
+  border: 1px solid rgba(195, 212, 233, 0.4);
 
-    background: #F4B266;
+  background: #f4b266;
 }
 .logo {
   cursor: pointer;
+}
+.Nav-links a {
+  color: red;
+  padding: 0px 20px;
 }

@@ -15,7 +15,11 @@ function Header() {
         <img src={logo} alt="" />
       </div>
       <div className="Nav-links">
+        <Link to={"/admin/home"}>home</Link>
         <Link to={"/admin/agents"}>agents</Link>
+        <Link to={"/"}>Invoces</Link>
+        <Link to={"/admin/expense"}>Expenses</Link>
+        <Link to={"/"}>Store</Link>
       </div>
       <div className="login">
         <button

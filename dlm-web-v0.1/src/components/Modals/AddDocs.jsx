@@ -4,7 +4,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { db, storage } from "../../firebase";
 import { update } from "lodash";
 import { doc, updateDoc } from "firebase/firestore";
-
+import "./modal.css";
 function AddDocs({ showModal, onClose, uid, olddocs }) {
   console.log(olddocs);
   // State to store uploaded file
@@ -40,8 +40,6 @@ function AddDocs({ showModal, onClose, uid, olddocs }) {
         const percent = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
-
-        // update progress
         setPercent(percent);
       },
       (err) => console.log(err),

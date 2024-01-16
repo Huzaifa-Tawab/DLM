@@ -109,8 +109,6 @@ function AdminPlot() {
         <button
           onClick={() => {
             setShowDocModal(true);
-            console.log("it is runnig");
-            console.log(showDocModal);
           }}
         >
           Add

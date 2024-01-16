@@ -13,6 +13,8 @@ import AgentRegistrationForm from "./pages/forms/AgentRegistrationForm";
 import AgentRoutes from "./agentRoutes";
 import AdminRoutes from "./adminRoutes";
 import AdminAgents from "./pages/admin/AdminAgents";
+import AdminExpense from "./pages/admin/AdminExpense";
+import NotFound from "./pages/notfound/NotFound";
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/details/plot" element={<PlotDetails />} />
         <Route path="/create/client/" element={<ClientRegistrationFrom />} />
+        <Route path="/404" element={<NotFound />} />
 
         <Route element={<AgentRoutes />}>
           <Route path="/sub-admin/" element={<SubAdmin />} />
@@ -35,6 +38,7 @@ function App() {
         <Route path="/create/client/" element={<ClientRegistrationFrom />} />
         <Route path="/create/plot/" element={<PlotRegistrationForm />} />
         <Route path="/details/plot/:id" element={<AdminPlot />} />
+        <Route path="/admin/expense" element={<AdminExpense />} />
         {/* </Route> */}
         {/* <Route path="*" element={<NoPage />} />  */}
       </Routes>

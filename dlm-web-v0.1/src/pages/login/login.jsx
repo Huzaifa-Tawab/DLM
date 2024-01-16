@@ -73,6 +73,8 @@ const Login = () => {
     if (docSnap.exists()) {
       console.log("Document data:", docSnap.data());
       localStorage.setItem("Name", docSnap.data().Name);
+      localStorage.setItem("id", docSnap.id);
+
       switch (docSnap.data()["Type"]) {
         case "Admin":
           navi("/admin/home");
