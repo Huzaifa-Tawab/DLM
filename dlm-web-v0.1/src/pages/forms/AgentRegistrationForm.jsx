@@ -7,7 +7,6 @@ import "./clientform.css";
 import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
 import generateRandomString from "../../../RandomString";
-import { getAuth } from "firebase/auth";
 // const axios = require("axios");
 import axios from "axios";
 
@@ -186,6 +185,7 @@ const AgentRegistrationForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setErrors();
     const validationErrors = validateForm(formData);
     if (Object.keys(validationErrors).length === 0) {
       console.log("Form submitted:", formData);
@@ -227,7 +227,7 @@ const AgentRegistrationForm = () => {
     return errors;
   };
 
-  const createClient = async () => {
+  const UploadAgentData = async () => {
     await setDoc(doc(db, "Agent", formData.Cnic), formData);
     navigate(`/details/agent/${formData.Cnic}`);
   };
@@ -276,7 +276,8 @@ const AgentRegistrationForm = () => {
       .request(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
-        createClient();
+        // UploadAgentData();
+        // uploadToFirebase();
       })
       .catch((error) => {
         console.log(error);
