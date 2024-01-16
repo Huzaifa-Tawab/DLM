@@ -5,9 +5,13 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
 import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
-
 import avatar from "../../Assets/avatar.png";
 import { debounce } from "lodash";
+import arrow from "../../Assets/Plus.png";
+import "./adminhome.css";
+
+
+
 
 function AdminAgents() {
   const navigate = useNavigate();
@@ -64,6 +68,16 @@ function AdminAgents() {
     <>
       <Header />
       <div className="Admin-Home">
+      <div className="hero--head">
+          <h1>Agents</h1>
+          <button   onClick={() => {
+                  navigate("/create/agent/");
+                }}
+          >Add New
+          <img src={arrow}></img>
+
+          </button>
+          </div>
         <div className="Admin-Home-content">
           <div className="Admin-Home-table">
             <input
@@ -73,16 +87,9 @@ function AdminAgents() {
               className="input-field"
             />
             <div className="table">
-              <button
-                onClick={() => {
-                  navigate("/create/agent/");
-                }}
-              >
-                add new
-              </button>
-              <table className="adminAgents-table">
+              <table className="adminhome-table">
                 <thead>
-                  <tr>
+                  <tr className="hed">
                     <th>Name</th>
                     <th>Phone Number</th>
                     <th>CNIC No</th>
@@ -103,13 +110,13 @@ function AdminAgents() {
                       </td>
                       <td>{e.PhNo}</td>
                       <td>{e.Cnic}</td>
-                      <td>{e.Plots.length}</td>
+                      <td className="tddr">{e.Plots.length}</td>
                       <td>
                         <button
                           className="button-view"
                           onClick={() => navigate(`/details/client/${e.Cnic}`)}
                         >
-                          View
+                          View Details
                         </button>
                       </td>
                     </tr>

@@ -11,6 +11,8 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import "./modal.css";
+import xIcon from "../../assets/Xincon.png";
+
 function AddStoreItem({ showModal, onClose }) {
   const agentname = localStorage.getItem("Name");
   const [Title, setTitle] = useState("");
@@ -55,39 +57,45 @@ function AddStoreItem({ showModal, onClose }) {
       containerClassName="custom-modal-container"
       closeOnOuterClick={!isLoading}
     >
-      <h2>Add Store</h2>
-      <button onClick={onClose}>Close Modal</button>
+      <h2>Add Items</h2>
+      <span>Once you save the item it can't be edit or delete</span>
+      <div className="closebutton">
+        <img onClick={onClose} src={xIcon} alt="" />
+      </div>
       <div>
         <div className="modal-field-group">
-          <p>Title</p>
+          <p>Name</p>
           <input
             type="text"
+            placeholder="Name"
             onChange={(e) => {
               setTitle(e.target.value);
             }}
           />
         </div>
         <div className="modal-field-group">
-          <p>Office</p>
+          <p>Office No</p>
           <input
             type="text"
+            placeholder="Office No"
             onChange={(e) => {
               setOffice(e.target.value);
             }}
           />
         </div>
         <div className="modal-field-group">
-          <p>Description</p>
+          <p>Location</p>
           <textarea
             type="text"
+            placeholder="Type your message"
             onChange={(e) => {
               setDesc(e.target.value);
             }}
           />
         </div>
 
-        <button disabled={isLoading} onClick={handleUpload}>
-          Upload
+        <button className="modal-button" disabled={isLoading} onClick={handleUpload}>
+          Save
         </button>
       </div>
     </Modal>

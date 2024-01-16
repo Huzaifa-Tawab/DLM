@@ -70,12 +70,15 @@ function AddExpense({ showModal, onClose }) {
       </div>
       <div className="Modal-row">
         <h2>Expenses</h2>
+      <span>Once you save the item it can't be edit or delete</span>
+
       </div>
       <div>
         <div className="modal-field-group">
           <p>Title</p>
           <input
             type="text"
+            placeholder="Title"
             onChange={(e) => {
               setTitle(e.target.value);
             }}
@@ -85,15 +88,17 @@ function AddExpense({ showModal, onClose }) {
           <p>Amount</p>
           <input
             type="number"
+            placeholder="Amount"
             onChange={(e) => {
               setExpense(e.target.value);
             }}
           />
         </div>
         <div className="modal-field-group">
-          <p>Discription</p>
-          <input
+          <p>Details</p>
+          <textarea
             type="text"
+            placeholder="Enter Details"
             onChange={(e) => {
               setDesc(e.target.value);
             }}
@@ -101,7 +106,7 @@ function AddExpense({ showModal, onClose }) {
         </div>
         <p>{Error}</p>
 
-        <button onClick={handleUpload}>Submit</button>
+        <button className="modal-button" onClick={handleUpload}>Submit</button>
       </div>
     </Modal>
   );

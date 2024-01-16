@@ -7,6 +7,8 @@ import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
 import { debounce } from "lodash";
 import AddStoreItem from "../../components/Modals/AddStoreItem";
+import arrow from "../../Assets/Plus.png";
+
 
 function AdminStore() {
   const navigate = useNavigate();
@@ -73,6 +75,17 @@ function AdminStore() {
     <>
       <Header />
       <div className="Admin-Home">
+      <div className="hero--head">
+          <h1>Store</h1>
+          <button
+            onClick={() => {
+              setShowDocModal(true);
+            }}
+          >
+            Add New
+            <img src={arrow}></img>
+          </button>
+        </div>
         <div className="Admin-Home-content">
           <div className="Admin-Home-table">
             <input
@@ -82,16 +95,10 @@ function AdminStore() {
               className="input-field"
             />
             <div className="table">
-              <button
-                onClick={() => {
-                  setShowDocModal(true);
-                }}
-              >
-                add new
-              </button>
-              <table className="adminAgents-table">
+           
+              <table className="adminhome-table">
                 <thead>
-                  <tr>
+                  <tr className="hed">
                     <th>Sr No</th>
                     <th>Item Name</th>
                     <th>Office</th>

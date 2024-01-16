@@ -77,22 +77,27 @@ function ClientDetails() {
         <div>
           <div className="info-box">
             <div className="client-pic">
-              <h1>Customer Information</h1>
-
+              {/* <h1>Customer Information</h1> */}
+                <div className="client-pic-detail">
               <img
                 className="avatar"
                 src={userData.imgUrl}
                 alt="User"
-                style={{ maxWidth: "200px" }}
+                style={{ maxWidth: "100px" }}
               />
+                <div className="cus-details">
+              <h2>Ahmed</h2>
+              <span>Customer</span>
+              </div>
+              </div>
               <br />
               <span>info@infogmail.com</span>
               <br />
               <span>+92 317 5545690</span>
               <div className="clients-buttons">
+                <div className="button-pair">
                 <button onClick={openDocModal}>
                   <img src={edit} alt="" />
-
                   <p>Add Doc </p>
                 </button>
                 <button
@@ -107,38 +112,41 @@ function ClientDetails() {
                   <img src={edit} alt="" />
                   <p>Add Plot </p>
                 </button>
+                </div>
+                <div className="button-pair">
                 <button>
                   <img src={edit} alt="" />
-                  <p>Edit </p>
+                  <p>Edit Profile </p>
                 </button>
                 <button>
                   <img src={edit} alt="" />
-                  <p>Edit </p>
+                  <p>Delete Profile</p>
                 </button>
+                </div>
               </div>
             </div>
             <div className="info-box-2">
-              <h1>Other Details</h1>
+              <h1>Customer Information</h1>
               <div className="data-client">
                 <div className="row">
-                  <h2> Name: {userData.Name}</h2>
-                  <h2> Father's Name: {userData.FName}</h2>
+                  <h2><span>Name:</span>  {userData.Name}</h2>
+                  <h2><span>Father's Name:</span> {userData.FName}</h2>
                 </div>
                 <div className="row">
-                  <h2> Gender: {userData.Gender}</h2>
-                  <h2>DOB: {userData.Dob}</h2>
+                  <h2><span>Gender:</span>  {userData.Gender}</h2>
+                  <h2><span>DOB:</span> {userData.Dob}</h2>
                 </div>
                 <div className="row">
-                  <h2> CNIC:{userData.Cnic}</h2>
-                  <h2> Phone Number:{userData.phNo}</h2>
+                  <h2><span>CNIC:</span> {userData.Cnic}</h2>
+                  <h2><span>Phone Number:</span> {userData.phNo}</h2>
                 </div>
                 <div className="row">
-                  <h2> Town City:{userData["TownCity"]}</h2>
-                  <h2> Kin Relation:{userData.KinRelation}</h2>
+                  <h2><span>Town City:</span>{userData["TownCity"]}</h2>
+                  <h2><span>Kin Relation:</span>{userData.KinRelation}</h2>
                 </div>
                 <div className="row">
-                  <h2> Next of Kin:{userData.NexttoKin}</h2>
-                  <h2> Address:{userData.Address}</h2>
+                  <h2><span>Next of Kin:</span> {userData.NexttoKin}</h2>
+                  <h2><span>Address:</span> {userData.Address}</h2>
                 </div>
               </div>
             </div>

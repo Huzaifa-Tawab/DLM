@@ -76,7 +76,7 @@ function AdminExpense() {
       <Header />
       <div className="Admin-Home">
         <div className="hero--head">
-          <h1>Customers</h1>
+          <h1>Expenses</h1>
           <button
             onClick={() => {
               openModal();
@@ -95,17 +95,16 @@ function AdminExpense() {
               className="input-field"
             />
             <div className="table">
-              <table className="AdminSxpense-table">
+              <table className="adminhome-table">
                 <thead>
                   <tr className="hed">
                     <th>Sr No</th>
                     <th>Name</th>
                     <th>Title</th>
                     <th>Amount</th>
-
                     <th>Date</th>
                     <th>Description</th>
-                    <th>Actions</th>
+                    <th>More Details</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -118,15 +117,15 @@ function AdminExpense() {
                       <td>{getDate(e.created.seconds)}</td>
                       <td>{e.description}</td>
 
-                      <td>None</td>
-                      {/* <td>
+                      {/* <td></td> */}
+                      <td>
                         <button
                           className="button-view"
-                          onClick={() => navigate(`/details/client/${e.Cnic}`)}
+                          onClick={() => navigate(`/`)}
                         >
-                          View Details
+                          View
                         </button>
-                      </td> */}
+                      </td>
                     </tr>
                   ))}
                 </tbody>

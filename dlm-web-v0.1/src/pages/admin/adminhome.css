@@ -1,6 +1,10 @@
 .Admin-Home {
   height: 90vh;
 }
+.Admin-Home-content{
+  margin: 20px;
+  border-radius: 10px;
+}
 .Admin-Home-table > input {
   margin: 20px;
   width: 30%;
@@ -30,6 +34,8 @@
 }
 .avatar-table {
   width: 25px;
+  border-radius: 100%;
+
 }
 .adminhome-table {
   /* background: #fff; */
@@ -41,8 +47,14 @@
 
   
 }
+table{
+  border-spacing: 0px !important;
+}
 .hed {
   background: white;
+}
+tbody{
+  /* background: #F4B266; */
 }
 th,
 td {
@@ -53,8 +65,9 @@ td {
   background: #A4243B;
   color:#FFFFFF;
   /* text-decoration: underline; */
-  width: 99px;
+  width: 100px;
   border-radius: 15px;
+  padding: 6px;
 }
 .hero--head{
   background: #A4243B;

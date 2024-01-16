@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: black;
 }
 
 .home-container {
@@ -23,10 +24,11 @@
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  background: #fff;
 }
 
 .submit-button {
-  background-color: #3563e9;
+  background-color: #F4B266;
   color: #fff;
   padding: 10px;
   border: none;
@@ -36,7 +38,7 @@
 }
 
 .submit-button:hover {
-  background-color: #254785;
+  background-color: #F4B266;
 }
 
 .error-message {

@@ -16,6 +16,10 @@
   cursor: pointer;
 }
 .Nav-links a {
-  color: red;
+  /* color: red; */
+  color: white;
   padding: 0px 20px;
+  font-size: 20px;
+  text-decoration: none;
+  font-weight: 600;
 }

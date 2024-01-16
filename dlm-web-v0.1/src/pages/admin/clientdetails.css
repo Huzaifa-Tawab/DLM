@@ -20,6 +20,7 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
+  margin: 20px;
 }
 .clients-buttons button {
   background: #a5a5a5;
@@ -27,7 +28,31 @@
   height: 80px;
 }
 .clients-buttons button img {
-  height: 50%;
+  height: 100%;
+}
+.button-pair{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 10px;
+  color: white;
+}
+.button-pair> p{
+  color: black;
+  background: #A4243B;
+}
+.button-pair> button{
+  width: 100%;
+  height: 30px;
+  gap: 20px;
+  background: #F4B266;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+.button-pair>button:hover{
+  background: #F4B266;
 }
 .info-box-2 {
   width: 65%;
@@ -38,7 +63,21 @@
 }
 .row {
   display: flex;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
+  text-align: start;
+  gap: 200px;
+}
+.row>h2> span{
+  color: gray;
+  font-size: 20px;
+  font-weight: 500;
+
+}
+.client-pic-detail{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
 }
 .documents {
   background: #fff;
@@ -85,7 +124,7 @@
 } */
 .view-more > button {
   background: #A4243B;
-  width: 7vw;
+  width: 100%;
   height: 6vh;
   color: var(--Primary-0, #FFF);
 text-align: center;
@@ -96,7 +135,7 @@ font-style: normal;
 font-weight: 600;
 line-height: 150%; /* 24px */
 letter-spacing: -0.32px;
-margin-left: 8vw;
+/* margin-left: 8vw; */
 padding:0px;
 }
 .add-plot {
