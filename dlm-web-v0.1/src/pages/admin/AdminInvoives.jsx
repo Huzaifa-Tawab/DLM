@@ -58,7 +58,7 @@ function AdminInvoives() {
   function getDate(seconds) {
     let date = new Date(seconds * 1000);
     let temp = date.toLocaleDateString();
-    console.log(temp);
+
     return temp;
   }
   return isLoading ? (
