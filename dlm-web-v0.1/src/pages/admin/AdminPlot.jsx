@@ -90,7 +90,7 @@ function AdminPlot() {
             <strong>Category:</strong> {PlotDetails.Category}
           </li>
           <li>
-            <strong>Paid Amount:</strong> {PlotDetails.PaidAmount}
+            <strong>Paid Amount:</strong> {PlotDetails.paidAmount}
           </li>
           <li>
             <strong>Total Amount:</strong> {PlotDetails.TotalAmount}

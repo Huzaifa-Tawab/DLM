@@ -1,4 +1,4 @@
-import { doc, setDoc } from "firebase/firestore";
+import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { db, storage } from "../../firebase";
@@ -7,6 +7,7 @@ import "./clientform.css";
 import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
 import Loader from "../../components/loader/Loader";
+import { useEffect } from "react";
 
 const ErrorMessage = ({ message }) => (
   <span style={{ color: "red", fontSize: "0.8em" }}>{message}</span>
@@ -130,6 +131,7 @@ const FileInput = ({ label, onChange, previewUrl, error }) => {
 
 const ClientRegistrationForm = () => {
   const [isUploading, setisUploading] = useState(false);
+  const [usedId, setUsedId] = useState([]);
   const [formData, setFormData] = useState({
     Name: "",
     FName: "",
@@ -153,6 +155,9 @@ const ClientRegistrationForm = () => {
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [avatarPreview, setAvatarPreview] = useState(null);
+  useEffect(() => {
+    getAllCustCnic();
+  }, []);
 
   const handleFileChange = (file) => {
     setFile(file);
@@ -179,7 +184,10 @@ const ClientRegistrationForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    if (usedId.includes(formData.Cnic)) {
+      alert("Cnic Is Allready in used");
+      return;
+    }
     setErrors("");
     setisUploading(true);
     const validationErrors = validateForm(formData);
@@ -223,7 +231,14 @@ const ClientRegistrationForm = () => {
 
     return errors;
   };
-
+  async function getAllCustCnic() {
+    const querySnapshot = await getDocs(collection(db, "Customers"));
+    let temp = [];
+    querySnapshot.forEach((doc) => {
+      temp.push(doc.id);
+    });
+    setUsedId(temp);
+  }
   const isFormValid = Object.keys(errors).length === 0;
 
   const createClient = async () => {
