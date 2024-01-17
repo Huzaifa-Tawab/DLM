@@ -68,8 +68,8 @@ const Home = () => {
     const docRef = doc(db, "Customers", cnicR);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-      // console.log("Document data:", docSnap.data());
-      if (docSnap.data()["PhNo"] == phoneNumber) {
+      console.log("Document data:", docSnap.data());
+      if (docSnap.data()["phNo"] == phoneNumber) {
         console.log("Number OK");
         if (docSnap.data()["Plots"].includes(referenceId)) {
           console.log("Ref OK");
@@ -82,13 +82,13 @@ const Home = () => {
             },
           });
         } else {
-          navigate("/404");
+          // navigate("/404");
         }
       } else {
-        navigate("/404");
+        // navigate("/404");
       }
     } else {
-      navigate("/404");
+      // navigate("/404");
     }
   }
   return isLoading ? (
