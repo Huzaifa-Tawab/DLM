@@ -156,7 +156,7 @@ function AdminPlot() {
             setShowDocModal(true);
           }}
         >
-          Add
+          transfer
         </button>
       </div>
       <AddTransactions
