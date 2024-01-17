@@ -12,6 +12,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebase";
 import AddTransactions from "../../components/Modals/AddTransactions";
+import TransferPlot from "../../components/Modals/TransferPlot";
 
 function AdminPlot() {
   const prams = useParams();
@@ -153,7 +154,7 @@ function AdminPlot() {
         </button>
         <button
           onClick={() => {
-            setShowDocModal(true);
+            setShowTransferModal(true);
           }}
         >
           transfer
@@ -166,6 +167,11 @@ function AdminPlot() {
         aid={PlotDetails.AgentId}
         pid={PlotDetails.FileNumber}
         cata={PlotDetails.Category}
+      />
+      <TransferPlot
+        showModal={showTransferModal}
+        onClose={closeTransferModal}
+        pid={PlotDetails.FileNumber}
       />
     </>
   );
