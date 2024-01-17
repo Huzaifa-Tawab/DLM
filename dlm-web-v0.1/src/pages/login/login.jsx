@@ -74,6 +74,7 @@ const Login = () => {
       console.log("Document data:", docSnap.data());
       localStorage.setItem("Name", docSnap.data().Name);
       localStorage.setItem("id", docSnap.id);
+      localStorage.setItem("Type", docSnap.data().Type);
 
       switch (docSnap.data()["Type"]) {
         case "Admin":

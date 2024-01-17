@@ -9,6 +9,7 @@ import "./adminhome.css";
 import avatar from "../../Assets/avatar.png";
 import { debounce } from "lodash";
 import arrow from "../../Assets/Plus.png";
+import isAdmin from "../../../IsAdmin";
 
 function AdminHome() {
   const navigate = useNavigate();
@@ -65,6 +66,9 @@ function AdminHome() {
     <>
       <Header />
       <div className="Admin-Home">
+        <div>{isAdmin() && "Admin"}</div>
+        <div>{isAdmin() ? "Admin" : "SubAdmin"}</div>
+
         <div className="hero--head">
           <h1>Customers</h1>
           <button

@@ -1,4 +1,4 @@
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, db, storage } from "../../firebase";
@@ -188,8 +188,19 @@ const AgentRegistrationForm = () => {
     setErrors();
     const validationErrors = validateForm(formData);
     if (Object.keys(validationErrors).length === 0) {
-      console.log("Form submitted:", formData);
-      createAgentAccount();
+      const docRef = doc(db, "Users", formData.Cnic);
+      getDoc(docRef).then((docSnap) => {
+        if (docSnap.exists()) {
+          const errors = {};
+
+          errors.Cnic = "CNIC already Exists";
+          setErrors(errors);
+          alert("Cnic already exists");
+        } else {
+          console.log("Form submitted:", formData);
+          createAgentAccount();
+        }
+      });
     } else {
       setErrors(validationErrors);
     }
@@ -231,7 +242,7 @@ const AgentRegistrationForm = () => {
     await setDoc(doc(db, "Agent", formData.Cnic), formData);
     navigate(`/details/agent/${formData.Cnic}`);
   };
-  function uploadToFirebase() {
+  function uploadImageToFirebase() {
     const storageRef = ref(storage, `/ProfilePhotos/${formData.Cnic}`);
     const uploadTask = uploadBytesResumable(storageRef, File);
 
@@ -248,20 +259,18 @@ const AgentRegistrationForm = () => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           console.log(url);
           formData["imgUrl"] = url;
-          // createClient();
+          UploadAgentData();
         });
       }
     );
   }
 
   function createAgentAccount() {
-    console.log("runing");
     let data = JSON.stringify({
       email: Email,
       password: Pass,
       uid: formData.Cnic,
     });
-
     let config = {
       method: "post",
       maxBodyLength: Infinity,
@@ -271,18 +280,23 @@ const AgentRegistrationForm = () => {
       },
       data: data,
     };
-
     axios
       .request(config)
       .then((response) => {
-        console.log(JSON.stringify(response.data));
-        // UploadAgentData();
-        // uploadToFirebase();
+        createUserAccount();
       })
       .catch((error) => {
         console.log(error);
       });
   }
+  const createUserAccount = async () => {
+    await setDoc(doc(db, "Users", formData.Cnic), {
+      Name: formData.Name,
+      Email: Email,
+      Type: "SubAdmin",
+    });
+    uploadImageToFirebase();
+  };
   return (
     <>
       <Header />
@@ -304,7 +318,7 @@ const AgentRegistrationForm = () => {
                   name="Name"
                   value={formData.Name}
                   onChange={handleChange}
-                  error={errors.Name}
+                  error={errors && errors.Name}
                 />
               </div>
               <div className="input-box">
@@ -313,7 +327,7 @@ const AgentRegistrationForm = () => {
                   name="FName"
                   value={formData.FName}
                   onChange={handleChange}
-                  error={errors.FName}
+                  error={errors && errors.FName}
                 />
               </div>
               <div className="input-box">
@@ -324,7 +338,7 @@ const AgentRegistrationForm = () => {
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
-                  error={errors.Email}
+                  error={errors && errors.Email}
                 />
               </div>
               <div className="input-box">
@@ -335,7 +349,7 @@ const AgentRegistrationForm = () => {
                   onChange={(e) => {
                     setPass(e.target.value);
                   }}
-                  error={errors.Pass}
+                  error={errors && errors.Pass}
                 />
               </div>
               <div className="input-box">
@@ -344,7 +358,7 @@ const AgentRegistrationForm = () => {
                   name="Cnic"
                   value={formData.Cnic}
                   onChange={handleChange}
-                  error={errors.Cnic}
+                  error={errors && errors.Cnic}
                 />
               </div>
               <div className="input-box">
@@ -353,7 +367,7 @@ const AgentRegistrationForm = () => {
                   name="phNo"
                   value={formData.phNo}
                   onChange={handleChange}
-                  error={errors.phNo}
+                  error={errors && errors.phNo}
                 />
               </div>
             </div>
