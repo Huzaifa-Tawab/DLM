@@ -153,6 +153,7 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       payment: catagory.InstallmentAmount,
       nature: "installment",
       installmentNo: Plot.installmentNo,
+      time: serverTimestamp(),
     });
 
     await updateDoc(doc(db, "Plots", pid), {

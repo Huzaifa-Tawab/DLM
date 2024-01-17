@@ -21,6 +21,7 @@ function AdminPlot() {
   const [isLoading, setisLoading] = useState(true);
   const [Transactions, setTransactions] = useState([]);
   const [showDocModal, setShowDocModal] = useState(false);
+  const [showTransferModal, setShowTransferModal] = useState(false);
 
   useEffect(() => {
     getPlotDetails();
@@ -60,6 +61,13 @@ function AdminPlot() {
 
   const closeDocModal = () => {
     setShowDocModal(false);
+  };
+  const openTransferModal = () => {
+    setShowTransferModal(true);
+  };
+
+  const closeTransferModal = () => {
+    setShowTransferModal(false);
   };
   return isLoading ? (
     <Loader />
@@ -142,6 +150,13 @@ function AdminPlot() {
           }}
         >
           Add
+        </button>
+        <button
+          onClick={() => {
+            setShowDocModal(true);
+          }}
+        >
+          transfer
         </button>
       </div>
       <AddTransactions
