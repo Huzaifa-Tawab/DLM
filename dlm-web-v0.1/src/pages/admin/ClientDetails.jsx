@@ -78,17 +78,17 @@ function ClientDetails() {
           <div className="info-box">
             <div className="client-pic">
               {/* <h1>Customer Information</h1> */}
-                <div className="client-pic-detail">
-              <img
-                className="avatar"
-                src={userData.imgUrl}
-                alt="User"
-                style={{ maxWidth: "100px" }}
-              />
+              <div className="client-pic-detail">
+                <img
+                  className="avatar"
+                  src={userData.imgUrl}
+                  alt="User"
+                  style={{ maxWidth: "100px" }}
+                />
                 <div className="cus-details">
-              <h2>Ahmed</h2>
-              <span>Customer</span>
-              </div>
+                  <h2>Ahmed</h2>
+                  <span>Customer</span>
+                </div>
               </div>
               <br />
               <span>info@infogmail.com</span>
@@ -96,32 +96,32 @@ function ClientDetails() {
               <span>+92 317 5545690</span>
               <div className="clients-buttons">
                 <div className="button-pair">
-                <button onClick={openDocModal}>
-                  <img src={edit} alt="" />
-                  <p>Add Doc </p>
-                </button>
-                <button
-                  onClick={() => {
-                    navigate("/create/plot/", {
-                      state: {
-                        Cuid: userData.Cnic,
-                      },
-                    });
-                  }}
-                >
-                  <img src={edit} alt="" />
-                  <p>Add Plot </p>
-                </button>
+                  <button onClick={openDocModal}>
+                    <img src={edit} alt="" />
+                    <p>Add Doc </p>
+                  </button>
+                  <button
+                    onClick={() => {
+                      navigate("/create/plot/", {
+                        state: {
+                          Cuid: userData.Cnic,
+                        },
+                      });
+                    }}
+                  >
+                    <img src={edit} alt="" />
+                    <p>Add Plot </p>
+                  </button>
                 </div>
                 <div className="button-pair">
-                <button>
-                  <img src={edit} alt="" />
-                  <p>Edit Profile </p>
-                </button>
-                <button>
-                  <img src={edit} alt="" />
-                  <p>Delete Profile</p>
-                </button>
+                  <button>
+                    <img src={edit} alt="" />
+                    <p>Edit Profile </p>
+                  </button>
+                  <button>
+                    <img src={edit} alt="" />
+                    <p>Delete Profile</p>
+                  </button>
                 </div>
               </div>
             </div>
@@ -129,40 +129,81 @@ function ClientDetails() {
               <h1>Customer Information</h1>
               <div className="data-client">
                 <div className="row">
-                  <h2><span>Name:</span>  {userData.Name}</h2>
-                  <h2><span>Father's Name:</span> {userData.FName}</h2>
+                  <h2>
+                    <span>Name:</span> {userData.Name}
+                  </h2>
+                  <h2>
+                    <span>Father's Name:</span> {userData.FName}
+                  </h2>
                 </div>
                 <div className="row">
-                  <h2><span>Gender:</span>  {userData.Gender}</h2>
-                  <h2><span>DOB:</span> {userData.Dob}</h2>
+                  <h2>
+                    <span>Gender:</span> {userData.Gender}
+                  </h2>
+                  <h2>
+                    <span>DOB:</span> {userData.Dob}
+                  </h2>
                 </div>
                 <div className="row">
-                  <h2><span>CNIC:</span> {userData.Cnic}</h2>
-                  <h2><span>Phone Number:</span> {userData.phNo}</h2>
+                  <h2>
+                    <span>CNIC:</span> {userData.Cnic}
+                  </h2>
+                  <h2>
+                    <span>Phone Number:</span> {userData.phNo}
+                  </h2>
                 </div>
                 <div className="row">
-                  <h2><span>Town City:</span>{userData["TownCity"]}</h2>
-                  <h2><span>Kin Relation:</span>{userData.KinRelation}</h2>
+                  <h2>
+                    <span>Town City:</span>
+                    {userData["TownCity"]}
+                  </h2>
+                  <h2>
+                    <span>Kin Relation:</span>
+                    {userData.KinRelation}
+                  </h2>
                 </div>
                 <div className="row">
-                  <h2><span>Next of Kin:</span> {userData.NexttoKin}</h2>
-                  <h2><span>Address:</span> {userData.Address}</h2>
+                  <h2>
+                    <span>Next of Kin:</span> {userData.NexttoKin}
+                  </h2>
+                  <h2>
+                    <span>Address:</span> {userData.Address}
+                  </h2>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="documents">
-            <h1>Documents</h1>
-            {userData.Documents &&
-              Object.entries(userData.Documents).map(([key, value]) => (
-                <h2 className="doc-align" key={key}>
-                  <h2>{key}</h2>
-                  <a href={value} target="_blank" rel="noopener noreferrer">
-                    Link
-                  </a>
-                </h2>
-              ))}
+            <div className="doc-row">
+              <h1>Documents</h1>
+              <button>Add Document</button>
+            </div>
+            <table>
+              <thead>
+                <th>Title</th>
+                <th>Uploaded At</th>
+                <td>Acitons</td>
+              </thead>
+              <tbody>
+                {userData.Documents &&
+                  Object.entries(userData.Documents).map(([key, value]) => (
+                    <tr>
+                      <td>{key}</td>
+                      <td>---</td>
+                      <td>
+                        <a
+                          href={value}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          view
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
           </div>
           <div className="plots">
             <h1>Plots Details</h1>

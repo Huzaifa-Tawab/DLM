@@ -30,29 +30,29 @@
 .clients-buttons button img {
   height: 100%;
 }
-.button-pair{
+.button-pair {
   display: flex;
   width: 100%;
   flex-direction: column;
   gap: 10px;
   color: white;
 }
-.button-pair> p{
+.button-pair > p {
   color: black;
-  background: #A4243B;
+  background: #a4243b;
 }
-.button-pair> button{
+.button-pair > button {
   width: 100%;
   height: 30px;
   gap: 20px;
-  background: #F4B266;
+  background: #f4b266;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 14px;
 }
-.button-pair>button:hover{
-  background: #F4B266;
+.button-pair > button:hover {
+  background: #f4b266;
 }
 .info-box-2 {
   width: 65%;
@@ -67,13 +67,12 @@
   text-align: start;
   gap: 200px;
 }
-.row>h2> span{
+.row > h2 > span {
   color: gray;
   font-size: 20px;
   font-weight: 500;
-
 }
-.client-pic-detail{
+.client-pic-detail {
   display: flex;
   gap: 10px;
   align-items: center;
@@ -107,12 +106,11 @@
   gap: 20px;
 }
 .card {
-  background:#F4B266 ;
+  background: #f4b266;
   padding: 10px;
   width: 250px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   border-radius: 10px;
-  
 }
 .plot-des {
   margin: 20px;
@@ -123,20 +121,20 @@
 /* .view-more {
 } */
 .view-more > button {
-  background: #A4243B;
+  background: #a4243b;
   width: 100%;
   height: 6vh;
-  color: var(--Primary-0, #FFF);
-text-align: center;
-/* Semibold/Type@16 */
+  color: var(--Primary-0, #fff);
+  text-align: center;
+  /* Semibold/Type@16 */
 
-font-size: 16px;
-font-style: normal;
-font-weight: 600;
-line-height: 150%; /* 24px */
-letter-spacing: -0.32px;
-/* margin-left: 8vw; */
-padding:0px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 24px */
+  letter-spacing: -0.32px;
+  /* margin-left: 8vw; */
+  padding: 0px;
 }
 .add-plot {
   text-align: center;
@@ -160,36 +158,39 @@ padding:0px;
   height: 77px;
   border-radius: 9px;
 }
-.row-start{
+.row-start {
   margin-bottom: 40px;
   margin-top: 40px;
 
-  h2{
+  h2 {
     font-size: 18px;
     margin-top: 20px;
     margin-bottom: 0px;
   }
 }
-.row-start span{
-  color: #FFF;
-font-family: Plus Jakarta Sans;
-font-size: 18px;
-font-style: normal;
-font-weight: 500;
-line-height: 150%; /* 21px */
-letter-spacing: -0.28px;
-/* margin-left: 2px; */
-
-}
-.buildlogo{
+.row-start span {
+  color: #fff;
+  font-family: Plus Jakarta Sans;
   font-size: 18px;
-  color: #7A5933;
-  
-
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 21px */
+  letter-spacing: -0.28px;
+  /* margin-left: 2px; */
 }
-.card h2{
-  
+.buildlogo {
+  font-size: 18px;
+  color: #7a5933;
+}
+.card h2 {
   padding-bottom: 20px;
   padding-left: 5px;
   color: white;
+}
+.doc-row {
+  display: flex;
+  justify-content: space-between;
+}
+.documents table {
+  width: 100%;
 }
