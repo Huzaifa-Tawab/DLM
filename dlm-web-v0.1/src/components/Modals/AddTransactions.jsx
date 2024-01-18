@@ -127,6 +127,10 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
     if (PlotdocSnap.exists()) {
       plot = PlotdocSnap.data();
     }
+    const CustomerdocSnap = await getDoc(doc(db, "Customers", cid));
+    if (CustomerdocSnap.exists()) {
+      customer = CustomerdocSnap.data();
+    }
     const AgentSnap = await getDoc(doc(db, "Agent", aid));
     if (AgentSnap.exists()) {
       agent = AgentSnap.data();
@@ -146,13 +150,14 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       fileNumber: pid,
       agentID: aid,
       agentName: agent.Name + " " + agent.FName,
-      customerName: customer.Name + " " + customer.FName,
+      customerName: customer.Name,
+      customerLastName: customer.FName,
       customerID: cid,
       proof: url,
       penalty: penalty,
-      payment: catagory.InstallmentAmount,
+      payment: Amount,
+      total: parseInt(penalty) + parseInt(Amount),
       nature: "installment",
-      installmentNo: Plot.installmentNo,
       time: serverTimestamp(),
       InvId: randomNum,
       Category: cata,
@@ -183,7 +188,16 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
         <h1>pending istallments {NumberOfPenelties}</h1>
         <div className="textfieldgroup-col">
           <p>Amount</p>
-          <input disabled type="number" value={Amount} />
+
+          <input
+            type="number"
+            value={Amount}
+            onChange={(e) => {
+              if (parseInt(e.target.value) > 0) {
+                setAmount(parseInt(e.target.value));
+              }
+            }}
+          />
         </div>
 
         <div className="textfieldgroup-col">
