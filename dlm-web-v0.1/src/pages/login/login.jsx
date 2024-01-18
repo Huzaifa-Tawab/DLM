@@ -80,15 +80,17 @@ const Login = () => {
         case "Admin":
           navi("/admin/home");
           break;
-        case "Sub Admin":
-          navi("sub-admin/home");
+        case "SubAdmin":
+      localStorage.setItem("Type", docSnap.data().Type);
+
+          navi("/admin/home");
 
           break;
 
         default:
           setError("Record Not Found");
           auth.signOut();
-
+localStorage.clear()
           break;
       }
       if (docSnap.data()["Type"] === "Admin") {
