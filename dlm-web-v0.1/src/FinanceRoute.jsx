@@ -4,9 +4,11 @@ import { Outlet, Navigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import isLogedIn from "../isLogedIn";
 
-const AdminRoutes = () => {
+import isFinance from "../IsFinance";
+
+const FinanceRoute = () => {
   // const [Auth, setauth] = useState(false);
-  const auth = isLogedIn();
+  const auth = isFinance();
 
   // const auth = getAuth();
   // const uid = auth.currentUser.uid;
@@ -30,4 +32,4 @@ const AdminRoutes = () => {
   return auth ? <Outlet /> : <Navigate to="/login" />;
 };
 
-export default AdminRoutes;
+export default FinanceRoute;

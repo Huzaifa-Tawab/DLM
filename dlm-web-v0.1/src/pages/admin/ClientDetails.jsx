@@ -81,7 +81,13 @@ function ClientDetails() {
               <div className="client-pic-detail">
                 <img
                   className="avatar"
-                  src={userData.imgUrl}
+                  src={
+                    userData.Gender === "female"
+                      ? isAdmin()
+                        ? userData.imgUrl
+                        : avatar
+                      : userData.imgUrl
+                  }
                   alt="User"
                   style={{ maxWidth: "100px" }}
                 />
@@ -113,97 +119,92 @@ function ClientDetails() {
                     <p>Add Plot </p>
                   </button>
                 </div>
-                {isAdmin() &&   <div className="button-pair">
-                  <button>
-                    <img src={edit} alt="" />
-                    <p>Edit Profile </p>
-                  </button>
-                  <button>
-                    <img src={edit} alt="" />
-                    <p>Delete Profile</p>
-                  </button>
-                </div>}
+                {isAdmin() && (
+                  <div className="button-pair">
+                    <button>
+                      <img src={edit} alt="" />
+                      <p>Edit Profile </p>
+                    </button>
+                    <button>
+                      <img src={edit} alt="" />
+                      <p>Delete Profile</p>
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
             <div className="info-box-2">
               <h1>Customer Information</h1>
               <div className="sec-heading">
-               <span className="first-text">Address:</span> <span className="secon-text">{userData.Address}</span>
-               </div>
+                <span className="first-text">Address:</span>{" "}
+                <span className="secon-text">{userData.Address}</span>
+              </div>
               <div className="data-client">
-                
                 <div className="row">
-                
-                    <span>Name:</span> 
-                    <span>Father's Name:</span> 
-                    <span>CNIC:</span> 
-                    <span>Gender:</span> 
-                    <span>DOB:</span> 
-                    
-                  
+                  <span>Name:</span>
+                  <span>Father's Name:</span>
+                  <span>CNIC:</span>
+                  <span>Gender:</span>
+                  <span>DOB:</span>
                 </div>
                 <div className="row">
-                <span className="secon-row">{userData.Name}</span>
-                <span className="secon-row">{userData.FName}</span>
-                <span className="secon-row">{isAdmin() && userData.Cnic }ltr</span>
-                <span className="secon-row">{userData.Gender}</span>
-                <span className="secon-row">{userData.Dob}</span>
-                  
+                  <span className="secon-row">{userData.Name}</span>
+                  <span className="secon-row">{userData.FName}</span>
+                  <span className="secon-row">
+                    {isAdmin() && userData.Cnic}ltr
+                  </span>
+                  <span className="secon-row">{userData.Gender}</span>
+                  <span className="secon-row">{userData.Dob}</span>
                 </div>
                 <div className="row">
-                 
-                    <span>Phone Number:</span> 
-                    <span>Town City:</span>
-                    
-                    <span>Kin Relation:</span>
-                    
-                    <span>Next of Kin:</span> 
-                    
-                 
+                  <span>Phone Number:</span>
+                  <span>Town City:</span>
+
+                  <span>Kin Relation:</span>
+
+                  <span>Next of Kin:</span>
                 </div>
                 <div className="row">
                   <span className="secon-row">{userData.phNo}</span>
                   <span className="secon-row">{userData["TownCity"]}</span>
                   <span className="secon-row">{userData.KinRelation}</span>
                   <span className="secon-row">{userData.NexttoKin}</span>
-                  
                 </div>
-                
-                  
               </div>
             </div>
           </div>
-          {isAdmin() && <div className="documents">
-            <div className="doc-row">
-              <h1>Documents</h1>
-              <button>Add Document</button>
+          {isAdmin() && (
+            <div className="documents">
+              <div className="doc-row">
+                <h1>Documents</h1>
+                <button>Add Document</button>
+              </div>
+              <table>
+                <thead>
+                  <th>Title</th>
+                  <td>Acitons</td>
+                </thead>
+                <tbody>
+                  {userData.Documents &&
+                    Object.entries(userData.Documents).map(([key, value]) => (
+                      <tr>
+                        <td>{key}</td>
+
+                        <td>
+                          <a
+                            href={value}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            view
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
             </div>
-            <table>
-              <thead>
-                <th>Title</th>
-                <th>Uploaded At</th>
-                <td>Acitons</td>
-              </thead>
-              <tbody>
-                {userData.Documents &&
-                  Object.entries(userData.Documents).map(([key, value]) => (
-                    <tr>
-                      <td>{key}</td>
-                      <td>---</td>
-                      <td>
-                        <a
-                          href={value}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          view
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-          </div> }          
+          )}
           <div className="plots">
             <h1>Plots Details</h1>
             <div className="plot-cards">

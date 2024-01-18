@@ -161,6 +161,7 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       time: serverTimestamp(),
       InvId: randomNum,
       Category: cata,
+      varified: false,
     });
 
     await updateDoc(doc(db, "Plots", pid), {

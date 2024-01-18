@@ -1,11 +1,12 @@
 import "./PrintInvoice.css";
 import { useEffect, useState } from "react";
 import dotSharp from "./assets/dots-shap.png";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { functions } from "lodash";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 function PrintInvoice() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [Name, setName] = useState("");
   const [FName, setFName] = useState("");
@@ -25,8 +26,7 @@ function PrintInvoice() {
     const docRef = doc(db, "Transactions", id);
     const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
+    if (docSnap.exists() && docSnap.data()["varified"]) {
       const data = docSnap.data();
       setName(data["customerName"]);
       const ms = data["time"]["seconds"] * 1000;
@@ -42,7 +42,8 @@ function PrintInvoice() {
       // window.print();
     } else {
       // docSnap.data() will be undefined in this case
-      console.log("No such document!");
+      // console.log("No such document!");
+      navigate("/login");
     }
   }
 

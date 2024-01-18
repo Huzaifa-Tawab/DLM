@@ -5,7 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import isAdmin from "../../../IsAdmin";
 import { auth } from "../../firebase";
 import isLogedIn from "../../../isLogedIn";
-function Header() {
+import isFinance from "../../../IsFinance";
+function FinanceHeader() {
   const navi = useNavigate();
   function logout() {
     auth.signOut().then((e) => {
@@ -23,17 +24,14 @@ function Header() {
       >
         <img src={logo} alt="" />
       </div>
-      {isLogedIn() && (
+      {isFinance() && (
         <div className="Nav-links">
-          <Link to={"/admin/home"}>Customer</Link>
-          {isAdmin() && <Link to={"/admin/agents"}>Agents</Link>}
-          <Link to={"/admin/invoices"}>Invoices</Link>
-          <Link to={"/admin/expense"}>Expenses</Link>
-          <Link to={"/admin/store"}>Store</Link>
+          <Link to={"/finance"}>All Invioces</Link>
+          <Link to={"/finance/unverified"}>Pending Invoices</Link>
         </div>
       )}
       <div className="login">
-        {isLogedIn() ? (
+        {isFinance() ? (
           <button onClick={logout}>logout</button>
         ) : (
           <button
@@ -49,4 +47,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default FinanceHeader;

@@ -94,9 +94,9 @@ function AdminHome() {
                   <tr className="hed">
                     <th>Name</th>
                     <th>Phone Number</th>
-                    {isAdmin() &&  <th>CNIC No</th>}
+                    {isAdmin() && <th>CNIC No</th>}
                     <th>FName</th>
-                    <th>Gender</th>                    
+                    <th>Gender</th>
                     <th>Plots</th>
                     <th>Actions</th>
                   </tr>
@@ -106,17 +106,23 @@ function AdminHome() {
                     <tr key={e.Cnic}>
                       <td className="avatar-image">
                         <img
-                          src={e.imgUrl}
+                          src={
+                            e.Gender === "female"
+                              ? isAdmin()
+                                ? e.imgUrl
+                                : avatar
+                              : e.imgUrl
+                          }
                           alt="avatar"
                           className="avatar-table"
                         />
                         {e.Name}
                       </td>
                       <td>{e.phNo}</td>
-                      {isAdmin() && <th>{e.Cnic}</th> }   
+                      {isAdmin() && <th>{e.Cnic}</th>}
                       <td>{e.FName}</td>
-                      <td>{e.Gender}</td>  
-                      
+                      <td>{e.Gender}</td>
+
                       <td className="tddr">{e.Plots.length}</td>
                       <td>
                         <button
