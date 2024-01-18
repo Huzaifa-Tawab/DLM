@@ -7,16 +7,15 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 function PrintInvoice() {
   const { id } = useParams();
-  const [Name, setName] = useState("Huzaifa");
-  const [FName, setFName] = useState("Tawab");
-  const [Category, setCategory] = useState("Category 1");
-  const [InvoiceNumber, setInvoiceNumber] = useState("INV-455");
-  const [InvoiceDate, setInvoiceDate] = useState("4 jan 2000");
-  const [TotalInstalmentAmount, setTotalInstalmentAmount] =
-    useState("6,666.66");
-  const [FileNumber, setFileNumber] = useState("DLM4567");
+  const [Name, setName] = useState("");
+  const [FName, setFName] = useState("");
+  const [Category, setCategory] = useState("");
+  const [InvoiceNumber, setInvoiceNumber] = useState("");
+  const [InvoiceDate, setInvoiceDate] = useState("");
+  const [TotalInstalmentAmount, setTotalInstalmentAmount] = useState("");
+  const [FileNumber, setFileNumber] = useState("");
   const [Qty, setQty] = useState("1");
-  const [InstalmentAmount, setInstalmentAmount] = useState("6,666.66");
+  const [InstalmentAmount, setInstalmentAmount] = useState("");
   const [panelty, setpanelty] = useState("0.0");
   useEffect(() => {
     getData();
@@ -35,13 +34,12 @@ function PrintInvoice() {
       setInvoiceDate(time);
       setFName(data["FName"]);
       setCategory(data["Category"]);
-      setInvoiceNumber(data["InvoiceNumber"]);
+      setInvoiceNumber(data["InvId"]);
       setTotalInstalmentAmount(data["TotalInstalmentAmount"]);
       setFileNumber(data["fileNumber"]);
-      setFQty(data["Qty"]);
       setInstalmentAmount(data["payment"]);
       setpanelty(data["penalty"]);
-      window.print();
+      // window.print();
     } else {
       // docSnap.data() will be undefined in this case
       console.log("No such document!");
