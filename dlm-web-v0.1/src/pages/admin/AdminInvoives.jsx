@@ -6,6 +6,8 @@ import Loader from "../../components/loader/Loader";
 import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
 import { debounce } from "lodash";
+import arrow from "../../Assets/Plus.png";
+
 
 function AdminInvoives() {
   const navigate = useNavigate();
@@ -74,6 +76,18 @@ function AdminInvoives() {
     <>
       <Header />
       <div className="Admin-Home">
+      <div className="hero--head">
+          <h1>Expenses</h1>
+          <button
+            onClick={() => {
+             // navigate("/create/agent/");
+              
+            }}
+          >
+            Add New
+            <img src={arrow}></img>
+          </button>
+        </div>
         <div className="Admin-Home-content">
           <div className="Admin-Home-table">
             <input
@@ -83,14 +97,7 @@ function AdminInvoives() {
               className="input-field"
             />
             <div className="table">
-              <button
-                onClick={() => {
-                  // navigate("/create/agent/");
-                }}
-              >
-                add new
-              </button>
-              <table className="adminAgents-table">
+              <table className="adminhome-table">
                 <thead>
                   <tr>
                     <th>Customer Name</th>

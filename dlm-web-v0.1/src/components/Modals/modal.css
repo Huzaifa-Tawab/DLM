@@ -1,6 +1,7 @@
 .custom-modal-container {
   border-radius: 10px;
   width: 360px !important;
+  color: black;
 }
 .custom-modal-container> h2,span{
   /* color: red; */

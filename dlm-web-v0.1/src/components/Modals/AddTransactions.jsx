@@ -16,6 +16,8 @@ import {
   where,
 } from "firebase/firestore";
 import getDate from "../../../GetDDMMYY";
+import xIcon from "../../assets/Xincon.png";
+
 
 function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
   const [percent, setPercent] = useState(0);
@@ -181,17 +183,23 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       closeOnOuterClick={true}
     >
       <h2>Add Transactions</h2>
-      <button onClick={onClose}>Close Modal</button>
+      <div className="closebutton">
+        <img onClick={onClose} src={xIcon} alt="" />
+      </div>
       <div>
-        <h1>
-          istallment No {Plot.installmentNo}/{catagory.TotalInstallments}
-        </h1>
-        <h1>pending istallments {NumberOfPenelties}</h1>
-        <div className="textfieldgroup-col">
+      
+          <span className="first">Installment No:</span>
+          <span className="second">{Plot.installmentNo}/{catagory.TotalInstallments}</span>
+         <br />
+      <span className="first">Pending installments:</span>
+      <span className="seconf">{NumberOfPenelties}</span>
+        
+        <div className="modal-field-group">
           <p>Amount</p>
 
           <input
             type="number"
+            placeholder="Amount"
             value={Amount}
             onChange={(e) => {
               if (parseInt(e.target.value) > 0) {
@@ -201,11 +209,11 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
           />
         </div>
 
-        <div className="textfieldgroup-col">
+        <div className="modal-field-group">
           <p>Pnaly</p>
           <input disabled type="number" value={penalty} />
         </div>
-        <div className="textfieldgroup-col">
+        <div className="modal-field-group">
           <p>Total</p>
           <input
             disabled
@@ -213,10 +221,14 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
             value={parseInt(Amount) + parseInt(penalty)}
           />
         </div>
-
+        <div className="modal-field-group">
+          <p>Select Your File</p>
         <input type="file" onChange={handleChange} accept="/image/*" />
-        <button onClick={handleUpload}>Submit</button>
-        <p>{percent} "% done"</p>
+
+        </div>
+          
+        <button className="modal-button" onClick={handleUpload}>Submit</button>
+        <p style={{textAlign: "center"}}>{percent}% done</p>
       </div>
     </Modal>
   );

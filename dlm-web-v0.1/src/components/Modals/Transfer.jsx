@@ -138,22 +138,28 @@ function Transfer({ showModal, onClose, cid, aid, pid, cata }) {
       closeOnOuterClick={true}
     >
       <h2>Add Transactions</h2>
-      <button onClick={onClose}>Close Modal</button>
+      <div className="closebutton">
+        <img onClick={onClose} src={xIcon} alt="" />
+      </div>
       <div>
-        <h1>
-          istallment No {Plot.installmentNo}/{catagory.TotalInstallments}
-        </h1>
-        <h1>pending istallments {NumberOfPenelties}</h1>
-        <div className="textfieldgroup-col">
+       
+          <span className="first">Installment no:</span>
+          <span className="second">{Plot.installmentNo}/{catagory.TotalInstallments}</span>
+          <br />
+       
+        <span className="first">Pending Installments:</span>
+        <span className="second">{NumberOfPenelties}</span>
+       
+        <div className="modal-field-group">
           <p>Amount</p>
           <input disabled type="number" value={Amount} />
         </div>
 
-        <div className="textfieldgroup-col">
+        <div className="modal-field-group">
           <p>Pnaly</p>
           <input disabled type="number" value={penalty} />
         </div>
-        <div className="textfieldgroup-col">
+        <div className="modal-field-group">
           <p>Total</p>
           <input
             disabled
@@ -161,10 +167,12 @@ function Transfer({ showModal, onClose, cid, aid, pid, cata }) {
             value={parseInt(Amount) + parseInt(penalty)}
           />
         </div>
-
+        <div className="modal-field-group">
+        <p>Please Select File</p>
         <input type="file" onChange={handleChange} accept="/image/*" />
-        <button onClick={handleUpload}>Submit</button>
-        <p>{percent} "% done"</p>
+        </div>
+        <button className="modal-button" onClick={handleUpload}>Submit</button>
+        <p style={{textAlign: "center"}}>{percent}% done</p>
       </div>
     </Modal>
   );

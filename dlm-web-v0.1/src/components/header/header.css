@@ -23,3 +23,9 @@
   text-decoration: none;
   font-weight: 600;
 }
+.login button{
+  background: #A4243B;
+}
+.login button:hover{
+  background: #A4243B;
+}

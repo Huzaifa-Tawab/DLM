@@ -7,6 +7,8 @@ import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
 import { debounce } from "lodash";
 import FinanceHeader from "../../components/header/FinanceHeader";
+import arrow from "../../Assets/Plus.png";
+
 
 function Finance() {
   const navigate = useNavigate();
@@ -77,6 +79,10 @@ function Finance() {
     <>
       <FinanceHeader />
       <div className="Admin-Home">
+      <div className="hero--head">
+          <h1>Invoices</h1>
+         
+        </div>
         <div className="Admin-Home-content">
           <div className="Admin-Home-table">
             <input
@@ -86,7 +92,7 @@ function Finance() {
               className="input-field"
             />
             <div className="table">
-              <table className="adminAgents-table">
+              <table className="adminhome-table">
                 <thead>
                   <tr>
                     <th>Customer Name</th>

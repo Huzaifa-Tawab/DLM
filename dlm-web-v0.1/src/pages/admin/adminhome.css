@@ -105,6 +105,9 @@ td {
  background: #F4B266;
  margin-right: 3vw;
  }
+ .hero--head button:hover{
+  background: #F4B266;
+ }
  .hero--head img{
  background: #F4B266;
  }

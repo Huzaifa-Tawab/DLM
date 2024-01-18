@@ -17,6 +17,8 @@ import {
   where,
 } from "firebase/firestore";
 import getDate from "../../../GetDDMMYY";
+import xIcon from "../../assets/Xincon.png";
+
 
 function TransferPlot({ showModal, onClose, pid }) {
   const [file, setFile] = useState();
@@ -181,7 +183,9 @@ function TransferPlot({ showModal, onClose, pid }) {
       closeOnOuterClick={true}
     >
       <h2>Transfer </h2>
-      <button onClick={onClose}>Close Modal</button>
+      <div className="closebutton">
+        <img onClick={onClose} src={xIcon} alt="" />
+      </div>
       <div>
         {customers && (
           <Select
@@ -189,17 +193,20 @@ function TransferPlot({ showModal, onClose, pid }) {
             onChange={(opt) => setCustomer(opt.value)}
           />
         )}
-        <div className="textfieldgroup-col">
+        <div className="modal-field-group">
           <p>Amount</p>
           <input
             type="number"
+            placeholder="Amount"
             onChange={(e) => setAmount(e.target.value)}
             value={Amount}
           />
         </div>
-
+        <div className="modal-field-group">
+        <p>Select Your File</p>
         <input type="file" onChange={handleChange} accept="/image/*" />
-        <button onClick={handleUpload}>Submit</button>
+        </div>
+        <button className="modal-button" onClick={handleUpload}>Submit</button>
       </div>
     </Modal>
   );

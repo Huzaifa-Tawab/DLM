@@ -5,6 +5,8 @@ import { db, storage } from "../../firebase";
 import { update } from "lodash";
 import { doc, updateDoc } from "firebase/firestore";
 import "./modal.css";
+import xIcon from "../../assets/Xincon.png";
+
 function AddDocs({ showModal, onClose, uid, olddocs }) {
   console.log(olddocs);
   // State to store uploaded file
@@ -73,17 +75,25 @@ function AddDocs({ showModal, onClose, uid, olddocs }) {
       closeOnOuterClick={true}
     >
       <h2>Add Document</h2>
-      <button onClick={onClose}>Close Modal</button>
+      <div className="closebutton">
+        <img onClick={onClose} src={xIcon} alt="" />
+      </div>
       <div>
+      <div className="modal-field-group">
         <input
           type="text"
+          placeholder="File Name"
           onChange={(e) => {
             setFileName(e.target.value);
           }}
         />
+        </div>
+        <div className="modal-field-group">
+          <p>Choose File</p>
         <input type="file" onChange={handleChange} accept="/image/*" />
-        <button onClick={handleUpload}>Upload to Firebase</button>
-        <p>{percent} "% done"</p>
+        </div>
+        <button className="modal-button" onClick={handleUpload}>Upload to Firebase</button>
+        <p style={{textAlign: "center"}}>{percent}% done</p>
       </div>
     </Modal>
   );
