@@ -15,6 +15,7 @@ import xIcon from "../../assets/Xincon.png";
 
 function AddStoreItem({ showModal, onClose }) {
   const agentname = localStorage.getItem("Name");
+  const agentid = localStorage.getItem("id");
   const [Title, setTitle] = useState("");
   const [Office, setOffice] = useState("");
   const [Desc, setDesc] = useState("");
@@ -45,6 +46,7 @@ function AddStoreItem({ showModal, onClose }) {
       date: serverTimestamp(),
       decs: Desc,
       agent: agentname,
+      agentID: agentid,
     });
 
     onClose();
@@ -94,7 +96,11 @@ function AddStoreItem({ showModal, onClose }) {
           />
         </div>
 
-        <button className="modal-button" disabled={isLoading} onClick={handleUpload}>
+        <button
+          className="modal-button"
+          disabled={isLoading}
+          onClick={handleUpload}
+        >
           Save
         </button>
       </div>
