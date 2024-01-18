@@ -95,7 +95,7 @@ function FinancePending() {
               className="input-field"
             />
             <div className="table">
-              <table className="adminAgents-table">
+              <table className="adminhome-table">
                 <thead>
                   <tr>
                     <th>Customer Name</th>

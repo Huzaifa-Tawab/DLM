@@ -52,7 +52,7 @@ function PrintInvoice() {
       <div className="auto-group-z6we-Z8p">
         <img className="dots-shap-UFn" src={dotSharp} />
         <div className="frame-3608-zjv">
-          <p className="dml-KXJ">DML</p>
+          <p className="dml-KXJ">DLM</p>
           <div className="auto-group-ctfe-cmJ">
             <div className="auto-group-5xz6-LxC">
               <div className="frame-3638-HMe">
@@ -119,14 +119,14 @@ function PrintInvoice() {
           </div>
           <div className="line-328-yBA"></div>
           <div className="auto-group-mqnk-uKi">
-            <p className="dml-pha">DML</p>
+            <p className="dml-pha">DLM</p>
             <div className="auto-group-qkui-9Ux">Customer Copy</div>
           </div>
         </div>
       </div>
       <div className="auto-group-hama-9tG">
         <div className="frame-3640-cG4">
-          <p className="dml-KJt">DML</p>
+          <p className="dml-KJt">DLM</p>
           <div className="auto-group-rtcq-c36">
             <div className="auto-group-j6vg-w5N">
               <div className="frame-3638-gHr">
@@ -193,7 +193,7 @@ function PrintInvoice() {
           </div>
           <div className="line-328-51n"></div>
           <div className="auto-group-rttz-oiU">
-            <p className="dml-k7v">DML</p>
+            <p className="dml-k7v">DLM</p>
             <div className="auto-group-3atc-UZi">Office Copy</div>
           </div>
         </div>

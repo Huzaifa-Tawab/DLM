@@ -116,8 +116,11 @@ td {
  }
  .tddr{
   width: 50px;
-  background: black;
-  color: white;
+  /* background: black; */
+  color: black;
   border-radius: 5px;
   height: 20px;
+ }
+ .desc-tr{
+  width: 400px !important;
  }

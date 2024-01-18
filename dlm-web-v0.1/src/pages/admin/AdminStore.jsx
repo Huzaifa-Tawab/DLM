@@ -110,12 +110,12 @@ function AdminStore() {
                 <tbody>
                   {filteredCustomersDataMemoized.map((e, index) => (
                     <tr key={index}>
-                      <td>{index}</td>
+                      <td>{index+1}</td>
                       <td>{e.title}</td>
                       <td>{e.office}</td>
                       <td>{e.agent}</td>
                       <td>{getDate(e.date.seconds)}</td>
-                      <td>{e.decs}</td>
+                      <td className="desc-tr">{e.decs}</td>
                     </tr>
                   ))}
                 </tbody>

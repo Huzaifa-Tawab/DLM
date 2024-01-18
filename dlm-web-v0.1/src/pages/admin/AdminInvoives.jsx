@@ -112,7 +112,7 @@ function AdminInvoives() {
                 </thead>
                 <tbody>
                   {filteredCustomersDataMemoized.map((e, index) => (
-                    <tr key={index}>
+                    <tr key={index+1}>
                       <td>{e.customerName}</td>
                       <td>{e.agentName}</td>
                       <td>{e.fileNumber}</td>
