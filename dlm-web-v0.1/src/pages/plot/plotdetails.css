@@ -5,11 +5,10 @@
     margin: 40px;
     border-radius: 10px;
     color: #272727;
-font-family: Inter;
-
-font-style: normal;
-font-weight: 600;
-line-height: normal;
+    font-family: Inter;
+    font-style: normal;
+      font-weight: 600;
+    line-height: normal;
 }
 .owner{
     text-align: center;
@@ -29,27 +28,26 @@ line-height: normal;
     
 }
 .details>span{
-    color: var(--Secondary-300, #90A3BF);
-    /* Regular/Type@20 */
+    color:  #90A3BF;
+   
     font-family: "Plus Jakarta Sans";
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    line-height: 150%; /* 30px */
+    line-height: 150%; 
     letter-spacing: -0.4px;
         
 }
 .details> h1{
     font-size: 2rem;
     padding: 0px 0px 0px 100px; 
-    color: var(--Secondary-400, #596780);
+    color:  #596780;
     text-align: right;
-    /* Semibold/Type@20 */
     font-family: "Plus Jakarta Sans";
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
-    line-height: 150%; /* 30px */
+    line-height: 150%; 
     letter-spacing: -0.4px;
 
 
