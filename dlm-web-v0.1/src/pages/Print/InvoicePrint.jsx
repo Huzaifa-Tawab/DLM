@@ -32,12 +32,12 @@ function PrintInvoice() {
       const ms = data["time"]["seconds"] * 1000;
       const time = new Date(ms).toDateString();
       setInvoiceDate(time);
-      setFName(data["FName"]);
+      setFName(data["customerLastName"]);
       setCategory(data["Category"]);
       setInvoiceNumber(data["InvId"]);
-      setTotalInstalmentAmount(data["TotalInstalmentAmount"]);
+      setTotalInstalmentAmount(data["total"]);
       setFileNumber(data["fileNumber"]);
-      setInstalmentAmount(data["payment"]);
+      setInstalmentAmount(data["total"]);
       setpanelty(data["penalty"]);
       // window.print();
     } else {
