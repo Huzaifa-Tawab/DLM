@@ -127,49 +127,49 @@ function ClientDetails() {
             </div>
             <div className="info-box-2">
               <h1>Customer Information</h1>
+              <div className="sec-heading">
+               <span className="first-text">Address:</span> <span className="secon-text">{userData.Address}</span>
+               </div>
               <div className="data-client">
+                
                 <div className="row">
-                  <h2>
-                    <span>Name:</span> {userData.Name}
-                  </h2>
-                  <h2>
-                    <span>Father's Name:</span> {userData.FName}
-                  </h2>
+                
+                    <span>Name:</span> 
+                    <span>Father's Name:</span> 
+                    <span>CNIC:</span> 
+                    <span>Gender:</span> 
+                    <span>DOB:</span> 
+                    
+                  
                 </div>
                 <div className="row">
-                  <h2>
-                    <span>Gender:</span> {userData.Gender}
-                  </h2>
-                  <h2>
-                    <span>DOB:</span> {userData.Dob}
-                  </h2>
+                <span className="secon-row">{userData.Name}</span>
+                <span className="secon-row">{userData.FName}</span>
+                <span className="secon-row">{isAdmin() && userData.Cnic }ltr</span>
+                <span className="secon-row">{userData.Gender}</span>
+                <span className="secon-row">{userData.Dob}</span>
+                  
                 </div>
                 <div className="row">
-                  <h2>
-                    <span>CNIC:</span> {isAdmin() && userData.Cnic }
-                  </h2>
-                  <h2>
-                    <span>Phone Number:</span> {userData.phNo}
-                  </h2>
-                </div>
-                <div className="row">
-                  <h2>
+                 
+                    <span>Phone Number:</span> 
                     <span>Town City:</span>
-                    {userData["TownCity"]}
-                  </h2>
-                  <h2>
+                    
                     <span>Kin Relation:</span>
-                    {userData.KinRelation}
-                  </h2>
+                    
+                    <span>Next of Kin:</span> 
+                    
+                 
                 </div>
                 <div className="row">
-                  <h2>
-                    <span>Next of Kin:</span> {userData.NexttoKin}
-                  </h2>
-                  <h2>
-                    <span>Address:</span> {userData.Address}
-                  </h2>
+                  <span className="secon-row">{userData.phNo}</span>
+                  <span className="secon-row">{userData["TownCity"]}</span>
+                  <span className="secon-row">{userData.KinRelation}</span>
+                  <span className="secon-row">{userData.NexttoKin}</span>
+                  
                 </div>
+                
+                  
               </div>
             </div>
           </div>
