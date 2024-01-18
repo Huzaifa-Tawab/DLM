@@ -10,7 +10,7 @@ import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
 import AddDocs from "../../components/Modals/AddDocs";
 import { PiBuildingsBold } from "react-icons/pi";
-
+import isAdmin from "../../../IsAdmin";
 function ClientDetails() {
   const navigate = useNavigate();
   const [isloading, setisloading] = useState(true);
@@ -113,7 +113,7 @@ function ClientDetails() {
                     <p>Add Plot </p>
                   </button>
                 </div>
-                <div className="button-pair">
+                {isAdmin() &&   <div className="button-pair">
                   <button>
                     <img src={edit} alt="" />
                     <p>Edit Profile </p>
@@ -122,7 +122,7 @@ function ClientDetails() {
                     <img src={edit} alt="" />
                     <p>Delete Profile</p>
                   </button>
-                </div>
+                </div>}
               </div>
             </div>
             <div className="info-box-2">
@@ -146,7 +146,7 @@ function ClientDetails() {
                 </div>
                 <div className="row">
                   <h2>
-                    <span>CNIC:</span> {userData.Cnic}
+                    <span>CNIC:</span> {isAdmin() && userData.Cnic }
                   </h2>
                   <h2>
                     <span>Phone Number:</span> {userData.phNo}
@@ -173,8 +173,7 @@ function ClientDetails() {
               </div>
             </div>
           </div>
-
-          <div className="documents">
+          {isAdmin() && <div className="documents">
             <div className="doc-row">
               <h1>Documents</h1>
               <button>Add Document</button>
@@ -204,7 +203,7 @@ function ClientDetails() {
                   ))}
               </tbody>
             </table>
-          </div>
+          </div> }          
           <div className="plots">
             <h1>Plots Details</h1>
             <div className="plot-cards">

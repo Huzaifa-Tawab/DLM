@@ -2,6 +2,7 @@ import React from "react";
 import "./header.css";
 import logo from "../../Assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
+import isAdmin from "../../../IsAdmin";
 function Header() {
   const navi = useNavigate();
   return (
@@ -16,7 +17,7 @@ function Header() {
       </div>
       <div className="Nav-links">
         <Link to={"/admin/home"}>Customer</Link>
-        <Link to={"/admin/agents"}>Agents</Link>
+        {isAdmin() &&  <Link to={"/admin/agents"}>Agents</Link>}
         <Link to={"/admin/invoices"}>Invoices</Link>
         <Link to={"/admin/expense"}>Expenses</Link>
         <Link to={"/admin/store"}>Store</Link>

@@ -94,7 +94,9 @@ function AdminHome() {
                   <tr className="hed">
                     <th>Name</th>
                     <th>Phone Number</th>
-                    <th>CNIC No</th>
+                    {isAdmin() &&  <th>CNIC No</th>}
+                    <th>FName</th>
+                    <th>Gender</th>                    
                     <th>Plots</th>
                     <th>Actions</th>
                   </tr>
@@ -111,7 +113,10 @@ function AdminHome() {
                         {e.Name}
                       </td>
                       <td>{e.phNo}</td>
-                      <td>{e.Cnic}</td>
+                      {isAdmin() && <th>{e.Cnic}</th> }   
+                      <td>{e.FName}</td>
+                      <td>{e.Gender}</td>  
+                      
                       <td className="tddr">{e.Plots.length}</td>
                       <td>
                         <button
