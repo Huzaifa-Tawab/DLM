@@ -2,9 +2,13 @@
     background: #fff;
     display: flex;
     justify-content: space-around;
-    color: black;
     margin: 40px;
     border-radius: 10px;
+    color: #272727;
+    font-family: Inter;
+    font-style: normal;
+      font-weight: 600;
+    line-height: normal;
 }
 .owner{
     text-align: center;
@@ -20,12 +24,35 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     
+}
+.details>span{
+    color:  #90A3BF;
+   
+    font-family: "Plus Jakarta Sans";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; 
+    letter-spacing: -0.4px;
+        
 }
 .details> h1{
     font-size: 2rem;
     padding: 0px 0px 0px 100px; 
+    color:  #596780;
+    text-align: right;
+    font-family: "Plus Jakarta Sans";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%; 
+    letter-spacing: -0.4px;
+
+
 }
+
 .avatar {
     vertical-align: middle;
     border-radius: 50%;
