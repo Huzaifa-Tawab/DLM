@@ -17,6 +17,7 @@ import AdminExpense from "./pages/admin/AdminExpense";
 import NotFound from "./pages/notfound/NotFound";
 import AdminInvoives from "./pages/admin/AdminInvoives";
 import AdminStore from "./pages/admin/AdminStore";
+import PrintInvoice from "./pages/Print/InvoicePrint";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
         <Route path="/create/plot/" element={<PlotRegistrationForm />} />
         <Route path="/details/plot/:id" element={<AdminPlot />} />
         <Route path="/admin/expense" element={<AdminExpense />} />
+        <Route path="/print/invoice/:id" element={<PrintInvoice />} />
         {/* </Route> */}
         {/* <Route path="*" element={<NoPage />} />  */}
       </Routes>

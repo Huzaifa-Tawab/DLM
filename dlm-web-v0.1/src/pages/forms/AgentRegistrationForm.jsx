@@ -131,6 +131,14 @@ const FileInput = ({ label, onChange, previewUrl, error }) => {
 };
 
 const AgentRegistrationForm = () => {
+
+  const [File, setFile] = useState();
+  const [InvoiceID, setInvoiceID] = useState("");
+  const navigate = useNavigate();
+  const [errors, setErrors] = useState({});
+  const [avatarPreview, setAvatarPreview] = useState(null);
+  const [Email, setEmail] = useState("");
+  const [Pass, setPass] = useState("");
   const [formData, setFormData] = useState({
     Name: "",
     FName: "",
@@ -144,19 +152,15 @@ const AgentRegistrationForm = () => {
     Plots: [],
     Documents: [],
     agree: false,
+    InvId: InvoiceID
   });
-  const [File, setFile] = useState();
-  const [InvoiceID, setInvoiceID] = useState("");
-  const navigate = useNavigate();
-  const [errors, setErrors] = useState({});
-  const [avatarPreview, setAvatarPreview] = useState(null);
-  const [Email, setEmail] = useState("");
-  const [Pass, setPass] = useState("");
-
   useEffect(() => {
     const getInvId = async () => {
       const id = await generateRandomString("INV", "Agent", "");
-      setInvoiceID(id);
+      setFormData((prevData) => ({
+        ...prevData,
+        ['InvId']:id}))
+      
     };
     getInvId();
   }, []);
