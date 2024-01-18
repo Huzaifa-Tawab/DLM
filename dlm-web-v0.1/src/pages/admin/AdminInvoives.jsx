@@ -16,6 +16,14 @@ function AdminInvoives() {
   useEffect(() => {
     getCustomersData();
   }, []);
+  const openNewWindow = (invoiceId) => {
+    console.log(invoiceId);
+    // Open a new window
+    const newWindow = window.open("", "_blank");
+
+    // Navigate to the specified URL in the new window
+    newWindow.location.href = `/print/invoice/${invoiceId}`;
+  };
 
   async function getCustomersData() {
     const querySnapshot = await getDocs(collection(db, "Transactions"));
@@ -113,6 +121,14 @@ function AdminInvoives() {
                           // onClick={() => navigate(`/details/client/${e.Cnic}`)}
                         >
                           View
+                        </button>
+                        <button
+                          className="button-view"
+                          onClick={() => {
+                            openNewWindow(e.InvId);
+                          }}
+                        >
+                          Print
                         </button>
                       </td>
                     </tr>

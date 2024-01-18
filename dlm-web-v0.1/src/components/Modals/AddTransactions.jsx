@@ -154,6 +154,7 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       nature: "installment",
       installmentNo: Plot.installmentNo,
       time: serverTimestamp(),
+      InvId: randomNum,
     });
 
     await updateDoc(doc(db, "Plots", pid), {
