@@ -21,6 +21,7 @@ import PrintInvoice from "./pages/Print/InvoicePrint";
 
 import FinanceRoute from "./FinanceRoute";
 import Finance from "./pages/finance/Finance";
+import FinancePending from "./pages/finance/FinancePending";
 
 function App() {
   return (
@@ -34,7 +35,7 @@ function App() {
         <Route path="/404" element={<NotFound />} />
         <Route element={<FinanceRoute />}>
           <Route path="/finance" element={<Finance />} />
-          <Route path="/finance/unverified" />
+          <Route path="/finance/unverified" element={<FinancePending />} />
         </Route>
 
         <Route element={<AdminRoutes />}>

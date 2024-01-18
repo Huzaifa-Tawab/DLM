@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback, useMemo } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
@@ -8,7 +8,7 @@ import Footer from "../../components/Footer/Footer";
 import { debounce } from "lodash";
 import FinanceHeader from "../../components/header/FinanceHeader";
 
-function Finance() {
+function FinancePending() {
   const navigate = useNavigate();
   const [CustomersData, setCustomersData] = useState([]);
   const [filteredCustomersData, setFilteredCustomersData] = useState([]);
@@ -17,6 +17,16 @@ function Finance() {
   useEffect(() => {
     getCustomersData();
   }, []);
+  async function AproveTrans(id) {
+    setisLoading(true);
+    const Pending = doc(db, "Transactions", id);
+    await updateDoc(Pending, {
+      varified: true,
+    }).then((e) => {
+      getCustomersData();
+      setisLoading(false);
+    });
+  }
   const openNewWindow = (Link) => {
     // Open a new window
     const newWindow = window.open("", "_blank");
@@ -24,12 +34,11 @@ function Finance() {
     // Navigate to the specified URL in the new window
     newWindow.location.href = Link;
   };
-
   async function getCustomersData() {
     const querySnapshot = await getDocs(collection(db, "Transactions"));
     const newCustomersData = [];
     querySnapshot.forEach((doc) => {
-      if (doc.data()["varified"]) {
+      if (!doc.data()["varified"]) {
         newCustomersData.push(doc.data());
       }
     });
@@ -122,11 +131,10 @@ function Finance() {
                         <button
                           className="button-view"
                           onClick={() => {
-                            // openNewWindow(e.InvId);
-                            openNewWindow(`/print/invoice/${e.InvId}`);
+                            AproveTrans(e.InvId);
                           }}
                         >
-                          Print
+                          Approve
                         </button>
                       </td>
                     </tr>
@@ -142,4 +150,4 @@ function Finance() {
   );
 }
 
-export default Finance;
+export default FinancePending;

@@ -16,13 +16,12 @@ function AdminInvoives() {
   useEffect(() => {
     getCustomersData();
   }, []);
-  const openNewWindow = (invoiceId) => {
-    console.log(invoiceId);
+  const openNewWindow = (Link) => {
     // Open a new window
     const newWindow = window.open("", "_blank");
 
     // Navigate to the specified URL in the new window
-    newWindow.location.href = `/print/invoice/${invoiceId}`;
+    newWindow.location.href = Link;
   };
 
   async function getCustomersData() {
@@ -114,18 +113,20 @@ function AdminInvoives() {
                       <td>{e.payment}</td>
                       <td>{e.panelty}</td>
                       <td>{getDate(e.time.seconds)}</td>
-
                       <td>
                         <button
                           className="button-view"
-                          // onClick={() => navigate(`/details/client/${e.Cnic}`)}
+                          onClick={() => {
+                            openNewWindow(e.proof);
+                          }}
                         >
                           View
                         </button>
                         <button
                           className="button-view"
                           onClick={() => {
-                            openNewWindow(e.InvId);
+                            // openNewWindow(e.InvId);
+                            openNewWindow(`/print/invoice/${e.InvId}`);
                           }}
                         >
                           Print
