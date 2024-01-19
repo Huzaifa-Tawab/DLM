@@ -19,7 +19,9 @@ function FinancePending() {
   }, []);
   async function AproveTrans(id) {
     setisLoading(true);
+    console.log(id);
     const Pending = doc(db, "Transactions", id);
+
     await updateDoc(Pending, {
       varified: true,
     }).then((e) => {

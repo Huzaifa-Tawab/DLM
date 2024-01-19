@@ -164,7 +164,8 @@ const PlotRegistrationForm = () => {
     navigate(`/details/plot/${fileNumber}`);
   };
   const updateAgent = async () => {
-    await updateDoc(doc(db, "Agent", formData.AgentId), {
+    // console.log(formData.AgentId);
+    await updateDoc(doc(db, "Agent", userid), {
       Plots: arrayUnion(fileNumber),
     });
   };
