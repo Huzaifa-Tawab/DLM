@@ -281,6 +281,8 @@ function AdminPlot() {
         showModal={showTransferModal}
         onClose={closeTransferModal}
         pid={PlotDetails.FileNumber}
+        cid={PlotDetails.CustomerId}
+        aid={PlotDetails.AgentId}
       />
       <AddComments
         showModal={showCommentsModal}
