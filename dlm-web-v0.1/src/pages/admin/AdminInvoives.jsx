@@ -8,7 +8,6 @@ import Footer from "../../components/Footer/Footer";
 import { debounce } from "lodash";
 import arrow from "../../Assets/Plus.png";
 
-
 function AdminInvoives() {
   const navigate = useNavigate();
   const [CustomersData, setCustomersData] = useState([]);
@@ -30,7 +29,9 @@ function AdminInvoives() {
     const querySnapshot = await getDocs(collection(db, "Transactions"));
     const newCustomersData = [];
     querySnapshot.forEach((doc) => {
-      newCustomersData.push(doc.data());
+      if (doc.data()["varified"]) {
+        newCustomersData.push(doc.data());
+      }
     });
     setCustomersData(newCustomersData);
     setFilteredCustomersData(newCustomersData);
@@ -76,12 +77,11 @@ function AdminInvoives() {
     <>
       <Header />
       <div className="Admin-Home">
-      <div className="hero--head">
-          <h1>Expenses</h1>
+        <div className="hero--head">
+          <h1>Invoices</h1>
           <button
             onClick={() => {
-             // navigate("/create/agent/");
-              
+              // navigate("/create/agent/");
             }}
           >
             Add New
@@ -112,7 +112,7 @@ function AdminInvoives() {
                 </thead>
                 <tbody>
                   {filteredCustomersDataMemoized.map((e, index) => (
-                    <tr key={index+1}>
+                    <tr key={index + 1}>
                       <td>{e.customerName}</td>
                       <td>{e.agentName}</td>
                       <td>{e.fileNumber}</td>

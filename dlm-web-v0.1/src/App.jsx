@@ -22,6 +22,7 @@ import PrintInvoice from "./pages/Print/InvoicePrint";
 import FinanceRoute from "./FinanceRoute";
 import Finance from "./pages/finance/Finance";
 import FinancePending from "./pages/finance/FinancePending";
+import AgentDetails from "./pages/admin/AgentDetails";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
           <Route path="/admin/invoices" element={<AdminInvoives />} />
           <Route path="/admin/store" element={<AdminStore />} />
           <Route path="/details/client/:id" element={<ClientDetails />} />
+          <Route path="/details/agent/:id" element={<AgentDetails />} />
           <Route path="/create/client/" element={<ClientRegistrationFrom />} />
           <Route path="/create/plot/" element={<PlotRegistrationForm />} />
           <Route path="/details/plot/:id" element={<AdminPlot />} />

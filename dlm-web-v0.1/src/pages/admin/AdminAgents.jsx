@@ -10,9 +10,6 @@ import { debounce } from "lodash";
 import arrow from "../../Assets/Plus.png";
 import "./adminhome.css";
 
-
-
-
 function AdminAgents() {
   const navigate = useNavigate();
   const [CustomersData, setCustomersData] = useState([]);
@@ -68,16 +65,17 @@ function AdminAgents() {
     <>
       <Header />
       <div className="Admin-Home">
-      <div className="hero--head">
+        <div className="hero--head">
           <h1>Agents</h1>
-          <button   onClick={() => {
-                  navigate("/create/agent/");
-                }}
-          >Add New
-          <img src={arrow}></img>
-
+          <button
+            onClick={() => {
+              navigate("/create/agent/");
+            }}
+          >
+            Add New
+            <img src={arrow}></img>
           </button>
-          </div>
+        </div>
         <div className="Admin-Home-content">
           <div className="Admin-Home-table">
             <input
@@ -108,13 +106,13 @@ function AdminAgents() {
                         />
                         {e.Name}
                       </td>
-                      <td>{e.PhNo}</td>
+                      <td>{e.phNo}</td>
                       <td>{e.Cnic}</td>
                       <td className="tddr">{e.Plots.length}</td>
                       <td>
                         <button
                           className="button-view"
-                          onClick={() => navigate(`/details/client/${e.Cnic}`)}
+                          onClick={() => navigate(`/details/agent/${e.Cnic}`)}
                         >
                           View Details
                         </button>

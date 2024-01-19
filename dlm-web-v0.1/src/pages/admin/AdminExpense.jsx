@@ -9,9 +9,11 @@ import avatar from "../../Assets/avatar.png";
 import { debounce } from "lodash";
 import arrow from "../../Assets/Plus.png";
 import AddExpense from "../../components/Modals/AddExpense";
+import isAdmin from "../../../IsAdmin";
 
 function AdminExpense() {
   const navigate = useNavigate();
+  const id = localStorage.getItem("id");
   const [CustomersData, setCustomersData] = useState([]);
   const [filteredCustomersData, setFilteredCustomersData] = useState([]);
   const [isLoading, setisLoading] = useState(true);
@@ -25,7 +27,11 @@ function AdminExpense() {
     const querySnapshot = await getDocs(collection(db, "Expenses"));
     const newCustomersData = [];
     querySnapshot.forEach((doc) => {
-      newCustomersData.push(doc.data());
+      if (doc.data()["id"] === id) {
+        newCustomersData.push(doc.data());
+      } else if (isAdmin()) {
+        newCustomersData.push(doc.data());
+      }
     });
     setCustomersData(newCustomersData);
     setFilteredCustomersData(newCustomersData);
@@ -99,9 +105,9 @@ function AdminExpense() {
                 <thead>
                   <tr className="hed">
                     <th>Sr No</th>
-                    <th>Name</th>
                     <th>Title</th>
                     <th>Amount</th>
+                    {isAdmin() && <th>Uploaded by</th>}
                     <th>Date</th>
                     <th>Description</th>
                     <th>More Details</th>
@@ -111,9 +117,9 @@ function AdminExpense() {
                   {filteredCustomersDataMemoized.map((e, index) => (
                     <tr key={index}>
                       <td>{index}</td>
-                      <td>{e.by}</td>
                       <td>{e.title}</td>
                       <td>PKR {e.amount} </td>
+                      {isAdmin() && <td>{e.by}</td>}
                       <td>{getDate(e.created.seconds)}</td>
                       <td>{e.description}</td>
 

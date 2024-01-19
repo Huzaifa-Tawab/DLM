@@ -11,7 +11,7 @@ import Footer from "../../components/Footer/Footer";
 import AddDocs from "../../components/Modals/AddDocs";
 import { PiBuildingsBold } from "react-icons/pi";
 import isAdmin from "../../../IsAdmin";
-function ClientDetails() {
+function AgentDetails() {
   const navigate = useNavigate();
   const [isloading, setisloading] = useState(true);
   const [userData, setData] = useState();
@@ -26,7 +26,7 @@ function ClientDetails() {
   }, []);
 
   async function getdata() {
-    const docRef = doc(db, "Customers", prams.id);
+    const docRef = doc(db, "Agent", prams.id);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
@@ -93,7 +93,7 @@ function ClientDetails() {
                 />
                 <div className="cus-details">
                   <h2>{userData.Name}</h2>
-                  <span>Customer</span>
+                  <span>Agent</span>
                 </div>
               </div>
               <br />
@@ -106,18 +106,7 @@ function ClientDetails() {
                     <img src={edit} alt="" />
                     <p>Add Doc </p>
                   </button>
-                  <button
-                    onClick={() => {
-                      navigate("/create/plot/", {
-                        state: {
-                          Cuid: userData.Cnic,
-                        },
-                      });
-                    }}
-                  >
-                    <img src={edit} alt="" />
-                    <p>Add Plot </p>
-                  </button>
+                  <button></button>
                 </div>
                 {isAdmin() && (
                   <div className="button-pair">
@@ -162,16 +151,13 @@ function ClientDetails() {
                   <div className="row">
                     <span>Phone Number:</span>
                     <span>Town City:</span>
-
-                    <span>Kin Relation:</span>
-
-                    <span>Next of Kin:</span>
+                    <span>Invoice ID:</span>
                   </div>
                   <div className="row">
                     <span className="secon-row">{userData.phNo}</span>
                     <span className="secon-row">{userData["TownCity"]}</span>
-                    <span className="secon-row">{userData.KinRelation}</span>
-                    <span className="secon-row">{userData.NexttoKin}</span>
+
+                    <span className="secon-row">{userData["InvId"]}</span>
                   </div>
                 </div>
               </div>
@@ -249,4 +235,4 @@ function ClientDetails() {
   );
 }
 
-export default ClientDetails;
+export default AgentDetails;
