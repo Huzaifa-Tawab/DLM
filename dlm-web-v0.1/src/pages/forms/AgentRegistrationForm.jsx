@@ -131,7 +131,6 @@ const FileInput = ({ label, onChange, previewUrl, error }) => {
 };
 
 const AgentRegistrationForm = () => {
-
   const [File, setFile] = useState();
   const [InvoiceID, setInvoiceID] = useState("");
   const navigate = useNavigate();
@@ -152,15 +151,15 @@ const AgentRegistrationForm = () => {
     Plots: [],
     Documents: [],
     agree: false,
-    InvId: InvoiceID
+    InvId: InvoiceID,
   });
   useEffect(() => {
     const getInvId = async () => {
       const id = await generateRandomString("INV", "Agent", "");
       setFormData((prevData) => ({
         ...prevData,
-        ['InvId']:id}))
-      
+        ["InvId"]: id,
+      }));
     };
     getInvId();
   }, []);

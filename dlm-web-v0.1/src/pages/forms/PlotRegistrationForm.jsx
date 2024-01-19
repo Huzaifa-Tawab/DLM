@@ -198,7 +198,7 @@ const PlotRegistrationForm = () => {
     });
     setSocietyList(cat);
   }
-  console.log(CatagoryList);
+
   return isLoading ? (
     <Loader />
   ) : (
