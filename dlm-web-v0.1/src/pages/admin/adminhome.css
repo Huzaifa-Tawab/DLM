@@ -9,12 +9,13 @@
   margin: 20px;
   width: 30%;
   height: 4vh;
-  background: #fff;
   border-radius: 20px;
+  background: #fff  url("../../Assets/search.svg")left no-repeat;
   border: none;
-  /* padding: 5px; */
   color: black;
-
+  text-align: center;
+}
+.Admin-Home-table >input:focus-visible{
   
 }
 .Admin-Home-table {
@@ -54,7 +55,8 @@ table{
   background: white;
 }
 tbody{
-  /* background: #F4B266; */
+  background: #F4B266;
+  border-radius: 5px;
 }
 th,
 td {
@@ -72,14 +74,13 @@ td {
 .hero--head{
   background: #A4243B;
   display: flex;
-  background: #A4243B;
-  display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
   flex-wrap: nowrap;
   margin-top: 3vh;
   margin-bottom: 3vh;
+  height: 12vh;
  }
  .hero--head h1{
      color: #FFF;
@@ -118,9 +119,40 @@ td {
   width: 50px;
   /* background: black; */
   color: black;
-  border-radius: 5px;
   height: 20px;
  }
  .desc-tr{
   width: 400px !important;
  }
+ .admin-show{
+  display: none;
+ }
+ @media (max-width: 600px) {
+  .Admin-Home-table > input {
+    width: 80%;
+  }
+
+  .adminhome-table {
+    margin: 10px;
+    overflow-x: auto; /* Add horizontal scrolling for small screens */
+  }
+
+  .avatar-image {
+    align-items: center;
+  }
+
+  .avatar-table {
+    width: 50px;
+    margin-bottom: 5px;
+  }
+
+
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+
+  .adminhome-table th, .adminhome-table td {
+    white-space: nowrap;
+  }
+}

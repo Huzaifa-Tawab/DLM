@@ -133,7 +133,7 @@
     }
    @media(max-width: 584px){
    .container{
-    max-width: 100%;
+    max-width: 75%;
   }
   form .user-details .input-box{
       margin-bottom: 15px;

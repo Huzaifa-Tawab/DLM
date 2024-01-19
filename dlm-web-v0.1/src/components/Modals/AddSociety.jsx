@@ -64,15 +64,17 @@ function AddSociety({ showModal, onClose }) {
       containerClassName="custom-modal-container"
       closeOnOuterClick={true}
     >
+       <h2>Society</h2>
+        <span>Once you save the item it can't be edit or delete</span>
       <div className="closebutton">
         <img onClick={onClose} src={xIcon} alt="" />
       </div>
-      <div className="Modal-row">
-        <h2>Catagories</h2>
-        <span>Once you save the item it can't be edit or delete</span>
-      </div>
+      {/* <div className="Modal-row"> */}
+       
+      {/* </div> */}
       <div>
         <div className="modal-field-group">
+          <br />
           <p>Title</p>
           <input
             type="text"
@@ -103,7 +105,7 @@ function AddSociety({ showModal, onClose }) {
           /> */}
         {/* </div> */}
         <p>{Error}</p>
-
+<br />
         <button className="modal-button" onClick={handleUpload}>
           Submit
         </button>
