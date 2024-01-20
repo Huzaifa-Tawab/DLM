@@ -7,6 +7,7 @@ import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
 import { debounce } from "lodash";
 import arrow from "../../Assets/Plus.png";
+import isAdmin from "../../../IsAdmin";
 
 function AdminInvoives() {
   const navigate = useNavigate();
@@ -79,14 +80,15 @@ function AdminInvoives() {
       <div className="Admin-Home">
         <div className="hero--head">
           <h1>Invoices</h1>
-          <button
+          {/* {isAdmin() && <button
             onClick={() => {
               // navigate("/create/agent/");
             }}
           >
             Add New
             <img src={arrow}></img>
-          </button>
+          </button>} */}
+          
         </div>
         <div className="Admin-Home-content">
           <div className="Admin-Home-table">
@@ -121,14 +123,16 @@ function AdminInvoives() {
                       <td>{e.panelty}</td>
                       <td>{getDate(e.time.seconds)}</td>
                       <td>
-                        <button
+                        <div >
+                        <div >{isAdmin() && <button
                           className="button-view"
                           onClick={() => {
                             openNewWindow(e.proof);
                           }}
                         >
                           View
-                        </button>
+                        </button>}</div>                 
+                        
                         <button
                           className="button-view"
                           onClick={() => {
@@ -138,6 +142,7 @@ function AdminInvoives() {
                         >
                           Print
                         </button>
+                        </div>                      
                       </td>
                     </tr>
                   ))}

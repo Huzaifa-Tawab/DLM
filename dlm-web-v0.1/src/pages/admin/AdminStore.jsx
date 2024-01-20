@@ -105,7 +105,7 @@ function AdminStore() {
                   <tr className="hed">
                     <th>Sr No</th>
                     <th>Item Name</th>
-                    <th>Office</th>
+                    <th>Office No</th>
                     {isAdmin() && <th>Uploaded By</th>}
                     <th>Uploaded At</th>
                     <th>Description</th>
@@ -117,7 +117,7 @@ function AdminStore() {
                       <td>{index + 1}</td>
                       <td>{e.title}</td>
                       <td>{e.office}</td>
-                      {isAdmin && <td>{e.agent}</td>}
+                      {isAdmin && <td>{e.agentName}</td>}
                       <td>{getDate(e.date.seconds)}</td>
                       <td className="desc-tr">{e.decs}</td>
                     </tr>

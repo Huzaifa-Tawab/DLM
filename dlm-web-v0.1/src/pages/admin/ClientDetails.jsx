@@ -160,7 +160,7 @@ function ClientDetails() {
                     <span className="secon-row">{userData.Name}</span>
                     <span className="secon-row">{userData.FName}</span>
                     <span className="secon-row">
-                      {isAdmin() && userData.Cnic}ltr
+                      {isAdmin() && userData.Cnic}
                     </span>
                     <span className="secon-row">{userData.Gender}</span>
                     <span className="secon-row">{userData.Dob}</span>

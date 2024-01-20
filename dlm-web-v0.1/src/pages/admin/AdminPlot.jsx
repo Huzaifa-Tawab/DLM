@@ -120,13 +120,13 @@ function AdminPlot() {
               <div className="row">
                 <span>Plot Size:</span>
                 <span>Agent ID:</span>
-                <span>Customer ID:</span>
+                {isAdmin() && <span>Customer ID:</span>}                
                 <span>City/Town</span>
               </div>
               <div className="row">
                 <span className="secon-row">{PlotDetails.PlotSize}</span>
                 <span className="secon-row">{PlotDetails.AgentId}</span>
-                <span className="secon-row">{PlotDetails.CustomerId}</span>
+                {isAdmin() && <span className="secon-row">{PlotDetails.CustomerId}</span>}                              
                 <span className="secon-row">{PlotDetails.CityTown}</span>
               </div>
               <div className="row">

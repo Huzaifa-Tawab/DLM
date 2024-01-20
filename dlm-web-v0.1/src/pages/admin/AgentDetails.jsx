@@ -123,7 +123,7 @@ function AgentDetails() {
               </div>
             </div>
             <div className="info-box-2">
-              <h1>Customer Information</h1>
+              <h1>Agent Information</h1>
               <div className="sec-heading">
                 <span className="first-text">Address:</span>{" "}
                 <span className="secon-text">{userData.Address}</span>

@@ -110,7 +110,7 @@ function AdminExpense() {
                     {isAdmin() && <th>Uploaded by</th>}
                     <th>Date</th>
                     <th>Description</th>
-                    <th>More Details</th>
+                    {/* <th>More Details</th> */}
                   </tr>
                 </thead>
                 <tbody>
@@ -123,7 +123,7 @@ function AdminExpense() {
                       <td>{getDate(e.created.seconds)}</td>
                       <td>{e.description}</td>
 
-                      {/* <td></td> */}
+                      {/* <td></td>
                       <td>
                         <button
                           className="button-view"
@@ -131,7 +131,7 @@ function AdminExpense() {
                         >
                           View
                         </button>
-                      </td>
+                      </td> */}
                     </tr>
                   ))}
                 </tbody>
