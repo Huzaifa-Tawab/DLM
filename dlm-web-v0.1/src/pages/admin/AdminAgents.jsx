@@ -88,11 +88,11 @@ function AdminAgents() {
               <table className="adminhome-table">
                 <thead>
                   <tr className="hed">
-                    <th>Name</th>
+                    <th className="starter">Name</th>
                     <th>Phone Number</th>
                     <th>CNIC No</th>
-                    <th>No of Plots</th>
-                    <th>Actions</th>
+                    <th className="starter">Plots</th>
+                    <th className="starter">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -108,7 +108,7 @@ function AdminAgents() {
                       </td>
                       <td>{e.phNo}</td>
                       <td>{e.Cnic}</td>
-                      <td className="tddr">{e.Plots.length}</td>
+                      <td className="tddr"><span>{e.Plots.length} Plots</span></td>
                       <td>
                         <button
                           className="button-view"

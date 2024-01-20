@@ -103,7 +103,7 @@ function AdminStore() {
               <table className="adminhome-table">
                 <thead>
                   <tr className="hed">
-                    <th>Sr No</th>
+                    <th className="starter">Sr No</th>
                     <th>Item Name</th>
                     <th>Office No</th>
                     {isAdmin() && <th>Uploaded By</th>}
@@ -114,10 +114,10 @@ function AdminStore() {
                 <tbody>
                   {filteredCustomersDataMemoized.map((e, index) => (
                     <tr key={index}>
-                      <td>{index + 1}</td>
+                      <td className="starter">{index + 1}</td>
                       <td>{e.title}</td>
                       <td>{e.office}</td>
-                      {isAdmin && <td>{e.agentName}</td>}
+                      {isAdmin() && <td>{e.agent}</td>}
                       <td>{getDate(e.date.seconds)}</td>
                       <td className="desc-tr">{e.decs}</td>
                     </tr>

@@ -80,22 +80,35 @@ function Header() {
               <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
             </Dropdown>
           ) : (
-            <button
-              onClick={() => {
-                navi("/login");
-              }}
-            >
-              Login
-            </button>
+            <span></span>
+            // <button
+            //   onClick={() => {
+            //     navi("/login");
+            //   }}
+            // >
+            //   Login
+            // </button>
           )}
         </div>
       </div>
 
       {/* Sidebar Toggle Button for screens narrower than 600px */}
       <div className="login">
-        <button className="sidebar-toggle" onClick={toggleSidebar}>
-          ☰
-        </button>
+      {isLogedIn() ? (
+             <button className="sidebar-toggle" onClick={toggleSidebar}>
+            ☰
+          </button>
+          ) : (
+            <button
+            onClick={() => {
+              navi("/login");
+            }}
+          >
+            Login
+          </button>
+          )}
+         
+        
       </div>
 
       {/* Sidebar Content for screens narrower than 600px */}
@@ -104,29 +117,7 @@ function Header() {
           ✕
         </button>
 
-        {isLogedIn() && (
-          <div>
-            <div className="admin-dropdown">
-              <Dropdown title={isAdmin ? "Admin" : "Agent"} placement="rightStart">
-                {isAdmin() && (
-                  <Dropdown.Item onClick={openCatagoryModal}>
-                    Add Category
-                  </Dropdown.Item>
-                )}
-                {isAdmin() && (
-                  <Dropdown.Item
-                    onClick={() => {
-                      setShowSocietyModal(true);
-                    }}
-                  >
-                    Add Society
-                  </Dropdown.Item>
-                )}
-                <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
-              </Dropdown>
-            </div>
-          </div>
-        )}
+       
 
         {isLogedIn() && (
           <div className={`Nav-links ${showSidebar ? "show-sidebar" : ""}`}>
@@ -149,6 +140,31 @@ function Header() {
             </Link>
           </div>
         )}
+         {isLogedIn() && (
+          <div>
+            <div className="admin-dropdown">
+              <Dropdown title={isAdmin ? "Admin" : "Agent"} placement="bottom">
+                {isAdmin() && (
+                  <Dropdown.Item onClick={openCatagoryModal}>
+                    Add Category
+                  </Dropdown.Item>
+                )}
+                {isAdmin() && (
+                  <Dropdown.Item
+                    onClick={() => {
+                      setShowSocietyModal(true);
+                    }}
+                  >
+                    Add Society
+                  </Dropdown.Item>
+                )}
+                <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
+              </Dropdown>
+              
+            </div>
+          </div>
+        )}
+        
       </div>
 
       <AddCatagory onClose={closeCatagoryModal} showModal={ShowCatagoryModal} />

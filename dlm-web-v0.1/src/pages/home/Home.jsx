@@ -6,6 +6,7 @@ import "./home.css";
 import Header from "../../components/header/Header";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
+import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
   const [referenceId, setReferenceId] = useState("");
@@ -148,6 +149,7 @@ const Home = () => {
           </form>
         </div>
       </div>
+      {/* <Footer/> */}
     </>
   );
 };

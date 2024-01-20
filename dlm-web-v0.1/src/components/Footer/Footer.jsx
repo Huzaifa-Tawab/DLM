@@ -15,7 +15,7 @@ function Footer() {
          and help increase your sales business.</span>
          <div className="divider"></div>
         <div className="footrbar">
-            <p>©2022 MORENT. All rights reserved</p>
+            <p>©2024 SoftXion. All rights reserved</p>
             <div className="policy">
                 <p>Privacy & Policy</p>
                 <p>Terms & Condition</p>

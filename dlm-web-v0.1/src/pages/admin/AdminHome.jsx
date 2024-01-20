@@ -92,13 +92,13 @@ function AdminHome() {
               <table className="adminhome-table">
                 <thead>
                   <tr className="hed">
-                    <th>Name</th>
+                    <th className="starter">Name</th>
+                    <th>FName</th>
                     <th>Phone Number</th>
                     {isAdmin() && <th>CNIC No</th>}
-                    <th>FName</th>
-                    <th>Gender</th>
-                    <th>Plots</th>
-                    <th>Actions</th>
+                    <th>GENDER</th>
+                    <th className="starter">Plots</th>
+                    <th className="starter">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -118,11 +118,12 @@ function AdminHome() {
                         />
                         <span>{e.Name}</span>
                       </td>
+                      <td>{e.FName}</td>
+
                       <td>{e.phNo}</td>
                       {isAdmin() && <td>{e.Cnic}</td>}
-                      <td>{e.FName}</td>
                       <td>{e.Gender}</td>
-                      <td className="tddr">{e.Plots.length}</td>
+                      <td className="tddr"><span>{e.Plots.length} Plots</span></td>
                       <td>
                         <button
                           className="button-view"

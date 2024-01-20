@@ -59,3 +59,10 @@
 .rs-dropdown-toggle, .rs-dropdown-toggle.rs-btn {
   padding-right: 50px !important;
 }
+@media (max-width: 600px) {
+  .custom-modal-container {
+    width: 300px !important;
+  }
+
+  
+}

@@ -104,7 +104,7 @@ function AdminExpense() {
               <table className="adminhome-table">
                 <thead>
                   <tr className="hed">
-                    <th>Sr No</th>
+                    <th className="starter">Sr No</th>
                     <th>Title</th>
                     <th>Amount</th>
                     {isAdmin() && <th>Uploaded by</th>}
@@ -116,7 +116,7 @@ function AdminExpense() {
                 <tbody>
                   {filteredCustomersDataMemoized.map((e, index) => (
                     <tr key={index}>
-                      <td>{index}</td>
+                      <td className="starter">{index+1}</td>
                       <td>{e.title}</td>
                       <td>PKR {e.amount} </td>
                       {isAdmin() && <td>{e.by}</td>}
