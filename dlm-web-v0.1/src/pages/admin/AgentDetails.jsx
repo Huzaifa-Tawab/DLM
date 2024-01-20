@@ -11,13 +11,7 @@ import Footer from "../../components/Footer/Footer";
 import AddDocs from "../../components/Modals/AddDocs";
 import { PiBuildingsBold } from "react-icons/pi";
 import isAdmin from "../../../IsAdmin";
-import adddoc from '../../Assets/adddoc.svg'
-import plot from '../../Assets/plot.svg'
-import profile from '../../Assets/profile.svg'
-import block from '../../Assets/block.svg'
-import downtown from '../../Assets/Downtown.svg'
-
-function ClientDetails() {
+function AgentDetails() {
   const navigate = useNavigate();
   const [isloading, setisloading] = useState(true);
   const [userData, setData] = useState();
@@ -32,7 +26,7 @@ function ClientDetails() {
   }, []);
 
   async function getdata() {
-    const docRef = doc(db, "Customers", prams.id);
+    const docRef = doc(db, "Agent", prams.id);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
@@ -99,7 +93,7 @@ function ClientDetails() {
                 />
                 <div className="cus-details">
                   <h2>{userData.Name}</h2>
-                  <span>Customer</span>
+                  <span>Agent</span>
                 </div>
               </div>
               <br />
@@ -108,35 +102,22 @@ function ClientDetails() {
               {/* <span>+92 317 5545690</span> */}
               <div className="clients-buttons">
                 <div className="button-pair">
-                <button>
-                      <img src={profile} alt="" />
-                      <p>Edit Profile </p>
-                    </button>
-                  
-                  <button
-                    onClick={() => {
-                      navigate("/create/plot/", {
-                        state: {
-                          Cuid: userData.Cnic,
-                        },
-                      });
-                    }}
-                  >
-                    <img src={plot} alt="" />
-                    <p>Add Plot </p>
+                  <button onClick={openDocModal}>
+                    <img src={edit} alt="" />
+                    <p>Add Doc </p>
                   </button>
+                  <button></button>
                 </div>
                 {isAdmin() && (
                   <div className="button-pair">
-                     <button>
-                      <img src={block} alt="" />
-                      <p>Block</p>
+                    <button>
+                      <img src={edit} alt="" />
+                      <p>Edit Profile </p>
                     </button>
-                  <button onClick={openDocModal}>
-                    <img src={adddoc} alt="" />
-                    <p>Add Doc</p>
-                  </button>
-                   
+                    <button>
+                      {/* <img src={edit} alt="" /> */}
+                      {/* <p>Delete Profile</p> */}
+                    </button>
                   </div>
                 )}
               </div>
@@ -170,16 +151,13 @@ function ClientDetails() {
                   <div className="row">
                     <span>Phone Number:</span>
                     <span>Town City:</span>
-
-                    <span>Kin Relation:</span>
-
-                    <span>Next of Kin:</span>
+                    <span>Invoice ID:</span>
                   </div>
                   <div className="row">
                     <span className="secon-row">{userData.phNo}</span>
                     <span className="secon-row">{userData["TownCity"]}</span>
-                    <span className="secon-row">{userData.KinRelation}</span>
-                    <span className="secon-row">{userData.NexttoKin}</span>
+
+                    <span className="secon-row">{userData["InvId"]}</span>
                   </div>
                 </div>
               </div>
@@ -189,23 +167,21 @@ function ClientDetails() {
             <div className="documents">
               <div className="doc-row">
                 <h1>Documents</h1>
-                {/* <button><img src={adddoc} alt="" /> Add Document</button> */}
+                <button>Add Document</button>
               </div>
               <table>
                 <thead>
-                  <th>Document Name</th>
-                  <th>Date</th>
-                  <th>More Details</th>
+                  <th>Title</th>
+                  <td>Acitons</td>
                 </thead>
                 <tbody>
                   {userData.Documents &&
                     Object.entries(userData.Documents).map(([key, value]) => (
                       <tr>
                         <td>{key}</td>
-                        <td>12-10-2024</td>
+
                         <td>
                           <a
-
                             href={value}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -220,19 +196,16 @@ function ClientDetails() {
             </div>
           )}
           <div className="plots">
-            {/* <h1>Plots Details</h1> */}
+            <h1>Plots Details</h1>
             <div className="plot-cards">
               {Plots.map((plot) => (
                 <div className="card">
-                  <h4>Plot 1</h4>
-                  <span className="first" style={{color: "#fff"}}>{userData.Address}</span>
-                  {/* <h2>{plot.id}</h2> */}
+                  <h2>{plot.id}</h2>
                   <div className="plot-des"></div>
                   <div className="row-start">
-                    <img src={downtown} alt="" />
-                    {/* <PiBuildingsBold className="buildlogo" /> */}
-                    {/* <span>Category :</span> */}
-                    <span>{plot.Category}</span>
+                    <PiBuildingsBold className="buildlogo" />
+                    <span>Category :</span>
+                    <h2>{plot.Category}</h2>
                   </div>
 
                   <div className="view-more">
@@ -262,4 +235,4 @@ function ClientDetails() {
   );
 }
 
-export default ClientDetails;
+export default AgentDetails;

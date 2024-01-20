@@ -16,6 +16,8 @@ import {
   where,
 } from "firebase/firestore";
 import getDate from "../../../GetDDMMYY";
+import xIcon from "../../assets/Xincon.png";
+
 
 function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
   const [percent, setPercent] = useState(0);
@@ -127,6 +129,10 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
     if (PlotdocSnap.exists()) {
       plot = PlotdocSnap.data();
     }
+    const CustomerdocSnap = await getDoc(doc(db, "Customers", cid));
+    if (CustomerdocSnap.exists()) {
+      customer = CustomerdocSnap.data();
+    }
     const AgentSnap = await getDoc(doc(db, "Agent", aid));
     if (AgentSnap.exists()) {
       agent = AgentSnap.data();
@@ -146,15 +152,18 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       fileNumber: pid,
       agentID: aid,
       agentName: agent.Name + " " + agent.FName,
-      customerName: customer.Name + " " + customer.FName,
+      customerName: customer.Name,
+      customerLastName: customer.FName,
       customerID: cid,
       proof: url,
       penalty: penalty,
-      payment: catagory.InstallmentAmount,
+      payment: Amount,
+      total: parseInt(penalty) + parseInt(Amount),
       nature: "installment",
-      installmentNo: Plot.installmentNo,
       time: serverTimestamp(),
       InvId: randomNum,
+      Category: cata,
+      varified: false,
     });
 
     await updateDoc(doc(db, "Plots", pid), {
@@ -174,22 +183,37 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       closeOnOuterClick={true}
     >
       <h2>Add Transactions</h2>
-      <button onClick={onClose}>Close Modal</button>
+      <div className="closebutton">
+        <img onClick={onClose} src={xIcon} alt="" />
+      </div>
       <div>
-        <h1>
-          istallment No {Plot.installmentNo}/{catagory.TotalInstallments}
-        </h1>
-        <h1>pending istallments {NumberOfPenelties}</h1>
-        <div className="textfieldgroup-col">
+      
+          <span className="first">Installment No:</span>
+          <span className="second">{Plot.installmentNo}/{catagory.TotalInstallments}</span>
+         <br />
+      <span className="first">Pending installments:</span>
+      <span className="seconf">{NumberOfPenelties}</span>
+        
+        <div className="modal-field-group">
           <p>Amount</p>
-          <input disabled type="number" value={Amount} />
+
+          <input
+            type="number"
+            placeholder="Amount"
+            value={Amount}
+            onChange={(e) => {
+              if (parseInt(e.target.value) > 0) {
+                setAmount(parseInt(e.target.value));
+              }
+            }}
+          />
         </div>
 
-        <div className="textfieldgroup-col">
+        <div className="modal-field-group">
           <p>Pnaly</p>
           <input disabled type="number" value={penalty} />
         </div>
-        <div className="textfieldgroup-col">
+        <div className="modal-field-group">
           <p>Total</p>
           <input
             disabled
@@ -197,10 +221,14 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
             value={parseInt(Amount) + parseInt(penalty)}
           />
         </div>
-
+        <div className="modal-field-group">
+          <p>Select Your File</p>
         <input type="file" onChange={handleChange} accept="/image/*" />
-        <button onClick={handleUpload}>Submit</button>
-        <p>{percent} "% done"</p>
+
+        </div>
+          
+        <button className="modal-button" onClick={handleUpload}>Submit</button>
+        <p style={{textAlign: "center"}}>{percent}% done</p>
       </div>
     </Modal>
   );

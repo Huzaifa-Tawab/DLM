@@ -19,33 +19,41 @@ import AdminInvoives from "./pages/admin/AdminInvoives";
 import AdminStore from "./pages/admin/AdminStore";
 import PrintInvoice from "./pages/Print/InvoicePrint";
 
+import FinanceRoute from "./FinanceRoute";
+import Finance from "./pages/finance/Finance";
+import FinancePending from "./pages/finance/FinancePending";
+import AgentDetails from "./pages/admin/AgentDetails";
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/print/invoice/:id" element={<PrintInvoice />} />
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/details/plot" element={<PlotDetails />} />
         <Route path="/create/client/" element={<ClientRegistrationFrom />} />
         <Route path="/404" element={<NotFound />} />
+        <Route element={<FinanceRoute />}>
+          <Route path="/finance" element={<Finance />} />
+          <Route path="/finance/unverified" element={<FinancePending />} />
+        </Route>
 
-        {/* <Route element={<AgentRoutes />}> */}
-        <Route path="/sub-admin/" element={<SubAdmin />} />
-        <Route path="/create/plot/" element={<PlotRegistrationForm />} />
-        {/* </Route> */}
-        {/* <Route element={<AdminRoutes />}> */}
-        <Route path="/create/agent/" element={<AgentRegistrationForm />} />
-        <Route path="/admin/agents" element={<AdminAgents />} />
-        <Route path="/admin/home" element={<AdminHome />} />
-        <Route path="/admin/invoices" element={<AdminInvoives />} />
-        <Route path="/admin/store" element={<AdminStore />} />
-        <Route path="/details/client/:id" element={<ClientDetails />} />
-        <Route path="/create/client/" element={<ClientRegistrationFrom />} />
-        <Route path="/create/plot/" element={<PlotRegistrationForm />} />
-        <Route path="/details/plot/:id" element={<AdminPlot />} />
-        <Route path="/admin/expense" element={<AdminExpense />} />
-        <Route path="/print/invoice/:id" element={<PrintInvoice />} />
-        {/* </Route> */}
+        <Route element={<AdminRoutes />}>
+          <Route path="/create/agent/" element={<AgentRegistrationForm />} />
+          <Route path="/admin/agents" element={<AdminAgents />} />
+          <Route path="/admin/home" element={<AdminHome />} />
+          <Route path="/admin/invoices" element={<AdminInvoives />} />
+          <Route path="/admin/store" element={<AdminStore />} />
+          <Route path="/details/client/:id" element={<ClientDetails />} />
+          <Route path="/details/agent/:id" element={<AgentDetails />} />
+          <Route path="/create/client/" element={<ClientRegistrationFrom />} />
+          <Route path="/create/plot/" element={<PlotRegistrationForm />} />
+          <Route path="/details/plot/:id" element={<AdminPlot />} />
+          <Route path="/admin/expense" element={<AdminExpense />} />
+          <Route path="/sub-admin/" element={<SubAdmin />} />
+          <Route path="/create/plot/" element={<PlotRegistrationForm />} />
+        </Route>
         {/* <Route path="*" element={<NoPage />} />  */}
       </Routes>
     </BrowserRouter>

@@ -1,22 +1,22 @@
 import "./PrintInvoice.css";
 import { useEffect, useState } from "react";
 import dotSharp from "./assets/dots-shap.png";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { functions } from "lodash";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 function PrintInvoice() {
+  const navigate = useNavigate();
   const { id } = useParams();
-  const [Name, setName] = useState("Huzaifa");
-  const [FName, setFName] = useState("Tawab");
-  const [Category, setCategory] = useState("Category 1");
-  const [InvoiceNumber, setInvoiceNumber] = useState("INV-455");
-  const [InvoiceDate, setInvoiceDate] = useState("4 jan 2000");
-  const [TotalInstalmentAmount, setTotalInstalmentAmount] =
-    useState("6,666.66");
-  const [FileNumber, setFileNumber] = useState("DLM4567");
+  const [Name, setName] = useState("");
+  const [FName, setFName] = useState("");
+  const [Category, setCategory] = useState("");
+  const [InvoiceNumber, setInvoiceNumber] = useState("");
+  const [InvoiceDate, setInvoiceDate] = useState("");
+  const [TotalInstalmentAmount, setTotalInstalmentAmount] = useState("");
+  const [FileNumber, setFileNumber] = useState("");
   const [Qty, setQty] = useState("1");
-  const [InstalmentAmount, setInstalmentAmount] = useState("6,666.66");
+  const [InstalmentAmount, setInstalmentAmount] = useState("");
   const [panelty, setpanelty] = useState("0.0");
   useEffect(() => {
     getData();
@@ -26,25 +26,24 @@ function PrintInvoice() {
     const docRef = doc(db, "Transactions", id);
     const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
+    if (docSnap.exists() && docSnap.data()["varified"]) {
       const data = docSnap.data();
       setName(data["customerName"]);
       const ms = data["time"]["seconds"] * 1000;
       const time = new Date(ms).toDateString();
       setInvoiceDate(time);
-      setFName(data["FName"]);
+      setFName(data["customerLastName"]);
       setCategory(data["Category"]);
-      setInvoiceNumber(data["InvoiceNumber"]);
-      setTotalInstalmentAmount(data["TotalInstalmentAmount"]);
+      setInvoiceNumber(data["InvId"]);
+      setTotalInstalmentAmount(data["total"]);
       setFileNumber(data["fileNumber"]);
-      setFQty(data["Qty"]);
-      setInstalmentAmount(data["payment"]);
+      setInstalmentAmount(data["total"]);
       setpanelty(data["penalty"]);
-      window.print();
+      // window.print();
     } else {
       // docSnap.data() will be undefined in this case
-      console.log("No such document!");
+      // console.log("No such document!");
+      navigate("/login");
     }
   }
 
@@ -53,7 +52,7 @@ function PrintInvoice() {
       <div className="auto-group-z6we-Z8p">
         <img className="dots-shap-UFn" src={dotSharp} />
         <div className="frame-3608-zjv">
-          <p className="dml-KXJ">DML</p>
+          <p className="dml-KXJ">DLM</p>
           <div className="auto-group-ctfe-cmJ">
             <div className="auto-group-5xz6-LxC">
               <div className="frame-3638-HMe">
@@ -120,14 +119,14 @@ function PrintInvoice() {
           </div>
           <div className="line-328-yBA"></div>
           <div className="auto-group-mqnk-uKi">
-            <p className="dml-pha">DML</p>
+            <p className="dml-pha">DLM</p>
             <div className="auto-group-qkui-9Ux">Customer Copy</div>
           </div>
         </div>
       </div>
       <div className="auto-group-hama-9tG">
         <div className="frame-3640-cG4">
-          <p className="dml-KJt">DML</p>
+          <p className="dml-KJt">DLM</p>
           <div className="auto-group-rtcq-c36">
             <div className="auto-group-j6vg-w5N">
               <div className="frame-3638-gHr">
@@ -194,7 +193,7 @@ function PrintInvoice() {
           </div>
           <div className="line-328-51n"></div>
           <div className="auto-group-rttz-oiU">
-            <p className="dml-k7v">DML</p>
+            <p className="dml-k7v">DLM</p>
             <div className="auto-group-3atc-UZi">Office Copy</div>
           </div>
         </div>

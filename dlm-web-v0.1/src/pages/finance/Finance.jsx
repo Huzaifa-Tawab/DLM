@@ -6,9 +6,11 @@ import Loader from "../../components/loader/Loader";
 import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
 import { debounce } from "lodash";
+import FinanceHeader from "../../components/header/FinanceHeader";
 import arrow from "../../Assets/Plus.png";
 
-function AdminInvoives() {
+
+function Finance() {
   const navigate = useNavigate();
   const [CustomersData, setCustomersData] = useState([]);
   const [filteredCustomersData, setFilteredCustomersData] = useState([]);
@@ -75,18 +77,11 @@ function AdminInvoives() {
     <Loader />
   ) : (
     <>
-      <Header />
+      <FinanceHeader />
       <div className="Admin-Home">
-        <div className="hero--head">
+      <div className="hero--head">
           <h1>Invoices</h1>
-          <button
-            onClick={() => {
-              // navigate("/create/agent/");
-            }}
-          >
-            Add New
-            <img src={arrow}></img>
-          </button>
+         
         </div>
         <div className="Admin-Home-content">
           <div className="Admin-Home-table">
@@ -101,7 +96,7 @@ function AdminInvoives() {
                 <thead>
                   <tr>
                     <th>Customer Name</th>
-                    <th>Approved By</th>
+                    <th>Uploaded By</th>
                     <th>File Number</th>
                     <th>Nature</th>
                     <th>Payment</th>
@@ -112,7 +107,7 @@ function AdminInvoives() {
                 </thead>
                 <tbody>
                   {filteredCustomersDataMemoized.map((e, index) => (
-                    <tr key={index + 1}>
+                    <tr key={index}>
                       <td>{e.customerName}</td>
                       <td>{e.agentName}</td>
                       <td>{e.fileNumber}</td>
@@ -120,6 +115,7 @@ function AdminInvoives() {
                       <td>{e.payment}</td>
                       <td>{e.panelty}</td>
                       <td>{getDate(e.time.seconds)}</td>
+
                       <td>
                         <button
                           className="button-view"
@@ -152,4 +148,4 @@ function AdminInvoives() {
   );
 }
 
-export default AdminInvoives;
+export default Finance;

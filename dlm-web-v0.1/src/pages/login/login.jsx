@@ -71,26 +71,33 @@ const Login = () => {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
       localStorage.setItem("Name", docSnap.data().Name);
       localStorage.setItem("id", docSnap.id);
       localStorage.setItem("Type", docSnap.data().Type);
 
       switch (docSnap.data()["Type"]) {
         case "Admin":
+          localStorage.setItem("Login", true);
+
           navi("/admin/home");
           break;
         case "SubAdmin":
-      localStorage.setItem("Type", docSnap.data().Type);
+          localStorage.setItem("Type", docSnap.data().Type);
+          localStorage.setItem("Login", true);
 
           navi("/admin/home");
+
+          break;
+        case "finance":
+          localStorage.setItem("Type", docSnap.data().Type);
+          navi("/finance/");
 
           break;
 
         default:
           setError("Record Not Found");
           auth.signOut();
-localStorage.clear()
+          localStorage.clear();
           break;
       }
       if (docSnap.data()["Type"] === "Admin") {

@@ -13,7 +13,13 @@ import {
 import { db } from "../../firebase";
 import AddTransactions from "../../components/Modals/AddTransactions";
 import TransferPlot from "../../components/Modals/TransferPlot";
-
+import Header from "../../components/header/Header";
+import Footer from "../../components/Footer/Footer";
+import "./adminplot.css";
+import avatar from "../../Assets/avatar.png";
+import "./ClientDetails.css";
+import AddComments from "../../components/Modals/AddComments";
+import isAdmin from "../../../IsAdmin";
 function AdminPlot() {
   const prams = useParams();
   const id = prams.id;
@@ -21,13 +27,25 @@ function AdminPlot() {
   const [PlotDetails, setPlotDetails] = useState({});
   const [isLoading, setisLoading] = useState(true);
   const [Transactions, setTransactions] = useState([]);
+  const [Comments, setComments] = useState([]);
   const [showDocModal, setShowDocModal] = useState(false);
   const [showTransferModal, setShowTransferModal] = useState(false);
+  const [showCommentsModal, setShowCommentsModal] = useState(false);
 
   useEffect(() => {
     getPlotDetails();
     getTransactions();
+    getPlotComments();
   }, []);
+  async function getPlotComments() {
+    const q = query(collection(db, "Comments"), where("pid", "==", id));
+    const querySnapshot = await getDocs(q);
+    let temp = [];
+    querySnapshot.forEach((doc) => {
+      temp.push(doc.data());
+    });
+    setComments(temp);
+  }
   async function getPlotDetails() {
     const docRef = doc(db, "Plots", id);
     const docSnap = await getDoc(docRef);
@@ -48,11 +66,11 @@ function AdminPlot() {
 
     let temp = [];
     querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
-      let single = doc.data();
-      single["id"] = doc.id;
-      temp.push(single);
+      if (doc.data()["varified"]) {
+        let single = doc.data();
+        single["id"] = doc.id;
+        temp.push(single);
+      }
     });
     setTransactions(temp);
   }
@@ -70,42 +88,147 @@ function AdminPlot() {
   const closeTransferModal = () => {
     setShowTransferModal(false);
   };
+  const openCommentsModal = () => {
+    setShowCommentsModal(true);
+  };
+
+  const closeCommentsModal = () => {
+    setShowCommentsModal(false);
+  };
+  function getTime(ms) {
+    const temp = new Date(ms).toDateString();
+    return temp;
+  }
   return isLoading ? (
     <Loader />
   ) : (
     <>
+      <Header />
       <div>
-        <h1>Plot Information</h1>
-        <ul>
-          <li>
-            <strong>Plot Size:</strong> {PlotDetails.PlotSize}
-          </li>
-          <li>
-            <strong>Agent ID:</strong> {PlotDetails.AgentId}
-          </li>
-          <li>
-            <strong>Customer ID:</strong> {PlotDetails.CustomerId}
-          </li>
-          <li>
-            <strong>City/Town:</strong> {PlotDetails.CityTown}
-          </li>
-          <li>
-            <strong>Address:</strong> {PlotDetails.Address}
-          </li>
-          <li>
-            <strong>File Number:</strong> {PlotDetails.FileNumber}
-          </li>
-          <li>
-            <strong>Category:</strong> {PlotDetails.Category}
-          </li>
-          <li>
-            <strong>Paid Amount:</strong> {PlotDetails.paidAmount}
-          </li>
-          <li>
-            <strong>Total Amount:</strong> {PlotDetails.TotalAmount}
-          </li>
-        </ul>
-        <div>
+        <div className="head-plot">
+          <div className="avatr-image">
+            <img src={avatar} alt="" />
+          </div>
+          <div className="Plot-box">
+            <h1>Plot Details</h1>
+            <div className="sec-heading">
+              <span className="first-text">Address:</span>{" "}
+              <span className="secon-text">{PlotDetails.Address}</span>
+            </div>
+
+            <div className="data-client">
+              <div className="row">
+                <span>Plot Size:</span>
+                <span>Agent ID:</span>
+                <span>Customer ID:</span>
+                <span>City/Town</span>
+              </div>
+              <div className="row">
+                <span className="secon-row">{PlotDetails.PlotSize}</span>
+                <span className="secon-row">{PlotDetails.AgentId}</span>
+                <span className="secon-row">{PlotDetails.CustomerId}</span>
+                <span className="secon-row">{PlotDetails.CityTown}</span>
+              </div>
+              <div className="row">
+                <span>File Number:</span>
+                <span>Category:</span>
+                <span>Paid Amount:</span>
+                <span>Total Amount:</span>
+              </div>
+              <div className="row">
+                <span className="secon-row">{PlotDetails.FileNumber}</span>
+                <span className="secon-row">{PlotDetails.Category}</span>
+                <span className="secon-row">{PlotDetails.paidAmount}</span>
+                <span className="secon-row">{PlotDetails.TotalAmount}</span>
+              </div>
+            </div>
+
+            <div className="column">
+              {isAdmin() && (
+                <>
+                  <button
+                    className="red-color"
+                    onClick={() => {
+                      setShowTransferModal(true);
+                    }}
+                  >
+                    Transfer
+                  </button>
+                  <button className="red-color">Print</button>
+                </>
+              )}
+              <button
+                className="yellow-color"
+                onClick={() => {
+                  setShowDocModal(true);
+                }}
+              >
+                Payment
+              </button>
+              <button
+                className="yellow-color"
+                onClick={() => {
+                  setShowCommentsModal(true);
+                }}
+              >
+                Comment
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="bottom-part-plot">
+          <div className="transaction-box">
+            <h1>Transaction</h1>
+            {Transactions.map((transaction, index) => (
+              <div key={index} className="transaction-main">
+                <div className="transaction-row">
+                  <span>{transaction.InvId}</span>
+                  <span>{transaction.nature}</span>
+                  <span>{getTime(transaction.time.seconds * 1000)}</span>
+                </div>
+                <div className="transaction-row">
+                  <span>
+                    <strong>Submited to:</strong> {transaction.agentName}
+                  </span>
+
+                  <span>PKR {transaction.total}</span>
+                </div>
+
+                {/* <a
+                  href={transaction.proof}
+                  target="_blank"
+                  rel="noopener noreferre"
+                  style={{ textDecoration: "none" }}
+                >
+                  {" "}
+                  <span className="second">Click Here for Proof</span>
+                </a> */}
+              </div>
+            ))}
+          </div>
+          <div className="comment-box">
+            <h1>
+              Comments <span>{Comments.length}</span>
+            </h1>
+
+            {Comments.map((e, i) => (
+              <div key={i} className="box-bg">
+                <div className="comment-box-top">
+                  <div className="img-name">
+                    <img src={avatar} alt="" style={{ width: "50px" }} />
+                    <div className="name-cat">
+                      <h2>{e.by}</h2>
+                      <span>{e.userType}</span>
+                    </div>
+                  </div>
+                  <span>{getTime(e.created.seconds * 1000)}</span>
+                </div>
+                <p>{e.comment}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* <div>
           <ul style={{ background: "red", margin: "10px" }}>
             {Transactions.map((transaction, index) => (
               <li key={index}>
@@ -133,10 +256,10 @@ function AdminPlot() {
                 <strong>Payment:</strong> {transaction.payment}
                 <br />
                 <strong>Time:</strong>{" "}
-                {/* {new Date(
+                {new Date(
                   transaction.time.seconds * 1000 +
                     transaction.time.nanoseconds / 1000000
-                ).toLocaleString()} */}
+                ).toLocaleString()}
                 <br />
                 <strong>Customer Name:</strong> {transaction.customerName}
                 <br />
@@ -144,21 +267,7 @@ function AdminPlot() {
               </li>
             ))}
           </ul>
-        </div>
-        <button
-          onClick={() => {
-            setShowDocModal(true);
-          }}
-        >
-          Add
-        </button>
-        <button
-          onClick={() => {
-            setShowTransferModal(true);
-          }}
-        >
-          transfer
-        </button>
+        </div> */}
       </div>
       <AddTransactions
         showModal={showDocModal}
@@ -172,7 +281,15 @@ function AdminPlot() {
         showModal={showTransferModal}
         onClose={closeTransferModal}
         pid={PlotDetails.FileNumber}
+        cid={PlotDetails.CustomerId}
+        aid={PlotDetails.AgentId}
       />
+      <AddComments
+        showModal={showCommentsModal}
+        onClose={closeCommentsModal}
+        plotid={id}
+      />
+      <Footer />
     </>
   );
 }

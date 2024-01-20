@@ -66,8 +66,8 @@ function AdminHome() {
     <>
       <Header />
       <div className="Admin-Home">
-        <div>{isAdmin() && "Admin"}</div>
-        <div>{isAdmin() ? "Admin" : "SubAdmin"}</div>
+        <div className="admin-show">{isAdmin() && "Admin"}</div>
+        <div className="admin-show">{isAdmin() ? "Admin" : "SubAdmin"}</div>
 
         <div className="hero--head">
           <h1>Customers</h1>
@@ -94,9 +94,9 @@ function AdminHome() {
                   <tr className="hed">
                     <th>Name</th>
                     <th>Phone Number</th>
-                    {isAdmin() &&  <th>CNIC No</th>}
+                    {isAdmin() && <th>CNIC No</th>}
                     <th>FName</th>
-                    <th>Gender</th>                    
+                    <th>Gender</th>
                     <th>Plots</th>
                     <th>Actions</th>
                   </tr>
@@ -106,17 +106,22 @@ function AdminHome() {
                     <tr key={e.Cnic}>
                       <td className="avatar-image">
                         <img
-                          src={e.imgUrl}
+                          src={
+                            e.Gender === "female"
+                              ? isAdmin()
+                                ? e.imgUrl
+                                : avatar
+                              : e.imgUrl
+                          }
                           alt="avatar"
                           className="avatar-table"
                         />
-                        {e.Name}
+                        <span>{e.Name}</span>
                       </td>
                       <td>{e.phNo}</td>
-                      {isAdmin() && <th>{e.Cnic}</th> }   
+                      {isAdmin() && <td>{e.Cnic}</td>}
                       <td>{e.FName}</td>
-                      <td>{e.Gender}</td>  
-                      
+                      <td>{e.Gender}</td>
                       <td className="tddr">{e.Plots.length}</td>
                       <td>
                         <button

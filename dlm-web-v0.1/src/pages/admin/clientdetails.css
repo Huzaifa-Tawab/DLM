@@ -50,6 +50,7 @@
   justify-content: center;
   align-items: center;
   font-size: 14px;
+  border-radius: 5px;
 }
 .button-pair > button:hover {
   background: #f4b266;
@@ -60,21 +61,31 @@
   margin: 10px;
   border-radius: 10px;
   padding: 20px;
+  color: black;
 }
 .row {
   display: flex;
-  /* justify-content: space-evenly; */
   text-align: start;
-  gap: 200px;
+  flex-direction: column;
+  gap: 20px;
+
+  align-content: center;
+  align-items: flex-start;
 }
-.row > h2 > span {
-  color: gray;
+.row > span {
+  /* Regular/Type@20 */
+  color: #90a3bf;
+  font-family: "Plus Jakarta Sans";
   font-size: 20px;
-  font-weight: 500;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 30px */
+  letter-spacing: -0.4px;
 }
+
 .client-pic-detail {
   display: flex;
-  gap: 10px;
+
   align-items: center;
   justify-content: center;
 }
@@ -82,7 +93,7 @@
   background: #fff;
   border-radius: 10px;
   margin: 10px;
-  padding: 20px 50px;
+  padding: 30px 80px;
 }
 .doc-align {
   display: flex;
@@ -93,11 +104,18 @@
   border-radius: 10px;
   height: 60px;
 }
+td> a{
+  background: #a4243b;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 20px;
+}
 .plots {
-  padding: 10px;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  margin: 10px;
+  padding: 30px 80px;
+  /* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; */
   border-radius: 10px;
-  background: #ffffffaf;
+  /* background: #ffffffaf; */
 }
 .plot-cards {
   display: flex;
@@ -124,6 +142,7 @@
   background: #a4243b;
   width: 100%;
   height: 6vh;
+  border-radius: 5px;
   color: var(--Primary-0, #fff);
   text-align: center;
   /* Semibold/Type@16 */
@@ -161,6 +180,7 @@
 .row-start {
   margin-bottom: 40px;
   margin-top: 40px;
+  gap: 10px;
 
   h2 {
     font-size: 18px;
@@ -181,11 +201,10 @@
 .buildlogo {
   font-size: 18px;
   color: #7a5933;
+  
 }
-.card h2 {
-  padding-bottom: 20px;
-  padding-left: 5px;
-  color: white;
+.card h4 {
+  color:white;
 }
 .doc-row {
   display: flex;
@@ -193,4 +212,94 @@
 }
 .documents table {
   width: 100%;
+}
+.data-client {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+.row > .secon-row {
+  /* Semibold/Type@20 */
+  font-family: "Plus Jakarta Sans";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 30px */
+  letter-spacing: -0.4px;
+  color: #596780;
+}
+.sec-heading > .first-text {
+  color: #596780;
+  font-family: "Plus Jakarta Sans";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 200%;
+  letter-spacing: -0.4px;
+}
+.sec-heading {
+  margin-bottom: 3rem;
+}
+.sec-heading > .secon-text {
+  font-weight: 700;
+  color: #596780;
+  font-family: "Plus Jakarta Sans";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 200%;
+  letter-spacing: -0.4px;
+}
+.data-client-div {
+  display: flex;
+
+  gap: 20px;
+}
+.table {
+  overflow-y: scroll;
+  th {
+    padding: 0px 5px;
+  }
+}
+@media (max-width: 786px) {
+  .info-box {
+    flex-direction: column;
+    margin: 0px;
+    padding: 0px;
+  }
+  .info-box-2 {
+   padding: 20px;
+    margin: 20px  0px;
+    width: 90%;
+  }
+  .info-box-2> h1{
+    font-size: 28px;
+  }
+  .data-client {
+    gap: 10px;
+    flex-direction: column;
+  }
+
+  .client-pic {
+    width: 100%;
+    margin: 0px;
+  }
+
+  .documents {
+    padding: 20px;
+    margin: 0px;
+  }
+  .row > span {
+    text-align: start;
+    font-size: 16px;
+
+    font-weight: 400;
+
+    width: 120px;
+  }
+  .row > .secon-row {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+  }
 }

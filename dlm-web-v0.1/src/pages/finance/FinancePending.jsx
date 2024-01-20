@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useCallback, useMemo } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
 import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
 import { debounce } from "lodash";
-import arrow from "../../Assets/Plus.png";
+import FinanceHeader from "../../components/header/FinanceHeader";
 
-function AdminInvoives() {
+function FinancePending() {
   const navigate = useNavigate();
   const [CustomersData, setCustomersData] = useState([]);
   const [filteredCustomersData, setFilteredCustomersData] = useState([]);
@@ -17,6 +17,18 @@ function AdminInvoives() {
   useEffect(() => {
     getCustomersData();
   }, []);
+  async function AproveTrans(id) {
+    setisLoading(true);
+    console.log(id);
+    const Pending = doc(db, "Transactions", id);
+
+    await updateDoc(Pending, {
+      varified: true,
+    }).then((e) => {
+      getCustomersData();
+      setisLoading(false);
+    });
+  }
   const openNewWindow = (Link) => {
     // Open a new window
     const newWindow = window.open("", "_blank");
@@ -24,12 +36,11 @@ function AdminInvoives() {
     // Navigate to the specified URL in the new window
     newWindow.location.href = Link;
   };
-
   async function getCustomersData() {
     const querySnapshot = await getDocs(collection(db, "Transactions"));
     const newCustomersData = [];
     querySnapshot.forEach((doc) => {
-      if (doc.data()["varified"]) {
+      if (!doc.data()["varified"]) {
         newCustomersData.push(doc.data());
       }
     });
@@ -75,19 +86,8 @@ function AdminInvoives() {
     <Loader />
   ) : (
     <>
-      <Header />
+      <FinanceHeader />
       <div className="Admin-Home">
-        <div className="hero--head">
-          <h1>Invoices</h1>
-          <button
-            onClick={() => {
-              // navigate("/create/agent/");
-            }}
-          >
-            Add New
-            <img src={arrow}></img>
-          </button>
-        </div>
         <div className="Admin-Home-content">
           <div className="Admin-Home-table">
             <input
@@ -101,7 +101,7 @@ function AdminInvoives() {
                 <thead>
                   <tr>
                     <th>Customer Name</th>
-                    <th>Approved By</th>
+                    <th>Uploaded By</th>
                     <th>File Number</th>
                     <th>Nature</th>
                     <th>Payment</th>
@@ -112,7 +112,7 @@ function AdminInvoives() {
                 </thead>
                 <tbody>
                   {filteredCustomersDataMemoized.map((e, index) => (
-                    <tr key={index + 1}>
+                    <tr key={index}>
                       <td>{e.customerName}</td>
                       <td>{e.agentName}</td>
                       <td>{e.fileNumber}</td>
@@ -120,6 +120,7 @@ function AdminInvoives() {
                       <td>{e.payment}</td>
                       <td>{e.panelty}</td>
                       <td>{getDate(e.time.seconds)}</td>
+
                       <td>
                         <button
                           className="button-view"
@@ -132,11 +133,10 @@ function AdminInvoives() {
                         <button
                           className="button-view"
                           onClick={() => {
-                            // openNewWindow(e.InvId);
-                            openNewWindow(`/print/invoice/${e.InvId}`);
+                            AproveTrans(e.InvId);
                           }}
                         >
-                          Print
+                          Approve
                         </button>
                       </td>
                     </tr>
@@ -152,4 +152,4 @@ function AdminInvoives() {
   );
 }
 
-export default AdminInvoives;
+export default FinancePending;

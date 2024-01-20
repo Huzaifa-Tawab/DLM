@@ -8,9 +8,10 @@ import Footer from "../../components/Footer/Footer";
 import { debounce } from "lodash";
 import AddStoreItem from "../../components/Modals/AddStoreItem";
 import arrow from "../../Assets/Plus.png";
-
+import isAdmin from "../../../IsAdmin";
 
 function AdminStore() {
+  const uid = localStorage.getItem("id");
   const navigate = useNavigate();
   const [CustomersData, setCustomersData] = useState([]);
   const [filteredCustomersData, setFilteredCustomersData] = useState([]);
@@ -25,7 +26,11 @@ function AdminStore() {
     const querySnapshot = await getDocs(collection(db, "Store"));
     const newCustomersData = [];
     querySnapshot.forEach((doc) => {
-      newCustomersData.push(doc.data());
+      if (doc.data()["agentID"] == uid) {
+        newCustomersData.push(doc.data());
+      } else if (isAdmin()) {
+        newCustomersData.push(doc.data());
+      }
     });
     setCustomersData(newCustomersData);
     setFilteredCustomersData(newCustomersData);
@@ -75,7 +80,7 @@ function AdminStore() {
     <>
       <Header />
       <div className="Admin-Home">
-      <div className="hero--head">
+        <div className="hero--head">
           <h1>Store</h1>
           <button
             onClick={() => {
@@ -95,14 +100,13 @@ function AdminStore() {
               className="input-field"
             />
             <div className="table">
-           
               <table className="adminhome-table">
                 <thead>
                   <tr className="hed">
                     <th>Sr No</th>
                     <th>Item Name</th>
                     <th>Office</th>
-                    <th>Uploaded By</th>
+                    {isAdmin() && <th>Uploaded By</th>}
                     <th>Uploaded At</th>
                     <th>Description</th>
                   </tr>
@@ -110,12 +114,12 @@ function AdminStore() {
                 <tbody>
                   {filteredCustomersDataMemoized.map((e, index) => (
                     <tr key={index}>
-                      <td>{index}</td>
+                      <td>{index + 1}</td>
                       <td>{e.title}</td>
                       <td>{e.office}</td>
-                      <td>{e.agent}</td>
+                      {isAdmin && <td>{e.agent}</td>}
                       <td>{getDate(e.date.seconds)}</td>
-                      <td>{e.decs}</td>
+                      <td className="desc-tr">{e.decs}</td>
                     </tr>
                   ))}
                 </tbody>
