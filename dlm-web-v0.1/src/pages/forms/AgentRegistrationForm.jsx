@@ -109,7 +109,6 @@ const FileInput = ({ label, onChange, previewUrl, error }) => {
         </div>
       )}
       {error && <ErrorMessage message={error} />}
-
       {isEditMode && (
         <input
           type="file"
