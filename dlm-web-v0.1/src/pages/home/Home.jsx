@@ -70,32 +70,35 @@ const Home = () => {
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       console.log("Document data:", docSnap.data());
-      console.log(docSnap.data().Blocked);
       if (docSnap.data().Blocked) {
-        navigate("/blocked");
-      }
-      if (docSnap.data()["phNo"] == phoneNumber) {
-        console.log("Number OK");
-        if (docSnap.data()["Plots"].includes(referenceId)) {
-          console.log("Ref OK");
+      console.log("jhhjkhkjhjkh");
 
-          navigate("/details/plot", {
-            state: {
-              img: docSnap.data()["imgUrl"],
-              name: docSnap.data()["Name"],
-              plotRef: referenceId,
-            },
-          });
+        navigate("/blocked");
+      }else{
+        
+
+        if (docSnap.data()["phNo"] == phoneNumber) {
+          console.log("Number OK");
+          if (docSnap.data()["Plots"].includes(referenceId)) {
+            console.log("Ref OK");
+  
+            navigate("/details/plot", {
+              state: {
+                img: docSnap.data()["imgUrl"],
+                name: docSnap.data()["Name"],
+                plotRef: referenceId,
+              },
+            });
+          } else {
+            // navigate("/404");
+          }
         } else {
           // navigate("/404");
         }
-      } else {
-        // navigate("/404");
+      
       }
-    } else {
-      // navigate("/404");
-    }
-  }
+     
+  }}
   return isLoading ? (
     <Loader />
   ) : (
