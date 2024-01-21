@@ -188,7 +188,7 @@ isLoading?<Loader/>:  <div className='main-page'>
     </div>
     <div className='column-2'>
       <span>{FileNumber}</span>
-      <span>{PlotSize}</span>
+      <span>{PlotSize} Marla</span>
       <span>{Address}</span>
      
     </div>
@@ -247,7 +247,7 @@ isLoading?<Loader/>:  <div className='main-page'>
   </div>
   <div className='top-last-heading'></div>
   <div className='last-text-content'><span>Note:</span>Permission of plot will be as per schedule i.e 62 Months from the date of booking.</div>
-  <div className='signatures-text'><h3>Signature</h3></div>
+  <div className='signatures-text'><h3>Signatures</h3></div>
   <div className='signature-area'>
     <h3>Customer</h3>
     <h3>Booking Officer</h3>
