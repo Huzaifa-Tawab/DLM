@@ -29,6 +29,7 @@ import PlotEditForm from "./pages/forms/PlotEditForm";
 import PrintFile from "./pages/Print/PrintFile";
 
 import ErrorPage from "./pages/notfound/ErrorPage";
+import BlockedUsers from "./pages/admin/BlockedUsers";
 
 function App() {
   return (
@@ -63,6 +64,7 @@ function App() {
 
         <Route element={<AdminRoutes />}>
           <Route path="/create/agent/" element={<AgentRegistrationForm />} />
+          <Route path="/admin/blocked/" element={<BlockedUsers />} />
           <Route path="/edit/agent/:id" element={<AgentEditForm />} />
 
           <Route path="/admin/agents" element={<AdminAgents />} />

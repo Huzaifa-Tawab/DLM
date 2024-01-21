@@ -53,6 +53,7 @@ function Header() {
           <div className="Nav-links">
             <Link to={"/admin/home"}>Customer</Link>
             {isAdmin() && <Link to={"/admin/agents"}>Agents</Link>}
+            {isAdmin() && <Link to={"/admin/blocked/"}>Blocked User</Link>}
             <Link to={"/admin/invoices"}>Invoices</Link>
             <Link to={"/admin/expense"}>Expenses</Link>
             <Link to={"/admin/store"}>Store</Link>

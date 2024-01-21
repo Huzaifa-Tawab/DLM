@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback, useMemo } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
@@ -13,6 +13,7 @@ import "./adminhome.css";
 function BlockedUsers() {
   const navigate = useNavigate();
   const [CustomersData, setCustomersData] = useState([]);
+
   const [filteredCustomersData, setFilteredCustomersData] = useState([]);
   const [isLoading, setisLoading] = useState(true);
 
@@ -24,7 +25,9 @@ function BlockedUsers() {
     const querySnapshot = await getDocs(collection(db, "Customers"));
     const newCustomersData = [];
     querySnapshot.forEach((doc) => {
-      if (doc.data()["blocked"]) {
+      console.log(doc.data().Blocked);
+
+      if (doc.data().Blocked) {
         newCustomersData.push(doc.data());
       }
     });
@@ -32,7 +35,16 @@ function BlockedUsers() {
     setFilteredCustomersData(newCustomersData);
     setisLoading(false);
   }
-
+  async function toggleBlockStatus(id) {
+    setisLoading(true);
+    const Ref = doc(db, "Customers", id);
+    await updateDoc(Ref, {
+      Blocked: false,
+    }).then(() => {
+      getCustomersData();
+      setisLoading(false);
+    });
+  }
   const filterData = useCallback(
     (searchText) => {
       let newData = CustomersData;
@@ -68,15 +80,7 @@ function BlockedUsers() {
       <Header />
       <div className="Admin-Home">
         <div className="hero--head">
-          <h1>Agents</h1>
-          <button
-            onClick={() => {
-              navigate("/create/agent/");
-            }}
-          >
-            Add New
-            <img src={arrow}></img>
-          </button>
+          <h1>Blocked Users</h1>
         </div>
         <div className="Admin-Home-content">
           <div className="Admin-Home-table">
@@ -91,7 +95,7 @@ function BlockedUsers() {
                 <thead>
                   <tr className="hed">
                     <th className="starter">Name</th>
-                    <th>Phone Number</th>
+
                     <th>CNIC No</th>
                     <th className="starter">Plots</th>
                     <th className="starter">Actions</th>
@@ -100,15 +104,8 @@ function BlockedUsers() {
                 <tbody>
                   {filteredCustomersDataMemoized.map((e) => (
                     <tr key={e.Cnic}>
-                      <td className="avatar-image">
-                        <img
-                          src={avatar}
-                          alt="avatar"
-                          className="avatar-table"
-                        />
-                        {e.Name}
-                      </td>
-                      <td>{e.phNo}</td>
+                      <td>{e.Name}</td>
+
                       <td>{e.Cnic}</td>
                       <td className="tddr">
                         <span>{e.Plots.length} Plots</span>
@@ -116,9 +113,11 @@ function BlockedUsers() {
                       <td>
                         <button
                           className="button-view"
-                          onClick={() => navigate(`/details/agent/${e.Cnic}`)}
+                          onClick={() => {
+                            toggleBlockStatus(e.Cnic);
+                          }}
                         >
-                          View Details
+                          UnBlock User
                         </button>
                       </td>
                     </tr>
