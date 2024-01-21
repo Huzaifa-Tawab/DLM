@@ -1,6 +1,6 @@
 import React from "react";
 import "./footer.css";
-import logo from "../../Assets/logo.png";
+import logo from "../../Assets/SoftXion.png";
 
 function Footer() {
   return (

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import "./header.css";
-import logo from "../../Assets/logo.png";
+import logo from "../../Assets/SoftXion.png";
 import { Link, useNavigate } from "react-router-dom";
 import isAdmin from "../../../IsAdmin";
 import { auth } from "../../firebase";

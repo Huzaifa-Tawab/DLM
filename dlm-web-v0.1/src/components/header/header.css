@@ -10,7 +10,7 @@
 }
 
 .logo img {
-  width: 80%; /* Customize the logo size */
+  height: 70px;
 }
 
 .Nav-links {
@@ -31,7 +31,7 @@
 .login button {
   margin-left: 10px;
   cursor: pointer;
-  background-color: #A4243B; /* Customize the button background color */
+  background-color: #a4243b; /* Customize the button background color */
   color: white; /* Customize the button text color */
   border: none;
   padding: 8px 15px;
@@ -69,7 +69,7 @@
 
 .sidebar-toggle {
   cursor: pointer;
-  background-color: #A4243B; /* Customize the button background color */
+  background-color: #a4243b; /* Customize the button background color */
   color: white; /* Customize the button text color */
   border: none;
   padding: 8px 15px;
@@ -124,8 +124,8 @@
   text-decoration: none;
   margin-right: 30px;
 }
-.Nav-links a:hover{
-  color: #A4243B;
+.Nav-links a:hover {
+  color: #a4243b;
 }
 
 .wide-navbar .login button {
@@ -176,7 +176,8 @@
   .sidebar-toggle {
     display: none;
   }
-  .wide-navbar{}
+  .wide-navbar {
+  }
 }
 
 /* Media query to hide/show the wide-navbar based on screen width */
