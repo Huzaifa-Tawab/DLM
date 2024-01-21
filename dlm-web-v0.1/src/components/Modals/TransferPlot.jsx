@@ -40,7 +40,9 @@ function TransferPlot({ showModal, onClose, cid, aid, pid }) {
     const querySnapshot = await getDocs(collection(db, "Customers"));
     const newCustomersData = [];
     querySnapshot.forEach((doc) => {
-      newCustomersData.push({ label: doc.data().Name, value: doc.id });
+      if (doc.data().id !== cid) {
+        newCustomersData.push({ label: doc.data().Name, value: doc.id });
+      }
     });
     console.log(newCustomersData);
     setCustomers(newCustomersData);
