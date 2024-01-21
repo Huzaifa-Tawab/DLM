@@ -37,10 +37,7 @@ function FinancePending() {
 
         await updateDoc(Pending, {
           Plots: arrayUnion(data.fileNumber),
-        }).then((e) => {
-          getCustomersData();
-          setisLoading(false);
-        });
+        }).then((e) => {});
       });
     }
 
@@ -157,7 +154,8 @@ function FinancePending() {
                         <button
                           className="button-view"
                           onClick={() => {
-                            AproveTrans(e.InvId, e.nature, e);
+                            // AproveTrans(e.InvId, e.nature, e);
+                            console.log(e.InvId, e.nature, e);
                           }}
                         >
                           Approve
