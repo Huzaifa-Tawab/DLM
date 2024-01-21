@@ -126,7 +126,7 @@ function AdminPlot() {
                 <span>City/Town</span>
               </div>
               <div className="row">
-                <span className="secon-row">{PlotDetails.PlotSize}</span>
+                <span className="secon-row">{PlotDetails.PlotSize} Marla</span>
                 <span className="secon-row">{PlotDetails.AgentId}</span>
                 {isAdmin() && (
                   <span className="secon-row">{PlotDetails.CustomerId}</span>
@@ -225,9 +225,9 @@ function AdminPlot() {
               <div key={i} className="box-bg">
                 <div className="comment-box-top">
                   <div className="img-name">
-                    <img src={avatar} alt="" style={{ width: "50px" }} />
+                    <img src={avatar} alt="" style={{ widh: "50px" }} />
                     <div className="name-cat">
-                      <h2>{e.by}</h2>
+                      <h2>{e.by}</h2>t
                       <span>{e.userType}</span>
                     </div>
                   </div>

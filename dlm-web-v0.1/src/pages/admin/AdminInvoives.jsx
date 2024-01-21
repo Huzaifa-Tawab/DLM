@@ -49,7 +49,7 @@ function AdminInvoives() {
             data.customerName
               .toLowerCase()
               .includes(searchText.toLowerCase()) ||
-            data.fileNumber.toLowerCase().includes(searchText.toLowerCase())
+            data.InvId.toLowerCase().includes(searchText.toLowerCase())
         );
       }
       setFilteredCustomersData(newData);
@@ -75,85 +75,87 @@ function AdminInvoives() {
   return isLoading ? (
     <Loader />
   ) : (
-    <Loader />
-    // <>
-    //   <Header />
-    //   <div className="Admin-Home">
-    //     <div className="hero--head">
-    //       <h1>Invoices</h1>
-    //       {/* <button
-    //         onClick={() => {
-    //           navigate("/create/agent/");
-    //         }}
-    //       >
-    //         Add New
-    //         <img src={arrow}></img>
-    //       </button>
-    //     </div>
-    //     <div className="Admin-Home-content">
-    //       <div className="Admin-Home-table">
-    //         <input
-    //           type="text"
-    //           placeholder="Search"
-    //           onChange={(e) => debouncedFilterData(e.target.value)}
-    //           className="input-field"
-    //         />
-    //         <div className="table">
-    //           <table className="adminhome-table">
-    //             <thead>
-    //               <tr className="hed">
-    //                 <th className="starter">Name</th>
-    //                 <th>Approved By</th>
-    //                 <th>File Number</th>
-    //                 <th>Nature</th>
-    //                 <th>Payment</th>
-    //                 <th>Penalty</th>
-    //                 <th>Date</th>
-    //                 <th className="starter">Actions</th>
-    //               </tr>
-    //             </thead>
-    //             <tbody>
-    //               {filteredCustomersDataMemoized.map((e, index) => (
-    //                 <tr key={index + 1}>
-    //                   <td className="starter">{e.customerName}</td>
-    //                   <td>{e.agentName}</td>
-    //                   <td>{e.fileNumber}</td>
-    //                   <td>{e.nature}</td>
-    //                   <td>{e.payment}</td>
-    //                   <td>{e.panelty}</td>
-    //                   <td>{getDate(e.time.seconds)}</td>
-    //                   <td>
-    //                     <div >
-    //                     <div >{isAdmin() && <button
-    //                       className="button-view"
-    //                       onClick={() => {
-    //                         openNewWindow(e.proof);
-    //                       }}
-    //                     >
-    //                       View
-    //                     </button>}</div>
+    <>
+      <Header />
+      <div className="Admin-Home">
+        <div className="hero--head">
+          <h1>Invoices</h1>
+          {/* {isAdmin() && <button
+            onClick={() => {
+              // navigate("/create/agent/");
+            }}
+          >
+            Add New
+            <img src={arrow}></img>
+          </button>} */}
+          
+        </div>
+        <div className="Admin-Home-content">
+          <div className="Admin-Home-table">
+            <input
+              type="text"
+              placeholder="Search"
+              onChange={(e) => debouncedFilterData(e.target.value)}
+              className="input-field"
+            />
+            <div className="table">
+              <table className="adminhome-table">
+                <thead>
+                  <tr>
+                  <th>Invoice Number</th>
 
-    //                     <button
-    //                       className="button-view"
-    //                       onClick={() => {
-    //                         // openNewWindow(e.InvId);
-    //                         openNewWindow(`/print/invoice/${e.InvId}`);
-    //                       }}
-    //                     >
-    //                       Print
-    //                     </button>
-    //                     </div>
-    //                   </td>
-    //                 </tr>
-    //               ))}
-    //             </tbody>
-    //           </table>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <Footer />
-    // </>
+                    <th>Customer Name</th>
+                    <th>Approved By</th>
+                    <th>Nature</th>
+                    <th>Payment</th>
+                    <th>Penalty</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredCustomersDataMemoized.map((e, index) => (
+                    <tr key={index + 1}>
+                      <td>{e.InvId}</td>
+
+                      <td>{e.customerName}</td>
+                      <td>{e.agentName}</td>
+                      <td>{e.nature}</td>
+                      <td>{e.payment}</td>
+                      <td>{e.panelty===null?0:1}</td>
+                      <td>{getDate(e.time.seconds)}</td>
+                      <td>
+                        <div >
+                        <div >{isAdmin() && <button
+                          className="button-view"
+                          onClick={() => {
+                            openNewWindow(e.proof);
+                          }}
+                        >
+                          View
+                        </button>}</div>                 
+                        
+                        <button
+                          className="button-view"
+                          onClick={() => {
+                            // openNewWindow(e.InvId);
+                            openNewWindow(`/print/invoice/${e.InvId}`);
+                          }}
+                        >
+                          Print
+                        </button>
+                        </div>                      
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </>
   );
 }
 

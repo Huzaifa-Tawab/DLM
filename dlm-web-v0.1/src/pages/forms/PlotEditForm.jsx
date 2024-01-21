@@ -217,14 +217,16 @@ const PlotEditForm = () => {
               <div className="input-box">
                 <div style={{ marginBottom: "10px" }}>
                   <label style={{ display: "block", marginBottom: "5px" }}>
-                    Plot Size:
+                    Plot Size in Marla:
                   </label>
                   <input
                     type="text"
                     name="PlotSize"
                     value={PlotSize}
                     onChange={(e) => {
+                      if (e.target.value>0) {
                       setPlotsize(e.target.value);
+                      }
                     }}
                     style={{ width: "100%", padding: "8px" }}
                   />
