@@ -1,5 +1,12 @@
 import React, { useEffect, useState, useCallback, useMemo } from "react";
-import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
+import {
+  arrayRemove,
+  arrayUnion,
+  collection,
+  doc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
@@ -17,9 +24,23 @@ function FinancePending() {
   useEffect(() => {
     getCustomersData();
   }, []);
-  async function AproveTrans(id) {
+  async function AproveTrans(id, nature, data) {
     setisLoading(true);
     console.log(id);
+    if (nature == "transfer") {
+      const Pending = doc(db, "Customers", data.senderCustomerID);
+
+      await updateDoc(Pending, {
+        Plots: arrayRemove(data.fileNumber),
+      }).then(async (e) => {
+        const Pending = doc(db, "Customers", data.receiverCustomerID);
+
+        await updateDoc(Pending, {
+          Plots: arrayUnion(data.fileNumber),
+        }).then((e) => {});
+      });
+    }
+
     const Pending = doc(db, "Transactions", id);
 
     await updateDoc(Pending, {
@@ -133,7 +154,8 @@ function FinancePending() {
                         <button
                           className="button-view"
                           onClick={() => {
-                            AproveTrans(e.InvId, e.nature);
+                            // AproveTrans(e.InvId, e.nature, e);
+                            console.log(e.InvId, e.nature, e);
                           }}
                         >
                           Approve
