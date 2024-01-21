@@ -23,6 +23,8 @@ import FinanceRoute from "./FinanceRoute";
 import Finance from "./pages/finance/Finance";
 import FinancePending from "./pages/finance/FinancePending";
 import AgentDetails from "./pages/admin/AgentDetails";
+import ClientEditForm from "./pages/forms/ClientEditForm";
+import AgentEditForm from "./pages/forms/AgentEditForm";
 
 function App() {
   return (
@@ -33,6 +35,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/details/plot" element={<PlotDetails />} />
         <Route path="/create/client/" element={<ClientRegistrationFrom />} />
+
         <Route path="/404" element={<NotFound />} />
         <Route element={<FinanceRoute />}>
           <Route path="/finance" element={<Finance />} />
@@ -41,6 +44,8 @@ function App() {
 
         <Route element={<AdminRoutes />}>
           <Route path="/create/agent/" element={<AgentRegistrationForm />} />
+          <Route path="/edit/agent/:id" element={<AgentEditForm />} />
+
           <Route path="/admin/agents" element={<AdminAgents />} />
           <Route path="/admin/home" element={<AdminHome />} />
           <Route path="/admin/invoices" element={<AdminInvoives />} />
@@ -48,6 +53,7 @@ function App() {
           <Route path="/details/client/:id" element={<ClientDetails />} />
           <Route path="/details/agent/:id" element={<AgentDetails />} />
           <Route path="/create/client/" element={<ClientRegistrationFrom />} />
+          <Route path="/edit/client/:id" element={<ClientEditForm />} />
           <Route path="/create/plot/" element={<PlotRegistrationForm />} />
           <Route path="/details/plot/:id" element={<AdminPlot />} />
           <Route path="/admin/expense" element={<AdminExpense />} />

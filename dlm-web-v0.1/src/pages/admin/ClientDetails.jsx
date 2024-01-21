@@ -11,11 +11,11 @@ import Footer from "../../components/Footer/Footer";
 import AddDocs from "../../components/Modals/AddDocs";
 import { PiBuildingsBold } from "react-icons/pi";
 import isAdmin from "../../../IsAdmin";
-import adddoc from '../../Assets/adddoc.svg'
-import plot from '../../Assets/plot.svg'
-import profile from '../../Assets/profile.svg'
-import block from '../../Assets/block.svg'
-import downtown from '../../Assets/Downtown.svg'
+import adddoc from "../../Assets/adddoc.svg";
+import plot from "../../Assets/plot.svg";
+import profile from "../../Assets/profile.svg";
+import block from "../../Assets/block.svg";
+import downtown from "../../Assets/Downtown.svg";
 
 function ClientDetails() {
   const navigate = useNavigate();
@@ -108,11 +108,15 @@ function ClientDetails() {
               {/* <span>+92 317 5545690</span> */}
               <div className="clients-buttons">
                 <div className="button-pair">
-                <button>
-                      <img src={profile} alt="" />
-                      <p>Edit Profile </p>
-                    </button>
-                  
+                  <button
+                    onClick={() => {
+                      navigate(`/edit/client/${userData.Cnic}`);
+                    }}
+                  >
+                    <img src={profile} alt="" />
+                    <p>Edit Profile </p>
+                  </button>
+
                   <button
                     onClick={() => {
                       navigate("/create/plot/", {
@@ -128,15 +132,14 @@ function ClientDetails() {
                 </div>
                 {isAdmin() && (
                   <div className="button-pair">
-                     <button>
+                    <button>
                       <img src={block} alt="" />
                       <p>Block</p>
                     </button>
-                  <button onClick={openDocModal}>
-                    <img src={adddoc} alt="" />
-                    <p>Add Doc</p>
-                  </button>
-                   
+                    <button onClick={openDocModal}>
+                      <img src={adddoc} alt="" />
+                      <p>Add Doc</p>
+                    </button>
                   </div>
                 )}
               </div>
@@ -205,7 +208,6 @@ function ClientDetails() {
                         <td>12-10-2024</td>
                         <td>
                           <a
-
                             href={value}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -225,7 +227,9 @@ function ClientDetails() {
               {Plots.map((plot) => (
                 <div className="card">
                   <h4>Plot 1</h4>
-                  <span className="first" style={{color: "#fff"}}>{userData.Address}</span>
+                  <span className="first" style={{ color: "#fff" }}>
+                    {userData.Address}
+                  </span>
                   {/* <h2>{plot.id}</h2> */}
                   <div className="plot-des"></div>
                   <div className="row-start">
