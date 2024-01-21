@@ -158,7 +158,7 @@ function AdminPlot() {
                   >
                     Transfer
                   </button>
-                  <button className="red-color">Print</button>
+                  <button className="red-color" onClick={()=>{navigate(`/print/${PlotDetails.FileNumber}`)}}>Print</button>
                 </>
               )}
               <button
@@ -190,8 +190,8 @@ function AdminPlot() {
           <div className="transaction-box">
             <h1>Transaction</h1>
             {Transactions.map((transaction, index) => (
-              <div key={index} className="transaction-main">
-                <div className="transaction-row">
+              <div key={index} className="transaction-main" onClick={()=>{navigate(`/print/invoice/${transaction.InvId}`)}}>
+                <div className="transaction-row" >
                   <span>{transaction.InvId}</span>
                   <span>{transaction.nature}</span>
                   <span>{getTime(transaction.time.seconds * 1000)}</span>

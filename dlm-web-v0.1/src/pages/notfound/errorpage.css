@@ -1,0 +1,17 @@
+/* ErrorPage.css */
+.containerE {
+    text-align: center;
+    padding: 20px;
+    background-color: #a4243b;
+    color: #f4b266;
+  }
+  
+  .error-code {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+  
+  .error-message {
+    font-size: 1.2em;
+  }
+  

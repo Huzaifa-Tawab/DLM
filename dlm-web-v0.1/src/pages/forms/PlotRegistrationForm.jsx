@@ -16,7 +16,6 @@ import "./clientform.css";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/header/Header";
 import Loader from "../../components/loader/Loader";
-
 const PlotRegistrationForm = () => {
   const [fileNumber, setfileNumber] = useState("");
   const [AgentsList, setAgentsList] = useState([]);

@@ -41,7 +41,6 @@ function AgentDetails() {
       setisloading(false);
     }
   }
-
   async function getPlotsData(Plots) {
     console.log(Plots);
     var tempList = [];
@@ -58,7 +57,6 @@ function AgentDetails() {
         tempList.push(temp);
       }
     }
-
     setPlots(tempList);
   }
   const openDocModal = () => {
@@ -106,7 +104,7 @@ function AgentDetails() {
                     <img src={edit} alt="" />
                     <p>Add Doc </p>
                   </button>
-                  <button></button>
+                  {/* <button></button> */}
                 </div>
                 {isAdmin() && (
                   <div className="button-pair">
@@ -116,10 +114,10 @@ function AgentDetails() {
                       <img src={edit} alt="" />
                       <p>Edit Profile </p>
                     </button>
-                    <button>
+                    {/* <button> */}
                       {/* <img src={edit} alt="" /> */}
                       {/* <p>Delete Profile</p> */}
-                    </button>
+                    {/* </button> */}
                   </div>
                 )}
               </div>
@@ -143,7 +141,7 @@ function AgentDetails() {
                     <span className="secon-row">{userData.Name}</span>
                     <span className="secon-row">{userData.FName}</span>
                     <span className="secon-row">
-                      {isAdmin() && userData.Cnic}ltr
+                      {isAdmin() && userData.Cnic}
                     </span>
                     <span className="secon-row">{userData.Gender}</span>
                     <span className="secon-row">{userData.Dob}</span>

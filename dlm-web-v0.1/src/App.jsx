@@ -14,7 +14,7 @@ import AgentRoutes from "./agentRoutes";
 import AdminRoutes from "./adminRoutes";
 import AdminAgents from "./pages/admin/AdminAgents";
 import AdminExpense from "./pages/admin/AdminExpense";
-import NotFound from "./pages/notfound/NotFound";
+
 import AdminInvoives from "./pages/admin/AdminInvoives";
 import AdminStore from "./pages/admin/AdminStore";
 import PrintInvoice from "./pages/Print/InvoicePrint";
@@ -26,6 +26,9 @@ import AgentDetails from "./pages/admin/AgentDetails";
 import ClientEditForm from "./pages/forms/ClientEditForm";
 import AgentEditForm from "./pages/forms/AgentEditForm";
 import PlotEditForm from "./pages/forms/PlotEditForm";
+import PrintFile from "./pages/Print/PrintFile";
+
+import ErrorPage from "./pages/notfound/ErrorPage";
 
 function App() {
   return (
@@ -36,12 +39,19 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/details/plot" element={<PlotDetails />} />
         <Route path="/create/client/" element={<ClientRegistrationFrom />} />
-
-        <Route path="/404" element={<NotFound />} />
+        <Route
+          path="/unauthorized"
+          element={ <ErrorPage errorCode={401} errorMessage="Unauthorized Access" />}
+        />
+        <Route
+        path="/notfound"
+        element={ <ErrorPage errorCode={404} errorMessage="Not Found" />}
+        />
         <Route element={<FinanceRoute />}>
           <Route path="/finance" element={<Finance />} />
           <Route path="/finance/unverified" element={<FinancePending />} />
         </Route>
+        <Route path="/print/:id" element={<PrintFile />} />
 
         <Route element={<AdminRoutes />}>
           <Route path="/create/agent/" element={<AgentRegistrationForm />} />

@@ -99,5 +99,11 @@
 }
 .transaction-main {
   padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 4px;
+}
+.transaction-main:hover{
+  cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background: #90a3bf;
+
 }
