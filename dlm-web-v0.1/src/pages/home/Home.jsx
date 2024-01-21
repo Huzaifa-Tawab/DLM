@@ -70,6 +70,7 @@ const Home = () => {
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       console.log("Document data:", docSnap.data());
+      console.log(docSnap.data().Blocked);
       if (docSnap.data().Blocked) {
         navigate("/blocked");
       }

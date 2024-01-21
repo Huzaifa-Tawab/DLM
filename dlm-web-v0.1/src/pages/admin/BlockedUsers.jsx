@@ -24,7 +24,9 @@ function BlockedUsers() {
     const querySnapshot = await getDocs(collection(db, "Customers"));
     const newCustomersData = [];
     querySnapshot.forEach((doc) => {
-      newCustomersData.push(doc.data());
+      if (doc.data()["blocked"]) {
+        newCustomersData.push(doc.data());
+      }
     });
     setCustomersData(newCustomersData);
     setFilteredCustomersData(newCustomersData);
