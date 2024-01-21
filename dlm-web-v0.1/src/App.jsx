@@ -41,11 +41,19 @@ function App() {
         <Route path="/create/client/" element={<ClientRegistrationFrom />} />
         <Route
           path="/unauthorized"
-          element={ <ErrorPage errorCode={401} errorMessage="Unauthorized Access" />}
+          element={
+            <ErrorPage errorCode={401} errorMessage="Unauthorized Access" />
+          }
         />
         <Route
-        path="/notfound"
-        element={ <ErrorPage errorCode={404} errorMessage="Not Found" />}
+          path="/blocked"
+          element={
+            <ErrorPage errorCode={401} errorMessage="You Have Been Blocked" />
+          }
+        />
+        <Route
+          path="/notfound"
+          element={<ErrorPage errorCode={404} errorMessage="Not Found" />}
         />
         <Route element={<FinanceRoute />}>
           <Route path="/finance" element={<Finance />} />

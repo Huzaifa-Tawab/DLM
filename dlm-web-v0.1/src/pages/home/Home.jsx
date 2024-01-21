@@ -70,6 +70,9 @@ const Home = () => {
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       console.log("Document data:", docSnap.data());
+      if (docSnap.data().Blocked) {
+        navigate("/blocked");
+      }
       if (docSnap.data()["phNo"] == phoneNumber) {
         console.log("Number OK");
         if (docSnap.data()["Plots"].includes(referenceId)) {

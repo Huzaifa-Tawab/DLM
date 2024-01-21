@@ -104,7 +104,7 @@
   border-radius: 10px;
   height: 60px;
 }
-td> a{
+td > a {
   background: #a4243b;
   color: white;
   border-radius: 5px;
@@ -201,10 +201,9 @@ td> a{
 .buildlogo {
   font-size: 18px;
   color: #7a5933;
-  
 }
 .card h4 {
-  color:white;
+  color: white;
 }
 .doc-row {
   display: flex;
@@ -268,11 +267,11 @@ td> a{
     padding: 0px;
   }
   .info-box-2 {
-   padding: 20px;
-    margin: 20px  0px;
+    padding: 20px;
+    margin: 20px 0px;
     width: 90%;
   }
-  .info-box-2> h1{
+  .info-box-2 > h1 {
     font-size: 28px;
   }
   .data-client {
@@ -302,4 +301,8 @@ td> a{
     font-style: normal;
     font-weight: 600;
   }
+}
+.blocked-user {
+  background: #a4243b !important;
+  color: #f6f8f9 !important;
 }
