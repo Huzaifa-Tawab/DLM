@@ -133,7 +133,7 @@ function FinancePending() {
                         <button
                           className="button-view"
                           onClick={() => {
-                            AproveTrans(e.InvId);
+                            AproveTrans(e.InvId, e.nature);
                           }}
                         >
                           Approve
