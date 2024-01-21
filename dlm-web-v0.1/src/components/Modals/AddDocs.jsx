@@ -65,7 +65,7 @@ function AddDocs({ showModal, onClose, uid, olddocs }) {
     }).then((e) => {
       console.log("red", e);
     });
-    // onClose();
+    onClose();
   }
   return (
     <Modal
