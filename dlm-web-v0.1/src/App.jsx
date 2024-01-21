@@ -25,6 +25,7 @@ import FinancePending from "./pages/finance/FinancePending";
 import AgentDetails from "./pages/admin/AgentDetails";
 import ClientEditForm from "./pages/forms/ClientEditForm";
 import AgentEditForm from "./pages/forms/AgentEditForm";
+import PlotEditForm from "./pages/forms/PlotEditForm";
 
 function App() {
   return (
@@ -55,6 +56,8 @@ function App() {
           <Route path="/create/client/" element={<ClientRegistrationFrom />} />
           <Route path="/edit/client/:id" element={<ClientEditForm />} />
           <Route path="/create/plot/" element={<PlotRegistrationForm />} />
+          <Route path="/edit/plot/:id" element={<PlotEditForm />} />
+
           <Route path="/details/plot/:id" element={<AdminPlot />} />
           <Route path="/admin/expense" element={<AdminExpense />} />
           <Route path="/sub-admin/" element={<SubAdmin />} />
