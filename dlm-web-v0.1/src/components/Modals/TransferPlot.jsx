@@ -108,6 +108,7 @@ function TransferPlot({ showModal, onClose, cid, aid, pid }) {
       receiverCustomerName: receiverCustomer.label,
       receiverCustomerID: receiverCustomer.value,
       proof: url,
+      verified: false,
       nature: "transfer",
       time: serverTimestamp(),
     });
