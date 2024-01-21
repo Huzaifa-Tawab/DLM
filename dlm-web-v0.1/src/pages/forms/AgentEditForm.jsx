@@ -136,8 +136,6 @@ const AgentEditForm = () => {
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [avatarPreview, setAvatarPreview] = useState(null);
-  const [Email, setEmail] = useState("");
-  const [Pass, setPass] = useState("");
   const [formData, setFormData] = useState({
     Name: "",
     FName: "",
@@ -171,7 +169,7 @@ const AgentEditForm = () => {
     const AgentdocSnap = await getDoc(doc(db, "Agent", prams.id));
     if (AgentdocSnap.exists()) {
       setFormData(AgentdocSnap.data());
-      setFile(AgentdocSnap.data().imgUrl);
+      setAvatarPreview(AgentdocSnap.data().imgUrl);
     }
   }
   const handleFileChange = (file) => {
@@ -202,19 +200,11 @@ const AgentEditForm = () => {
     setErrors();
     const validationErrors = validateForm(formData);
     if (Object.keys(validationErrors).length === 0) {
-      const docRef = doc(db, "Users", formData.Cnic);
-      getDoc(docRef).then((docSnap) => {
-        if (docSnap.exists()) {
-          const errors = {};
-
-          errors.Cnic = "CNIC already Exists";
-          setErrors(errors);
-          alert("Cnic already exists");
-        } else {
-          console.log("Form submitted:", formData);
-          createAgentAccount();
-        }
-      });
+      if (File) {
+        uploadImageToFirebase();
+      } else {
+        updateName();
+      }
     } else {
       setErrors(validationErrors);
     }
@@ -231,9 +221,6 @@ const AgentEditForm = () => {
       errors.FName = "Father's Name is required";
     }
 
-    if (!data.Cnic.trim()) {
-      errors.Cnic = "CNIC is required";
-    }
     if (!data.phNo.trim()) {
       errors.phNo = "Phone No is required";
     }
@@ -243,17 +230,17 @@ const AgentEditForm = () => {
     if (!data.Address.trim()) {
       errors.Address = "Please enter you living address";
     }
-    if (!Email) {
-      errors.Email = "Please enter Email";
+
+    if (!data.Dob.trim()) {
+      errors.Dob = "Please enter you date of birth";
     }
-    if (!Pass || Pass.length < 7) {
-      errors.Pass = "Please enter you Pass minimum 8 ";
-    }
+
     return errors;
   };
 
-  const UploadAgentData = async () => {
+  const UpdateAgentData = async () => {
     await setDoc(doc(db, "Agent", formData.Cnic), formData);
+    console.log(formData);
     navigate(`/details/agent/${formData.Cnic}`);
   };
   function uploadImageToFirebase() {
@@ -273,43 +260,18 @@ const AgentEditForm = () => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           console.log(url);
           formData["imgUrl"] = url;
-          UploadAgentData();
+          updateName();
         });
       }
     );
   }
 
-  function createAgentAccount() {
-    let data = JSON.stringify({
-      email: Email,
-      password: Pass,
-      uid: formData.Cnic,
-    });
-    let config = {
-      method: "post",
-      maxBodyLength: Infinity,
-      url: "http://localhost:8000/createUser",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: data,
-    };
-    axios
-      .request(config)
-      .then((response) => {
-        createUserAccount();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-  const createUserAccount = async () => {
+  const updateName = async () => {
     await setDoc(doc(db, "Users", formData.Cnic), {
       Name: formData.Name,
-      Email: Email,
-      Type: "SubAdmin",
     });
-    uploadImageToFirebase();
+    UpdateAgentData();
+    // uploadImageToFirebase();
   };
   return (
     <>
@@ -344,37 +306,7 @@ const AgentEditForm = () => {
                   error={errors && errors.FName}
                 />
               </div>
-              <div className="input-box">
-                <TextInput
-                  label="Email"
-                  name="Email"
-                  value={Email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
-                  error={errors && errors.Email}
-                />
-              </div>
-              <div className="input-box">
-                <TextInput
-                  label="Password"
-                  name="Password"
-                  value={Pass}
-                  onChange={(e) => {
-                    setPass(e.target.value);
-                  }}
-                  error={errors && errors.Pass}
-                />
-              </div>
-              <div className="input-box">
-                <TextInput
-                  label="CNIC"
-                  name="Cnic"
-                  value={formData.Cnic}
-                  onChange={handleChange}
-                  error={errors && errors.Cnic}
-                />
-              </div>
+
               <div className="input-box">
                 <TextInput
                   label="Phone Number"

@@ -163,7 +163,9 @@ const ClientEditForm = () => {
     const CustomerdocSnap = await getDoc(doc(db, "Customers", prams.id));
     if (CustomerdocSnap.exists()) {
       setFormData(CustomerdocSnap.data());
-      setFile(CustomerdocSnap.data().imgUrl);
+      if (CustomerdocSnap.data().imgUrl) {
+        setAvatarPreview(CustomerdocSnap.data().imgUrl);
+      }
     }
   }
   const handleFileChange = (file) => {
@@ -188,15 +190,33 @@ const ClientEditForm = () => {
         type === "checkbox" ? checked : type === "file" ? files[0] : value,
     }));
   };
+  function uploadToFirebase() {
+    const storageRef = ref(storage, `/ProfilePhotos/${formData.Cnic}`);
+    const uploadTask = uploadBytesResumable(storageRef, File);
 
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {},
+      (err) => console.log(err),
+      () => {
+        // download url
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          formData["imgUrl"] = url;
+          updateCustomer();
+        });
+      }
+    );
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     setisUploading(true);
     const validationErrors = validateForm(formData);
     if (Object.keys(validationErrors).length === 0) {
-      console.log("Form submitted:", formData);
-      // uploadToFirebase();
-      updateCustomer();
+      if (File) {
+        uploadToFirebase();
+      } else {
+        updateCustomer();
+      }
     } else {
       setisUploading(false);
       setErrors(validationErrors);
