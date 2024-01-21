@@ -62,7 +62,7 @@ function Header() {
         {/* Hide the sidebar toggle button on wide screens */}
         <div className="login">
           {isLogedIn() ? (
-            <Dropdown title={isAdmin ? "Admin" : "Agent"}>
+            <Dropdown title={isAdmin() ? "Admin" : "Agent"}>
               {isAdmin() && (
                 <Dropdown.Item onClick={openCatagoryModal}>
                   Add Category
@@ -94,21 +94,19 @@ function Header() {
 
       {/* Sidebar Toggle Button for screens narrower than 600px */}
       <div className="login">
-      {isLogedIn() ? (
-             <button className="sidebar-toggle" onClick={toggleSidebar}>
+        {isLogedIn() ? (
+          <button className="sidebar-toggle" onClick={toggleSidebar}>
             ☰
           </button>
-          ) : (
-            <button
+        ) : (
+          <button
             onClick={() => {
               navi("/login");
             }}
           >
             Login
           </button>
-          )}
-         
-        
+        )}
       </div>
 
       {/* Sidebar Content for screens narrower than 600px */}
@@ -116,8 +114,6 @@ function Header() {
         <button className="close-sidebar" onClick={toggleSidebar}>
           ✕
         </button>
-
-       
 
         {isLogedIn() && (
           <div className={`Nav-links ${showSidebar ? "show-sidebar" : ""}`}>
@@ -140,7 +136,7 @@ function Header() {
             </Link>
           </div>
         )}
-         {isLogedIn() && (
+        {isLogedIn() && (
           <div>
             <div className="admin-dropdown">
               <Dropdown title={isAdmin ? "Admin" : "Agent"} placement="bottom">
@@ -160,11 +156,9 @@ function Header() {
                 )}
                 <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
               </Dropdown>
-              
             </div>
           </div>
         )}
-        
       </div>
 
       <AddCatagory onClose={closeCatagoryModal} showModal={ShowCatagoryModal} />

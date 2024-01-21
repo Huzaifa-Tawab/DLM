@@ -26,6 +26,19 @@ const TextInput = ({ label, name, value, onChange, error }) => (
     {error && <ErrorMessage message={error} />}
   </div>
 );
+const NumberInput = ({ label, name, value, onChange, error }) => (
+  <div style={{ marginBottom: "10px" }}>
+    <label style={{ display: "block", marginBottom: "5px" }}>{label}:</label>
+    <input
+      type="number"
+      name={name}
+      value={value}
+      onChange={onChange}
+      style={{ width: "100%", padding: "8px" }}
+    />
+    {error && <ErrorMessage message={error} />}
+  </div>
+);
 
 const RadioInput = ({ label, name, value, checked, onChange }) => (
   <label style={{ marginRight: "20px" }}>
@@ -305,7 +318,7 @@ const ClientRegistrationForm = () => {
                 />
               </div>
               <div className="input-box">
-                <TextInput
+                <NumberInput
                   label="CNIC"
                   name="Cnic"
                   value={formData.Cnic}
@@ -314,7 +327,7 @@ const ClientRegistrationForm = () => {
                 />
               </div>
               <div className="input-box">
-                <TextInput
+                <NumberInput
                   label="Phone Number"
                   name="phNo"
                   value={formData.phNo}
@@ -429,7 +442,7 @@ const ClientRegistrationForm = () => {
                 />
               </div>
               <div className="input-box">
-                <TextInput
+                <NumberInput
                   label="Phone No"
                   name="PhNoKin"
                   value={formData.PhNoKin}
@@ -438,7 +451,7 @@ const ClientRegistrationForm = () => {
                 />
               </div>
               <div className="input-box">
-                <TextInput
+                <NumberInput
                   label="CNIC No"
                   name="CnicKin"
                   value={formData.CnicKin}
