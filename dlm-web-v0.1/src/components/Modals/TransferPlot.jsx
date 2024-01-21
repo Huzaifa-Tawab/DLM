@@ -108,6 +108,8 @@ function TransferPlot({ showModal, onClose, cid, aid, pid }) {
       receiverCustomerName: receiverCustomer.label,
       receiverCustomerID: receiverCustomer.value,
       proof: url,
+      customerName: receiverCustomer.label,
+      payment: Amount,
       InvId: randomNum,
       verified: false,
       nature: "transfer",

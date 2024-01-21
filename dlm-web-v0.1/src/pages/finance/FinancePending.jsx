@@ -154,8 +154,8 @@ function FinancePending() {
                         <button
                           className="button-view"
                           onClick={() => {
-                            // AproveTrans(e.InvId, e.nature, e);
-                            console.log(e.InvId, e.nature, e);
+                            AproveTrans(e.InvId, e.nature, e);
+                            // console.log(e.InvId, e.nature, e);
                           }}
                         >
                           Approve
