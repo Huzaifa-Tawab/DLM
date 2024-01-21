@@ -80,14 +80,15 @@ function AdminInvoives() {
       <div className="Admin-Home">
         <div className="hero--head">
           <h1>Invoices</h1>
-          {/* <button
+          {/* {isAdmin() && <button
             onClick={() => {
-              navigate("/create/agent/");
+              // navigate("/create/agent/");
             }}
           >
             Add New
             <img src={arrow}></img>
-          </button>
+          </button>} */}
+          
         </div>
         <div className="Admin-Home-content">
           <div className="Admin-Home-table">
@@ -100,21 +101,21 @@ function AdminInvoives() {
             <div className="table">
               <table className="adminhome-table">
                 <thead>
-                  <tr className="hed">
-                    <th className="starter">Name</th>
+                  <tr>
+                    <th>Customer Name</th>
                     <th>Approved By</th>
                     <th>File Number</th>
                     <th>Nature</th>
                     <th>Payment</th>
-                    <th>Penalty</th>
-                    <th>Date</th>
-                    <th className="starter">Actions</th>
+                    <th>penalty</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filteredCustomersDataMemoized.map((e, index) => (
                     <tr key={index + 1}>
-                      <td className="starter">{e.customerName}</td>
+                      <td>{e.customerName}</td>
                       <td>{e.agentName}</td>
                       <td>{e.fileNumber}</td>
                       <td>{e.nature}</td>

@@ -31,7 +31,7 @@ function PlotDetails() {
       </div>
       <div className="plot-details">
      <div className="details"><span>Total</span><h1> {PlotDetail.TotalAmount}PKR</h1></div> 
-        <div className="details"><span>Piad</span> <h1>{PlotDetail.PaidAmount}PKR</h1></div>
+        <div className="details"><span>Piad</span> <h1>{PlotDetail.paidAmount}PKR</h1></div>
     <div className="details"><span>Plot Size</span>  <h1>{PlotDetail.PlotSize}</h1></div>
      <div className="details"><span>File No</span> <h1> {PlotDetail.FileNumber}</h1></div>
       </div>

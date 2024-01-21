@@ -95,9 +95,9 @@
   left: unset;
 }
 
-.Nav-links {
+/* .Nav-links {
   display: none;
-}
+} */
 
 .sidebar.show .Nav-links {
   display: flex;
