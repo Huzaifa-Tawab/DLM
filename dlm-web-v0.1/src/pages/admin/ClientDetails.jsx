@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import "./clientdetails.css";
 import avatar from "../../assets/avatar.png";
@@ -47,7 +47,16 @@ function ClientDetails() {
       setisloading(false);
     }
   }
-
+  async function toggleBlockStatus() {
+    setisloading(true);
+    const Ref = doc(db, "Customers", prams.id);
+    await updateDoc(Ref, {
+      Blocked: !userData.Blocked,
+    }).then(() => {
+      getdata();
+      setisloading(false);
+    });
+  }
   async function getPlotsData(Plots) {
     console.log(Plots);
     var tempList = [];
@@ -131,10 +140,13 @@ function ClientDetails() {
                   </button>
                 </div>
                 {isAdmin() && (
-                  <div className="button-pair">
-                    <button>
+                  <div className="button-pair ">
+                    <button
+                      onClick={toggleBlockStatus}
+                      className={userData.Blocked && "blocked-user"}
+                    >
                       <img src={block} alt="" />
-                      <p>Block</p>
+                      <p>{userData.Blocked ? "unblock" : "block"}</p>
                     </button>
                     <button onClick={openDocModal}>
                       <img src={adddoc} alt="" />
@@ -163,7 +175,7 @@ function ClientDetails() {
                     <span className="secon-row">{userData.Name}</span>
                     <span className="secon-row">{userData.FName}</span>
                     <span className="secon-row">
-                      {isAdmin() && userData.Cnic}
+                      {isAdmin() ? userData.Cnic : "************"}
                     </span>
                     <span className="secon-row">{userData.Gender}</span>
                     <span className="secon-row">{userData.Dob}</span>
