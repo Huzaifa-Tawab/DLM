@@ -5,7 +5,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import "./clientdetails.css";
 // import avatar from "../../assets/avatar.png";
-import edit from "../../assets/edit.png";
+// import edit from "../../assets/edit.png";
 import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
 import AddDocs from "../../components/Modals/AddDocs";
@@ -77,7 +77,7 @@ function AgentDetails() {
             <div className="client-pic">
               {/* <h1>Customer Information</h1> */}
               <div className="client-pic-detail">
-                <img
+                {/* <img
                   className="avatar"
                   src={
                     userData.Gender === "female"
@@ -88,10 +88,10 @@ function AgentDetails() {
                   }
                   alt="User"
                   style={{ maxWidth: "100px" }}
-                />
+                /> */}
                 <div className="cus-details">
                   <h2>{userData.Name}</h2>
-                  <span>Agent</span>
+                  <span>Agent details</span>
                 </div>
               </div>
               <br />
@@ -101,8 +101,8 @@ function AgentDetails() {
               <div className="clients-buttons">
                 <div className="button-pair">
                   <button onClick={openDocModal}>
-                    <img src={edit} alt="" />
-                    <p>Add Doc </p>
+                    {/* <img src={edit} alt="" /> */}
+                    <p>Add Docs </p>
                   </button>
                   {/* <button></button> */}
                 </div>
@@ -132,7 +132,7 @@ function AgentDetails() {
                 <div className="data-client-div">
                   <div className="row">
                     <span>Name:</span>
-                    <span>Father's Name:</span>
+                    <span>F/H Name:</span>
                     <span>CNIC:</span>
                     <span>Gender:</span>
                     <span>DOB:</span>
@@ -208,6 +208,7 @@ function AgentDetails() {
                     <h2>{plot.Category}</h2>
                   </div>
 
+                  {/* nn */}
                   <div className="view-more">
                     <button
                       onClick={() => {
