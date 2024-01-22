@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "simple-react-modal";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { db, storage } from "../../firebase";
-import xIcon from "../../assets/Xincon.png";
+// import xIcon from "../../assets/Xincon.png";
 import {
   addDoc,
   collection,
@@ -66,12 +66,11 @@ function AddExpense({ showModal, onClose }) {
       closeOnOuterClick={true}
     >
       <div className="closebutton">
-        <img onClick={onClose} src={xIcon} alt="" />
+        {/* <img onClick={onClose} src={xIcon} alt="" /> */}
       </div>
       <div className="Modal-row">
         <h2>Expenses</h2>
-      <span>Once you save the item it can't be edit or delete</span>
-
+        <span>Once you save the item it can't be edit or delete</span>
       </div>
       <div>
         <div className="modal-field-group">
@@ -106,7 +105,9 @@ function AddExpense({ showModal, onClose }) {
         </div>
         <p>{Error}</p>
 
-        <button className="modal-button" onClick={handleUpload}>Submit</button>
+        <button className="modal-button" onClick={handleUpload}>
+          Submit
+        </button>
       </div>
     </Modal>
   );
