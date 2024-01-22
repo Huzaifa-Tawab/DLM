@@ -111,7 +111,7 @@ function AgentDetails() {
                     <button
                       onClick={() => navigate(`/edit/agent/${userData.Cnic}`)}
                     >
-                      <img src={edit} alt="" />
+                      {/* <img src={edit} alt="" /> */}
                       <p>Edit Profile </p>
                     </button>
                     {/* <button> */}
