@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "simple-react-modal";
 
 import { db, storage } from "../../firebase";
-import xIcon from "../../assets/Xincon.png";
+// import xIcon from "../../assets/Xincon.png";
 import {
   addDoc,
   collection,
@@ -65,14 +65,14 @@ function AddCatagory({ showModal, onClose }) {
       containerClassName="custom-modal-container"
       closeOnOuterClick={true}
     >
-       <h2>Catagories</h2>
-        <span>Once you save the item it can't be edit or delete</span>
+      <h2>Catagories</h2>
+      <span>Once you save the item it can't be edit or delete</span>
       <div className="closebutton">
-        <img onClick={onClose} src={xIcon} alt="" />
+        {/* <img onClick={onClose} src={xIcon} alt="" /> */}
       </div>
       <div>
         <div className="modal-field-group">
-         <br />
+          <br />
           <p>Title</p>
           <input
             type="text"
@@ -103,7 +103,7 @@ function AddCatagory({ showModal, onClose }) {
           /> */}
         {/* </div> */}
         <p>{Error}</p>
-<br />
+        <br />
         <button className="modal-button" onClick={handleUpload}>
           Submit
         </button>
