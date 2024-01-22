@@ -240,7 +240,7 @@ function AdminPlot() {
                   <div className="img-name">
                     <img src={avatar} alt="" style={{ widh: "50px" }} />
                     <div className="name-cat">
-                      <h2>{e.by}</h2>t<span>{e.userType}</span>
+                      <h2>{e.by}</h2><span>{e.userType}</span>
                     </div>
                   </div>
                   <span>{getTime(e.created.seconds * 1000)}</span>

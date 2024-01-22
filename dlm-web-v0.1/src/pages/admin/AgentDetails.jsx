@@ -4,7 +4,8 @@ import Loader from "../../components/loader/Loader";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import "./clientdetails.css";
-// import avatar from "../../assets/avatar.png";
+import avatar from "../../Assets/avatar.png";
+import edit from "../../Assets/edit.png";
 import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
 import AddDocs from "../../components/Modals/AddDocs";
@@ -76,7 +77,7 @@ function AgentDetails() {
             <div className="client-pic">
               {/* <h1>Customer Information</h1> */}
               <div className="client-pic-detail">
-                <img
+                {/* <img
                   className="avatar"
                   src={
                     userData.Gender === "female"
@@ -86,8 +87,8 @@ function AgentDetails() {
                       : userData.imgUrl
                   }
                   alt="User"
-                  style={{ maxWidth: "100px" }}
-                />
+                  style={{ maxWidth: "50px" }}
+                /> */}
                 <div className="cus-details">
                   <h2>{userData.Name}</h2>
                   <span>Agent details</span>
@@ -100,7 +101,7 @@ function AgentDetails() {
               <div className="clients-buttons">
                 <div className="button-pair">
                   <button onClick={openDocModal}>
-                    <img src={edit} alt="" />
+                    {/* <img src={edit} alt="" /> */}
                     <p>Add Docs </p>
                   </button>
                   {/* <button></button> */}
@@ -110,13 +111,13 @@ function AgentDetails() {
                     <button
                       onClick={() => navigate(`/edit/agent/${userData.Cnic}`)}
                     >
-                      <img src={edit} alt="" />
+                      {/* <img src={edit} alt="" /> */}
                       <p>Edit Profile </p>
                     </button>
-                    <button>
-                    <img src={edit} alt="" />
-                    <p>Delete Profile</p>
-                    </button>
+                    {/* <button> */}
+                    {/* <img src={edit} alt="" /> */}
+                    {/* <p>Delete Profile</p> */}
+                    {/* </button> */}
                   </div>
                 )}
               </div>
