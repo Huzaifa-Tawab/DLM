@@ -4,7 +4,7 @@ import Loader from "../../components/loader/Loader";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import "./clientdetails.css";
-// import avatar from "../../assets/avatar.png";
+
 import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
 import AddDocs from "../../components/Modals/AddDocs";
