@@ -17,7 +17,7 @@ import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
 import "./adminplot.css";
 import avatar from "../../Assets/avatar.png";
-import "./ClientDetails.css";
+import "./clientdetails.css";
 import AddComments from "../../components/Modals/AddComments";
 import isAdmin from "../../../IsAdmin";
 function AdminPlot() {
@@ -158,7 +158,14 @@ function AdminPlot() {
                   >
                     Transfer
                   </button>
-                  <button className="red-color" onClick={()=>{navigate(`/print/${PlotDetails.FileNumber}`)}}>Print</button>
+                  <button
+                    className="red-color"
+                    onClick={() => {
+                      navigate(`/print/${PlotDetails.FileNumber}`);
+                    }}
+                  >
+                    Print
+                  </button>
                 </>
               )}
               <button
@@ -190,8 +197,14 @@ function AdminPlot() {
           <div className="transaction-box">
             <h1>Transaction</h1>
             {Transactions.map((transaction, index) => (
-              <div key={index} className="transaction-main" onClick={()=>{navigate(`/print/invoice/${transaction.InvId}`)}}>
-                <div className="transaction-row" >
+              <div
+                key={index}
+                className="transaction-main"
+                onClick={() => {
+                  navigate(`/print/invoice/${transaction.InvId}`);
+                }}
+              >
+                <div className="transaction-row">
                   <span>{transaction.InvId}</span>
                   <span>{transaction.nature}</span>
                   <span>{getTime(transaction.time.seconds * 1000)}</span>
@@ -227,8 +240,7 @@ function AdminPlot() {
                   <div className="img-name">
                     <img src={avatar} alt="" style={{ widh: "50px" }} />
                     <div className="name-cat">
-                      <h2>{e.by}</h2>t
-                      <span>{e.userType}</span>
+                      <h2>{e.by}</h2>t<span>{e.userType}</span>
                     </div>
                   </div>
                   <span>{getTime(e.created.seconds * 1000)}</span>
