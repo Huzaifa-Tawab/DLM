@@ -117,12 +117,11 @@ function AdminInvoives() {
                   {filteredCustomersDataMemoized.map((e, index) => (
                     <tr key={index + 1}>
                       <td>{e.InvId}</td>
-
                       <td>{e.customerName}</td>
                       <td>{e.agentName}</td>
                       <td>{e.nature}</td>
                       <td>{e.payment}</td>
-                      <td>{e.panelty===null?0:1}</td>
+                      <td>{e.panelty===null?1:0}</td>
                       <td>{getDate(e.time.seconds)}</td>
                       <td>
                         <div >
@@ -133,8 +132,7 @@ function AdminInvoives() {
                           }}
                         >
                           View
-                        </button>}</div>                 
-                        
+                        </button>}</div>                     
                         <button
                           className="button-view"
                           onClick={() => {
@@ -158,5 +156,4 @@ function AdminInvoives() {
     </>
   );
 }
-
 export default AdminInvoives;
