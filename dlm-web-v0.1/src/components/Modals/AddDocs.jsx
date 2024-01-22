@@ -5,14 +5,14 @@ import { db, storage } from "../../firebase";
 import { update } from "lodash";
 import { doc, updateDoc } from "firebase/firestore";
 import "./modal.css";
-import xIcon from "../../assets/Xincon.png";
+// import xIcon from "../../assets/Xincon.png";
 
 function AddDocs({ showModal, onClose, uid, olddocs }) {
   console.log(olddocs);
   // State to store uploaded file
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("");
-
+  // ghhjjklpojbhbnknkjnm,
   // progress
   const [percent, setPercent] = useState(0);
 
@@ -76,24 +76,26 @@ function AddDocs({ showModal, onClose, uid, olddocs }) {
     >
       <h2>Add Document</h2>
       <div className="closebutton">
-        <img onClick={onClose} src={xIcon} alt="" />
+        {/* <img onClick={onClose} src={xIcon} alt="" /> */}
       </div>
       <div>
-      <div className="modal-field-group">
-        <input
-          type="text"
-          placeholder="File Name"
-          onChange={(e) => {
-            setFileName(e.target.value);
-          }}
-        />
+        <div className="modal-field-group">
+          <input
+            type="text"
+            placeholder="File Name"
+            onChange={(e) => {
+              setFileName(e.target.value);
+            }}
+          />
         </div>
         <div className="modal-field-group">
           <p>Choose File</p>
-        <input type="file" onChange={handleChange} accept="/image/*" />
+          {/* <input type="file" onChange={handleChange} accept="/image/*" /> */}
         </div>
-        <button className="modal-button" onClick={handleUpload}>Upload to Firebase</button>
-        <p style={{textAlign: "center"}}>{percent}% done</p>
+        <button className="modal-button" onClick={handleUpload}>
+          Upload to Firebase
+        </button>
+        <p style={{ textAlign: "center" }}>{percent}% done</p>
       </div>
     </Modal>
   );
