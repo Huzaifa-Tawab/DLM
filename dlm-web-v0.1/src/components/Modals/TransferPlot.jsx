@@ -17,7 +17,7 @@ import {
   where,
 } from "firebase/firestore";
 import getDate from "../../../GetDDMMYY";
-import xIcon from "../../assets/Xincon.png";
+// import xIcon from "../../assets/Xincon.png";
 
 function TransferPlot({ showModal, onClose, cid, aid, pid }) {
   const [file, setFile] = useState();
@@ -137,7 +137,7 @@ function TransferPlot({ showModal, onClose, cid, aid, pid }) {
     >
       <h2>Transfer </h2>
       <div className="closebutton">
-        <img onClick={onClose} src={xIcon} alt="" />
+        {/* <img onClick={onClose} src={xIcon} alt="" /> */}
       </div>
       <div>
         {customers && (
@@ -157,7 +157,7 @@ function TransferPlot({ showModal, onClose, cid, aid, pid }) {
         </div>
         <div className="modal-field-group">
           <p>Select Your File</p>
-          <input type="file" onChange={handleChange} accept="/image/*" />
+          {/* <input type="file" onChange={handleChange} accept="/image/*" /> */}
         </div>
         <button className="modal-button" onClick={handleUpload}>
           Submit
