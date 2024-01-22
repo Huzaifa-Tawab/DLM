@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "createuser.js",
+      "use": "@now/node"
+    }
+  ]
+}

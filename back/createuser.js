@@ -15,7 +15,7 @@ admin.initializeApp({
 const app = express();
 app.use(cors());
 
-const port = 8000; // Choose a port for your server
+const port = 8080; // Choose a port for your server
 
 app.use(bodyParser.json());
 
