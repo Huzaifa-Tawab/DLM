@@ -238,7 +238,7 @@ function ClientDetails() {
             <div className="plot-cards">
               {Plots.map((plot) => (
                 <div className="card">
-                  <h4>Plot 1</h4>
+                  <h4>{plot.FileNumber}</h4>
                   <span className="first" style={{ color: "#fff" }}>
                     {userData.Address}
                   </span>
