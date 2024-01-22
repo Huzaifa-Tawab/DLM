@@ -119,6 +119,7 @@ function TransferPlot({ showModal, onClose, cid, aid, pid }) {
     });
 
     await updateDoc(doc(db, "Plots", pid), {
+      CustomerId: receiverCustomer.value,
       lastPayment: serverTimestamp(),
       paidAmount:
         parseInt(Plot.paidAmount) + parseInt(Amount) + parseInt(penalty),
