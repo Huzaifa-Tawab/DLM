@@ -4,7 +4,7 @@ import Loader from "../../components/loader/Loader";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import "./clientdetails.css";
-import avatar from "../../assets/avatar.png";
+// import avatar from "../../assets/avatar.png";
 import edit from "../../assets/edit.png";
 import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
@@ -100,7 +100,7 @@ function ClientDetails() {
                     userData.Gender === "female"
                       ? isAdmin()
                         ? userData.imgUrl
-                        : avatar
+                        : ""
                       : userData.imgUrl
                   }
                   alt="User"
