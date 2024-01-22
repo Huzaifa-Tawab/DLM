@@ -4,7 +4,7 @@ import Loader from "../../components/loader/Loader";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import "./clientdetails.css";
-import avatar from "../../assets/avatar.png";
+// import avatar from "../../assets/avatar.png";
 import edit from "../../assets/edit.png";
 import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
@@ -83,7 +83,7 @@ function AgentDetails() {
                     userData.Gender === "female"
                       ? isAdmin()
                         ? userData.imgUrl
-                        : avatar
+                        : "avatar"
                       : userData.imgUrl
                   }
                   alt="User"
@@ -115,8 +115,8 @@ function AgentDetails() {
                       <p>Edit Profile </p>
                     </button>
                     {/* <button> */}
-                      {/* <img src={edit} alt="" /> */}
-                      {/* <p>Delete Profile</p> */}
+                    {/* <img src={edit} alt="" /> */}
+                    {/* <p>Delete Profile</p> */}
                     {/* </button> */}
                   </div>
                 )}
