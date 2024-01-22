@@ -1,4 +1,4 @@
-import "./printInvoice.css";
+import "./printfile.css";
 import { useEffect, useState } from "react";
 import dotSharp from "./assets/dots-shap.png";
 import { useNavigate, useParams } from "react-router-dom";
