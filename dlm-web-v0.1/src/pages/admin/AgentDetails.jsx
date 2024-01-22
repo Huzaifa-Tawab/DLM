@@ -208,7 +208,6 @@ function AgentDetails() {
                     <h2>{plot.Category}</h2>
                   </div>
 
-                  {/* nn */}
                   <div className="view-more">
                     <button
                       onClick={() => {
