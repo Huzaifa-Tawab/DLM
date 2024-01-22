@@ -5,7 +5,7 @@ import { db, storage } from "../../firebase";
 import { update } from "lodash";
 import { doc, updateDoc } from "firebase/firestore";
 import "./modal.css";
-import xIcon from "../../assets/Xincon.png";
+import xIcon from "../../Assets/Xincon.png";
 
 function AddDocs({ showModal, onClose, uid, olddocs }) {
   console.log(olddocs);

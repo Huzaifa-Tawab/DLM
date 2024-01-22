@@ -16,7 +16,7 @@ import {
   where,
 } from "firebase/firestore";
 import getDate from "../../../GetDDMMYY";
-import xIcon from "../../assets/Xincon.png";
+import xIcon from "../../Assets/Xincon.png";
 
 function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
   const [percent, setPercent] = useState(0);

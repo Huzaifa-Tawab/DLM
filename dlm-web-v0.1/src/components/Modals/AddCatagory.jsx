@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "simple-react-modal";
 
 import { db, storage } from "../../firebase";
-import xIcon from "../../assets/Xincon.png";
+import xIcon from "../../Assets/Xincon.png";
 import {
   addDoc,
   collection,

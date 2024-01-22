@@ -17,7 +17,7 @@ import {
   where,
 } from "firebase/firestore";
 import getDate from "../../../GetDDMMYY";
-import xIcon from "../../assets/Xincon.png";
+import xIcon from "../../Assets/Xincon.png";
 
 function TransferPlot({ showModal, onClose, cid, aid, pid }) {
   const [file, setFile] = useState();
