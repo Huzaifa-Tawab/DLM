@@ -200,7 +200,7 @@ function AgentDetails() {
             <div className="plot-cards">
               {Plots.map((plot) => (
                 <div className="card">
-                  <h2>{plot.id}</h2>
+                  <h4>{plot.id}</h4>
                   <div className="plot-des"></div>
                   <div className="row-start">
                     <PiBuildingsBold className="buildlogo" />

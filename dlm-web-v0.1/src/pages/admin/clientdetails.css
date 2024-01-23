@@ -184,8 +184,9 @@ td > a {
 
   h2 {
     font-size: 18px;
-    margin-top: 20px;
+    margin-top: 0px;
     margin-bottom: 0px;
+
   }
 }
 .row-start span {
