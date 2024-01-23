@@ -108,9 +108,9 @@ function AdminPlot() {
       <Header />
       <div>
         <div className="head-plot">
-          {/* <div className="avatr-image">
+          <div className="avatr-image">
             <img src={avatar} alt="" />
-          </div> */}
+          </div>
           <div className="Plot-box">
             <h1>Plot Details</h1>
             <div className="sec-heading">
