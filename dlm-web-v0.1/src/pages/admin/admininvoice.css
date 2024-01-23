@@ -1,0 +1,9 @@
+.butn-viewer{
+    display: flex;
+    flex-direction: row;;
+    width: 70%;
+    justify-content: space-between;
+}
+.Admin-Home-invoice{
+    height: 100%;
+}

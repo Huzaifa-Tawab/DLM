@@ -6,11 +6,9 @@ import Loader from "../../components/loader/Loader";
 import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
 import { debounce } from "lodash";
-import arrow from "../../Assets/Plus.png";
-import isAdmin from "../../../IsAdmin";
-import "./admininvoice.css";
+import FinanceHeader from "../../components/header/FinanceHeader";
 
-function AdminInvoives() {
+function FinancePlotsView() {
   const navigate = useNavigate();
   const [CustomersData, setCustomersData] = useState([]);
   const [filteredCustomersData, setFilteredCustomersData] = useState([]);
@@ -28,10 +26,10 @@ function AdminInvoives() {
   };
 
   async function getCustomersData() {
-    const querySnapshot = await getDocs(collection(db, "Transactions"));
+    const querySnapshot = await getDocs(collection(db, "Plots"));
     const newCustomersData = [];
     querySnapshot.forEach((doc) => {
-      if (doc.data()["varified"]) {
+      if (doc.data()["verified"]) {
         newCustomersData.push(doc.data());
       }
     });
@@ -50,7 +48,7 @@ function AdminInvoives() {
             data.customerName
               .toLowerCase()
               .includes(searchText.toLowerCase()) ||
-            data.InvId.toLowerCase().includes(searchText.toLowerCase())
+            data.fileNumber.toLowerCase().includes(searchText.toLowerCase())
         );
       }
       setFilteredCustomersData(newData);
@@ -77,19 +75,9 @@ function AdminInvoives() {
     <Loader />
   ) : (
     <>
-      <Header />
-      <div className="Admin-Home-invoice">
+      <div className="Admin-Home">
         <div className="hero--head">
           <h1>Invoices</h1>
-          {/* {isAdmin() && <button
-            onClick={() => {
-              // navigate("/create/agent/");
-            }}
-          >
-            Add New
-            <img src={arrow}></img>
-          </button>} */}
-          
         </div>
         <div className="Admin-Home-content">
           <div className="Admin-Home-table">
@@ -102,48 +90,38 @@ function AdminInvoives() {
             <div className="table">
               <table className="adminhome-table">
                 <thead>
-                  <tr>
-                  <th>Invoice Number</th>
-
-                    <th>Customer Name</th>
-                    <th>Approved By</th>
+                  <tr className="hed">
+                    <th>File Number</th>
+                    <th>Name</th>
+                    <th>Uploaded By</th>
                     <th>Nature</th>
                     <th>Payment</th>
-                    <th>Penalty</th>
-                    <th>Created At</th>
+                    <th>penalty</th>
+
                     <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filteredCustomersDataMemoized.map((e, index) => (
-                    <tr key={index + 1}>
-                      <td>{e.InvId}</td>
-                      <td>{e.customerName}</td>
+                    <tr key={index}>
+                      <td>{e.FileNumber}</td>
+
+                      <td>{e.PlotSize} Marla</td>
+                      <td>{getDate(e.lastPayment.seconds)}</td>
                       <td>{e.agentName}</td>
                       <td>{e.nature}</td>
                       <td>{e.payment}</td>
-                      <td>{e.panelty===null?1:0}</td>
-                      <td>{getDate(e.time.seconds)}</td>
+                      <td>{e.panelty}</td>
+
                       <td>
-                        <div className="butn-viewer">
-                        <div >{isAdmin() && <button
+                        <button
                           className="button-view"
                           onClick={() => {
                             openNewWindow(e.proof);
                           }}
                         >
-                          View
-                        </button>}</div>                     
-                        <button
-                          className="button-view"
-                          onClick={() => {
-                            // openNewWindow(e.InvId);
-                            openNewWindow(`/print/invoice/${e.InvId}`);
-                          }}
-                        >
-                          Print
+                          New Invoice
                         </button>
-                        </div>                      
                       </td>
                     </tr>
                   ))}
@@ -153,8 +131,8 @@ function AdminInvoives() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }
-export default AdminInvoives;
+
+export default FinancePlotsView;

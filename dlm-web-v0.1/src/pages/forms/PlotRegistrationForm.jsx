@@ -2,6 +2,7 @@ import {
   arrayUnion,
   collection,
   doc,
+  getDoc,
   getDocs,
   serverTimestamp,
   setDoc,
@@ -139,28 +140,36 @@ const PlotRegistrationForm = () => {
     setInstallmentMonthError("");
   }
   const createPlot = async () => {
-    await setDoc(doc(db, "Plots", fileNumber), {
-      Address: Address,
-      AgentId: userid,
-      AgentName: name,
-      Category: Catagory,
-      CityTown: CityTown,
-      CustomerId: id,
-      FileNumber: fileNumber,
-      paidAmount: PaidAmount,
-      PlotSize: PlotSize,
-      TotalAmount: TotalAmount,
-      PossessionAmount: possessionAmount,
-      installmentNo: 1,
-      OtherAmount: OtherAmount,
-      OtherAmountTitle: OtherAmountTitle,
-      Society: Society,
-      creationTime: serverTimestamp(),
-      lastPayment: serverTimestamp(),
-    });
-    updateAgent();
-    updateCust();
-    navigate(`/details/plot/${fileNumber}`);
+    const docRef = doc(db, "Customers", id);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+
+      await setDoc(doc(db, "Plots", fileNumber), {
+        Address: Address,
+        AgentId: userid,
+        AgentName: name,
+        CustomerName: docSnap.data().Name,
+        Category: Catagory,
+        CityTown: CityTown,
+        CustomerId: id,
+        FileNumber: fileNumber,
+        paidAmount: PaidAmount,
+        PlotSize: PlotSize,
+        TotalAmount: TotalAmount,
+        PossessionAmount: possessionAmount,
+        installmentNo: 1,
+        OtherAmount: OtherAmount,
+        OtherAmountTitle: OtherAmountTitle,
+        Society: Society,
+        creationTime: serverTimestamp(),
+        lastPayment: serverTimestamp(),
+      });
+      updateAgent();
+      updateCust();
+      navigate(`/details/plot/${fileNumber}`);
+    }
   };
   const updateAgent = async () => {
     // console.log(formData.AgentId);
@@ -236,8 +245,8 @@ const PlotRegistrationForm = () => {
                     name="PlotSize In Marla"
                     value={PlotSize}
                     onChange={(e) => {
-                      if (e.target.value>0) {
-                      setPlotsize(e.target.value);
+                      if (e.target.value > 0) {
+                        setPlotsize(e.target.value);
                       }
                     }}
                     style={{ width: "100%", padding: "8px" }}

@@ -103,7 +103,9 @@ function PrintFile() {
   return isLoading ? (
     <Loader />
   ) : (
+    <div className="webpage">
     <div className="main-page">
+      <div className="sub-page">
       <div className="top-head">
         <h1>DYNAMIC LAND MANAGEMENT</h1>
 
@@ -116,13 +118,17 @@ function PrintFile() {
         </h3>
       </div>
       <div className="sec-section">
-        <div className="head-content">
+        <div className="head-top-cont">
+          <div className="top-p-fle">
           <p>Date: {FDate}</p>
           <p>The Management committee,</p>
           <p>Dynamic Land Management</p>
+          </div>
           <div className="imgtop">
             <img src={UserImage}></img>
           </div>
+          </div>
+          <div className="head-content">
           <p className="sec-section-last">
             Dear Sir/ Madam,
             <br />
@@ -174,12 +180,12 @@ function PrintFile() {
             <span>{NexttoKin}</span>
             <span>{KinRelation}</span>
           </div>
-          <div className="sectop-right">
-            <div className="column-3">
+          <div className="sectop-right-33">
+            <div className="column-33">
               <span>Phone No:</span>
               <span>Cnic:</span>
             </div>
-            <div className="column-4">
+            <div className="column-44">
               <span>{PhNoKin}</span>
               <span>{CnicKin}</span>
             </div>
@@ -200,12 +206,12 @@ function PrintFile() {
             <span>{PlotSize} Marla</span>
             <span>{Address}</span>
           </div>
-          <div className="sectop-right">
-            <div className="column-3">
+          <div className="sectop-right-44">
+            <div className="column-333">
               <span>Category:</span>
               <span>Town/City:</span>
             </div>
-            <div className="column-4">
+            <div className="column-444">
               <span>{Category}</span>
               <span>{TownCity}</span>
             </div>
@@ -217,8 +223,8 @@ function PrintFile() {
         <div className="sectop-section-content">
           <div className="columnfrth-sec">
             <span>Adjustment:</span>
-            <span>Other Amount </span>
-            <span> Amount</span>
+            <span>Other Amount: </span>
+            <span> Amount:</span>
           </div>
           <div className="column-2">
             <form className="chckbox-flex">
@@ -230,7 +236,7 @@ function PrintFile() {
           <div className="sectop-right-last">
             <div className="column-7">
               <span>Total Price:</span>
-              <span>Possession Amount</span>
+              <span>Possession Amount:</span>
               <span>Down Payment:</span>
 
               <h3 className="bold-700">Total Amount</h3>
@@ -257,6 +263,8 @@ function PrintFile() {
           <h3>Admin</h3>
         </div>
       </div>
+    </div>
+    </div>
     </div>
   );
 }
