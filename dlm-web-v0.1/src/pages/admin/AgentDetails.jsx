@@ -4,8 +4,8 @@ import Loader from "../../components/loader/Loader";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import "./clientdetails.css";
-// import avatar from "../../assets/avatar.png";
-// import edit from "../../assets/edit.png";
+import avatar from "../../Assets/avatar.png";
+import edit from "../../Assets/edit.png";
 import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
 import AddDocs from "../../components/Modals/AddDocs";
@@ -87,7 +87,7 @@ function AgentDetails() {
                       : userData.imgUrl
                   }
                   alt="User"
-                  style={{ maxWidth: "100px" }}
+                  style={{ maxWidth: "50px" }}
                 /> */}
                 <div className="cus-details">
                   <h2>{userData.Name}</h2>

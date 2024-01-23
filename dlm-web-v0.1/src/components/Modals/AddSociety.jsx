@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "simple-react-modal";
 
 import { db, storage } from "../../firebase";
-// import xIcon from "../../assets/Xincon.png";
+import xIcon from "../../Assets/Xincon.png";
 import {
   addDoc,
   collection,
@@ -67,7 +67,7 @@ function AddSociety({ showModal, onClose }) {
       <h2>Society</h2>
       <span>Once you save the item it can't be edit or delete</span>
       <div className="closebutton">
-        {/* <img onClick={onClose} src={xIcon} alt="" /> */}
+        <img onClick={onClose} src={xIcon} alt="" />
       </div>
       {/* <div className="Modal-row"> */}
 

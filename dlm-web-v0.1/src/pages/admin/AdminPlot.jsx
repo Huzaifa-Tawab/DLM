@@ -108,9 +108,9 @@ function AdminPlot() {
       <Header />
       <div>
         <div className="head-plot">
-          <div className="avatr-image">
+          {/* <div className="avatr-image">
             <img src={avatar} alt="" />
-          </div>
+          </div> */}
           <div className="Plot-box">
             <h1>Plot Details</h1>
             <div className="sec-heading">
@@ -240,7 +240,7 @@ function AdminPlot() {
                   <div className="img-name">
                     <img src={avatar} alt="" style={{ widh: "50px" }} />
                     <div className="name-cat">
-                      <h2>{e.by}</h2>t<span>{e.userType}</span>
+                      <h2>{e.by}</h2><span>{e.userType}</span>
                     </div>
                   </div>
                   <span>{getTime(e.created.seconds * 1000)}</span>

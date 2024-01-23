@@ -5,7 +5,7 @@ import { db, storage } from "../../firebase";
 import { update } from "lodash";
 import { doc, updateDoc } from "firebase/firestore";
 import "./modal.css";
-// import xIcon from "../../assets/Xincon.png";
+import xIcon from "../../Assets/Xincon.png";
 
 function AddDocs({ showModal, onClose, uid, olddocs }) {
   console.log(olddocs);
@@ -76,7 +76,7 @@ function AddDocs({ showModal, onClose, uid, olddocs }) {
     >
       <h2>Add Document</h2>
       <div className="closebutton">
-        {/* <img onClick={onClose} src={xIcon} alt="" /> */}
+        <img onClick={onClose} src={xIcon} alt="" />
       </div>
       <div>
         <div className="modal-field-group">
@@ -90,7 +90,7 @@ function AddDocs({ showModal, onClose, uid, olddocs }) {
         </div>
         <div className="modal-field-group">
           <p>Choose File</p>
-          {/* <input type="file" onChange={handleChange} accept="/image/*" /> */}
+          <input type="file" onChange={handleChange} accept="/image/*" />
         </div>
         <button className="modal-button" onClick={handleUpload}>
           Upload to Firebase

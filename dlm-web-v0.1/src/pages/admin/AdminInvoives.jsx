@@ -8,6 +8,7 @@ import Footer from "../../components/Footer/Footer";
 import { debounce } from "lodash";
 import arrow from "../../Assets/Plus.png";
 import isAdmin from "../../../IsAdmin";
+import "./admininvoice.css";
 
 function AdminInvoives() {
   const navigate = useNavigate();
@@ -77,7 +78,7 @@ function AdminInvoives() {
   ) : (
     <>
       <Header />
-      <div className="Admin-Home">
+      <div className="Admin-Home-invoice">
         <div className="hero--head">
           <h1>Invoices</h1>
           {/* {isAdmin() && <button
@@ -117,15 +118,14 @@ function AdminInvoives() {
                   {filteredCustomersDataMemoized.map((e, index) => (
                     <tr key={index + 1}>
                       <td>{e.InvId}</td>
-
                       <td>{e.customerName}</td>
                       <td>{e.agentName}</td>
                       <td>{e.nature}</td>
                       <td>{e.payment}</td>
-                      <td>{e.panelty===null?0:1}</td>
+                      <td>{e.panelty===null?1:0}</td>
                       <td>{getDate(e.time.seconds)}</td>
                       <td>
-                        <div >
+                        <div className="butn-viewer">
                         <div >{isAdmin() && <button
                           className="button-view"
                           onClick={() => {
@@ -133,8 +133,7 @@ function AdminInvoives() {
                           }}
                         >
                           View
-                        </button>}</div>                 
-                        
+                        </button>}</div>                     
                         <button
                           className="button-view"
                           onClick={() => {
@@ -158,5 +157,4 @@ function AdminInvoives() {
     </>
   );
 }
-
 export default AdminInvoives;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "simple-react-modal";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { db, storage } from "../../firebase";
-// import xIcon from "../../assets/Xincon.png";
+import xIcon from "../../Assets/Xincon.png";
 import {
   addDoc,
   collection,
@@ -66,7 +66,7 @@ function AddExpense({ showModal, onClose }) {
       closeOnOuterClick={true}
     >
       <div className="closebutton">
-        {/* <img onClick={onClose} src={xIcon} alt="" /> */}
+        <img onClick={onClose} src={xIcon} alt="" />
       </div>
       <div className="Modal-row">
         <h2>Expenses</h2>

@@ -16,7 +16,7 @@ import {
   where,
 } from "firebase/firestore";
 import getDate from "../../../GetDDMMYY";
-// import xIcon from "../../assets/Xincon.png";
+import xIcon from "../../Assets/Xincon.png";
 
 function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
   const [percent, setPercent] = useState(0);
@@ -183,7 +183,7 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
     >
       <h2>Add Transactions</h2>
       <div className="closebutton">
-        {/* <img onClick={onClose} src={xIcon} alt="" /> */}
+        <img onClick={onClose} src={xIcon} alt="" />
       </div>
       <div>
         <span className="first">Installment No:</span>
@@ -223,7 +223,7 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
         </div>
         <div className="modal-field-group">
           <p>Select Your File</p>
-          {/* <input type="file" onChange={handleChange} accept="/image/*" /> */}
+          <input type="file" onChange={handleChange} accept="/image/*" />
         </div>
 
         <button className="modal-button" onClick={handleUpload}>

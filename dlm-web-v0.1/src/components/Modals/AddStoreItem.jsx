@@ -11,7 +11,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import "./modal.css";
-// import xIcon from "../../assets/Xincon.png";
+import xIcon from "../../Assets/Xincon.png";
 
 function AddStoreItem({ showModal, onClose }) {
   const agentname = localStorage.getItem("Name");
@@ -62,7 +62,7 @@ function AddStoreItem({ showModal, onClose }) {
       <h2>Add Items</h2>
       <span>Once you save the item it can't be edit or delete</span>
       <div className="closebutton">
-        {/* <img onClick={onClose} src={xIcon} alt="" /> */}
+        <img onClick={onClose} src={xIcon} alt="" />
       </div>
       <div>
         <div className="modal-field-group">
