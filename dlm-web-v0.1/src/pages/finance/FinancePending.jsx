@@ -40,16 +40,22 @@ function FinancePending() {
         }).then((e) => {});
       });
     }
+    const levelOneCommission = data.payment * 0.1;
+    const otherLevelCommission = levelOneCommission * 0.1;
+    await updateDoc(doc(db, "Agent", data.AgentId), {
+      credit: "this will",
+    });
 
     const Pending = doc(db, "Transactions", id);
 
     await updateDoc(Pending, {
       varified: true,
-    }).then((e) => {
+    }).then(async (e) => {
       getCustomersData();
       setisLoading(false);
     });
   }
+
   const openNewWindow = (Link) => {
     // Open a new window
     const newWindow = window.open("", "_blank");

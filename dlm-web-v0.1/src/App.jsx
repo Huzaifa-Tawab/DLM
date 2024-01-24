@@ -62,9 +62,9 @@ function App() {
           element={<ErrorPage errorCode={404} errorMessage="Not Found" />}
         />
         <Route element={<FinanceRoute />}>
-          {/* <Route path="/finance" element={<Finance />} /> */}
-          <Route path="/finance" element={<FinancePlotsView />} />
-          {/* <Route path="/finance/unverified" element={<FinancePending />} /> */}
+          <Route path="/finance" element={<Finance />} />
+          {/* <Route path="/finance" element={<FinancePlotsView />} /> */}
+          <Route path="/finance/unverified" element={<FinancePending />} />
         </Route>
         <Route path="/print/:id" element={<PrintFile />} />
 
