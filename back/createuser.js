@@ -18,7 +18,9 @@ app.use(cors());
 const port = 8080; // Choose a port for your server
 
 app.use(bodyParser.json());
-
+app.get("/", (req, res) => {
+  res.send("DLM BackEnd Running");
+});
 // Endpoint to create a new user
 app.post("/createUser", async (req, res) => {
   const { email, password, uid } = req.body;
