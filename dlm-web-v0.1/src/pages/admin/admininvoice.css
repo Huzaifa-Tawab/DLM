@@ -1,7 +1,7 @@
 .butn-viewer{
     display: flex;
     flex-direction: row;;
-    width: 70%;
+    width: 75%;
     justify-content: space-between;
 }
 .Admin-Home-invoice{
