@@ -32,6 +32,7 @@ import ErrorPage from "./pages/notfound/ErrorPage";
 import BlockedUsers from "./pages/admin/BlockedUsers";
 import FinancePlotsView from "./pages/finance/FinancePlotsView";
 import Test from "./pages/Test";
+import SideBar from "./components/Sidebar/sidebar";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
         {/* <Route path="/" element={<FinancePlotsView />} /> */}
         {/* <Route path="/" element={<Home />} /> */}
         <Route path="/" element={<Test />} />
+        <Route path="/123" element={<SideBar />} />
 
         <Route path="/login" element={<Login />} />
         <Route path="/details/plot" element={<PlotDetails />} />
