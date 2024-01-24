@@ -31,6 +31,7 @@ import PrintFile from "./pages/Print/PrintFile";
 import ErrorPage from "./pages/notfound/ErrorPage";
 import BlockedUsers from "./pages/admin/BlockedUsers";
 import FinancePlotsView from "./pages/finance/FinancePlotsView";
+import Test from "./pages/Test";
 
 function App() {
   return (
@@ -38,7 +39,9 @@ function App() {
       <Routes>
         <Route path="/print/invoice/:id" element={<PrintInvoice />} />
         {/* <Route path="/" element={<FinancePlotsView />} /> */}
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={<Home />} /> */}
+        <Route path="/" element={<Test />} />
+
         <Route path="/login" element={<Login />} />
         <Route path="/details/plot" element={<PlotDetails />} />
         <Route path="/create/client/" element={<ClientRegistrationFrom />} />

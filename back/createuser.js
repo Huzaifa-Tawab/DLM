@@ -29,11 +29,11 @@ app.post("/createUser", async (req, res) => {
       password: password,
       uid: uid,
     });
-    console.log("Successfully created new user:", userRecord.uid);
-    res.status(200).json({ message: "User created successfully" });
+    // console.log("Successfully created new user:", userRecord.uid);
+    res.status(200).json({ code: "success" });
   } catch (error) {
-    console.error("Error creating new user:", error.message);
-    res.status(500).json({ error: "Failed to create user" });
+    // console.error("Error creating new user:", error);
+    res.status(500).json({ code: error.code });
   }
 });
 

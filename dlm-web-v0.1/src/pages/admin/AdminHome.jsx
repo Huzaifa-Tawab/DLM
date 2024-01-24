@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebase";
+import { auth, db } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
 import Header from "../../components/header/Header";
@@ -10,6 +10,7 @@ import avatar from "../../Assets/avatar.png";
 import { debounce } from "lodash";
 import arrow from "../../Assets/Plus.png";
 import isAdmin from "../../../IsAdmin";
+import { onAuthStateChanged } from "firebase/auth";
 
 function AdminHome() {
   const navigate = useNavigate();
@@ -19,6 +20,21 @@ function AdminHome() {
 
   useEffect(() => {
     getCustomersData();
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const uid = user.uid;
+
+        console.log(user.uid);
+        // ...
+      } else {
+        // User is signed out
+        // ...
+      }
+      onAuthStateChanged();
+    });
   }, []);
 
   async function getCustomersData() {

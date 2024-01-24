@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, getDocs, collection } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, db, storage } from "../../firebase";
@@ -9,6 +9,7 @@ import Footer from "../../components/Footer/Footer";
 import generateRandomString from "../../../RandomString";
 // const axios = require("axios");
 import axios from "axios";
+import Loader from "../../components/loader/Loader";
 
 const ErrorMessage = ({ message }) => (
   <span style={{ color: "red", fontSize: "0.8em" }}>{message}</span>
@@ -137,6 +138,10 @@ const AgentRegistrationForm = () => {
   const [avatarPreview, setAvatarPreview] = useState(null);
   const [Email, setEmail] = useState("");
   const [Pass, setPass] = useState("");
+  const [AgentList, setAgentList] = useState([]);
+  const [Reff, setReff] = useState("");
+  const [isLoading, setisLoading] = useState(true);
+
   const [formData, setFormData] = useState({
     Name: "",
     FName: "",
@@ -161,7 +166,21 @@ const AgentRegistrationForm = () => {
       }));
     };
     getInvId();
+    getAgentsList();
+    setisLoading(false);
   }, []);
+  async function getAgentsList() {
+    const querySnapshot = await getDocs(collection(db, "Agent"));
+    let temp = [];
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id, " => ", doc.data());
+      temp.push({
+        key: doc.id,
+        value: doc.data().Name,
+      });
+    });
+    setAgentList(temp);
+  }
   const handleFileChange = (file) => {
     setFile(file);
 
@@ -186,6 +205,7 @@ const AgentRegistrationForm = () => {
   };
 
   const handleSubmit = (e) => {
+    setisLoading(true);
     e.preventDefault();
     setErrors();
     const validationErrors = validateForm(formData);
@@ -197,13 +217,15 @@ const AgentRegistrationForm = () => {
 
           errors.Cnic = "CNIC already Exists";
           setErrors(errors);
-          alert("Cnic already exists");
+          setisLoading(false);
+          // alert("Cnic already exists");
         } else {
           console.log("Form submitted:", formData);
           createAgentAccount();
         }
       });
     } else {
+      setisLoading(false);
       setErrors(validationErrors);
     }
   };
@@ -276,7 +298,7 @@ const AgentRegistrationForm = () => {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "http://localhost:8000/createUser",
+      url: "http://localhost:8080/createUser",
       headers: {
         "Content-Type": "application/json",
       },
@@ -288,7 +310,21 @@ const AgentRegistrationForm = () => {
         createUserAccount();
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.response.data.code);
+        if (error.response.data.code === "auth/invalid-email") {
+          setErrors((prevData) => ({
+            ...prevData,
+            ["Email"]: "Invaild Email",
+          }));
+          setisLoading(false);
+        }
+        if (error.response.data.code === "auth/email-already-exists") {
+          setErrors((prevData) => ({
+            ...prevData,
+            ["Email"]: "Email Already In Use",
+          }));
+          setisLoading(false);
+        }
       });
   }
   const createUserAccount = async () => {
@@ -299,7 +335,10 @@ const AgentRegistrationForm = () => {
     });
     uploadImageToFirebase();
   };
-  return (
+
+  return isLoading ? (
+    <Loader />
+  ) : (
     <>
       <Header />
       <div className="container">
@@ -372,6 +411,31 @@ const AgentRegistrationForm = () => {
                   error={errors && errors.phNo}
                 />
               </div>
+              <div className="input-box">
+                <div style={{ marginBottom: "10px" }}>
+                  <label style={{ display: "block", marginBottom: "5px" }}>
+                    Reffered By:
+                  </label>
+                  <select
+                    onChange={(e) => {
+                      setReff();
+                      setFormData((prevData) => ({
+                        ...prevData,
+                        ["ChildOf"]: e.target.value,
+                      }));
+                    }}
+                  >
+                    <option value="" disabled>
+                      Select
+                    </option>
+                    {AgentList.map((e, index) => (
+                      <option key={index} value={e.key}>
+                        {e.value}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
             </div>
             <div class="gender-details">
               <input
@@ -413,10 +477,10 @@ const AgentRegistrationForm = () => {
                   <input
                     type="date"
                     name="Dob"
-                    value={formData.Dob}
+                    // value={formData.Dob}
                     onChange={handleChange}
                     style={{ width: "100%", padding: "8px" }}
-                    error={errors.Dob}
+                    error={errors && errors.Dob}
                   />
                 </div>
               </div>
@@ -426,7 +490,7 @@ const AgentRegistrationForm = () => {
                   name="TownCity"
                   value={formData.TownCity}
                   onChange={handleChange}
-                  error={errors.TownCity}
+                  error={errors && errors.TownCity}
                 />
               </div>
               <div className="input-box">
@@ -439,7 +503,7 @@ const AgentRegistrationForm = () => {
                     value={formData.Address}
                     onChange={handleChange}
                     style={{ width: "100%", padding: "8px" }}
-                    error={errors.Address}
+                    error={errors && errors.Address}
                   ></input>
                 </div>
               </div>
@@ -457,28 +521,28 @@ const AgentRegistrationForm = () => {
             </div>
 
             {/* <div className="gender-detasils" style={{ marginBottom: "10px" }}>
-          <label style={{ display: "block", marginBottom: "5px" }}>
-            Gender:
-          </label>
-          <div className="category">
-            <div className="dot-one">
-          <RadioInput
-            label="Male"
-            name="Gender"
-            value="male"
-            checked={formData.Gender === "male"}
-            onChange={handleChange}
-          />
-          </div>
-          <RadioInput
-            label="Female"
-            name="Gender"
-            value="female"
-            checked={formData.Gender === "female"}
-            onChange={handleChange}
-          />
-          </div>
-        </div> */}
+       <label style={{ display: "block", marginBottom: "5px" }}>
+         Gender:
+       </label>
+       <div className="category">
+         <div className="dot-one">
+       <RadioInput
+         label="Male"
+         name="Gender"
+         value="male"
+         checked={formData.Gender === "male"}
+         onChange={handleChange}
+       />
+       </div>
+       <RadioInput
+         label="Female"
+         name="Gender"
+         value="female"
+         checked={formData.Gender === "female"}
+         onChange={handleChange}
+       />
+       </div>
+     </div> */}
 
             <div className="button">
               <button
