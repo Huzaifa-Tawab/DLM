@@ -146,12 +146,25 @@ letter-spacing: -0.28px;
 }
 .coment-desc{
   color: #596780;
-font-family: "Plus Jakarta Sans";
 font-size: 14px;
 font-style: normal;
 font-weight: 400;
 line-height: 200%;
 letter-spacing: -0.28px;
+padding-left: 95px;
+}
+.comment-box>h1>span{
+  
+width: 44px;
+height: 28px;
+padding: 0px 20px;
+justify-content: center;
+align-items: center;
+gap: 8px;
+font-size: 18px;
+color: white;
+  border-radius: 4px;
+  background: #F4B266;
 }
 .comntbox-date{
   color:#90A3BF;
@@ -161,6 +174,9 @@ font-weight: 500;
 line-height: 150%; 
 letter-spacing: -0.28px;
 }
+.comntbox-date:hover{
+  color: black;
+}
 .img-name>.img-commnt{
   width: 56px;
 height: 56px;
@@ -169,10 +185,22 @@ flex-shrink: 0;
 .transaction-row {
   display: flex;
   justify-content: space-between;
+  line-height: 30px;
+}
+.transaction-row>.trans-id{
+  color:  #1A202C;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 24px */
+  letter-spacing: -0.32px;
+
 }
 .transaction-main {
   padding: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 4px;
+  height: 70px;
+  line-height: 20px;
 }
 .transaction-main:hover{
   cursor: pointer;

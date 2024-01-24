@@ -205,9 +205,9 @@ function AdminPlot() {
                 }}
               >
                 <div className="transaction-row">
-                  <span>{transaction.InvId}</span>
-                  <span>{transaction.nature}</span>
-                  <span>{getTime(transaction.time.seconds * 1000)}</span>
+                  <span className="trans-id">{transaction.InvId}</span>
+                  <span className="trans-id">{transaction.nature}</span>
+                  <span className="comntbox-date">{getTime(transaction.time.seconds * 1000)}</span>
                 </div>
                 <div className="transaction-row">
                   <span>
