@@ -127,6 +127,45 @@ letter-spacing: -0.4px;
   align-items: center;
   gap: 20px;
 }
+.name-cat>.comntbox-h2{
+  color:#1A202C;
+  font-family: "Plus Jakarta Sans";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; 
+  letter-spacing: -0.6px;
+}
+.name-cat>.comntbox-span{
+  color:  #90A3BF;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 150%; 
+letter-spacing: -0.28px;
+}
+.coment-desc{
+  color: #596780;
+font-family: "Plus Jakarta Sans";
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 200%;
+letter-spacing: -0.28px;
+}
+.comntbox-date{
+  color:#90A3BF;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 150%; 
+letter-spacing: -0.28px;
+}
+.img-name>.img-commnt{
+  width: 56px;
+height: 56px;
+flex-shrink: 0;
+}
 .transaction-row {
   display: flex;
   justify-content: space-between;

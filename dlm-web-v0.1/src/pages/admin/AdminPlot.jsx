@@ -238,14 +238,14 @@ function AdminPlot() {
               <div key={i} className="box-bg">
                 <div className="comment-box-top">
                   <div className="img-name">
-                    <img src={avatar} alt="" style={{ widh: "50px" }} />
+                    <img className="img-commnt"src={avatar} alt="" style={{ widh: "50px" }} />
                     <div className="name-cat">
-                      <h2>{e.by}</h2><span>{e.userType}</span>
+                      <h2 className="comntbox-h2">{e.by}</h2><span className="comntbox-span">{e.userType}</span>
                     </div>
                   </div>
-                  <span>{getTime(e.created.seconds * 1000)}</span>
+                  <span className="comntbox-date" >{getTime(e.created.seconds * 1000)}</span>
                 </div>
-                <p>{e.comment}</p>
+                <p className="coment-desc">{e.comment}</p>
               </div>
             ))}
           </div>
