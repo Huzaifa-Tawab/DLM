@@ -6,14 +6,13 @@ import {
   doc,
   getDocs,
   updateDoc,
+  getDoc,
 } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
-import Header from "../../components/header/Header";
-import Footer from "../../components/Footer/Footer";
-import { debounce } from "lodash";
 import FinanceHeader from "../../components/header/FinanceHeader";
+import { debounce } from "lodash";
 
 function FinancePending() {
   const navigate = useNavigate();
@@ -50,22 +49,29 @@ function FinancePending() {
       credit: data.credit + levelOneCommission,
     });
 
-    // Update next 3 levels (level 2, 3, 4) credits
-    const levelTwoDoc = doc(db, "Agent", data.ChildOf);
-    const levelThreeDoc = doc(db, "Agent", data.GrandChildOf);
-    const levelFourDoc = doc(db, "Agent", data.GreatGrandChildOf);
+    // Retrieve the ChildOf for level 1
+    const level1DocRef = doc(db, "Agent", data.AgentId);
+    const level1DocSnap = await getDoc(level1DocRef);
+    let level2id = "";
+    if (level1DocSnap.exists()) {
+      level2id = level1DocSnap.data()["ChildOf"];
+    }
 
-    await updateDoc(levelTwoDoc, {
-      credit: data.levelTwoCredit + otherLevelCommission,
-    });
+    // Update next level (level 2) credits
+    await updateCredits(level2id, otherLevelCommission);
 
-    await updateDoc(levelThreeDoc, {
-      credit: data.levelThreeCredit + otherLevelCommission,
-    });
+    // Retrieve the ChildOf for level 2
+    const level2DocRef = doc(db, "Agent", level2id);
+    const level2DocSnap = await getDoc(level2DocRef);
+    let level3id = "";
+    if (level2DocSnap.exists()) {
+      level3id = level2DocSnap.data()["ChildOf"];
+    }
 
-    await updateDoc(levelFourDoc, {
-      credit: data.levelFourCredit + otherLevelCommission,
-    });
+    // Update next level (level 3) credits
+    await updateCredits(level3id, otherLevelCommission);
+
+    // Repeat the process for level 4 if needed
 
     // Update transaction status to verified
     const transactionDoc = doc(db, "Transactions", id);
@@ -76,6 +82,15 @@ function FinancePending() {
     // Refresh customer data after the update
     getCustomersData();
     setisLoading(false);
+  }
+
+  async function updateCredits(agentId, commission) {
+    if (agentId) {
+      const agentDoc = doc(db, "Agent", agentId);
+      await updateDoc(agentDoc, {
+        credit: data.credit + commission,
+      });
+    }
   }
 
   async function getCustomersData() {
@@ -118,12 +133,13 @@ function FinancePending() {
     () => filteredCustomersData,
     [filteredCustomersData]
   );
+
   function getDate(seconds) {
     let date = new Date(seconds * 1000);
     let temp = date.toLocaleDateString();
-
     return temp;
   }
+
   return isLoading ? (
     <Loader />
   ) : (
@@ -176,7 +192,6 @@ function FinancePending() {
                           className="button-view"
                           onClick={() => {
                             AproveTrans(e.InvId, e.nature, e);
-                            // console.log(e.InvId, e.nature, e);
                           }}
                         >
                           Approve
@@ -190,7 +205,7 @@ function FinancePending() {
           </div>
         </div>
       </div>
-      <Footer />
+      {/* Add any additional components or content here */}
     </>
   );
 }
