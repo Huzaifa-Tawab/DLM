@@ -3,16 +3,19 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
-import Header from "../../components/header/Header";
-import Footer from "../../components/Footer/Footer";
 import { debounce } from "lodash";
-import FinanceHeader from "../../components/header/FinanceHeader";
+import AddTransactions from "../../components/Modals/AddTransactions";
 
 function FinancePlotsView() {
   const navigate = useNavigate();
   const [CustomersData, setCustomersData] = useState([]);
   const [filteredCustomersData, setFilteredCustomersData] = useState([]);
   const [isLoading, setisLoading] = useState(true);
+  const [showInvoiceModal, setShowInvoiceModal] = useState("");
+  const [PlotIdForModal, setPlotIdForModal] = useState("");
+  const [CustomerIdForModal, setCustomerIdForModal] = useState("");
+  const [CatagoryForModal, setCatagoryForModal] = useState("");
+  const [AgentIdForModal, setAgentIdForModal] = useState("");
 
   useEffect(() => {
     getCustomersData();
@@ -44,11 +47,11 @@ function FinancePlotsView() {
       if (searchText && searchText.length > 0) {
         newData = CustomersData.filter(
           (data) =>
-            data.agentName.toLowerCase().includes(searchText.toLowerCase()) ||
-            data.customerName
-              .toLowerCase()
-              .includes(searchText.toLowerCase()) ||
-            data.fileNumber.toLowerCase().includes(searchText.toLowerCase())
+            data.AgentName.toLowerCase().includes(searchText.toLowerCase()) ||
+            data.CustomerName.toLowerCase().includes(
+              searchText.toLowerCase()
+            ) ||
+            data.FileNumber.toLowerCase().includes(searchText.toLowerCase())
         );
       }
       setFilteredCustomersData(newData);
@@ -71,6 +74,9 @@ function FinancePlotsView() {
 
     return temp;
   }
+  function closeInvoiceModal() {
+    setShowInvoiceModal(false);
+  }
   return isLoading ? (
     <Loader />
   ) : (
@@ -92,11 +98,13 @@ function FinancePlotsView() {
                 <thead>
                   <tr className="hed">
                     <th>File Number</th>
-                    <th>Name</th>
-                    <th>Uploaded By</th>
-                    <th>Nature</th>
-                    <th>Payment</th>
-                    <th>penalty</th>
+                    <th>Customer Name</th>
+                    <th>Plot Size</th>
+                    <th>Last Payment</th>
+                    <th>Location</th>
+                    <th>Agent Name</th>
+                    {/* <th>Payment</th>
+                    <th>penalty</th> */}
 
                     <th>Actions</th>
                   </tr>
@@ -105,19 +113,25 @@ function FinancePlotsView() {
                   {filteredCustomersDataMemoized.map((e, index) => (
                     <tr key={index}>
                       <td>{e.FileNumber}</td>
-
+                      <td>{e.CustomerName}</td>
                       <td>{e.PlotSize} Marla</td>
                       <td>{getDate(e.lastPayment.seconds)}</td>
-                      <td>{e.agentName}</td>
-                      <td>{e.nature}</td>
-                      <td>{e.payment}</td>
-                      <td>{e.panelty}</td>
+                      <td>{e.Address}</td>
+
+                      <td>{e.AgentName}</td>
+                      {/* <td>{e.payment}</td>
+                      <td>{e.panelty}</td> */}
 
                       <td>
                         <button
                           className="button-view"
                           onClick={() => {
-                            openNewWindow(e.proof);
+                            setCustomerIdForModal(e.CustomerId);
+                            setAgentIdForModal(e.AgentId);
+                            setCatagoryForModal(e.Category);
+                            setPlotIdForModal(e.FileNumber);
+
+                            setShowInvoiceModal(true);
                           }}
                         >
                           New Invoice
@@ -131,6 +145,21 @@ function FinancePlotsView() {
           </div>
         </div>
       </div>
+
+      <AddTransactions
+        showModal={showInvoiceModal}
+        onClose={closeInvoiceModal}
+        cid={CustomerIdForModal}
+        aid={AgentIdForModal}
+        pid={PlotIdForModal}
+        cata={CatagoryForModal}
+      />
+
+      {/* <FinanceInvoice
+        showModal={}
+        onClose={closeInvoiceModal}
+        pid={PlotIdForModal}
+      /> */}
     </>
   );
 }

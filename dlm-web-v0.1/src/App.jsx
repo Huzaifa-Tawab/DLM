@@ -37,8 +37,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/print/invoice/:id" element={<PrintInvoice />} />
-        {/* <Route path="/" element={<FinancePlotsView />} /> */}
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<FinancePlotsView />} />
+        {/* <Route path="/" element={<Home />} /> */}
         <Route path="/login" element={<Login />} />
         <Route path="/details/plot" element={<PlotDetails />} />
         <Route path="/create/client/" element={<ClientRegistrationFrom />} />

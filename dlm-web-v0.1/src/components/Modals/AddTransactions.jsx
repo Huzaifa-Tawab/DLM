@@ -55,7 +55,6 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       setPlot(PlotdocSnap.data());
       console.log(PlotdocSnap.data());
       lastpaymentTime = PlotdocSnap.data().lastPayment;
-
       const dateLast = new Date(lastpaymentTime.seconds * 1000);
       const dateNow = new Date(); // Use the current date
       // Calculate the difference in months
@@ -186,14 +185,6 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
         <img onClick={onClose} src={xIcon} alt="" />
       </div>
       <div>
-        <span className="first">Installment No:</span>
-        <span className="second">
-          {Plot.installmentNo}/{catagory.TotalInstallments}
-        </span>
-        <br />
-        <span className="first">Pending installments:</span>
-        <span className="seconf">{NumberOfPenelties}</span>
-
         <div className="modal-field-group">
           <p>Amount</p>
 
@@ -210,7 +201,7 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
         </div>
 
         <div className="modal-field-group">
-          <p>Pnaly</p>
+          <p>Panelty</p>
           <input disabled type="number" value={penalty} />
         </div>
         <div className="modal-field-group">

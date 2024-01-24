@@ -163,6 +163,7 @@ const PlotRegistrationForm = () => {
         OtherAmount: OtherAmount,
         OtherAmountTitle: OtherAmountTitle,
         Society: Society,
+        verified: false,
         creationTime: serverTimestamp(),
         lastPayment: serverTimestamp(),
       });
