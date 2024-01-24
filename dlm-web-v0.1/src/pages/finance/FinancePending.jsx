@@ -57,7 +57,7 @@ function FinancePending() {
       "Level1"
     );
 
-    let level2id = "";
+    let level2id = null;
     if (level1DocSnap.exists()) {
       level2id = level1DocSnap.data()["ChildOf"];
     }
@@ -75,7 +75,7 @@ function FinancePending() {
         "Level2"
       );
 
-      let level3id = "";
+      let level3id = null;
       if (level2DocSnap.exists()) {
         level3id = level2DocSnap.data()["ChildOf"];
       }
@@ -92,10 +92,29 @@ function FinancePending() {
           otherLevelCommission,
           "Level3"
         );
+
+        // Repeat the process for level 4 if needed
+
+        let level4id = null;
+        if (level3DocSnap.exists()) {
+          level4id = level3DocSnap.data()["ChildOf"];
+        }
+
+        if (level4id) {
+          console.log(level3id);
+
+          const level4DocRef = doc(db, "Agent", level4id);
+          const level4DocSnap = await getDoc(level4DocRef);
+          // Update next level (level 3) credits
+          await updateCredits(
+            level4id,
+            level4DocSnap.data().credit ?? 0,
+            otherLevelCommission,
+            "Level4"
+          );
+        }
       }
     }
-
-    // Repeat the process for level 4 if needed
 
     // Update transaction status to verified
     const transactionDoc = doc(db, "Transactions", id);
