@@ -2,8 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "createuser.js",
-      "use": "@now/node"
+      "src": "./index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/"
     }
   ]
 }
