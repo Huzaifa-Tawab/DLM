@@ -86,7 +86,7 @@ function AdminHome() {
               <input
                 class="nosubmit"
                 type="search"
-                placeholder="Search..."
+                placeholder="Search by Id"
                 onChange={(e) => debouncedFilterData(e.target.value)}
               />
             </form>

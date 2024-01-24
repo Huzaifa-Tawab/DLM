@@ -93,12 +93,14 @@ function AdminStore() {
         </div>
         <div className="Admin-Home-content">
           <div className="Admin-Home-table">
-            <input
+            <form className="nosubmit">
+            <input className="nosubmit"
               type="text"
               placeholder="Search item name/Uploaded By"
               onChange={(e) => debouncedFilterData(e.target.value)}
-              className="input-field"
+              
             />
+            </form>
             <div className="table">
               <table className="adminhome-table">
                 <thead>

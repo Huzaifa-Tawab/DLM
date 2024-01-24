@@ -84,12 +84,14 @@ function BlockedUsers() {
         </div>
         <div className="Admin-Home-content">
           <div className="Admin-Home-table">
+            <form className="nosubmit">
             <input
               type="text"
-              placeholder="Search"
+              placeholder="Search by Id"
               onChange={(e) => debouncedFilterData(e.target.value)}
-              className="input-field"
+              className="nosubmit"
             />
+            </form>
             <div className="table">
               <table className="adminhome-table">
                 <thead>
