@@ -82,12 +82,14 @@ function AdminHome() {
         </div>
         <div className="Admin-Home-content">
           <div className="Admin-Home-table">
-            <input
-              type="text"
-              placeholder="Search"
-              onChange={(e) => debouncedFilterData(e.target.value)}
-              className="input-field"
-            />
+            <form class="nosubmit">
+              <input
+                class="nosubmit"
+                type="search"
+                placeholder="Search..."
+                onChange={(e) => debouncedFilterData(e.target.value)}
+              />
+            </form>
             <div className="table">
               <table className="adminhome-table">
                 <thead>
@@ -123,7 +125,9 @@ function AdminHome() {
                       <td>{e.phNo}</td>
                       {isAdmin() && <td>{e.Cnic}</td>}
                       <td>{e.Gender}</td>
-                      <td className="tddr"><span>{e.Plots.length} Plots</span></td>
+                      <td className="tddr">
+                        <span>{e.Plots.length} Plots</span>
+                      </td>
                       <td>
                         <button
                           className="button-view"

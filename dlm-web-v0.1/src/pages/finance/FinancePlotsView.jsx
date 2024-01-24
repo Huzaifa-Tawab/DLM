@@ -87,12 +87,21 @@ function FinancePlotsView() {
         </div>
         <div className="Admin-Home-content">
           <div className="Admin-Home-table">
-            <input
+            <form class="nosubmit">
+              <input
+                class="nosubmit"
+                type="search"
+                placeholder="Search..."
+                onChange={(e) => debouncedFilterData(e.target.value)}
+              />
+            </form>
+
+            {/* <input
               type="text"
               placeholder="Search"
-              onChange={(e) => debouncedFilterData(e.target.value)}
+              
               className="input-field"
-            />
+            /> */}
             <div className="table">
               <table className="adminhome-table">
                 <thead>
@@ -103,10 +112,8 @@ function FinancePlotsView() {
                     <th>Last Payment</th>
                     <th>Location</th>
                     <th>Agent Name</th>
-                    {/* <th>Payment</th>
-                    <th>penalty</th> */}
 
-                    <th>Actions</th>
+                    <th className="table-center">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -122,7 +129,7 @@ function FinancePlotsView() {
                       {/* <td>{e.payment}</td>
                       <td>{e.panelty}</td> */}
 
-                      <td>
+                      <td className="table-center">
                         <button
                           className="button-view"
                           onClick={() => {
