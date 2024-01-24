@@ -24,50 +24,65 @@ function FinancePending() {
   useEffect(() => {
     getCustomersData();
   }, []);
+
   async function AproveTrans(id, nature, data) {
     setisLoading(true);
-    console.log(id);
-    if (nature == "transfer") {
-      const Pending = doc(db, "Customers", data.senderCustomerID);
 
-      await updateDoc(Pending, {
+    if (nature === "transfer") {
+      const senderPending = doc(db, "Customers", data.senderCustomerID);
+      const receiverPending = doc(db, "Customers", data.receiverCustomerID);
+
+      await updateDoc(senderPending, {
         Plots: arrayRemove(data.fileNumber),
-      }).then(async (e) => {
-        const Pending = doc(db, "Customers", data.receiverCustomerID);
+      });
 
-        await updateDoc(Pending, {
-          Plots: arrayUnion(data.fileNumber),
-        }).then((e) => {});
+      await updateDoc(receiverPending, {
+        Plots: arrayUnion(data.fileNumber),
       });
     }
+
+    // Calculate commissions
     const levelOneCommission = data.payment * 0.1;
     const otherLevelCommission = levelOneCommission * 0.1;
+
+    // Update main person (level 1) credits
     await updateDoc(doc(db, "Agent", data.AgentId), {
-      credit: "this will",
+      credit: data.credit + levelOneCommission,
     });
 
-    const Pending = doc(db, "Transactions", id);
+    // Update next 3 levels (level 2, 3, 4) credits
+    const levelTwoDoc = doc(db, "Agent", data.ChildOf);
+    const levelThreeDoc = doc(db, "Agent", data.GrandChildOf);
+    const levelFourDoc = doc(db, "Agent", data.GreatGrandChildOf);
 
-    await updateDoc(Pending, {
-      varified: true,
-    }).then(async (e) => {
-      getCustomersData();
-      setisLoading(false);
+    await updateDoc(levelTwoDoc, {
+      credit: data.levelTwoCredit + otherLevelCommission,
     });
+
+    await updateDoc(levelThreeDoc, {
+      credit: data.levelThreeCredit + otherLevelCommission,
+    });
+
+    await updateDoc(levelFourDoc, {
+      credit: data.levelFourCredit + otherLevelCommission,
+    });
+
+    // Update transaction status to verified
+    const transactionDoc = doc(db, "Transactions", id);
+    await updateDoc(transactionDoc, {
+      verified: true,
+    });
+
+    // Refresh customer data after the update
+    getCustomersData();
+    setisLoading(false);
   }
 
-  const openNewWindow = (Link) => {
-    // Open a new window
-    const newWindow = window.open("", "_blank");
-
-    // Navigate to the specified URL in the new window
-    newWindow.location.href = Link;
-  };
   async function getCustomersData() {
     const querySnapshot = await getDocs(collection(db, "Transactions"));
     const newCustomersData = [];
     querySnapshot.forEach((doc) => {
-      if (!doc.data()["varified"]) {
+      if (!doc.data()["verified"]) {
         newCustomersData.push(doc.data());
       }
     });
