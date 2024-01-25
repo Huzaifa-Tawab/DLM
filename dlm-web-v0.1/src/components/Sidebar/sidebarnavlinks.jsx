@@ -10,20 +10,22 @@ text-decoration: none;
 display: flex;
 align-items: center;
 justify-content: left;
-margin: 20px 10px;
+margin: 2px 10px;
 border-radius: 10px;
+
 &:hover{
-    background: #ffffff24;
+    background:#ffffff24;
 }
 &.active {
-    background: #ffff;
+    background: #ffffff;
     color: #4297ff;
-    trnsition: all 0.4s ease
+    trnsition: all 0.4s ease;
+  
 }
 `;
 
 const Icon = styled.div`
-margin-right; 14px;
+margin-right:14px;
 font-size: 20px;
 `;
 
@@ -121,7 +123,7 @@ const SideBarButton = ({to, icon, title, span, subBtn, handleClick}) =>{
         <NavLinks
         strick= "true"
         to={{
-            pathnaem: to,
+            pathname: to,
             state: {flag: title}
         }}
         >

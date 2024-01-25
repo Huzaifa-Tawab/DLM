@@ -33,6 +33,23 @@ import Logo from "./logo";
  display: block;
  transition: all 0.5s ease;
  `;
+ const NegativeSidebar=styled.div`
+ z-index:2;
+ position:fixed;
+ left:0;
+ right:0;
+ top:0;
+ width:100vw;
+ height:100vh;
+ opacity:${({open})=>(open ?"1":"0")};
+ transition:opacity 224ms cubic-bezier(0.4,0,0.2,1) 0ms;
+ @media(max-width:775px){
+    pointer-events:${({open})=> (open? "auto":"none")};
+ }
+ @media(max-width:775px){
+  background-color:none;
+  pointer-events:none;
+ `;
 
  const makeButtons = [
     {
@@ -100,12 +117,13 @@ import Logo from "./logo";
     
     return(
         <div>
+            <NegativeSidebar open={open} onClick={handleClick}/>
             <SideBarWrapper>
-                <SideBarBody>
+                <SideBarBody open={open}>
                     <Logo/>
                 <Unorderlist>
                 {makeButtons.map((btn, i)=>(
-                      <SideBarButton key={1} to={btn.to} icon={btn.icon} title={btn.title} span={btn.span} subBtn={btn.subBtn} 
+                      <SideBarButton key={1} to={btn.to} icon={btn.icon} title={btn.title} span={btn.span} subBtn={btn.subBtn}
                       handleClick={handleClick}
                       />
                 ))}

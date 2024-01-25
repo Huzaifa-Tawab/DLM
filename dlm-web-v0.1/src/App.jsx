@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/login/login";
 import AdminHome from "./pages/admin/AdminHome";
@@ -33,8 +33,13 @@ import BlockedUsers from "./pages/admin/BlockedUsers";
 import FinancePlotsView from "./pages/finance/FinancePlotsView";
 import Test from "./pages/Test";
 import SideBar from "./components/Sidebar/sidebar";
+import Ham from "./components/Sidebar/Hamburger";
 
 function App() {
+  const[open,setOpen]=useState();
+  const handleClick=()=>{
+    setOpen(!open);
+  };
   return (
     <BrowserRouter>
       <Routes>
@@ -42,7 +47,11 @@ function App() {
         {/* <Route path="/" element={<FinancePlotsView />} /> */}
         {/* <Route path="/" element={<Home />} /> */}
         <Route path="/" element={<Test />} />
-        <Route path="/123" element={<SideBar />} />
+        <Route path="/123" element={<SideBar
+        open={open}
+        setOpen={setOpen}
+        handleClick={handleClick}
+        />} />
 
         <Route path="/login" element={<Login />} />
         <Route path="/details/plot" element={<PlotDetails />} />
@@ -93,7 +102,9 @@ function App() {
         </Route>
         {/* <Route path="*" element={<NoPage />} />  */}
       </Routes>
+      <Ham open={open} handleClick={handleClick}/>
     </BrowserRouter>
+    
   );
 }
 
