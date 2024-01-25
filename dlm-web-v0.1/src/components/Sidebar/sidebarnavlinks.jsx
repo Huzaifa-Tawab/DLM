@@ -19,7 +19,7 @@ border-radius: 10px;
 &.active {
     background: #ffffff;
     color: #4297ff;
-    trnsition: all 0.4s ease;
+    transition: all 0.4s ease;
   
 }
 `;
@@ -45,8 +45,8 @@ padding: 15px 20px;
 text-decoration: none;
 display: flex;
 align-items: center;
-justify-content: center;
-margin: 40px 10px;
+justify-content: left;
+margin: 2px 10px;
 border-radius: 10px;
 cursor: pointer;
 backgroung: ${(props) => props.open && "#fff"};
