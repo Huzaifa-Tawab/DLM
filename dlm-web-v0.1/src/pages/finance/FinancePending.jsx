@@ -7,12 +7,14 @@ import {
   getDocs,
   updateDoc,
   getDoc,
+  setDoc,
+  serverTimestamp,
 } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
 import FinanceHeader from "../../components/header/FinanceHeader";
-import { debounce } from "lodash";
+import { debounce, uniqueId } from "lodash";
 
 function FinancePending() {
   const navigate = useNavigate();
@@ -22,7 +24,7 @@ function FinancePending() {
 
   useEffect(() => {
     getCustomersData();
-  }, []);
+  }, [1]);
 
   async function AproveTrans(id, nature, data) {
     setisLoading(true);
@@ -44,34 +46,75 @@ function FinancePending() {
     const levelOneCommission = data.payment * 0.1;
     const otherLevelCommission = levelOneCommission * 0.1;
 
-    // Update main person (level 1) credits
-    await updateDoc(doc(db, "Agent", data.AgentId), {
-      credit: data.credit + levelOneCommission,
-    });
-
     // Retrieve the ChildOf for level 1
-    const level1DocRef = doc(db, "Agent", data.AgentId);
+    const level1DocRef = doc(db, "Agent", data.agentID);
     const level1DocSnap = await getDoc(level1DocRef);
-    let level2id = "";
+    // Update main person (level 1) credits
+    await updateCredits(
+      data.agentID,
+      level1DocSnap.data().credit ?? 0,
+      levelOneCommission,
+      "Level1"
+    );
+
+    let level2id = null;
     if (level1DocSnap.exists()) {
       level2id = level1DocSnap.data()["ChildOf"];
     }
+    if (level2id) {
+      console.log(level2id);
+      // Retrieve the ChildOf for level 2
+      const level2DocRef = doc(db, "Agent", level2id);
+      const level2DocSnap = await getDoc(level2DocRef);
 
-    // Update next level (level 2) credits
-    await updateCredits(level2id, otherLevelCommission);
+      // Update next level (level 2) credits
+      await updateCredits(
+        level2id,
+        level2DocSnap.data().credit ?? 0,
+        otherLevelCommission,
+        "Level2"
+      );
 
-    // Retrieve the ChildOf for level 2
-    const level2DocRef = doc(db, "Agent", level2id);
-    const level2DocSnap = await getDoc(level2DocRef);
-    let level3id = "";
-    if (level2DocSnap.exists()) {
-      level3id = level2DocSnap.data()["ChildOf"];
+      let level3id = null;
+      if (level2DocSnap.exists()) {
+        level3id = level2DocSnap.data()["ChildOf"];
+      }
+
+      if (level3id) {
+        console.log(level3id);
+
+        const level3DocRef = doc(db, "Agent", level3id);
+        const level3DocSnap = await getDoc(level3DocRef);
+        // Update next level (level 3) credits
+        await updateCredits(
+          level3id,
+          level3DocSnap.data().credit ?? 0,
+          otherLevelCommission,
+          "Level3"
+        );
+
+        // Repeat the process for level 4 if needed
+
+        let level4id = null;
+        if (level3DocSnap.exists()) {
+          level4id = level3DocSnap.data()["ChildOf"];
+        }
+
+        if (level4id) {
+          console.log(level3id);
+
+          const level4DocRef = doc(db, "Agent", level4id);
+          const level4DocSnap = await getDoc(level4DocRef);
+          // Update next level (level 3) credits
+          await updateCredits(
+            level4id,
+            level4DocSnap.data().credit ?? 0,
+            otherLevelCommission,
+            "Level4"
+          );
+        }
+      }
     }
-
-    // Update next level (level 3) credits
-    await updateCredits(level3id, otherLevelCommission);
-
-    // Repeat the process for level 4 if needed
 
     // Update transaction status to verified
     const transactionDoc = doc(db, "Transactions", id);
@@ -84,11 +127,17 @@ function FinancePending() {
     setisLoading(false);
   }
 
-  async function updateCredits(agentId, commission) {
+  async function updateCredits(agentId, credit, commission, level) {
     if (agentId) {
       const agentDoc = doc(db, "Agent", agentId);
       await updateDoc(agentDoc, {
-        credit: data.credit + commission,
+        credit: credit + commission,
+      });
+      await setDoc(doc(db, "Credit", uniqueId()), {
+        agent: agentId,
+        level: level,
+        commission: commission,
+        created: serverTimestamp(),
       });
     }
   }
