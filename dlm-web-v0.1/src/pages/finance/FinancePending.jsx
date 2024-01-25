@@ -146,7 +146,7 @@ function FinancePending() {
     const querySnapshot = await getDocs(collection(db, "Transactions"));
     const newCustomersData = [];
     querySnapshot.forEach((doc) => {
-      if (!doc.data()["verified"]) {
+      if (!doc.data()["varified"]) {
         newCustomersData.push(doc.data());
       }
     });

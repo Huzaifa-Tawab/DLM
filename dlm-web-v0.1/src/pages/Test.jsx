@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  doc,
+  getDoc,
+} from "firebase/firestore";
 import { db } from "../firebase";
 
 function Test() {
@@ -7,57 +14,66 @@ function Test() {
   const [LevelTwo, setLevelTwo] = useState([]);
   const [LevelThree, setLevelThree] = useState([]);
   const [LevelFour, setLevelFour] = useState([]);
+  const [User, setUser] = useState();
+  const uid = "4567845678456";
 
   useEffect(() => {
-    const fetchData = async (user) => {
-      const AgentRef = collection(db, "Agent");
+    getUser();
+    fetchData(uid);
+  }, []);
 
-      // Level 1
-      const level1Query = query(AgentRef, where("ChildOf", "==", user));
-      const level1Snapshot = await getDocs(level1Query);
-      setLevelOne(level1Snapshot.docs.map((doc) => doc.data()));
+  const getUser = async () => {
+    const docRef = doc(db, "Agent", uid);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      setUser(docSnap.data());
+    }
+  };
 
-      // Level 2
-      const level2Query = query(
-        AgentRef,
-        where(
-          "ChildOf",
-          "in",
-          level1Snapshot.docs.map((doc) => doc.id)
-        )
-      );
-      const level2Snapshot = await getDocs(level2Query);
-      setLevelTwo(level2Snapshot.docs.map((doc) => doc.data()));
+  const fetchData = async (user) => {
+    const AgentRef = collection(db, "Agent");
 
-      // Level 3
-      const level3Query = query(
-        AgentRef,
-        where(
-          "ChildOf",
-          "in",
-          level2Snapshot.docs.map((doc) => doc.id)
-        )
-      );
-      const level3Snapshot = await getDocs(level3Query);
-      setLevelThree(level3Snapshot.docs.map((doc) => doc.data()));
+    // Level 1
+    const level1Query = query(AgentRef, where("ChildOf", "==", user));
+    const level1Snapshot = await getDocs(level1Query);
+    setLevelOne(level1Snapshot.docs.map((doc) => doc.data()));
 
-      // Level 4
-      const level4Query = query(
-        AgentRef,
-        where(
-          "ChildOf",
-          "in",
-          level3Snapshot.docs.map((doc) => doc.id)
-        )
-      );
-      const level4Snapshot = await getDocs(level4Query);
-      setLevelFour(level4Snapshot.docs.map((doc) => doc.data()));
-    };
+    // Level 2
+    const level2Query = query(
+      AgentRef,
+      where(
+        "ChildOf",
+        "in",
+        level1Snapshot.docs.map((doc) => doc.id)
+      )
+    );
+    const level2Snapshot = await getDocs(level2Query);
+    setLevelTwo(level2Snapshot.docs.map((doc) => doc.data()));
 
-    // Replace "yourUserId" with the actual user ID you want to start from
-    const user = "4567845678456";
-    fetchData(user);
-  }, []); // Empty dependency array to ensure useEffect runs once on mount
+    // Level 3
+    const level3Query = query(
+      AgentRef,
+      where(
+        "ChildOf",
+        "in",
+        level2Snapshot.docs.map((doc) => doc.id)
+      )
+    );
+    const level3Snapshot = await getDocs(level3Query);
+    setLevelThree(level3Snapshot.docs.map((doc) => doc.data()));
+
+    // Level 4
+    const level4Query = query(
+      AgentRef,
+      where(
+        "ChildOf",
+        "in",
+        level3Snapshot.docs.map((doc) => doc.id)
+      )
+    );
+    const level4Snapshot = await getDocs(level4Query);
+    setLevelFour(level4Snapshot.docs.map((doc) => doc.data()));
+  };
 
   return (
     <div>
@@ -80,6 +96,12 @@ function Test() {
       {LevelFour.map((user, index) => (
         <div key={index}>{user.Cnic}</div>
       ))}
+      {User && (
+        <>
+          <p>{User.Name}</p>
+          <p>{User.InvId}</p>
+        </>
+      )}
     </div>
   );
 }

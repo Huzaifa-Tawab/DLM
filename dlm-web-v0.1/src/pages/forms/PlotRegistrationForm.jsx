@@ -73,18 +73,18 @@ const PlotRegistrationForm = () => {
     // setTotalAmount(CatagoryList[selectedIndex].TotalAmount);
     // console.log(CatagoryList[selectedIndex].name);
   };
-  const handleSocietyChange = (event) => {
-    const selectedIndex = event.target.value;
-    setSelectedOptionIndex(
-      selectedIndex !== "" ? parseInt(selectedIndex, 10) : null
-    );
-    setSociety(SocietyList[selectedIndex].name);
-    // setpossessionAmount(CatagoryList[selectedIndex].PossessionAmount);
-    // setInstallmentMonth(CatagoryList[selectedIndex].InstallmentAmount);
-    // setPaidAmount(CatagoryList[selectedIndex].DownPayment);
-    // setTotalAmount(CatagoryList[selectedIndex].TotalAmount);
-    // console.log(CatagoryList[selectedIndex].name);
-  };
+  // const handleSocietyChange = (event) => {
+  //   const selectedIndex = event.target.value;
+  //   setSelectedOptionIndex(
+  //     selectedIndex !== "" ? parseInt(selectedIndex, 10) : null
+  //   );
+  //   setSociety(SocietyList[selectedIndex].name);
+  // setpossessionAmount(CatagoryList[selectedIndex].PossessionAmount);
+  // setInstallmentMonth(CatagoryList[selectedIndex].InstallmentAmount);
+  // setPaidAmount(CatagoryList[selectedIndex].DownPayment);
+  // setTotalAmount(CatagoryList[selectedIndex].TotalAmount);
+  // console.log(CatagoryList[selectedIndex].name);
+  // };
   const handleSubmit = async (e) => {
     setisLoading(true);
     e.preventDefault();
@@ -317,16 +317,15 @@ const PlotRegistrationForm = () => {
                     Society:
                   </label>
                   <select
-                    value={
-                      selectedOptionIndex !== null ? selectedOptionIndex : ""
-                    }
-                    onChange={handleSocietyChange}
+                    onChange={(e) => {
+                      setSociety(e.target.value);
+                    }}
                   >
                     <option value="" disabled>
                       Select a Society
                     </option>
                     {SocietyList.map((option, index) => (
-                      <option key={index} value={index}>
+                      <option key={index} value={option.name}>
                         {option.name}
                       </option>
                     ))}
