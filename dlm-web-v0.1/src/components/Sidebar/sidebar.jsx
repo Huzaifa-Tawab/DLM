@@ -10,14 +10,20 @@ import Logo from "./logo";
  width: 250px;
  height: 100vh;
  display: block;
- z-inde: 2;
+ z-index: 2;
  transition: transform 0.3s ease-in-out;
+ @media (max-width:775px){
+     transform: ${({open})=>(open ? "translateX(0%)" : "translateX(-102%)" )};
+ }
  `;
 
  const SideBarBody = styled.div`
  background: linear-gradient(0deg, #3358f4, #1d8cf8);
  height: 100vh;
  overflow: hidden;
+ @media (max-width:775px){
+    box-shadow:0 16px 38px -12px rgba(0,0,0,0.56), 0 4px 25px 0 rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.2);
+}
  `;
 
  const Unorderlist = styled.ul`
