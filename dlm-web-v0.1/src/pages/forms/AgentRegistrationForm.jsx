@@ -152,6 +152,7 @@ const AgentRegistrationForm = () => {
     Address: "",
     TownCity: "",
     Gmail: "",
+    credit: 0,
     Plots: [],
     Documents: [],
     agree: false,
