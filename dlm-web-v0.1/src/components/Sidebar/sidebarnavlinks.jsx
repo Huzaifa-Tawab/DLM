@@ -57,7 +57,7 @@ position: absolute;
 top: 50%;
 right: 20px;
 transform: translate(0, -50%);
-> spna {
+> span {
     display: inline-block;
     width; 0;
     height: 0;
@@ -67,7 +67,45 @@ transform: translate(0, -50%);
     pointer-events: none;
     transform: ${(props) => (props.open ? "rotate(0deg)":"rotate(90deg)")};
     border-left: ${(props) => !props.open && "6px solid #ffff"};
+    transition:all 0.2s;
 }
+`;
+const SubMenu =styled.div`
+display:flex;
+flex-direction:column;
+width:100%;
+background:#00000029;
+overflow:hidden;
+height:${(props)=>(props.opened ==="true"? props.tall*59+20:0)}px;
+transition:all 0.4s ease;
+padding:${(props)=>(props.opened ==="true"?"10px 0px":"0px")};
+margin:2px 0px 2px;
+
+`;
+const SubLinks=styled(NavLink)`
+color:#fff;
+padding:0px 20px;
+height:55px !important;
+text-decoration:none;
+display: flex;
+align-items: center;
+justify-content: left;
+margin: 2px 10px;
+border-radius: 10px;
+>span{
+    margin-left:14px;   
+}
+&:hover{
+    background:#ffffff24;
+}
+&.active{
+    background:#fff;
+    color:#4297ff;
+    transition:all 0.4s ease;
+}
+
+
+
 `;
 const SideBarButton = ({to, icon, title, span, subBtn, handleClick}) =>{
     const [openSubMenu, setopenSubMenu] = useState(false)
@@ -105,8 +143,25 @@ const SideBarButton = ({to, icon, title, span, subBtn, handleClick}) =>{
             }
             </NavBtn>
         )}
+        <SubMenu
+           tall={`${subBtn !== undefined && subBtn.length}`}
+           opened={openSubMenu ? "true":"false"}
+           >
+            {subBtn !==undefined &&
+            subBtn.map((btn,i)=>( 
+            <div key={i}>
+                <SubLinks
+                    key={i}
+                    to={to +"/"+ btn.toLowerCase()}
+                    onClick={handleClick}>
+                        {btn.slice(0,2).toUpperCase()}
+                        <span>{btn}</span>
+                </SubLinks>
+            </div>))}
+
+           </SubMenu>
     </li>
-  )
-}
+  );
+};
 
 export default SideBarButton

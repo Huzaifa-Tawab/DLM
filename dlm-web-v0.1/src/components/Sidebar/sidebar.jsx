@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useLayoutEffect} from "react";
 import styled from "styled-components";
 import SideBarButton from "./sidebarnavlinks";
 import Logo from "./logo";
@@ -10,14 +10,20 @@ import Logo from "./logo";
  width: 250px;
  height: 100vh;
  display: block;
- z-inde: 2;
+ z-index: 2;
  transition: transform 0.3s ease-in-out;
+ @media (max-width:775px){
+     transform: ${({open})=>(open ? "translateX(0%)" : "translateX(-102%)" )};
+ }
  `;
 
  const SideBarBody = styled.div`
  background: linear-gradient(0deg, #3358f4, #1d8cf8);
  height: 100vh;
  overflow: hidden;
+ @media (max-width:775px){
+    box-shadow:0 16px 38px -12px rgba(0,0,0,0.56), 0 4px 25px 0 rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.2);
+}
  `;
 
  const Unorderlist = styled.ul`
@@ -79,7 +85,19 @@ import Logo from "./logo";
     }
  ]
 
- const SideBar = () => {
+ const SideBar = ({open,setOpen,handleClick}) => {
+    useLayoutEffect(()=>{function updateSize(){
+        if (window.innerWidth>775){
+            if (open===true){
+                setOpen(false);
+            }
+        }
+    }
+    window.addEventListener("resize",updateSize);
+    updateSize();
+    return()=>window.removeEventListener("resize",updateSize);
+    },[open,setOpen]);
+    
     return(
         <div>
             <SideBarWrapper>
@@ -88,7 +106,7 @@ import Logo from "./logo";
                 <Unorderlist>
                 {makeButtons.map((btn, i)=>(
                       <SideBarButton key={1} to={btn.to} icon={btn.icon} title={btn.title} span={btn.span} subBtn={btn.subBtn} 
-                    //   handleClick={handleClick}
+                      handleClick={handleClick}
                       />
                 ))}
                 </Unorderlist>
