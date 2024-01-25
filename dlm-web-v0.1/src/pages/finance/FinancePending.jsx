@@ -119,7 +119,7 @@ function FinancePending() {
     // Update transaction status to verified
     const transactionDoc = doc(db, "Transactions", id);
     await updateDoc(transactionDoc, {
-      verified: true,
+      varified: true,
     });
 
     // Refresh customer data after the update
