@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useLayoutEffect} from "react";
 import styled from "styled-components";
 import SideBarButton from "./sidebarnavlinks";
 import Logo from "./logo";
@@ -85,7 +85,19 @@ import Logo from "./logo";
     }
  ]
 
- const SideBar = () => {
+ const SideBar = ({open,setOpen,handleClick}) => {
+    useLayoutEffect(()=>{function updateSize(){
+        if (window.innerWidth>775){
+            if (open===true){
+                setOpen(false);
+            }
+        }
+    }
+    window.addEventListener("resize",updateSize);
+    updateSize();
+    return()=>window.removeEventListener("resize",updateSize);
+    },[open,setOpen]);
+    
     return(
         <div>
             <SideBarWrapper>
@@ -94,7 +106,7 @@ import Logo from "./logo";
                 <Unorderlist>
                 {makeButtons.map((btn, i)=>(
                       <SideBarButton key={1} to={btn.to} icon={btn.icon} title={btn.title} span={btn.span} subBtn={btn.subBtn} 
-                    //   handleClick={handleClick}
+                      handleClick={handleClick}
                       />
                 ))}
                 </Unorderlist>
