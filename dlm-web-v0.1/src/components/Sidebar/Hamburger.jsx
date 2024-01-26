@@ -11,7 +11,7 @@ cursor:pointer;
     margin-left:25px;    
 }
 @media (min-width:775px){
-    display:none;
+    display: none;
 }
 `;
 

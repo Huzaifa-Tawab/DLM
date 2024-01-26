@@ -1,7 +1,8 @@
-import React,{useLayoutEffect} from "react";
+import React,{useLayoutEffect, useState} from "react";
 import styled from "styled-components";
 import SideBarButton from "./sidebarnavlinks";
 import Logo from "./logo";
+
 
  const SideBarWrapper = styled.div`
  position: fixed;
@@ -13,7 +14,7 @@ import Logo from "./logo";
  z-index: 2;
  transition: transform 0.3s ease-in-out;
  @media (max-width:775px){
-     transform: ${({open})=>(open ? "translateX(0%)" : "translateX(-102%)" )};
+     transform: ${({open})=>(open ? "translateX(0%)" : "translateX(-100%)" )};
  }
  `;
 
@@ -47,13 +48,13 @@ import Logo from "./logo";
     pointer-events:${({open})=> (open? "auto":"none")};
  }
  @media(max-width:775px){
-  background-color:none;
+  background-color:none; 
   pointer-events:none;
  `;
 
  const makeButtons = [
     {
-        to: "dashboard/home",
+        to: "/",
         icon: <i className="fa-solid fa-house"></i>,
         title: "Dashboard"
     },
@@ -107,6 +108,7 @@ import Logo from "./logo";
         if (window.innerWidth>775){
             if (open===true){
                 setOpen(false);
+             settest(false)
             }
         }
     }
@@ -114,7 +116,7 @@ import Logo from "./logo";
     updateSize();
     return()=>window.removeEventListener("resize",updateSize);
     },[open,setOpen]);
-    
+  
     return(
         <div>
             <NegativeSidebar open={open} onClick={handleClick}/>
@@ -123,7 +125,7 @@ import Logo from "./logo";
                     <Logo/>
                 <Unorderlist>
                 {makeButtons.map((btn, i)=>(
-                      <SideBarButton key={1} to={btn.to} icon={btn.icon} title={btn.title} span={btn.span} subBtn={btn.subBtn}
+                      <SideBarButton key={i} to={btn.to} icon={btn.icon} title={btn.title} span={btn.span} subBtn={btn.subBtn}
                       handleClick={handleClick}
                       />
                 ))}

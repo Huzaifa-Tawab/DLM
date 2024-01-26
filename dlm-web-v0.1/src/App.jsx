@@ -42,7 +42,10 @@ function App() {
   };
   return (
     <BrowserRouter>
+      <Ham open={open} handleClick={handleClick}/>
+
       <Routes>
+        
         <Route path="/print/invoice/:id" element={<PrintInvoice />} />
         {/* <Route path="/" element={<FinancePlotsView />} /> */}
         {/* <Route path="/" element={<Home />} /> */}
@@ -102,7 +105,6 @@ function App() {
         </Route>
         {/* <Route path="*" element={<NoPage />} />  */}
       </Routes>
-      <Ham open={open} handleClick={handleClick}/>
     </BrowserRouter>
     
   );

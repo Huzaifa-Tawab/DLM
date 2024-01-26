@@ -15,9 +15,11 @@ border-radius: 10px;
 
 &:hover{
     background:#ffffff24;
+    color: #fff;
+    text-decoration: none;
 }
-&.active {
-    background: #ffffff;
+&:active {
+    background: #fff;
     color: #4297ff;
     transition: all 0.4s ease;
   
@@ -49,7 +51,7 @@ justify-content: left;
 margin: 2px 10px;
 border-radius: 10px;
 cursor: pointer;
-backgroung: ${(props) => props.open && "#fff"};
+background: ${(props) => props.open && "#fff"};
 &:hover {
     background: #ffffff24;
 }
@@ -59,13 +61,13 @@ position: absolute;
 top: 50%;
 right: 20px;
 transform: translate(0, -50%);
-> span {
+> div {
     display: inline-block;
     width; 0;
     height: 0;
     border-style: solid;
-    bborder-width: 5px 0 5px 6px;
-    border-color: transparent transparent transparent #fffffff;
+    border-width: 5px 0 5px 6px;
+    border-color: transparent transparent transparent #ddd;
     pointer-events: none;
     transform: ${(props) => (props.open ? "rotate(0deg)":"rotate(90deg)")};
     border-left: ${(props) => !props.open && "6px solid #ffff"};
@@ -85,7 +87,7 @@ margin:2px 0px 2px;
 
 `;
 const SubLinks=styled(NavLink)`
-color:#fff;
+color: #fff;
 padding:0px 20px;
 height:55px !important;
 text-decoration:none;
@@ -94,20 +96,19 @@ align-items: center;
 justify-content: left;
 margin: 2px 10px;
 border-radius: 10px;
->span{
+>div{
     margin-left:14px;   
 }
 &:hover{
     background:#ffffff24;
+    color: #fff;
+    text-decoration: none;
 }
-&.active{
+&:active{
     background:#fff;
     color:#4297ff;
     transition:all 0.4s ease;
 }
-
-
-
 `;
 const SideBarButton = ({to, icon, title, span, subBtn, handleClick}) =>{
     const [openSubMenu, setopenSubMenu] = useState(false)
@@ -139,7 +140,7 @@ const SideBarButton = ({to, icon, title, span, subBtn, handleClick}) =>{
             {
                 subBtn !== undefined && (
                     <Arrow open={!openSubMenu && "open"}>
-                        <span></span>
+                        <div></div>
                     </Arrow>
                 )
             }
@@ -157,7 +158,7 @@ const SideBarButton = ({to, icon, title, span, subBtn, handleClick}) =>{
                     to={to +"/"+ btn.toLowerCase()}
                     onClick={handleClick}>
                         {btn.slice(0,2).toUpperCase()}
-                        <span>{btn}</span>
+                        <div>{btn}</div>
                 </SubLinks>
             </div>))}
 
