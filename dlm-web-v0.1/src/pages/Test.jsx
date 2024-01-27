@@ -222,22 +222,27 @@ function Test() {
               <div key={index}>{user.Cnic}</div>
             ))}
             </div>
+            <div className="box-level-record">
 
             <h2>Level 2</h2>
             {LevelTwo.map((user, index) => (
               <div key={index}>{user.Cnic}</div>
             ))}
+          </div>
+          <div className="box-level-record">
 
             <h2>Level 3</h2>
             {LevelThree.map((user, index) => (
               <div key={index}>{user.Cnic}</div>
             ))}
+</div>
+<div className="box-level-record">
 
             <h2>Level 4</h2>
             {LevelFour.map((user, index) => (
               <div key={index}>{user.Cnic}</div>
             ))}
-            
+            </div>
             {User && (
               <>
                 <p>{User.Name}</p>
