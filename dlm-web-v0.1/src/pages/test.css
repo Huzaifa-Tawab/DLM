@@ -18,6 +18,11 @@
   width: 300px;
   height: auto;
 }
+.dash-main-set{
+  margin: 10px;
+  display: flex;
+  /* justify-content: ; */
+}
 @keyframes congratsAnimation {
   0% {
     transform: scale(1);

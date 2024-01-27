@@ -202,6 +202,7 @@ function Test() {
     <SideBar
       element={
         <>
+        
         <div className="agent-dash">
           <div className="head-dash">
             <marquee className="promo"
@@ -213,6 +214,27 @@ function Test() {
             >
               {Marquee}
             </marquee>
+            <div className="dash-main-set">
+            <div className="client-pic">
+                    <div className="client-pic-detail">
+                      <img
+                        className="avatar"
+                        src={
+                          User.imgUrl
+                          
+                        }
+                        alt="User"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ maxWidth: "100px" }}
+                      />
+                      <div className="cus-details">
+                        <h2>{User.Name}</h2>
+                        <h2>{User.Dob}</h2>
+                        <h2>{User.Cnic}</h2>
+                      </div>
+                    </div>
+                  </div>
             <div className="level-cards">
               <div className="box-level-record">
 
@@ -239,16 +261,10 @@ function Test() {
 <div className="box-level-record">
 
             <h2>Level 4</h2>
-            {LevelFour.map((user, index) => (
-              <div key={index}>{user.Cnic}</div>
-            ))}
+            {LevelFour.length}
             </div>
-            {User && (
-              <>
-                <p>{User.Name}</p>
-                <p>{User.InvId}</p>
-              </>
-            )}
+       
+            </div>
             </div>
           </div>
           <table>
@@ -283,66 +299,14 @@ function Test() {
             </tbody>
           </table>
           {User && (
-            <div>
-              <h2>User Information</h2>
-              <ul>
-                <li>
-                  <strong>Name:</strong> {User.Name}
-                </li>
-                <li>
-                  <strong>Father's Name:</strong> {User.FName}
-                </li>
-                <li>
-                  <strong>Date of Birth:</strong> {User.Dob}
-                </li>
-                <li>
-                  <strong>Gender:</strong> {User.Gender}
-                </li>
-                <li>
-                  <strong>CNIC:</strong> {User.Cnic}
-                </li>
-                <li>
-                  <strong>Phone Number:</strong> {User.phNo}
-                </li>
-                <li>
-                  <strong>Email:</strong> {User.Gmail}
-                </li>
-                <li>
-                  <strong>Address:</strong> {User.Address}
-                </li>
-                <li>
-                  <strong>Town/City:</strong> {User.TownCity}
-                </li>
-                <li>
-                  <strong>Agreed to Terms:</strong> {User.agree ? "Yes" : "No"}
-                </li>
-                <li>
-                  <strong>Profile Image URL:</strong>{" "}
-                  <a
-                    href={User.imgUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {User.imgUrl}
-                  </a>
-                </li>
-                <li>
-                  <strong>Invitation ID:</strong> {User.InvId}
-                </li>
-                <li>
-                  <strong>Plots:</strong>{" "}
-                  {User.Plots.length > 0 ? User.Plots.join(", ") : "No plots"}
-                </li>
-                <li>
-                  <strong>Documents:</strong>{" "}
-                  {User.Documents.length > 0
-                    ? User.Documents.join(", ")
-                    : "No documents"}
-                </li>
-              </ul>
-            </div>
+              <></>
           )}
           </div>
+          <li>
+                  <strong>Plots:</strong>{" "}
+                  {User.Plots.length }
+                </li>
+         
         </>
       }
     />
