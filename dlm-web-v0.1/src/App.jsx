@@ -42,6 +42,7 @@ import AdminSociety from "./pages/admin/Addsociety";
 import AdminCategory from "./pages/admin/Addcategories";
 import MarqueeInput from "./pages/MarqueeInput";
 import Wallet from "./pages/Wallet/Wallet";
+import HomeNew from "./pages/home/HomeNew";
 
 function App() {
   const [open, setOpen] = useState();
@@ -66,6 +67,7 @@ function App() {
         {/* <Route path="/" element={<FinancePlotsView />} /> */}
         {/* <Route path="/" element={<Home />} /> */}
         <Route path="/" element={<Home />} />
+        <Route path="/123" element={<HomeNew />} />
         {/* <Route
           path="/123"
           element={
