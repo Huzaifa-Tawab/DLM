@@ -14,52 +14,56 @@
     justify-content: space-between;
     margin: 50px;
 }
+.wallet-box-head{
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
 .wallet-box{
     background: #fff;
     border-radius: 10px;
     padding: 20px;
     width: 200px;
-
-}
-.invoice-list{
-    margin: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+}
+.invoice-list{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
 }
 .wallet-invoice{
-   width: 25vw;
+   width: 450px;
    height: 40vh;
    background: #fff;
    /* margin: 15px; */
    border-radius: 10px;
+   padding: 20px;
 
 }
 .wallet-invoice-table{
-    width: 25vw;
+    width: 400px;
     text-align: left;
 }
 .wallet-invoice-table tbody{
     
 }
 .history-records{
-    width: 20vw;
+    width: 450px;
     height: 40vh;
     background: #fff;
     /* margin: 15px; */
     border-radius: 10px;
+    padding: 20px;
 }
 .wallet-history-table{
-    width: 20vw;
+    width: 400px;
     text-align: left;
-}
-.widdraw-funds{
-    width: 100px;
-    background: #fff;
-    padding: 10px;
-    cursor: pointer;
-    text-align: center;
-}
-.widdraw-funds button{
-    background: none;
 }

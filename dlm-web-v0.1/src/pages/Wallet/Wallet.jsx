@@ -32,12 +32,13 @@ function Wallet() {
                 <img src={arrow}></img>
               </button>
             </div>
+            <div className="amount-cards">
         <div className="flex-cards-wallet-com">
-            <div className="wallet-box">
+            <div className="wallet-box-head">
                 <h4>Ttotal Amount</h4>
                 <span>200k</span>
             </div>
-            <div className="wallet-box">
+            <div className="wallet-box-head">
                 <h4>Direct Commision</h4>
                 <span>100k</span>
             </div>
@@ -45,21 +46,22 @@ function Wallet() {
         </div>
         <div className="flex-cards-wallet-levels">
         <div className="wallet-box">
-                <h4>Level 1 Commision</h4>
+                <h4>Level 1</h4>
                 <span>200k</span>
             </div>
             <div className="wallet-box">
-                <h4>Level 2 Commision</h4>
+                <h4>Level 2</h4>
                 <span>50k</span>
             </div>
             <div className="wallet-box">
-                <h4>Level 3 Commission</h4>
+                <h4>Level 3</h4>
                 <span>20k</span>
             </div>
             <div className="wallet-box">
-                <h4>Level 4 Commision</h4>
+                <h4>Level 4</h4>
                 <span>10k</span>
             </div>
+        </div>
         </div>
     
     <div className="invoice-list">
