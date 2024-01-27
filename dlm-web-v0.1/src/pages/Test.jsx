@@ -9,9 +9,10 @@ import {
   Timestamp,
   addDoc,
 } from "firebase/firestore";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 import SideBar from "../components/Sidebar/sidebar";
 import "./Test.css"; // Import your CSS file for styling
+import { onAuthStateChanged } from "firebase/auth";
 
 function Test() {
   const [LevelOne, setLevelOne] = useState([]);
@@ -22,11 +23,10 @@ function Test() {
   const [Marquee, setMarquee] = useState("");
   const [User, setUser] = useState();
   const [PromosWithStatus, setPromosWithStatus] = useState([]);
-  const uid = "1350310000111";
+  const [uid, setuid] = useState("");
 
   useEffect(() => {
     getUser();
-    fetchData(uid);
     getListText();
     getPromos();
     getPayments();
@@ -41,11 +41,20 @@ function Test() {
   };
 
   const getUser = async () => {
-    const docRef = doc(db, "Agent", uid);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      setUser(docSnap.data());
-    }
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setuid(user.uid);
+        const docRef = doc(db, "Agent", user.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setUser(docSnap.data());
+          fetchData(user.uid);
+        }
+      } else {
+        // User is signed out
+        // ...
+      }
+    });
   };
 
   const fetchData = async (user) => {
