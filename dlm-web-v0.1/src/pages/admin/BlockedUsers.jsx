@@ -9,6 +9,7 @@ import avatar from "../../Assets/avatar.png";
 import { debounce } from "lodash";
 import arrow from "../../Assets/Plus.png";
 import "./adminhome.css";
+import SideBar from "../../components/Sidebar/sidebar";
 
 function BlockedUsers() {
   const navigate = useNavigate();
@@ -76,62 +77,64 @@ function BlockedUsers() {
   return isLoading ? (
     <Loader />
   ) : (
-    <>
-      <Header />
-      <div className="Admin-Home">
-        <div className="hero--head">
-          <h1>Blocked Users</h1>
-        </div>
-        <div className="Admin-Home-content">
-          <div className="Admin-Home-table">
-            <form className="nosubmit">
-            <input
-              type="text"
-              placeholder="Search by Id"
-              onChange={(e) => debouncedFilterData(e.target.value)}
-              className="nosubmit"
-            />
-            </form>
-            <div className="table">
-              <table className="adminhome-table">
-                <thead>
-                  <tr className="hed">
-                    <th className="starter">Name</th>
+    <SideBar
+      element={
+        <>
+          <div className="Admin-Home">
+            <div className="hero--head">
+              <h1>Blocked Users</h1>
+            </div>
+            <div className="Admin-Home-content">
+              <div className="Admin-Home-table">
+                <form className="nosubmit">
+                  <input
+                    type="text"
+                    placeholder="Search by Id"
+                    onChange={(e) => debouncedFilterData(e.target.value)}
+                    className="nosubmit"
+                  />
+                </form>
+                <div className="table">
+                  <table className="adminhome-table">
+                    <thead>
+                      <tr className="hed">
+                        <th className="starter">Name</th>
 
-                    <th>CNIC No</th>
-                    <th className="starter">Plots</th>
-                    <th className="starter">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredCustomersDataMemoized.map((e) => (
-                    <tr key={e.Cnic}>
-                      <td>{e.Name}</td>
+                        <th>CNIC No</th>
+                        <th className="starter">Plots</th>
+                        <th className="starter">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredCustomersDataMemoized.map((e) => (
+                        <tr key={e.Cnic}>
+                          <td>{e.Name}</td>
 
-                      <td>{e.Cnic}</td>
-                      <td className="tddr">
-                        <span>{e.Plots.length} Plots</span>
-                      </td>
-                      <td>
-                        <button
-                          className="button-view"
-                          onClick={() => {
-                            toggleBlockStatus(e.Cnic);
-                          }}
-                        >
-                          UnBlock User
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                          <td>{e.Cnic}</td>
+                          <td className="tddr">
+                            <span>{e.Plots.length} Plots</span>
+                          </td>
+                          <td>
+                            <button
+                              className="button-view"
+                              onClick={() => {
+                                toggleBlockStatus(e.Cnic);
+                              }}
+                            >
+                              UnBlock User
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <Footer />
-    </>
+        </>
+      }
+    />
   );
 }
 

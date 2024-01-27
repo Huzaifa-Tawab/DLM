@@ -9,6 +9,7 @@ import { debounce } from "lodash";
 import arrow from "../../Assets/Plus.png";
 import isAdmin from "../../../IsAdmin";
 import "./admininvoice.css";
+import SideBar from "../../components/Sidebar/sidebar";
 
 function AdminInvoives() {
   const navigate = useNavigate();
@@ -76,12 +77,13 @@ function AdminInvoives() {
   return isLoading ? (
     <Loader />
   ) : (
-    <>
-      <Header />
-      <div className="Admin-Home-invoice">
-        <div className="hero--head">
-          <h1>Invoices</h1>
-          {/* {isAdmin() && <button
+    <SideBar
+      element={
+        <>
+          <div className="Admin-Home-invoice">
+            <div className="hero--head">
+              <h1>Invoices</h1>
+              {/* {isAdmin() && <button
             onClick={() => {
               // navigate("/create/agent/");
             }}
@@ -89,74 +91,78 @@ function AdminInvoives() {
             Add New
             <img src={arrow}></img>
           </button>} */}
-          
-        </div>
-        <div className="Admin-Home-content">
-          <div className="Admin-Home-table">
-            <form className="nosubmit">
-            <input
-              type="text"
-              placeholder="Search by Id"
-              onChange={(e) => debouncedFilterData(e.target.value)}
-              className="nosubmit"
-            />
-            </form>
-            <div className="table">
-              <table className="adminhome-table">
-                <thead>
-                  <tr>
-                  <th>Invoice Number</th>
+            </div>
+            <div className="Admin-Home-content">
+              <div className="Admin-Home-table">
+                <form className="nosubmit">
+                  <input
+                    type="text"
+                    placeholder="Search by Id"
+                    onChange={(e) => debouncedFilterData(e.target.value)}
+                    className="nosubmit"
+                  />
+                </form>
+                <div className="tableFixHead">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Invoice Number</th>
 
-                    <th>Customer Name</th>
-                    <th>Approved By</th>
-                    <th>Nature</th>
-                    <th>Payment</th>
-                    <th>Penalty</th>
-                    <th>Created At</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredCustomersDataMemoized.map((e, index) => (
-                    <tr key={index + 1}>
-                      <td>{e.InvId}</td>
-                      <td>{e.customerName}</td>
-                      <td>{e.agentName}</td>
-                      <td>{e.nature}</td>
-                      <td>{e.payment}</td>
-                      <td>{e.panelty===null?1:0}</td>
-                      <td>{getDate(e.time.seconds)}</td>
-                      <td>
-                        <div className="butn-viewer">
-                        <div >{isAdmin() && <button
-                          className="button-view"
-                          onClick={() => {
-                            openNewWindow(e.proof);
-                          }}
-                        >
-                          View
-                        </button>}</div>                     
-                        <button
-                          className="button-view"
-                          onClick={() => {
-                            // openNewWindow(e.InvId);
-                            openNewWindow(`/print/invoice/${e.InvId}`);
-                          }}
-                        >
-                          Print
-                        </button>
-                        </div>                      
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                        <th>Name</th>
+                        <th>Approved By</th>
+                        <th>Nature</th>
+                        <th>Payment</th>
+                        <th>Penalty</th>
+                        <th>Created At</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredCustomersDataMemoized.map((e, index) => (
+                        <tr key={index + 1}>
+                          <td>{e.InvId}</td>
+                          <td>{e.customerName}</td>
+                          <td>{e.agentName}</td>
+                          <td>{e.nature}</td>
+                          <td>{e.payment}</td>
+                          <td>{e.panelty === null ? 1 : 0}</td>
+                          <td>{getDate(e.time.seconds)}</td>
+                          <td>
+                            <div className="butn-viewer">
+                              <div>
+                                {isAdmin() && (
+                                  <button
+                                    className="button-view"
+                                    onClick={() => {
+                                      openNewWindow(e.proof);
+                                    }}
+                                  >
+                                    View
+                                  </button>
+                                )}
+                              </div>
+                              <button
+                                className="button-view"
+                                onClick={() => {
+                                  // openNewWindow(e.InvId);
+                                  openNewWindow(`/print/invoice/${e.InvId}`);
+                                }}
+                              >
+                                Print
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <Footer />
-    </>
+        </>
+      }
+    />
   );
 }
 export default AdminInvoives;

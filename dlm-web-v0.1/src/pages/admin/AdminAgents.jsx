@@ -9,6 +9,7 @@ import avatar from "../../Assets/avatar.png";
 import { debounce } from "lodash";
 import arrow from "../../Assets/Plus.png";
 import "./adminhome.css";
+import SideBar from "../../components/Sidebar/sidebar";
 
 function AdminAgents() {
   const navigate = useNavigate();
@@ -62,73 +63,79 @@ function AdminAgents() {
   return isLoading ? (
     <Loader />
   ) : (
-    <>
-      <Header />
-      <div className="Admin-Home">
-        <div className="hero--head">
-          <h1>Agents</h1>
-          <button
-            onClick={() => {
-              navigate("/create/agent/");
-            }}
-          >
-            Add New
-            <img src={arrow}></img>
-          </button>
-        </div>
-        <div className="Admin-Home-content">
-          <div className="Admin-Home-table">
-          <form class="nosubmit">
-            <input
-              type="text"
-              placeholder="Search by Id"
-              onChange={(e) => debouncedFilterData(e.target.value)}
-              className="nosubmit"
-            />
-            </form>
-            <div className="table">
-              <table className="adminhome-table">
-                <thead>
-                  <tr className="hed">
-                    <th className="starter">Name</th>
-                    <th>Phone Number</th>
-                    <th>CNIC No</th>
-                    <th className="starter">Plots</th>
-                    <th className="starter">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredCustomersDataMemoized.map((e) => (
-                    <tr key={e.Cnic}>
-                      <td className="avatar-image">
-                        <img
-                          src={avatar}
-                          alt="avatar"
-                          className="avatar-table"
-                        />
-                        {e.Name}
-                      </td>
-                      <td>{e.phNo}</td>
-                      <td>{e.Cnic}</td>
-                      <td className="tddr"><span>{e.Plots.length} Plots</span></td>
-                      <td>
-                        <button
-                          className="button-view"
-                          onClick={() => navigate(`/details/agent/${e.Cnic}`)}
-                        >
-                          View Details
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+    <SideBar
+      element={
+        <>
+          <div className="Admin-Home">
+            <div className="hero--head">
+              <h1>Agents</h1>
+              <button
+                onClick={() => {
+                  navigate("/create/agent/");
+                }}
+              >
+                Add New
+                <img src={arrow}></img>
+              </button>
+            </div>
+            <div className="Admin-Home-content">
+              <div className="Admin-Home-table">
+                <form class="nosubmit">
+                  <input
+                    type="text"
+                    placeholder="Search by Id"
+                    onChange={(e) => debouncedFilterData(e.target.value)}
+                    className="nosubmit"
+                  />
+                </form>
+                <div className="tableFixHead">
+                  <table className="adminhome-table">
+                    <thead className="width-adjust">
+                      <tr className="hed">
+                        <th className="width-adjust">Name</th>
+                        <th className="width-adjust">Phone Number</th>
+                        <th className="width-adjust">CNIC No</th>
+                        <th className="width-adjust">Plots</th>
+                        <th className="width-adjust">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredCustomersDataMemoized.map((e) => (
+                        <tr className="width-adjust" key={e.Cnic}>
+                          <td className="avatar-image width-adjust">
+                            <img
+                              src={avatar}
+                              alt="avatar"
+                              className="avatar-table"
+                            />
+                            {e.Name}
+                          </td>
+                          <td className="width-adjust">{e.phNo}</td>
+                          <td className="width-adjust">{e.Cnic}</td>
+                          <td className="tddr width-adjust">
+                            <p>{e.Plots.length} Plots</p>
+                          </td>
+                          <td className="width-adjust">
+                            <button
+                              className="button-view"
+                              onClick={() =>
+                                navigate(`/details/agent/${e.Cnic}`)
+                              }
+                            >
+                              View
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <Footer />
-    </>
+        </>
+      }
+    />
   );
 }
 

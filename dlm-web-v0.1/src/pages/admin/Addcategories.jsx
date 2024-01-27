@@ -5,30 +5,30 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
 import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
-import avatar from "../../Assets/avatar.png";
 import { debounce } from "lodash";
+import AddStoreItem from "../../components/Modals/AddStoreItem";
 import arrow from "../../Assets/Plus.png";
-import AddExpense from "../../components/Modals/AddExpense";
 import isAdmin from "../../../IsAdmin";
 import SideBar from "../../components/Sidebar/sidebar";
+import AddCatagory from "../../components/Modals/AddCatagory";
 
-function AdminExpense() {
+function AdminCategory() {
+  const uid = localStorage.getItem("id");
   const navigate = useNavigate();
-  const id = localStorage.getItem("id");
   const [CustomersData, setCustomersData] = useState([]);
   const [filteredCustomersData, setFilteredCustomersData] = useState([]);
   const [isLoading, setisLoading] = useState(true);
-  const [showModal, setShowModal] = useState(false);
+  const [ShowCatagoryModal, setShowCatagoryModal] = useState(false);
 
   useEffect(() => {
     getCustomersData();
   }, []);
 
   async function getCustomersData() {
-    const querySnapshot = await getDocs(collection(db, "Expenses"));
+    const querySnapshot = await getDocs(collection(db, "Store"));
     const newCustomersData = [];
     querySnapshot.forEach((doc) => {
-      if (doc.data()["id"] === id) {
+      if (doc.data()["agentID"] == uid) {
         newCustomersData.push(doc.data());
       } else if (isAdmin()) {
         newCustomersData.push(doc.data());
@@ -45,7 +45,7 @@ function AdminExpense() {
       if (searchText && searchText.length > 0) {
         newData = CustomersData.filter(
           (data) =>
-            data.by.toLowerCase().includes(searchText.toLowerCase()) ||
+            data.agent.toLowerCase().includes(searchText.toLowerCase()) ||
             data.title.toLowerCase().includes(searchText.toLowerCase())
         );
       }
@@ -63,19 +63,19 @@ function AdminExpense() {
     () => filteredCustomersData,
     [filteredCustomersData]
   );
-  const openModal = () => {
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-  };
   function getDate(seconds) {
     let date = new Date(seconds * 1000);
     let temp = date.toLocaleDateString();
     console.log(temp);
     return temp;
   }
+  const openCatagoryModal = () => {
+    setShowCatagoryModal(true);
+  };
+
+  const closeCatagoryModal = () => {
+    setShowCatagoryModal(false);
+  };
   return isLoading ? (
     <Loader />
   ) : (
@@ -84,10 +84,10 @@ function AdminExpense() {
         <>
           <div className="Admin-Home">
             <div className="hero--head">
-              <h1>Expenses</h1>
+              <h1>Categories</h1>
               <button
                 onClick={() => {
-                  openModal();
+                  openCatagoryModal(true);
                 }}
               >
                 Add New
@@ -98,23 +98,22 @@ function AdminExpense() {
               <div className="Admin-Home-table">
                 <form className="nosubmit">
                   <input
-                    type="text"
-                    placeholder="Search by Id"
-                    onChange={(e) => debouncedFilterData(e.target.value)}
                     className="nosubmit"
+                    type="text"
+                    placeholder="Search item name/Uploaded By"
+                    onChange={(e) => debouncedFilterData(e.target.value)}
                   />
                 </form>
-                <div className="table">
+                <div className="tableFixHead">
                   <table className="adminhome-table">
                     <thead>
                       <tr className="hed">
                         <th className="starter">Sr No</th>
-                        <th>Title</th>
-                        <th>Amount</th>
-                        {isAdmin() && <th>Uploaded by</th>}
-                        <th>Date</th>
+                        <th>Item Name</th>
+                        <th>Office No</th>
+                        {isAdmin() && <th>Uploaded By</th>}
+                        <th>Uploaded At</th>
                         <th>Description</th>
-                        {/* <th>More Details</th> */}
                       </tr>
                     </thead>
                     <tbody>
@@ -122,20 +121,10 @@ function AdminExpense() {
                         <tr key={index}>
                           <td className="starter">{index + 1}</td>
                           <td>{e.title}</td>
-                          <td>PKR {e.amount} </td>
-                          {isAdmin() && <td>{e.by}</td>}
-                          <td>{getDate(e.created.seconds)}</td>
-                          <td>{e.description}</td>
-
-                          {/* <td></td>
-                      <td>
-                        <button
-                          className="button-view"
-                          onClick={() => navigate(`/`)}
-                        >
-                          View
-                        </button>
-                      </td> */}
+                          <td>{e.office}</td>
+                          {isAdmin() && <td>{e.agent}</td>}
+                          <td>{getDate(e.date.seconds)}</td>
+                          <td className="desc-tr">{e.decs}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -144,11 +133,14 @@ function AdminExpense() {
               </div>
             </div>
           </div>
-          <AddExpense onClose={closeModal} showModal={showModal} />
+          <AddCatagory
+            showModal={ShowCatagoryModal}
+            onClose={closeCatagoryModal}
+          />
         </>
       }
     />
   );
 }
 
-export default AdminExpense;
+export default AdminCategory;

@@ -8,6 +8,7 @@ import {
   getDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
+import SideBar from "../components/Sidebar/sidebar";
 
 function Test() {
   const [LevelOne, setLevelOne] = useState([]);
@@ -76,33 +77,39 @@ function Test() {
   };
 
   return (
-    <div>
-      <h2>Level 1</h2>
-      {LevelOne.map((user, index) => (
-        <div key={index}>{user.Cnic}</div>
-      ))}
-
-      <h2>Level 2</h2>
-      {LevelTwo.map((user, index) => (
-        <div key={index}>{user.Cnic}</div>
-      ))}
-
-      <h2>Level 3</h2>
-      {LevelThree.map((user, index) => (
-        <div key={index}>{user.Cnic}</div>
-      ))}
-
-      <h2>Level 4</h2>
-      {LevelFour.map((user, index) => (
-        <div key={index}>{user.Cnic}</div>
-      ))}
-      {User && (
+    <SideBar
+      element={
         <>
-          <p>{User.Name}</p>
-          <p>{User.InvId}</p>
+          <div>
+            <h2>Level 1</h2>
+            {LevelOne.map((user, index) => (
+              <div key={index}>{user.Cnic}</div>
+            ))}
+
+            <h2>Level 2</h2>
+            {LevelTwo.map((user, index) => (
+              <div key={index}>{user.Cnic}</div>
+            ))}
+
+            <h2>Level 3</h2>
+            {LevelThree.map((user, index) => (
+              <div key={index}>{user.Cnic}</div>
+            ))}
+
+            <h2>Level 4</h2>
+            {LevelFour.map((user, index) => (
+              <div key={index}>{user.Cnic}</div>
+            ))}
+            {User && (
+              <>
+                <p>{User.Name}</p>
+                <p>{User.InvId}</p>
+              </>
+            )}
+          </div>
         </>
-      )}
-    </div>
+      }
+    />
   );
 }
 

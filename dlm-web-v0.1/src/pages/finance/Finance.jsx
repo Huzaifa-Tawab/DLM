@@ -8,7 +8,7 @@ import Footer from "../../components/Footer/Footer";
 import { debounce } from "lodash";
 import FinanceHeader from "../../components/header/FinanceHeader";
 import arrow from "../../Assets/Plus.png";
-
+import SideBar from "../../components/Sidebar/sidebar";
 
 function Finance() {
   const navigate = useNavigate();
@@ -76,75 +76,78 @@ function Finance() {
   return isLoading ? (
     <Loader />
   ) : (
-    <>
-      <FinanceHeader />
-      <div className="Admin-Home">
-      <div className="hero--head">
-          <h1>Invoices</h1>
-         
-        </div>
-        <div className="Admin-Home-content">
-          <div className="Admin-Home-table">
-            <input
-              type="text"
-              placeholder="Search"
-              onChange={(e) => debouncedFilterData(e.target.value)}
-              className="input-field"
-            />
-            <div className="table">
-              <table className="adminhome-table">
-                <thead>
-                  <tr className="hed">
-                    <th className="starter">Name</th>
-                    <th>Uploaded By</th>
-                    <th>File Number</th>
-                    <th>Nature</th>
-                    <th>Payment</th>
-                    <th>penalty</th>
-                    <th>Created At</th>
-                    <th className="starter">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredCustomersDataMemoized.map((e, index) => (
-                    <tr key={index}>
-                      <td className="starter">{e.customerName}</td>
-                      <td>{e.agentName}</td>
-                      <td>{e.fileNumber}</td>
-                      <td>{e.nature}</td>
-                      <td>{e.payment}</td>
-                      <td>{e.panelty}</td>
-                      <td>{getDate(e.time.seconds)}</td>
+    <SideBar
+      element={
+        <>
+          <div className="Admin-Home">
+            <div className="hero--head">
+              <h1>Invoices</h1>
+            </div>
+            <div className="Admin-Home-content">
+              <div className="Admin-Home-table">
+                <form class="nosubmit">
+                  <input
+                    class="nosubmit"
+                    type="search"
+                    placeholder="Search by Id"
+                    onChange={(e) => debouncedFilterData(e.target.value)}
+                  />
+                </form>
+                <div className=" tableFixHead">
+                  <table className="adminhome-table">
+                    <thead>
+                      <tr className="hed">
+                        <th className="starter">Name</th>
+                        <th>Uploaded By</th>
+                        <th>File Number</th>
+                        <th>Nature</th>
+                        <th>Payment</th>
+                        <th>penalty</th>
+                        <th>Created At</th>
+                        <th className="starter">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredCustomersDataMemoized.map((e, index) => (
+                        <tr key={index}>
+                          <td className="starter">{e.customerName}</td>
+                          <td>{e.agentName}</td>
+                          <td>{e.fileNumber}</td>
+                          <td>{e.nature}</td>
+                          <td>{e.payment}</td>
+                          <td>{e.panelty}</td>
+                          <td>{getDate(e.time.seconds)}</td>
 
-                      <td>
-                        <button
-                          className="button-view"
-                          onClick={() => {
-                            openNewWindow(e.proof);
-                          }}
-                        >
-                          View
-                        </button>
-                        <button
-                          className="button-view"
-                          onClick={() => {
-                            // openNewWindow(e.InvId);
-                            openNewWindow(`/print/invoice/${e.InvId}`);
-                          }}
-                        >
-                          Print
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                          <td>
+                            <button
+                              className="button-view"
+                              onClick={() => {
+                                openNewWindow(e.proof);
+                              }}
+                            >
+                              View
+                            </button>
+                            <button
+                              className="button-view"
+                              onClick={() => {
+                                // openNewWindow(e.InvId);
+                                openNewWindow(`/print/invoice/${e.InvId}`);
+                              }}
+                            >
+                              Print
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <Footer />
-    </>
+        </>
+      }
+    />
   );
 }
 

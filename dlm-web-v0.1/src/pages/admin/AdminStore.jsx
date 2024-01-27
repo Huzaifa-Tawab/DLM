@@ -9,6 +9,7 @@ import { debounce } from "lodash";
 import AddStoreItem from "../../components/Modals/AddStoreItem";
 import arrow from "../../Assets/Plus.png";
 import isAdmin from "../../../IsAdmin";
+import SideBar from "../../components/Sidebar/sidebar";
 
 function AdminStore() {
   const uid = localStorage.getItem("id");
@@ -77,62 +78,64 @@ function AdminStore() {
   return isLoading ? (
     <Loader />
   ) : (
-    <>
-      <Header />
-      <div className="Admin-Home">
-        <div className="hero--head">
-          <h1>Store</h1>
-          <button
-            onClick={() => {
-              setShowDocModal(true);
-            }}
-          >
-            Add New
-            <img src={arrow}></img>
-          </button>
-        </div>
-        <div className="Admin-Home-content">
-          <div className="Admin-Home-table">
-            <form className="nosubmit">
-            <input className="nosubmit"
-              type="text"
-              placeholder="Search item name/Uploaded By"
-              onChange={(e) => debouncedFilterData(e.target.value)}
-              
-            />
-            </form>
-            <div className="table">
-              <table className="adminhome-table">
-                <thead>
-                  <tr className="hed">
-                    <th className="starter">Sr No</th>
-                    <th>Item Name</th>
-                    <th>Office No</th>
-                    {isAdmin() && <th>Uploaded By</th>}
-                    <th>Uploaded At</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredCustomersDataMemoized.map((e, index) => (
-                    <tr key={index}>
-                      <td className="starter">{index + 1}</td>
-                      <td>{e.title}</td>
-                      <td>{e.office}</td>
-                      {isAdmin() && <td>{e.agent}</td>}
-                      <td>{getDate(e.date.seconds)}</td>
-                      <td className="desc-tr">{e.decs}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+    <SideBar
+      element={
+        <>
+          <div className="Admin-Home">
+            <div className="hero--head">
+              <h1>Store</h1>
+              <button
+                onClick={() => {
+                  setShowDocModal(true);
+                }}
+              >
+                Add New
+                <img src={arrow}></img>
+              </button>
+            </div>
+            <div className="Admin-Home-content">
+              <div className="Admin-Home-table">
+                <form className="nosubmit">
+                  <input
+                    className="nosubmit"
+                    type="text"
+                    placeholder="Search item name/Uploaded By"
+                    onChange={(e) => debouncedFilterData(e.target.value)}
+                  />
+                </form>
+                <div className="table">
+                  <table className="adminhome-table">
+                    <thead>
+                      <tr className="hed">
+                        <th className="starter">Sr No</th>
+                        <th>Item Name</th>
+                        <th>Office No</th>
+                        {isAdmin() && <th>Uploaded By</th>}
+                        <th>Uploaded At</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredCustomersDataMemoized.map((e, index) => (
+                        <tr key={index}>
+                          <td className="starter">{index + 1}</td>
+                          <td>{e.title}</td>
+                          <td>{e.office}</td>
+                          {isAdmin() && <td>{e.agent}</td>}
+                          <td>{getDate(e.date.seconds)}</td>
+                          <td className="desc-tr">{e.decs}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <Footer />
-      <AddStoreItem showModal={showDocModal} onClose={closeDocModal} />
-    </>
+          <AddStoreItem showModal={showDocModal} onClose={closeDocModal} />
+        </>
+      }
+    />
   );
 }
 

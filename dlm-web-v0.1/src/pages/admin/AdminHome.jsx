@@ -11,6 +11,7 @@ import { debounce } from "lodash";
 import arrow from "../../Assets/Plus.png";
 import isAdmin from "../../../IsAdmin";
 import { onAuthStateChanged } from "firebase/auth";
+import SideBar from "../../components/Sidebar/sidebar";
 
 function AdminHome() {
   const navigate = useNavigate();
@@ -79,89 +80,93 @@ function AdminHome() {
   return isLoading ? (
     <Loader />
   ) : (
-    <>
-      <Header />
-      <div className="Admin-Home">
-        <div className="admin-show">{isAdmin() && "Admin"}</div>
-        <div className="admin-show">{isAdmin() ? "Admin" : "SubAdmin"}</div>
+    <SideBar
+      element={
+        <>
+          <div className="Admin-Home">
+            <div className="admin-show">{isAdmin() && "Admin"}</div>
+            <div className="admin-show">{isAdmin() ? "Admin" : "SubAdmin"}</div>
 
-        <div className="hero--head">
-          <h1>Customers</h1>
-          <button
-            onClick={() => {
-              navigate("/create/client");
-            }}
-          >
-            Add New
-            <img src={arrow}></img>
-          </button>
-        </div>
-        <div className="Admin-Home-content">
-          <div className="Admin-Home-table">
-            <form class="nosubmit">
-              <input
-                class="nosubmit"
-                type="search"
-                placeholder="Search by Id"
-                onChange={(e) => debouncedFilterData(e.target.value)}
-              />
-            </form>
-            <div className="table">
-              <table className="adminhome-table">
-                <thead>
-                  <tr className="hed">
-                    <th className="starter">Name</th>
-                    <th>FName</th>
-                    <th>Phone Number</th>
-                    {isAdmin() && <th>CNIC No</th>}
-                    <th>GENDER</th>
-                    <th className="starter">Plots</th>
-                    <th className="starter">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredCustomersDataMemoized.map((e) => (
-                    <tr key={e.Cnic}>
-                      <td className="avatar-image">
-                        <img
-                          src={
-                            e.Gender === "female"
-                              ? isAdmin()
-                                ? e.imgUrl
-                                : avatar
-                              : e.imgUrl
-                          }
-                          alt="avatar"
-                          className="avatar-table"
-                        />
-                        <span>{e.Name}</span>
-                      </td>
-                      <td>{e.FName}</td>
+            <div className="hero--head">
+              <h1>Customers</h1>
+              <button
+                onClick={() => {
+                  navigate("/create/client");
+                }}
+              >
+                Add New
+                <img src={arrow}></img>
+              </button>
+            </div>
+            <div className="Admin-Home-content">
+              <div className="Admin-Home-table">
+                <form class="nosubmit">
+                  <input
+                    class="nosubmit"
+                    type="search"
+                    placeholder="Search by Id"
+                    onChange={(e) => debouncedFilterData(e.target.value)}
+                  />
+                </form>
+                <div className="tableFixHead">
+                  <table className="adminhome-table">
+                    <thead>
+                      <tr className="hed">
+                        <th className="starter">Name</th>
+                        <th>FName</th>
+                        <th className="numaric">Phone Number</th>
+                        {isAdmin() && <th className="center">CNIC No</th>}
+                        <th>GENDER</th>
+                        <th className="starter">Plots</th>
+                        <th className="starter">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredCustomersDataMemoized.map((e) => (
+                        <tr key={e.Cnic}>
+                          <td className="avatar-image">
+                            <img
+                              src={
+                                e.Gender === "female"
+                                  ? isAdmin()
+                                    ? e.imgUrl
+                                    : avatar
+                                  : e.imgUrl
+                              }
+                              alt="avatar"
+                              className="avatar-table"
+                            />
+                            <p>{e.Name}</p>
+                          </td>
+                          <td>{e.FName}</td>
 
-                      <td>{e.phNo}</td>
-                      {isAdmin() && <td>{e.Cnic}</td>}
-                      <td>{e.Gender}</td>
-                      <td className="tddr">
-                        <span>{e.Plots.length} Plots</span>
-                      </td>
-                      <td>
-                        <button
-                          className="button-view"
-                          onClick={() => navigate(`/details/client/${e.Cnic}`)}
-                        >
-                          View Details
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                          <td className="numaric">{e.phNo}</td>
+                          {isAdmin() && <td>{e.Cnic}</td>}
+                          <td>{e.Gender}</td>
+                          <td className="tddr">
+                            <p>{e.Plots.length} Plots</p>
+                          </td>
+                          <td>
+                            <button
+                              className="button-view"
+                              onClick={() =>
+                                navigate(`/details/client/${e.Cnic}`)
+                              }
+                            >
+                              View
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <Footer />
-    </>
+        </>
+      }
+    />
   );
 }
 
