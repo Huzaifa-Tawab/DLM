@@ -1,0 +1,58 @@
+.wallet-main{
+    height: 100%;
+    overflow: auto;
+}
+.flex-cards{
+    display: flex;
+    justify-content: space-between;
+    margin: 50px;
+}
+.wallet-box{
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+
+}
+.invoice-list{
+    margin: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.wallet-invoice{
+   width: 25vw;
+   height: 40vh;
+   background: #fff;
+   /* margin: 15px; */
+   border-radius: 10px;
+
+}
+.wallet-invoice-table{
+    width: 25vw;
+    text-align: left;
+}
+.wallet-invoice-table tbody{
+    
+}
+.history-records{
+    width: 20vw;
+    height: 40vh;
+    background: #fff;
+    /* margin: 15px; */
+    border-radius: 10px;
+}
+.wallet-history-table{
+    width: 20vw;
+    text-align: left;
+}
+.widdraw-funds{
+    width: 100px;
+    background: #fff;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+.widdraw-funds button{
+    background: none;
+}
