@@ -11,7 +11,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 import SideBar from "../components/Sidebar/sidebar";
-import "./test.css";
+import "./Test.css"; // Import your CSS file for styling
 
 function Test() {
   const [LevelOne, setLevelOne] = useState([]);
@@ -21,8 +21,7 @@ function Test() {
   const [Promos, setPromos] = useState([]);
   const [Marquee, setMarquee] = useState("");
   const [User, setUser] = useState();
-  const [PromosWithTotal, setPromosWithTotal] = useState([]);
-  const [goalAchieved, setGoalAchieved] = useState(false);
+  const [PromosWithStatus, setPromosWithStatus] = useState([]);
   const uid = "1350310000111";
 
   useEffect(() => {
@@ -134,7 +133,7 @@ function Test() {
     console.log(temp);
   }
 
-  async function getPromosWithTotal() {
+  async function getPromosWithStatus() {
     const currentTimestamp = Timestamp.fromDate(new Date());
 
     const promoQuery = query(
@@ -143,10 +142,11 @@ function Test() {
     );
     const promoSnapshot = await getDocs(promoQuery);
 
-    const promosWithTotal = await Promise.all(
+    const promosWithStatus = await Promise.all(
       promoSnapshot.docs.map(async (promoDoc) => {
         const promoData = promoDoc.data();
         const promoCreatedAt = promoData.createdAt;
+
         const transactionsQuery = query(
           collection(db, "Transactions"),
           where("varified", "==", true),
@@ -155,6 +155,7 @@ function Test() {
         );
 
         const transactionsSnapshot = await getDocs(transactionsQuery);
+
         const totalAmount = transactionsSnapshot.docs.reduce(
           (sum, transactionDoc) =>
             sum + parseInt(transactionDoc.data().total, 10),
@@ -163,7 +164,7 @@ function Test() {
 
         const isGoalAchieved = totalAmount >= promoData.target;
 
-        setGoalAchieved(isGoalAchieved);
+        const status = isGoalAchieved ? "completed" : "pending";
 
         if (isGoalAchieved) {
           await addDoc(collection(db, "CompletedPromos"), {
@@ -176,15 +177,16 @@ function Test() {
         return {
           ...promoData,
           totalAmount,
+          status,
         };
       })
     );
 
-    setPromosWithTotal(promosWithTotal);
+    setPromosWithStatus(promosWithStatus);
   }
 
   useEffect(() => {
-    getPromosWithTotal();
+    getPromosWithStatus();
   }, []);
 
   return (
@@ -202,16 +204,24 @@ function Test() {
               {Marquee}
             </marquee>
             <h2>Level 1</h2>
-            {LevelOne.length}
+            {LevelOne.map((user, index) => (
+              <div key={index}>{user.Cnic}</div>
+            ))}
 
             <h2>Level 2</h2>
-            {LevelTwo.length}
+            {LevelTwo.map((user, index) => (
+              <div key={index}>{user.Cnic}</div>
+            ))}
 
             <h2>Level 3</h2>
-            {LevelThree.length}
+            {LevelThree.map((user, index) => (
+              <div key={index}>{user.Cnic}</div>
+            ))}
 
             <h2>Level 4</h2>
-            {LevelFour.length}
+            {LevelFour.map((user, index) => (
+              <div key={index}>{user.Cnic}</div>
+            ))}
             {User && (
               <>
                 <p>{User.Name}</p>
@@ -228,17 +238,24 @@ function Test() {
                 <th>Ends At</th>
                 <th>Remaining Hours</th>
                 <th>Total Amount</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
-              {PromosWithTotal.map((promo, index) => (
-                <tr key={index} className={goalAchieved ? "goal-achieved" : ""}>
+              {PromosWithStatus.map((promo, index) => (
+                <tr
+                  key={index}
+                  className={
+                    promo.status === "completed" ? "goal-achieved" : ""
+                  }
+                >
                   <td>{promo.title}</td>
                   <td>{promo.prize}</td>
                   <td>{promo.target}</td>
                   <td>{promo.endsAt.toDate().toLocaleString()}</td>
                   <td>{calculateRemainingHours(promo.endsAt.toDate())}</td>
                   <td>{promo.totalAmount}</td>
+                  <td>{promo.status}</td>
                 </tr>
               ))}
             </tbody>

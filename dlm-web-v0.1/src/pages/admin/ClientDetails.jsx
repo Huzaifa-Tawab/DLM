@@ -15,6 +15,7 @@ import plot from "../../Assets/plot.svg";
 import profile from "../../Assets/profile.svg";
 import block from "../../Assets/block.svg";
 import downtown from "../../Assets/Downtown.svg";
+import SideBar from "../../components/Sidebar/sidebar";
 
 function ClientDetails() {
   const navigate = useNavigate();
@@ -86,186 +87,198 @@ function ClientDetails() {
     <Loader />
   ) : (
     <>
-      <Header />
-      <div className="ClientDetails">
-        <div>
-          <div className="info-box">
-            <div className="client-pic">
-              {/* <h1>Customer Information</h1> */}
-              <div className="client-pic-detail">
-                <img
-                  className="avatar"
-                  src={
-                    userData.Gender === "female"
-                      ? isAdmin()
-                        ? userData.imgUrl
-                        : ""
-                      : userData.imgUrl
-                  }
-                  alt="User"
-                  style={{ maxWidth: "100px" }}
-                />
-                <div className="cus-details">
-                  <h2>{userData.Name}</h2>
-                  <span>Customer</span>
-                </div>
-              </div>
-              <br />
-              {/* <span>info@infogmail.com</span> */}
-              <br />
-              {/* <span>+92 317 5545690</span> */}
-              <div className="clients-buttons">
-                <div className="button-pair">
-                  <button
-                    onClick={() => {
-                      navigate(`/edit/client/${userData.Cnic}`);
-                    }}
-                  >
-                    <img src={profile} alt="" />
-                    <p>Edit Profile </p>
-                  </button>
+      <SideBar
+        element={
+          <>
+            <div className="ClientDetails">
+              <div>
+                <div className="info-box">
+                  <div className="client-pic">
+                    {/* <h1>Customer Information</h1> */}
+                    <div className="client-pic-detail">
+                      <img
+                        className="avatar"
+                        src={
+                          userData.Gender === "female"
+                            ? isAdmin()
+                              ? userData.imgUrl
+                              : ""
+                            : userData.imgUrl
+                        }
+                        alt="User"
+                        style={{ maxWidth: "100px" }}
+                      />
+                      <div className="cus-details">
+                        <h2>{userData.Name}</h2>
+                        <span>Customer</span>
+                      </div>
+                    </div>
+                    <br />
+                    {/* <span>info@infogmail.com</span> */}
+                    <br />
+                    {/* <span>+92 317 5545690</span> */}
+                    <div className="clients-buttons">
+                      <div className="button-pair">
+                        <button
+                          onClick={() => {
+                            navigate(`/edit/client/${userData.Cnic}`);
+                          }}
+                        >
+                          <img src={profile} alt="" />
+                          <p>Edit Profile </p>
+                        </button>
 
-                  <button
-                    onClick={() => {
-                      navigate("/create/plot/", {
-                        state: {
-                          Cuid: userData.Cnic,
-                        },
-                      });
-                    }}
-                  >
-                    <img src={plot} alt="" />
-                    <p>Add Plot </p>
-                  </button>
+                        <button
+                          onClick={() => {
+                            navigate("/create/plot/", {
+                              state: {
+                                Cuid: userData.Cnic,
+                              },
+                            });
+                          }}
+                        >
+                          <img src={plot} alt="" />
+                          <p>Add Plot </p>
+                        </button>
+                      </div>
+                      {isAdmin() && (
+                        <div className="button-pair ">
+                          <button
+                            onClick={toggleBlockStatus}
+                            className={userData.Blocked && "blocked-user"}
+                          >
+                            <img src={block} alt="" />
+                            <p>{userData.Blocked ? "unblock" : "block"}</p>
+                          </button>
+                          <button onClick={openDocModal}>
+                            <img src={adddoc} alt="" />
+                            <p>Add Doc</p>
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div className="info-box-2">
+                    <h1>Customer Information</h1>
+                    <div className="sec-heading">
+                      <span className="first-text">Address:</span>{" "}
+                      <span className="secon-text">{userData.Address}</span>
+                    </div>
+                    <div className="data-client">
+                      <div className="data-client-div">
+                        <div className="row">
+                          <span>Name:</span>
+                          <span>Father's Name:</span>
+                          <span>CNIC:</span>
+                          <span>Gender:</span>
+                          <span>DOB:</span>
+                        </div>
+                        <div className="row">
+                          <span className="secon-row">{userData.Name}</span>
+                          <span className="secon-row">{userData.FName}</span>
+                          <span className="secon-row">
+                            {isAdmin() ? userData.Cnic : "************"}
+                          </span>
+                          <span className="secon-row">{userData.Gender}</span>
+                          <span className="secon-row">{userData.Dob}</span>
+                        </div>
+                      </div>
+                      <div className="data-client-div">
+                        <div className="row">
+                          <span>Phone Number:</span>
+                          <span>Town City:</span>
+
+                          <span>Kin Relation:</span>
+
+                          <span>Next of Kin:</span>
+                        </div>
+                        <div className="row">
+                          <span className="secon-row">{userData.phNo}</span>
+                          <span className="secon-row">
+                            {userData["TownCity"]}
+                          </span>
+                          <span className="secon-row">
+                            {userData.KinRelation}
+                          </span>
+                          <span className="secon-row">
+                            {userData.NexttoKin}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 {isAdmin() && (
-                  <div className="button-pair ">
-                    <button
-                      onClick={toggleBlockStatus}
-                      className={userData.Blocked && "blocked-user"}
-                    >
-                      <img src={block} alt="" />
-                      <p>{userData.Blocked ? "unblock" : "block"}</p>
-                    </button>
-                    <button onClick={openDocModal}>
-                      <img src={adddoc} alt="" />
-                      <p>Add Doc</p>
-                    </button>
+                  <div className="documents">
+                    <div className="doc-row">
+                      <h1>Documents</h1>
+                      {/* <button><img src={adddoc} alt="" /> Add Document</button> */}
+                    </div>
+                    <table>
+                      <thead>
+                        <th>Document Name</th>
+                        <th>Date</th>
+                        <th>More Details</th>
+                      </thead>
+                      <tbody>
+                        {userData.Documents &&
+                          Object.entries(userData.Documents).map(
+                            ([key, value]) => (
+                              <tr>
+                                <td>{key}</td>
+                                <td>12-10-2024</td>
+                                <td>
+                                  <a
+                                    href={value}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    view
+                                  </a>
+                                </td>
+                              </tr>
+                            )
+                          )}
+                      </tbody>
+                    </table>
                   </div>
                 )}
-              </div>
-            </div>
-            <div className="info-box-2">
-              <h1>Customer Information</h1>
-              <div className="sec-heading">
-                <span className="first-text">Address:</span>{" "}
-                <span className="secon-text">{userData.Address}</span>
-              </div>
-              <div className="data-client">
-                <div className="data-client-div">
-                  <div className="row">
-                    <span>Name:</span>
-                    <span>Father's Name:</span>
-                    <span>CNIC:</span>
-                    <span>Gender:</span>
-                    <span>DOB:</span>
-                  </div>
-                  <div className="row">
-                    <span className="secon-row">{userData.Name}</span>
-                    <span className="secon-row">{userData.FName}</span>
-                    <span className="secon-row">
-                      {isAdmin() ? userData.Cnic : "************"}
-                    </span>
-                    <span className="secon-row">{userData.Gender}</span>
-                    <span className="secon-row">{userData.Dob}</span>
-                  </div>
-                </div>
-                <div className="data-client-div">
-                  <div className="row">
-                    <span>Phone Number:</span>
-                    <span>Town City:</span>
+                <div className="plots">
+                  {/* <h1>Plots Details</h1> */}
+                  <div className="plot-cards">
+                    {Plots.map((plot) => (
+                      <div className="card">
+                        <h4>{plot.FileNumber}</h4>
+                        <span className="first" style={{ color: "#fff" }}>
+                          {userData.Address}
+                        </span>
+                        {/* <h2>{plot.id}</h2> */}
+                        <div className="plot-des"></div>
+                        <div className="row-start">
+                          <img src={downtown} alt="" />
+                          {/* <PiBuildingsBold className="buildlogo" /> */}
+                          {/* <span>Category :</span> */}
+                          <span>{plot.Category}</span>
+                        </div>
 
-                    <span>Kin Relation:</span>
-
-                    <span>Next of Kin:</span>
-                  </div>
-                  <div className="row">
-                    <span className="secon-row">{userData.phNo}</span>
-                    <span className="secon-row">{userData["TownCity"]}</span>
-                    <span className="secon-row">{userData.KinRelation}</span>
-                    <span className="secon-row">{userData.NexttoKin}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {isAdmin() && (
-            <div className="documents">
-              <div className="doc-row">
-                <h1>Documents</h1>
-                {/* <button><img src={adddoc} alt="" /> Add Document</button> */}
-              </div>
-              <table>
-                <thead>
-                  <th>Document Name</th>
-                  <th>Date</th>
-                  <th>More Details</th>
-                </thead>
-                <tbody>
-                  {userData.Documents &&
-                    Object.entries(userData.Documents).map(([key, value]) => (
-                      <tr>
-                        <td>{key}</td>
-                        <td>12-10-2024</td>
-                        <td>
-                          <a
-                            href={value}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        <div className="view-more">
+                          <button
+                            onClick={() => {
+                              navigate(`/details/plot/${plot.id}`);
+                            }}
                           >
-                            view
-                          </a>
-                        </td>
-                      </tr>
+                            View
+                          </button>
+                        </div>
+                      </div>
                     ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-          <div className="plots">
-            {/* <h1>Plots Details</h1> */}
-            <div className="plot-cards">
-              {Plots.map((plot) => (
-                <div className="card">
-                  <h4>{plot.FileNumber}</h4>
-                  <span className="first" style={{ color: "#fff" }}>
-                    {userData.Address}
-                  </span>
-                  {/* <h2>{plot.id}</h2> */}
-                  <div className="plot-des"></div>
-                  <div className="row-start">
-                    <img src={downtown} alt="" />
-                    {/* <PiBuildingsBold className="buildlogo" /> */}
-                    {/* <span>Category :</span> */}
-                    <span>{plot.Category}</span>
-                  </div>
-
-                  <div className="view-more">
-                    <button
-                      onClick={() => {
-                        navigate(`/details/plot/${plot.id}`);
-                      }}
-                    >
-                      View
-                    </button>
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <Footer />
+          </>
+        }
+      />
 
       <AddDocs
         showModal={showDocModal}
