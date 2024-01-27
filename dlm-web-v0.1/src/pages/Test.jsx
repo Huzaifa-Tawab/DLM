@@ -205,7 +205,7 @@ function Test() {
           <div>
             <marquee
               behavior="scroll"
-              scrollamount="20"
+              scrollamount="10"
               width="100%"
               direction="right"
               height="50px"

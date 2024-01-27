@@ -108,8 +108,6 @@ function AdminInvoives() {
                       <tr>
                         <th>Invoice Number</th>
 
-                        <th>Name</th>
-                        <th>Approved By</th>
                         <th>Nature</th>
                         <th>Payment</th>
                         <th>Penalty</th>
@@ -121,8 +119,7 @@ function AdminInvoives() {
                       {filteredCustomersDataMemoized.map((e, index) => (
                         <tr key={index + 1}>
                           <td>{e.InvId}</td>
-                          <td>{e.customerName}</td>
-                          <td>{e.agentName}</td>
+
                           <td>{e.nature}</td>
                           <td>{e.payment}</td>
                           <td>{e.panelty === null ? 1 : 0}</td>
