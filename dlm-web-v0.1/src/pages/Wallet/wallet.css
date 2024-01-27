@@ -2,27 +2,42 @@
     height: 100%;
     overflow: auto;
 }
-.flex-cards-wallet-com{
+.total-amount-main-direct{
     display: flex;
-    /* justify-content: space-beween; */
-    margin: 50px;
     justify-content: center;
     gap: 70px;
+    margin: 50px;
+}
+.flex-cards-wallet-com{
+    /* margin: 50px; */
 }
 .flex-cards-wallet-levels{
     display: flex;
     justify-content: space-between;
     margin: 50px;
 }
+.wallet-total-amount{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .wallet-box-head{
     background: #fff;
     border-radius: 10px;
-    padding: 20px;
+    padding: 15px;
     width: 500px;
+    height: 15vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
+
+}
+.wallet-box-head-main{
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 500px;
 }
 .wallet-box{
     background: #fff;

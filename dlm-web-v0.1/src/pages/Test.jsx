@@ -202,8 +202,9 @@ function Test() {
     <SideBar
       element={
         <>
-          <div>
-            <marquee
+        <div className="agent-dash">
+          <div className="head-dash">
+            <marquee className="promo"
               behavior="scroll"
               scrollamount="10"
               width="100%"
@@ -212,10 +213,15 @@ function Test() {
             >
               {Marquee}
             </marquee>
+            <div className="level-cards">
+              <div className="box-level-record">
+
+              
             <h2>Level 1</h2>
             {LevelOne.map((user, index) => (
               <div key={index}>{user.Cnic}</div>
             ))}
+            </div>
 
             <h2>Level 2</h2>
             {LevelTwo.map((user, index) => (
@@ -231,12 +237,14 @@ function Test() {
             {LevelFour.map((user, index) => (
               <div key={index}>{user.Cnic}</div>
             ))}
+            
             {User && (
               <>
                 <p>{User.Name}</p>
                 <p>{User.InvId}</p>
               </>
             )}
+            </div>
           </div>
           <table>
             <thead>
@@ -329,6 +337,7 @@ function Test() {
               </ul>
             </div>
           )}
+          </div>
         </>
       }
     />

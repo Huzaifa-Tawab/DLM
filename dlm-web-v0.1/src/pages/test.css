@@ -2,7 +2,10 @@
   background-color: #aaffaa; /* Change to your desired color */
   animation: congratsAnimation 1s ease-out; /* Add your animation duration and easing */
 }
-
+.promo{
+  background: #f9f9;
+  padding: 15px 0px;
+}
 @keyframes congratsAnimation {
   0% {
     transform: scale(1);

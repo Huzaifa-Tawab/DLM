@@ -33,17 +33,32 @@ function Wallet() {
               </button>
             </div>
             <div className="amount-cards">
+                <div className="total-amount-main-direct">
         <div className="flex-cards-wallet-com">
-            <div className="wallet-box-head">
-                <h4>Ttotal Amount</h4>
+            <div className="wallet-box-head-main">
+                <div className="wallet-total-amount">
+                <h2>Ttotal Amount</h2>
                 <span>200k</span>
+                </div>
+                <br />
+                <div className="wallet-total-amount">
+                <h3>Remaining Amount</h3>
+                <span>150k</span>
+                </div>
+                <br />
+                <div className="wallet-total-amount">
+                <h3>Widhrawal Amount</h3>
+                <span>50k</span>
+                </div>
+            </div>
             </div>
             <div className="wallet-box-head">
                 <h4>Direct Commision</h4>
                 <span>100k</span>
             </div>
+            </div>
             
-        </div>
+       
         <div className="flex-cards-wallet-levels">
         <div className="wallet-box">
                 <h4>Level 1</h4>
