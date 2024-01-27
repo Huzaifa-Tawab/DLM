@@ -92,7 +92,7 @@ export const subAdminNavLinks = [
     title: "Store",
   },
   {
-    to: "/notfound",
+    to: "/agent/wallet",
     icon: <i className="fa-solid fa-wallet"></i>,
     title: "Wallets",
     span: "New",

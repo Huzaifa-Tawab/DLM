@@ -40,6 +40,7 @@ import AddCategory from "./pages/admin/Addcategories";
 import AddSociety from "./pages/admin/Addsociety";
 import AdminSociety from "./pages/admin/Addsociety";
 import AdminCategory from "./pages/admin/Addcategories";
+import Wallet from "./pages/Wallet/Wallet";
 
 function App() {
   const [open, setOpen] = useState();
@@ -72,6 +73,7 @@ function App() {
         /> */}
 
         <Route path="/login" element={<Login />} />
+        <Route path="/agent/wallet" element={<Wallet />} />
         <Route path="/endsession" element={<Logout />} />
         <Route path="/details/plot" element={<PlotDetails />} />
         <Route path="/create/client/" element={<ClientRegistrationFrom />} />
