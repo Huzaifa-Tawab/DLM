@@ -40,6 +40,7 @@ import AddCategory from "./pages/admin/Addcategories";
 import AddSociety from "./pages/admin/Addsociety";
 import AdminSociety from "./pages/admin/Addsociety";
 import AdminCategory from "./pages/admin/Addcategories";
+import MarqueeInput from "./pages/MarqueeInput";
 
 function App() {
   const [open, setOpen] = useState();
@@ -97,6 +98,7 @@ function App() {
           <Route path="/finance/unverified" element={<FinancePending />} />
         </Route>
         <Route path="/print/:id" element={<PrintFile />} />
+        <Route path="/add/marquee" element={<MarqueeInput />} />
 
         <Route element={<AdminRoutes />}>
           <Route path="/admin/dashboard" element={<Test />} />

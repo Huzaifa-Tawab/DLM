@@ -61,7 +61,7 @@ export const superAdminNavLinks = [
 
 export const subAdminNavLinks = [
   {
-    to: "/dashboard",
+    to: "/admin/dashboard",
     icon: <i className="fa-solid fa-house"></i>,
     title: "Dashboard",
   },
