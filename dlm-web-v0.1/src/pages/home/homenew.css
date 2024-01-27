@@ -1,0 +1,68 @@
+.head-home{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    background: #f5f5f5;
+    align-items: center;
+}
+.Hero{
+    text-align: center;
+}
+.hero-img img{
+    width: 100%;
+}
+.hero-img{
+    margin: 20px 0px;
+}
+.team-works{
+    text-align: center;
+}
+.logos-slider{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+.logos-slider img{
+    width: 200px;
+}
+.marketing-components{
+    margin: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    margin: 50px;
+}
+.market-img img{
+ width: 400px;
+}
+.our-works{
+    text-align: center;
+}
+.flex-cards{
+    width: 400px;
+    background: url("../../Assets/hero.jpg");
+    height: auto;
+    border-radius: 10px;
+    padding: 10px 5px 10px 5px;
+
+}
+.cars-mid-section{
+    padding: 10px 10px 10px 10px; 
+    margin: 200px 20px 20px 20px;
+    background: #fff;
+    border-radius: 10px;
+}
+.cards-offer{
+    display: flex;
+    justify-content: center;
+}
+.social-links{
+    text-align: center;
+    padding: 20px 50px;
+}
+.social-links i{
+    gap: 40px;
+    padding: 20px;
+    font-size: 2rem;
+}
