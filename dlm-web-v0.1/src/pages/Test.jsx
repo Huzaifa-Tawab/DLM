@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   collection,
   query,
@@ -7,26 +7,32 @@ import {
   doc,
   getDoc,
   Timestamp,
+  addDoc,
 } from "firebase/firestore";
-
 import { db } from "../firebase";
 import SideBar from "../components/Sidebar/sidebar";
+import "./test.css";
 
 function Test() {
   const [LevelOne, setLevelOne] = useState([]);
   const [LevelTwo, setLevelTwo] = useState([]);
   const [LevelThree, setLevelThree] = useState([]);
   const [LevelFour, setLevelFour] = useState([]);
+  const [Promos, setPromos] = useState([]);
   const [Marquee, setMarquee] = useState("");
   const [User, setUser] = useState();
-  const uid = "4567845678456";
+  const [PromosWithTotal, setPromosWithTotal] = useState([]);
+  const [goalAchieved, setGoalAchieved] = useState(false);
+  const uid = "1350310000111";
 
   useEffect(() => {
     getUser();
     fetchData(uid);
     getListText();
     getPromos();
+    getPayments();
   }, []);
+
   const getListText = async () => {
     const docRef = doc(db, "constraints", "Super");
     const docSnap = await getDoc(docRef);
@@ -34,6 +40,7 @@ function Test() {
       setMarquee(docSnap.data().Marquee.join(" | "));
     }
   };
+
   const getUser = async () => {
     const docRef = doc(db, "Agent", uid);
     const docSnap = await getDoc(docRef);
@@ -45,12 +52,10 @@ function Test() {
   const fetchData = async (user) => {
     const AgentRef = collection(db, "Agent");
 
-    // Level 1
     const level1Query = query(AgentRef, where("ChildOf", "==", user));
     const level1Snapshot = await getDocs(level1Query);
     setLevelOne(level1Snapshot.docs.map((doc) => doc.data()));
 
-    // Level 2
     const level2Query = query(
       AgentRef,
       where(
@@ -62,7 +67,6 @@ function Test() {
     const level2Snapshot = await getDocs(level2Query);
     setLevelTwo(level2Snapshot.docs.map((doc) => doc.data()));
 
-    // Level 3
     const level3Query = query(
       AgentRef,
       where(
@@ -74,7 +78,6 @@ function Test() {
     const level3Snapshot = await getDocs(level3Query);
     setLevelThree(level3Snapshot.docs.map((doc) => doc.data()));
 
-    // Level 4
     const level4Query = query(
       AgentRef,
       where(
@@ -86,6 +89,7 @@ function Test() {
     const level4Snapshot = await getDocs(level4Query);
     setLevelFour(level4Snapshot.docs.map((doc) => doc.data()));
   };
+
   async function getPromos() {
     const currentTimestamp = Timestamp.fromDate(new Date());
 
@@ -100,7 +104,9 @@ function Test() {
       const data = doc.data();
       temp.push(doc.data());
     });
+    setPromos(temp);
   }
+
   const calculateRemainingHours = (endsAt) => {
     const currentTimestamp = new Date();
     const endsAtTimestamp = endsAt.getTime();
@@ -110,6 +116,77 @@ function Test() {
 
     return remainingHours;
   };
+
+  async function getPayments() {
+    const q = query(
+      collection(db, "Transactions"),
+      where("varified", "==", true),
+      where("agentID", "==", uid)
+    );
+    const querySnapshot = await getDocs(q);
+    let temp = [];
+    querySnapshot.forEach((doc) => {
+      let map = {};
+      map["time"] = doc.data().time.seconds;
+      map["amount"] = parseInt(doc.data().total);
+      temp.push(map);
+    });
+    console.log(temp);
+  }
+
+  async function getPromosWithTotal() {
+    const currentTimestamp = Timestamp.fromDate(new Date());
+
+    const promoQuery = query(
+      collection(db, "Promos"),
+      where("endsAt", ">", currentTimestamp)
+    );
+    const promoSnapshot = await getDocs(promoQuery);
+
+    const promosWithTotal = await Promise.all(
+      promoSnapshot.docs.map(async (promoDoc) => {
+        const promoData = promoDoc.data();
+        const promoCreatedAt = promoData.createdAt;
+        const transactionsQuery = query(
+          collection(db, "Transactions"),
+          where("varified", "==", true),
+          where("agentID", "==", uid),
+          where("time", ">", promoCreatedAt)
+        );
+
+        const transactionsSnapshot = await getDocs(transactionsQuery);
+        const totalAmount = transactionsSnapshot.docs.reduce(
+          (sum, transactionDoc) =>
+            sum + parseInt(transactionDoc.data().total, 10),
+          0
+        );
+
+        const isGoalAchieved = totalAmount >= promoData.target;
+
+        setGoalAchieved(isGoalAchieved);
+
+        if (isGoalAchieved) {
+          await addDoc(collection(db, "CompletedPromos"), {
+            agentID: uid,
+            promoID: promoDoc.id,
+            // Add other relevant data
+          });
+        }
+
+        return {
+          ...promoData,
+          totalAmount,
+        };
+      })
+    );
+
+    setPromosWithTotal(promosWithTotal);
+  }
+
+  useEffect(() => {
+    getPromosWithTotal();
+  }, []);
+
   return (
     <SideBar
       element={
@@ -125,24 +202,16 @@ function Test() {
               {Marquee}
             </marquee>
             <h2>Level 1</h2>
-            {LevelOne.map((user, index) => (
-              <div key={index}>{user.Cnic}</div>
-            ))}
+            {LevelOne.length}
 
             <h2>Level 2</h2>
-            {LevelTwo.map((user, index) => (
-              <div key={index}>{user.Cnic}</div>
-            ))}
+            {LevelTwo.length}
 
             <h2>Level 3</h2>
-            {LevelThree.map((user, index) => (
-              <div key={index}>{user.Cnic}</div>
-            ))}
+            {LevelThree.length}
 
             <h2>Level 4</h2>
-            {LevelFour.map((user, index) => (
-              <div key={index}>{user.Cnic}</div>
-            ))}
+            {LevelFour.length}
             {User && (
               <>
                 <p>{User.Name}</p>
@@ -158,20 +227,82 @@ function Test() {
                 <th>Target</th>
                 <th>Ends At</th>
                 <th>Remaining Hours</th>
+                <th>Total Amount</th>
               </tr>
             </thead>
             <tbody>
-              {events.map((event, index) => (
-                <tr key={index}>
-                  <td>{event.title}</td>
-                  <td>{event.prize}</td>
-                  <td>{event.target}</td>
-                  <td>{event.endsAt.toDate().toLocaleString()}</td>
-                  <td>{calculateRemainingHours(event.endsAt.toDate())}</td>
+              {PromosWithTotal.map((promo, index) => (
+                <tr key={index} className={goalAchieved ? "goal-achieved" : ""}>
+                  <td>{promo.title}</td>
+                  <td>{promo.prize}</td>
+                  <td>{promo.target}</td>
+                  <td>{promo.endsAt.toDate().toLocaleString()}</td>
+                  <td>{calculateRemainingHours(promo.endsAt.toDate())}</td>
+                  <td>{promo.totalAmount}</td>
                 </tr>
               ))}
             </tbody>
           </table>
+          {User && (
+            <div>
+              <h2>User Information</h2>
+              <ul>
+                <li>
+                  <strong>Name:</strong> {User.Name}
+                </li>
+                <li>
+                  <strong>Father's Name:</strong> {User.FName}
+                </li>
+                <li>
+                  <strong>Date of Birth:</strong> {User.Dob}
+                </li>
+                <li>
+                  <strong>Gender:</strong> {User.Gender}
+                </li>
+                <li>
+                  <strong>CNIC:</strong> {User.Cnic}
+                </li>
+                <li>
+                  <strong>Phone Number:</strong> {User.phNo}
+                </li>
+                <li>
+                  <strong>Email:</strong> {User.Gmail}
+                </li>
+                <li>
+                  <strong>Address:</strong> {User.Address}
+                </li>
+                <li>
+                  <strong>Town/City:</strong> {User.TownCity}
+                </li>
+                <li>
+                  <strong>Agreed to Terms:</strong> {User.agree ? "Yes" : "No"}
+                </li>
+                <li>
+                  <strong>Profile Image URL:</strong>{" "}
+                  <a
+                    href={User.imgUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {User.imgUrl}
+                  </a>
+                </li>
+                <li>
+                  <strong>Invitation ID:</strong> {User.InvId}
+                </li>
+                <li>
+                  <strong>Plots:</strong>{" "}
+                  {User.Plots.length > 0 ? User.Plots.join(", ") : "No plots"}
+                </li>
+                <li>
+                  <strong>Documents:</strong>{" "}
+                  {User.Documents.length > 0
+                    ? User.Documents.join(", ")
+                    : "No documents"}
+                </li>
+              </ul>
+            </div>
+          )}
         </>
       }
     />
