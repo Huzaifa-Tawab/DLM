@@ -176,7 +176,7 @@ function Test() {
         );
 
         const isGoalAchieved = totalAmount >= promoData.target;
-
+        const per = (promoData.target / totalAmount) * 100;
         const status = isGoalAchieved ? "completed" : "pending";
 
         if (isGoalAchieved) {
@@ -191,6 +191,7 @@ function Test() {
           ...promoData,
           totalAmount,
           status,
+          per,
         };
       })
     );
@@ -222,30 +223,68 @@ function Test() {
               </marquee>
               <div className="agent-dash-content">
                 <div className="agent-dash-content-col1">
-                  <div className="agent-dash-content-col1-row1"></div>
+                  <div className="agent-dash-content-col1-row1">
+                    <img src={User.imgUrl} className="dash-avatar" />
+                    <h1>{User.Name}</h1>
+                    <h1>{User.Dob}</h1>
+                    <h1>{User.Cnic}</h1>
+                  </div>
+
                   <div className="agent-dash-content-col1-row2">
-                    <div className="agent-dash-content-col1-row2-card1"></div>
+                    <div className="agent-dash-content-col1-row2-card1">
+                      <div className="level-card">
+                        <h1>Direct </h1>
+                        <h1>{User.Plots.length} plots </h1>
+                      </div>
+                      <div className="level-card">
+                        <h1>Level 1 </h1>
+                        <h1>{LevelOne.length} persons </h1>
+                      </div>
+                      <div className="level-card">
+                        <h1>Level 2 </h1>
+                        <h1>{LevelTwo.length} persons </h1>
+                      </div>
+                      <div className="level-card">
+                        <h1>Level 3 </h1>
+                        <h1>{LevelThree.length} persons </h1>
+                      </div>
+                    </div>
                     <div className="agent-dash-content-col1-row2-card2"></div>
                   </div>
                 </div>
                 <div className="agent-dash-content-col2">
-                  <div className="agent-dash-content-col2-card">
-                    <div className="agent-dash-content-col2-card-content">
-                      <h1>Promo 1</h1>
-                      <h3>Pts :10000</h3>
-                      <h3>Target :9999999</h3>
+                  {PromosWithStatus.map((promo, index) => (
+                    //     promo.status === "completed" ? "goal-achieved" : ""
+
+                    <div
+                      key={index}
+                      className={`agent-dash-content-col2-card ${
+                        promo.status === "completed" ? "goal-achieved" : ""
+                      }`}
+                    >
+                      <div className="mymistake-huxi">
+                        <div className="agent-dash-content-col2-card-content">
+                          <h1>{promo.title}</h1>
+                          <h3>Pts :{promo.totalAmount}</h3>
+                          <h3>Target :{promo.target}</h3>
+                        </div>
+                        <div className="agent-dash-content-col2-card-progress">
+                          <CircularProgressbar
+                            className="progress-percent"
+                            value={parseInt(promo.per)}
+                            text={`${parseInt(promo.per)}%`}
+                          />
+                        </div>
+                      </div>
+                      <div className="flex-justify">
+                        <h3>Prize:{promo.prize}</h3>
+                        <h3>
+                          {calculateRemainingHours(promo.endsAt.toDate())}hrs
+                          left
+                        </h3>
+                      </div>
                     </div>
-                    <div className="agent-dash-content-col2-card-progress">
-                      <CircularProgressbar
-                        className="progress-percent"
-                        value={10}
-                        text={`${10}%`}
-                      />
-                    </div>
-                    <div className="flex-justify">
-                      <h3></h3>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -310,22 +349,22 @@ export default Test;
 //   </tr>
 // </thead>
 // <tbody>
-//   {PromosWithStatus.map((promo, index) => (
-//     <tr
-//       key={index}
-//       className={
-//         promo.status === "completed" ? "goal-achieved" : ""
-//       }
-//     >
-//       <td>{promo.title}</td>
-//       <td>{promo.prize}</td>
-//       <td>{promo.target}</td>
-//       <td>{promo.endsAt.toDate().toLocaleString()}</td>
-//       <td>{calculateRemainingHours(promo.endsAt.toDate())}</td>
-//       <td>{promo.totalAmount}</td>
-//       <td>{promo.status}</td>
-//     </tr>
-//   ))}
+// {PromosWithStatus.map((promo, index) => (
+//   <tr
+//     key={index}
+//     className={
+//       promo.status === "completed" ? "goal-achieved" : ""
+//     }
+//   >
+//     <td>{promo.title}</td>
+//     <td>{promo.prize}</td>
+//     <td>{promo.target}</td>
+//     <td>{promo.endsAt.toDate().toLocaleString()}</td>
+//     <td>{calculateRemainingHours(promo.endsAt.toDate())}</td>
+//     <td>{promo.totalAmount}</td>
+//     <td>{promo.status}</td>
+//   </tr>
+// ))}
 // </tbody>
 // </table>
 // {User && <></>}
