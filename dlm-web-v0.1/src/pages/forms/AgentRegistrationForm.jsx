@@ -210,6 +210,7 @@ const AgentRegistrationForm = () => {
     setisLoading(true);
     e.preventDefault();
     setErrors();
+
     const validationErrors = validateForm(formData);
     if (Object.keys(validationErrors).length === 0) {
       const docRef = doc(db, "Users", formData.Cnic);
@@ -235,6 +236,10 @@ const AgentRegistrationForm = () => {
   const validateForm = (data) => {
     const errors = {};
 
+    if (!data.ChildOf) {
+      alert("Reference is required");
+      errors.Ref = "Ref is required";
+    }
     if (!data.Name.trim()) {
       errors.Name = "Name is required";
     }
