@@ -22,7 +22,7 @@ function FinancePending() {
   const [CustomersData, setCustomersData] = useState([]);
   const [filteredCustomersData, setFilteredCustomersData] = useState([]);
   const [isLoading, setisLoading] = useState(true);
-
+  let invoiceId = "";
   useEffect(() => {
     getCustomersData();
   }, [1]);
@@ -30,6 +30,7 @@ function FinancePending() {
   async function AproveTrans(id, nature, data) {
     setisLoading(true);
 
+    invoiceId = id;
     if (nature === "transfer") {
       const senderPending = doc(db, "Customers", data.senderCustomerID);
       const receiverPending = doc(db, "Customers", data.receiverCustomerID);
@@ -134,8 +135,8 @@ function FinancePending() {
       await updateDoc(agentDoc, {
         credit: credit + commission,
       });
-      await addDoc(doc(db, "Credit"), {
-        invoiceID: id,
+      await addDoc(collection(db, "Credit"), {
+        invoiceID: invoiceId,
         agent: agentId,
         level: level,
         commission: commission,
