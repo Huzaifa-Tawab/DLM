@@ -12,40 +12,42 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { parseInt } from "lodash";
+import { Loader } from "rsuite";
 
-function Widrawal({ showModal, onClose }) {
-  const name = localStorage.getItem("Name");
-  const id = localStorage.getItem("id");
-
-  const [Expense, setExpense] = useState();
-  const [Desc, setDesc] = useState("");
-  const [Amount, setAmount] = useState("");
+function Widrawal({ showModal, onClose, uid, totalCredit }) {
+  const [Amount, setAmount] = useState(0);
   const [Error, setError] = useState("");
+  const [isloading, setisloading] = useState(false);
 
   function handleUpload() {
     let error = false;
     setError("");
-    if (Title === "") {
+    if (parseInt(Amount) <= 10000) {
       error = true;
 
-      setError("Title Can Not Be Empty");
+      setError("Amount Can Not be less then 100,000 ");
+    } else if (parseInt(Amount) >= parseInt(totalCredit)) {
+      error = true;
+
+      setError("Amount Can Not Exceed " + totalCredit);
     }
     console.log(error);
     if (!error) {
+      setisloading(true);
       UpdateData();
     }
   }
 
   async function UpdateData() {
     try {
-      await setDoc(doc(db, "WidhrawalRequset", Amount), {
-        name: Amount,
-
+      await addDoc(collection(db, "WithDraw"), {
+        amount: Amount,
+        status: "Pending",
         created: serverTimestamp(),
-        by: name,
-        id: id,
+        agentid: uid,
       });
       onClose();
+      setisloading(false);
     } catch (error) {
       console.log(error);
     }
@@ -55,31 +57,36 @@ function Widrawal({ showModal, onClose }) {
       show={showModal}
       onClose={onClose}
       containerClassName="custom-modal-container"
-      closeOnOuterClick={true}
     >
-      <h2>Widrawal Amount</h2>
-      <span>Minimum Widhrawal Amount is 100000</span>
-      <div className="closebutton">
-        <img onClick={onClose} src={xIcon} alt="" />
-      </div>
-      <div>
-        <div className="modal-field-group">
-          <br />
-          <p>Amount</p>
-          <input
-            type="number"
-            placeholder="Amount"
-            onChange={(e) => {
-              setAmount(e.target.value);
-            }}
-          />
-        </div>
-        <p>{Error}</p>
-        <br />
-        <button className="modal-button" onClick={handleUpload}>
-          Submit
-        </button>
-      </div>
+      {isloading ? (
+        <Loader />
+      ) : (
+        <>
+          <h2>Widrawal Amount</h2>
+          <span>Minimum Widhrawal Amount is 100000</span>
+          <div className="closebutton">
+            <img onClick={onClose} src={xIcon} alt="" />
+          </div>
+          <div>
+            <div className="modal-field-group">
+              <br />
+              <p>Amount</p>
+              <input
+                type="number"
+                placeholder="Amount"
+                onChange={(e) => {
+                  setAmount(e.target.value);
+                }}
+              />
+            </div>
+            <p>{Error}</p>
+            <br />
+            <button className="modal-button" onClick={handleUpload}>
+              Submit
+            </button>
+          </div>
+        </>
+      )}
     </Modal>
   );
 }

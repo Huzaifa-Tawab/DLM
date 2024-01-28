@@ -9,6 +9,7 @@ import {
   getDoc,
   setDoc,
   serverTimestamp,
+  addDoc,
 } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useNavigate } from "react-router-dom";
@@ -54,7 +55,7 @@ function FinancePending() {
       data.agentID,
       level1DocSnap.data().credit ?? 0,
       levelOneCommission,
-      "Level1"
+      "Direct"
     );
 
     let level2id = null;
@@ -133,7 +134,8 @@ function FinancePending() {
       await updateDoc(agentDoc, {
         credit: credit + commission,
       });
-      await setDoc(doc(db, "Credit", uniqueId()), {
+      await addDoc(doc(db, "Credit"), {
+        invoiceID: id,
         agent: agentId,
         level: level,
         commission: commission,
