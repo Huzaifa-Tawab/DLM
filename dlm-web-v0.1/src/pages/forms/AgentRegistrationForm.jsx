@@ -157,6 +157,7 @@ const AgentRegistrationForm = () => {
     Documents: [],
     agree: false,
     InvId: InvoiceID,
+    Credit: 0,
   });
   useEffect(() => {
     const getInvId = async () => {
