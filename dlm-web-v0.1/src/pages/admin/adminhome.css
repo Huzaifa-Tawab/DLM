@@ -54,6 +54,7 @@ tr {
   width: 60px;
   border-radius: 15px;
   padding: 3px;
+  margin-left: 8px;
 }
 table {
   border-spacing: 0px !important;
@@ -129,7 +130,7 @@ table {
 }
 
 .avatar-table {
-  width: 40px;
+  width: 35px;
   margin: 5px;
 }
 /* 
@@ -159,12 +160,12 @@ table {
   height: 60vh;
   overflow-x: auto;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 13px;
 }
 .tableFixHead thead {
   border-radius: 10px;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 16px;
 }
 .tableFixHead thead tr {
   display: block;
