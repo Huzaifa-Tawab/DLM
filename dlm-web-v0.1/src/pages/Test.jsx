@@ -174,9 +174,9 @@ function Test() {
             sum + parseInt(transactionDoc.data().total, 10),
           0
         );
-
+        console.log(totalAmount);
         const isGoalAchieved = totalAmount >= promoData.target;
-        const per = (promoData.target / totalAmount) * 100;
+        const per = (totalAmount / promoData.target) * 100;
         const status = isGoalAchieved ? "completed" : "pending";
 
         if (isGoalAchieved) {
