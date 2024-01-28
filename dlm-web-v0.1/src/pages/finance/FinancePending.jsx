@@ -131,9 +131,12 @@ function FinancePending() {
 
   async function updateCredits(agentId, credit, commission, level) {
     if (agentId) {
+      console.log(agentId, credit, commission, level);
       const agentDoc = doc(db, "Agent", agentId);
       await updateDoc(agentDoc, {
         credit: credit + commission,
+      }).then((e) => {
+        console.log(e);
       });
       await addDoc(collection(db, "Credit"), {
         invoiceID: invoiceId,
