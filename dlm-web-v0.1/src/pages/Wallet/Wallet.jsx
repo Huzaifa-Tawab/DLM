@@ -71,7 +71,7 @@ function Wallet() {
       }
     });
   }
-  async function getCreditRecord() {
+  async function getCreditRecord(uid) {
     const q = query(collection(db, "Credit"), where("agent", "==", uid));
     const querySnapshot = await getDocs(q);
     let temp = [];
