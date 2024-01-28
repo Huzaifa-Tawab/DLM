@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import "./login.css";
 import Loader from "../../components/loader/Loader";
 import Header from "../../components/header/Header";
+import logo from "../../Assets/SoftXion.png";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -114,7 +115,20 @@ const Login = () => {
     <Loader />
   ) : (
     <>
-      <Header />
+      <div className="head-home">
+        <div className="logo">
+          <img src={logo} alt="" />
+        </div>
+        <div className="cta">
+          <button
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            Login
+          </button>
+        </div>
+      </div>
       <div className="Login-main">
         <div className="login-container">
           <h2>Login</h2>

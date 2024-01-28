@@ -13,6 +13,7 @@ import { auth, db } from "../firebase";
 import SideBar from "../components/Sidebar/sidebar";
 import "./Test.css"; // Import your CSS file for styling
 import { onAuthStateChanged } from "firebase/auth";
+import { Loader } from "rsuite";
 
 function Test() {
   const [LevelOne, setLevelOne] = useState([]);
@@ -24,6 +25,7 @@ function Test() {
   const [User, setUser] = useState();
   const [PromosWithStatus, setPromosWithStatus] = useState([]);
   const [uid, setuid] = useState("");
+  const [isLoading, setisLoading] = useState(true);
 
   useEffect(() => {
     getUser();
@@ -63,6 +65,7 @@ function Test() {
     const level1Query = query(AgentRef, where("ChildOf", "==", user));
     const level1Snapshot = await getDocs(level1Query);
     setLevelOne(level1Snapshot.docs.map((doc) => doc.data()));
+    setisLoading(false);
 
     const level2Query = query(
       AgentRef,
@@ -198,115 +201,104 @@ function Test() {
     getPromosWithStatus();
   }, []);
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <SideBar
       element={
         <>
-        
-        <div className="agent-dash">
-          <div className="head-dash">
-            <marquee className="promo"
-              behavior="scroll"
-              scrollamount="10"
-              width="100%"
-              direction="right"
-              height="50px"
-            >
-              {Marquee}
-            </marquee>
-            <div className="dash-main-set">
-            <div className="client-pic">
-                    <div className="client-pic-detail">
-                      <img
-                        className="avatar"
-                        src={
-                          User.imgUrl
-                          
-                        }
-                        alt="User"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ maxWidth: "100px" }}
-                      />
-                      <div className="cus-details">
-                        <h2>{User.Name}</h2>
-                        <h2>{User.Dob}</h2>
-                        <h2>{User.Cnic}</h2>
-                      </div>
+          <div className="agent-dash">
+            <div className="head-dash">
+              <marquee
+                className="promo"
+                behavior="scroll"
+                scrollamount="10"
+                width="100%"
+                direction="right"
+                height="50px"
+              >
+                {Marquee}
+              </marquee>
+              <div className="dash-main-set">
+                <div className="client-pic">
+                  <div className="client-pic-detail">
+                    <img
+                      className="avatar"
+                      src={User.imgUrl}
+                      alt="User"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ maxWidth: "100px" }}
+                    />
+                    <div className="cus-details">
+                      <h2>{User.Name}</h2>
+                      <h2>{User.Dob}</h2>
+                      <h2>{User.Cnic}</h2>
                     </div>
                   </div>
-            <div className="level-cards">
-              <div className="box-level-record">
-
-              
-            <h2>Level 1</h2>
-            {LevelOne.map((user, index) => (
-              <div key={index}>{user.Cnic}</div>
-            ))}
+                </div>
+                <div className="level-cards">
+                  <div className="box-level-record">
+                    <h2>Level 1</h2>
+                    {LevelOne.map((user, index) => (
+                      <div key={index}>{user.Cnic}</div>
+                    ))}
+                  </div>
+                  <div className="box-level-record">
+                    <h2>Level 2</h2>
+                    {LevelTwo.map((user, index) => (
+                      <div key={index}>{user.Cnic}</div>
+                    ))}
+                  </div>
+                  <div className="box-level-record">
+                    <h2>Level 3</h2>
+                    {LevelThree.map((user, index) => (
+                      <div key={index}>{user.Cnic}</div>
+                    ))}
+                  </div>
+                  <div className="box-level-record">
+                    <h2>Level 4</h2>
+                    {LevelFour.length}
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="box-level-record">
-
-            <h2>Level 2</h2>
-            {LevelTwo.map((user, index) => (
-              <div key={index}>{user.Cnic}</div>
-            ))}
-          </div>
-          <div className="box-level-record">
-
-            <h2>Level 3</h2>
-            {LevelThree.map((user, index) => (
-              <div key={index}>{user.Cnic}</div>
-            ))}
-</div>
-<div className="box-level-record">
-
-            <h2>Level 4</h2>
-            {LevelFour.length}
-            </div>
-       
-            </div>
-            </div>
-          </div>
-          <table>
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Prize</th>
-                <th>Target</th>
-                <th>Ends At</th>
-                <th>Remaining Hours</th>
-                <th>Total Amount</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {PromosWithStatus.map((promo, index) => (
-                <tr
-                  key={index}
-                  className={
-                    promo.status === "completed" ? "goal-achieved" : ""
-                  }
-                >
-                  <td>{promo.title}</td>
-                  <td>{promo.prize}</td>
-                  <td>{promo.target}</td>
-                  <td>{promo.endsAt.toDate().toLocaleString()}</td>
-                  <td>{calculateRemainingHours(promo.endsAt.toDate())}</td>
-                  <td>{promo.totalAmount}</td>
-                  <td>{promo.status}</td>
+            <table>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Prize</th>
+                  <th>Target</th>
+                  <th>Ends At</th>
+                  <th>Remaining Hours</th>
+                  <th>Total Amount</th>
+                  <th>Status</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-          {User && (
-              <></>
-          )}
+              </thead>
+              <tbody>
+                {PromosWithStatus.map((promo, index) => (
+                  <tr
+                    key={index}
+                    className={
+                      promo.status === "completed" ? "goal-achieved" : ""
+                    }
+                  >
+                    <td>{promo.title}</td>
+                    <td>{promo.prize}</td>
+                    <td>{promo.target}</td>
+                    <td>{promo.endsAt.toDate().toLocaleString()}</td>
+                    <td>{calculateRemainingHours(promo.endsAt.toDate())}</td>
+                    <td>{promo.totalAmount}</td>
+                    <td>{promo.status}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            {User && <></>}
           </div>
           <li>
-                  <strong>Plots:</strong>{" "}
-                  {User.Plots.length }
-                </li>
-         
+            <strong>Plots:</strong> {User.Plots.length}
+          </li>
         </>
       }
     />

@@ -66,8 +66,8 @@ function App() {
         <Route path="/print/invoice/:id" element={<PrintInvoice />} />
         {/* <Route path="/" element={<FinancePlotsView />} /> */}
         {/* <Route path="/" element={<Home />} /> */}
-        <Route path="/" element={<Home />} />
-        <Route path="/123" element={<HomeNew />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<HomeNew />} />
         {/* <Route
           path="/123"
           element={

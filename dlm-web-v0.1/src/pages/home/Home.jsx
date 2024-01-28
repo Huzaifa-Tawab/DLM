@@ -7,6 +7,7 @@ import Header from "../../components/header/Header";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import Footer from "../../components/Footer/Footer";
+import logo from "../../Assets/SoftXion.png";
 
 const Home = () => {
   const [referenceId, setReferenceId] = useState("");
@@ -71,17 +72,15 @@ const Home = () => {
     if (docSnap.exists()) {
       console.log("Document data:", docSnap.data());
       if (docSnap.data().Blocked) {
-      console.log("jhhjkhkjhjkh");
+        console.log("jhhjkhkjhjkh");
 
         navigate("/blocked");
-      }else{
-        
-
+      } else {
         if (docSnap.data()["phNo"] == phoneNumber) {
           console.log("Number OK");
           if (docSnap.data()["Plots"].includes(referenceId)) {
             console.log("Ref OK");
-  
+
             navigate("/details/plot", {
               state: {
                 img: docSnap.data()["imgUrl"],
@@ -95,15 +94,27 @@ const Home = () => {
         } else {
           // navigate("/404");
         }
-      
       }
-     
-  }}
+    }
+  }
   return isLoading ? (
     <Loader />
   ) : (
     <>
-      <Header />
+      <div className="head-home">
+        <div className="logo">
+          <img src={logo} alt="" />
+        </div>
+        <div className="cta">
+          <button
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            Login
+          </button>
+        </div>
+      </div>
       <div className="Home-main">
         <div className="home-container">
           <h2>Plot Details Protal</h2>

@@ -1,68 +1,133 @@
-.head-home{
-    display: flex;
-    justify-content: space-between;
-    margin: 20px;
-    background: #f5f5f5;
-    align-items: center;
+.head-home {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background: #fff;
+  align-items: center;
 }
-.Hero{
-    text-align: center;
+.Hero {
+  text-align: center;
 }
-.hero-img img{
-    width: 100%;
+.cta {
+  background: #f4b266;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
 }
-.hero-img{
-    margin: 20px 0px;
+.cta button {
+  background: none;
+  padding: 10px;
+  width: 10vw;
 }
-.team-works{
-    text-align: center;
+.cta button:hover {
+  background: #a4243b;
+  border-radius: 25px;
 }
-.logos-slider{
-    display: flex;
-    justify-content: center;
-    margin: 20px;
+.hero-img img {
+  width: 100%;
 }
-.logos-slider img{
-    width: 200px;
+.Hero h1 {
+  margin-top: 30px;
+  font-size: 4rem;
 }
-.marketing-components{
-    margin: 20px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
-    margin: 50px;
+.Hero > h1 > strong {
+  color: #a4243b;
 }
-.market-img img{
- width: 400px;
+.Hero > p {
+  font-size: 18px;
+  width: 700px;
+  margin-left: 25%;
+  margin-top: 20px;
 }
-.our-works{
-    text-align: center;
+.Hero button {
+  background: #f4b266;
+  padding: 10px 15px;
+  border-radius: 25px;
+  font-size: 20px;
+  margin-top: 20px;
+  color: #fff;
+  font-weight: 600;
+  width: 10vw;
 }
-.flex-cards{
-    width: 400px;
-    background: url("../../Assets/hero.jpg");
-    height: auto;
-    border-radius: 10px;
-    padding: 10px 5px 10px 5px;
-
+.Hero button:hover {
+  background: #a4243b;
 }
-.cars-mid-section{
-    padding: 10px 10px 10px 10px; 
-    margin: 200px 20px 20px 20px;
-    background: #fff;
-    border-radius: 10px;
+.log-in-home {
+  background: #fff !important;
+  color: #000 !important;
+  margin-left: 20px;
+  border: 1px solid #000;
 }
-.cards-offer{
-    display: flex;
-    justify-content: center;
+.hero-img {
+  margin: 30px 0px;
 }
-.social-links{
-    text-align: center;
-    padding: 20px 50px;
+.team-works {
+  text-align: center;
+  margin-top: 100px;
 }
-.social-links i{
-    gap: 40px;
-    padding: 20px;
-    font-size: 2rem;
+.team-works > h3 {
+  font-size: 4rem;
+}
+.logos-slider {
+  display: flex;
+  justify-content: center;
+  margin: 40px 20px;
+}
+.logos-slider img {
+  width: 200px;
+}
+.marketing-components {
+  margin: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 50px;
+}
+.market-typo > h2 {
+  font-size: 3rem;
+}
+.market-typo span {
+  font-size: 18px;
+}
+.market-img img {
+  width: 500px;
+}
+.our-works {
+  text-align: center;
+  margin-top: 50px;
+}
+.our-works > h1 {
+  font-size: 3rem;
+}
+.our-works > span {
+  font-size: 24px;
+}
+.flex-cards {
+  width: 400px;
+  background: url("../../Assets/hero.jpg");
+  height: auto;
+  border-radius: 10px;
+  padding: 10px 5px 10px 5px;
+  margin-top: 30px;
+}
+.cars-mid-section {
+  padding: 10px 10px 10px 10px;
+  margin: 200px 20px 20px 20px;
+  background: #fff;
+  border-radius: 10px;
+}
+.cards-offer {
+  display: flex;
+  justify-content: space-evenly;
+}
+.social-links {
+  text-align: center;
+  padding: 20px 50px;
+}
+.social-links i {
+  gap: 40px;
+  padding: 20px;
+  font-size: 2rem;
 }
