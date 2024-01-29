@@ -187,6 +187,11 @@ const PlotRegistrationForm = () => {
     if (CustomerdocSnap.exists()) {
       customer = CustomerdocSnap.data();
     }
+
+    const agentdocSnap = await getDoc(doc(db, "Agents", userid));
+    if (agentdocSnap.exists()) {
+      agent = agentdocSnap.data();
+    }
     while (!TSize == 0) {
       randomNum = `INV-${
         agent.InvId + (Math.floor(Math.random() * 1000000) + 1)
