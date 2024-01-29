@@ -1,7 +1,8 @@
 import React from "react";
+import SideBar from "../../components/Sidebar/sidebar";
 
 function Financedash() {
-  return <div>Financedash</div>;
+  return <SideBar element={<div>Financedash</div>} />;
 }
 
 export default Financedash;

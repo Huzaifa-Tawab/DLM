@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
 import FinanceHeader from "../../components/header/FinanceHeader";
 import { debounce, uniqueId } from "lodash";
+import SideBar from "../../components/Sidebar/sidebar";
 
 function FinancePending() {
   const navigate = useNavigate();
@@ -195,73 +196,78 @@ function FinancePending() {
     return temp;
   }
 
-  return isLoading ? (
-    <Loader />
-  ) : (
-    <>
-      <FinanceHeader />
-      <div className="Admin-Home">
-        <div className="Admin-Home-content">
-          <div className="Admin-Home-table">
-            <input
-              type="text"
-              placeholder="Search"
-              onChange={(e) => debouncedFilterData(e.target.value)}
-              className="input-field"
-            />
-            <div className="table">
-              <table className="adminhome-table">
-                <thead>
-                  <tr>
-                    <th>Customer Name</th>
-                    <th>Uploaded By</th>
-                    <th>File Number</th>
-                    <th>Nature</th>
-                    <th>Payment</th>
-                    <th>penalty</th>
-                    <th>Created At</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredCustomersDataMemoized.map((e, index) => (
-                    <tr key={index}>
-                      <td>{e.customerName}</td>
-                      <td>{e.agentName}</td>
-                      <td>{e.fileNumber}</td>
-                      <td>{e.nature}</td>
-                      <td>{e.payment}</td>
-                      <td>{e.panelty}</td>
-                      <td>{getDate(e.time.seconds)}</td>
+  return (
+    <SideBar
+      element={
+        isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            <div className="Admin-Home">
+              <div className="Admin-Home-content">
+                <div className="Admin-Home-table">
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    onChange={(e) => debouncedFilterData(e.target.value)}
+                    className="input-field"
+                  />
+                  <div className="table">
+                    <table className="adminhome-table">
+                      <thead>
+                        <tr>
+                          <th>Customer Name</th>
+                          <th>Uploaded By</th>
+                          <th>File Number</th>
+                          <th>Nature</th>
+                          <th>Payment</th>
+                          <th>penalty</th>
+                          <th>Created At</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {filteredCustomersDataMemoized.map((e, index) => (
+                          <tr key={index}>
+                            <td>{e.customerName}</td>
+                            <td>{e.agentName}</td>
+                            <td>{e.fileNumber}</td>
+                            <td>{e.nature}</td>
+                            <td>{e.payment}</td>
+                            <td>{e.panelty}</td>
+                            <td>{getDate(e.time.seconds)}</td>
 
-                      <td>
-                        <button
-                          className="button-view"
-                          onClick={() => {
-                            openNewWindow(e.proof);
-                          }}
-                        >
-                          View
-                        </button>
-                        <button
-                          className="button-view"
-                          onClick={() => {
-                            AproveTrans(e.InvId, e.nature, e);
-                          }}
-                        >
-                          Approve
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                            <td>
+                              <button
+                                className="button-view"
+                                onClick={() => {
+                                  openNewWindow(e.proof);
+                                }}
+                              >
+                                View
+                              </button>
+                              <button
+                                className="button-view"
+                                onClick={() => {
+                                  AproveTrans(e.InvId, e.nature, e);
+                                }}
+                              >
+                                Approve
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-      {/* Add any additional components or content here */}
-    </>
+            {/* Add any additional components or content here */}
+          </>
+        )
+      }
+    />
   );
 }
 
