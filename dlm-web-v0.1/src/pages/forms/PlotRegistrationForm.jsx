@@ -52,11 +52,10 @@ const PlotRegistrationForm = () => {
   const [BlockError, setBlockError] = useState("");
   const [possessionAmountError, setpossessionAmountError] = useState("");
   const [InstallmentMonthError, setInstallmentMonthError] = useState("");
-  const [Block, setBlock] = useState("")
-  const [labelError, setlabelError] = useState("")
-  const [Marla, setMarla] = useState("")
-  const [sqft, setsqft] = useState("")
-  const [Selectedsize, setSelectedsize] = useState([])
+  const [Block, setBlock] = useState("");
+  const [labelError, setlabelError] = useState("");
+
+  const [Selectedsize, setSelectedsize] = useState("");
 
   useEffect(() => {
     const generateNumber = async () => {
@@ -86,7 +85,7 @@ const PlotRegistrationForm = () => {
     const Selectedsize = e.target.value;
     setSelectedsize(e.target.value);
     console.log(Selectedsize);
-  }
+  };
   // const handleSocietyChange = (event) => {
   //   const selectedIndex = event.target.value;
   //   setSelectedOptionIndex(
@@ -106,45 +105,55 @@ const PlotRegistrationForm = () => {
     let error = 0;
 
     if (Address.trim() === "") {
+      console.log(10);
       setAddressError("Address Can not be empty");
       error++;
     }
     if (Catagory.trim() === "") {
       setCatagoryError("Category Can not be empty");
       error++;
+      console.log(9);
     }
     if (CityTown.trim() === "") {
       setCityTownError("city/Town Can not be empty");
+
+      console.log(8);
       error++;
     }
     if (PaidAmount.trim() === "") {
+      console.log(7);
+
       setPaidAmountError("PaidAmount Can not be empty");
       error++;
     }
+
     if (PlotSize.trim() === "") {
+      console.log(6);
       setPlotsizeError("Plot Size Can not be empty");
       error++;
     }
     if (TotalAmount.trim() === "") {
+      console.log(5);
       setTotalAmountError("Total Amount Can not be empty");
       error++;
     }
     if (possessionAmount.trim() === "") {
+      console.log(4);
       setpossessionAmountError("Possession Amount Can not be empty");
       error++;
     }
-    if (InstallmentMonth.trim() === "") {
-      setInstallmentMonthError("Installmment Month Can not be empty");
-      error++;
-    }
+
     if (Block.trim() === "") {
+      console.log(2);
       setBlockError("Select your block");
       error++;
     }
     if (Selectedsize.trim() === "") {
+      console.log(1);
       setlabelError("Select your Option");
       error++;
     }
+    console.log(error);
     if (error == 0) {
       await createPlot();
     } else {
@@ -178,7 +187,7 @@ const PlotRegistrationForm = () => {
         CustomerId: id,
         FileNumber: fileNumber,
         paidAmount: PaidAmount,
-        Unit: Selectedsize, 
+        Unit: Selectedsize,
         PlotSize: PlotSize,
         TotalAmount: TotalAmount,
         Block: Block,
@@ -284,230 +293,245 @@ const PlotRegistrationForm = () => {
   }
 
   return (
-    <SideBar element={
-      isLoading ?
-        <Loader />
-:      <>
-      <div className="container">
-        <h1 className="title" style={{ textAlign: "justify" }}>
-          Plot Registration Form
-        </h1>
-        <div className="content">
-          <form action="#" onSubmit={handleSubmit}>
-            <div className="user-details" style={{ marginBottom: "10px" }}>
-              <div className="input-box">
-                <div style={{ marginBottom: "10px" }}>
-                  <label style={{ display: "block", marginBottom: "5px" }}>
-                    File Number:
-                  </label>
-                  <input
-                    disabled
-                    type="text"
-                    name="FileNumber"
-                    value={fileNumber}
-                    style={{ width: "100%", padding: "8px" }}
-                  />
-                </div>
-              </div>
-              {/*  */}
-              <div className="input-box">
-                <div style={{ marginBottom: "10px" }}>
-                  <label className="marla-labal" style={{ display: "block", marginBottom: "5px" }}>
-                    Plot Size In 
-                    <select className="marla" name="" id="" onChange={handlesizechange}>
-                      <option value="" >
-                        
-                      </option>
-                      <option value="Marla">
-                        Marla
-                      </option>
-                      <option value="Sq ft">
-                        Sq ft
-                      </option>
-                    </select>
-                    :
-                    <p>{labelError}</p>
-                  </label>
-                  <input
-                    type="number"
-                    name="PlotSize In Marla"
-                    value={PlotSize}
-                    onChange={(e) => {
-                      if (e.target.value > 0) {
-                        setPlotsize(e.target.value);
-                      }
-                    }}
-                    style={{ width: "100%", padding: "8px" }}
-                  />
-                  <p>{PlotSizeError}</p>
-                </div>
-              </div>
-              <div className="input-box">
-                <div style={{ marginBottom: "10px" }}>
-                  <label style={{ display: "block", marginBottom: "5px" }}>
-                    City/Town:
-                  </label>
-                  <input
-                    type="text"
-                    name="CityTown"
-                    value={CityTown}
-                    onChange={(e) => {
-                      setCityTown(e.target.value);
-                    }}
-                    style={{ width: "100%", padding: "8px" }}
-                  />
-                  <p>{CityTownError}</p>
-                </div>
-              </div>
-              <div className="input-box">
-                <label style={{ display: "block", marginBottom: "5px" }}>
-                  Address:
-                </label>
-                <input
-                  type="text"
-                  name="Address"
-                  value={Address}
-                  onChange={(e) => {
-                    setAdress(e.target.value);
-                  }}
-                  style={{ width: "100%", padding: "8px" }}
-                />
-                <p>{AddressError}</p>
-              </div>
-              <div className="input-box">
-                <div style={{ marginBottom: "10px" }}>
-                  <label style={{ display: "block", marginBottom: "5px" }}>
-                    Catageory:
-                  </label>
-                  <select
-                    value={
-                      selectedOptionIndex !== null ? selectedOptionIndex : ""
-                    }
-                    onChange={handleOptionChange}
+    <SideBar
+      element={
+        isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            <div className="container">
+              <h1 className="title" style={{ textAlign: "justify" }}>
+                Plot Registration Form
+              </h1>
+              <div className="content">
+                <form action="#" onSubmit={handleSubmit}>
+                  <div
+                    className="user-details"
+                    style={{ marginBottom: "10px" }}
                   >
-                    <option value="" disabled>
-                      Select a category
-                    </option>
-                    {CatagoryList.map((option, index) => (
-                      <option key={index} value={index}>
-                        {option.name}
-                      </option>
-                    ))}
-                  </select>
-                  <p>{CatagoryError}</p>
-                </div>
-              </div>
+                    <div className="input-box">
+                      <div style={{ marginBottom: "10px" }}>
+                        <label
+                          style={{ display: "block", marginBottom: "5px" }}
+                        >
+                          File Number:
+                        </label>
+                        <input
+                          disabled
+                          type="text"
+                          name="FileNumber"
+                          value={fileNumber}
+                          style={{ width: "100%", padding: "8px" }}
+                        />
+                      </div>
+                    </div>
+                    {/*  */}
+                    <div className="input-box">
+                      <div style={{ marginBottom: "10px" }}>
+                        <label
+                          className="marla-labal"
+                          style={{ display: "block", marginBottom: "5px" }}
+                        >
+                          Plot Size In
+                          <select
+                            className="marla"
+                            name=""
+                            id=""
+                            onChange={handlesizechange}
+                          >
+                            <option value=""></option>
+                            <option value="Marla">Marla</option>
+                            <option value="Sq ft">Sq ft</option>
+                          </select>
+                          :<p>{labelError}</p>
+                        </label>
+                        <input
+                          type="number"
+                          name="PlotSize In Marla"
+                          value={PlotSize}
+                          onChange={(e) => {
+                            if (e.target.value > 0) {
+                              setPlotsize(e.target.value);
+                            }
+                          }}
+                          style={{ width: "100%", padding: "8px" }}
+                        />
+                        <p>{PlotSizeError}</p>
+                      </div>
+                    </div>
+                    <div className="input-box">
+                      <div style={{ marginBottom: "10px" }}>
+                        <label
+                          style={{ display: "block", marginBottom: "5px" }}
+                        >
+                          City/Town:
+                        </label>
+                        <input
+                          type="text"
+                          name="CityTown"
+                          value={CityTown}
+                          onChange={(e) => {
+                            setCityTown(e.target.value);
+                          }}
+                          style={{ width: "100%", padding: "8px" }}
+                        />
+                        <p>{CityTownError}</p>
+                      </div>
+                    </div>
+                    <div className="input-box">
+                      <label style={{ display: "block", marginBottom: "5px" }}>
+                        Address:
+                      </label>
+                      <input
+                        type="text"
+                        name="Address"
+                        value={Address}
+                        onChange={(e) => {
+                          setAdress(e.target.value);
+                        }}
+                        style={{ width: "100%", padding: "8px" }}
+                      />
+                      <p>{AddressError}</p>
+                    </div>
+                    <div className="input-box">
+                      <div style={{ marginBottom: "10px" }}>
+                        <label
+                          style={{ display: "block", marginBottom: "5px" }}
+                        >
+                          Catageory:
+                        </label>
+                        <select
+                          value={
+                            selectedOptionIndex !== null
+                              ? selectedOptionIndex
+                              : ""
+                          }
+                          onChange={handleOptionChange}
+                        >
+                          <option value="" disabled>
+                            Select a category
+                          </option>
+                          {CatagoryList.map((option, index) => (
+                            <option key={index} value={index}>
+                              {option.name}
+                            </option>
+                          ))}
+                        </select>
+                        <p>{CatagoryError}</p>
+                      </div>
+                    </div>
 
-              <div className="input-box">
-                <div style={{ marginBottom: "10px" }}>
-                  <label style={{ display: "block", marginBottom: "5px" }}>
-                    Society:
-                  </label>
-                  <select
-                    onChange={(e) => {
-                      setSociety(e.target.value);
-                    }}
-                  >
-                    <option value="" disabled>
-                      Select a Society
-                    </option>
-                    {SocietyList.map((option, index) => (
-                      <option key={index} value={option.name}>
-                        {option.name}
-                      </option>
-                    ))}
-                  </select>
-                  <p>{CatagoryError}</p>
-                </div>
-              </div>
+                    <div className="input-box">
+                      <div style={{ marginBottom: "10px" }}>
+                        <label
+                          style={{ display: "block", marginBottom: "5px" }}
+                        >
+                          Society:
+                        </label>
+                        <select
+                          onChange={(e) => {
+                            setSociety(e.target.value);
+                          }}
+                        >
+                          <option value="" disabled>
+                            Select a Society
+                          </option>
+                          {SocietyList.map((option, index) => (
+                            <option key={index} value={option.name}>
+                              {option.name}
+                            </option>
+                          ))}
+                        </select>
+                        <p>{CatagoryError}</p>
+                      </div>
+                    </div>
 
-              <div className="input-box">
-                <div style={{ marginBottom: "10px" }}>
-                  <label style={{ display: "block", marginBottom: "5px" }}>
-                    Block:
-                  </label>
-                  <select
-                    onChange={(e) => {
-                      setBlock(e.target.value);
-                    }}
-                  >
-                     <option value="">
-                      Select block
-                    </option>
-                    <option value="A">
-                      A
-                    </option>
-                    <option value="B">
-                      B
-                    </option>
-                  
-                  </select>
-                  <p>{BlockError}</p>
-                </div>
-              </div>
+                    <div className="input-box">
+                      <div style={{ marginBottom: "10px" }}>
+                        <label
+                          style={{ display: "block", marginBottom: "5px" }}
+                        >
+                          Block:
+                        </label>
+                        <select
+                          onChange={(e) => {
+                            setBlock(e.target.value);
+                          }}
+                        >
+                          <option value="">Select block</option>
+                          <option value="A">A</option>
+                          <option value="B">B</option>
+                        </select>
+                        <p>{BlockError}</p>
+                      </div>
+                    </div>
 
-              <div className="input-box">
-                <div style={{ marginBottom: "10px" }}>
-                  <label style={{ display: "block", marginBottom: "5px" }}>
-                    Plot Value:
-                  </label>
-                  <input
-                    type="number"
-                    name="TotalAmount"
-                    value={TotalAmount}
-                    onChange={(e) => {
-                      if (parseInt(e.target.value) < 0) {
-                        setTotalAmount(0);
-                      } else {
-                        setTotalAmount(e.target.value);
-                      }
-                    }}
-                    style={{ width: "100%", padding: "8px" }}
-                  />
-                  <p>{TotalAmountError}</p>
-                </div>
-              </div>
-              <div className="input-box">
-                <div style={{ marginBottom: "10px" }}>
-                  <label style={{ display: "block", marginBottom: "5px" }}>
-                    Down Payment:
-                  </label>
-                  <input
-                    type="number"
-                    name="PaidAmount"
-                    value={PaidAmount}
-                    onChange={(e) => {
-                      if (parseInt(e.target.value) < 0) {
-                        setPaidAmount(0);
-                      } else {
-                        setPaidAmount(e.target.value);
-                      }
-                    }}
-                    style={{ width: "100%", padding: "8px" }}
-                  />
-                  <p>{PaidAmountError}</p>
-                </div>
-              </div>
-              <div className="input-box">
-                <label style={{ display: "block", marginBottom: "5px" }}>
-                  Possession Amount:
-                </label>
-                <input
-                  type="number"
-                  name="PossessionAmount"
-                  value={possessionAmount}
-                  onChange={(e) => {
-                    if (parseInt(e.target.value) < 0) {
-                      setpossessionAmount(0);
-                    } else {
-                      setpossessionAmount(e.target.value);
-                    }
-                  }}
-                  style={{ width: "100%", padding: "8px" }}
-                />
-                <p>{possessionAmountError}</p>
-              </div>
-              {/* <div className="input-box">
+                    <div className="input-box">
+                      <div style={{ marginBottom: "10px" }}>
+                        <label
+                          style={{ display: "block", marginBottom: "5px" }}
+                        >
+                          Plot Value:
+                        </label>
+                        <input
+                          type="number"
+                          name="TotalAmount"
+                          value={TotalAmount}
+                          onChange={(e) => {
+                            if (parseInt(e.target.value) < 0) {
+                              setTotalAmount(0);
+                            } else {
+                              setTotalAmount(e.target.value);
+                            }
+                          }}
+                          style={{ width: "100%", padding: "8px" }}
+                        />
+                        <p>{TotalAmountError}</p>
+                      </div>
+                    </div>
+                    <div className="input-box">
+                      <div style={{ marginBottom: "10px" }}>
+                        <label
+                          style={{ display: "block", marginBottom: "5px" }}
+                        >
+                          Down Payment:
+                        </label>
+                        <input
+                          type="number"
+                          name="PaidAmount"
+                          value={PaidAmount}
+                          onChange={(e) => {
+                            if (parseInt(e.target.value) < 0) {
+                              setPaidAmount(0);
+                            } else {
+                              setPaidAmount(e.target.value);
+                            }
+                          }}
+                          style={{ width: "100%", padding: "8px" }}
+                        />
+                        <p>{PaidAmountError}</p>
+                      </div>
+                    </div>
+                    <div className="input-box">
+                      <label style={{ display: "block", marginBottom: "5px" }}>
+                        Possession Amount:
+                      </label>
+                      <input
+                        type="number"
+                        name="PossessionAmount"
+                        value={possessionAmount}
+                        onChange={(e) => {
+                          if (parseInt(e.target.value) < 0) {
+                            setpossessionAmount(0);
+                          } else {
+                            setpossessionAmount(e.target.value);
+                          }
+                        }}
+                        style={{ width: "100%", padding: "8px" }}
+                      />
+                      <p>{possessionAmountError}</p>
+                    </div>
+                    {/* <div className="input-box">
                 <label style={{ display: "block", marginBottom: "5px" }}>
                   Installment/Month:
                 </label>
@@ -526,81 +550,84 @@ const PlotRegistrationForm = () => {
                 />
                 <p>{InstallmentMonthError}</p>
               </div> */}
-              <div className="input-box">
-                <label style={{ display: "block", marginBottom: "5px" }}>
-                  Other Amount Title:
-                </label>
-                <input
-                  type="text"
-                  name="OtherAmountTitle"
-                  value={OtherAmountTitle}
-                  onChange={(e) => {
-                    setOtherAmountTitle(e.target.value);
-                  }}
-                  style={{ width: "100%", padding: "8px" }}
-                />
-              </div>
-              <div className="input-box">
-                <label style={{ display: "block", marginBottom: "5px" }}>
-                  Amount:
-                </label>
-                <input
-                  type="number"
-                  name="OtherAmount"
-                  value={OtherAmount}
-                  onChange={(e) => {
-                    if (parseInt(e.target.value) < 0) {
-                      setOtherAmount(0);
-                    } else {
-                      setOtherAmount(e.target.value);
-                    }
-                  }}
-                  style={{ width: "100%", padding: "8px" }}
-                />
-              </div>
-            </div>
+                    <div className="input-box">
+                      <label style={{ display: "block", marginBottom: "5px" }}>
+                        Other Amount Title:
+                      </label>
+                      <input
+                        type="text"
+                        name="OtherAmountTitle"
+                        value={OtherAmountTitle}
+                        onChange={(e) => {
+                          setOtherAmountTitle(e.target.value);
+                        }}
+                        style={{ width: "100%", padding: "8px" }}
+                      />
+                    </div>
+                    <div className="input-box">
+                      <label style={{ display: "block", marginBottom: "5px" }}>
+                        Amount:
+                      </label>
+                      <input
+                        type="number"
+                        name="OtherAmount"
+                        value={OtherAmount}
+                        onChange={(e) => {
+                          if (parseInt(e.target.value) < 0) {
+                            setOtherAmount(0);
+                          } else {
+                            setOtherAmount(e.target.value);
+                          }
+                        }}
+                        style={{ width: "100%", padding: "8px" }}
+                      />
+                    </div>
+                  </div>
 
-            <div class="gender-details">
-              <input type="radio" name="gender" id="dot-1" />
-              <input type="radio" name="gender" id="dot-2" />
-              <input type="radio" name="gender" id="dot-3" />
-              <input type="radio" name="gender" id="dot-4" />
-              <label
-                class="gender-title"
-                style={{ display: "block", marginBottom: "5px" }}
-              >
-                Adjustment
-              </label>
-              <div class="category">
-                <label for="dot-1">
-                  <span class="dot one"></span>
-                  <span class="gender">A</span>
-                </label>
-                <label for="dot-2">
-                  <span class="dot two"></span>
-                  <span class="gender">B</span>
-                </label>
-                <label for="dot-3">
-                  <span class="dot three"></span>
-                  <span class="gender">C</span>
-                </label>
-                <label for="dot-4">
-                  <span class="dot four"></span>
-                  <span class="gender">D</span>
-                </label>
+                  <div class="gender-details">
+                    <input type="radio" name="gender" id="dot-1" />
+                    <input type="radio" name="gender" id="dot-2" />
+                    <input type="radio" name="gender" id="dot-3" />
+                    <input type="radio" name="gender" id="dot-4" />
+                    <label
+                      class="gender-title"
+                      style={{ display: "block", marginBottom: "5px" }}
+                    >
+                      Adjustment
+                    </label>
+                    <div class="category">
+                      <label for="dot-1">
+                        <span class="dot one"></span>
+                        <span class="gender">A</span>
+                      </label>
+                      <label for="dot-2">
+                        <span class="dot two"></span>
+                        <span class="gender">B</span>
+                      </label>
+                      <label for="dot-3">
+                        <span class="dot three"></span>
+                        <span class="gender">C</span>
+                      </label>
+                      <label for="dot-4">
+                        <span class="dot four"></span>
+                        <span class="gender">D</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="button">
+                    <button type="submit" style={{ padding: "10px" }}>
+                      Submit
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
-
-            <div className="button">
-              <button type="submit" style={{ padding: "10px" }}>
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </>
- } /> );
+          </>
+        )
+      }
+    />
+  );
 };
 
 export default PlotRegistrationForm;
