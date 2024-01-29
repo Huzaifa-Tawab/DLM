@@ -169,14 +169,18 @@ function AdminPlot() {
                   </button>
                 </>
               )}
-              <button
+              {!isAdmin() && (
+                <button
                 className="yellow-color"
                 onClick={() => {
                   setShowDocModal(true);
                 }}
+                
               >
                 Payment
               </button>
+              )}
+              
               <button
                 className="yellow-color"
                 onClick={() => {
@@ -185,12 +189,15 @@ function AdminPlot() {
               >
                 Comment
               </button>
-              <button
+              {isAdmin() && (
+                <button
                 className="yellow-color"
                 onClick={() => navigate(`/edit/plot/${id}`)}
               >
                 Edit
               </button>
+              )}
+              
             </div>
           </div>
         </div>

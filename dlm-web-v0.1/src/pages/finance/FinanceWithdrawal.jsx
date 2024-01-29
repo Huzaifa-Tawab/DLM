@@ -101,6 +101,8 @@ function FinanceWithdrawal() {
                           <tr className="hed">
                             <th className="starter">Name</th>
                             <th>Cnic</th>
+                            <th>Cheque Of</th>
+                            <th>Cheque Number</th>
                             <th>Time</th>
                             <th>WithDrawal Amount</th>
 
@@ -112,6 +114,8 @@ function FinanceWithdrawal() {
                             <tr key={index}>
                               <td className="starter">{e.Name}</td>
                               <td>{e.agentid}</td>
+                              <td>{e.chequeOf}</td>
+                              <td>{e.chequeNo}</td>
                               <td>{getDate(e.created.seconds)}</td>
                               <td>{e.amount}</td>
                               <td>
