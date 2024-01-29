@@ -44,6 +44,10 @@ function Widrawal({ showModal, onClose, uid, totalCredit, name }) {
         status: "Pending",
         created: serverTimestamp(),
         agentid: uid,
+      }).then(async (e) => {
+        await updateDoc(doc(db, "Agent", uid), {
+          credit: totalCredit - Amount,
+        });
       });
       onClose();
       setisloading(false);

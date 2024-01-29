@@ -90,7 +90,6 @@ function AdminPromos() {
                             <th className="starter">Sr No</th>
                             <th>Title</th>
                             <th>Target</th>
-
                             <th>Prize</th>
                             <th>Created</th>
                             <th>Ending</th>
