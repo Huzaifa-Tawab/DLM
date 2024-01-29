@@ -21,6 +21,7 @@ function AdminDash() {
   const [LevelTwo, setLevelTwo] = useState([]);
   const [LevelThree, setLevelThree] = useState([]);
   const [LevelFour, setLevelFour] = useState([]);
+  const [LevelFive, setLevelFive] = useState([]);
   const [Promos, setPromos] = useState([]);
   const [Marquee, setMarquee] = useState("");
   const [User, setUser] = useState();
@@ -100,6 +101,17 @@ function AdminDash() {
     );
     const level4Snapshot = await getDocs(level4Query);
     setLevelFour(level4Snapshot.docs.map((doc) => doc.data()));
+
+    const level5Query = query(
+      AgentRef,
+      where(
+        "ChildOf",
+        "in",
+        level4Snapshot.docs.map((doc) => doc.id)
+      )
+    );
+    const level5Snapshot = await getDocs(level5Query);
+    setLevelFive(level5Snapshot.docs.map((doc) => doc.data()));
   };
 
   async function getPromos() {
@@ -209,7 +221,7 @@ function AdminDash() {
     <SideBar
       element={
         isLoading ? (
-          <Loader/>
+          <Loader />
         ) : (
           <>
             <div className="agent-dash">
@@ -249,6 +261,10 @@ function AdminDash() {
                       <div className="level-card">
                         <h1>Level 3 </h1>
                         <h1>{LevelThree.length} persons </h1>
+                      </div>
+                      <div className="level-card">
+                        <h1>Level 4 </h1>
+                        <h1>{LevelFive.length} persons </h1>
                       </div>
                     </div>
                     <div className="agent-dash-content-col1-row2-card2"></div>
