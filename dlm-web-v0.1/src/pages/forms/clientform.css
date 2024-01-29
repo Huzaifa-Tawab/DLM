@@ -10,6 +10,15 @@
     height: 100%;
     overflow: auto;
   }
+  .marla-labal{
+    display: flex !important;
+  }
+  .marla{
+    width: 70px !important;
+    height: 20px !important;
+    margin-left: 5px;
+
+  }
   /* .container .title::before{
     content: "";
     position: absolute;

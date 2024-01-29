@@ -49,8 +49,14 @@ const PlotRegistrationForm = () => {
   const [PaidAmountError, setPaidAmountError] = useState("");
   const [PlotSizeError, setPlotsizeError] = useState("");
   const [TotalAmountError, setTotalAmountError] = useState("");
+  const [BlockError, setBlockError] = useState("");
   const [possessionAmountError, setpossessionAmountError] = useState("");
   const [InstallmentMonthError, setInstallmentMonthError] = useState("");
+  const [Block, setBlock] = useState("")
+  const [labelError, setlabelError] = useState("")
+  const [Marla, setMarla] = useState("")
+  const [sqft, setsqft] = useState("")
+  const [Selectedsize, setSelectedsize] = useState([])
 
   useEffect(() => {
     const generateNumber = async () => {
@@ -76,6 +82,11 @@ const PlotRegistrationForm = () => {
     // setTotalAmount(CatagoryList[selectedIndex].TotalAmount);
     // console.log(CatagoryList[selectedIndex].name);
   };
+  const handlesizechange = (e) => {
+    const Selectedsize = e.target.value;
+    setSelectedsize();
+    console.log(Selectedsize);
+  }
   // const handleSocietyChange = (event) => {
   //   const selectedIndex = event.target.value;
   //   setSelectedOptionIndex(
@@ -126,6 +137,14 @@ const PlotRegistrationForm = () => {
       setInstallmentMonthError("Installmment Month Can not be empty");
       error++;
     }
+    if (Block.trim() === "") {
+      setBlockError("Select your block");
+      error++;
+    }
+    if (labelError.trim() === "") {
+      setlabelError("Select your Option");
+      error++;
+    }
     if (error == 0) {
       await createPlot();
     } else {
@@ -159,8 +178,11 @@ const PlotRegistrationForm = () => {
         CustomerId: id,
         FileNumber: fileNumber,
         paidAmount: PaidAmount,
+        SizeinMarla: Marla,
+        Sizeinsqft: sqft,
         PlotSize: PlotSize,
         TotalAmount: TotalAmount,
+        Block: Block,
         PossessionAmount: possessionAmount,
         installmentNo: 1,
         OtherAmount: OtherAmount,
@@ -291,8 +313,21 @@ const PlotRegistrationForm = () => {
               {/*  */}
               <div className="input-box">
                 <div style={{ marginBottom: "10px" }}>
-                  <label style={{ display: "block", marginBottom: "5px" }}>
-                    Plot Size In Marla:
+                  <label className="marla-labal" style={{ display: "block", marginBottom: "5px" }}>
+                    Plot Size In 
+                    <select className="marla" name="" id="" onChange={handlesizechange}>
+                      <option value="" disabled>
+                        
+                      </option>
+                      <option value="Marla">
+                        Marla
+                      </option>
+                      <option value="Sq ft">
+                        Sq ft
+                      </option>
+                    </select>
+                    :
+                    <p>{labelError}</p>
                   </label>
                   <input
                     type="number"
@@ -390,6 +425,31 @@ const PlotRegistrationForm = () => {
               <div className="input-box">
                 <div style={{ marginBottom: "10px" }}>
                   <label style={{ display: "block", marginBottom: "5px" }}>
+                    Block:
+                  </label>
+                  <select
+                    onChange={(e) => {
+                      setBlock(e.target.value);
+                    }}
+                  >
+                     <option value="">
+                      Select block
+                    </option>
+                    <option value="A">
+                      A
+                    </option>
+                    <option value="B">
+                      B
+                    </option>
+                  
+                  </select>
+                  <p>{BlockError}</p>
+                </div>
+              </div>
+
+              <div className="input-box">
+                <div style={{ marginBottom: "10px" }}>
+                  <label style={{ display: "block", marginBottom: "5px" }}>
                     Plot Value:
                   </label>
                   <input
@@ -448,7 +508,7 @@ const PlotRegistrationForm = () => {
                 />
                 <p>{possessionAmountError}</p>
               </div>
-              <div className="input-box">
+              {/* <div className="input-box">
                 <label style={{ display: "block", marginBottom: "5px" }}>
                   Installment/Month:
                 </label>
@@ -466,7 +526,7 @@ const PlotRegistrationForm = () => {
                   style={{ width: "100%", padding: "8px" }}
                 />
                 <p>{InstallmentMonthError}</p>
-              </div>
+              </div> */}
               <div className="input-box">
                 <label style={{ display: "block", marginBottom: "5px" }}>
                   Other Amount Title:
