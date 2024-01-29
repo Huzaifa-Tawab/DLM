@@ -48,7 +48,7 @@ function HomeNew() {
           >
             Get Strted
           </button> */}
-
+{/* 
           <button
             className="log-in-home"
             onClick={() => {
@@ -56,7 +56,7 @@ function HomeNew() {
             }}
           >
             Get Started
-          </button>
+          </button> */}
 
           <div className="hero-img">
             <img src={hero} alt="" />

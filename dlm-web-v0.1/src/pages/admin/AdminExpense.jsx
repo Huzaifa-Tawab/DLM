@@ -11,7 +11,7 @@ import arrow from "../../Assets/Plus.png";
 import AddExpense from "../../components/Modals/AddExpense";
 import isAdmin from "../../../IsAdmin";
 import SideBar from "../../components/Sidebar/sidebar";
-import "./adminexpense.css";
+
 
 function AdminExpense() {
   const navigate = useNavigate();
