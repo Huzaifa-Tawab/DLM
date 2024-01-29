@@ -120,7 +120,7 @@ letter-spacing: -0.4px;
 .comment-box-top {
   display: flex;
   justify-content: space-between;
-  margin: 20px;
+  margin: 10px;
 }
 .img-name {
   display: flex;
@@ -130,7 +130,7 @@ letter-spacing: -0.4px;
 .name-cat>.comntbox-h2{
   color:#1A202C;
   font-family: "Plus Jakarta Sans";
-  font-size: 20px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 700;
   line-height: 150%; 
@@ -138,7 +138,7 @@ letter-spacing: -0.4px;
 }
 .name-cat>.comntbox-span{
   color:  #90A3BF;
-font-size: 14px;
+font-size: 12px;
 font-style: normal;
 font-weight: 500;
 line-height: 150%; 
@@ -151,7 +151,7 @@ font-style: normal;
 font-weight: 400;
 line-height: 200%;
 letter-spacing: -0.28px;
-padding-left: 95px;
+padding-left: 70px;
 }
 .comment-box>h1>span{
   
@@ -174,12 +174,12 @@ font-weight: 500;
 line-height: 150%; 
 letter-spacing: -0.28px;
 }
-.comntbox-date:hover{
+/* .comntbox-date:hover{
   color: black;
-}
+} */
 .img-name>.img-commnt{
-  width: 56px;
-height: 56px;
+  width: 40px;
+height: 40px;
 flex-shrink: 0;
 }
 .transaction-row {
@@ -201,10 +201,12 @@ flex-shrink: 0;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 4px;
   height: 70px;
   line-height: 20px;
+  margin: 5px;
+  border-radius: 10px;
 }
 .transaction-main:hover{
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  background: #90a3bf;
+  background: #F4B266;
 
 }

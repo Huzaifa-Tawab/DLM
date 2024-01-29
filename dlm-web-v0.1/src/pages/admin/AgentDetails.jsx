@@ -4,6 +4,7 @@ import Loader from "../../components/loader/Loader";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import "./clientdetails.css";
+import adddoc from "../../Assets/adddoc.svg";
 import avatar from "../../Assets/avatar.png";
 import edit from "../../Assets/edit.png";
 import Header from "../../components/header/Header";
@@ -12,6 +13,7 @@ import AddDocs from "../../components/Modals/AddDocs";
 import { PiBuildingsBold } from "react-icons/pi";
 import isAdmin from "../../../IsAdmin";
 import SideBar from "../../components/Sidebar/sidebar";
+import profile from "../../Assets/profile.svg";
 function AgentDetails() {
   const navigate = useNavigate();
   const [isloading, setisloading] = useState(true);
@@ -104,7 +106,8 @@ function AgentDetails() {
                     <div className="clients-buttons">
                       <div className="button-pair">
                         <button onClick={openDocModal}>
-                          {/* <img src={edit} alt="" /> */}
+                          <img src={adddoc} alt="" />
+                          
                           <p>Add Docs </p>
                         </button>
                         {/* <button></button> */}
@@ -116,7 +119,7 @@ function AgentDetails() {
                               navigate(`/edit/agent/${userData.Cnic}`)
                             }
                           >
-                            {/* <img src={edit} alt="" /> */}
+                            <img src={profile} alt="" />
                             <p>Edit Profile </p>
                           </button>
                           {/* <button> */}
