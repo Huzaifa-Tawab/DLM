@@ -112,6 +112,7 @@ function AgentDash() {
     );
     const level5Snapshot = await getDocs(level5Query);
     setLevelFive(level5Snapshot.docs.map((doc) => doc.data()));
+    console.log(level5Snapshot.docs.map((doc) => doc.data()));
   };
 
   async function getPromos() {

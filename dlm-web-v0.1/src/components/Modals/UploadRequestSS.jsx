@@ -9,7 +9,9 @@ import xIcon from "../../Assets/Xincon.png";
 
 function UploadRequestSS({ showModal, onClose, uid }) {
   const [file, setFile] = useState("");
-
+  const [chequeOf, setchequeOf] = useState("");
+  const [chequeNo, setchequeNo] = useState("");
+  const [Amount, setAmount] = useState("");
   const [percent, setPercent] = useState(0);
 
   function handleChange(event) {
@@ -19,6 +21,8 @@ function UploadRequestSS({ showModal, onClose, uid }) {
   const handleUpload = () => {
     if (!file) {
       alert("Please upload an image first!");
+    } else if (!Amount.trim === "") {
+      alert("Please enter amount");
     } else {
       uploadToFirebase();
     }
@@ -48,6 +52,9 @@ function UploadRequestSS({ showModal, onClose, uid }) {
     const Documents = doc(db, "WithDraw", uid);
     await updateDoc(Documents, {
       Proof: url,
+      chequeNo: chequeNo,
+      chequeOf: chequeOf,
+      Amount: Amount,
       status: "Approved",
     }).then((e) => {
       onClose();
@@ -66,6 +73,33 @@ function UploadRequestSS({ showModal, onClose, uid }) {
         <img onClick={onClose} src={xIcon} alt="" />
       </div>
       <div>
+        <div className="modal-field-group">
+          <p>Cheque Of</p>
+          <input
+            type="text"
+            onChange={(e) => {
+              setchequeOf(e.target.value);
+            }}
+          />
+        </div>
+        <div className="modal-field-group">
+          <p>Cheque Number</p>
+          <input
+            type="text"
+            onChange={(e) => {
+              setchequeNo(e.target.value);
+            }}
+          />
+        </div>
+        <div className="modal-field-group">
+          <p>Amount</p>
+          <input
+            type="text"
+            onChange={(e) => {
+              setAmount(e.target.value);
+            }}
+          />
+        </div>
         <div className="modal-field-group">
           <p>Choose File</p>
           <input type="file" onChange={handleChange} accept="/image/*" />
