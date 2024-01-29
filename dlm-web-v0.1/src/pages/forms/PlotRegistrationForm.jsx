@@ -19,6 +19,7 @@ import "./clientform.css";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/header/Header";
 import Loader from "../../components/loader/Loader";
+import SideBar from "../../components/Sidebar/sidebar";
 const PlotRegistrationForm = () => {
   const [fileNumber, setfileNumber] = useState("");
   const [AgentsList, setAgentsList] = useState([]);
