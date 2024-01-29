@@ -233,6 +233,7 @@ function Wallet() {
               onClose={closeWidarawalModal}
               totalCredit={TotalCredit}
               uid={uid}
+              name={userData.Name}
             />
           </div>
         </>

@@ -14,7 +14,7 @@ import {
 import { parseInt } from "lodash";
 import { Loader } from "rsuite";
 
-function Widrawal({ showModal, onClose, uid, totalCredit }) {
+function Widrawal({ showModal, onClose, uid, totalCredit, name }) {
   const [Amount, setAmount] = useState(0);
   const [Error, setError] = useState("");
   const [isloading, setisloading] = useState(false);
@@ -45,6 +45,7 @@ function Widrawal({ showModal, onClose, uid, totalCredit }) {
         status: "Pending",
         created: serverTimestamp(),
         agentid: uid,
+        Name: name,
       });
       onClose();
       setisloading(false);

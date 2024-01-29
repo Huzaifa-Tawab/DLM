@@ -44,6 +44,8 @@ import MarqueeInput from "./pages/MarqueeInput";
 import Wallet from "./pages/Wallet/Wallet";
 import HomeNew from "./pages/home/HomeNew";
 import Financedash from "./pages/Dashboard/Financedash";
+import FinanceWithdrawal from "./pages/finance/FinanceWithdrawal";
+import FinanceWithdrawalRequests from "./pages/finance/FinanceWithdrawalRequests";
 
 function App() {
   const [open, setOpen] = useState();
@@ -97,6 +99,15 @@ function App() {
         />
         <Route element={<FinanceRoute />}>
           <Route path="/finance/history" element={<Finance />} />
+          <Route path="/finance/" element={<Financedash />} />
+          <Route
+            path="finance/withdrawal/history"
+            element={<FinanceWithdrawal />}
+          />
+          <Route
+            path="/finance/withdrawal/requests"
+            element={<FinanceWithdrawalRequests />}
+          />
           <Route path="/finance/" element={<Financedash />} />
           {/* <Route path="/finance" element={<FinancePlotsView />} /> */}
           <Route path="/finance/unverified" element={<FinancePending />} />
