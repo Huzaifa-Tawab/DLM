@@ -102,7 +102,7 @@ function AdminInvoives() {
                     className="nosubmit"
                   />
                 </form>
-                <div className="tableFixHead">
+                <div className="tableFixHead head-head">
                   <table>
                     <thead>
                       <tr>
@@ -129,7 +129,7 @@ function AdminInvoives() {
                               <div>
                                 {isAdmin() && (
                                   <button
-                                    className="button-view"
+                                    className="button-view button-invoice"
                                     onClick={() => {
                                       openNewWindow(e.proof);
                                     }}
@@ -139,7 +139,7 @@ function AdminInvoives() {
                                 )}
                               </div>
                               <button
-                                className="button-view"
+                                className="button-view button-invoice"
                                 onClick={() => {
                                   // openNewWindow(e.InvId);
                                   openNewWindow(`/print/invoice/${e.InvId}`);

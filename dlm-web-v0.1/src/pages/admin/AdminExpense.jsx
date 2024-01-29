@@ -105,7 +105,7 @@ function AdminExpense() {
                   />
                 </form>
                 <div className="table">
-                  <table className="adminhome-table">
+                  <table className="adminhome-table head-head">
                     <thead>
                       <tr className="hed">
                         <th className="starter">Sr No</th>
