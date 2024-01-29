@@ -104,7 +104,7 @@ function AdminSociety() {
                     onChange={(e) => debouncedFilterData(e.target.value)}
                   />
                 </form>
-                <div className="tableFixHead">
+                <div className="tableFixHead head-head">
                   <table className="adminhome-table">
                     <thead>
                       <tr className="hed">
