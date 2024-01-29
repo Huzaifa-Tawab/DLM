@@ -27,6 +27,12 @@ export const superAdminNavLinks = [
     subBtn: ["Categories", "Societies"],
   },
   {
+    to: "/admin/promo",
+    icon: <i className="fa-solid fa-bag-shopping"></i>,
+    title: "Promotions",
+    subBtn: ["Active", "Winners"],
+  },
+  {
     to: "/admin/invoices",
     icon: <i className="fa-solid fa-square-poll-vertical"></i>,
     title: "Invoices",

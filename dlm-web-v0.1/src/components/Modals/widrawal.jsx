@@ -22,10 +22,9 @@ function Widrawal({ showModal, onClose, uid, totalCredit, name }) {
   function handleUpload() {
     let error = false;
     setError("");
-    if (parseInt(Amount) <= 10000) {
-      error = true;
-
-      setError("Amount Can Not be less then 100,000 ");
+    if (parseInt(Amount) <= 0) {
+      // error = true;
+      // setError("Amount Can Not be less then 100,000 ");
     } else if (parseInt(Amount) >= parseInt(totalCredit)) {
       error = true;
 
@@ -45,7 +44,6 @@ function Widrawal({ showModal, onClose, uid, totalCredit, name }) {
         status: "Pending",
         created: serverTimestamp(),
         agentid: uid,
-        Name: name,
       });
       onClose();
       setisloading(false);

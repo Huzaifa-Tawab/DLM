@@ -200,8 +200,10 @@ function Test() {
   }
 
   useEffect(() => {
-    getPromosWithStatus();
-  }, []);
+    if (Promos) {
+      getPromosWithStatus();
+    }
+  }, [Promos]);
 
   return (
     <SideBar
@@ -253,38 +255,39 @@ function Test() {
                   </div>
                 </div>
                 <div className="agent-dash-content-col2">
-                  {PromosWithStatus.map((promo, index) => (
-                    //     promo.status === "completed" ? "goal-achieved" : ""
+                  {PromosWithStatus &&
+                    PromosWithStatus.map((promo, index) => (
+                      //     promo.status === "completed" ? "goal-achieved" : ""
 
-                    <div
-                      key={index}
-                      className={`agent-dash-content-col2-card ${
-                        promo.status === "completed" ? "goal-achieved" : ""
-                      }`}
-                    >
-                      <div className="mymistake-huxi">
-                        <div className="agent-dash-content-col2-card-content">
-                          <h1>{promo.title}</h1>
-                          <h3>Pts :{promo.totalAmount}</h3>
-                          <h3>Target :{promo.target}</h3>
+                      <div
+                        key={index}
+                        className={`agent-dash-content-col2-card ${
+                          promo.status === "completed" ? "goal-achieved" : ""
+                        }`}
+                      >
+                        <div className="mymistake-huxi">
+                          <div className="agent-dash-content-col2-card-content">
+                            <h1>{promo.title}</h1>
+                            <h3>Pts :{promo.totalAmount}</h3>
+                            <h3>Target :{promo.target}</h3>
+                          </div>
+                          <div className="agent-dash-content-col2-card-progress">
+                            <CircularProgressbar
+                              className="progress-percent"
+                              value={parseInt(promo.per)}
+                              text={`${parseInt(promo.per)}%`}
+                            />
+                          </div>
                         </div>
-                        <div className="agent-dash-content-col2-card-progress">
-                          <CircularProgressbar
-                            className="progress-percent"
-                            value={parseInt(promo.per)}
-                            text={`${parseInt(promo.per)}%`}
-                          />
+                        <div className="flex-justify">
+                          <h3>Prize:{promo.prize}</h3>
+                          <h3>
+                            {calculateRemainingHours(promo.endsAt.toDate())}hrs
+                            left
+                          </h3>
                         </div>
                       </div>
-                      <div className="flex-justify">
-                        <h3>Prize:{promo.prize}</h3>
-                        <h3>
-                          {calculateRemainingHours(promo.endsAt.toDate())}hrs
-                          left
-                        </h3>
-                      </div>
-                    </div>
-                  ))}
+                    ))}
                 </div>
               </div>
             </div>

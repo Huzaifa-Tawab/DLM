@@ -46,6 +46,7 @@ import HomeNew from "./pages/home/HomeNew";
 import Financedash from "./pages/Dashboard/Financedash";
 import FinanceWithdrawal from "./pages/finance/FinanceWithdrawal";
 import FinanceWithdrawalRequests from "./pages/finance/FinanceWithdrawalRequests";
+import AdminPromos from "./pages/admin/AdminPromos";
 
 function App() {
   const [open, setOpen] = useState();
@@ -117,6 +118,7 @@ function App() {
 
         <Route element={<AdminRoutes />}>
           <Route path="/admin/dashboard" element={<Test />} />
+          <Route path="//admin/promo/active" element={<AdminPromos />} />
           <Route path="/create/agent/" element={<AgentRegistrationForm />} />
           <Route path="/admin/blocked/" element={<BlockedUsers />} />
           <Route path="/edit/agent/:id" element={<AgentEditForm />} />
