@@ -188,18 +188,21 @@ const PlotRegistrationForm = () => {
       customer = CustomerdocSnap.data();
     }
 
-    const agentdocSnap = await getDoc(doc(db, "Agents", userid));
+    const agentdocSnap = await getDoc(doc(db, "Agent", userid));
     if (agentdocSnap.exists()) {
       agent = agentdocSnap.data();
+      console.log(agent);
     }
     while (!TSize == 0) {
       randomNum = `INV-${
         agent.InvId + (Math.floor(Math.random() * 1000000) + 1)
       }`;
-
+      console.log(randomNum);
       const querySnapshotT = await getDocs(
         query(collection(db, "Transactions"), where("id", "==", randomNum))
       );
+      console.log(randomNum);
+
       TSize = querySnapshotT.size;
     }
     console.log(randomNum);
