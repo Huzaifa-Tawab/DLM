@@ -115,6 +115,27 @@ function FinancePending() {
             otherLevelCommission,
             "Level4"
           );
+
+          // Repeat the process for level 5 if needed
+
+          let level5id = null;
+          if (level4DocSnap.exists()) {
+            level5id = level4DocSnap.data()["ChildOf"];
+          }
+
+          if (level5id) {
+            console.log(level4id);
+
+            const level5DocRef = doc(db, "Agent", level5id);
+            const level5DocSnap = await getDoc(level5DocRef);
+            // Update next level (level 3) credits
+            await updateCredits(
+              level5id,
+              level5DocSnap.data().credit ?? 0,
+              otherLevelCommission,
+              "Level5"
+            );
+          }
         }
       }
     }
