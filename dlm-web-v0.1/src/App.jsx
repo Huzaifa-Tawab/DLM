@@ -48,6 +48,7 @@ import AdminPromos from "./pages/admin/AdminPromos";
 import AdminDash from "./pages/Dashboard/Admindash";
 import AgentDash from "./pages/Dashboard/Agentdash";
 import FinanceDash from "./pages/Dashboard/Financedash";
+import AdminPromosResults from "./pages/admin/AdminPromosResults";
 
 function App() {
   const [open, setOpen] = useState();
@@ -118,6 +119,8 @@ function App() {
         <Route path="/admin/marquee" element={<MarqueeInput />} />
 
         <Route element={<AdminRoutes />}>
+          <Route path="/admin/promo/winners" element={<AdminPromosResults />} />
+
           <Route path="/admin/dashboard" element={<AdminDash />} />
           <Route path="/agent/dashboard" element={<AgentDash />} />
           <Route path="//admin/promo/active" element={<AdminPromos />} />
