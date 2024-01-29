@@ -44,6 +44,11 @@ function Widrawal({ showModal, onClose, uid, totalCredit, name }) {
         status: "Pending",
         created: serverTimestamp(),
         agentid: uid,
+      }).then(async (e) => {
+        // Set the "capital" field of the city 'DC'
+        await updateDoc(doc(db, "Agents", uid), {
+          credit: totalCredit - Amount,
+        });
       });
       onClose();
       setisloading(false);

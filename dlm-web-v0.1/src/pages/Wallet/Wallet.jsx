@@ -231,7 +231,7 @@ function Wallet() {
             <Widrawal
               showModal={ShowWidrawalModal}
               onClose={closeWidarawalModal}
-              totalCredit={TotalCredit}
+              totalCredit={userData.credit}
               uid={uid}
               name={userData.Name}
             />
