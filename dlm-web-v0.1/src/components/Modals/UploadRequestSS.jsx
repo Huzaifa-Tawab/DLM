@@ -23,6 +23,10 @@ function UploadRequestSS({ showModal, onClose, uid }) {
       alert("Please upload an image first!");
     } else if (!Amount.trim === "") {
       alert("Please enter amount");
+    } else if (!chequeNo.trim === "") {
+      alert("Please enter Cheque Number");
+    } else if (!chequeOf.trim === "") {
+      alert("Please enter Cheque Of");
     } else {
       uploadToFirebase();
     }
