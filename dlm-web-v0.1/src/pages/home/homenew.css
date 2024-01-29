@@ -6,7 +6,7 @@
   align-items: center;
 }
 .Hero {
-  text-align: center;
+  text-align: left;
 }
 .cta {
   background: #f4b266;
@@ -31,6 +31,7 @@
 .Hero h1 {
   margin-top: 30px;
   font-size: 4rem;
+  margin-left: 2%;
 }
 .Hero > h1 > strong {
   color: #a4243b;
@@ -38,7 +39,7 @@
 .Hero > p {
   font-size: 18px;
   width: 700px;
-  margin-left: 25%;
+  margin-left: 2%;
   margin-top: 20px;
 }
 .Hero button {
@@ -61,7 +62,7 @@
   border: 1px solid #000;
 }
 .hero-img {
-  margin: 30px 0px;
+  margin: 40px 0px;
 }
 .team-works {
   text-align: center;
