@@ -11,7 +11,7 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import SideBar from "../components/Sidebar/sidebar";
-import "./Test.css"; // Import your CSS file for styling
+import "./test.css"; // Import your CSS file for styling
 import { onAuthStateChanged } from "firebase/auth";
 import { Loader } from "rsuite";
 import { CircularProgressbar } from "react-circular-progressbar";
