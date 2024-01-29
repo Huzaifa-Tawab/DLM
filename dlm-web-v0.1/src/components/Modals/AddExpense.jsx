@@ -11,7 +11,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { parseInt } from "lodash";
-
+import side from '../../Assets/hero.jpg'
 function AddExpense({ showModal, onClose }) {
   const name = localStorage.getItem("Name");
   const id = localStorage.getItem("id");
@@ -59,6 +59,13 @@ function AddExpense({ showModal, onClose }) {
     }
   }
   return (
+    <>
+    <div className="modal-body">
+      <Modal>
+    <div className="sidemodalimg">
+    <img src={side} alt="" />
+  </div>
+  </Modal>
     <Modal
       show={showModal}
       onClose={onClose}
@@ -68,6 +75,7 @@ function AddExpense({ showModal, onClose }) {
       <div className="closebutton">
         <img onClick={onClose} src={xIcon} alt="" />
       </div>
+     
       <div className="Modal-row">
         <h2>Expenses</h2>
         <span>Once you save the item it can't be edit or delete</span>
@@ -110,6 +118,8 @@ function AddExpense({ showModal, onClose }) {
         </button>
       </div>
     </Modal>
+    </div>
+    </>
   );
 }
 

@@ -4,7 +4,6 @@ import Loader from "../../components/loader/Loader";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import "./clientdetails.css";
-import adddoc from "../../Assets/adddoc.svg";
 import avatar from "../../Assets/avatar.png";
 import edit from "../../Assets/edit.png";
 import Header from "../../components/header/Header";
@@ -13,7 +12,6 @@ import AddDocs from "../../components/Modals/AddDocs";
 import { PiBuildingsBold } from "react-icons/pi";
 import isAdmin from "../../../IsAdmin";
 import SideBar from "../../components/Sidebar/sidebar";
-import profile from "../../Assets/profile.svg";
 function AgentDetails() {
   const navigate = useNavigate();
   const [isloading, setisloading] = useState(true);
@@ -69,13 +67,13 @@ function AgentDetails() {
   const closeDocModal = () => {
     setShowDocModal(false);
   };
-  return (
+  return isloading ? (
+    <Loader />
+  ) : (
     <>
-    <SideBar
-    element={
-      isloading ? (
-        <Loader/>
-      ) : (
+      <SideBar
+        element={
+          isloading? (<Loader/>):(
           <>
             <div className="ClientDetails">
               <div>
@@ -107,8 +105,7 @@ function AgentDetails() {
                     <div className="clients-buttons">
                       <div className="button-pair">
                         <button onClick={openDocModal}>
-                          <img src={adddoc} alt="" />
-                          
+                          {/* <img src={edit} alt="" /> */}
                           <p>Add Docs </p>
                         </button>
                         {/* <button></button> */}
@@ -120,7 +117,7 @@ function AgentDetails() {
                               navigate(`/edit/agent/${userData.Cnic}`)
                             }
                           >
-                            <img src={profile} alt="" />
+                            {/* <img src={edit} alt="" /> */}
                             <p>Edit Profile </p>
                           </button>
                           {/* <button> */}
@@ -178,7 +175,7 @@ function AgentDetails() {
                   <div className="documents">
                     <div className="doc-row">
                       <h1>Documents</h1>
-                      {/* <button>Add Document</button> */}
+                      <button>Add Document</button>
                     </div>
                     <table>
                       <thead>
@@ -246,7 +243,7 @@ function AgentDetails() {
         olddocs={userData.Documents}
         uid={userData.Cnic}
       />
-      </>
+    </>
   );
 }
 

@@ -83,13 +83,12 @@ function ClientDetails() {
   const closeDocModal = () => {
     setShowDocModal(false);
   };
-  return(
+  return isloading ? (
+    <Loader />
+  ) : (
     <>
-    <SideBar
-    element={
-      isloading ? (
-        <Loader/>
-      ) : (
+      <SideBar
+        element={
           <>
             <div className="ClientDetails">
               <div>
@@ -247,7 +246,7 @@ function ClientDetails() {
                 <div className="plots">
                   {/* <h1>Plots Details</h1> */}
                   <div className="plot-cards">
-                    {Plots.filter((plot) => plot.verified).map((plot) => (
+                    {Plots.map((plot) => (
                       <div className="card">
                         <h4>{plot.FileNumber}</h4>
                         <span className="first" style={{ color: "#fff" }}>
@@ -278,7 +277,7 @@ function ClientDetails() {
               </div>
             </div>
           </>
-  )}
+        }
       />
 
       <AddDocs

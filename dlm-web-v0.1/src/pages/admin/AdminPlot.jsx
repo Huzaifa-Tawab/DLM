@@ -20,6 +20,7 @@ import avatar from "../../Assets/avatar.png";
 import "./clientdetails.css";
 import AddComments from "../../components/Modals/AddComments";
 import isAdmin from "../../../IsAdmin";
+import SideBar from "../../components/Sidebar/sidebar";
 function AdminPlot() {
   const prams = useParams();
   const navigate = useNavigate();
@@ -101,15 +102,12 @@ function AdminPlot() {
     const temp = new Date(ms).toDateString();
     return temp;
   }
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <>
-    <SideBar
-    element={
-      isLoading ? (
-        <Loader/>
-      ) : (
-        <>
-      <div>
+      <SideBar element={
+        <div>
         <div className="head-plot">
           <div className="avatr-image">
             <img src={avatar} alt="" />
@@ -294,6 +292,8 @@ function AdminPlot() {
           </ul>
         </div> */}
       </div>
+      }/>
+      
       <AddTransactions
         showModal={showDocModal}
         onClose={closeDocModal}
@@ -315,11 +315,7 @@ function AdminPlot() {
         plotid={id}
       />
     </>
-      )
-    }
-    />
-    </>
-  )
-};
+  );
+}
 
 export default AdminPlot;
