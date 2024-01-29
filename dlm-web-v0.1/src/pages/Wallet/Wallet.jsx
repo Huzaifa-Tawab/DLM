@@ -82,6 +82,7 @@ function Wallet() {
     let lvl2 = 0;
     let lvl3 = 0;
     let lvl4 = 0;
+    let lvl5 = 0;
     querySnapshot.forEach((doc) => {
       total += parseInt(doc.data().commission);
       temp.push(doc.data());
