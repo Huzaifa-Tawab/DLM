@@ -43,6 +43,7 @@ import AdminCategory from "./pages/admin/Addcategories";
 import MarqueeInput from "./pages/MarqueeInput";
 import Wallet from "./pages/Wallet/Wallet";
 import HomeNew from "./pages/home/HomeNew";
+import Financedash from "./pages/Dashboard/Financedash";
 
 function App() {
   const [open, setOpen] = useState();
@@ -95,7 +96,8 @@ function App() {
           element={<ErrorPage errorCode={404} errorMessage="Not Found" />}
         />
         <Route element={<FinanceRoute />}>
-          <Route path="/finance" element={<Finance />} />
+          <Route path="/finance/history" element={<Finance />} />
+          <Route path="/finance/" element={<Financedash />} />
           {/* <Route path="/finance" element={<FinancePlotsView />} /> */}
           <Route path="/finance/unverified" element={<FinancePending />} />
         </Route>

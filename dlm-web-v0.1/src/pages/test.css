@@ -173,4 +173,8 @@
 
     width: 90%;
   }
+  .dVJszH {
+    position: unset !important;
+    transform: translateX(0%) !important;
+  }
 }

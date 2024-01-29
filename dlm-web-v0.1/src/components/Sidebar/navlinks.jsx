@@ -105,7 +105,7 @@ export const subAdminNavLinks = [
 ];
 export const financeNavLinks = [
   {
-    to: "/dashboard",
+    to: "/finance",
     icon: <i className="fa-solid fa-house"></i>,
     title: "Dashboard",
   },
@@ -119,6 +119,7 @@ export const financeNavLinks = [
     to: "/finance",
     icon: <i className="fa-solid fa-square-poll-vertical"></i>,
     title: "Invoices",
+    subBtn: ["unverified", "history"],
   },
   {
     to: "/endsession",
