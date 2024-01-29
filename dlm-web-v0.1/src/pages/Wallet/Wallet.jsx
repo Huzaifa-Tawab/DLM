@@ -30,6 +30,7 @@ function Wallet() {
   const [totalLevel2, settotalLevel2] = useState(0);
   const [totalLevel3, settotalLevel3] = useState(0);
   const [totalLevel4, settotalLevel4] = useState(0);
+  const [totalLevel5, settotalLevel5] = useState(0);
 
   useEffect(() => {
     getUserData();
@@ -99,6 +100,9 @@ function Wallet() {
         case "Level4":
           lvl4 += parseInt(doc.data().commission);
           break;
+        case "Level5":
+          lvl5 += parseInt(doc.data().commission);
+          break;
 
         default:
           break;
@@ -109,6 +113,7 @@ function Wallet() {
     settotalLevel2(lvl2);
     settotalLevel3(lvl3);
     settotalLevel4(lvl4);
+    settotalLevel5(lvl5);
     setCreditList(temp);
   }
 
@@ -156,16 +161,20 @@ function Wallet() {
 
               <div className="flex-cards-wallet-levels">
                 <div className="wallet-box">
-                  <h4>Level 2</h4>
+                  <h4>Level 1</h4>
                   <span>{totalLevel2}</span>
                 </div>
                 <div className="wallet-box">
-                  <h4>Level 3</h4>
+                  <h4>Level 2</h4>
                   <span>{totalLevel3}</span>
                 </div>
                 <div className="wallet-box">
-                  <h4>Level 4</h4>
+                  <h4>Level 3</h4>
                   <span>{totalLevel4}</span>
+                </div>
+                <div className="wallet-box">
+                  <h4>Level 4</h4>
+                  <span>{totalLevel5}</span>
                 </div>
               </div>
             </div>

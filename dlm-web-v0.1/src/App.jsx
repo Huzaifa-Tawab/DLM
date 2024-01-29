@@ -30,7 +30,6 @@ import PrintFile from "./pages/Print/PrintFile";
 import ErrorPage from "./pages/notfound/ErrorPage";
 import BlockedUsers from "./pages/admin/BlockedUsers";
 import FinancePlotsView from "./pages/finance/FinancePlotsView";
-
 import SideBar from "./components/Sidebar/sidebar";
 import Ham from "./components/Sidebar/Hamburger";
 import Logout from "./pages/login/Logout";
