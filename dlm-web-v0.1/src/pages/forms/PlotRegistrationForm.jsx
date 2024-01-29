@@ -192,7 +192,6 @@ const PlotRegistrationForm = () => {
         TotalAmount: TotalAmount,
         Block: Block,
         PossessionAmount: possessionAmount,
-        installmentNo: 1,
         OtherAmount: OtherAmount,
         OtherAmountTitle: OtherAmountTitle,
         Society: Society,
