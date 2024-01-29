@@ -119,6 +119,7 @@ function ClientDetails() {
                     {/* <span>+92 317 5545690</span> */}
                     <div className="clients-buttons">
                       <div className="button-pair">
+                      {isAdmin() && (
                         <button
                           onClick={() => {
                             navigate(`/edit/client/${userData.Cnic}`);
@@ -127,6 +128,8 @@ function ClientDetails() {
                           <img src={profile} alt="" />
                           <p>Edit Profile </p>
                         </button>
+                      )}
+                        
 
                         <button
                           onClick={() => {
@@ -141,8 +144,9 @@ function ClientDetails() {
                           <p>Add Plot </p>
                         </button>
                       </div>
-                      {isAdmin() && (
+                      
                         <div className="button-pair ">
+                        {isAdmin() && (
                           <button
                             onClick={toggleBlockStatus}
                             className={userData.Blocked && "blocked-user"}
@@ -150,12 +154,13 @@ function ClientDetails() {
                             <img src={block} alt="" />
                             <p>{userData.Blocked ? "unblock" : "block"}</p>
                           </button>
+                        )}
                           <button onClick={openDocModal}>
                             <img src={adddoc} alt="" />
                             <p>Add Doc</p>
                           </button>
                         </div>
-                      )}
+                      
                     </div>
                   </div>
                   <div className="info-box-2">
