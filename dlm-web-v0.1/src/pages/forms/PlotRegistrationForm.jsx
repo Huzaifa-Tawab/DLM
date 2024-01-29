@@ -84,7 +84,7 @@ const PlotRegistrationForm = () => {
   };
   const handlesizechange = (e) => {
     const Selectedsize = e.target.value;
-    setSelectedsize();
+    setSelectedsize(e.target.value);
     console.log(Selectedsize);
   }
   // const handleSocietyChange = (event) => {
@@ -141,7 +141,7 @@ const PlotRegistrationForm = () => {
       setBlockError("Select your block");
       error++;
     }
-    if (labelError.trim() === "") {
+    if (Selectedsize.trim() === "") {
       setlabelError("Select your Option");
       error++;
     }
@@ -178,8 +178,7 @@ const PlotRegistrationForm = () => {
         CustomerId: id,
         FileNumber: fileNumber,
         paidAmount: PaidAmount,
-        SizeinMarla: Marla,
-        Sizeinsqft: sqft,
+        Unit: Selectedsize, 
         PlotSize: PlotSize,
         TotalAmount: TotalAmount,
         Block: Block,
@@ -316,7 +315,7 @@ const PlotRegistrationForm = () => {
                   <label className="marla-labal" style={{ display: "block", marginBottom: "5px" }}>
                     Plot Size In 
                     <select className="marla" name="" id="" onChange={handlesizechange}>
-                      <option value="" disabled>
+                      <option value="" >
                         
                       </option>
                       <option value="Marla">
