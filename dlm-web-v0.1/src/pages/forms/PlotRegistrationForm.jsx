@@ -4,9 +4,11 @@ import {
   doc,
   getDoc,
   getDocs,
+  query,
   serverTimestamp,
   setDoc,
   updateDoc,
+  where,
 } from "firebase/firestore";
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -167,18 +169,60 @@ const PlotRegistrationForm = () => {
         creationTime: serverTimestamp(),
         lastPayment: serverTimestamp(),
       });
-      updateAgent();
-      updateCust();
+      await updateAgent();
+      await updateCustomer();
+      await updateTransaction();
+
       navigate(`/details/plot/${fileNumber}`);
     }
   };
+  async function updateTransaction() {
+    let randomNum = 0;
+    let TSize = 1;
+    let penalty = 0;
+    let customer = {};
+    let agent = {};
+
+    const CustomerdocSnap = await getDoc(doc(db, "Customers", id));
+    if (CustomerdocSnap.exists()) {
+      customer = CustomerdocSnap.data();
+    }
+    while (!TSize == 0) {
+      randomNum = `INV-${
+        agent.InvId + (Math.floor(Math.random() * 1000000) + 1)
+      }`;
+
+      const querySnapshotT = await getDocs(
+        query(collection(db, "Transactions"), where("id", "==", randomNum))
+      );
+      TSize = querySnapshotT.size;
+    }
+    console.log(randomNum);
+    await setDoc(doc(db, "Transactions", randomNum), {
+      fileNumber: fileNumber,
+      agentID: userid,
+      agentName: name,
+      customerName: customer.Name,
+      customerLastName: customer.FName,
+      customerID: id,
+      proof: "",
+      penalty: 0,
+      payment: TotalAmount,
+      total: TotalAmount,
+      nature: "downpayment",
+      time: serverTimestamp(),
+      InvId: randomNum,
+      Category: Catagory,
+      varified: false,
+    });
+  }
   const updateAgent = async () => {
     // console.log(formData.AgentId);
     await updateDoc(doc(db, "Agent", userid), {
       Plots: arrayUnion(fileNumber),
     });
   };
-  const updateCust = async () => {
+  const updateCustomer = async () => {
     await updateDoc(doc(db, "Customers", id), {
       Plots: arrayUnion(fileNumber),
     });
