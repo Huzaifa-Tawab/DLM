@@ -48,7 +48,8 @@ function Wallet() {
     let total = 0;
     let temp = [];
     querySnapshot.forEach((doc) => {
-      total = +parseInt(doc.data().commission);
+      total += parseInt(doc.data().amount);
+      console.log(doc.data());
       temp.push(doc.data());
     });
     setWithdrawList(temp);
