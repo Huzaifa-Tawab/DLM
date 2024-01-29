@@ -57,6 +57,7 @@ function HomeNew() {
           >
             Get Started
           </button> */}
+          
 
           <div className="hero-img">
             <img src={hero} alt="" />
@@ -172,7 +173,9 @@ function HomeNew() {
           <i className="fa-solid fa-tiktok">tt</i>
           <i className="fa-solid fa-youtube">yt</i>
         </div>
+        
       </div>
+      
     </>
   );
 }

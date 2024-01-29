@@ -174,7 +174,7 @@ function AgentDetails() {
                   <div className="documents">
                     <div className="doc-row">
                       <h1>Documents</h1>
-                      <button>Add Document</button>
+                      {/* <button>Add Document</button> */}
                     </div>
                     <table>
                       <thead>
