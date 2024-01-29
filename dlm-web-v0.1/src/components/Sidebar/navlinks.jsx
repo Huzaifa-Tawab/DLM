@@ -119,7 +119,13 @@ export const financeNavLinks = [
     to: "/finance",
     icon: <i className="fa-solid fa-square-poll-vertical"></i>,
     title: "Invoices",
-    subBtn: ["unverified", "history"],
+    subBtn: ["Unverified", "History"],
+  },
+  {
+    to: "/finance/withdrawal",
+    icon: <i className="fa-solid fa-square-poll-vertical"></i>,
+    title: "Withdrawal",
+    subBtn: ["History", "Requests"],
   },
   {
     to: "/endsession",
