@@ -94,7 +94,7 @@ function BlockedUsers() {
                     className="nosubmit"
                   />
                 </form>
-                <div className="table">
+                <div className="tableFixHead head-head">
                   <table className="adminhome-table">
                     <thead>
                       <tr className="hed">

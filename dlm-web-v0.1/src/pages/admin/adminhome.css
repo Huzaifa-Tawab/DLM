@@ -116,6 +116,13 @@ table {
 .admin-show {
   display: none;
 }
+.doc-row{
+  margin: 0px 6px;
+}
+.doc-row>h1{
+  font-size: 35px;
+ 
+}
 @media (max-width: 600px) {
   /* .Admin-Home-table > input {
     width: 80%;

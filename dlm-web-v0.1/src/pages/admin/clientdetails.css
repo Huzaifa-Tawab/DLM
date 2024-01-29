@@ -98,7 +98,7 @@
   background: #fff;
   border-radius: 10px;
   margin: 10px;
-  padding: 30px 80px;
+  padding: 30px 0px;
 }
 .doc-align {
   display: flex;
@@ -117,8 +117,8 @@ td > a {
 }
 .plots {
   margin: 10px;
-  padding: 30px 80px;
-  /* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; */
+  padding: 30px 0px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   border-radius: 10px;
   /* background: #ffffffaf; */
 }
@@ -133,13 +133,14 @@ td > a {
   padding: 10px;
   width: 250px;
   /* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; */
-  box-shadow: 0 0 5px 1px lightgrey;
+  box-shadow: 0 0 3px 1px maroon;
   border-radius: 10px;
 }
 .plot-des {
   margin: 20px;
   background: gray;
   height: 50px;
+  box-shadow: 0 0 2px 2px orange, 0 0 2px 2px maroon;
 }
 
 /* .view-more {
@@ -151,6 +152,7 @@ td > a {
   border-radius: 5px;
   color: var(--Primary-0, #fff);
   text-align: center;
+  box-shadow: 0 0 3px 1px white;
   /* Semibold/Type@16 */
 
   font-size: 16px;
@@ -327,6 +329,9 @@ form.nosubmit {
   padding: 0;
   display: flex;
   justify-content: center;
+}
+.plots>h1{
+  font-size: 35px;
 }
 
 input.nosubmit {

@@ -7,3 +7,14 @@
 .Admin-Home-invoice{
     height: 100%;
 }
+.head-head th{
+    width: 173px;
+    height: 35px;
+}
+.head-head td{
+    width: 173px;
+    height: 35px;
+}
+.button-invoice{
+    border-radius: 6px;
+}

@@ -11,6 +11,7 @@ import arrow from "../../Assets/Plus.png";
 import AddExpense from "../../components/Modals/AddExpense";
 import isAdmin from "../../../IsAdmin";
 import SideBar from "../../components/Sidebar/sidebar";
+import "./adminexpense.css";
 
 function AdminExpense() {
   const navigate = useNavigate();
@@ -104,8 +105,8 @@ function AdminExpense() {
                     className="nosubmit"
                   />
                 </form>
-                <div className="table">
-                  <table className="adminhome-table">
+                <div className="tableFixHead head-head">
+                  <table className="adminhome-table head-head">
                     <thead>
                       <tr className="hed">
                         <th className="starter">Sr No</th>

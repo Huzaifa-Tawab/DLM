@@ -80,7 +80,7 @@ function AgentDetails() {
                   <div className="client-pic">
                     {/* <h1>Customer Information</h1> */}
                     <div className="client-pic-detail">
-                      {/* <img
+                      <img
                   className="avatar"
                   src={
                     userData.Gender === "female"
@@ -90,8 +90,8 @@ function AgentDetails() {
                       : userData.imgUrl
                   }
                   alt="User"
-                  style={{ maxWidth: "50px" }}
-                /> */}
+                  style={{ maxWidth: "100px" }}
+                />
                       <div className="cus-details">
                         <h2>{userData.Name}</h2>
                         <span>Agent details</span>
