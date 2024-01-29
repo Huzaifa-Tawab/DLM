@@ -76,11 +76,13 @@ function AdminSociety() {
   const closeSocietyModal = () => {
     setShowSocietyModal(false);
   };
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return(
+    <>
     <SideBar
-      element={
+    element={
+      isLoading ? (
+        <Loader/>
+      ) : (
         <>
           <div className="Admin-Home">
             <div className="hero--head">
@@ -133,13 +135,15 @@ function AdminSociety() {
               </div>
             </div>
           </div>
-          <AddSociety
+          
+        </>
+  )}
+    />
+    <AddSociety
             showModal={ShowSocietyModal}
             onClose={closeSocietyModal}
           />
-        </>
-      }
-    />
+    </>
   );
 }
 

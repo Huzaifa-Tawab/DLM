@@ -77,10 +77,13 @@ function FinancePlotsView() {
   function closeInvoiceModal() {
     setShowInvoiceModal(false);
   }
-  return isLoading ? (
-    <Loader />
-  ) : (
-    <>
+  return(
+    <SideBar
+    element={
+      isLoading ? (
+        <Loader />
+      ) : (
+        <>
       <div className="Admin-Home">
         <div className="hero--head">
           <h1>Invoices</h1>
@@ -168,7 +171,7 @@ function FinancePlotsView() {
         pid={PlotIdForModal}
       /> */}
     </>
-  );
+    )  } />  );
 }
 
 export default FinancePlotsView;

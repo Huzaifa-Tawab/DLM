@@ -73,12 +73,11 @@ function Finance() {
 
     return temp;
   }
-  return isLoading ? (
-    <Loader />
-  ) : (
-    <SideBar
-      element={
-        <>
+  return  (
+    <SideBar element={
+      isLoading ?
+        <Loader />
+:      <>
           <div className="Admin-Home">
             <div className="hero--head">
               <h1>Invoices</h1>

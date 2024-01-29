@@ -60,11 +60,13 @@ function AdminAgents() {
     [filteredCustomersData]
   );
 
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return(
+    <>
     <SideBar
-      element={
+    element={
+      isLoading ? (
+        <Loader/>
+      ) : (
         <>
           <div className="Admin-Home">
             <div className="hero--head">
@@ -134,8 +136,9 @@ function AdminAgents() {
             </div>
           </div>
         </>
-      }
+   ) }
     />
+    </>
   );
 }
 

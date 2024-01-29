@@ -101,11 +101,14 @@ function AdminPlot() {
     const temp = new Date(ms).toDateString();
     return temp;
   }
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <>
-      <Header />
+    <SideBar
+    element={
+      isLoading ? (
+        <Loader/>
+      ) : (
+        <>
       <div>
         <div className="head-plot">
           <div className="avatr-image">
@@ -311,9 +314,12 @@ function AdminPlot() {
         onClose={closeCommentsModal}
         plotid={id}
       />
-      <Footer />
     </>
-  );
-}
+      )
+    }
+    />
+    </>
+  )
+};
 
 export default AdminPlot;

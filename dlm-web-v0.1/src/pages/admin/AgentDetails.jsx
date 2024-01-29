@@ -69,12 +69,13 @@ function AgentDetails() {
   const closeDocModal = () => {
     setShowDocModal(false);
   };
-  return isloading ? (
-    <Loader />
-  ) : (
+  return (
     <>
-      <SideBar
-        element={
+    <SideBar
+    element={
+      isloading ? (
+        <Loader/>
+      ) : (
           <>
             <div className="ClientDetails">
               <div>
@@ -236,7 +237,7 @@ function AgentDetails() {
               </div>
             </div>
           </>
-        }
+  )}
       />
 
       <AddDocs
@@ -245,7 +246,7 @@ function AgentDetails() {
         olddocs={userData.Documents}
         uid={userData.Cnic}
       />
-    </>
+      </>
   );
 }
 

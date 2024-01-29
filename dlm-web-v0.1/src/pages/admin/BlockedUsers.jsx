@@ -16,7 +16,7 @@ function BlockedUsers() {
   const [CustomersData, setCustomersData] = useState([]);
 
   const [filteredCustomersData, setFilteredCustomersData] = useState([]);
-  const [isLoading, setisLoading] = useState(true);
+  const [isloading, setisLoading] = useState(true);
 
   useEffect(() => {
     getCustomersData();
@@ -74,11 +74,12 @@ function BlockedUsers() {
     [filteredCustomersData]
   );
 
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <SideBar
-      element={
+    element={
+      isloading ? (
+        <Loader/>
+      ) : (
         <>
           <div className="Admin-Home">
             <div className="hero--head">
@@ -133,7 +134,7 @@ function BlockedUsers() {
             </div>
           </div>
         </>
-      }
+   ) }
     />
   );
 }

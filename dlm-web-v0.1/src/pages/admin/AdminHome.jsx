@@ -77,11 +77,12 @@ function AdminHome() {
     [filteredCustomersData]
   );
 
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <SideBar
-      element={
+    element={
+      isLoading ? (
+        <Loader/>
+      ) : (
         <>
           <div className="Admin-Home">
             <div className="admin-show">{isAdmin() && "Admin"}</div>
@@ -165,7 +166,7 @@ function AdminHome() {
             </div>
           </div>
         </>
-      }
+  )}
     />
   );
 }

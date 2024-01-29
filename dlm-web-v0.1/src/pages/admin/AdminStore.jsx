@@ -75,11 +75,13 @@ function AdminStore() {
   const closeDocModal = () => {
     setShowDocModal(false);
   };
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return(
+    <>
     <SideBar
       element={
+        isLoading ? (
+          <Loader/>
+        ) : (
         <>
           <div className="Admin-Home">
             <div className="hero--head">
@@ -134,8 +136,9 @@ function AdminStore() {
           </div>
           <AddStoreItem showModal={showDocModal} onClose={closeDocModal} />
         </>
-      }
+   ) }
     />
+    </>
   );
 }
 

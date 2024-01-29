@@ -24,7 +24,7 @@ export const superAdminNavLinks = [
     to: "/admin",
     icon: <i className="fa-solid fa-bag-shopping"></i>,
     title: "Features",
-    subBtn: ["Categories", "Societies"],
+    subBtn: ["Categories", "Societies", "Marquee"],
   },
   {
     to: "/admin/promo",
@@ -67,7 +67,7 @@ export const superAdminNavLinks = [
 
 export const subAdminNavLinks = [
   {
-    to: "/admin/dashboard",
+    to: "/agent/dashboard",
     icon: <i className="fa-solid fa-house"></i>,
     title: "Dashboard",
   },
@@ -111,7 +111,7 @@ export const subAdminNavLinks = [
 ];
 export const financeNavLinks = [
   {
-    to: "/finance",
+    to: "/finance/dashboard",
     icon: <i className="fa-solid fa-house"></i>,
     title: "Dashboard",
   },

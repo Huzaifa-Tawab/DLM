@@ -10,6 +10,7 @@ import generateRandomString from "../../../RandomString";
 // const axios = require("axios");
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
+import SideBar from "../../components/Sidebar/sidebar";
 
 const ErrorMessage = ({ message }) => (
   <span style={{ color: "red", fontSize: "0.8em" }}>{message}</span>
@@ -343,11 +344,11 @@ const AgentRegistrationForm = () => {
     uploadImageToFirebase();
   };
 
-  return isLoading ? (
-    <Loader />
-  ) : (
-    <>
-      <Header />
+  return  (
+    <SideBar element={
+      isLoading ? 
+        <Loader />
+:      <>
       <div className="container">
         <h1 className="title" style={{ textAlign: "justify" }}>
           Registration Form {InvoiceID}
@@ -563,8 +564,10 @@ const AgentRegistrationForm = () => {
           </form>
         </div>
       </div>
-      <Footer />
     </>
+    }
+
+    />
   );
 };
 

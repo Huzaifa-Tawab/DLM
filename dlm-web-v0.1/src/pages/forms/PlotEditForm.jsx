@@ -187,11 +187,11 @@ const PlotEditForm = () => {
     setSocietyList(cat);
   }
 
-  return isLoading ? (
-    <Loader />
-  ) : (
-    <>
-      <Header />
+  return  (
+    <SideBar element={
+      isLoading ?
+        <Loader />
+:      <>
       <div className="container">
         <h1 className="title" style={{ textAlign: "justify" }}>
           Plot Edit Form
@@ -458,7 +458,7 @@ const PlotEditForm = () => {
       </div>
       <Footer />
     </>
-  );
+ } /> );
 };
 
 export default PlotEditForm;

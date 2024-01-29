@@ -261,11 +261,11 @@ const PlotRegistrationForm = () => {
     setSocietyList(cat);
   }
 
-  return isLoading ? (
-    <Loader />
-  ) : (
-    <>
-      <Header />
+  return (
+    <SideBar element={
+      isLoading ?
+        <Loader />
+:      <>
       <div className="container">
         <h1 className="title" style={{ textAlign: "justify" }}>
           Plot Registration Form
@@ -539,9 +539,8 @@ const PlotRegistrationForm = () => {
           </form>
         </div>
       </div>
-      <Footer />
     </>
-  );
+ } /> );
 };
 
 export default PlotRegistrationForm;

@@ -1,7 +1,9 @@
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { db } from "../firebase";
-import Loader from "../components/loader/Loader";
+import { db } from "../../firebase";
+import Loader from "../../components/loader/Loader";
+import SideBar from "../../components/Sidebar/sidebar";
+import './marquee.css'
 
 const MarqueeInput = () => {
   const [inputList, setInputList] = useState([""]); // State to store the list of inputs
@@ -43,27 +45,35 @@ const MarqueeInput = () => {
     setisLoading(false);
   };
 
-  return isLoading ? (
-    <Loader />
-  ) : (
-    <div>
-      <div>
+  return (
+    <SideBar
+    element={
+      isLoading ? (
+        <Loader/>
+      ) : (
+    <div className="marq-body">
+      <div className="marq-add">
         <button onClick={handleAddInput}>Add Input</button>
       </div>
-      <ul>
-        {inputList.map((input, index) => (
-          <li key={index}>
+      <div className="marq-input">
+      {inputList.map((input, index) => (
+          <div className="marquee" key={index}>
             <input
               type="text"
+              placeholder="Write your marquee here"
               value={input}
               onChange={(e) => handleInputChange(index, e.target.value)}
             />
             <button onClick={() => handleRemoveInput(index)}>Remove</button>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
+      <div className="marq-add">
       <button onClick={submitChanges}>Save</button>
+      </div>
     </div>
+   ) }/>
+    
   );
 };
 

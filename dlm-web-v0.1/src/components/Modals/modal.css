@@ -3,6 +3,8 @@
   width: 360px !important;
   color: black;
   min-height: 200px;
+  transition-timing-function: ease-in;
+  transition: 2s;
 }
 .custom-modal-container > h2,
 span {

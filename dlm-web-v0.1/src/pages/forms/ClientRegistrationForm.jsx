@@ -8,6 +8,7 @@ import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
 import Loader from "../../components/loader/Loader";
 import { useEffect } from "react";
+import SideBar from "../../components/Sidebar/sidebar";
 
 const ErrorMessage = ({ message }) => (
   <span style={{ color: "red", fontSize: "0.8em" }}>{message}</span>
@@ -282,11 +283,11 @@ const ClientRegistrationForm = () => {
     );
   }
 
-  return isUploading ? (
-    <Loader />
-  ) : (
-    <>
-      <Header />
+  return (
+    <SideBar element={
+      isUploading ? 
+        <Loader />
+:      <>
       <div className="container">
         <h1 className="title" style={{ textAlign: "justify" }}>
           Registration Form
@@ -497,9 +498,10 @@ const ClientRegistrationForm = () => {
           </form>
         </div>
       </div>
-      <Footer />
     </>
-  );
+}
+/>
+);
 };
 
 export default ClientRegistrationForm;

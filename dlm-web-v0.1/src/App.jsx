@@ -27,7 +27,6 @@ import ClientEditForm from "./pages/forms/ClientEditForm";
 import AgentEditForm from "./pages/forms/AgentEditForm";
 import PlotEditForm from "./pages/forms/PlotEditForm";
 import PrintFile from "./pages/Print/PrintFile";
-
 import ErrorPage from "./pages/notfound/ErrorPage";
 import BlockedUsers from "./pages/admin/BlockedUsers";
 import FinancePlotsView from "./pages/finance/FinancePlotsView";
@@ -40,13 +39,16 @@ import AddCategory from "./pages/admin/Addcategories";
 import AddSociety from "./pages/admin/Addsociety";
 import AdminSociety from "./pages/admin/Addsociety";
 import AdminCategory from "./pages/admin/Addcategories";
-import MarqueeInput from "./pages/MarqueeInput";
+import MarqueeInput from "./pages/Marquee/MarqueeInput";
 import Wallet from "./pages/Wallet/Wallet";
 import HomeNew from "./pages/home/HomeNew";
 import Financedash from "./pages/Dashboard/Financedash";
 import FinanceWithdrawal from "./pages/finance/FinanceWithdrawal";
 import FinanceWithdrawalRequests from "./pages/finance/FinanceWithdrawalRequests";
 import AdminPromos from "./pages/admin/AdminPromos";
+import AdminDash from "./pages/Dashboard/Admindash";
+import AgentDash from "./pages/Dashboard/Agentdash";
+import FinanceDash from "./pages/Dashboard/Financedash";
 
 function App() {
   const [open, setOpen] = useState();
@@ -109,21 +111,22 @@ function App() {
             path="/finance/withdrawal/requests"
             element={<FinanceWithdrawalRequests />}
           />
-          <Route path="/finance/" element={<Financedash />} />
+          <Route path="/finance/dashboard" element={<FinanceDash />} />
           {/* <Route path="/finance" element={<FinancePlotsView />} /> */}
           <Route path="/finance/unverified" element={<FinancePending />} />
         </Route>
         <Route path="/print/:id" element={<PrintFile />} />
-        <Route path="/add/marquee" element={<MarqueeInput />} />
+        <Route path="/admin/marquee" element={<MarqueeInput />} />
 
         <Route element={<AdminRoutes />}>
-          <Route path="/admin/dashboard" element={<Test />} />
+          <Route path="/admin/dashboard" element={<AdminDash />} />
+          <Route path="/agent/dashboard" element={<AgentDash />} />
           <Route path="//admin/promo/active" element={<AdminPromos />} />
           <Route path="/create/agent/" element={<AgentRegistrationForm />} />
           <Route path="/admin/blocked/" element={<BlockedUsers />} />
           <Route path="/edit/agent/:id" element={<AgentEditForm />} />
-          <Route path="/admin/categories" element={<AdminCategory />} />
-          <Route path="/admin/societies" element={<AdminSociety />} />
+          {/* <Route path="/admin/categories" element={<AdminCategory />} /> */}
+          {/* <Route path="/admin/societies" element={<AdminSociety />} /> */}
           <Route path="/admin/agents" element={<AdminAgents />} />
           <Route path="/admin/home" element={<AdminHome />} />
           <Route path="/admin/invoices" element={<AdminInvoives />} />

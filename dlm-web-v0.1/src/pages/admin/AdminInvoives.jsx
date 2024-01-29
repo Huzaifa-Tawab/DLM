@@ -74,11 +74,12 @@ function AdminInvoives() {
 
     return temp;
   }
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return(
     <SideBar
-      element={
+    element={
+      isLoading ? (
+        <Loader/>
+      ) : (
         <>
           <div className="Admin-Home-invoice">
             <div className="hero--head">
@@ -158,7 +159,7 @@ function AdminInvoives() {
             </div>
           </div>
         </>
-      }
+   ) }
     />
   );
 }

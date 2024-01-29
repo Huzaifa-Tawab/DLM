@@ -1,0 +1,56 @@
+.marq-body{
+        text-align: center;
+        margin: 50px 50px 50px 50px;
+        background: #fff;
+        padding: 50px;
+        border-radius: 10px;
+        box-shadow: 6px 3px 35px 4px rgba(0,0,0,0.1);
+
+}
+.marq-add{
+
+}
+.marq-add button{
+    background: #f4b266;
+    padding: 8px;
+    border-radius: 10px;
+    font-size: 22px;
+    font-weight: 600;
+    width: 10vw;
+}
+.marq-add button:hover{
+    background: #a4243b;
+}
+.marq-input{
+    padding: 20px;
+}
+.marq-input input{
+    padding: 10px;
+    height: 10vh;
+    width: 20vw;
+    background: #fff;
+    border: none;
+    margin: 5px 0px 5px 5px;
+    border-radius: 5px 0px 0px 5px;
+    box-shadow: 6px 3px 35px 4px rgba(0,0,0,0.1);
+}
+.marq-input button{
+    background: #f4b266;
+    padding: 5px;
+    border-radius: 0px 5px 5px 0px;
+    font-size: 20px;
+    font-weight: 500;
+    width: 8vw;
+    box-shadow: 6px 3px 35px 4px rgba(0,0,0,0.1);
+    margin: 5px 5px 5px 0px;
+
+
+}
+.marq-input button:hover{
+    background: #a4243b;
+}
+.marquee{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}

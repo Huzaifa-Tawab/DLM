@@ -76,11 +76,13 @@ function AdminCategory() {
   const closeCatagoryModal = () => {
     setShowCatagoryModal(false);
   };
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return (
+    <>
     <SideBar
-      element={
+    element={
+      isLoading ? (
+        <Loader/>
+      ) : (
         <>
           <div className="Admin-Home">
             <div className="hero--head">
@@ -133,13 +135,15 @@ function AdminCategory() {
               </div>
             </div>
           </div>
-          <AddCatagory
+       
+        </>
+  )}
+    />
+       <AddCatagory
             showModal={ShowCatagoryModal}
             onClose={closeCatagoryModal}
           />
-        </>
-      }
-    />
+    </>
   );
 }
 

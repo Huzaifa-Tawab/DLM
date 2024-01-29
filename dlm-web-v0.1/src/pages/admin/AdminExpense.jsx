@@ -77,11 +77,12 @@ function AdminExpense() {
     console.log(temp);
     return temp;
   }
-  return isLoading ? (
-    <Loader />
-  ) : (
-    <SideBar
-      element={
+  return (
+    <>    <SideBar
+    element={
+      isLoading ? (
+        <Loader/>
+      ) : (
         <>
           <div className="Admin-Home">
             <div className="hero--head">
@@ -145,11 +146,15 @@ function AdminExpense() {
               </div>
             </div>
           </div>
-          <AddExpense onClose={closeModal} showModal={showModal} />
         </>
-      }
+   ) }
     />
+          <AddExpense onClose={closeModal} showModal={showModal} />
+
+    </>
+
   );
+  
 }
 
 export default AdminExpense;

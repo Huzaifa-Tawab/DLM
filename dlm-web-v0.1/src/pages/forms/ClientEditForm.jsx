@@ -262,11 +262,11 @@ const ClientEditForm = () => {
     navigate(`/details/client/${formData.Cnic}`);
   };
 
-  return isUploading ? (
-    <Loader />
-  ) : (
-    <>
-      <Header />
+  return  (
+    <SideBar element={
+      isUploading ? 
+        <Loader />
+:      <>
       <div className="container">
         <h1 className="title" style={{ textAlign: "justify" }}>
           Edit Client Form
@@ -468,9 +468,8 @@ const ClientEditForm = () => {
           </form>
         </div>
       </div>
-      <Footer />
     </>
-  );
+}/>);
 };
 
 export default ClientEditForm;

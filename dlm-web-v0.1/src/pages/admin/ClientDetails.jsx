@@ -83,12 +83,13 @@ function ClientDetails() {
   const closeDocModal = () => {
     setShowDocModal(false);
   };
-  return isloading ? (
-    <Loader />
-  ) : (
+  return(
     <>
-      <SideBar
-        element={
+    <SideBar
+    element={
+      isloading ? (
+        <Loader/>
+      ) : (
           <>
             <div className="ClientDetails">
               <div>
@@ -277,7 +278,7 @@ function ClientDetails() {
               </div>
             </div>
           </>
-        }
+  )}
       />
 
       <AddDocs
