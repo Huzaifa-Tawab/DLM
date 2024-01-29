@@ -60,8 +60,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Ham open={open} handleClick={handleClick} />
-
       <Routes>
         <Route path="/print/invoice/:id" element={<PrintInvoice />} />
         {/* <Route path="/" element={<FinancePlotsView />} /> */}
