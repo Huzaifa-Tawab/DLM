@@ -11,7 +11,7 @@
     font-weight: 700;
   }
   .goal-achieved {
-    background-color: #aaffaa !important; /* Change to your desired color */
+    background-color:#F4B266 !important; /* Change to your desired color */
     animation: congratsAnimation 1s ease-out; /* Add your animation duration and easing */
   }
   
@@ -113,7 +113,7 @@
     }
   }
   .agent-dash-content-col2-card {
-    background: rgb(86, 164, 227);
+    background:#A4243B;
     margin: 5px;
     padding: 5px;
   }
