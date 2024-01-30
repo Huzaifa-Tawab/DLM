@@ -4,9 +4,26 @@
   padding: 20px;
   background: #fff;
   align-items: center;
+  position: fixed;
+  width: 100vw;
+  top: 0px;
+  height: 100px;
+
+  box-shadow: 0 16px 32px -16px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 .Hero {
+  background: #fff;
+
+  padding: 20px;
   text-align: left;
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 100px;
+  height: calc(100vh - 100px);
+}
+.Hero-content {
+  width: calc(100vw - 500px);
 }
 .cta {
   background: #f4b266;
@@ -33,12 +50,12 @@
   font-size: 4rem;
   margin-left: 2%;
 }
-.Hero > h1 > strong {
+.Hero h1 > strong {
   color: #a4243b;
 }
-.Hero > p {
+.Hero p {
   font-size: 18px;
-  width: 700px;
+
   margin-left: 2%;
   margin-top: 20px;
 }

@@ -100,75 +100,56 @@ const Home = () => {
   return isLoading ? (
     <Loader />
   ) : (
-    <>
-      <div className="head-home">
-        <div className="logo">
-          <img src={logo} alt="" />
-        </div>
-        <div className="cta">
-          <button
-            onClick={() => {
-              navigate("/login");
-            }}
-          >
-            Login
-          </button>
-        </div>
-      </div>
-      <div className="Home-main">
-        <div className="home-container">
-          <h2>Plot Details Protal</h2>
-          <form onSubmit={handleSubmit} className="home-form">
-            <label>
-              Reference ID:
-              <br />
-              <input
-                type="text"
-                value={referenceId}
-                onChange={(e) => setReferenceId(e.target.value)}
-                className="input-field"
-              />
-            </label>
-            {errors.referenceId && (
-              <div className="error-message">{errors.referenceId}</div>
-            )}
-            <br />
-            <label>
-              CNIC:
-              <br />
-              <input
-                type="text"
-                value={cnic}
-                onChange={handleCnicChange}
-                className="input-field"
-              />
-            </label>
-            {errors.cnic && <div className="error-message">{errors.cnic}</div>}
-            <br />
-            <label>
-              Phone Number:
-              <br />
-              <input
-                type="text"
-                value={phoneNumber}
-                onChange={(e) =>
-                  setPhoneNumber(e.target.value.replace(/[^0-9]/g, ""))
-                }
-                className="input-field"
-              />
-            </label>
-            {errors.phoneNumber && (
-              <div className="error-message">{errors.phoneNumber}</div>
-            )}
-            <br />
-            <button type="submit" className="submit-button">
-              Submit
-            </button>
-          </form>
-        </div>
-      </div>
-      {/* <Footer/> */}
-    </>
+    <div className="home-container">
+      <h2>Plot Details Portal</h2>
+      <form onSubmit={handleSubmit} className="home-form">
+        <label>
+          Reference ID:
+          <br />
+          <input
+            type="text"
+            value={referenceId}
+            onChange={(e) => setReferenceId(e.target.value)}
+            className="input-field"
+          />
+        </label>
+        {errors.referenceId && (
+          <div className="error-message">{errors.referenceId}</div>
+        )}
+        <br />
+        <label>
+          CNIC:
+          <br />
+          <input
+            type="text"
+            value={cnic}
+            onChange={handleCnicChange}
+            className="input-field"
+          />
+        </label>
+        {errors.cnic && <div className="error-message">{errors.cnic}</div>}
+        <br />
+        <label>
+          Phone Number:
+          <br />
+          <input
+            type="text"
+            value={phoneNumber}
+            onChange={(e) =>
+              setPhoneNumber(e.target.value.replace(/[^0-9]/g, ""))
+            }
+            className="input-field"
+          />
+        </label>
+        {errors.phoneNumber && (
+          <div className="error-message">{errors.phoneNumber}</div>
+        )}
+        <br />
+        <button type="submit" className="submit-button">
+          Submit
+        </button>
+      </form>
+    </div>
   );
 };
 

@@ -6,6 +6,7 @@ import heero from "../../Assets/heero.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import "./homenew.css";
 import Loader from "../../components/loader/Loader";
+import Home from "./Home";
 
 function HomeNew() {
   const navigate = useNavigate();
@@ -30,40 +31,22 @@ function HomeNew() {
           </div>
         </div>
         <div className="Hero">
-          <h1>
-            Contemporary <br />
-            <strong>Real Estate </strong> <br />
-            Media & Marketing
-          </h1>
-          <p>
-            Tired of pushing out endless marketing campaigns that produce
-            lackluster results? Do we have you intrigued yet? Even if you are
-            simply looking for some expert advice before taking the plunge with
-            us, we would love to have the opportunity to speak with you!
-          </p>
-          {/* <button
-            onClick={() => {
-              navigate("/home");
-            }}
-          >
-            Get Strted
-          </button> */}
-{/* 
-          <button
-            className="log-in-home"
-            onClick={() => {
-              navigate("/home");
-            }}
-          >
-            Get Started
-          </button> */}
-          
-
-          <div className="hero-img">
-            <img src={hero} alt="" />
+          <div className="Hero-content">
+            <h1>
+              Contemporary <br />
+              <strong>Real Estate </strong> <br />
+              Media & Marketing
+            </h1>
+            <p>
+              Tired of pushing out endless marketing campaigns that produce
+              lackluster results? Do we have you intrigued yet? Even if you are
+              simply looking for some expert advice before taking the plunge
+              with us, we would love to have the opportunity to speak with you!
+            </p>
           </div>
+          <Home />
         </div>
-        <div className="team-works">
+        {/* <div className="team-works">
           <h3>Trusted By Teams at</h3>
           <div className="logos-slider">
             <img src={slide} alt="" />
@@ -172,10 +155,8 @@ function HomeNew() {
           <i className="fa-solid fa-instagram">In</i>
           <i className="fa-solid fa-tiktok">tt</i>
           <i className="fa-solid fa-youtube">yt</i>
-        </div>
-        
+        </div> */}
       </div>
-      
     </>
   );
 }
