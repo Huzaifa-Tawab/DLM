@@ -102,7 +102,7 @@ function App() {
         />
         <Route element={<FinanceRoute />}>
           <Route path="/finance/history" element={<Finance />} />
-          <Route path="/finance/" element={<Financedash />} />
+          <Route path="/finance/dashboard" element={<Financedash />} />
           <Route
             path="finance/withdrawal/history"
             element={<FinanceWithdrawal />}
@@ -120,9 +120,8 @@ function App() {
 
         <Route element={<AdminRoutes />}>
           <Route path="/admin/promo/winners" element={<AdminPromosResults />} />
-
-          <Route path="/admin/dashboard" element={<AdminDash />} />
-          <Route path="/agent/dashboard" element={<AgentDash />} />
+          <Route path="/admin/home" element={<AdminDash />} />
+          <Route path="/agent/home" element={<AgentDash />} />
           <Route path="//admin/promo/active" element={<AdminPromos />} />
           <Route path="/create/agent/" element={<AgentRegistrationForm />} />
           <Route path="/admin/blocked/" element={<BlockedUsers />} />
@@ -130,7 +129,7 @@ function App() {
           {/* <Route path="/admin/categories" element={<AdminCategory />} /> */}
           {/* <Route path="/admin/societies" element={<AdminSociety />} /> */}
           <Route path="/admin/agents" element={<AdminAgents />} />
-          <Route path="/admin/home" element={<AdminHome />} />
+          <Route path="/admin/customers" element={<AdminHome />} />
           <Route path="/admin/invoices" element={<AdminInvoives />} />
           <Route path="/admin/store" element={<AdminStore />} />
           <Route path="/details/client/:id" element={<ClientDetails />} />

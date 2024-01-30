@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import logo from "../../Assets/SoftXion.png";
 import hero from "../../Assets/hero.jpg";
-import slide from "../../Assets/slide.png";
-import heero from "../../Assets/heero.jpg";
+import paradise from '../../Assets/paradise.png'
+import city from '../../Assets/cityparadise.jpeg'
+import hawks from '../../Assets/hawks.png'
+import sydney from '../../Assets/sydney.jpeg'
+import about from "../../Assets/about.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import "./homenew.css";
 import Loader from "../../components/loader/Loader";
 import Home from "./Home";
+
 
 function HomeNew() {
   const navigate = useNavigate();
@@ -46,18 +50,18 @@ function HomeNew() {
           </div>
           <Home />
         </div>
-        {/* <div className="team-works">
+        <div className="team-works">
           <h3>Trusted By Teams at</h3>
           <div className="logos-slider">
+            <img src={paradise} alt="" />
+            <img src={hawks} alt="" />
+            {/* <img src={slide} alt="" />
             <img src={slide} alt="" />
-            <img src={slide} alt="" />
-            <img src={slide} alt="" />
-            <img src={slide} alt="" />
-            <img src={slide} alt="" />
+            <img src={slide} alt="" /> */}
           </div>
         </div>
 
-        <div className="marketing-components">
+        <div className="marketing-components paradise">
           <div className="market-typo">
             <h2>Our Trending Projects</h2>
             <span>
@@ -68,11 +72,14 @@ function HomeNew() {
             </span>
           </div>
           <div className="market-img">
-            <img src={heero} alt="" />
+            <img src={city} alt="" />
           </div>
         </div>
 
         <div className="marketing-components">
+        <div className="market-img">
+            <img src={sydney} alt="" />
+          </div>
           <div className="market-typo">
             <h2>Why Choose Us</h2>
             <span>
@@ -81,9 +88,7 @@ function HomeNew() {
               real estate solutions to our clients.
             </span>
           </div>
-          <div className="market-img">
-            <img src={heero} alt="" />
-          </div>
+         
         </div>
 
         <div className="marketing-components">
@@ -97,11 +102,11 @@ function HomeNew() {
             </span>
           </div>
           <div className="market-img">
-            <img src={heero} alt="" />
+            <img src={about} alt="" />
           </div>
         </div>
 
-        <div className="our-works">
+        {/* <div className="our-works">
           <h1>Works Heading</h1>
           <span>
             Our work is our reputation, and we protect it with every project we
@@ -148,14 +153,14 @@ function HomeNew() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="social-links">
-          <i className="fa-solid fa-facebook">Fb</i>
-          <i className="fa-solid fa-instagram">In</i>
-          <i className="fa-solid fa-tiktok">tt</i>
-          <i className="fa-solid fa-youtube">yt</i>
-        </div> */}
+        <i className="fa-brands fa-facebook"></i>
+        <i className="fa-brands fa-instagram"></i>
+        <i className="fa-brands fa-tiktok"></i>
+        <i className="fa-brands fa-youtube"></i>
+        </div>
       </div>
     </>
   );
