@@ -238,6 +238,7 @@ function AgentDash() {
               </marquee>
               <div className="agent-dash-content">
                 <div className="agent-dash-content-col1">
+                  <div className="up-hd"><h3>AGENT PROFILE</h3></div>
                   <div className="agent-dash-content-col1-row1">
                     <img src={User.imgUrl} className="dash-avatar" />
                     <h1>{User.Name}</h1>
