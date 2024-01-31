@@ -100,23 +100,25 @@
   .progress-percent {
     height: 100px;
     .CircularProgressbar-path {
-      stroke: red;
+      stroke:#A4243B;
     }
     .CircularProgressbar-trail {
-      stroke: gray;
+      stroke: #A4243B;
     }
     .CircularProgressbar-text {
-      fill: yellow;
+      fill: white;
     }
     .CircularProgressbar-background {
       fill: green;
     }
   }
   .agent-dash-content-col2-card {
-    background:#A4243B;
+    background:#F4B266;
     margin: 5px;
     padding: 5px;
-    height: 20.4vh 
+    height: 20.4vh; 
+    border-top: 2px solid #A4243B;
+    border-radius: 5px;
   }
   .mymistake-huxi {
     display: flex;
