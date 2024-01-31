@@ -61,6 +61,7 @@
   border-radius: 10px;
   padding: 10px;
   width: 30%;
+  margin: 0 1rem;
 }
 .transaction-box > h1 {
   color: #1a202c;
@@ -101,6 +102,7 @@
   width: 65%;
   padding: 10px;
   border-radius: 10px;
+  margin: 0 0 0 0.3rem;
 }
 .comment-box > h1 {
   color: #1a202c;
@@ -123,12 +125,17 @@
 }
 .name-cat > .comntbox-h2 {
   color: #1a202c;
-  font-family: "Plus Jakarta Sans";
-  font-size: 16px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 700;
   line-height: 150%;
   letter-spacing: -0.6px;
+}
+.box-bg{
+  border-radius: 2px !important;
+  margin: 1rem 0 !important;
+  height: 6rem;
+  overflow: auto;
 }
 .name-cat > .comntbox-span {
   color: #90a3bf;
@@ -161,7 +168,7 @@
 }
 .comntbox-date {
   color: #90a3bf;
-  font-size: 14px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 500;
   line-height: 150%;
@@ -178,26 +185,63 @@
 .transaction-row {
   display: flex;
   justify-content: space-between;
-  line-height: 30px;
+  line-height: 25px;
+  font-size: 13px;
 }
 .transaction-row > .trans-id {
   color: #1a202c;
-  font-size: 16px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 700;
   line-height: 150%; /* 24px */
   letter-spacing: -0.32px;
 }
 .transaction-main {
-  padding: 10px;
+  padding: 5px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 4px;
-
   line-height: 20px;
-  margin: 5px;
-  border-radius: 10px;
+  /* margin: 5px; */
+  border-radius: 2px;
+  height: 7rem;
+  overflow: auto;
 }
 .transaction-main:hover {
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   background: #f4b266;
+}
+@media (Max-width: 728px) {
+  .head-plot{
+    flex-direction: column;
+  }
+  .avatr-image > img {
+    padding: 3rem 4.5rem;
+}
+.Plot-box{
+  width: 25rem;
+  margin: 10px;
+}
+.data-client {
+  gap: 60px;
+  overflow: auto;
+}
+.column > button {
+  width: auto;
+  height: auto;
+}
+.column{
+  justify-content: center;
+}
+.bottom-part-plot {
+  flex-direction: column;
+}
+.transaction-box {
+  width: 25rem;
+  margin: 10px;
+}
+.comment-box {
+  width: 25rem;
+  margin: 10px;
+}
+  
 }
