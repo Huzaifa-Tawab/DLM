@@ -2,16 +2,21 @@
 .containerE {
     text-align: center;
     padding: 20px;
-    background-color: #a4243b;
+    background-color: #fff;
     color: #f4b266;
+    margin: 30px;
+    border-radius: 10px;
+  }
+  .containerE> img{
+    width: 20%;
   }
   
   .error-code {
-    font-size: 2em;
-    margin-bottom: 10px;
+    font-size: 4em;
+    margin: 10px 0px;
   }
   
   .error-message {
-    font-size: 1.2em;
+    font-size: 3em;
   }
   

@@ -106,126 +106,138 @@ function AdminPlot() {
     <Loader />
   ) : (
     <>
-      <SideBar element={
-        <div>
-        <div className="head-plot">
-          <div className="avatr-image">
-            <img src={avatar} alt="" />
-          </div>
-          <div className="Plot-box">
-            <h1>Plot Details</h1>
-            <div className="sec-heading">
-              <span className="first-text">Address:</span>{" "}
-              <span className="secon-text">{PlotDetails.Address}</span>
-            </div>
-
-            <div className="data-client">
-              <div className="row">
-                <span>Plot Size:</span>
-                <span>Agent ID:</span>
-                {isAdmin() && <span>Customer ID:</span>}
-                <span>City/Town</span>
+      <SideBar
+        element={
+          <div>
+            <div className="head-plot">
+              <div className="avatr-image">
+                <img src={avatar} alt="" />
               </div>
-              <div className="row">
-                <span className="secon-row">{PlotDetails.PlotSize} Marla</span>
-                <span className="secon-row">{PlotDetails.AgentId}</span>
-                {isAdmin() && (
-                  <span className="secon-row">{PlotDetails.CustomerId}</span>
-                )}
-                <span className="secon-row">{PlotDetails.CityTown}</span>
-              </div>
-              <div className="row">
-                <span>File Number:</span>
-                <span>Category:</span>
-                <span>Paid Amount:</span>
-                <span>Total Amount:</span>
-              </div>
-              <div className="row">
-                <span className="secon-row">{PlotDetails.FileNumber}</span>
-                <span className="secon-row">{PlotDetails.Category}</span>
-                <span className="secon-row">{PlotDetails.paidAmount}</span>
-                <span className="secon-row">{PlotDetails.TotalAmount}</span>
-              </div>
-            </div>
-
-            <div className="column">
-              {isAdmin() && (
-                <>
-                  <button
-                    className="red-color"
-                    onClick={() => {
-                      setShowTransferModal(true);
-                    }}
-                  >
-                    Transfer
-                  </button>
-                  <button
-                    className="red-color"
-                    onClick={() => {
-                      navigate(`/print/${PlotDetails.FileNumber}`);
-                    }}
-                  >
-                    Print
-                  </button>
-                </>
-              )}
-              {!isAdmin() && (
-                <button
-                className="yellow-color"
-                onClick={() => {
-                  setShowDocModal(true);
-                }}
-                
-              >
-                Payment
-              </button>
-              )}
-              
-              <button
-                className="yellow-color"
-                onClick={() => {
-                  setShowCommentsModal(true);
-                }}
-              >
-                Comment
-              </button>
-              {isAdmin() && (
-                <button
-                className="yellow-color"
-                onClick={() => navigate(`/edit/plot/${id}`)}
-              >
-                Edit
-              </button>
-              )}
-              
-            </div>
-          </div>
-        </div>
-        <div className="bottom-part-plot">
-          <div className="transaction-box">
-            <h1>Transaction</h1>
-            {Transactions.map((transaction, index) => (
-              <div
-                key={index}
-                className="transaction-main"
-                onClick={() => {
-                  navigate(`/print/invoice/${transaction.InvId}`);
-                }}
-              >
-                <div className="transaction-row">
-                  <span className="trans-id">{transaction.InvId}</span>
-                  <span className="trans-id">{transaction.nature}</span>
-                  <span className="comntbox-date">{getTime(transaction.time.seconds * 1000)}</span>
-                </div>
-                <div className="transaction-row">
-                  <span>
-                    <strong>Submited to:</strong> {transaction.agentName}
-                  </span>
-
-                  <span>PKR {transaction.total}</span>
+              <div className="Plot-box">
+                <h1>Plot Details</h1>
+                <div className="sec-heading">
+                  <span className="first-text">Address:</span>{" "}
+                  <span className="secon-text">{PlotDetails.Address}</span>
                 </div>
 
-                {/* <a
+                <div className="data-client">
+                  <div className="row">
+                    <span>Plot Size:</span>
+                    <span>Agent ID:</span>
+                    {isAdmin() && <span>Customer ID:</span>}
+                    <span>City/Town</span>
+                  </div>
+                  <div className="row">
+                    <span className="secon-row">
+                      {PlotDetails.PlotSize} Marla
+                    </span>
+                    <span className="secon-row">{PlotDetails.AgentId}</span>
+                    {isAdmin() && (
+                      <span className="secon-row">
+                        {PlotDetails.CustomerId}
+                      </span>
+                    )}
+                    <span className="secon-row">{PlotDetails.CityTown}</span>
+                  </div>
+                  <div className="row">
+                    <span>File Number:</span>
+                    <span>Category:</span>
+                    <span>Paid Amount:</span>
+                    <span>Total Amount:</span>
+                  </div>
+                  <div className="row">
+                    <span className="secon-row">{PlotDetails.FileNumber}</span>
+                    <span className="secon-row">{PlotDetails.Category}</span>
+                    <span className="secon-row">{PlotDetails.paidAmount}</span>
+                    <span className="secon-row">{PlotDetails.TotalAmount}</span>
+                  </div>
+                </div>
+
+                <div className="column">
+                  {isAdmin() && (
+                    <>
+                      <button
+                        className="red-color"
+                        onClick={() => {
+                          setShowTransferModal(true);
+                        }}
+                      >
+                        Transfer
+                      </button>
+                      <button
+                        className="red-color"
+                        onClick={() => {
+                          navigate(`/print/${PlotDetails.FileNumber}`);
+                        }}
+                      >
+                        Print
+                      </button>
+                    </>
+                  )}
+                  {!isAdmin() && (
+                    <button
+                      className="yellow-color"
+                      onClick={() => {
+                        setShowDocModal(true);
+                      }}
+                    >
+                      Payment
+                    </button>
+                  )}
+
+                  <button
+                    className="yellow-color"
+                    onClick={() => {
+                      setShowCommentsModal(true);
+                    }}
+                  >
+                    Comment
+                  </button>
+                  {isAdmin() && (
+                    <button
+                      className="yellow-color"
+                      onClick={() => navigate(`/edit/plot/${id}`)}
+                    >
+                      Edit
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="bottom-part-plot">
+              <div className="transaction-box">
+                <h1>Transaction</h1>
+                {Transactions.map((transaction, index) => (
+                  <div
+                    key={index}
+                    className="transaction-main"
+                    onClick={() => {
+                      navigate(`/print/invoice/${transaction.InvId}`);
+                    }}
+                  >
+                    <div className="transaction-row">
+                      <span className="trans-id">{transaction.InvId}</span>
+                      <span className="trans-id">{transaction.nature}</span>
+                      <span className="comntbox-date">
+                        {getTime(transaction.time.seconds * 1000)}
+                      </span>
+                    </div>
+                    <div className="transaction-row">
+                      <span>
+                        <strong>Submited to:</strong> {transaction.agentName}
+                      </span>
+
+                      <span>PKR {transaction.total}</span>
+                    </div>
+                    <div className="transaction-row">
+                      <span>
+                        <strong>Submited to:</strong> {transaction.agentName}
+                      </span>
+
+                      <span>PKR {transaction.total}</span>
+                    </div>
+
+                    {/* <a
                   href={transaction.proof}
                   target="_blank"
                   rel="noopener noreferre"
@@ -234,31 +246,39 @@ function AdminPlot() {
                   {" "}
                   <span className="second">Click Here for Proof</span>
                 </a> */}
-              </div>
-            ))}
-          </div>
-          <div className="comment-box">
-            <h1>
-              Comments <span>{Comments.length}</span>
-            </h1>
-
-            {Comments.map((e, i) => (
-              <div key={i} className="box-bg">
-                <div className="comment-box-top">
-                  <div className="img-name">
-                    <img className="img-commnt"src={avatar} alt="" style={{ widh: "50px" }} />
-                    <div className="name-cat">
-                      <h2 className="comntbox-h2">{e.by}</h2><span className="comntbox-span">{e.userType}</span>
-                    </div>
                   </div>
-                  <span className="comntbox-date" >{getTime(e.created.seconds * 1000)}</span>
-                </div>
-                <p className="coment-desc">{e.comment}</p>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-        {/* <div>
+              <div className="comment-box">
+                <h1>
+                  Comments <span>{Comments.length}</span>
+                </h1>
+
+                {Comments.map((e, i) => (
+                  <div key={i} className="box-bg">
+                    <div className="comment-box-top">
+                      <div className="img-name">
+                        <img
+                          className="img-commnt"
+                          src={avatar}
+                          alt=""
+                          style={{ widh: "50px" }}
+                        />
+                        <div className="name-cat">
+                          <h2 className="comntbox-h2">{e.by}</h2>
+                          <span className="comntbox-span">{e.userType}</span>
+                        </div>
+                      </div>
+                      <span className="comntbox-date">
+                        {getTime(e.created.seconds * 1000)}
+                      </span>
+                    </div>
+                    <p className="coment-desc">{e.comment}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* <div>
           <ul style={{ background: "red", margin: "10px" }}>
             {Transactions.map((transaction, index) => (
               <li key={index}>
@@ -298,9 +318,10 @@ function AdminPlot() {
             ))}
           </ul>
         </div> */}
-      </div>
-      }/>
-      
+          </div>
+        }
+      />
+
       <AddTransactions
         showModal={showDocModal}
         onClose={closeDocModal}

@@ -11,23 +11,46 @@ import {
   serverTimestamp,
   addDoc,
 } from "firebase/firestore";
-import { db } from "../../firebase";
+import { auth, db } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
 import FinanceHeader from "../../components/header/FinanceHeader";
 import { debounce, uniqueId } from "lodash";
 import SideBar from "../../components/Sidebar/sidebar";
+import { onAuthStateChanged } from "firebase/auth";
 
 function FinancePending() {
   const navigate = useNavigate();
   const [CustomersData, setCustomersData] = useState([]);
+  const [FinanceData, setFinanceData] = useState({});
   const [filteredCustomersData, setFilteredCustomersData] = useState([]);
   const [isLoading, setisLoading] = useState(true);
   let invoiceId = "";
   useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const uid = user.uid;
+        console.log(uid);
+        getFinanceUser(uid);
+      } else {
+        navigate("/login");
+      }
+    });
     getCustomersData();
   }, [1]);
+  async function getFinanceUser(id) {
+    const docRef = doc(db, "Users", id);
+    const docSnap = await getDoc(docRef);
 
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+      setFinanceData(docSnap.data());
+    } else {
+      navigate("/login");
+    }
+  }
   async function AproveTrans(id, nature, data) {
     setisLoading(true);
 
@@ -143,6 +166,7 @@ function FinancePending() {
     // Update transaction status to verified
     const transactionDoc = doc(db, "Transactions", id);
     await updateDoc(transactionDoc, {
+      verifiedBy: FinanceData.Name,
       varified: true,
     });
 
