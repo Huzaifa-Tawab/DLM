@@ -249,20 +249,20 @@ function AgentDash() {
                   </div>
                   <div className="agent-dash-content-col1-row1">
                     <img src={User.imgUrl} className="dash-avatar" />
-                    <div className="inf--flex-col">
-                      <h1>
-                        Name:<span>{User.Name}</span>
-                      </h1>
-                      <h1>
-                        Date Of Birth:<span>{User.Dob}</span>
-                      </h1>
-                      <h1>
-                        Cnic NO:<span>{User.Cnic}</span>
-                      </h1>
-                      <h1>
-                        Franchise of:<span>{ChildOf.Name}</span>
-                      </h1>
-                    </div>
+                     <div className="row">
+                          <span>Name:{User.Name}</span>
+                          <span>Gender:{User.Gender}</span>                           
+                          <span>CNIC:{User.Cnic}</span>                 
+                          <span>Invoice Id: {ChildOf.InvId}</span>
+                          <span>Sponsor of:{ChildOf.Name}</span>
+                        </div> 
+                        <div className="row">
+                        <span>Father's Name:{User.FName}</span>                         
+                          <span>D.O.B:{User.Dob}</span>                 
+                          <span>Phone No: {ChildOf.phNo}</span>
+                          <span>TownCity:{ChildOf.TownCity}</span>
+                          <span>Plots:{User.Plots}</span>
+                        </div>                   
                   </div>
 
                   <div className="agent-dash-content-col1-row2">
