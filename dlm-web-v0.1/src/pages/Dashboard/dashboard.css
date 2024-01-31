@@ -62,7 +62,7 @@
   .agent-dash-content-col2 {
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    height: 90%;
+    height: 95%;
     width: 30%;
     border-radius: 16px;
   }
@@ -116,6 +116,7 @@
     background:#A4243B;
     margin: 5px;
     padding: 5px;
+    height: 20.4vh 
   }
   .mymistake-huxi {
     display: flex;
