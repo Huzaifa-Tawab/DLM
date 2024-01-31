@@ -22,6 +22,7 @@ function AgentDash() {
   const [LevelThree, setLevelThree] = useState([]);
   const [LevelFour, setLevelFour] = useState([]);
   const [LevelFive, setLevelFive] = useState([]);
+  const [ChildOf, setChildOf] = useState({});
   const [Promos, setPromos] = useState([]);
   const [Marquee, setMarquee] = useState("");
   const [User, setUser] = useState();
@@ -53,6 +54,11 @@ function AgentDash() {
         if (docSnap.exists()) {
           setUser(docSnap.data());
           fetchData(user.uid);
+          const childRef = doc(db, "Agent", docSnap.data().ChildOf);
+          const childSnap = await getDoc(childRef);
+          if (childSnap.exists()) {
+            setChildOf(childSnap.data());
+          }
         }
       } else {
         // User is signed out
@@ -238,13 +244,24 @@ function AgentDash() {
               </marquee>
               <div className="agent-dash-content">
                 <div className="agent-dash-content-col1">
-                  <div className="up-hd"><h3>AGENT PROFILE</h3></div>
+                  <div className="up-hd">
+                    <h3>AGENT PROFILE</h3>
+                  </div>
                   <div className="agent-dash-content-col1-row1">
                     <img src={User.imgUrl} className="dash-avatar" />
                     <div className="inf--flex-col">
-                    <h1>Name:<span>{User.Name}</span></h1>
-                    <h1>Date Of Birth:<span>{User.Dob}</span></h1>
-                    <h1>Cnic NO:<span>{User.Cnic}</span></h1>
+                      <h1>
+                        Name:<span>{User.Name}</span>
+                      </h1>
+                      <h1>
+                        Date Of Birth:<span>{User.Dob}</span>
+                      </h1>
+                      <h1>
+                        Cnic NO:<span>{User.Cnic}</span>
+                      </h1>
+                      <h1>
+                        Franchise of:<span>{ChildOf.Name}</span>
+                      </h1>
                     </div>
                   </div>
 
