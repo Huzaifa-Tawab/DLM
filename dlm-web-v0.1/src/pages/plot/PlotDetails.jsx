@@ -1,13 +1,18 @@
 import { doc, getDoc } from "firebase/firestore";
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { db } from "../../firebase";
 import { useState } from "react";
 import './plotdetails.css'
 import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
+import Loader from "../../components/loader/Loader";
+import logo from '../../Assets/SoftXion.png'
 
 function PlotDetails() {
+  const navigate = useNavigate();
+  const [isLoading, setisLoading] = useState(false);
+  const [isBlocked, setisBlocked]  = useState(false);
   const location = useLocation();
   const [PlotDetail, setPlotDetail] = useState({});
   const id = location.state.plotRef;
@@ -19,11 +24,12 @@ function PlotDetails() {
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       setPlotDetail(docSnap.data());
+      setisBlocked(docSnap.data()).blocked;
     }
   }
-  return (
+  return isLoading ?( <Loader/> ) : (
+   true ? (<>You Are Blocked</>):(
     <>
-    <Header/>
     <div className="Plot">
       <div className="owner">
       <img src={location.state.img} alt="Avatar" className="avatar"/>
@@ -36,8 +42,8 @@ function PlotDetails() {
      <div className="details"><span>File No</span> <h1> {PlotDetail.FileNumber}</h1></div>
       </div>
     </div>
-    <Footer/>
     </>
+   )
   );
 }
 

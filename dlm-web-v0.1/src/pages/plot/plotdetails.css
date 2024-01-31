@@ -1,13 +1,12 @@
 .Plot{
     background: #fff;
     display: flex;
-    justify-content: space-around;
-    margin: 40px;
+    margin: 20px;
     border-radius: 10px;
     color: #272727;
     font-family: Inter;
     font-style: normal;
-      font-weight: 600;
+    font-weight: 600;
     line-height: normal;
 }
 .owner{
@@ -15,10 +14,13 @@
     padding: 20px;
 }
 .owner img{
-    width: 50%;
+    width: 30%;
+}
+.owner h1{
+    font-size: 2rem;
 }
 .plot-details{
-    padding: 100px 20px;
+    padding: 110px 20px;
 }
 .details{
     display: flex;
@@ -29,8 +31,6 @@
 }
 .details>span{
     color:  #90A3BF;
-   
-    font-family: "Plus Jakarta Sans";
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
