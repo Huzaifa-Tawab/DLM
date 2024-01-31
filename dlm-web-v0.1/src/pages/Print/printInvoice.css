@@ -13,7 +13,7 @@
   } */
   .invoice-1-2Pn .auto-group-z6we-Z8p {
     width: 230mm;
-    min-height: 310mm;
+    min-height: 270mm;
     /* margin: 10mm auto; */
     background: white;
     box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
@@ -24,7 +24,7 @@
    
     height: 325mm;
     background: white;
-    margin: 10px;
+    /* margin: 10px; */
     padding: 0;
   }
   @page {
@@ -34,7 +34,7 @@
   @media print {
     .auto-group-z6we-Z8p {
       width: 210mm;
-      height: 310mm;        
+      height: 325mm;        
     }
     .auto-group-z6we-Z8p {
       margin: 0;
@@ -261,10 +261,11 @@
   .auto-group-ctfe-cmJ
   .auto-group-zchr-ggc
   .auto-group-one8-Sfn {
-  margin: 0rem 7rem 0rem 0rem;
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
+    margin: 0rem 4rem 0em 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 200px;
 }
 .invoice-1-2Pn
   .auto-group-z6we-Z8p
