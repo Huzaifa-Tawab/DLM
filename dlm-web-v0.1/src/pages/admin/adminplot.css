@@ -1,5 +1,5 @@
-*{
-  font-family: 'PT Sans', sans-serif;
+* {
+  font-family: "PT Sans", sans-serif;
 }
 .Plot-box {
   background: white;
@@ -9,14 +9,14 @@
   width: 100%;
   padding: 20px;
 }
-.Plot-box>h1{
-  color:#1A202C;
-font-family: "Plus Jakarta Sans";
-font-size: 32px;
-font-style: normal;
-font-weight: 700;
-line-height: 48px;
-letter-spacing: -0.96px;
+.Plot-box > h1 {
+  color: #1a202c;
+  font-family: "Plus Jakarta Sans";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: -0.96px;
 }
 .head-plot {
   display: flex;
@@ -32,11 +32,10 @@ letter-spacing: -0.96px;
   padding: 25% 20%;
 }
 .column {
- 
   text-align: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .column > button {
   margin: 50px 25px 0 25px;
@@ -66,14 +65,14 @@ letter-spacing: -0.96px;
   padding: 10px;
   width: 30%;
 }
-.transaction-box>h1{
-  color:#1A202C;
-font-family: "Plus Jakarta Sans";
-font-size: 20px;
-font-style: normal;
-font-weight: 600;
-line-height: normal;
-letter-spacing: -0.4px;
+.transaction-box > h1 {
+  color: #1a202c;
+  font-family: "Plus Jakarta Sans";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.4px;
 }
 .first {
   color: #90a3bf;
@@ -108,14 +107,14 @@ letter-spacing: -0.4px;
   padding: 20px;
   border-radius: 10px;
 }
-.comment-box>h1{
-  color: #1A202C;
-font-family: "Plus Jakarta Sans";
-font-size: 20px;
-font-style: normal;
-font-weight: 600;
-line-height: normal;
-letter-spacing: -0.4px;
+.comment-box > h1 {
+  color: #1a202c;
+  font-family: "Plus Jakarta Sans";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.4px;
 }
 .comment-box-top {
   display: flex;
@@ -127,86 +126,83 @@ letter-spacing: -0.4px;
   align-items: center;
   gap: 20px;
 }
-.name-cat>.comntbox-h2{
-  color:#1A202C;
+.name-cat > .comntbox-h2 {
+  color: #1a202c;
   font-family: "Plus Jakarta Sans";
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
-  line-height: 150%; 
+  line-height: 150%;
   letter-spacing: -0.6px;
 }
-.name-cat>.comntbox-span{
-  color:  #90A3BF;
-font-size: 12px;
-font-style: normal;
-font-weight: 500;
-line-height: 150%; 
-letter-spacing: -0.28px;
+.name-cat > .comntbox-span {
+  color: #90a3bf;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: -0.28px;
 }
-.coment-desc{
+.coment-desc {
   color: #596780;
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: 200%;
-letter-spacing: -0.28px;
-padding-left: 70px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 200%;
+  letter-spacing: -0.28px;
+  padding-left: 70px;
 }
-.comment-box>h1>span{
-  
-width: 44px;
-height: 28px;
-padding: 0px 20px;
-justify-content: center;
-align-items: center;
-gap: 8px;
-font-size: 18px;
-color: white;
+.comment-box > h1 > span {
+  width: 44px;
+  height: 28px;
+  padding: 0px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  color: white;
   border-radius: 4px;
-  background: #F4B266;
+  background: #f4b266;
 }
-.comntbox-date{
-  color:#90A3BF;
-font-size: 14px;
-font-style: normal;
-font-weight: 500;
-line-height: 150%; 
-letter-spacing: -0.28px;
+.comntbox-date {
+  color: #90a3bf;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: -0.28px;
 }
 /* .comntbox-date:hover{
   color: black;
 } */
-.img-name>.img-commnt{
+.img-name > .img-commnt {
   width: 40px;
-height: 40px;
-flex-shrink: 0;
+  height: 40px;
+  flex-shrink: 0;
 }
 .transaction-row {
   display: flex;
   justify-content: space-between;
   line-height: 30px;
 }
-.transaction-row>.trans-id{
-  color:  #1A202C;
+.transaction-row > .trans-id {
+  color: #1a202c;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
   line-height: 150%; /* 24px */
   letter-spacing: -0.32px;
-
 }
 .transaction-main {
   padding: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 4px;
-  height: 70px;
+
   line-height: 20px;
   margin: 5px;
   border-radius: 10px;
 }
-.transaction-main:hover{
+.transaction-main:hover {
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  background: #F4B266;
-
+  background: #f4b266;
 }

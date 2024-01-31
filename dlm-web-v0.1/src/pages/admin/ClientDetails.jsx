@@ -119,17 +119,16 @@ function ClientDetails() {
                     {/* <span>+92 317 5545690</span> */}
                     <div className="clients-buttons">
                       <div className="button-pair">
-                      {isAdmin() && (
-                        <button
-                          onClick={() => {
-                            navigate(`/edit/client/${userData.Cnic}`);
-                          }}
-                        >
-                          <img src={profile} alt="" />
-                          <p>Edit Profile </p>
-                        </button>
-                      )}
-                        
+                        {isAdmin() && (
+                          <button
+                            onClick={() => {
+                              navigate(`/edit/client/${userData.Cnic}`);
+                            }}
+                          >
+                            <img src={profile} alt="" />
+                            <p>Edit Profile </p>
+                          </button>
+                        )}
 
                         <button
                           onClick={() => {
@@ -144,8 +143,8 @@ function ClientDetails() {
                           <p>Add Plot </p>
                         </button>
                       </div>
-                      
-                        <div className="button-pair ">
+
+                      <div className="button-pair ">
                         {isAdmin() && (
                           <button
                             onClick={toggleBlockStatus}
@@ -155,12 +154,11 @@ function ClientDetails() {
                             <p>{userData.Blocked ? "unblock" : "block"}</p>
                           </button>
                         )}
-                          <button onClick={openDocModal}>
-                            <img src={adddoc} alt="" />
-                            <p>Add Doc</p>
-                          </button>
-                        </div>
-                      
+                        <button onClick={openDocModal}>
+                          <img src={adddoc} alt="" />
+                          <p>Add Doc</p>
+                        </button>
+                      </div>
                     </div>
                   </div>
                   <div className="info-box-2">
@@ -257,12 +255,20 @@ function ClientDetails() {
                         <span className="first" style={{ color: "#fff" }}>
                           {userData.Address}
                         </span>
-                        {/* <h2>{plot.id}</h2> */}
-                        <div className="plot-des"></div>
+
+                        <div className="plot-des">
+                          <span>
+                            {" "}
+                            <strong>Agent Name:</strong> {plot.AgentName}
+                          </span>
+                          <br />
+                          <span>
+                            <strong>Cnic:</strong> {plot.AgentId}
+                          </span>
+                        </div>
                         <div className="row-start">
                           <img src={downtown} alt="" />
-                          {/* <PiBuildingsBold className="buildlogo" /> */}
-                          {/* <span>Category :</span> */}
+
                           <span>{plot.Category}</span>
                         </div>
 
