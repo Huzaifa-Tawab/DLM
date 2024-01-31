@@ -193,8 +193,8 @@ const ClientRegistrationForm = () => {
       setAgentData(docSnap.data());
       setFormData((prevData) => ({
         ...prevData,
-        [agentId]: id,
-        [agentName]: docSnap.data().Name,
+        ["agentId"]: id,
+        ["agentName"]: docSnap.data().Name,
       }));
     } else {
       // docSnap.data() will be undefined in this case
