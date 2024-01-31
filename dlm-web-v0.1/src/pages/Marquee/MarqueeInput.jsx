@@ -53,7 +53,6 @@ const MarqueeInput = () => {
       ) : (
     <div className="marq-body">
       <div className="marq-add">
-        <button onClick={handleAddInput}>Add Input</button>
       </div>
       <div className="marq-input">
       {inputList.map((input, index) => (
@@ -69,6 +68,7 @@ const MarqueeInput = () => {
         ))}
       </div>
       <div className="marq-add">
+      <button onClick={handleAddInput}>Add New Promo</button>
       <button onClick={submitChanges}>Save</button>
       </div>
     </div>
