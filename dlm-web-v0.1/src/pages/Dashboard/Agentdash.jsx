@@ -290,9 +290,11 @@ function AgentDash() {
                     <div className="agent-dash-content-col1-row2-card2">
                       <span>Plots:</span>
                       <ul>
-                        {User.Plots.map((e) => (
-                          <li>{e}</li>
-                        ))}
+                        {User.Plots ? (
+                          User.Plots.map((e) => <li>{e}</li>)
+                        ) : (
+                          <p>NO Plots</p>
+                        )}
                       </ul>
                     </div>
                   </div>
