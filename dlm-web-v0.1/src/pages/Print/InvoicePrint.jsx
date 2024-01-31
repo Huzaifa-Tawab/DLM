@@ -50,16 +50,19 @@ function PrintInvoice() {
   return (
     <div className="invoice-1-2Pn">
       <div className="auto-group-z6we-Z8p">
-        <img className="dots-shap-UFn" src={dotSharp} />
         <div className="frame-3608-zjv">
-          <p className="dml-KXJ">DLM</p>
+        <div className="auto-group-mqnk-uKi">
+            <p className="dml-pha">DLM</p>
+            <div className="auto-group-qkui-9Ux">Customer Copy</div>
+          </div>
           <div className="auto-group-ctfe-cmJ">
+            
             <div className="auto-group-5xz6-LxC">
               <div className="frame-3638-HMe">
                 <p className="name-EGt">Name</p>
                 <p className="father-husband-name--Zpx">
-                  <span className="father-husband-name--Zpx-sub-0">Father</span>
-                  <span className="father-husband-name--Zpx-sub-1">
+                  <span className="father-husband-name--Zpx-sub-0">Father/Husband Name:</span>
+                  {/* <span className="father-husband-name--Zpx-sub-1">
                     /
                     <br />
                   </span>
@@ -68,7 +71,7 @@ function PrintInvoice() {
                   </span>
                   <span className="father-husband-name--Zpx-sub-3"> </span>
                   <span className="father-husband-name--Zpx-sub-4">Name</span>
-                  <span className="father-husband-name--Zpx-sub-5"> :</span>
+                  <span className="father-husband-name--Zpx-sub-5"> :</span> */}
                 </p>
               </div>
               <p className="category--wU8">Category : </p>
@@ -97,12 +100,7 @@ function PrintInvoice() {
               </div>
             </div>
           </div>
-          <div className="auto-group-qlkw-dfi">
-            <p className="thanks-for-the-business-xhz">
-              Thanks for the business.
-            </p>
-            <p className="customer-signature-Gig">Customer Signature</p>
-          </div>
+          
           <div className="auto-group-b8ds-1RN">
             <p className="file-number-Xec">File Number</p>
             <p className="qty-qvC">Qty</p>
@@ -118,10 +116,16 @@ function PrintInvoice() {
             <p className="item-000-d7J">{panelty}</p>
           </div>
           <div className="line-328-yBA"></div>
-          <div className="auto-group-mqnk-uKi">
+          <div className="auto-group-qlkw-dfi">
+            <p className="thanks-for-the-business-xhz">
+              Thanks for the business.
+            </p>
+            <p className="customer-signature-Gig">Customer Signature</p>
+          </div>
+          {/* <div className="auto-group-mqnk-uKi">
             <p className="dml-pha">DLM</p>
             <div className="auto-group-qkui-9Ux">Customer Copy</div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="auto-group-hama-9tG">
