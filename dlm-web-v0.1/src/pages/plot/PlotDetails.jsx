@@ -12,6 +12,7 @@ import logo from '../../Assets/SoftXion.png'
 function PlotDetails() {
   const navigate = useNavigate();
   const [isLoading, setisLoading] = useState(false);
+  const [isBlocked, setisBlocked]  = useState(false);
   const location = useLocation();
   const [PlotDetail, setPlotDetail] = useState({});
   const id = location.state.plotRef;
@@ -23,24 +24,12 @@ function PlotDetails() {
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       setPlotDetail(docSnap.data());
+      setisBlocked(docSnap.data()).blocked;
     }
   }
   return isLoading ?( <Loader/> ) : (
+   true ? (<>You Are Blocked</>):(
     <>
-     {/* <div className="head-home">
-          <div className="logo">
-            <img src={logo} alt="" />
-          </div>
-          <div className="cta">
-            <button
-              onClick={() => {
-                navigate("/login");
-              }}
-            >
-              Login
-            </button>
-          </div>
-        </div> */}
     <div className="Plot">
       <div className="owner">
       <img src={location.state.img} alt="Avatar" className="avatar"/>
@@ -54,6 +43,7 @@ function PlotDetails() {
       </div>
     </div>
     </>
+   )
   );
 }
 
