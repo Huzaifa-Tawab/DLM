@@ -263,6 +263,7 @@ function FinancePending() {
                         <tr>
                           <th>Customer Name</th>
                           <th>Uploaded By</th>
+                          <th>Invoice Id</th>
                           <th>File Number</th>
                           <th>Nature</th>
                           <th>Payment</th>
@@ -276,6 +277,7 @@ function FinancePending() {
                           <tr key={index}>
                             <td>{e.customerName}</td>
                             <td>{e.agentName}</td>
+                            <td>{e.InvId}</td>
                             <td>{e.fileNumber}</td>
                             <td>{e.nature}</td>
                             <td>{e.payment}</td>

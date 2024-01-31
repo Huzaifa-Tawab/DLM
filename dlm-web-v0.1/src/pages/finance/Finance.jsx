@@ -102,6 +102,7 @@ function Finance() {
                         <th>Nature</th>
                         <th>Payment</th>
                         <th>penalty</th>
+                        <th>Verified By</th>
                         <th>Created At</th>
                         <th className="starter">Actions</th>
                       </tr>
@@ -115,6 +116,7 @@ function Finance() {
                           <td>{e.nature}</td>
                           <td>{e.payment}</td>
                           <td>{e.panelty}</td>
+                          <td>{e.verifiedBy}</td>
                           <td>{getDate(e.time.seconds)}</td>
 
                           <td>
