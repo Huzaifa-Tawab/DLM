@@ -231,10 +231,10 @@ function AdminPlot() {
                     </div>
                     <div className="transaction-row">
                       <span>
-                        <strong>Submited to:</strong> {transaction.agentName}
+                        <strong>Approved by :</strong> {transaction.verifiedBy}
                       </span>
 
-                      <span>PKR {transaction.total}</span>
+                      <span></span>
                     </div>
 
                     {/* <a
