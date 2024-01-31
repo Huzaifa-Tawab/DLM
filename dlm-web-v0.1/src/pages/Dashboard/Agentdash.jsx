@@ -249,20 +249,19 @@ function AgentDash() {
                   </div>
                   <div className="agent-dash-content-col1-row1">
                     <img src={User.imgUrl} className="dash-avatar" />
-                     <div className="row">
-                          <span>Name:{User.Name}</span>
-                          <span>Gender:{User.Gender}</span>                           
-                          <span>CNIC:{User.Cnic}</span>                 
-                          <span>Invoice Id: {ChildOf.InvId}</span>
-                          <span>Sponsor of:{ChildOf.Name}</span>
-                        </div> 
-                        <div className="row">
-                        <span>Father's Name:{User.FName}</span>                         
-                          <span>D.O.B:{User.Dob}</span>                 
-                          <span>Phone No: {ChildOf.phNo}</span>
-                          <span>TownCity:{ChildOf.TownCity}</span>
-                          <span>Plots:{User.Plots}</span>
-                        </div>                   
+                    <div className="row">
+                      <span>Name:{User.Name}</span>
+                      <span>Gender:{User.Gender}</span>
+                      <span>CNIC:{User.Cnic}</span>
+                      <span>Invoice Id: {ChildOf.InvId}</span>
+                      <span>Sponsor of:{ChildOf.Name}</span>
+                    </div>
+                    <div className="row">
+                      <span>Father's Name:{User.FName}</span>
+                      <span>D.O.B:{User.Dob}</span>
+                      <span>Phone No: {ChildOf.phNo}</span>
+                      <span>TownCity:{ChildOf.TownCity}</span>
+                    </div>
                   </div>
 
                   <div className="agent-dash-content-col1-row2">
@@ -288,7 +287,14 @@ function AgentDash() {
                         <h1>{LevelFive.length} persons </h1>
                       </div>
                     </div>
-                    <div className="agent-dash-content-col1-row2-card2"></div>
+                    <div className="agent-dash-content-col1-row2-card2">
+                      <span>Plots:</span>
+                      <ul>
+                        {User.Plots.map((e) => (
+                          <li>{e}</li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
                 <div className="agent-dash-content-col2">
