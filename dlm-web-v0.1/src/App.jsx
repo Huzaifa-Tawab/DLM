@@ -106,6 +106,8 @@ function App() {
         <Route element={<FinanceRoute />}>
           <Route path="/finance/history" element={<Finance />} />
           <Route path="/finance/dashboard" element={<Financedash />} />
+          <Route path="/admin/change password" element={<ChangePassword />} />
+          <Route path="/admin/edit profile" element={<EditProfile />} />
           <Route
             path="finance/withdrawal/history"
             element={<FinanceWithdrawal />}
