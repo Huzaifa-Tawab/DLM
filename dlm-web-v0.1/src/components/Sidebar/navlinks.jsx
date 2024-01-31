@@ -1,40 +1,40 @@
 export const superAdminNavLinks = [
   {
-    to: "/admin/dashboard",
+    to: "/admin/home",
     icon: <i className="fa-solid fa-house"></i>,
     title: "Dashboard",
   },
   {
-    to: "/admin/home",
-    icon: <i className="fa-solid fa-house"></i>,
+    to: "/admin/customers",
+    icon: <i className="fa-solid fa-user"></i>,
     title: "Customer",
   },
-  //   {
-  //     to: "dashboard/profile",
-  //     icon: <i className="fa-solid fa-id-card"></i>,
-  //     title: "Profile",
-  //     subBtn: ["Add Docuemt", "Edit Profile", "Change Password"],
-  //   },
+    {
+      to: "dashboard/profile",
+      icon: <i className="fa-solid fa-id-card"></i>,
+      title: "Profile",
+      subBtn: ["Edit Profile", "Change Password"],
+    },
   {
     to: "/admin/agents",
-    icon: <i className="fa-solid fa-id-card"></i>,
+    icon: <i className="fa-solid fa-circle-user"></i>,
     title: "Agents",
   },
   {
     to: "/admin",
-    icon: <i className="fa-solid fa-bag-shopping"></i>,
+    icon: <i className="fa-solid fa-clone"></i>,
     title: "Features",
     subBtn: ["Categories", "Societies", "Marquee"],
   },
   {
     to: "/admin/promo",
-    icon: <i className="fa-solid fa-bag-shopping"></i>,
+    icon: <i className="fa-solid fa-tag"></i>,
     title: "Promotions",
     subBtn: ["Active", "Winners"],
   },
   {
     to: "/admin/invoices",
-    icon: <i className="fa-solid fa-square-poll-vertical"></i>,
+    icon: <i className="fa-solid fa-file-invoice"></i>,
     title: "Invoices",
   },
   {
@@ -44,12 +44,12 @@ export const superAdminNavLinks = [
   },
   {
     to: "/admin/store",
-    icon: <i className="fa-solid fa-calendar-days"></i>,
+    icon: <i className="fa-solid fa-shop"></i>,
     title: "Store",
   },
   {
     to: "/admin/blocked",
-    icon: <i className="fa-solid fa-comment"></i>,
+    icon: <i className="fa-solid fa-circle-xmark"></i>,
     title: "Blocked Users",
   },
   {
@@ -60,31 +60,31 @@ export const superAdminNavLinks = [
   },
   {
     to: "/endsession",
-    icon: <i className="fa-solid fa-gear"></i>,
+    icon: <i className="fa-solid fa-user-lock"></i>,
     title: "Log Out",
   },
 ];
 
 export const subAdminNavLinks = [
   {
-    to: "/agent/dashboard",
+    to: "/agent/home",
     icon: <i className="fa-solid fa-house"></i>,
     title: "Dashboard",
   },
   {
-    to: "/admin/home",
-    icon: <i className="fa-solid fa-house"></i>,
+    to: "/admin/customers",
+    icon: <i className="fa-solid fa-user"></i>,
     title: "Customer",
   },
-  //   {
-  //     to: "dashboard/profile",
-  //     icon: <i className="fa-solid fa-id-card"></i>,
-  //     title: "Profile",
-  //     subBtn: ["Add Docuemt", "Edit Profile", "Change Password"],
-  //   },
+    {
+      to: "dashboard/profile",
+      icon: <i className="fa-solid fa-id-card"></i>,
+      title: "Profile",
+      subBtn: ["Edit Profile", "Change Password"],
+    },
   {
     to: "/admin/invoices",
-    icon: <i className="fa-solid fa-square-poll-vertical"></i>,
+    icon: <i className="fa-solid fa-file-invoice"></i>,
     title: "Invoices",
   },
   {
@@ -94,7 +94,7 @@ export const subAdminNavLinks = [
   },
   {
     to: "/admin/store",
-    icon: <i className="fa-solid fa-calendar-days"></i>,
+    icon: <i className="fa-solid fa-shop"></i>,
     title: "Store",
   },
   {
@@ -105,7 +105,7 @@ export const subAdminNavLinks = [
   },
   {
     to: "/endsession",
-    icon: <i className="fa-solid fa-gear"></i>,
+    icon: <i className="fa-solid fa-user-lock"></i>,
     title: "Log Out",
   },
 ];
@@ -115,27 +115,27 @@ export const financeNavLinks = [
     icon: <i className="fa-solid fa-house"></i>,
     title: "Dashboard",
   },
-  //   {
-  //     to: "dashboard/profile",
-  //     icon: <i className="fa-solid fa-id-card"></i>,
-  //     title: "Profile",
-  //     subBtn: ["Add Docuemt", "Edit Profile", "Change Password"],
-  //   },
+    {
+      to: "dashboard/profile",
+      icon: <i className="fa-solid fa-id-card"></i>,
+      title: "Profile",
+      subBtn: ["Edit Profile", "Change Password"],
+    },
   {
     to: "/finance",
-    icon: <i className="fa-solid fa-square-poll-vertical"></i>,
+    icon: <i className="fa-solid fa-file-invoice"></i>,
     title: "Invoices",
     subBtn: ["History", "Unverified"],
   },
   {
     to: "/finance/withdrawal",
-    icon: <i className="fa-solid fa-square-poll-vertical"></i>,
+    icon: <i className="fa-solid fa-money-bill"></i>,
     title: "Withdrawal",
     subBtn: ["History", "Requests"],
   },
   {
     to: "/endsession",
-    icon: <i className="fa-solid fa-gear"></i>,
+    icon: <i className="fa-solid fa-user-lock"></i>,
     title: "Log Out",
   },
 ];

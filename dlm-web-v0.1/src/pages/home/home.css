@@ -45,9 +45,10 @@
   color: #ff0000;
   margin-top: 5px;
 }
-@media (max-width:600px) {
+@media (max-width:728px) {
   .home-container {
     width: auto;
     margin-top: 50px;
+    text-align: left;
   }
 }
