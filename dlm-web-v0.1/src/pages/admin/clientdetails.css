@@ -285,8 +285,8 @@ td > a {
     font-size: 28px;
   }
   .data-client {
-    gap: 10px;
-    flex-direction: column;
+    /* gap: 10px; */
+    /* flex-direction: column; */
   }
 
   .client-pic {
