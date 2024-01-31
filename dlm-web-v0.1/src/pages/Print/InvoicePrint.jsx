@@ -130,7 +130,7 @@ function PrintInvoice() {
         </div>
         
       </div>
-      <div className="auto-group-hama-9tG">
+      {/* <div className="auto-group-hama-9tG">
         <div className="frame-3640-cG4">
           <p className="dml-KJt">DLM</p>
           <div className="auto-group-rtcq-c36">
@@ -204,7 +204,7 @@ function PrintInvoice() {
           </div>
         </div>
         <div className="line-329-iU4"></div>
-      </div>
+      </div> */}
     </div>
   );
 }
