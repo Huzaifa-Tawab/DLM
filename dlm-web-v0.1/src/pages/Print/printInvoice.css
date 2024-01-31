@@ -1,4 +1,53 @@
-.invoice-1-2Pn {
+.invoice-1-2Pn{
+  width: 230mm;
+  height: 270mm;
+  margin: 0 auto;
+  padding: 0;
+  font-size: 12pt;
+  box-sizing: border-box;
+    -moz-box-sizing: border-box;
+  }
+  /* * {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+  } */
+  .invoice-1-2Pn .auto-group-z6we-Z8p {
+    width: 230mm;
+    min-height: 310mm;
+    /* margin: 10mm auto; */
+    background: white;
+    box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+   
+  }
+  .frame-3608-zjv{
+    /* padding: 1cm; */
+   
+    height: 325mm;
+    background: white;
+    margin: 10px;
+    padding: 0;
+  }
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  @media print {
+    .auto-group-z6we-Z8p {
+      width: 210mm;
+      height: 310mm;        
+    }
+    .auto-group-z6we-Z8p {
+      margin: 0;
+      border: initial;
+      border-radius: initial;
+      width: initial;
+      min-height: initial;
+      box-shadow: initial;
+      background: initial;
+      page-break-after: always;
+    }
+  }
+/* .invoice-1-2Pn {
   box-sizing: border-box;
   padding-bottom: 4.2rem;
   width: 100%;
@@ -7,14 +56,14 @@
   display: flex;
   flex-direction: column;
   background-color: rgba(246, 183, 4, 0.0399999991);
-}
-.invoice-1-2Pn .auto-group-z6we-Z8p {
+} */
+/* .invoice-1-2Pn .auto-group-z6we-Z8p {
   margin: 0rem 0rem 2.8rem 1.6rem;
   width: 72.4063rem;
   height: 37.2rem;
   position: relative;
   flex-shrink: 0;
-}
+} */
 .invoice-1-2Pn .auto-group-z6we-Z8p .dots-shap-UFn {
   width: 32.2056rem;
   height: 33.0894rem;
@@ -24,7 +73,7 @@
   object-fit: contain;
   vertical-align: top;
 }
-.invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv {
+/* .invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv {
   width: 56.3rem;
   height: 37.2rem;
   position: absolute;
@@ -34,7 +83,7 @@
   box-sizing: border-box;
   background-color: #ffffff;
   border-radius: 1.2rem;
-}
+} */
 .invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv .dml-KXJ {
   width: 43.7rem;
   height: 1.5rem;
@@ -49,13 +98,15 @@
   white-space: nowrap;
 }
 .invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv .auto-group-ctfe-cmJ {
-  width: 53.1rem;
-  height: 9.9rem;
+  
+  width: 250px;
+  height: 20rem;
   position: absolute;
-  left: 1.6rem;
-  top: 10.7rem;
+  left: 17rem;
+  top: 11.7rem;
   display: flex;
   align-items: center;
+  height: 9.9rem;
 }
 .invoice-1-2Pn
   .auto-group-z6we-Z8p
@@ -74,7 +125,8 @@
   .auto-group-ctfe-cmJ
   .auto-group-5xz6-LxC
   .frame-3638-HMe {
-  margin-bottom: 0.9rem;
+  margin-bottom: 1.6rem;
+  
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -102,13 +154,14 @@
   .auto-group-5xz6-LxC
   .frame-3638-HMe
   .father-husband-name--Zpx {
-  max-width: 8.1rem;
+  /* max-width: 8.1rem; */
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.4;
   color: #191c21;
   font-family: Inter, "Source Sans Pro";
   flex-shrink: 0;
+  width: 10.1rem;
 }
 .invoice-1-2Pn
   .auto-group-z6we-Z8p
@@ -124,7 +177,7 @@
   color: #191c21;
   font-family: Inter, "Source Sans Pro";
 }
-.invoice-1-2Pn
+/* .invoice-1-2Pn
   .auto-group-z6we-Z8p
   .frame-3608-zjv
   .auto-group-ctfe-cmJ
@@ -132,7 +185,7 @@
   .frame-3638-HMe
   .father-husband-name--Zpx
   .father-husband-name--Zpx-sub-1 {
-}
+} */
 .invoice-1-2Pn
   .auto-group-z6we-Z8p
   .frame-3608-zjv
@@ -208,7 +261,7 @@
   .auto-group-ctfe-cmJ
   .auto-group-zchr-ggc
   .auto-group-one8-Sfn {
-  margin: 0.2rem 7rem 0rem 0rem;
+  margin: 0rem 7rem 0rem 0rem;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -606,48 +659,53 @@
   background-color: #d7dae0;
 }
 .invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv .auto-group-mqnk-uKi {
-  width: 33.2rem;
-  height: 2.7rem;
-  position: absolute;
-  left: 1.6rem;
-  top: 2.8rem;
-  display: flex;
-  align-items: flex-start;
+  width: 50.2rem;
+    height: 2.7rem;
+    /* position: absolute; */
+    /* left: 1.6rem; */
+    /* top: 2.8rem; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 10vh;
 }
 .invoice-1-2Pn
   .auto-group-z6we-Z8p
   .frame-3608-zjv
   .auto-group-mqnk-uKi
   .dml-pha {
-  margin-right: 15.5rem;
-  font-size: 1.8rem;
-  font-weight: 600;
-  line-height: 1.2125;
-  color: #e77117;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
+    margin-left: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 1.2125;
+    color: #e77117;
+    font-family: Inter, "Source Sans Pro";
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 .invoice-1-2Pn
   .auto-group-z6we-Z8p
   .frame-3608-zjv
   .auto-group-mqnk-uKi
   .auto-group-qkui-9Ux {
-  margin-top: 0.2rem;
-  width: 13.7rem;
-  height: 2.5rem;
-  font-size: 1.2rem;
-  font-weight: 700;
-  line-height: 1.1666666667;
-  color: #ffffff;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #ff9c51;
-  border-radius: 0.2rem;
-  flex-shrink: 0;
+  
+    margin-left: 15vw;
+    /* margin-top: 0.2rem; */
+    width: 13.7rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.1666666667;
+    color: #ffffff;
+    font-family: Inter, "Source Sans Pro";
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff9c51;
+    border-radius: 0.2rem;
+    flex-shrink: 0;
+
 }
 .invoice-1-2Pn .auto-group-hama-9tG {
   width: 60rem;
