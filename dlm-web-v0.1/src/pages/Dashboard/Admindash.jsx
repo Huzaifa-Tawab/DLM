@@ -15,25 +15,27 @@ import "./dashboard.css"; // Import your CSS file for styling
 import { onAuthStateChanged } from "firebase/auth";
 import { CircularProgressbar } from "react-circular-progressbar";
 import Loader from "../../components/loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 function AdminDash() {
-  const [LevelOne, setLevelOne] = useState([]);
-  const [LevelTwo, setLevelTwo] = useState([]);
-  const [LevelThree, setLevelThree] = useState([]);
-  const [LevelFour, setLevelFour] = useState([]);
-  const [LevelFive, setLevelFive] = useState([]);
+  const [NoPlots, setNoPlots] = useState("");
+  const [NoCustomers, setNoCustomers] = useState("");
+  const [NoTrans, setNoTrans] = useState("");
+  const [NoAgent, setNoAgent] = useState("");
   const [Promos, setPromos] = useState([]);
   const [Marquee, setMarquee] = useState("");
   const [User, setUser] = useState();
   const [PromosWithStatus, setPromosWithStatus] = useState([]);
   const [uid, setuid] = useState("");
   const [isLoading, setisLoading] = useState(true);
-
+  const navigate = useNavigate();
   useEffect(() => {
     getUser();
     getListText();
-    getPromos();
-    getPayments();
+
+    // getPromos();
+    // getPayments();
+    getStats();
   }, []);
 
   const getListText = async () => {
@@ -47,74 +49,29 @@ function AdminDash() {
   const getUser = async () => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
-        setuid(user.uid);
-        const docRef = doc(db, "Agent", user.uid);
+        const docRef = doc(db, "Users", user.uid);
+        console.log(user);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
           setUser(docSnap.data());
-          fetchData(user.uid);
+          console.log(docSnap.data());
+          setisLoading(false);
         }
       } else {
-        // User is signed out
-        // ...
+        navigate("/login");
       }
     });
   };
-
-  const fetchData = async (user) => {
-    const AgentRef = collection(db, "Agent");
-
-    const level1Query = query(AgentRef, where("ChildOf", "==", user));
-    const level1Snapshot = await getDocs(level1Query);
-    setLevelOne(level1Snapshot.docs.map((doc) => doc.data()));
-    setisLoading(false);
-
-    const level2Query = query(
-      AgentRef,
-      where(
-        "ChildOf",
-        "in",
-        level1Snapshot.docs.map((doc) => doc.id)
-      )
-    );
-    const level2Snapshot = await getDocs(level2Query);
-    setLevelTwo(level2Snapshot.docs.map((doc) => doc.data()));
-
-    const level3Query = query(
-      AgentRef,
-      where(
-        "ChildOf",
-        "in",
-        level2Snapshot.docs.map((doc) => doc.id)
-      )
-    );
-    const level3Snapshot = await getDocs(level3Query);
-    setLevelThree(level3Snapshot.docs.map((doc) => doc.data()));
-
-    const level4Query = query(
-      AgentRef,
-      where(
-        "ChildOf",
-        "in",
-        level3Snapshot.docs.map((doc) => doc.id)
-      )
-    );
-    const level4Snapshot = await getDocs(level4Query);
-    setLevelFour(level4Snapshot.docs.map((doc) => doc.data()));
-    console.log(LevelFour);
-    const level5Query = query(
-      AgentRef,
-      where(
-        "ChildOf",
-        "in",
-        level4Snapshot.docs.map((doc) => doc.id)
-      )
-    );
-    const level5Snapshot = await getDocs(level5Query);
-    setLevelFive(level5Snapshot.docs.map((doc) => doc.data()));
-    console.log(level5Snapshot.docs.map((doc) => doc.data()));
-  };
-
+  async function getStats() {
+    const PlotsSnapshot = await getDocs(collection(db, "Plots"));
+    setNoPlots(PlotsSnapshot.docs.length);
+    const CustSnapshot = await getDocs(collection(db, "Customers"));
+    setNoCustomers(CustSnapshot.docs.length);
+    const TranSnapshot = await getDocs(collection(db, "Transactions"));
+    setNoTrans(TranSnapshot.docs.length);
+    const AgentSnapshot = await getDocs(collection(db, "Agent"));
+    setNoAgent(AgentSnapshot.docs.length);
+  }
   async function getPromos() {
     const currentTimestamp = Timestamp.fromDate(new Date());
 
@@ -159,65 +116,6 @@ function AdminDash() {
     console.log(temp);
   }
 
-  async function getPromosWithStatus() {
-    const currentTimestamp = Timestamp.fromDate(new Date());
-
-    const promoQuery = query(
-      collection(db, "Promos"),
-      where("endsAt", ">", currentTimestamp)
-    );
-    const promoSnapshot = await getDocs(promoQuery);
-
-    const promosWithStatus = await Promise.all(
-      promoSnapshot.docs.map(async (promoDoc) => {
-        const promoData = promoDoc.data();
-        const promoCreatedAt = promoData.createdAt;
-
-        const transactionsQuery = query(
-          collection(db, "Transactions"),
-          where("varified", "==", true),
-          where("agentID", "==", uid),
-          where("time", ">", promoCreatedAt)
-        );
-
-        const transactionsSnapshot = await getDocs(transactionsQuery);
-
-        const totalAmount = transactionsSnapshot.docs.reduce(
-          (sum, transactionDoc) =>
-            sum + parseInt(transactionDoc.data().total, 10),
-          0
-        );
-        console.log(totalAmount);
-        const isGoalAchieved = totalAmount >= promoData.target;
-        const per = (totalAmount / promoData.target) * 100;
-        const status = isGoalAchieved ? "completed" : "pending";
-
-        if (isGoalAchieved) {
-          await addDoc(collection(db, "CompletedPromos"), {
-            agentID: uid,
-            promoID: promoDoc.id,
-            // Add other relevant data
-          });
-        }
-
-        return {
-          ...promoData,
-          totalAmount,
-          status,
-          per,
-        };
-      })
-    );
-
-    setPromosWithStatus(promosWithStatus);
-  }
-
-  useEffect(() => {
-    if (Promos) {
-      getPromosWithStatus();
-    }
-  }, [Promos]);
-
   return (
     <SideBar
       element={
@@ -238,37 +136,39 @@ function AdminDash() {
               </marquee>
               <div className="agent-dash-content">
                 <div className="agent-dash-content-col1">
-                  <div className="up-hd"><h3>AGENT PROFILE</h3></div>
+                  <div className="up-hd">
+                    <h3>ADMIN PROFILE</h3>
+                  </div>
                   <div className="agent-dash-content-col1-row1">
-                    <img src={User.imgUrl} className="dash-avatar" />
+                    <img src={User.img} className="dash-avatar" />
                     <div className="inf--flex-col">
-                    <h1>Name:<span>{User.Name}</span></h1>
-                    <h1>Date Of Birth:<span>{User.Dob}</span></h1>
-                    <h1>Cnic NO:<span>{User.Cnic}</span></h1>
+                      <h1>
+                        Name:<span>{User.Name}</span>
+                      </h1>
                     </div>
                   </div>
 
                   <div className="agent-dash-content-col1-row2">
                     <div className="agent-dash-content-col1-row2-card1">
                       <div className="level-card">
-                        <h1>Direct </h1>
-                        <h1>{User.Plots.length} plots </h1>
+                        <h1>Files Sold</h1>
+                        <h1>{NoPlots} Plots </h1>
                       </div>
                       <div className="level-card">
-                        <h1>Level 1 </h1>
-                        <h1>{LevelOne.length} persons </h1>
+                        <h1>Total Users </h1>
+                        <h1>{NoCustomers + NoAgent} Users </h1>
                       </div>
                       <div className="level-card">
-                        <h1>Level 2 </h1>
-                        <h1>{LevelTwo.length} persons </h1>
+                        <h1>Customers </h1>
+                        <h1>{NoCustomers} Customers </h1>
                       </div>
                       <div className="level-card">
-                        <h1>Level 3 </h1>
-                        <h1>{LevelThree.length} persons </h1>
+                        <h1>Transactions</h1>
+                        <h1>{NoTrans} Invoices </h1>
                       </div>
                       <div className="level-card">
-                        <h1>Level 4 </h1>
-                        <h1>{LevelFive.length} persons </h1>
+                        <h1>Agents</h1>
+                        <h1>{NoAgent} Agents </h1>
                       </div>
                     </div>
                     <div className="agent-dash-content-col1-row2-card2"></div>
