@@ -116,7 +116,7 @@ export const financeNavLinks = [
     title: "Dashboard",
   },
     {
-      to: "dashboard/profile",
+      to: "/admin",
       icon: <i className="fa-solid fa-id-card"></i>,
       title: "Profile",
       subBtn: ["Edit Profile", "Change Password"],
