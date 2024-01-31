@@ -10,7 +10,7 @@ export const superAdminNavLinks = [
     title: "Customer",
   },
     {
-      to: "dashboard/profile",
+      to: "/admin",
       icon: <i className="fa-solid fa-id-card"></i>,
       title: "Profile",
       subBtn: ["Edit Profile", "Change Password"],
@@ -77,7 +77,7 @@ export const subAdminNavLinks = [
     title: "Customer",
   },
     {
-      to: "dashboard/profile",
+      to: "/admin",
       icon: <i className="fa-solid fa-id-card"></i>,
       title: "Profile",
       subBtn: ["Edit Profile", "Change Password"],

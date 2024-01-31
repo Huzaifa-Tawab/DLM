@@ -49,6 +49,9 @@ import AdminDash from "./pages/Dashboard/Admindash";
 import AgentDash from "./pages/Dashboard/Agentdash";
 import FinanceDash from "./pages/Dashboard/Financedash";
 import AdminPromosResults from "./pages/admin/AdminPromosResults";
+import blocked from './Assets/notfound.jpg'
+import ChangePassword from "./pages/Forget Password/changepass";
+import EditProfile from "./pages/Edit Profile/Editprofile";
 
 function App() {
   const [open, setOpen] = useState();
@@ -93,7 +96,7 @@ function App() {
         <Route
           path="/blocked"
           element={
-            <ErrorPage errorCode={401} errorMessage="You Have Been Blocked" />
+            <ErrorPage errorCode={401} errorMessage="You Have Been Blocked" errorimage={blocked}/>
           }
         />
         <Route
@@ -123,6 +126,8 @@ function App() {
           <Route path="/admin/home" element={<AdminDash />} />
           <Route path="/agent/home" element={<AgentDash />} />
           <Route path="//admin/promo/active" element={<AdminPromos />} />
+          <Route path="/admin/change password" element={<ChangePassword />} />
+          <Route path="/admin/edit profile" element={<EditProfile />} />
           <Route path="/create/agent/" element={<AgentRegistrationForm />} />
           <Route path="/admin/blocked/" element={<BlockedUsers />} />
           <Route path="/edit/agent/:id" element={<AgentEditForm />} />

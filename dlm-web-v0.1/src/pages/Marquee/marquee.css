@@ -5,10 +5,14 @@
         padding: 50px;
         border-radius: 10px;
         box-shadow: 6px 3px 35px 4px rgba(0,0,0,0.1);
+        height: 80%;
+        overflow: auto;
 
 }
 .marq-add{
-
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 .marq-add button{
     background: #f4b266;
@@ -16,7 +20,7 @@
     border-radius: 10px;
     font-size: 22px;
     font-weight: 600;
-    width: 10vw;
+    width: 15vw;
 }
 .marq-add button:hover{
     background: #a4243b;
@@ -27,7 +31,7 @@
 .marq-input input{
     padding: 10px;
     height: 10vh;
-    width: 20vw;
+    width: 30vw;
     background: #fff;
     border: none;
     margin: 5px 0px 5px 5px;
