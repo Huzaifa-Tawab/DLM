@@ -52,12 +52,12 @@ export const superAdminNavLinks = [
     icon: <i className="fa-solid fa-circle-xmark"></i>,
     title: "Blocked Users",
   },
-  {
-    to: "/notfound",
-    icon: <i className="fa-solid fa-wallet"></i>,
-    title: "Wallets",
-    span: "New",
-  },
+  // {
+  //   to: "/notfound",
+  //   icon: <i className="fa-solid fa-wallet"></i>,
+  //   title: "Wallets",
+  //   span: "New",
+  // },
   {
     to: "/endsession",
     icon: <i className="fa-solid fa-user-lock"></i>,
