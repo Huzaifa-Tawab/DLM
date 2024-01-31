@@ -64,7 +64,7 @@
   position: relative;
   flex-shrink: 0;
 } */
-.invoice-1-2Pn .auto-group-z6we-Z8p .dots-shap-UFn {
+/* .invoice-1-2Pn .auto-group-z6we-Z8p .dots-shap-UFn {
   width: 32.2056rem;
   height: 33.0894rem;
   position: absolute;
@@ -72,7 +72,7 @@
   top: 0;
   object-fit: contain;
   vertical-align: top;
-}
+} */
 /* .invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv {
   width: 56.3rem;
   height: 37.2rem;
@@ -87,7 +87,7 @@
 .invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv .dml-KXJ {
   width: 43.7rem;
   height: 1.5rem;
-  position: absolute;
+  position: relative;
   left: 0.5rem;
   top: 0;
   font-size: 20rem;
@@ -101,9 +101,9 @@
   
   width: 250px;
   height: 20rem;
-  position: absolute;
-  left: 17rem;
-  top: 11.7rem;
+  position: relative;
+  left: 1.5rem;
+  top: 6.7rem;
   display: flex;
   align-items: center;
   height: 9.9rem;
@@ -273,7 +273,7 @@
   .auto-group-zchr-ggc
   .auto-group-one8-Sfn
   .isfan-arif-mCG {
-  margin-bottom: 2.8rem;
+  margin-bottom: 1.6rem;
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.4;
@@ -289,7 +289,7 @@
   .auto-group-zchr-ggc
   .auto-group-one8-Sfn
   .isfan-arif-hLp {
-  margin-bottom: 0.9rem;
+  margin-bottom: 1rem;
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.4;
@@ -458,9 +458,9 @@
 .invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv .auto-group-qlkw-dfi {
   width: 48.6rem;
   height: 1.7rem;
-  position: absolute;
+  position: relative;
   left: 1.6rem;
-  top: 35rem;
+  top: 17rem;
   display: flex;
   align-items: center;
 }
@@ -495,9 +495,9 @@
 .invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv .auto-group-b8ds-1RN {
   width: 53.1rem;
   /* height: 1.2rem; */
-  position: absolute;
+  position: relative;
   left: 1.6rem;
-  top: 23.6rem;
+  top: 10.6rem;
   display: flex;
   align-items: center;
 }
@@ -569,7 +569,7 @@
 .invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv .vector-144-d5N {
   width: 53.1rem;
   height: 0;
-  position: absolute;
+  position: relative;
   left: 1.6rem;
   top: 22.8rem;
   object-fit: contain;
@@ -578,7 +578,7 @@
 .invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv .vector-145-Zji {
   width: 53.1rem;
   height: 0;
-  position: absolute;
+  position: relative;
   left: 1.6rem;
   top: 25.6rem;
   object-fit: contain;
@@ -587,9 +587,9 @@
 .invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv .auto-group-yrts-WQ4 {
   width: 53.1rem;
   height: 1.4rem;
-  position: absolute;
+  position: relative;
   left: 1.6rem;
-  top: 26.8rem;
+  top: 8.8rem;
   display: flex;
   align-items: center;
 }
@@ -653,9 +653,9 @@
 .invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv .line-328-yBA {
   width: 14.3rem;
   height: 0.05rem;
-  position: absolute;
-  left: 37.1rem;
-  top: 34.2rem;
+  position: relative;
+  left: 36rem;
+  top: 16rem;
   background-color: #d7dae0;
 }
 .invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv .auto-group-mqnk-uKi {
