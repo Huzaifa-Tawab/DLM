@@ -92,7 +92,8 @@ function AdminHome() {
 
               <div className="hero--head">
                 <h1>Customers</h1>
-                <button
+                {!isAdmin() && (
+                  <button
                   onClick={() => {
                     navigate("/create/client");
                   }}
@@ -100,6 +101,8 @@ function AdminHome() {
                   Add New
                   <img src={arrow}></img>
                 </button>
+                )}
+                
               </div>
               <div className="Admin-Home-content">
                 <div className="Admin-Home-table">

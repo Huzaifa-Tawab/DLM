@@ -130,7 +130,9 @@ function ClientDetails() {
                           </button>
                         )}
 
-                        <button
+                        
+                        {!isAdmin() && (
+                          <button
                           onClick={() => {
                             navigate("/create/plot/", {
                               state: {
@@ -142,6 +144,9 @@ function ClientDetails() {
                           <img src={plot} alt="" />
                           <p>Add Plot </p>
                         </button>
+
+                        )}
+                        
                       </div>
 
                       <div className="button-pair ">

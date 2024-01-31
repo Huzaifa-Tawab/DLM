@@ -108,7 +108,7 @@ function AdminPlot() {
     <>
       <SideBar
         element={
-          <div className="Admin-plot-scroll">
+          <div>
             <div className="head-plot">
               <div className="avatr-image">
                 <img src={avatar} alt="" />
