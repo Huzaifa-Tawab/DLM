@@ -178,7 +178,7 @@ function Wallet() {
                   <span>{totalLevel5}</span>
                 </div>
                 <div className="wallet-box">
-                  <h4>Level 4</h4>
+                  <h4>Level 5</h4>
                   <span>{totalLevel5}</span>
                 </div>
               </div>
