@@ -51,10 +51,16 @@ function FinancePending() {
       navigate("/login");
     }
   }
-  async function AproveTrans(id, nature, data) {
+  async function AproveTrans(id, nature, data,fileNumber) {
     setisLoading(true);
 
     invoiceId = id;
+
+const PlotSnap = await getDoc( doc(db, "Plots", fileNumber));
+
+// if (PlotSnap.exists()) {
+//   console.log("Document data:", PlotSnap.data().Society);
+// }
     if (nature === "transfer") {
       const senderPending = doc(db, "Customers", data.senderCustomerID);
       const receiverPending = doc(db, "Customers", data.receiverCustomerID);
@@ -166,7 +172,9 @@ function FinancePending() {
     // Update transaction status to verified
     const transactionDoc = doc(db, "Transactions", id);
     await updateDoc(transactionDoc, {
+     Society: PlotSnap.data().Society,
       verifiedBy: FinanceData.Name,
+      Esign:FinanceData.signature,
       varified: true,
     });
 
@@ -296,7 +304,7 @@ function FinancePending() {
                               <button
                                 className="button-view"
                                 onClick={() => {
-                                  AproveTrans(e.InvId, e.nature, e);
+                                  AproveTrans(e.InvId, e.nature, e,e.fileNumber);
                                 }}
                               >
                                 Approve

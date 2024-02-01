@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { functions } from "lodash";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
-import signature from "../../Assets/signature.png";
+
 function PrintInvoice() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -16,9 +16,11 @@ function PrintInvoice() {
   const [InvoiceDate, setInvoiceDate] = useState("");
   const [TotalInstalmentAmount, setTotalInstalmentAmount] = useState("");
   const [FileNumber, setFileNumber] = useState("");
-  const [Qty, setQty] = useState("1");
+  const [Nature, setNature] = useState("");
   const [InstalmentAmount, setInstalmentAmount] = useState("");
   const [panelty, setpanelty] = useState("0.0");
+  const [Society, setSociety] = useState("0");
+  const [signature, setSignature] = useState("");
   useEffect(() => {
     getData();
   }, []);
@@ -40,6 +42,11 @@ function PrintInvoice() {
       setFileNumber(data["fileNumber"]);
       setInstalmentAmount(data["total"]);
       setpanelty(data["penalty"]);
+      setSociety(data["Society"]);
+      console.log(data["Society"]);
+      setNature(data['nature']);
+      setSignature(data['Esign']);
+  
       // window.print();
     } else {
       // docSnap.data() will be undefined in this case
@@ -55,7 +62,7 @@ function PrintInvoice() {
         <div className="secnd-comp-in">
           <p className="secnd-comp-in-head">DLM</p>
           <div className="secnd-comp-in-head-sec">Customer Copy</div>
-          <p className="secnd-comp-in-head">Sydney Hawks 7</p>
+          <p className="secnd-comp-in-head">Total: {TotalInstalmentAmount} PKR </p>          
           </div>
          <div className="sec-detl-comp">
           <div className="info-sec-col">
@@ -64,22 +71,22 @@ function PrintInvoice() {
             <h3 className="hff">Category:</h3>
           </div>
           <div className="info-name-sec-col">
-            <h3 className="hrr">ahmad</h3>
-            <h3 className="hrr"> khan khanhelo</h3>
-            <h3 className="hrr">helooo helo</h3>
+            <h3 className="hrr">{Name}</h3>
+            <h3 className="hrr"> {FName}</h3>
+            <h3 className="hrr">{Category}</h3>
           </div>
           <div className="info-inv-thrd">
-            <h3 className="hfc">invoice num:</h3>
+            <h3 className="hfc">Invoice Numer:</h3>
             {/* <h3 className="tcs">hfiiufhiucfui</h3> */}
-            <h3 className="hff"> invoice date:</h3>
+            <h3 className="hff"> Issue Date:</h3>
             {/* <h3 className="tcs">24-feb-2121</h3> */}
-            <h3 className="hff">Total Installement Amount:</h3>
+            <h3 className="hff">Society:</h3>
           </div>
           <div className="info-inv-frth">
-          <h3 className="tcs">hfiiufhiucfui</h3>
-          <h3 className="tcs">24-feb-2121</h3>
+          <h3 className="tcs">{InvoiceNumber}</h3>
+          <h3 className="tcs">{InvoiceDate}</h3>
             {/* <h3 className="hff">Total Installement Amount</h3> */}
-            <h3 className="val-sec">Rs 3145666</h3>
+            <h3 className="val-sec">{Society}</h3>
           </div>
         </div>
         <div className="last-comp">
@@ -89,13 +96,15 @@ function PrintInvoice() {
           <h3 className="hfff">Panelty</h3>
         </div>
         <div className="last-comp-info">
-          <h3 className="hfcc">File Number</h3>
-          <h3 className="hfcc">Nature</h3>
-          <h3 className="hfcc">Amount</h3>
-          <h3 className="hfcc">Panelty</h3>
+          <h3 className="hfcc">{FileNumber}</h3>
+          <h3 className="hfcc">{Nature}</h3>
+          <h3 className="hfcc">{InstalmentAmount}</h3>
+          <h3 className="hfcc">{panelty}</h3>
         </div>
         <div className="last-comp-info-last">
-        <h3 className="hccc">Thanks for the business</h3>
+        <h4 className="hccc">Thanks for the business<br />Non Refundable </h4>
+    
+     
           {/* <img className="sig"src={signature}></img> */}
         <div className="sign">
         <img className="sig"src={signature}></img>
@@ -109,7 +118,9 @@ function PrintInvoice() {
         <div className="secnd-comp-inter">
           <p className="secnd-comp-in-head">DLM</p>
           <div className="secnd-comp-in-head-sec">Office Copy</div>
-          <p className="secnd-comp-in-header">DLM: ewbiucbixfb  </p>
+          <p className="secnd-comp-in-head">Total: {TotalInstalmentAmount} PKR </p>
+
+          {/* <p className="secnd-comp-in-header">DLM: ewbiucbixfb  </p> */}
           </div>
          <div className="sec-detl-comp">
           <div className="info-sec-col">
@@ -118,22 +129,22 @@ function PrintInvoice() {
             <h3 className="hff">Category:</h3>
           </div>
           <div className="info-name-sec-col">
-            <h3 className="hrr">ahmad</h3>
-            <h3 className="hrr"> khan khanhelo</h3>
-            <h3 className="hrr">helooo helo</h3>
+            <h3 className="hrr">{Name}</h3>
+            <h3 className="hrr">{FName}</h3>
+            <h3 className="hrr">{Category}</h3>
           </div>
           <div className="info-inv-thrd">
-          <h3 className="hfc">invoice num:</h3>
+          <h3 className="hfc">Invoice Number:</h3>
             {/* <h3 className="tcs">hfiiufhiucfui</h3> */}
-            <h3 className="hff"> invoice date:</h3>
+            <h3 className="hff"> Issue Date:</h3>
             {/* <h3 className="tcs">24-feb-2121</h3> */}
-            <h3 className="hff">Total Installement Amount:</h3>
+            <h3 className="hff">Society</h3>
           </div>
           <div className="info-inv-frth">
-          <h3 className="tcs">hfiiufhiucfui</h3>
-          <h3 className="tcs">24-feb-2121</h3>
+          <h3 className="tcs">{InvoiceNumber}</h3>
+          <h3 className="tcs">{InvoiceDate}</h3>
             {/* <h3 className="hff">Total Installement Amount</h3> */}
-            <h3 className="val-sec">Rs 3145666</h3>
+            <h3 className="val-sec">{Society}</h3>
           </div>
         </div>
         <div className="last-comp">
@@ -143,10 +154,10 @@ function PrintInvoice() {
           <h3 className="hfff">Panelty</h3>
         </div>
         <div className="last-comp-info">
-          <h3 className="hfcc">File Number</h3>
-          <h3 className="hfcc">Nature</h3>
-          <h3 className="hfcc">Amount</h3>
-          <h3 className="hfcc">Panelty</h3>
+          <h3 className="hfcc">{FileNumber}</h3>
+          <h3 className="hfcc">{Nature}</h3>
+          <h3 className="hfcc">{TotalInstalmentAmount}</h3>
+          <h3 className="hfcc">{panelty}</h3>
         </div>
         <div className="last-comp-info-last">
           <h3 className="hccc">Thanks for the business</h3>
