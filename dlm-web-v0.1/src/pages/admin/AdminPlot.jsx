@@ -172,14 +172,7 @@ function AdminPlot() {
                       >
                         Print
                       </button>
-                      <button
-                        className="red-color"
-                        onClick={() => {
-                          navigate(`/print/schedule/${PlotDetails.FileNumber}`);
-                        }}
-                      >
-                        Print Schedule
-                      </button>
+                     
                     </>
                   )}
                   {!isAdmin() && (
@@ -191,6 +184,7 @@ function AdminPlot() {
                     >
                       Payment
                     </button>
+
                   )}
 
                   <button
@@ -201,6 +195,14 @@ function AdminPlot() {
                   >
                     Comment
                   </button>
+                  <button
+                        className="yellow-color"
+                        onClick={() => {
+                          navigate(`/print/schedule/${PlotDetails.FileNumber}`);
+                        }}
+                      >
+                        Print
+                      </button>
                   {isAdmin() && (
                     <button
                       className="yellow-color"
