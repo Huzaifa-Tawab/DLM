@@ -106,11 +106,11 @@ function AdminExpense() {
                     className="nosubmit"
                   />
                 </form>
-                <div className="tableFixHead head-head">
-                  <table className="adminhome-table head-head">
+                <div className="table-wrapper">
+                  <table className="fl-table">
                     <thead>
-                      <tr className="hed">
-                        <th className="starter">Sr No</th>
+                      <tr>
+                        <th>Sr No</th>
                         <th>Title</th>
                         <th>Amount</th>
                         {isAdmin() && <th>Uploaded by</th>}
@@ -122,7 +122,7 @@ function AdminExpense() {
                     <tbody>
                       {filteredCustomersDataMemoized.map((e, index) => (
                         <tr key={index}>
-                          <td className="starter">{index + 1}</td>
+                          <td>{index + 1}</td>
                           <td>{e.title}</td>
                           <td>PKR {e.amount} </td>
                           {isAdmin() && <td>{e.by}</td>}

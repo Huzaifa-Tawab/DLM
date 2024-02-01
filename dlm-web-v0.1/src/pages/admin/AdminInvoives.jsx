@@ -103,8 +103,8 @@ function AdminInvoives() {
                     className="nosubmit"
                   />
                 </form>
-                <div className="tableFixHead head-head">
-                  <table>
+                <div className="table-wrapper">
+                  <table className="fl-table">
                     <thead>
                       <tr>
                         <th>Invoice Number</th>

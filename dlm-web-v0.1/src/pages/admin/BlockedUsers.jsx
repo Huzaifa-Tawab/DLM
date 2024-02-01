@@ -95,15 +95,15 @@ function BlockedUsers() {
                     className="nosubmit"
                   />
                 </form>
-                <div className="tableFixHead head-head">
-                  <table className="adminhome-table">
+                <div className="table-wrapper">
+                  <table className="fl-table">
                     <thead>
-                      <tr className="hed">
-                        <th className="starter">Name</th>
+                      <tr>
+                        <th>Name</th>
 
                         <th>CNIC No</th>
-                        <th className="starter">Plots</th>
-                        <th className="starter">Actions</th>
+                        <th>Plots</th>
+                        <th>Actions</th>
                       </tr>
                     </thead>
                     <tbody>
