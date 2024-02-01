@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { functions } from "lodash";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
+import signature from "../../Assets/signature.png";
 function PrintInvoice() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -93,8 +94,15 @@ function PrintInvoice() {
           <h3 className="hfcc">Panelty</h3>
         </div>
         <div className="last-comp-info-last">
-          <h3 className="hccc">Thanks for the business</h3>
-          <h3 className="hcccf">Signature</h3>
+        <h3 className="hccc">Thanks for the business</h3>
+          {/* <img className="sig"src={signature}></img> */}
+        <div className="sign">
+        <img className="sig"src={signature}></img>
+
+        <h3 className="hcccf">
+            
+            Signature</h3>
+        </div>
         </div>
         <div className="cut"></div>
         <div className="secnd-comp-inter">
@@ -140,7 +148,14 @@ function PrintInvoice() {
         </div>
         <div className="last-comp-info-last">
           <h3 className="hccc">Thanks for the business</h3>
-          <h3 className="hcccf">Signature</h3>
+          {/* <img className="sig"src={signature}></img> */}
+        <div className="sign">
+        <img className="sig"src={signature}></img>
+
+        <h3 className="hcccf">
+            
+            Signature</h3>
+        </div>
         </div>
 
         
