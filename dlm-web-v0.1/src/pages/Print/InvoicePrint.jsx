@@ -62,12 +62,12 @@ function PrintInvoice() {
         <div className="secnd-comp-in">
           <p className="secnd-comp-in-head">DLM</p>
           <div className="secnd-comp-in-head-sec">Customer Copy</div>
-          <p className="secnd-comp-in-head">Total: {TotalInstalmentAmount} PKR </p>          
+          <p className="secnd-comp-in-head">{Society}</p>          
           </div>
          <div className="sec-detl-comp">
           <div className="info-sec-col">
             <h3 className="hff">Name:</h3>
-            <h3 className="hff">Father/Husband Name:</h3>
+            <h3 className="hff">F/H Name:</h3>
             <h3 className="hff">Category:</h3>
           </div>
           <div className="info-name-sec-col">
@@ -80,13 +80,12 @@ function PrintInvoice() {
             {/* <h3 className="tcs">hfiiufhiucfui</h3> */}
             <h3 className="hff"> Issue Date:</h3>
             {/* <h3 className="tcs">24-feb-2121</h3> */}
-            <h3 className="hff">Society:</h3>
+            <h3 className="hff">Invoice Amount:</h3>
           </div>
           <div className="info-inv-frth">
           <h3 className="tcs">{InvoiceNumber}</h3>
           <h3 className="tcs">{InvoiceDate}</h3>
-            {/* <h3 className="hff">Total Installement Amount</h3> */}
-            <h3 className="val-sec">{Society}</h3>
+            <h3 className="val-sec">{TotalInstalmentAmount}</h3>
           </div>
         </div>
         <div className="last-comp">
@@ -102,7 +101,7 @@ function PrintInvoice() {
           <h3 className="hfcc">{panelty}</h3>
         </div>
         <div className="last-comp-info-last">
-        <h4 className="hccc">Thanks for the business<br />Non Refundable </h4>
+        <h4 className="hccc">Thanks for the business<br />Non Refundable <br /> براہ مہربانی رقم بنک اکاونٹ میں جمع کروائیں۔ <br />ایجنٹ کو رقم دینے پر رسید لیتے وقت آن لائین تصدیق ضرور کر لیں۔ <br />بصورت دیگر کمپنی زمہ دار نہ ہو گی۔</h4>
     
      
           {/* <img className="sig"src={signature}></img> */}
@@ -118,14 +117,14 @@ function PrintInvoice() {
         <div className="secnd-comp-inter">
           <p className="secnd-comp-in-head">DLM</p>
           <div className="secnd-comp-in-head-sec">Office Copy</div>
-          <p className="secnd-comp-in-head">Total: {TotalInstalmentAmount} PKR </p>
+          <p className="secnd-comp-in-head">{Society}</p>
 
           {/* <p className="secnd-comp-in-header">DLM: ewbiucbixfb  </p> */}
           </div>
          <div className="sec-detl-comp">
           <div className="info-sec-col">
             <h3 className="hff">Name:</h3>
-            <h3 className="hff">Father/Husband Name:</h3>
+            <h3 className="hff">F/H Name:</h3>
             <h3 className="hff">Category:</h3>
           </div>
           <div className="info-name-sec-col">
@@ -138,13 +137,13 @@ function PrintInvoice() {
             {/* <h3 className="tcs">hfiiufhiucfui</h3> */}
             <h3 className="hff"> Issue Date:</h3>
             {/* <h3 className="tcs">24-feb-2121</h3> */}
-            <h3 className="hff">Society</h3>
+            <h3 className="hff">Invoice Amount:</h3>
           </div>
           <div className="info-inv-frth">
           <h3 className="tcs">{InvoiceNumber}</h3>
           <h3 className="tcs">{InvoiceDate}</h3>
             {/* <h3 className="hff">Total Installement Amount</h3> */}
-            <h3 className="val-sec">{Society}</h3>
+            <h3 className="val-sec">{TotalInstalmentAmount}</h3>
           </div>
         </div>
         <div className="last-comp">
@@ -160,7 +159,7 @@ function PrintInvoice() {
           <h3 className="hfcc">{panelty}</h3>
         </div>
         <div className="last-comp-info-last">
-          <h3 className="hccc">Thanks for the business</h3>
+        <h4 className="hccc">Thanks for the business<br />Non Refundable <br /> براہ مہربانی رقم بنک اکاونٹ میں جمع کروائیں۔ <br />ایجنٹ کو رقم دینے پر رسید لیتے وقت آن لائین تصدیق ضرور کر لیں۔ <br />بصورت دیگر کمپنی زمہ دار نہ ہو گی۔</h4>
           {/* <img className="sig"src={signature}></img> */}
         <div className="sign">
         <img className="sig"src={signature}></img>
