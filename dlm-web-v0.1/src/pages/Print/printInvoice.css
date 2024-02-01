@@ -47,650 +47,29 @@
       page-break-after: always;
     }
   }
-/* .invoice-1-2Pn {
-  box-sizing: border-box;
-  padding-bottom: 4.2rem;
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  background-color: rgba(246, 183, 4, 0.0399999991);
-} */
-/* .invoice-1-2Pn .auto-group-z6we-Z8p {
-  margin: 0rem 0rem 2.8rem 1.6rem;
-  width: 72.4063rem;
-  height: 37.2rem;
-  position: relative;
-  flex-shrink: 0;
-} */
-/* .invoice-1-2Pn .auto-group-z6we-Z8p .dots-shap-UFn {
-  width: 32.2056rem;
-  height: 33.0894rem;
-  position: absolute;
-  left: 40.2007rem;
-  top: 0;
-  object-fit: contain;
-  vertical-align: top;
-} */
-/* .invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv {
-  width: 56.3rem;
-  height: 37.2rem;
-  position: absolute;
-  left: 0;
-  top: 0;
-  border: solid 0.05rem rgba(246, 183, 4, 0.1000000015);
-  box-sizing: border-box;
-  background-color: #ffffff;
-  border-radius: 1.2rem;
-} */
-.invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv .dml-KXJ {
-  width: 43.7rem;
-  height: 1.5rem;
-  position: relative;
-  left: 0.5rem;
-  top: 0;
-  font-size: 20rem;
-  font-weight: 500;
-  line-height: 0.07;
-  color: rgba(231, 113, 23, 0.0500000007);
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-}
-.invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv .auto-group-ctfe-cmJ {
-  
-  width: 250px;
-  height: 20rem;
-  position: relative;
-  left: 1.5rem;
-  top: 6.7rem;
+
+.secnd-comp-in{
+  width: 50.2rem;
+  height: 2.7rem;
   display: flex;
   align-items: center;
-  height: 9.9rem;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-5xz6-LxC {
-  box-sizing: border-box;
-  padding-bottom: 1.8rem;
-  width: 9.1rem;
-  height: 100%;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-5xz6-LxC
-  .frame-3638-HMe {
-  margin-bottom: 1.6rem;
+  justify-content: flex-start;
   
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+  padding-top: 4vh;
+    padding-bottom: 5vh
 }
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-5xz6-LxC
-  .frame-3638-HMe
-  .name-EGt {
-  margin-bottom: 1.6rem;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.4;
-  color: #5e6470;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-5xz6-LxC
-  .frame-3638-HMe
-  .father-husband-name--Zpx {
-  /* max-width: 8.1rem; */
-  font-size: 1rem;
+.secnd-comp-in-head{
+  margin-left: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 600;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-  flex-shrink: 0;
-  width: 10.1rem;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-5xz6-LxC
-  .frame-3638-HMe
-  .father-husband-name--Zpx
-  .father-husband-name--Zpx-sub-0 {
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-}
-/* .invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-5xz6-LxC
-  .frame-3638-HMe
-  .father-husband-name--Zpx
-  .father-husband-name--Zpx-sub-1 {
-} */
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-5xz6-LxC
-  .frame-3638-HMe
-  .father-husband-name--Zpx
-  .father-husband-name--Zpx-sub-2 {
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-5xz6-LxC
-  .frame-3638-HMe
-  .father-husband-name--Zpx
-  .father-husband-name--Zpx-sub-3 {
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-5xz6-LxC
-  .frame-3638-HMe
-  .father-husband-name--Zpx
-  .father-husband-name--Zpx-sub-4 {
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-5xz6-LxC
-  .frame-3638-HMe
-  .father-husband-name--Zpx
-  .father-husband-name--Zpx-sub-5 {
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-5xz6-LxC
-  .category--wU8 {
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.4;
-  color: #5e6470;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-zchr-ggc {
-  height: 100%;
-  display: flex;
-  align-items: flex-start;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-zchr-ggc
-  .auto-group-one8-Sfn {
-    margin: 0rem 4rem 0em 1rem;
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-    width: 200px;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-zchr-ggc
-  .auto-group-one8-Sfn
-  .isfan-arif-mCG {
-  margin-bottom: 1.6rem;
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-zchr-ggc
-  .auto-group-one8-Sfn
-  .isfan-arif-hLp {
-  margin-bottom: 1rem;
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-zchr-ggc
-  .auto-group-one8-Sfn
-  .a-ErY {
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-zchr-ggc
-  .auto-group-pwfv-ndA {
-  margin-right: 6rem;
-  width: 7.4rem;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-zchr-ggc
-  .auto-group-pwfv-ndA
-  .frame-3611-Leg {
-  margin-bottom: 1.2rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-zchr-ggc
-  .auto-group-pwfv-ndA
-  .frame-3611-Leg
-  .invoice-number-tw6 {
-  margin-bottom: 0.4rem;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.4;
-  color: #5e6470;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-zchr-ggc
-  .auto-group-pwfv-ndA
-  .frame-3611-Leg
-  .ab2324-01-2nQ {
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-zchr-ggc
-  .auto-group-pwfv-ndA
-  .frame-3609-ySk {
-  display: flex;
-  flex-direction: column;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-zchr-ggc
-  .auto-group-pwfv-ndA
-  .frame-3609-ySk
-  .invoice-date-LHJ {
-  margin-bottom: 0.4rem;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.4;
-  color: #5e6470;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-zchr-ggc
-  .auto-group-pwfv-ndA
-  .frame-3609-ySk
-  .aug-2023-so2 {
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-zchr-ggc
-  .frame-3614-R3r {
-  align-items: flex-end;
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-zchr-ggc
-  .frame-3614-R3r
-  .total-instalment-amount-n9J {
-  margin-bottom: 0.2rem;
-  text-align: right;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.4;
-  color: #5e6470;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-ctfe-cmJ
-  .auto-group-zchr-ggc
-  .frame-3614-R3r
-  .rs-666666-i2x {
-  text-align: right;
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 1.4;
+  line-height: 1.2125;
   color: #e77117;
   font-family: Inter, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
-.invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv .auto-group-qlkw-dfi {
-  width: 48.6rem;
-  height: 1.7rem;
-  position: relative;
-  left: 1.6rem;
-  top: 17rem;
-  display: flex;
-  align-items: center;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-qlkw-dfi
-  .thanks-for-the-business-xhz {
-  margin: 0.3rem 27rem 0rem 0rem;
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-qlkw-dfi
-  .customer-signature-Gig {
-  margin-bottom: 0rem;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.4;
-  color: #5e6470;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv .auto-group-b8ds-1RN {
-  width: 53.1rem;
-  /* height: 1.2rem; */
-  position: relative;
-  left: 1.6rem;
-  top: 10.6rem;
-  display: flex;
-  align-items: center;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-b8ds-1RN
-  .file-number-Xec {
-  margin-right: 15rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  line-height: 1.5;
-  letter-spacing: 0.032rem;
-  text-transform: uppercase;
-  color: #5e6470;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-b8ds-1RN
-  .qty-qvC {
-  margin-right: 3.9rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  line-height: 1.5;
-  letter-spacing: 0.032rem;
-  text-transform: uppercase;
-  color: #5e6470;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-b8ds-1RN
-  .instalment-amount-mJ4 {
-  margin-right: 4.8rem;
-  text-align: right;
-  font-size: 0.8rem;
-  font-weight: 600;
-  line-height: 1.5;
-  letter-spacing: 0.032rem;
-  text-transform: uppercase;
-  color: #5e6470;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-b8ds-1RN
-  .panelty-HnC {
-  text-align: right;
-  font-size: 0.8rem;
-  font-weight: 600;
-  line-height: 1.5;
-  letter-spacing: 0.032rem;
-  text-transform: uppercase;
-  color: #5e6470;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv .vector-144-d5N {
-  width: 53.1rem;
-  height: 0;
-  position: relative;
-  left: 1.6rem;
-  top: 22.8rem;
-  object-fit: contain;
-  vertical-align: top;
-}
-.invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv .vector-145-Zji {
-  width: 53.1rem;
-  height: 0;
-  position: relative;
-  left: 1.6rem;
-  top: 25.6rem;
-  object-fit: contain;
-  vertical-align: top;
-}
-.invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv .auto-group-yrts-WQ4 {
-  width: 53.1rem;
-  height: 1.4rem;
-  position: relative;
-  left: 1.6rem;
-  top: 8.8rem;
-  display: flex;
-  align-items: center;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-yrts-WQ4
-  .dml009834-3Pz {
-  margin-right: 16.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-yrts-WQ4
-  .item-1-BWC {
-  margin-right: 7.2rem;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-yrts-WQ4
-  .item-666600-j1v {
-  margin-right: 9.8rem;
-  text-align: right;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-yrts-WQ4
-  .item-000-d7J {
-  text-align: right;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv .line-328-yBA {
-  width: 14.3rem;
-  height: 0.05rem;
-  position: relative;
-  left: 36rem;
-  top: 16rem;
-  background-color: #d7dae0;
-}
-.invoice-1-2Pn .auto-group-z6we-Z8p .frame-3608-zjv .auto-group-mqnk-uKi {
-  width: 50.2rem;
-    height: 2.7rem;
-    /* position: absolute; */
-    /* left: 1.6rem; */
-    /* top: 2.8rem; */
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding-top: 10vh;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-mqnk-uKi
-  .dml-pha {
-    margin-left: 1.5rem;
-    font-size: 1.8rem;
-    font-weight: 600;
-    line-height: 1.2125;
-    color: #e77117;
-    font-family: Inter, "Source Sans Pro";
-    white-space: nowrap;
-    flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-z6we-Z8p
-  .frame-3608-zjv
-  .auto-group-mqnk-uKi
-  .auto-group-qkui-9Ux {
-  
-    margin-left: 15vw;
+.secnd-comp-in-head-sec{
+  margin-left: 27%;
     /* margin-top: 0.2rem; */
     width: 13.7rem;
     height: 2.5rem;
@@ -706,89 +85,24 @@
     background-color: #ff9c51;
     border-radius: 0.2rem;
     flex-shrink: 0;
-
 }
-.invoice-1-2Pn .auto-group-hama-9tG {
-  width: 60rem;
-  height: 38.5rem;
-  position: relative;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn .auto-group-hama-9tG .terms-conditions-6oW {
-  width: 9.4rem;
-  height: 1.4rem;
-  position: absolute;
-  left: 3.2rem;
-  top: 37.1rem;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.4;
-  color: #5e6470;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-}
-.invoice-1-2Pn .auto-group-hama-9tG .frame-3640-cG4 {
-  width: 56.3rem;
-  height: 38.5rem;
-  position: absolute;
-  left: 1.6rem;
-  top: 0;
-  border: solid 0.05rem rgba(246, 183, 4, 0.1000000015);
-  box-sizing: border-box;
-  background-color: #ffffff;
-  border-radius: 1.2rem;
-}
-.invoice-1-2Pn .auto-group-hama-9tG .frame-3640-cG4 .dml-KJt {
-  width: 21rem;
-  height: 1.4rem;
-  position: absolute;
-  left: 0.6rem;
-  top: 0;
-  font-size: 9.6rem;
-  font-weight: 500;
-  line-height: 0.1458333333;
-  color: rgba(231, 113, 23, 0.0500000007);
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-}
-.invoice-1-2Pn .auto-group-hama-9tG .frame-3640-cG4 .auto-group-rtcq-c36 {
-  width: 53.1rem;
-  height: 9.9rem;
-  position: absolute;
-  left: 1.6rem;
-  top: 10.5rem;
+.sec-detl-comp{
+  
+  width: 400px;
+  height: 20rem;
   display: flex;
   align-items: center;
+  height: 9.9rem;
+  padding-left: 30px;
 }
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-j6vg-w5N {
+.info-sec-col{
   box-sizing: border-box;
-  padding-bottom: 1.8rem;
-  width: 9.1rem;
-  height: 100%;
-  flex-shrink: 0;
+    padding-bottom: 1.8rem;
+    width: 9.1rem;
+    height: 100%;
+    flex-shrink: 0;
 }
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-j6vg-w5N
-  .frame-3638-gHr {
-  margin-bottom: 0.9rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-j6vg-w5N
-  .frame-3638-gHr
-  .name-BkQ {
+.hff{
   margin-bottom: 1.6rem;
   font-size: 1rem;
   font-weight: 500;
@@ -798,202 +112,46 @@
   white-space: nowrap;
   flex-shrink: 0;
 }
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-j6vg-w5N
-  .frame-3638-gHr
-  .father-husband-name--HoS {
-  max-width: 8.1rem;
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-j6vg-w5N
-  .frame-3638-gHr
-  .father-husband-name--HoS
-  .father-husband-name--HoS-sub-0 {
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-j6vg-w5N
-  .frame-3638-gHr
-  .father-husband-name--HoS
-  .father-husband-name--HoS-sub-1 {
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-j6vg-w5N
-  .frame-3638-gHr
-  .father-husband-name--HoS
-  .father-husband-name--HoS-sub-2 {
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-j6vg-w5N
-  .frame-3638-gHr
-  .father-husband-name--HoS
-  .father-husband-name--HoS-sub-3 {
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-j6vg-w5N
-  .frame-3638-gHr
-  .father-husband-name--HoS
-  .father-husband-name--HoS-sub-4 {
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-j6vg-w5N
-  .frame-3638-gHr
-  .father-husband-name--HoS
-  .father-husband-name--HoS-sub-5 {
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-j6vg-w5N
-  .category--7fz {
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.4;
-  color: #5e6470;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-acm2-rtU {
-  height: 100%;
-  display: flex;
-  align-items: flex-start;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-acm2-rtU
-  .auto-group-pbrv-pKW {
-  margin: 0.2rem 9.3rem 0rem 0rem;
+.info-name-sec-col{
+  margin: 0rem 1.5rem 0em 1rem;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
+  width: 200px;
+  /* position: relative; */
+  margin-bottom: 15px;
 }
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-acm2-rtU
-  .auto-group-pbrv-pKW
-  .isfan-arif-M4Y {
-  margin-bottom: 2.8rem;
+.hrr{
+  margin-bottom: 1.6rem;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #191c21;
+    font-family: Inter, "Source Sans Pro";
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.tcs{
   font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #191c21;
+    font-family: Inter, "Source Sans Pro";
+    white-space: nowrap;
+    flex-shrink: 0;
+    /* margin-bottom: 15px; */
+    margin-bottom: 25px;
 }
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-acm2-rtU
-  .auto-group-pbrv-pKW
-  .isfan-arif-tqA {
-  margin-bottom: 1.3rem;
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
+.info-inv-thrd{
+margin-right: 6rem;
+width: 7.4rem;
+flex-shrink: 0;
+/* margin-bottom: 20px */
+/* margin-top: 10px; */
+margin-bottom: 18px
 }
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-acm2-rtU
-  .auto-group-pbrv-pKW
-  .a-Eu2 {
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-acm2-rtU
-  .auto-group-wiax-nQk {
-  margin-right: 10.6rem;
-  width: 7.4rem;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-acm2-rtU
-  .auto-group-wiax-nQk
-  .frame-3611-Kfa {
-  margin-bottom: 2.1rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-acm2-rtU
-  .auto-group-wiax-nQk
-  .frame-3611-Kfa
-  .invoice-number-gFE {
-  margin-bottom: 0.4rem;
+.hfc{
+  margin-bottom: 1.6rem;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.4;
@@ -1001,43 +159,10 @@
   font-family: Inter, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
+
 }
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-acm2-rtU
-  .auto-group-wiax-nQk
-  .frame-3611-Kfa
-  .ab2324-01-DFA {
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-acm2-rtU
-  .auto-group-wiax-nQk
-  .frame-3609-9ec {
-  margin-left: 0.1rem;
-  display: flex;
-  flex-direction: column;
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-acm2-rtU
-  .auto-group-wiax-nQk
-  .frame-3609-9ec
-  .invoice-date-6pk {
-  margin-bottom: 0.4rem;
+.tcss{
+  margin-bottom: 1.6rem;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.4;
@@ -1045,43 +170,38 @@
   font-family: Inter, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
+ 
+
 }
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-acm2-rtU
-  .auto-group-wiax-nQk
-  .frame-3609-9ec
-  .aug-2023-e5a {
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-acm2-rtU
-  .frame-3614-nBn {
+.info-inv-frth{
   align-items: flex-end;
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    /* margin-bottom: 63px; */
+    margin-bottom: 40px;
 }
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-acm2-rtU
-  .frame-3614-nBn
-  .total-instalment-amount-Ygk {
-  margin-bottom: 0.2rem;
+.val-sec{
   text-align: right;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #e77117;
+    font-family: Inter, "Source Sans Pro";
+    white-space: nowrap;
+    flex-shrink: 0;
+    
+}
+.last-comp{
+  display: flex;
+  margin-top: 2vh;
+  margin-left: 30px;
+  margin-right: 50px;
+  justify-content: space-between;
+
+}
+.hfff{
+    width: 150px;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.4;
@@ -1090,180 +210,8 @@
   white-space: nowrap;
   flex-shrink: 0;
 }
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rtcq-c36
-  .auto-group-acm2-rtU
-  .frame-3614-nBn
-  .rs-666600-5At {
-  text-align: right;
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 1.4;
-  color: #e77117;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn .auto-group-hama-9tG .frame-3640-cG4 .auto-group-nhhv-Qix {
-  width: 48.6rem;
-  height: 1.7rem;
-  position: absolute;
-  left: 1.6rem;
-  top: 34.8rem;
-  display: flex;
-  align-items: center;
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-nhhv-Qix
-  .thanks-for-the-business-9Ak {
-  margin: 0.3rem 27rem 0rem 0rem;
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-nhhv-Qix
-  .customer-signature-fPz {
-  margin-bottom: 0.3rem;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.4;
-  color: #5e6470;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn .auto-group-hama-9tG .frame-3640-cG4 .auto-group-3jgt-nzQ {
-  width: 53.1rem;
-  height: 1.2rem;
-  position: absolute;
-  left: 1.6rem;
-  top: 23.4rem;
-  display: flex;
-  align-items: center;
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-3jgt-nzQ
-  .file-number-KjS {
-  margin-right: 23.4rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  line-height: 1.5;
-  letter-spacing: 0.032rem;
-  text-transform: uppercase;
-  color: #5e6470;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-3jgt-nzQ
-  .qty-TKr {
-  margin-right: 3.9rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  line-height: 1.5;
-  letter-spacing: 0.032rem;
-  text-transform: uppercase;
-  color: #5e6470;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-3jgt-nzQ
-  .instalment-amount-Bme {
-  margin-right: 4.8rem;
-  text-align: right;
-  font-size: 0.8rem;
-  font-weight: 600;
-  line-height: 1.5;
-  letter-spacing: 0.032rem;
-  text-transform: uppercase;
-  color: #5e6470;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-3jgt-nzQ
-  .panelty-VXS {
-  text-align: right;
-  font-size: 0.8rem;
-  font-weight: 600;
-  line-height: 1.5;
-  letter-spacing: 0.032rem;
-  text-transform: uppercase;
-  color: #5e6470;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn .auto-group-hama-9tG .frame-3640-cG4 .vector-144-ppc {
-  width: 53.1rem;
-  height: 0;
-  position: absolute;
-  left: 1.6rem;
-  top: 22.6rem;
-  object-fit: contain;
-  vertical-align: top;
-}
-.invoice-1-2Pn .auto-group-hama-9tG .frame-3640-cG4 .vector-145-N5S {
-  width: 53.1rem;
-  height: 0;
-  position: absolute;
-  left: 1.6rem;
-  top: 25.4rem;
-  object-fit: contain;
-  vertical-align: top;
-}
-.invoice-1-2Pn .auto-group-hama-9tG .frame-3640-cG4 .auto-group-vnwe-htQ {
-  width: 53.1rem;
-  height: 1.4rem;
-  position: absolute;
-  left: 1.6rem;
-  top: 26.6rem;
-  display: flex;
-  align-items: center;
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-vnwe-htQ
-  .dml009834-e2x {
-  margin-right: 22.9rem;
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #191c21;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-vnwe-htQ
-  .item-1-BYg {
-  margin-right: 7.2rem;
+.hfcc{
+  width: 213px;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.4;
@@ -1272,14 +220,25 @@
   white-space: nowrap;
   flex-shrink: 0;
 }
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-vnwe-htQ
-  .item-666600-iYc {
-  margin-right: 9.8rem;
-  text-align: right;
-  font-size: 1rem;
+.last-comp-info{
+  display: flex;
+  margin-top: 2vh;
+  margin-left: 30px;
+  margin-right: 50px;
+  justify-content: space-between;
+
+
+}
+.last-comp-info-last{
+  margin-top: 10vh;
+  display: flex;
+  margin-left: 30px;
+  margin-right: 50px;
+  justify-content: space-between;
+}
+.hccc{
+  width: 213px;
+  font-size: 1.5rem;
   font-weight: 500;
   line-height: 1.4;
   color: #191c21;
@@ -1287,76 +246,35 @@
   white-space: nowrap;
   flex-shrink: 0;
 }
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-vnwe-htQ
-  .item-000-8MS {
-  text-align: right;
-  font-size: 1rem;
+.hcccf{
+  padding-top: 2vh;
+  text-align: center;
+  width: 250px;
+  font-size: 1.5rem;
   font-weight: 500;
   line-height: 1.4;
   color: #191c21;
+  margin-top: 20px;
   font-family: Inter, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
+  border-top: 2px solid;
 }
-.invoice-1-2Pn .auto-group-hama-9tG .frame-3640-cG4 .line-328-51n {
-  width: 14.3rem;
-  height: 0.05rem;
-  position: absolute;
-  left: 37.1rem;
-  top: 34rem;
-  background-color: #d7dae0;
-}
-.invoice-1-2Pn .auto-group-hama-9tG .frame-3640-cG4 .auto-group-rttz-oiU {
-  width: 34.2rem;
-  height: 2.5rem;
-  position: absolute;
-  left: 1.6rem;
-  top: 3.6rem;
+.secnd-comp-inter{
+  width: 50.2rem;
+  height: 2.7rem;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  
+  padding-top: 5vh;
+    padding-bottom: 5vh
+
 }
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rttz-oiU
-  .dml-k7v {
-  margin: 0.1rem 16.5rem 0rem 0rem;
-  font-size: 1.8rem;
-  font-weight: 600;
-  line-height: 1.2125;
-  color: #e77117;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn
-  .auto-group-hama-9tG
-  .frame-3640-cG4
-  .auto-group-rttz-oiU
-  .auto-group-3atc-UZi {
-  width: 13.7rem;
-  height: 100%;
-  font-size: 1.2rem;
-  font-weight: 700;
-  line-height: 1.1666666667;
-  color: #ffffff;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #ff9c51;
-  border-radius: 0.2rem;
-  flex-shrink: 0;
-}
-.invoice-1-2Pn .auto-group-hama-9tG .line-329-iU4 {
-  width: 60rem;
-  height: 0.2rem;
-  position: absolute;
-  left: 0;
-  top: 2rem;
-  background-color: #ffffff;
+
+.cut{
+  width: 100%;
+  border:dotted #FF9C51 2px;
+  margin-top:4% ;
+  
 }
