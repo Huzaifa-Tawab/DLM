@@ -55,12 +55,13 @@ function PrintInvoice() {
         <div className="secnd-comp-in">
           <p className="secnd-comp-in-head">DLM</p>
           <div className="secnd-comp-in-head-sec">Customer Copy</div>
+          <p className="secnd-comp-in-head">Sydney Hawks 7</p>
           </div>
          <div className="sec-detl-comp">
           <div className="info-sec-col">
-            <h3 className="hff">Name</h3>
-            <h3 className="hff">Father/Husband Name</h3>
-            <h3 className="hff">Category</h3>
+            <h3 className="hff">Name:</h3>
+            <h3 className="hff">Father/Husband Name:</h3>
+            <h3 className="hff">Category:</h3>
           </div>
           <div className="info-name-sec-col">
             <h3 className="hrr">ahmad</h3>
@@ -68,11 +69,11 @@ function PrintInvoice() {
             <h3 className="hrr">helooo helo</h3>
           </div>
           <div className="info-inv-thrd">
-            <h3 className="hfc">invoice num</h3>
+            <h3 className="hfc">invoice num:</h3>
             {/* <h3 className="tcs">hfiiufhiucfui</h3> */}
-            <h3 className="hff"> invoice date</h3>
+            <h3 className="hff"> invoice date:</h3>
             {/* <h3 className="tcs">24-feb-2121</h3> */}
-            <h3 className="hff">Total Installement Amount</h3>
+            <h3 className="hff">Total Installement Amount:</h3>
           </div>
           <div className="info-inv-frth">
           <h3 className="tcs">hfiiufhiucfui</h3>
@@ -107,13 +108,14 @@ function PrintInvoice() {
         <div className="cut"></div>
         <div className="secnd-comp-inter">
           <p className="secnd-comp-in-head">DLM</p>
-          <div className="secnd-comp-in-head-sec">Customer Copy</div>
+          <div className="secnd-comp-in-head-sec">Office Copy</div>
+          <p className="secnd-comp-in-header">DLM: ewbiucbixfb  </p>
           </div>
          <div className="sec-detl-comp">
           <div className="info-sec-col">
-            <h3 className="hff">Name</h3>
-            <h3 className="hff">Father/Husband Name</h3>
-            <h3 className="hff">Category</h3>
+            <h3 className="hff">Name:</h3>
+            <h3 className="hff">Father/Husband Name:</h3>
+            <h3 className="hff">Category:</h3>
           </div>
           <div className="info-name-sec-col">
             <h3 className="hrr">ahmad</h3>
@@ -121,11 +123,11 @@ function PrintInvoice() {
             <h3 className="hrr">helooo helo</h3>
           </div>
           <div className="info-inv-thrd">
-          <h3 className="hfc">invoice num</h3>
+          <h3 className="hfc">invoice num:</h3>
             {/* <h3 className="tcs">hfiiufhiucfui</h3> */}
-            <h3 className="hff"> invoice date</h3>
+            <h3 className="hff"> invoice date:</h3>
             {/* <h3 className="tcs">24-feb-2121</h3> */}
-            <h3 className="hff">Total Installement Amount</h3>
+            <h3 className="hff">Total Installement Amount:</h3>
           </div>
           <div className="info-inv-frth">
           <h3 className="tcs">hfiiufhiucfui</h3>
