@@ -105,11 +105,11 @@ function AdminStore() {
                     onChange={(e) => debouncedFilterData(e.target.value)}
                   />
                 </form>
-                <div className="tableFixHead head-head">
-                  <table className="adminhome-table">
+                <div className="table-wrapper">
+                  <table className="fl-table">
                     <thead>
-                      <tr className="hed">
-                        <th className="starter">Sr No</th>
+                      <tr>
+                        <th>Sr No</th>
                         <th>Item Name</th>
                         <th>Office No</th>
                         {isAdmin() && <th>Uploaded By</th>}
@@ -120,12 +120,12 @@ function AdminStore() {
                     <tbody>
                       {filteredCustomersDataMemoized.map((e, index) => (
                         <tr key={index}>
-                          <td className="starter">{index + 1}</td>
+                          <td>{index + 1}</td>
                           <td>{e.title}</td>
                           <td>{e.office}</td>
                           {isAdmin() && <td>{e.agent}</td>}
                           <td>{getDate(e.date.seconds)}</td>
-                          <td className="desc-tr">{e.decs}</td>
+                          <td>{e.decs}</td>
                         </tr>
                       ))}
                     </tbody>

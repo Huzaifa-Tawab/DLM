@@ -114,20 +114,20 @@ function AdminHome() {
                       onChange={(e) => debouncedFilterData(e.target.value)}
                     />
                   </form>
-                  <div className="tableFixHead">
-                    <table className="adminhome-table">
+                  <div className="table-wrapper">
+                    <table className="fl-table">
                       <thead>
-                        <tr className="hed">
-                          <th className="starter">Name</th>
+                        <tr>
+                          <th>Name</th>
                           <th>FName</th>
-                          <th className="numaric">Phone Number</th>
-                          {isAdmin() && <th className="center">CNIC No</th>}
+                          <th>Phone Number</th>
+                          {isAdmin() && <th>CNIC No</th>}
                           <th>GENDER</th>
-                          {isAdmin() && <th className="">Created By</th>}
-                          {isAdmin() && <th className="">Cnic</th>}
+                          {isAdmin() && <th>Created By</th>}
+                          {isAdmin() && <th>Cnic</th>}
 
-                          <th className="starter">Plots</th>
-                          <th className="starter">Actions</th>
+                          <th>Plots</th>
+                          <th>Actions</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -149,11 +149,11 @@ function AdminHome() {
                             </td>
                             <td>{e.FName}</td>
 
-                            <td className="numaric">{e.phNo}</td>
+                            <td>{e.phNo}</td>
                             {isAdmin() && <td>{e.Cnic}</td>}
                             <td>{e.Gender}</td>
-                            {isAdmin() && <td className="">{e.agentName}</td>}
-                            {isAdmin() && <td className="">{e.agentId}</td>}
+                            {isAdmin() && <td>{e.agentName}</td>}
+                            {isAdmin() && <td>{e.agentId}</td>}
 
                             <td className="tddr">
                               <p>{e.Plots.length} Plots</p>

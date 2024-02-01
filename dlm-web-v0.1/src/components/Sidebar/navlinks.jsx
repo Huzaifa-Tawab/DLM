@@ -13,7 +13,7 @@ export const superAdminNavLinks = [
       to: "/admin",
       icon: <i className="fa-solid fa-id-card"></i>,
       title: "Profile",
-      subBtn: ["Edit Profile", "Change Password"],
+      subBtn: ["Change Password"],
     },
   {
     to: "/admin/agents",
@@ -80,7 +80,7 @@ export const subAdminNavLinks = [
       to: "/admin",
       icon: <i className="fa-solid fa-id-card"></i>,
       title: "Profile",
-      subBtn: ["Edit Profile", "Change Password"],
+      subBtn: ["Change Password"],
     },
   {
     to: "/admin/invoices",
@@ -119,7 +119,7 @@ export const financeNavLinks = [
       to: "/admin",
       icon: <i className="fa-solid fa-id-card"></i>,
       title: "Profile",
-      subBtn: ["Edit Profile", "Change Password"],
+      subBtn: ["Change Password"],
     },
   {
     to: "/finance",

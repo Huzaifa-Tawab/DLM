@@ -90,20 +90,20 @@ function AdminAgents() {
                     className="nosubmit"
                   />
                 </form>
-                <div className="tableFixHead">
-                  <table className="adminhome-table">
-                    <thead className="width-adjust">
-                      <tr className="hed">
-                        <th className="width-adjust">Name</th>
-                        <th className="width-adjust">Phone Number</th>
-                        <th className="width-adjust">CNIC No</th>
-                        <th className="width-adjust">Plots</th>
-                        <th className="width-adjust">Actions</th>
+                <div className="table-wrapper">
+                  <table className="fl-table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Phone Number</th>
+                        <th>CNIC No</th>
+                        <th>Plots</th>
+                        <th>Actions</th>
                       </tr>
                     </thead>
                     <tbody>
                       {filteredCustomersDataMemoized.map((e) => (
-                        <tr className="width-adjust" key={e.Cnic}>
+                        <tr key={e.Cnic}>
                           <td className="avatar-image width-adjust">
                             <img
                               src={avatar}
@@ -112,12 +112,12 @@ function AdminAgents() {
                             />
                             {e.Name}
                           </td>
-                          <td className="width-adjust">{e.phNo}</td>
-                          <td className="width-adjust">{e.Cnic}</td>
-                          <td className="tddr width-adjust">
+                          <td>{e.phNo}</td>
+                          <td>{e.Cnic}</td>
+                          <td className="tddr">
                             <p>{e.Plots.length} Plots</p>
                           </td>
-                          <td className="width-adjust">
+                          <td>
                             <button
                               className="button-view"
                               onClick={() =>
