@@ -59,7 +59,7 @@ const PlotRegistrationForm = () => {
 
   useEffect(() => {
     const generateNumber = async () => {
-      const number = await generateRandomNumber("Plots", "DLM");
+      const number = await generateRandomNumber("Plots", "DYN");
       setfileNumber(number);
     };
     getCatagories();
