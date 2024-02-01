@@ -52,6 +52,7 @@ import AdminPromosResults from "./pages/admin/AdminPromosResults";
 import blocked from './Assets/notfound.jpg'
 import ChangePassword from "./pages/Forget Password/changepass";
 import EditProfile from "./pages/Edit Profile/Editprofile";
+import Schedule from "./pages/Schedule/Schedule";
 
 function App() {
   const [open, setOpen] = useState();
@@ -71,6 +72,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/print/invoice/:id" element={<PrintInvoice />} />
+        <Route path="/schedule" element={<Schedule />} />
         {/* <Route path="/" element={<FinancePlotsView />} /> */}
         {/* <Route path="/" element={<Home />} /> */}
         <Route path="/home" element={<Home />} />
@@ -106,7 +108,7 @@ function App() {
         <Route element={<FinanceRoute />}>
           <Route path="/finance/history" element={<Finance />} />
           <Route path="/finance/dashboard" element={<Financedash />} />
-          <Route path="/admin/change password" element={<ChangePassword />} />
+          {/* <Route path="/admin/change password" element={<ChangePassword />} /> */}
           <Route path="/admin/edit profile" element={<EditProfile />} />
           <Route
             path="finance/withdrawal/history"

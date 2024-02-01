@@ -12,7 +12,18 @@ function ChangePassword() {
       isLoading ? (
         <Loader/>
       ) : (
-    <CommingSoon/>
+   <>
+   <div className="change-pass">
+    <div className="pass-input">
+      <label htmlFor="">Current Password</label>
+      <input type="password" placeholder='Current Password'/>
+      <label htmlFor="">New Password</label>
+      <input type="password" placeholder='New Password'/>
+      <label htmlFor="">Re-Enter New Password</label>
+      <input type="password" placeholder='Re-Enter New Password'/>
+    </div>
+   </div>
+   </>
   )
         }  />
   )

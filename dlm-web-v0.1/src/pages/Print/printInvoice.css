@@ -49,18 +49,18 @@
   }
 
 .secnd-comp-in{
-  width: 50.2rem;
+  /* width: 50.2rem; */
   height: 2.7rem;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-around;
   
   padding-top: 4vh;
     padding-bottom: 5vh
 }
 .secnd-comp-in-head{
-  margin-left: 1.5rem;
-  font-size: 1.8rem;
+  /* margin-left: 5.5rem; */
+  font-size: 1.4rem;
   font-weight: 600;
   line-height: 1.2125;
   color: #e77117;
@@ -71,9 +71,9 @@
 .secnd-comp-in-head-sec{
   margin-left: 27%;
     /* margin-top: 0.2rem; */
-    width: 13.7rem;
-    height: 2.5rem;
-    font-size: 1.2rem;
+    width: 10rem;
+    height: 2.2rem;
+    font-size: 1.1rem;
     font-weight: 700;
     line-height: 1.1666666667;
     color: #ffffff;
@@ -87,13 +87,14 @@
     flex-shrink: 0;
 }
 .sec-detl-comp{
-  
-  width: 400px;
+  margin-top: 25px;
+  /* width: 400px; */
   height: 20rem;
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
   height: 9.9rem;
-  padding-left: 30px;
+  /* padding-left: 30px; */
 }
 .info-sec-col{
   box-sizing: border-box;
@@ -209,9 +210,10 @@ margin-bottom: 18px
   font-family: Inter, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
+  border: 1px solid #b8b7b7f5;
 }
 .hfcc{
-  width: 213px;
+  width: 150px;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.4;
@@ -219,6 +221,7 @@ margin-bottom: 18px
   font-family: Inter, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
+  border: 1px solid #b8b7b7f5;
 }
 .last-comp-info{
   display: flex;
@@ -230,7 +233,7 @@ margin-bottom: 18px
 
 }
 .last-comp-info-last{
-  margin-top: 7%;
+  margin-top: 3%;
   display: flex;
   margin-left: 30px;
   margin-right: 50px;
@@ -239,34 +242,33 @@ margin-bottom: 18px
 }
 .hccc{
   width: 213px;
-  font-size: 1.1rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 1.2;
   color: #191c21;
-  font-family: Inter, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
 .hcccf{
-  padding-top: 2vh;
+  padding-top: 1vh;
   text-align: center;
-  width: 250px;
-  font-size: 1.5rem;
+  width: 230px;
+  font-size: 1rem;
   font-weight: 500;
   line-height: 1.4;
   color: #191c21;
-  margin-top: 20px;
+  margin-top: 10px;
   font-family: Inter, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
   border-top: 2px solid;
 }
 .secnd-comp-inter{
-  width: 50.2rem;
   height: 2.7rem;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-around;
+  margin-top: 20px;
   
   padding-top: 5vh;
     padding-bottom: 5vh
@@ -288,4 +290,19 @@ margin-bottom: 18px
 flex-direction: column;
 align-content: center;
 align-items: center;
+}
+.invoice-table {
+  width: 95%;
+  margin: 6mm;
+}
+.invoice-table th{
+  background: #ba884f !important;
+  color: #fff !important;
+  border: 1px solid #000;
+
+}
+.invoice-table td{
+  background: #fff !important;
+  color: #000;
+  border: 1px solid #000;
 }
