@@ -201,7 +201,7 @@ function AdminPlot() {
                           navigate(`/print/schedule/${PlotDetails.FileNumber}`);
                         }}
                       >
-                        Print
+                        Schedule
                       </button>
                   {isAdmin() && (
                     <button
