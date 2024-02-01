@@ -172,6 +172,14 @@ function AdminPlot() {
                       >
                         Print
                       </button>
+                      <button
+                        className="red-color"
+                        onClick={() => {
+                          navigate(`/print/schedule/${PlotDetails.FileNumber}`);
+                        }}
+                      >
+                        Print Schedule
+                      </button>
                     </>
                   )}
                   {!isAdmin() && (

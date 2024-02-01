@@ -72,7 +72,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/print/invoice/:id" element={<PrintInvoice />} />
-        <Route path="/schedule" element={<Schedule />} />
+        <Route path="print/schedule/:id" element={<Schedule />} />
         {/* <Route path="/" element={<FinancePlotsView />} /> */}
         {/* <Route path="/" element={<Home />} /> */}
         <Route path="/home" element={<Home />} />
