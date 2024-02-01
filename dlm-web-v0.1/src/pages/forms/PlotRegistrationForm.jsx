@@ -316,7 +316,7 @@ const PlotRegistrationForm = () => {
                           File Number:
                         </label>
                         <input
-                          disabled
+                          // disabled
                           type="text"
                           name="FileNumber"
                           value={fileNumber}

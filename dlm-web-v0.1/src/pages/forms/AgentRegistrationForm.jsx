@@ -237,7 +237,7 @@ const AgentRegistrationForm = () => {
   const validateForm = (data) => {
     const errors = {};
 
-    if (!data.ChildOf) {
+    if (!data.ChildOf ||!data.ChildOf.trim()) {
       alert("Reference is required");
       errors.Ref = "Ref is required";
     }
@@ -433,7 +433,7 @@ const AgentRegistrationForm = () => {
                       }));
                     }}
                   >
-                    <option value="" disabled>
+                    <option value="" >
                       Select
                     </option>
                     {AgentList.map((e, index) => (

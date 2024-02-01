@@ -253,14 +253,14 @@ function AgentDash() {
                       <span>Name:{User.Name}</span>
                       <span>Gender:{User.Gender}</span>
                       <span>CNIC:{User.Cnic}</span>
-                      <span>Invoice Id: {ChildOf.InvId}</span>
+                      <span>Invoice Id: {User.InvId}</span>
                       <span>Sponsor of:{ChildOf.Name}</span>
                     </div>
                     <div className="row">
                       <span>Father's Name:{User.FName}</span>
                       <span>D.O.B:{User.Dob}</span>
-                      <span>Phone No: {ChildOf.phNo}</span>
-                      <span>TownCity:{ChildOf.TownCity}</span>
+                      <span>Phone No: {User.phNo}</span>
+                      <span>TownCity:{User.TownCity}</span>
                     </div>
                   </div>
 
