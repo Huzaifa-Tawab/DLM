@@ -62,9 +62,10 @@
   .agent-dash-content-col2 {
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    height: 72%;
+    height: 100%;
     width: 30%;
     border-radius: 16px;
+    overflow: scroll;
 
     position: relative;
 
@@ -147,7 +148,7 @@
     background:#F4B266;
     margin: 5px;
     padding: 5px;
-    height: 20.4vh; 
+    height:130px;; 
     border-top: 2px solid #A4243B;
     border-radius: 5px;
   }
@@ -211,6 +212,21 @@
   padding-top: 50px;
   gap: 30px;
 }
+.rower{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: flex-start;
+}
+.rower-fle{
+  display: flex;
+}
+.rower span{
+  width:220px;
+  text-align: left;
+}
+
   @media screen and (max-width: 700px) {
     .inf--flex-col{
       gap: 5px;
@@ -260,5 +276,18 @@
       align-self: center;
       margin: 20px;
     }
+    .agent-dash-content-col1-row2 {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+  }
+  .agent-dash-content-col1-row2-card1 {
+    background: #fff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    height: 100%;
+    width: 45%;
+    border-radius: 16px;
+    padding-top: 7px;
+}
   }
   

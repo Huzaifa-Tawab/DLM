@@ -24,7 +24,7 @@ export const superAdminNavLinks = [
     to: "/admin",
     icon: <i className="fa-solid fa-clone"></i>,
     title: "Features",
-    subBtn: ["Categories", "Societies", "Marquee"],
+    subBtn: [ "Marquee"],
   },
   {
     to: "/admin/promo",

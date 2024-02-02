@@ -249,6 +249,7 @@ function AgentDash() {
                   </div>
                   <div className="agent-dash-content-col1-row1">
                     <img src={User.imgUrl} className="dash-avatar" />
+                    <div className="rower-fle">
                     <div className="rower">
                       <span><strong>Name:</strong>{User.Name}</span>
                       <span><strong>Gender:</strong>{User.Gender}</span>
@@ -256,12 +257,13 @@ function AgentDash() {
                       <span><strong>Invoice Id:</strong> {ChildOf.InvId}</span>
                       <span><strong>Sponsor of:</strong>{ChildOf.Name}</span>
                     </div>
-                    <div className="rower-sec">
-                      <span className="rower-span"><strong>F/H Name:</strong>{User.FName}</span>
+                    <div className="rower">
+                      <span><strong>F/H Name:</strong>{User.FName}</span>
                       <span><strong>D.O.B:</strong>{User.Dob}</span>
                       <span><strong>Phone No:</strong> {ChildOf.phNo}</span>
                       <span><strong>TownCity:</strong>{ChildOf.TownCity}</span>
                     </div>
+                  </div>
                   </div>
 
                   <div className="agent-dash-content-col1-row2">
