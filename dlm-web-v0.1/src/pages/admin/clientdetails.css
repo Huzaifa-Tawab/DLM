@@ -148,12 +148,7 @@ td > a:hover{
   box-shadow: 0 0 3px 1px maroon;
   border-radius: 10px;
 }
-.plot-des {
-  margin: 20px;
-  background: gray;
-  height: 50px;
-  box-shadow: 0 0 2px 2px orange, 0 0 2px 2px maroon;
-}
+
 
 /* .view-more {
 } */
@@ -186,22 +181,22 @@ td > a:hover{
 .row-start {
   display: flex;
   align-items: center;
-
-  /* h2 {
-    margin: 0px;
-  } */
+}
+.row-start h2{
+  font-size: 1rem;
 }
 .plot-des {
-  margin: 20px;
   background: white;
   height: 3.5rem;
   text-align: center;
   border-radius: 5px;
   padding: 10px 0px;
+    margin: 15px;
+
+    box-shadow: 0 0 2px 2px orange, 0 0 2px 2px maroon;
 }
 .row-start {
-  margin-bottom: 40px;
-  margin-top: 40px;
+margin: 25px 0;
   gap: 10px;
 
   h2 {
@@ -229,6 +224,9 @@ td > a:hover{
 .doc-row {
   display: flex;
   justify-content: space-between;
+}
+.doc-row h1{
+  font-size: 2rem;
 }
 .documents table {
   width: 100%;
@@ -283,7 +281,7 @@ td > a:hover{
     padding: 0px 5px;
   }
 }
-@media (max-width: 786px) {
+@media (max-width: 728px) {
   .info-box {
     flex-direction: column;
     margin: 0px;
@@ -292,10 +290,10 @@ td > a:hover{
   .info-box-2 {
     padding: 20px;
     margin: 20px 0px;
-    width: 90%;
+    width: 90vw;
   }
   .info-box-2 > h1 {
-    font-size: 28px;
+    font-size: 1.5rem;
   }
   .data-client {
     /* gap: 10px; */
@@ -306,10 +304,14 @@ td > a:hover{
     width: 100%;
     margin: 0px;
   }
-
+  .ClientDetails{
+    width: 90vw;
+  }
   .documents {
-    padding: 20px;
     margin: 0px;
+  }
+  .doc-row h1{
+    font-size: 1.5rem;
   }
   .row > span {
     text-align: start;
@@ -323,6 +325,45 @@ td > a:hover{
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
+  }
+  .plots{
+    width: 90vw;
+    padding: 20px;
+  }
+  .plots h1{
+    font-size: 2rem;
+  }
+  .plot-cards{
+    gap: 12px;
+  }
+  .card{
+    width: 10rem;
+    padding: 0px;
+    text-align: center;
+  }
+  .card h4{
+    font-size: 1rem;
+  }
+  .first{
+    font-size: 16px;
+  }
+  .plot-des{
+    margin: 10px;
+    padding: 5px 0px;
+  }
+  .plot-des span{
+    font-size: 12px;
+  }
+  .row-start{
+    margin: 15px 0px;
+    justify-content: center;
+  }
+  .view-more > button{
+    width: 7rem;
+    height: 2rem;
+  }
+  .view-more{
+    margin: 0 0 10px 0;
   }
 }
 .blocked-user {
@@ -342,9 +383,6 @@ form.nosubmit {
   padding: 0;
   display: flex;
   justify-content: center;
-}
-.plots>h1{
-  font-size: 35px;
 }
 
 input.nosubmit {
