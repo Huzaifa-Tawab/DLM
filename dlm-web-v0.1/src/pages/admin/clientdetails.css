@@ -334,7 +334,7 @@ td > a:hover{
   text-align: center;
 }
 tbody tr:nth-child(odd) {
-  background-color: #ba884f;
+  /* background-color: #ba884f; */
   color: #fff;
 }
 form.nosubmit {

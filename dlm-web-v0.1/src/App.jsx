@@ -53,6 +53,7 @@ import blocked from './Assets/notfound.jpg'
 import ChangePassword from "./pages/Forget Password/changepass";
 import EditProfile from "./pages/Edit Profile/Editprofile";
 import Schedule from "./pages/Schedule/Schedule";
+import Walletnew from "./pages/Wallet/walletnew";
 
 function App() {
   const [open, setOpen] = useState();
@@ -86,6 +87,7 @@ function App() {
 
         <Route path="/login" element={<Login />} />
         <Route path="/agent/wallet" element={<Wallet />} />
+        <Route path="/agent/walletnew" element={<Walletnew/>}/>
         <Route path="/endsession" element={<Logout />} />
         <Route path="/details/plot" element={<PlotDetails />} />
         <Route path="/create/client/" element={<ClientRegistrationFrom />} />
