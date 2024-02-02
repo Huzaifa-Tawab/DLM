@@ -235,6 +235,7 @@ margin: 25px 0;
   display: flex;
   justify-content: space-between;
   width: 80%;
+  margin-left: 20px;
 }
 .row > .secon-row {
   /* Semibold/Type@20 */

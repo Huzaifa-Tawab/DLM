@@ -33,7 +33,7 @@
 .column {
   text-align: center;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 .column > button {
   margin: 15px 25px 0 25px;
@@ -230,6 +230,7 @@
 .column > button {
   width: auto;
   height: auto;
+  margin: 10px;
 }
 .column{
   justify-content: center;
