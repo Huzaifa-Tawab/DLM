@@ -1,4 +1,12 @@
-import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import {
+  Timestamp,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, db, storage } from "../../firebase";
@@ -287,7 +295,10 @@ const ClientRegistrationForm = () => {
 
   const createClient = async () => {
     console.log("creating");
-    await setDoc(doc(db, "Customers", formData.Cnic), formData);
+    await setDoc(doc(db, "Customers", formData.Cnic), {
+      ...formData,
+      ...{ createdAt: serverTimestamp() },
+    });
     navigate(`/details/client/${formData.Cnic}`);
   };
   function uploadToFirebase() {
