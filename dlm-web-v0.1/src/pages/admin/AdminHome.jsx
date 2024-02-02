@@ -76,6 +76,41 @@ function AdminHome() {
     () => filteredCustomersData,
     [filteredCustomersData]
   );
+  const onDateSelect = (e) => {
+    filteredBasedOnDate(e.target.value);
+  };
+  const filteredBasedOnDate = (value) => {
+    let list = [];
+    let selectedMonth = null;
+    let selectedYear = null;
+    if (value) {
+      let selectedDate = value.split("-");
+      selectedMonth = selectedDate[1];
+      selectedYear = selectedDate[0];
+      CustomersData.forEach((customer) => {
+        if (customer.createdAt.seconds) {
+          let date = getDate(customer.createdAt.seconds);
+          let splitDate = date.split("/");
+          let month = splitDate[0];
+          if (month.length == 1) {
+            month = 0 + month;
+          }
+          if (splitDate[2] == selectedYear && month == selectedMonth) {
+            list.push(customer);
+          }
+        }
+      });
+      setFilteredCustomersData(list);
+    } else {
+      setFilteredCustomersData(CustomersData);
+    }
+  };
+  function getDate(seconds) {
+    let date = new Date(seconds * 1000);
+    let temp = date.toLocaleDateString();
+
+    return temp;
+  }
 
   return (
     <SideBar
@@ -94,16 +129,21 @@ function AdminHome() {
                 <h1>Customers</h1>
                 {!isAdmin() && (
                   <button
-                  onClick={() => {
-                    navigate("/create/client");
-                  }}
-                >
-                  Add New
-                  <img src={arrow}></img>
-                </button>
+                    onClick={() => {
+                      navigate("/create/client");
+                    }}
+                  >
+                    Add New
+                    <img src={arrow}></img>
+                  </button>
                 )}
-                
               </div>
+              <input
+                type="month"
+                name="Select month"
+                onChange={onDateSelect}
+                style={{ padding: "8px" }}
+              />
               <div className="Admin-Home-content">
                 <div className="Admin-Home-table">
                   <form class="nosubmit">
