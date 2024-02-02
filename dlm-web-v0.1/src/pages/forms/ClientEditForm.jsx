@@ -151,6 +151,7 @@ const ClientEditForm = () => {
     Plots: [],
     Documents: {},
     agree: false,
+    createdAt: "",
   });
   const [File, setFile] = useState();
   const navigate = useNavigate();
