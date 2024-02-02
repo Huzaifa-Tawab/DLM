@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
-import { doc, getDoc } from "firebase/firestore";
+import { Timestamp, doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import "./clientdetails.css";
 import avatar from "../../Assets/avatar.png";
@@ -131,7 +131,7 @@ function AgentDetails() {
                   <div className="info-box-2">
                     <h1>Agent Information</h1>
                     <div className="sec-heading">
-                      <span className="first-text">Address:</span>{" "}
+                      <span className="first-text">Address:</span>
                       <span className="secon-text">{userData.Address}</span>
                     </div>
                     <div className="data-client">
@@ -175,12 +175,13 @@ function AgentDetails() {
                   <div className="documents">
                     <div className="doc-row">
                       <h1>Documents</h1>
-                      <button>Add Document</button>
+                      {/* <button>Add Document</button> */}
                     </div>
-                    <table>
+                    <table className="fl-table">
                       <thead>
                         <th>Title</th>
-                        <td>Acitons</td>
+                        <th>Date</th>
+                        <th>Acitons</th>
                       </thead>
                       <tbody>
                         {userData.Documents &&
@@ -188,7 +189,7 @@ function AgentDetails() {
                             ([key, value]) => (
                               <tr>
                                 <td>{key}</td>
-
+                                <td>{Timestamp}</td>
                                 <td>
                                   <a
                                     href={value}
