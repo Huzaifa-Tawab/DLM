@@ -17,6 +17,7 @@ import { auth, db } from "../../firebase";
 import GetAgent from "../../getagent";
 import { onAuthStateChanged } from "firebase/auth";
 import getDate from "../../../GetDDMMYY";
+import avatarpic from "../../Assets/avatar.png";
 
 function Wallet() {
   const [ShowWidrawalModal, setShowWidrawalModal] = useState(false);
@@ -134,7 +135,7 @@ function Wallet() {
                 <img src={arrow}></img>
               </button>
             </div>
-            <div className="amount-cards">
+            {/* <div className="amount-cards">
               <div className="total-amount-main-direct">
                 <div className="flex-cards-wallet-com">
                   <div className="wallet-box-head-main">
@@ -182,7 +183,105 @@ function Wallet() {
                   <span>{totalLevel5}</span>
                 </div>
               </div>
+            </div> */}
+           <div className="main--content">
+            <div className="header--wrapper">
+              <div className="header--title">
+                <span>Primary</span>
+                <h2>Dashboard</h2>
+              </div>
+              <div className="user--info">
+                <div className="search--box">
+                  <i className="fa-solid-fa-search"></i>
+                  <input type="text"
+                  placeholder="search"/>
+                </div>
+                <img src={avatarpic} alt=""/>
+              </div>
             </div>
+             <div className="card-----container">
+              <h3 className="main-----title">Wallet Data</h3>
+              <div className="card-----wrapper">
+                <div className="payment-----card light-red">
+                  <div className="card-----header">
+                    <div className="amount">
+                      <span className="title">Total Amount</span>
+                      <span className="amount-value"> RS 1000000</span>
+                    </div>
+                    <i className="fas fa-rupee-sign iconer"></i>
+
+                  </div>
+                  {/* <span className="card-----detail">****** *** 675</span> */}
+                </div>
+
+                <div className="payment-----card light-purple">
+                  <div className="card-----header">
+                    <div className="amount">
+                      <span className="title">Remaining Amount</span>
+                      <span className="amount-value"> RS 1000000</span>
+                    </div>
+                    <i className="fas fa-rupee-sign iconer dark-purple" ></i>
+
+                  </div>
+                  {/* <span className="card-----detail">****** *** 675</span> */}
+                </div>
+
+                <div className="payment-----card light-green">
+                  <div className="card-----header">
+                    <div className="amount">
+                      <span className="title">Withdrawal</span>
+                      <span className="amount-value"> RS 1000000</span>
+                    </div>
+                    <i className="fas fa-rupee-sign iconer dark-green"></i>
+
+                  </div>
+                  {/* <span className="card-----detail">****** *** 675</span> */}
+                </div>
+
+                <div className="payment-----card light-blue">
+                  <div className="card-----header">
+                    <div className="amount">
+                      <span className="title">Direct Commision</span>
+                      <span className="amount-value"> RS 1000000</span>
+                    </div>
+                    <i className="fas fa-rupee-sign iconer dark-blue"></i>
+
+                  </div>
+                  {/* <span className="card-----detail">****** *** 675</span> */}
+                </div>
+                
+                
+              </div>
+             </div>
+             <div className="card-----container">
+             <h3 className="main-----title">Commision Levels</h3>
+              <div className="levels-row">
+                <div className="levelsflex">
+                <h3>Level<span className="level-points">1</span></h3>
+                <h1 className="points">10000</h1>
+                </div>
+                <div className="levelsflex">
+                <h3>Level<span  className="level-points">2</span></h3>
+                <h1 className="points">10000</h1>
+                </div>
+                <div className="levelsflex">
+                <h3>Level<span  className="level-points">2</span></h3>
+                <h1 className="points">10000</h1>
+                </div>
+                <div className="levelsflex">
+                <h3>Level<span  className="level-points">2</span></h3>
+                <h1 className="points">10000</h1>
+                </div>
+                <div className="levelsflex">
+                <h3>Level<span  className="level-points">2</span></h3>
+                <h1 className="points">10000</h1>
+                </div>
+              </div>
+             </div>
+            
+            </div> 
+            
+            
 
             <div className="invoice-list">
               <div className="wallet-invoice">

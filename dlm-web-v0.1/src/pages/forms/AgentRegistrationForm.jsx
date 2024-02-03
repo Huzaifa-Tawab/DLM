@@ -350,7 +350,7 @@ const AgentRegistrationForm = () => {
         <Loader />
 :      <>
       <div className="container">
-        <h1 className="title" style={{ textAlign: "justify" }}>
+        <h1 className="title-form" style={{ textAlign: "justify" }}>
           Registration Form {InvoiceID}
         </h1>
         <div className="content">

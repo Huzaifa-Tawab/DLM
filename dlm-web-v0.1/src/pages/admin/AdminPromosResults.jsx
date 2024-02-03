@@ -90,10 +90,9 @@ function AdminPromosResults() {
                     <img src={arrow}></img>
                   </button>
                 </div>
-                <div className="Admin-Home-content">
-                  <div className="Admin-Home-table">
-                    <div className="tableFixHead head-head">
-                      <table className="adminhome-table head-head">
+               
+                    <div className="table-wrapper">
+                      <table className="fl-table">
                         <thead>
                           <tr className="hed">
                             <th className="starter">Sr No</th>
@@ -130,8 +129,7 @@ function AdminPromosResults() {
                       </table>
                     </div>
                   </div>
-                </div>
-              </div>
+             
             </>
           )
         }

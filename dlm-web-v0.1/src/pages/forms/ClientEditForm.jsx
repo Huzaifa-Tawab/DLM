@@ -9,6 +9,7 @@ import Footer from "../../components/Footer/Footer";
 import Loader from "../../components/loader/Loader";
 
 import { useEffect } from "react";
+import SideBar from "../../components/Sidebar/sidebar";
 
 const ErrorMessage = ({ message }) => (
   <span style={{ color: "red", fontSize: "0.8em" }}>{message}</span>
@@ -150,6 +151,7 @@ const ClientEditForm = () => {
     Plots: [],
     Documents: {},
     agree: false,
+    createdAt: "",
   });
   const [File, setFile] = useState();
   const navigate = useNavigate();
@@ -262,177 +264,183 @@ const ClientEditForm = () => {
     navigate(`/details/client/${formData.Cnic}`);
   };
 
-  return  (
-    <SideBar element={
-      isUploading ? 
-        <Loader />
-:      <>
-      <div className="container">
-        <h1 className="title" style={{ textAlign: "justify" }}>
-          Edit Client Form
-        </h1>
-        <div className="content">
-          <form action="#" onSubmit={handleSubmit}>
-            <FileInput
-              label="Upload Profile Image"
-              onChange={handleFileChange}
-              previewUrl={avatarPreview}
-            />
-            <div className="user-details">
-              <div className="input-box">
-                <TextInput
-                  label="Name"
-                  name="Name"
-                  value={formData.Name}
-                  onChange={handleChange}
-                  error={errors.Name}
-                />
-              </div>
-              <div className="input-box">
-                <TextInput
-                  label="Father's Name"
-                  name="FName"
-                  value={formData.FName}
-                  onChange={handleChange}
-                  error={errors.FName}
-                />
-              </div>
-              <div className="input-box">
-                <TextInput
-                  label="Phone Number"
-                  name="phNo"
-                  value={formData.phNo}
-                  onChange={handleChange}
-                  error={errors.phNo}
-                />
-              </div>
-            </div>
-            <div className="gender-details">
-              <input
-                type="radio"
-                id="dot-1"
-                label="Male"
-                name="Gender"
-                value="male"
-                checked={formData.Gender === "male"}
-                onChange={handleChange}
-              />
-              <input
-                type="radio"
-                id="dot-2"
-                label="Female"
-                name="Gender"
-                value="female"
-                checked={formData.Gender === "female"}
-                onChange={handleChange}
-              />
-              <span className="gender-title">Gender</span>
-              <div className="category">
-                <label htmlFor="dot-1">
-                  <span className="dot one"></span>
-                  <span className="gender">Male</span>
-                </label>
-                <label htmlFor="dot-2">
-                  <span className="dot two"></span>
-                  <span className="gender">Female</span>
-                </label>
-              </div>
-            </div>
-            <div className="user-details">
-              <div className="input-box">
-                <div style={{ marginBottom: "10px" }}>
-                  <label style={{ display: "block", marginBottom: "5px" }}>
-                    Date of Birth:
-                  </label>
-                  <input
-                    type="date"
-                    name="Dob"
-                    value={formData.Dob}
-                    onChange={handleChange}
-                    style={{ width: "100%", padding: "8px" }}
-                    error={errors.Dob}
+  return (
+    <SideBar
+      element={
+        isUploading ? (
+          <Loader />
+        ) : (
+          <>
+            <div className="container">
+              <h1 className="title-form" style={{ textAlign: "justify" }}>
+                Edit Client Form
+              </h1>
+              <div className="content">
+                <form action="#" onSubmit={handleSubmit}>
+                  <FileInput
+                    label="Upload Profile Image"
+                    onChange={handleFileChange}
+                    previewUrl={avatarPreview}
                   />
-                </div>
-              </div>
-              <div className="input-box">
-                <TextInput
-                  label="City/Town"
-                  name="TownCity"
-                  value={formData.TownCity}
-                  onChange={handleChange}
-                  error={errors.TownCity}
-                />
-              </div>
-              <div className="input-box">
-                <div style={{ marginBottom: "10px" }}>
-                  <label style={{ display: "block", marginBottom: "5px" }}>
-                    Address:
-                  </label>
-                  <input
-                    name="Address"
-                    value={formData.Address}
-                    onChange={handleChange}
-                    style={{ width: "100%", padding: "8px" }}
-                    error={errors.Address}
-                  ></input>
-                </div>
-              </div>
-            </div>
-            <div className="download-pdf">
-              <a href={"/pdfs/sample.pdf"}>Download privacy policy</a>
-            </div>
-            <div className="check-box">
-              <CheckboxInput
-                label="I have read and agreed to privacy policy"
-                name="agree"
-                checked={formData.agree}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="title">
-              <h2>Kin Details</h2>
-            </div>
+                  <div className="user-details">
+                    <div className="input-box">
+                      <TextInput
+                        label="Name"
+                        name="Name"
+                        value={formData.Name}
+                        onChange={handleChange}
+                        error={errors.Name}
+                      />
+                    </div>
+                    <div className="input-box">
+                      <TextInput
+                        label="Father's Name"
+                        name="FName"
+                        value={formData.FName}
+                        onChange={handleChange}
+                        error={errors.FName}
+                      />
+                    </div>
+                    <div className="input-box">
+                      <TextInput
+                        label="Phone Number"
+                        name="phNo"
+                        value={formData.phNo}
+                        onChange={handleChange}
+                        error={errors.phNo}
+                      />
+                    </div>
+                  </div>
+                  <div className="gender-details">
+                    <input
+                      type="radio"
+                      id="dot-1"
+                      label="Male"
+                      name="Gender"
+                      value="male"
+                      checked={formData.Gender === "male"}
+                      onChange={handleChange}
+                    />
+                    <input
+                      type="radio"
+                      id="dot-2"
+                      label="Female"
+                      name="Gender"
+                      value="female"
+                      checked={formData.Gender === "female"}
+                      onChange={handleChange}
+                    />
+                    <span className="gender-title">Gender</span>
+                    <div className="category">
+                      <label htmlFor="dot-1">
+                        <span className="dot one"></span>
+                        <span className="gender">Male</span>
+                      </label>
+                      <label htmlFor="dot-2">
+                        <span className="dot two"></span>
+                        <span className="gender">Female</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="user-details">
+                    <div className="input-box">
+                      <div style={{ marginBottom: "10px" }}>
+                        <label
+                          style={{ display: "block", marginBottom: "5px" }}
+                        >
+                          Date of Birth:
+                        </label>
+                        <input
+                          type="date"
+                          name="Dob"
+                          value={formData.Dob}
+                          onChange={handleChange}
+                          style={{ width: "100%", padding: "8px" }}
+                          error={errors.Dob}
+                        />
+                      </div>
+                    </div>
+                    <div className="input-box">
+                      <TextInput
+                        label="City/Town"
+                        name="TownCity"
+                        value={formData.TownCity}
+                        onChange={handleChange}
+                        error={errors.TownCity}
+                      />
+                    </div>
+                    <div className="input-box">
+                      <div style={{ marginBottom: "10px" }}>
+                        <label
+                          style={{ display: "block", marginBottom: "5px" }}
+                        >
+                          Address:
+                        </label>
+                        <input
+                          name="Address"
+                          value={formData.Address}
+                          onChange={handleChange}
+                          style={{ width: "100%", padding: "8px" }}
+                          error={errors.Address}
+                        ></input>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="download-pdf">
+                    <a href={"/pdfs/sample.pdf"}>Download privacy policy</a>
+                  </div>
+                  <div className="check-box">
+                    <CheckboxInput
+                      label="I have read and agreed to privacy policy"
+                      name="agree"
+                      checked={formData.agree}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="title">
+                    <h2>Kin Details</h2>
+                  </div>
 
-            <div className="user-details">
-              <div className="input-box">
-                <TextInput
-                  label="Name"
-                  name="NexttoKin"
-                  value={formData.NexttoKin}
-                  onChange={handleChange}
-                  error={errors.NexttoKin}
-                />
-              </div>
-              <div className="input-box">
-                <TextInput
-                  label="Relation"
-                  name="KinRelation"
-                  value={formData.KinRelation}
-                  onChange={handleChange}
-                  error={errors.KinRelation}
-                />
-              </div>
-              <div className="input-box">
-                <TextInput
-                  label="Phone No"
-                  name="PhNoKin"
-                  value={formData.PhNoKin}
-                  onChange={handleChange}
-                  error={errors.PhNoKin}
-                />
-              </div>
-              <div className="input-box">
-                <TextInput
-                  label="CNIC No"
-                  name="CnicKin"
-                  value={formData.CnicKin}
-                  onChange={handleChange}
-                  error={errors.CnicKin}
-                />
-              </div>
-            </div>
+                  <div className="user-details">
+                    <div className="input-box">
+                      <TextInput
+                        label="Name"
+                        name="NexttoKin"
+                        value={formData.NexttoKin}
+                        onChange={handleChange}
+                        error={errors.NexttoKin}
+                      />
+                    </div>
+                    <div className="input-box">
+                      <TextInput
+                        label="Relation"
+                        name="KinRelation"
+                        value={formData.KinRelation}
+                        onChange={handleChange}
+                        error={errors.KinRelation}
+                      />
+                    </div>
+                    <div className="input-box">
+                      <TextInput
+                        label="Phone No"
+                        name="PhNoKin"
+                        value={formData.PhNoKin}
+                        onChange={handleChange}
+                        error={errors.PhNoKin}
+                      />
+                    </div>
+                    <div className="input-box">
+                      <TextInput
+                        label="CNIC No"
+                        name="CnicKin"
+                        value={formData.CnicKin}
+                        onChange={handleChange}
+                        error={errors.CnicKin}
+                      />
+                    </div>
+                  </div>
 
-            {/* <div className="gender-detasils" style={{ marginBottom: "10px" }}>
+                  {/* <div className="gender-detasils" style={{ marginBottom: "10px" }}>
       <label style={{ display: "block", marginBottom: "5px" }}>
         Gender:
       </label>
@@ -456,20 +464,23 @@ const ClientEditForm = () => {
       </div>
     </div> */}
 
-            <div className="button">
-              <button
-                type="submit"
-                // disabled={!isFormValid}
-                style={{ padding: "10px" }}
-              >
-                Save & Next
-              </button>
+                  <div className="button">
+                    <button
+                      type="submit"
+                      // disabled={!isFormValid}
+                      style={{ padding: "10px" }}
+                    >
+                      Save & Next
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
-          </form>
-        </div>
-      </div>
-    </>
-}/>);
+          </>
+        )
+      }
+    />
+  );
 };
 
 export default ClientEditForm;

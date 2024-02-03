@@ -10,6 +10,7 @@ import FinanceHeader from "../../components/header/FinanceHeader";
 import arrow from "../../Assets/Plus.png";
 import SideBar from "../../components/Sidebar/sidebar";
 import UploadRequestSS from "../../components/Modals/UploadRequestSS";
+import "./buttonswithdrwatable.css";
 
 function FinanceWithdrawal() {
   const navigate = useNavigate();
@@ -95,24 +96,24 @@ function FinanceWithdrawal() {
                         onChange={(e) => debouncedFilterData(e.target.value)}
                       />
                     </form>
-                    <div className=" tableFixHead">
-                      <table className="adminhome-table">
+                    <div className="table-wrapper">
+                      <table className="fl-table">
                         <thead>
-                          <tr className="hed">
-                            <th className="starter">Name</th>
+                          <tr>
+                            <th>Name</th>
                             <th>Cnic</th>
                             <th>Cheque Of</th>
                             <th>Cheque Number</th>
                             <th>Time</th>
                             <th>WithDrawal Amount</th>
 
-                            <th className="starter">Actions</th>
+                            <th>Actions</th>
                           </tr>
                         </thead>
                         <tbody>
                           {filteredCustomersDataMemoized.map((e, index) => (
                             <tr key={index}>
-                              <td className="starter">{e.Name}</td>
+                              <td >{e.Name}</td>
                               <td>{e.agentid}</td>
                               <td>{e.chequeOf}</td>
                               <td>{e.chequeNo}</td>
@@ -120,7 +121,7 @@ function FinanceWithdrawal() {
                               <td>{e.amount}</td>
                               <td>
                                 <button
-                                  className="button-view"
+                                  className="button-viewwwer"
                                   onClick={() => {
                                     openNewWindow(`${e.Proof}`);
                                     console.log(e.Proof);

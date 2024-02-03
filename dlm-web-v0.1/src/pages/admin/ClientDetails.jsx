@@ -113,9 +113,8 @@ function ClientDetails() {
                         <span>Customer</span>
                       </div>
                     </div>
-                    <br />
                     {/* <span>info@infogmail.com</span> */}
-                    <br />
+                  
                     {/* <span>+92 317 5545690</span> */}
                     <div className="clients-buttons">
                       <div className="button-pair">
@@ -176,7 +175,7 @@ function ClientDetails() {
                       <div className="data-client-div">
                         <div className="row">
                           <span>Name:</span>
-                          <span>Father's Name:</span>
+                          <span>F/H Name:</span>
                           <span>CNIC:</span>
                           <span>Gender:</span>
                           <span>DOB:</span>
@@ -222,7 +221,7 @@ function ClientDetails() {
                       <h1>Documents</h1>
                       {/* <button><img src={adddoc} alt="" /> Add Document</button> */}
                     </div>
-                    <table>
+                    <table className="fl-table">
                       <thead>
                         <th>Document Name</th>
                         <th>Date</th>

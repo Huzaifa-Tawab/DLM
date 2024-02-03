@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { auth, db, storage } from "../../firebase";
@@ -131,6 +131,8 @@ const FileInput = ({ label, onChange, previewUrl, error }) => {
 
 const AgentEditForm = () => {
   const prams = useParams();
+  const [AgentList, setAgentList] = useState([]);
+
   const [File, setFile] = useState();
   const [InvoiceID, setInvoiceID] = useState("");
   const navigate = useNavigate();
@@ -150,20 +152,27 @@ const AgentEditForm = () => {
     Documents: [],
     agree: false,
     InvId: InvoiceID,
+    ChildOf: "",
   });
   useEffect(() => {
+    getAgentsList();
     if (prams.id) {
       getCurrentAgentData();
     }
-    // const getInvId = async () => {
-    //   const id = await generateRandomString("INV", "Agent", "");
-    //   setFormData((prevData) => ({
-    //     ...prevData,
-    //     ["InvId"]: id,
-    //   }));
-    // };
-    // getInvId();
   }, [prams]);
+
+  async function getAgentsList() {
+    const querySnapshot = await getDocs(collection(db, "Agent"));
+    let temp = [];
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id, " => ", doc.data());
+      temp.push({
+        key: doc.id,
+        value: doc.data().Name,
+      });
+    });
+    setAgentList(temp);
+  }
 
   async function getCurrentAgentData() {
     const AgentdocSnap = await getDoc(doc(db, "Agent", prams.id));
@@ -240,7 +249,6 @@ const AgentEditForm = () => {
 
   const UpdateAgentData = async () => {
     await setDoc(doc(db, "Agent", formData.Cnic), formData);
-    console.log(formData);
     navigate(`/details/agent/${formData.Cnic}`);
   };
   function uploadImageToFirebase() {
@@ -315,6 +323,29 @@ const AgentEditForm = () => {
                   onChange={handleChange}
                   error={errors && errors.phNo}
                 />
+              </div>
+              <div className="input-box">
+                <div style={{ marginBottom: "10px" }}>
+                  <label style={{ display: "block", marginBottom: "5px" }}>
+                    Reffered By:
+                  </label>
+                  <select
+                    value={formData.ChildOf}
+                    onChange={(e) => {
+                      setFormData((prevData) => ({
+                        ...prevData,
+                        ["ChildOf"]: e.target.value,
+                      }));
+                    }}
+                  >
+                    <option value="">Select</option>
+                    {AgentList.map((e, index) => (
+                      <option key={index} value={e.key}>
+                        {e.value}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
             </div>
             <div class="gender-details">

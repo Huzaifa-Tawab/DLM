@@ -1,0 +1,32 @@
+.schedule-main{
+    background: #fff;
+    width: 210mm;
+    height: 297mm;
+    padding: 20px;
+    border-radius: 5px;
+    -webkit-box-shadow: 2px 0px 20px -4px rgba(0,0,0,0.75);
+-moz-box-shadow: 2px 0px 20px -4px rgba(0,0,0,0.75);
+box-shadow: 2px 0px 20px -4px rgba(0,0,0,0.75);
+text-align: justify;
+}
+.schedule-head h2{
+    text-align: left;
+    font-size: 22px;
+}
+.schedule-subject{
+    margin: 1rem 0;
+}
+.table-head-schedule{
+    margin: 1rem 0 0 2px;
+}
+.schedule-desc-bottom p{
+    margin: 1rem 0;
+}
+.schedule-desc-bottom span{
+    font-size: 18px;
+    font-weight: 600;
+}
+.schedule-desc-bottom h5{
+    font-size: 20px;
+    margin: 2px;
+}

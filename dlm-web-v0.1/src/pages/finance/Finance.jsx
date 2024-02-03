@@ -92,11 +92,11 @@ function Finance() {
                     onChange={(e) => debouncedFilterData(e.target.value)}
                   />
                 </form>
-                <div className=" tableFixHead">
-                  <table className="adminhome-table">
+                <div className="table-wrapper">
+                  <table className="fl-table">
                     <thead>
-                      <tr className="hed">
-                        <th className="starter">Name</th>
+                      <tr>
+                        <th>Name</th>
                         <th>Uploaded By</th>
                         <th>File Number</th>
                         <th>Nature</th>
@@ -104,13 +104,13 @@ function Finance() {
                         <th>penalty</th>
                         <th>Verified By</th>
                         <th>Created At</th>
-                        <th className="starter">Actions</th>
+                        <th>Actions</th>
                       </tr>
                     </thead>
                     <tbody>
                       {filteredCustomersDataMemoized.map((e, index) => (
                         <tr key={index}>
-                          <td className="starter">{e.customerName}</td>
+                          <td >{e.customerName}</td>
                           <td>{e.agentName}</td>
                           <td>{e.fileNumber}</td>
                           <td>{e.nature}</td>
