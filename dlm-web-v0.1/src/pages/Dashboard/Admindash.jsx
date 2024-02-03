@@ -28,6 +28,12 @@ function AdminDash() {
   const [PromosWithStatus, setPromosWithStatus] = useState([]);
   const [uid, setuid] = useState("");
   const [isLoading, setisLoading] = useState(true);
+
+  const [sydneyHawks7, setSydneyHawks7] = useState(0);
+  const [newCityParadise, setNewCityParadise] = useState(0);
+  const [dynamicLandManagement, setDynamicLandManagement] = useState(0);
+  const [UnKnowSociety, setUnKnowSociety] = useState(0);
+
   const navigate = useNavigate();
   useEffect(() => {
     getUser();
@@ -65,6 +71,27 @@ function AdminDash() {
   async function getStats() {
     const PlotsSnapshot = await getDocs(collection(db, "Plots"));
     setNoPlots(PlotsSnapshot.docs.length);
+    let SydneyHawks7 = 0;
+    let NewCityParadise = 0;
+    let DynamicLandManagement = 0;
+    let UnkownSociety = 0;
+    PlotsSnapshot.docs.forEach((Plot) => {
+      console.log(Plot.data().Society);
+      if (Plot.data().Society === "Sydney Hawks 7") {
+        SydneyHawks7++;
+      } else if (Plot.data().Society === "Dynamic Land Management") {
+        DynamicLandManagement++;
+      } else if (Plot.data().Society === "New City Paradise") {
+        NewCityParadise++;
+      } else {
+        UnkownSociety++;
+      }
+    });
+    setSydneyHawks7(SydneyHawks7);
+    setNewCityParadise(NewCityParadise);
+    setDynamicLandManagement(DynamicLandManagement);
+    setUnKnowSociety(UnkownSociety);
+
     const CustSnapshot = await getDocs(collection(db, "Customers"));
     setNoCustomers(CustSnapshot.docs.length);
     const TranSnapshot = await getDocs(collection(db, "Transactions"));
@@ -151,10 +178,6 @@ function AdminDash() {
                   <div className="agent-dash-content-col1-row2">
                     <div className="agent-dash-content-col1-row2-card1">
                       <div className="level-card">
-                        <h1>Files Sold</h1>
-                        <h1>{NoPlots} Plots </h1>
-                      </div>
-                      <div className="level-card">
                         <h1>Total Users </h1>
                         <h1>{NoCustomers + NoAgent} Users </h1>
                       </div>
@@ -171,13 +194,22 @@ function AdminDash() {
                         <h1>{NoAgent} Agents </h1>
                       </div>
                     </div>
-                    <div className="agent-dash-content-col1-row2-card2"></div>
+                    <div className="agent-dash-content-col1-row2-card2">
+                      <h4>Files Details</h4>
+
+                      <p> Toatal {NoPlots} Plots </p>
+
+                      <p>DynamicLandManagement {dynamicLandManagement}</p>
+                      <p>sydneyHawks7 {sydneyHawks7}</p>
+                      <p>newCityParadise {newCityParadise}</p>
+                      <p>Unknown {UnKnowSociety}</p>
+                    </div>
                   </div>
                 </div>
                 <div className="agent-dash-content-col2">
                   {PromosWithStatus &&
                     PromosWithStatus.map((promo, index) => (
-                      //     promo.status === "completed" ? "goal-achieved" : ""
+                      // promo.status === "completed" ? "goal-achieved" : ""
 
                       <div
                         key={index}
