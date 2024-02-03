@@ -280,14 +280,16 @@
       display: flex;
       justify-content: space-between;
       flex-direction: column;
+      gap: 10px;
   }
   .agent-dash-content-col1-row2-card1 {
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     height: 100%;
-    width: 45%;
+    width: 100%;
     border-radius: 16px;
     padding-top: 7px;
+    
 }
   }
   

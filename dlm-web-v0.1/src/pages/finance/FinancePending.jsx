@@ -257,16 +257,22 @@ const PlotSnap = await getDoc( doc(db, "Plots", fileNumber));
         ) : (
           <>
             <div className="Admin-Home">
+            <div className="hero--head">
+                  <h1>Unverified</h1>
+                </div>
               <div className="Admin-Home-content">
                 <div className="Admin-Home-table">
+                  <form className="nosubmit">
                   <input
                     type="text"
                     placeholder="Search"
                     onChange={(e) => debouncedFilterData(e.target.value)}
-                    className="input-field"
+                    className="nosubmit"
                   />
-                  <div className="table">
-                    <table className="adminhome-table">
+                  </form>
+                
+                  <div className="table-wrapper">
+                    <table className="fl-table">
                       <thead>
                         <tr>
                           <th>Customer Name</th>
