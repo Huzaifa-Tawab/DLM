@@ -51,16 +51,16 @@ function FinancePending() {
       navigate("/login");
     }
   }
-  async function AproveTrans(id, nature, data,fileNumber) {
+  async function AproveTrans(id, nature, data, fileNumber) {
     setisLoading(true);
 
     invoiceId = id;
 
-const PlotSnap = await getDoc( doc(db, "Plots", fileNumber));
+    const PlotSnap = await getDoc(doc(db, "Plots", fileNumber));
 
-// if (PlotSnap.exists()) {
-//   console.log("Document data:", PlotSnap.data().Society);
-// }
+    // if (PlotSnap.exists()) {
+    //   console.log("Document data:", PlotSnap.data().Society);
+    // }
     if (nature === "transfer") {
       const senderPending = doc(db, "Customers", data.senderCustomerID);
       const receiverPending = doc(db, "Customers", data.receiverCustomerID);
@@ -79,11 +79,11 @@ const PlotSnap = await getDoc( doc(db, "Plots", fileNumber));
     const otherLevelCommission = levelOneCommission * 0.1;
 
     // Retrieve the ChildOf for level 1
-    const level1DocRef = doc(db, "Agent", data.agentID);
+    const level1DocRef = doc(db, "Agent", PlotSnap.AgentId);
     const level1DocSnap = await getDoc(level1DocRef);
     // Update main person (level 1) credits
     await updateCredits(
-      data.agentID,
+      PlotSnap.AgentID,
       level1DocSnap.data().credit ?? 0,
       levelOneCommission,
       "Direct"
@@ -172,9 +172,9 @@ const PlotSnap = await getDoc( doc(db, "Plots", fileNumber));
     // Update transaction status to verified
     const transactionDoc = doc(db, "Transactions", id);
     await updateDoc(transactionDoc, {
-     Society: PlotSnap.data().Society,
+      Society: PlotSnap.data().Society,
       verifiedBy: FinanceData.Name,
-      Esign:FinanceData.signature,
+      Esign: FinanceData.signature,
       varified: true,
     });
 
@@ -304,7 +304,12 @@ const PlotSnap = await getDoc( doc(db, "Plots", fileNumber));
                               <button
                                 className="button-view"
                                 onClick={() => {
-                                  AproveTrans(e.InvId, e.nature, e,e.fileNumber);
+                                  AproveTrans(
+                                    e.InvId,
+                                    e.nature,
+                                    e,
+                                    e.fileNumber
+                                  );
                                 }}
                               >
                                 Approve
