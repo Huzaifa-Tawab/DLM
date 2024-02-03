@@ -196,9 +196,7 @@ function AdminDash() {
                     </div>
                     <div className="agent-dash-content-col1-row2-card2">
                       <h4>Files Details</h4>
-
-                      <p> Toatal {NoPlots} Plots </p>
-
+                      <p> Total {NoPlots} Plots </p>
                       <p>DynamicLandManagement {dynamicLandManagement}</p>
                       <p>sydneyHawks7 {sydneyHawks7}</p>
                       <p>newCityParadise {newCityParadise}</p>
