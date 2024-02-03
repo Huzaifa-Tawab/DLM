@@ -69,6 +69,25 @@ function AdminWithdralView() {
 
     return temp;
   }
+  const filterBasedOnStatusDropdown = (searchValue) => {
+    let newList = [];
+    if (searchValue == "All") {
+      newList = CustomersData;
+    } else {
+      if (searchValue) {
+        CustomersData.forEach((customer) => {
+          if (
+            customer &&
+            customer.status.toLowerCase() == searchValue.toLowerCase()
+          ) {
+            newList.push(customer);
+          }
+        });
+      }
+    }
+
+    setFilteredCustomersData(newList);
+  };
   return (
     <>
       <SideBar
@@ -83,7 +102,7 @@ function AdminWithdralView() {
                 </div>
                 <select
                   onChange={(e) => {
-                    console.log(e.target.value);
+                    filterBasedOnStatusDropdown(e.target.value);
                   }}
                 >
                   <option value="All">All</option>
