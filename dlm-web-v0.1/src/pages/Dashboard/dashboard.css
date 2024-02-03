@@ -282,7 +282,7 @@
       flex-direction: column;
       gap: 10px;
   }
-  .agent-dash-content-col1-row2-card1 {
+  .agent-dash-content-col1-row2-card1, .agent-dash-content-col1-row2-card2  {
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     height: 100%;
@@ -290,6 +290,9 @@
     border-radius: 16px;
     padding-top: 7px;
     
+}
+.rower-fle {
+  justify-content: center;
 }
   }
   

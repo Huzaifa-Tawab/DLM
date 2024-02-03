@@ -18,7 +18,7 @@ import GetAgent from "../../getagent";
 import { onAuthStateChanged } from "firebase/auth";
 import getDate from "../../../GetDDMMYY";
 
-function Walletnew() {
+function Wallet() {
 
 }
-export default Walletnew;
+export default Wallet;
