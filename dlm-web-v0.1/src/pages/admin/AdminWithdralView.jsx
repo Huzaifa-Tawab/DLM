@@ -98,7 +98,7 @@ function AdminWithdralView() {
             <>
               <div className="Admin-Home">
                 <div className="hero--head">
-                  <h1>Invoices</h1>
+                  <h1>Withdrawal Details</h1>
                 </div>
                 <select
                   onChange={(e) => {
@@ -123,6 +123,7 @@ function AdminWithdralView() {
                       <table className="fl-table">
                         <thead>
                           <tr>
+                            <th>#</th>
                             <th>Name</th>
                             <th>Cnic</th>
                             <th>Cheque Of</th>
@@ -135,6 +136,7 @@ function AdminWithdralView() {
                         <tbody>
                           {filteredCustomersDataMemoized.map((e, index) => (
                             <tr key={index}>
+                              <td>{index + 1}</td>
                               <td>{e.Name}</td>
                               <td>{e.agentid}</td>
                               <td>{e.chequeOf ? e.chequeOf : "Pending"}</td>
