@@ -130,10 +130,11 @@ function App() {
           <Route path="/finance/unverified" element={<FinancePending />} />
         </Route>
         <Route path="/print/:id" element={<PrintFile />} />
-        <Route path="/admin/marquee" element={<MarqueeInput />} />
-        <Route path="/admin/withdraw" element={<AdminWithdralView />} />
+       
 
         <Route element={<AdminRoutes />}>
+        <Route path="/admin/marquee" element={<MarqueeInput />} />
+        <Route path="/admin/withdraw" element={<AdminWithdralView />} />
           <Route path="/admin/promo/winners" element={<AdminPromosResults />} />
           <Route path="/admin/home" element={<AdminDash />} />
           <Route path="/agent/home" element={<AgentDash />} />
