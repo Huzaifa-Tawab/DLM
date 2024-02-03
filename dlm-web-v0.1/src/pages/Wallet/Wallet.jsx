@@ -206,7 +206,7 @@ function Wallet() {
                   <div className="card-----header">
                     <div className="amount">
                       <span className="title">Total Amount</span>
-                      <span className="amount-value"> RS 1000000</span>
+                      <span className="amount-value"> {TotalCredit}</span>
                     </div>
                     <i className="fas fa-rupee-sign iconer"></i>
 
@@ -218,7 +218,7 @@ function Wallet() {
                   <div className="card-----header">
                     <div className="amount">
                       <span className="title">Remaining Amount</span>
-                      <span className="amount-value"> RS 1000000</span>
+                      <span className="amount-value">{userData.credit}</span>
                     </div>
                     <i className="fas fa-rupee-sign iconer dark-purple" ></i>
 
@@ -230,7 +230,7 @@ function Wallet() {
                   <div className="card-----header">
                     <div className="amount">
                       <span className="title">Withdrawal</span>
-                      <span className="amount-value"> RS 1000000</span>
+                      <span className="amount-value">{TotalWithDraw}</span>
                     </div>
                     <i className="fas fa-rupee-sign iconer dark-green"></i>
 
@@ -242,7 +242,7 @@ function Wallet() {
                   <div className="card-----header">
                     <div className="amount">
                       <span className="title">Direct Commision</span>
-                      <span className="amount-value"> RS 1000000</span>
+                      <span className="amount-value">{totalDirect}</span>
                     </div>
                     <i className="fas fa-rupee-sign iconer dark-blue"></i>
 
@@ -258,23 +258,23 @@ function Wallet() {
               <div className="levels-row">
                 <div className="levelsflex">
                 <h3>Level<span className="level-points">1</span></h3>
-                <h1 className="points">10000</h1>
+                <h1 className="points">{totalLevel2}</h1>
                 </div>
                 <div className="levelsflex">
                 <h3>Level<span  className="level-points">2</span></h3>
-                <h1 className="points">10000</h1>
+                <h1 className="points">{totalLevel3}</h1>
                 </div>
                 <div className="levelsflex">
-                <h3>Level<span  className="level-points">2</span></h3>
-                <h1 className="points">10000</h1>
+                <h3>Level<span  className="level-points">3</span></h3>
+                <h1 className="points">{totalLevel4}</h1>
                 </div>
                 <div className="levelsflex">
-                <h3>Level<span  className="level-points">2</span></h3>
-                <h1 className="points">10000</h1>
+                <h3>Level<span  className="level-points">4</span></h3>
+                <h1 className="points">{totalLevel5}</h1>
                 </div>
                 <div className="levelsflex">
-                <h3>Level<span  className="level-points">2</span></h3>
-                <h1 className="points">10000</h1>
+                <h3>Level<span  className="level-points">5</span></h3>
+                <h1 className="points">{totalLevel5}</h1>
                 </div>
               </div>
              </div>
@@ -286,7 +286,7 @@ function Wallet() {
             <div className="invoice-list">
               <div className="wallet-invoice">
                 <h5>Credit List</h5>
-                <table className="wallet-invoice-table">
+                <table className="wallet-invoice-table fl-table">
                   <thead>
                     <tr>
                       <th>Invoice Id</th>
@@ -310,7 +310,7 @@ function Wallet() {
               </div>
               <div className="history-records">
                 <h5>WithDrawal List</h5>
-                <table className="wallet-history-table">
+                <table className="wallet-history-table fl-table">
                   <thead>
                     <tr>
                       <th>Amount</th>
