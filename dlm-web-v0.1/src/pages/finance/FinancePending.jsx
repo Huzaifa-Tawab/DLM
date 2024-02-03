@@ -74,14 +74,11 @@ function FinancePending() {
       // Calculate commissions
       const levelOneCommission = data.payment * 0.1;
       const otherLevelCommission = levelOneCommission * 0.1;
-
-      // Retrieve the ChildOf for level 1
-      console.log(PlotSnap.AgentId);
       const level1DocRef = doc(db, "Agent", PlotSnap.data().AgentId);
       const level1DocSnap = await getDoc(level1DocRef);
       // Update main person (level 1) credits
       await updateCredits(
-        PlotSnap.data().AgentID,
+        PlotSnap.data().AgentId,
         level1DocSnap.data().credit ?? 0,
         levelOneCommission,
         "Direct"
