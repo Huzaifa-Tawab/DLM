@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import Modal from "simple-react-modal";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { db, storage } from "../../firebase";
+import { auth, db, storage } from "../../firebase";
 import { update } from "lodash";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import "./modal.css";
 import xIcon from "../../Assets/Xincon.png";
+import { onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 function UploadRequestSS({ showModal, onClose, uid }) {
   const [file, setFile] = useState("");
@@ -13,10 +15,28 @@ function UploadRequestSS({ showModal, onClose, uid }) {
   const [chequeNo, setchequeNo] = useState("");
   const [Amount, setAmount] = useState("");
   const [percent, setPercent] = useState(0);
-
+  const [UserName, setUserName] = useState(0);
+  const navigate = useNavigate();
   function handleChange(event) {
     setFile(event.target.files[0]);
   }
+
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      const uid = user.uid;
+      const docRef = doc(db, "Users", uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data().Name);
+        setUserName(docSnap.data().Name);
+      } else {
+        navigate("/login");
+      }
+    } else {
+      navigate("/login");
+    }
+  });
 
   const handleUpload = () => {
     if (!file) {
@@ -55,10 +75,11 @@ function UploadRequestSS({ showModal, onClose, uid }) {
   async function UpdateData(url) {
     const Documents = doc(db, "WithDraw", uid);
     await updateDoc(Documents, {
+      ApprovedBy: UserName,
       Proof: url,
       chequeNo: chequeNo,
       chequeOf: chequeOf,
-      Amount: Amount,
+      AmountApproved: Amount,
       status: "Approved",
     }).then((e) => {
       onClose();

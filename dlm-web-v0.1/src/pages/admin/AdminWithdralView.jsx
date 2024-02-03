@@ -129,8 +129,10 @@ function AdminWithdralView() {
                             <th>Cheque Of</th>
                             <th>Cheque Number</th>
                             <th>Requsted/Approved at</th>
-                            <th>WithDrawal Amount</th>
+                            <th>Requested Amount</th>
+                            <th>Approved Amount</th>
                             <th>Status</th>
+                            <th>Proof</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -139,11 +141,26 @@ function AdminWithdralView() {
                               <td>{index + 1}</td>
                               <td>{e.Name}</td>
                               <td>{e.agentid}</td>
-                              <td>{e.chequeOf ? e.chequeOf : "Pending"}</td>
-                              <td>{e.chequeNo ? e.chequeNo : "Pending"}</td>
+                              <td>{e.chequeOf ? e.chequeOf : "None"}</td>
+                              <td>{e.chequeNo ? e.chequeNo : "None"}</td>
                               <td>{getDate(e.created.seconds)}</td>
                               <td>{e.amount}</td>
+                              <td>{e.AmountApproved}</td>
                               <td>{e.status}</td>
+                              <td>
+                                <button
+                                  className="button-viewwwer"
+                                  onClick={() => {
+                                    if (e.Proof) {
+                                      openNewWindow(`${e.Proof}`);
+                                    } else {
+                                      alert("Withdraw is in Pending State");
+                                    }
+                                  }}
+                                >
+                                  View Proof
+                                </button>
+                              </td>
                             </tr>
                           ))}
                         </tbody>
