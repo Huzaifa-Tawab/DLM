@@ -251,17 +251,17 @@ function AgentDash() {
                     <img src={User.imgUrl} className="dash-avatar" />
                     <div className="rower-fle">
                     <div className="rower">
-                      <span><strong>Name:</strong>{User.Name}</span>
-                      <span><strong>Gender:</strong>{User.Gender}</span>
-                      <span><strong>CNIC:</strong>{User.Cnic}</span>
-                      <span><strong>Invoice Id:</strong> {ChildOf.InvId}</span>
-                      <span><strong>Sponsor of:</strong>{ChildOf.Name}</span>
+                      <span><strong className="strong">Name:</strong>{User.Name}</span>
+                      <span><strong className="strong" >Gender:</strong>{User.Gender}</span>
+                      <span><strong className="strong">CNIC:</strong>{User.Cnic}</span>
+                      <span><strong className="strong">Invoice Id:</strong> {ChildOf.InvId}</span>
+                      <span><strong className="strong">Sponsor of:</strong>{ChildOf.Name}</span>
                     </div>
                     <div className="rower">
-                      <span><strong>F/H Name:</strong>{User.FName}</span>
-                      <span><strong>D.O.B:</strong>{User.Dob}</span>
-                      <span><strong>Phone No:</strong> {ChildOf.phNo}</span>
-                      <span><strong>TownCity:</strong>{ChildOf.TownCity}</span>
+                      <span><strong className="strong">F/H Name:</strong>{User.FName}</span>
+                      <span><strong className="strong">D.O.B:</strong>{User.Dob}</span>
+                      <span><strong className="strong">Phone No:</strong> {ChildOf.phNo}</span>
+                      <span><strong className="strong">TownCity:</strong>{ChildOf.TownCity}</span>
                     </div>
                   </div>
                   </div>
@@ -290,8 +290,10 @@ function AgentDash() {
                       </div>
                     </div>
                     <div className="agent-dash-content-col1-row2-card2">
-                      <span>Plots:</span>
-                      <ul>
+                    <div className="level-card">
+                        <h1>Plots </h1>
+                        </div>
+                      <ul >
                         {User.Plots.lenght === 0 ? (
                           <p>NO Plots</p>
                         ) : (

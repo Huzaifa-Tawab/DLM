@@ -332,7 +332,7 @@ const ClientRegistrationForm = () => {
         ) : (
           <>
             <div className="container">
-              <h1 className="title" style={{ textAlign: "justify" }}>
+              <h1 className="title-form" style={{ textAlign: "justify" }}>
                 Registration Form
               </h1>
               <div className="content">

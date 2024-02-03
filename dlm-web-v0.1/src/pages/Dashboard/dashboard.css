@@ -68,6 +68,7 @@
     overflow: scroll;
 
     position: relative;
+    margin-top: 10px;
 
     &::before {
         content: "";
@@ -225,6 +226,15 @@
 .rower span{
   width:220px;
   text-align: left;
+}
+.agent-dash-content-col1-row2-card2 ul{
+  background: #F4B266;
+  border-radius: 7px;
+  margin: 5px;
+  list-style: circle;
+}
+.strong{
+  padding-right: 10px;
 }
 
   @media screen and (max-width: 700px) {

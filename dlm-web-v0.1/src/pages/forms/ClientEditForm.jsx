@@ -272,7 +272,7 @@ const ClientEditForm = () => {
         ) : (
           <>
             <div className="container">
-              <h1 className="title" style={{ textAlign: "justify" }}>
+              <h1 className="title-form" style={{ textAlign: "justify" }}>
                 Edit Client Form
               </h1>
               <div className="content">
