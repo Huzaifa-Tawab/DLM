@@ -53,7 +53,7 @@ import blocked from "./Assets/notfound.jpg";
 import ChangePassword from "./pages/Forget Password/changepass";
 import EditProfile from "./pages/Edit Profile/Editprofile";
 import Schedule from "./pages/Schedule/Schedule";
-import Walletnew from "./pages/Wallet/walletnew";
+// import Walletnew from "./pages/Wallet/walletnew";
 import AdminWithdralView from "./pages/admin/AdminWithdralView";
 
 function App() {
