@@ -88,7 +88,7 @@ function App() {
 
         <Route path="/login" element={<Login />} />
         <Route path="/agent/wallet" element={<Wallet />} />
-        <Route path="/agent/walletnew" element={<Walletnew />} />
+        {/* <Route path="/agent/walletnew" element={<Walletnew />} /> */}
         <Route path="/endsession" element={<Logout />} />
         <Route path="/details/plot" element={<PlotDetails />} />
         <Route path="/create/client/" element={<ClientRegistrationFrom />} />
