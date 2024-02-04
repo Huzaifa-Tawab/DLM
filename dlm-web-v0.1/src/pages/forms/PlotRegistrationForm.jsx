@@ -414,7 +414,6 @@ const PlotRegistrationForm = () => {
                       </div>
                     </div>
 
-                   
                     {/*  */}
                     <div className="input-box">
                       <div style={{ marginBottom: "10px" }}>
@@ -455,7 +454,7 @@ const PlotRegistrationForm = () => {
                         />
                       </div>
                     </div>
-                   
+
                     <div className="input-box">
                       <label style={{ display: "block", marginBottom: "5px" }}>
                         Address:
@@ -471,8 +470,7 @@ const PlotRegistrationForm = () => {
                       />
                       <p>{AddressError}</p>
                     </div>
-                    
-                    
+
                     <div className="input-box">
                       <div style={{ marginBottom: "10px" }}>
                         <label
@@ -492,7 +490,6 @@ const PlotRegistrationForm = () => {
                         <p>{CityTownError}</p>
                       </div>
                     </div>
-                   
 
                     <div className="input-box">
                       <div style={{ marginBottom: "10px" }}>
