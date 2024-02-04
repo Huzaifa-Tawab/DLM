@@ -158,10 +158,10 @@ function ClientDetails() {
                             <p>{userData.Blocked ? "unblock" : "block"}</p>
                           </button>
                         )}
-                        <button onClick={openDocModal}>
+                        {/* <button onClick={openDocModal}>
                           <img src={adddoc} alt="" />
                           <p>Add Doc</p>
-                        </button>
+                        </button> */}
                       </div>
                     </div>
                   </div>
@@ -219,7 +219,9 @@ function ClientDetails() {
                   <div className="documents">
                     <div className="doc-row">
                       <h1>Documents</h1>
-                      {/* <button><img src={adddoc} alt="" /> Add Document</button> */}
+                      
+                      <button className="doc-button" onClick={openDocModal}><img src={adddoc} alt="" />Add Document</button>
+                      
                     </div>
                     <table className="fl-table">
                       <thead>

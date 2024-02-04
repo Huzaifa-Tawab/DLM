@@ -53,7 +53,7 @@
   }
   .top-head>h1{
     color: #A4243B;
-    font-family: Inter;
+
   font-size: 22px;
   font-style: normal;
   font-weight: 700;
@@ -78,7 +78,6 @@
     color: #FFF;
   
   
-  font-family: Inter;
   font-size: 17px;
   font-style: normal;
   font-weight: 700;
@@ -88,7 +87,6 @@
   }
   .top-thrd-cont{
     color: #A4243B;
-  font-family: Inter;
   font-size: 15px;
   font-style: normal;
   font-weight: 700;
@@ -96,7 +94,6 @@
   }
   .top-thrd-cont>span{
     color: #A4243B;
-  font-family: Inter;
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
@@ -109,7 +106,6 @@
   }
   .head-content{
     color: #000;
-  font-family: Inter;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -118,7 +114,6 @@
   }
   .sec-section-last {
     color: #000;
-  font-family: Inter;
   font-size: 13px;
   font-style: normal;
   font-weight: 700;
@@ -141,7 +136,6 @@
   }
   .top-sec-heading>h3{
     color: #FFF;
-  font-family: Inter;
   font-size: 15px;
   font-style: normal;
   font-weight: 700;
@@ -149,14 +143,23 @@
   }
   .sectop-section-content{
     display: flex;
+    justify-content: space-between;
   }
-  .sectop-section-content>.column-1{
+  .sectop-right{
+    display: flex;
+    justify-content: space-between;
+    width: 35%;
+  }
+  .sectop-row{
+    display: flex;
+    justify-content: space-between;
+    width: 35%;
+  }
+  .sectop-row>.column-1{
     display: flex;
     flex-direction: column;
     gap: 5px;
-    float: left;
     color: #000;
-  font-family: Inter;
   font-size: 13px;
   font-style: normal;
   font-weight: 700;
@@ -164,35 +167,26 @@
   margin-top: 20px;
   margin-bottom: 20px;
   align-items: flex-start;
+  
   }
-  .sectop-section-content>.column-2{
+  .sectop-row>.column-2{
     display: flex;
     flex-direction: column;
     gap: 5px;
-    float: left;
     color: #000;
-  font-family: Inter;
   font-size: 13px;
   font-style: normal;
-  font-weight: 400;
   line-height: normal;
   margin-top: 20px;
-  align-items: flex-start;
   margin-bottom: 20px;
-  width: 200px;
+  align-items: flex-start;
   
-  }
-  .sectop-right{
-    left: 330px;
-    display: flex;
-    position: relative;
   }
   .sectop-right>.column-3{
     display: flex;
     flex-direction: column;
     gap: 5px;
     color: #000;
-  font-family: Inter;
   font-size: 13px;
   font-style: normal;
   font-weight: 700;
@@ -208,7 +202,6 @@
     gap: 5px;
    
     color: #000;
-  font-family: Inter;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -222,7 +215,6 @@
     flex-direction: column;
     gap: 5px;
     color: #000;
-  font-family: Inter;
   font-size: 13px;
   font-style: normal;
   font-weight: 700;
@@ -238,7 +230,6 @@
     flex-direction: column;
     gap: 5px;
     color: #000;
-  font-family: Inter;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -253,9 +244,9 @@
     display: flex;
   }
   .sectop-right-last{
-    left: 290px;
     display: flex;
-    position: relative;
+    justify-content: space-between;
+    width: 35%;
    
   
   }
@@ -264,7 +255,6 @@
     flex-direction: column;
     gap: 5px;
     color: #000;
-  font-family: Inter;
   font-size: 13px;
   font-style: normal;
   font-weight: 700;
@@ -278,7 +268,6 @@
     flex-direction: column;
     gap: 5px;
     color: #000;
-  font-family: Inter;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -291,18 +280,14 @@
    text-decoration: underline;
    text-decoration-color: black;
   }
-  .sectop-right-last>.column-7>.bold-700{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  .sectop-right-last>.column-7>h3{
     color: #000;
-  font-family: Inter;
-  font-size: 13px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  /* margin-top: 20px; */
+  /* margin-bottom: 10px; */
   align-items: flex-start;
   
   }
@@ -311,12 +296,11 @@
     flex-direction: column;
     gap: 5px;
     color: #000;
-  font-family: Inter;
-  font-size: 13px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   /* margin-bottom: 20px; */
   align-items: flex-start;}
   .top-last-heading{
@@ -333,7 +317,6 @@
   .last-text-content{
     margin-top: 10px;
     color: #000;
-  font-family: Inter;
   font-size: 11px;
   font-style: normal;
   font-weight: 400;
@@ -358,7 +341,6 @@
     color: #FFF;
   
   
-  font-family: Inter;
   font-size: 15px;
   font-style: normal;
   font-weight: 700;
@@ -373,7 +355,7 @@
   
   }
   .signature-area>h3{
-    font-family: Inter;
+
   font-size: 15px;
   font-style: normal;
   font-weight: 700;
@@ -395,7 +377,7 @@
   .head-top-cont{
     display: flex;
     color: #000;
-    font-family: Inter;
+
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -415,7 +397,6 @@
     flex-direction: column;
     gap: 5px;
     color: #000;
-  font-family: Inter;
   font-size: 13px;
   font-style: normal;
   font-weight: 700;
@@ -430,7 +411,6 @@
     flex-direction: column;
     gap: 5px;
     color: #000;
-  font-family: Inter;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -441,16 +421,15 @@
   
   }
   .sectop-right-33{
-    left: 320px;
     display: flex;
-    position: relative;
+    justify-content: space-between;
+    width: 35%;
   }
   .sectop-right-44>.column-333{
     display: flex;
     flex-direction: column;
     gap: 5px;
     color: #000;
-  font-family: Inter;
   font-size: 13px;
   font-style: normal;
   font-weight: 700;
@@ -465,7 +444,6 @@
     flex-direction: column;
     gap: 5px;
     color: #000;
-  font-family: Inter;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -476,7 +454,7 @@
   
   }
   .sectop-right-44{
-    left: 295px;
     display: flex;
-    position: relative;
+    justify-content: space-between;
+    width: 35%;
   }

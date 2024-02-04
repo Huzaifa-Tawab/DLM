@@ -44,13 +44,14 @@
     }
   }
   .agent-dash-content {
-    background: #f0f0f0;
-    height: 90vh;
-    width: 100%;
+    /* background: #f0f0f0; */
+    /* height: 80vh; */
+    /* width: 100%; */
     display: flex;
     justify-content: center;
     gap: 5%;
     align-items: center;
+    margin: 1rem;
   }
   .agent-dash-content-col1 {
     height: 90%;
@@ -62,7 +63,7 @@
   .agent-dash-content-col2 {
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    height: 100%;
+    height: 80vh;
     width: 30%;
     border-radius: 16px;
     overflow: scroll;
@@ -104,6 +105,7 @@
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     display: flex;
+    align-items: center;
   }
   .agent-dash-content-col1-row1
    {
@@ -125,10 +127,10 @@
   .agent-dash-content-col1-row2-card2 {
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    height: 100%;
+    /* height: 100%; */
     width: 45%;
     border-radius: 16px;
-    padding-top: 7px;
+    padding: 1rem;
   }
   .progress-percent {
     height: 100px;
@@ -170,21 +172,17 @@
     justify-content: space-between;
   }
   .dash-avatar {
-    background: red;
-    height: 60%;
-    /* width: 30%; */
+    width: 20%;
     aspect-ratio: 1 / 1;
   
     border-radius: 100%;
-   margin: 40px;
-  
-    /* width: 100px; */
+   margin: 20px;
   }
   .level-card {
     display: flex;
     justify-content: space-between;
     padding: 5px;
-    margin: 5px;
+    margin: 0 5px;
     border-bottom: 1px solid black;
     box-shadow: #A4243B 2px 2px 2px;
     box-shadow: blue;
@@ -207,17 +205,17 @@
     }
 }
 .inf--flex-col{
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   padding-left: 40px;
-  padding-top: 50px;
+  padding-top: 50px; */
   gap: 30px;
 }
 .rower{
   display: flex;
   flex-direction: column;
   gap: 10px;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
 }
 .rower-fle{
@@ -234,7 +232,7 @@
   list-style: circle;
 }
 .strong{
-  padding-right: 10px;
+  padding-right: 20px;
 }
 
   @media screen and (max-width: 700px) {
