@@ -114,12 +114,12 @@ const PlotRegistrationForm = () => {
       console.log(8);
       error++;
     }
-    if (PaidAmount.trim() === "") {
-      console.log(7);
+    // if (PaidAmount.trim() === "") {
+    //   console.log(7);
 
-      setPaidAmountError("PaidAmount Can not be empty");
-      error++;
-    }
+    //   setPaidAmountError("PaidAmount Can not be empty");
+    //   error++;
+    // }
 
     if (PlotSize.trim() === "") {
       console.log(6);
@@ -405,13 +405,16 @@ const PlotRegistrationForm = () => {
                         >
                           Block:
                         </label>
-                        <input
-                          disabled={!isFileNumberEditable}
-                          type="text"
-                          name="FileNumber"
-                          value={fileNumber}
-                          style={{ width: "100%", padding: "8px" }}
-                        />
+                        <select
+                          onChange={(e) => {
+                            setBlock(e.target.value);
+                          }}
+                        >
+                          <option value="">Select block</option>
+                          <option value="A">A</option>
+                          <option value="B">B</option>
+                        </select>
+                        <p>{BlockError}</p>
                       </div>
                     </div>
 
