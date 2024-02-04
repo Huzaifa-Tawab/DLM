@@ -183,8 +183,9 @@ const PlotRegistrationForm = () => {
         BookingAmount: BookingAmount,
         Installment: Installment,
         InstallmentMonth: InstallmentMonth,
-        Downpayment: Downpayment,
         PossessionAmount: possessionAmount,
+        Downpayment: Downpayment,
+
         OtherAmount: OtherAmount,
         OtherAmountTitle: OtherAmountTitle,
         Society: Society,
