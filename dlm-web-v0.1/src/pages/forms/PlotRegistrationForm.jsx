@@ -39,8 +39,8 @@ const PlotRegistrationForm = () => {
   const [CityTown, setCityTown] = useState("");
   const [PaidAmount, setPaidAmount] = useState("");
   const [PlotSize, setPlotsize] = useState("");
-  const [TotalAmount, setTotalAmount] = useState("");
-  const [possessionAmount, setpossessionAmount] = useState("");
+  const [TotalAmount, setTotalAmount] = useState(0);
+  const [possessionAmount, setpossessionAmount] = useState(0);
   const [InstallmentMonth, setInstallmentMonth] = useState("");
   const [Downpayment, setDownPayment] = useState("");
   const [Installment, setInstallment] = useState("");
@@ -126,12 +126,12 @@ const PlotRegistrationForm = () => {
       setPlotsizeError("Plot Size Can not be empty");
       error++;
     }
-    if (TotalAmount.trim() === "") {
+    if (TotalAmount === 0) {
       console.log(5);
       setTotalAmountError("Total Amount Can not be empty");
       error++;
     }
-    if (possessionAmount.trim() === "") {
+    if (possessionAmount === 0) {
       console.log(4);
       setpossessionAmountError("Possession Amount Can not be empty");
       error++;
@@ -300,6 +300,7 @@ const PlotRegistrationForm = () => {
   }
 
   function setPlotData(params) {
+    setPlotsize(params);
     SocietyList.forEach((element) => {
       if (element.name === Society) {
         Object.entries(element.catagories).map(([key, value]) => {
@@ -510,7 +511,7 @@ const PlotRegistrationForm = () => {
                             if (parseInt(e.target.value) < 0) {
                               setTotalAmount(0);
                             } else {
-                              setTotalAmount(e.target.value);
+                              setTotalAmount(parseInt(e.target.value));
                             }
                           }}
                           style={{ width: "100%", padding: "8px" }}
@@ -553,7 +554,7 @@ const PlotRegistrationForm = () => {
                           if (parseInt(e.target.value) < 0) {
                             setpossessionAmount(0);
                           } else {
-                            setpossessionAmount(e.target.value);
+                            setpossessionAmount(parseInt(e.target.value));
                           }
                         }}
                         style={{ width: "100%", padding: "8px" }}
