@@ -152,7 +152,7 @@ const AgentRegistrationForm = () => {
     Dob: "",
     Address: "",
     TownCity: "",
-    Gmail: "",
+    mail: "",
     credit: 0,
     Plots: [],
     Documents: [],
@@ -237,7 +237,7 @@ const AgentRegistrationForm = () => {
   const validateForm = (data) => {
     const errors = {};
 
-    if (!data.ChildOf ||!data.ChildOf.trim()) {
+    if (!data.ChildOf || !data.ChildOf.trim()) {
       alert("Reference is required");
       errors.Ref = "Ref is required";
     }
@@ -344,191 +344,202 @@ const AgentRegistrationForm = () => {
     uploadImageToFirebase();
   };
 
-  return  (
-    <SideBar element={
-      isLoading ? 
-        <Loader />
-:      <>
-      <div className="container">
-        <h1 className="title-form" style={{ textAlign: "justify" }}>
-          Registration Form {InvoiceID}
-        </h1>
-        <div className="content">
-          <form action="#" onSubmit={handleSubmit}>
-            <FileInput
-              label="Upload Profile Image"
-              onChange={handleFileChange}
-              previewUrl={avatarPreview}
-            />
-            <div className="user-details">
-              <div className="input-box">
-                <TextInput
-                  label="Name"
-                  name="Name"
-                  value={formData.Name}
-                  onChange={handleChange}
-                  error={errors && errors.Name}
-                />
-              </div>
-              <div className="input-box">
-                <TextInput
-                  label="Father's Name"
-                  name="FName"
-                  value={formData.FName}
-                  onChange={handleChange}
-                  error={errors && errors.FName}
-                />
-              </div>
-              <div className="input-box">
-                <TextInput
-                  label="Email"
-                  name="Email"
-                  value={Email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
-                  error={errors && errors.Email}
-                />
-              </div>
-              <div className="input-box">
-                <TextInput
-                  label="Password"
-                  name="Password"
-                  value={Pass}
-                  onChange={(e) => {
-                    setPass(e.target.value);
-                  }}
-                  error={errors && errors.Pass}
-                />
-              </div>
-              <div className="input-box">
-                <TextInput
-                  label="CNIC"
-                  name="Cnic"
-                  value={formData.Cnic}
-                  onChange={handleChange}
-                  error={errors && errors.Cnic}
-                />
-              </div>
-              <div className="input-box">
-                <TextInput
-                  label="Phone Number"
-                  name="phNo"
-                  value={formData.phNo}
-                  onChange={handleChange}
-                  error={errors && errors.phNo}
-                />
-              </div>
-              <div className="input-box">
-                <div style={{ marginBottom: "10px" }}>
-                  <label style={{ display: "block", marginBottom: "5px" }}>
-                    Reffered By:
-                  </label>
-                  <select
-                    onChange={(e) => {
-                      setReff();
-                      setFormData((prevData) => ({
-                        ...prevData,
-                        ["ChildOf"]: e.target.value,
-                      }));
-                    }}
-                  >
-                    <option value="" >
-                      Select
-                    </option>
-                    {AgentList.map((e, index) => (
-                      <option key={index} value={e.key}>
-                        {e.value}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="gender-details">
-              <input
-                type="radio"
-                id="dot-1"
-                label="Male"
-                name="Gender"
-                value="male"
-                checked={formData.Gender === "male"}
-                onChange={handleChange}
-              />
-              <input
-                type="radio"
-                id="dot-2"
-                label="Female"
-                name="Gender"
-                value="female"
-                checked={formData.Gender === "female"}
-                onChange={handleChange}
-              />
-              <span class="gender-title">Gender</span>
-              <div class="category">
-                <label htmlfor="dot-1">
-                  <span class="dot one"></span>
-                  <span class="gender">Male</span>
-                </label>
-                <label htmlfor="dot-2">
-                  <span class="dot two"></span>
-                  <span class="gender">Female</span>
-                </label>
-              </div>
-            </div>
-            <div className="user-details">
-              <div className="input-box">
-                <div style={{ marginBottom: "10px" }}>
-                  <label style={{ display: "block", marginBottom: "5px" }}>
-                    Date of Birth:
-                  </label>
-                  <input
-                    type="date"
-                    name="Dob"
-                    // value={formData.Dob}
-                    onChange={handleChange}
-                    style={{ width: "100%", padding: "8px" }}
-                    error={errors && errors.Dob}
+  return (
+    <SideBar
+      element={
+        isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            <div className="container">
+              <h1 className="title-form" style={{ textAlign: "justify" }}>
+                Registration Form {InvoiceID}
+              </h1>
+              <div className="content">
+                <form action="#" onSubmit={handleSubmit}>
+                  <FileInput
+                    label="Upload Profile Image"
+                    onChange={handleFileChange}
+                    previewUrl={avatarPreview}
                   />
-                </div>
-              </div>
-              <div className="input-box">
-                <TextInput
-                  label="City/Town"
-                  name="TownCity"
-                  value={formData.TownCity}
-                  onChange={handleChange}
-                  error={errors && errors.TownCity}
-                />
-              </div>
-              <div className="input-box">
-                <div style={{ marginBottom: "10px" }}>
-                  <label style={{ display: "block", marginBottom: "5px" }}>
-                    Address:
-                  </label>
-                  <input
-                    name="Address"
-                    value={formData.Address}
-                    onChange={handleChange}
-                    style={{ width: "100%", padding: "8px" }}
-                    error={errors && errors.Address}
-                  ></input>
-                </div>
-              </div>
-            </div>
-            <div className="download-pdf">
-              <a href={"/pdfs/sample.pdf"}>Download privacy policy</a>
-            </div>
-            <div className="check-box">
-              <CheckboxInput
-                label="I have read and agreed to privacy policy"
-                name="agree"
-                checked={formData.agree}
-                onChange={handleChange}
-              />
-            </div>
+                  <div className="user-details">
+                    <div className="input-box">
+                      <TextInput
+                        label="Name"
+                        name="Name"
+                        value={formData.Name}
+                        onChange={handleChange}
+                        error={errors && errors.Name}
+                      />
+                    </div>
+                    <div className="input-box">
+                      <TextInput
+                        label="Father's Name"
+                        name="FName"
+                        value={formData.FName}
+                        onChange={handleChange}
+                        error={errors && errors.FName}
+                      />
+                    </div>
+                    <div className="input-box">
+                      <TextInput
+                        label="Email"
+                        name="Email"
+                        value={Email}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
 
-            {/* <div className="gender-detasils" style={{ marginBottom: "10px" }}>
+                          setFormData((prevData) => ({
+                            ...prevData,
+                            ["mail"]: e.target.value,
+                          }));
+                        }}
+                        error={errors && errors.Email}
+                      />
+                    </div>
+                    <div className="input-box">
+                      <TextInput
+                        label="Password"
+                        name="Password"
+                        value={Pass}
+                        onChange={(e) => {
+                          setPass(e.target.value);
+                        }}
+                        error={errors && errors.Pass}
+                      />
+                    </div>
+                    <div className="input-box">
+                      <TextInput
+                        label="CNIC"
+                        name="Cnic"
+                        value={formData.Cnic}
+                        onChange={handleChange}
+                        error={errors && errors.Cnic}
+                      />
+                    </div>
+                    <div className="input-box">
+                      <TextInput
+                        label="Phone Number"
+                        name="phNo"
+                        value={formData.phNo}
+                        onChange={handleChange}
+                        error={errors && errors.phNo}
+                      />
+                    </div>
+                    <div className="input-box">
+                      <div style={{ marginBottom: "10px" }}>
+                        <label
+                          style={{ display: "block", marginBottom: "5px" }}
+                        >
+                          Reffered By:
+                        </label>
+                        <select
+                          onChange={(e) => {
+                            setReff();
+                            setFormData((prevData) => ({
+                              ...prevData,
+                              ["ChildOf"]: e.target.value,
+                            }));
+                          }}
+                        >
+                          <option value="">Select</option>
+                          {AgentList.map((e, index) => (
+                            <option key={index} value={e.key}>
+                              {e.value}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="gender-details">
+                    <input
+                      type="radio"
+                      id="dot-1"
+                      label="Male"
+                      name="Gender"
+                      value="male"
+                      checked={formData.Gender === "male"}
+                      onChange={handleChange}
+                    />
+                    <input
+                      type="radio"
+                      id="dot-2"
+                      label="Female"
+                      name="Gender"
+                      value="female"
+                      checked={formData.Gender === "female"}
+                      onChange={handleChange}
+                    />
+                    <span class="gender-title">Gender</span>
+                    <div class="category">
+                      <label htmlfor="dot-1">
+                        <span class="dot one"></span>
+                        <span class="gender">Male</span>
+                      </label>
+                      <label htmlfor="dot-2">
+                        <span class="dot two"></span>
+                        <span class="gender">Female</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="user-details">
+                    <div className="input-box">
+                      <div style={{ marginBottom: "10px" }}>
+                        <label
+                          style={{ display: "block", marginBottom: "5px" }}
+                        >
+                          Date of Birth:
+                        </label>
+                        <input
+                          type="date"
+                          name="Dob"
+                          // value={formData.Dob}
+                          onChange={handleChange}
+                          style={{ width: "100%", padding: "8px" }}
+                          error={errors && errors.Dob}
+                        />
+                      </div>
+                    </div>
+                    <div className="input-box">
+                      <TextInput
+                        label="City/Town"
+                        name="TownCity"
+                        value={formData.TownCity}
+                        onChange={handleChange}
+                        error={errors && errors.TownCity}
+                      />
+                    </div>
+                    <div className="input-box">
+                      <div style={{ marginBottom: "10px" }}>
+                        <label
+                          style={{ display: "block", marginBottom: "5px" }}
+                        >
+                          Address:
+                        </label>
+                        <input
+                          name="Address"
+                          value={formData.Address}
+                          onChange={handleChange}
+                          style={{ width: "100%", padding: "8px" }}
+                          error={errors && errors.Address}
+                        ></input>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="download-pdf">
+                    <a href={"/pdfs/sample.pdf"}>Download privacy policy</a>
+                  </div>
+                  <div className="check-box">
+                    <CheckboxInput
+                      label="I have read and agreed to privacy policy"
+                      name="agree"
+                      checked={formData.agree}
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  {/* <div className="gender-detasils" style={{ marginBottom: "10px" }}>
        <label style={{ display: "block", marginBottom: "5px" }}>
          Gender:
        </label>
@@ -552,21 +563,21 @@ const AgentRegistrationForm = () => {
        </div>
      </div> */}
 
-            <div className="button">
-              <button
-                type="submit"
-                // disabled={!isFormValid}
-                style={{ padding: "10px" }}
-              >
-                Save & Next
-              </button>
+                  <div className="button">
+                    <button
+                      type="submit"
+                      // disabled={!isFormValid}
+                      style={{ padding: "10px" }}
+                    >
+                      Save & Next
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
-          </form>
-        </div>
-      </div>
-    </>
-    }
-
+          </>
+        )
+      }
     />
   );
 };
