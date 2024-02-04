@@ -254,14 +254,15 @@ function AgentDash() {
                       <span><strong className="strong">Name:</strong>{User.Name}</span>
                       <span><strong className="strong" >Gender:</strong>{User.Gender}</span>
                       <span><strong className="strong">CNIC:</strong>{User.Cnic}</span>
-                      <span><strong className="strong">Invoice Id:</strong> {ChildOf.InvId}</span>
+                      <span><strong className="strong">Invoice Id:</strong> {User.InvId}</span>
                       <span><strong className="strong">Sponsor of:</strong>{ChildOf.Name}</span>
                     </div>
                     <div className="rower">
                       <span><strong className="strong">F/H Name:</strong>{User.FName}</span>
+                      <span><strong className="strong">Mail:</strong>{User.mail}</span>
                       <span><strong className="strong">D.O.B:</strong>{User.Dob}</span>
-                      <span><strong className="strong">Phone No:</strong> {ChildOf.phNo}</span>
-                      <span><strong className="strong">TownCity:</strong>{ChildOf.TownCity}</span>
+                      <span><strong className="strong">Phone No:</strong> {User.phNo}</span>
+                      <span><strong className="strong">TownCity:</strong>{User.TownCity}</span>
                     </div>
                   </div>
                   </div>

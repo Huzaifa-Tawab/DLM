@@ -30,3 +30,90 @@ text-align: justify;
     font-size: 20px;
     margin: 2px;
 }
+.invoice-table {
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    max-width: 100%;
+    white-space: nowrap;
+    background-color: white;
+  }
+  
+  .invoice-table td, .invoice-table th {
+    text-align: center;
+    padding: 8px;
+  }
+  
+  .invoice-table td {
+    border-right: 1px solid #f8f8f8;
+    font-size: 12px;
+  }
+  
+  .invoice-table thead th {
+    color: #ffffff;
+    /* background: #4FC3A1; */
+  }
+  
+  
+  .invoice-table thead th:nth-child(odd) {
+    color: #ffffff;
+    /* background: #324960; */
+  }
+  
+  .invoice-table tr:nth-child(even) {
+    background: #F8F8F8;
+  }
+  thead{
+    background:#A4243B; ;
+  }
+  tbody{
+    background: #F4B266;
+  }
+@media (max-width: 767px) {
+      
+      .invoice-table {
+        border-radius: 5px;
+        font-size: 12px;
+        font-weight: normal;
+        border: none;
+        border-collapse: collapse;
+        max-width: 100%;
+        white-space: nowrap;
+        background-color: white;
+      }
+      
+      .invoice-table td, .invoice-table th {
+        text-align: center;
+        padding: 8px;
+      }
+      
+      .invoice-table td {
+        border-right: 1px solid #f8f8f8;
+        font-size: 12px;
+      }
+      
+      .invoice-table thead th {
+        color: #ffffff;
+        /* background: #4FC3A1; */
+      }
+      
+      
+      .invoice-table thead th:nth-child(odd) {
+        color: #ffffff;
+        /* background: #324960; */
+      }
+      
+      .invoice-table tr:nth-child(even) {
+        background: #F8F8F8;
+      }
+      thead{
+        background:#A4243B; ;
+      }
+      tbody{
+        background: #F4B266;
+      }
+      
+
+}

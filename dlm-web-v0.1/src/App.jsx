@@ -131,7 +131,6 @@ function App() {
         </Route>
         <Route path="/print/:id" element={<PrintFile />} />
        
-
         <Route element={<AdminRoutes />}>
         <Route path="/admin/marquee" element={<MarqueeInput />} />
         <Route path="/admin/withdraw" element={<AdminWithdralView />} />

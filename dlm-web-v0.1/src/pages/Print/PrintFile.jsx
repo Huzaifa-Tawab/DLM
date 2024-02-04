@@ -144,6 +144,7 @@ function PrintFile() {
         </div>
 
         <div className="sectop-section-content">
+          <div className="sectop-row">
           <div className="column-1">
             <span>Name:</span>
             <span>Cnic:</span>
@@ -153,6 +154,7 @@ function PrintFile() {
             <span>{Name}</span>
             <span>{Cnic}</span>
             <span>{Dob}</span>
+          </div>
           </div>
           <div className="sectop-right">
             <div className="column-3">
@@ -172,6 +174,7 @@ function PrintFile() {
         </div>
 
         <div className="sectop-section-content">
+        <div className="sectop-row">
           <div className="column-1">
             <span>Name:</span>
             <span>Relation:</span>
@@ -179,6 +182,7 @@ function PrintFile() {
           <div className="column-2">
             <span>{NexttoKin}</span>
             <span>{KinRelation}</span>
+          </div>
           </div>
           <div className="sectop-right-33">
             <div className="column-33">
@@ -196,6 +200,7 @@ function PrintFile() {
         </div>
 
         <div className="sectop-section-content">
+        <div className="sectop-row">
           <div className="column-1">
             <span>File Number:</span>
             <span>Plot Size:</span>
@@ -205,6 +210,7 @@ function PrintFile() {
             <span>{FileNumber}</span>
             <span>{PlotSize} Marla</span>
             <span>{Address}</span>
+          </div>
           </div>
           <div className="sectop-right-44">
             <div className="column-333">
@@ -221,6 +227,7 @@ function PrintFile() {
           <h3>CONTRACT DETAILS</h3>
         </div>
         <div className="sectop-section-content">
+        <div className="sectop-row">
           <div className="columnfrth-sec">
             <span>Adjustment:</span>
             <span>Other Amount: </span>
@@ -233,18 +240,20 @@ function PrintFile() {
             <span className="underline-1">{OtherAmountTitle}</span>
             <span className="underline-1">{OtherAmount}</span>
           </div>
+          </div>
           <div className="sectop-right-last">
             <div className="column-7">
               <span>Total Price:</span>
               <span>Possession Amount:</span>
               <span>Down Payment:</span>
-
+              <br />
               <h3 className="bold-700">Total Amount</h3>
             </div>
             <div className="column-8">
               <span className="underline-1">{TotalAmount}</span>
               <span className="underline-1">{PossessionAmount}</span>
               <span className="underline-1">{DownPayment}</span>
+              <br />
               <h3 className="bold-400">{TotalAmount}</h3>
             </div>
           </div>

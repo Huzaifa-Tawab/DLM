@@ -22,7 +22,7 @@ function Schedule() {
             
             </div>
             <div className="">
-                <table className='fl-table invoice-table'>
+                <table className='invoice-table'>
                     <thead>
                         <tr>
                             <th>Title</th>

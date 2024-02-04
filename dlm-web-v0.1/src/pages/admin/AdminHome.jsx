@@ -138,21 +138,23 @@ function AdminHome() {
                   </button>
                 )}
               </div>
-              <input
-                type="month"
-                name="Select month"
-                onChange={onDateSelect}
-                style={{ padding: "8px" }}
-              />
+             
               <div className="Admin-Home-content">
                 <div className="Admin-Home-table">
-                  <form class="nosubmit">
+                  <form class="nosubmit alignment-cal-serch">
                     <input
                       class="nosubmit"
                       type="search"
                       placeholder="Search by Id"
                       onChange={(e) => debouncedFilterData(e.target.value)}
                     />
+                     <input
+                     className="calender"
+                      type="month"
+                    name="Select month"
+                    onChange={onDateSelect}
+              
+              />
                   </form>
                   <div className="table-wrapper">
                     <table className="fl-table">

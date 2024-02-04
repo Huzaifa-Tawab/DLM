@@ -169,9 +169,8 @@ function AdminDash() {
                   <div className="agent-dash-content-col1-row1">
                     <img src={User.img} className="dash-avatar" />
                     <div className="inf--flex-col">
-                      <h1>
-                        Name:<span>{User.Name}</span>
-                      </h1>
+                    <span><strong className="strong">Name:</strong>{User.Name}</span>
+
                     </div>
                   </div>
 
