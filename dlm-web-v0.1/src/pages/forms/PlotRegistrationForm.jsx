@@ -353,7 +353,56 @@ const PlotRegistrationForm = () => {
                         <label
                           style={{ display: "block", marginBottom: "5px" }}
                         >
-                          File Number:
+                          Society:
+                        </label>
+                        <select
+                          onChange={(e) => {
+                            setSociety(e.target.value);
+                            getCatagories(e.target.value);
+                          }}
+                        >
+                          <option value="" disabled>
+                            Select a Society
+                          </option>
+                          {SocietyList.map((option, index) => (
+                            <option key={index} value={option.name}>
+                              {option.name}
+                            </option>
+                          ))}
+                        </select>
+                        <p>{CatagoryError}</p>
+                      </div>
+                    </div>
+
+                    <div className="input-box">
+                      <div style={{ marginBottom: "10px" }}>
+                        <label
+                          style={{ display: "block", marginBottom: "5px" }}
+                        >
+                          Catageory:
+                        </label>
+                        <select
+                          onChange={(e) => {
+                            setCatagory(e.target.value);
+                            getPlotSizes(e.target.value);
+                          }}
+                        >
+                          <option value="">Select Society First</option>
+                          {CatagoryList.map((option) => (
+                            <option key={option} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </select>
+                        <p>{CatagoryError}</p>
+                      </div>
+                    </div>
+                    <div className="input-box">
+                      <div style={{ marginBottom: "10px" }}>
+                        <label
+                          style={{ display: "block", marginBottom: "5px" }}
+                        >
+                          Block:
                         </label>
                         <input
                           disabled={!isFileNumberEditable}
@@ -364,6 +413,8 @@ const PlotRegistrationForm = () => {
                         />
                       </div>
                     </div>
+
+                   
                     {/*  */}
                     <div className="input-box">
                       <div style={{ marginBottom: "10px" }}>
@@ -393,20 +444,18 @@ const PlotRegistrationForm = () => {
                         <label
                           style={{ display: "block", marginBottom: "5px" }}
                         >
-                          City/Town:
+                          File Number:
                         </label>
                         <input
+                          // disabled
                           type="text"
-                          name="CityTown"
-                          value={CityTown}
-                          onChange={(e) => {
-                            setCityTown(e.target.value);
-                          }}
+                          name="FileNumber"
+                          value={fileNumber}
                           style={{ width: "100%", padding: "8px" }}
                         />
-                        <p>{CityTownError}</p>
                       </div>
                     </div>
+                   
                     <div className="input-box">
                       <label style={{ display: "block", marginBottom: "5px" }}>
                         Address:
@@ -422,75 +471,28 @@ const PlotRegistrationForm = () => {
                       />
                       <p>{AddressError}</p>
                     </div>
+                    
+                    
                     <div className="input-box">
                       <div style={{ marginBottom: "10px" }}>
                         <label
                           style={{ display: "block", marginBottom: "5px" }}
                         >
-                          Catageory:
+                          City/Town:
                         </label>
-                        <select
+                        <input
+                          type="text"
+                          name="CityTown"
+                          value={CityTown}
                           onChange={(e) => {
-                            setCatagory(e.target.value);
-                            getPlotSizes(e.target.value);
+                            setCityTown(e.target.value);
                           }}
-                        >
-                          <option value="">Select Society First</option>
-                          {CatagoryList.map((option) => (
-                            <option key={option} value={option}>
-                              {option}
-                            </option>
-                          ))}
-                        </select>
-                        <p>{CatagoryError}</p>
+                          style={{ width: "100%", padding: "8px" }}
+                        />
+                        <p>{CityTownError}</p>
                       </div>
                     </div>
-
-                    <div className="input-box">
-                      <div style={{ marginBottom: "10px" }}>
-                        <label
-                          style={{ display: "block", marginBottom: "5px" }}
-                        >
-                          Society:
-                        </label>
-                        <select
-                          onChange={(e) => {
-                            setSociety(e.target.value);
-                            getCatagories(e.target.value);
-                          }}
-                        >
-                          <option value="" disabled>
-                            Select a Society
-                          </option>
-                          {SocietyList.map((option, index) => (
-                            <option key={index} value={option.name}>
-                              {option.name}
-                            </option>
-                          ))}
-                        </select>
-                        <p>{CatagoryError}</p>
-                      </div>
-                    </div>
-
-                    <div className="input-box">
-                      <div style={{ marginBottom: "10px" }}>
-                        <label
-                          style={{ display: "block", marginBottom: "5px" }}
-                        >
-                          Block:
-                        </label>
-                        <select
-                          onChange={(e) => {
-                            setBlock(e.target.value);
-                          }}
-                        >
-                          <option value="">Select block</option>
-                          <option value="A">A</option>
-                          <option value="B">B</option>
-                        </select>
-                        <p>{BlockError}</p>
-                      </div>
-                    </div>
+                   
 
                     <div className="input-box">
                       <div style={{ marginBottom: "10px" }}>

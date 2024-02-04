@@ -87,7 +87,6 @@ function App() {
         /> */}
 
         <Route path="/login" element={<Login />} />
-        <Route path="/agent/wallet" element={<Wallet />} />
         {/* <Route path="/agent/walletnew" element={<Walletnew />} /> */}
         <Route path="/endsession" element={<Logout />} />
         <Route path="/details/plot" element={<PlotDetails />} />
@@ -130,8 +129,10 @@ function App() {
           <Route path="/finance/unverified" element={<FinancePending />} />
         </Route>
         <Route path="/print/:id" element={<PrintFile />} />
-       
+
         <Route element={<AdminRoutes />}>
+       <Route path="/agent/wallet" element={<Wallet />} />
+
         <Route path="/admin/marquee" element={<MarqueeInput />} />
         <Route path="/admin/withdraw" element={<AdminWithdralView />} />
           <Route path="/admin/promo/winners" element={<AdminPromosResults />} />

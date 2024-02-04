@@ -86,7 +86,7 @@ const Login = () => {
           localStorage.setItem("Type", docSnap.data().Type);
           localStorage.setItem("Login", true);
 
-          navi("/admin/home");
+          navi("/agent/home");
 
           break;
         case "finance":

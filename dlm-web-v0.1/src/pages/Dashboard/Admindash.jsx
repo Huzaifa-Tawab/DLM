@@ -16,6 +16,9 @@ import { onAuthStateChanged } from "firebase/auth";
 import { CircularProgressbar } from "react-circular-progressbar";
 import Loader from "../../components/loader/Loader";
 import { useNavigate } from "react-router-dom";
+import isLogedIn from "../../../isLogedIn";
+import isAdmin from "../../../IsAdmin";
+import isFinance from "../../../IsFinance";
 
 function AdminDash() {
   const [NoPlots, setNoPlots] = useState("");
@@ -36,12 +39,16 @@ function AdminDash() {
 
   const navigate = useNavigate();
   useEffect(() => {
+    if ((isLogedIn()&&isAdmin())&& !isFinance()){
     getUser();
     getListText();
 
     // getPromos();
     // getPayments();
     getStats();
+    }else{
+      navigate("/login");
+    }
   }, []);
 
   const getListText = async () => {

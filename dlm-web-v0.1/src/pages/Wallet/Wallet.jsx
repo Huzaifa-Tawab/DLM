@@ -185,11 +185,11 @@ function Wallet() {
               </div>
             </div> */}
            <div className="main--content">
-            <div className="header--wrapper">
+            {/* <div className="header--wrapper">
               <div className="header--title">
                 <span>Primary</span>
                 <h2>Dashboard</h2>
-              </div>
+              </div> */}
               {/* <div className="user--info">
                 <div className="search--box">
                   <i className="fa-solid-fa-search"></i>
@@ -198,7 +198,7 @@ function Wallet() {
                 </div>
                 <img src={avatarpic} alt=""/>
               </div> */}
-            </div>
+            {/* </div> */}
              <div className="card-----container">
               <h3 className="main-----title">Wallet Data</h3>
               <div className="card-----wrapper">
@@ -237,18 +237,6 @@ function Wallet() {
                   </div>
                   {/* <span className="card-----detail">****** *** 675</span> */}
                 </div>
-
-                <div className="payment-----card light-blue">
-                  <div className="card-----header">
-                    <div className="amount">
-                      <span className="title">Direct Commision</span>
-                      <span className="amount-value">{totalDirect}</span>
-                    </div>
-                    <i className="fas fa-rupee-sign iconer dark-blue"></i>
-
-                  </div>
-                  {/* <span className="card-----detail">****** *** 675</span> */}
-                </div>
                 
                 
               </div>
@@ -256,7 +244,66 @@ function Wallet() {
              <div className="card-----container">
              <h3 className="main-----title">Commision Levels</h3>
               <div className="levels-row">
-                <div className="levelsflex">
+              <div className="payment-----card light-green">
+                  <div className="card-----header">
+                    <div className="amount">
+                      <span className="title">Direct Commision</span>
+                      <span className="amount-value">{totalDirect}</span>
+                    </div>
+                    <i className="fas fa-rupee-sign iconer dark-green"></i>
+
+                  </div>
+                  {/* <span className="card-----detail">****** *** 675</span> */}
+                </div>
+
+                <div className="payment-----card light-purple">
+                  <div className="card-----header">
+                    <div className="amount">
+                      <span className="title">Level 2</span>
+                      <span className="amount-value">{totalLevel2}</span>
+                    </div>
+                    <i className="fas fa-rupee-sign iconer dark-purple"></i>
+
+                  </div>
+                  {/* <span className="card-----detail">****** *** 675</span> */}
+                </div>
+
+                <div className="payment-----card light-red">
+                  <div className="card-----header">
+                    <div className="amount">
+                      <span className="title">Level 3</span>
+                      <span className="amount-value">{totalLevel3}</span>
+                    </div>
+                    <i className="fas fa-rupee-sign iconer iconer"></i>
+
+                  </div>
+                  {/* <span className="card-----detail">****** *** 675</span> */}
+                </div>
+
+                <div className="payment-----card light-blue">
+                  <div className="card-----header">
+                    <div className="amount">
+                      <span className="title">Level 4</span>
+                      <span className="amount-value">{totalLevel4}</span>
+                    </div>
+                    <i className="fas fa-rupee-sign iconer dark-blue"></i>
+
+                  </div>
+                  {/* <span className="card-----detail">****** *** 675</span> */}
+                </div>
+
+                <div className="payment-----card light-red">
+                  <div className="card-----header">
+                    <div className="amount">
+                      <span className="title">Level 5</span>
+                      <span className="amount-value">{totalLevel5}</span>
+                    </div>
+                    <i className="fas fa-rupee-sign iconer iconer"></i>
+
+                  </div>
+                  {/* <span className="card-----detail">****** *** 675</span> */}
+                </div>
+                {/* <div className="levelsflex">
                 <h3>Level<span className="level-points">1</span></h3>
                 <h1 className="points">{totalLevel2}</h1>
                 </div>
@@ -275,7 +322,7 @@ function Wallet() {
                 <div className="levelsflex">
                 <h3>Level<span  className="level-points">5</span></h3>
                 <h1 className="points">{totalLevel5}</h1>
-                </div>
+                </div> */}
               </div>
              </div>
             
@@ -308,6 +355,9 @@ function Wallet() {
                   </tbody>
                 </table>
               </div>
+              
+            
+
               <div className="history-records">
                 <h5>WithDrawal List</h5>
                 <table className="wallet-history-table fl-table">
@@ -339,8 +389,8 @@ function Wallet() {
                       ))}
                   </tbody>
                 </table>
+              
               </div>
-              <div></div>
             </div>
             <Widrawal
               showModal={ShowWidrawalModal}

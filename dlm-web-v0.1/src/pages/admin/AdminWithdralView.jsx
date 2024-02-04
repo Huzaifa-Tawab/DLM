@@ -100,7 +100,17 @@ function AdminWithdralView() {
                 <div className="hero--head">
                   <h1>Withdrawal Details</h1>
                 </div>
-                <select
+            
+                <div className="Admin-Home-content">
+                  <div className="Admin-Home-table">
+                    <form class="nosubmit alignment-cal-serch">
+                      <input
+                        class="nosubmit"
+                        type="search"
+                        placeholder="Search by Id"
+                        onChange={(e) => debouncedFilterData(e.target.value)}
+                      />
+                          <select className="calender"
                   onChange={(e) => {
                     filterBasedOnStatusDropdown(e.target.value);
                   }}
@@ -109,15 +119,6 @@ function AdminWithdralView() {
                   <option value="Pending">Pending</option>
                   <option value="Approved">Approved</option>
                 </select>
-                <div className="Admin-Home-content">
-                  <div className="Admin-Home-table">
-                    <form class="nosubmit">
-                      <input
-                        class="nosubmit"
-                        type="search"
-                        placeholder="Search by Id"
-                        onChange={(e) => debouncedFilterData(e.target.value)}
-                      />
                     </form>
                     <div className="table-wrapper">
                       <table className="fl-table">

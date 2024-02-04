@@ -215,7 +215,7 @@ function ClientDetails() {
                     </div>
                   </div>
                 </div>
-                {isAdmin() && (
+               
                   <div className="documents">
                     <div className="doc-row">
                       <h1>Documents</h1>
@@ -223,10 +223,11 @@ function ClientDetails() {
                       <button className="doc-button" onClick={openDocModal}><img src={adddoc} alt="" />Add Document</button>
                       
                     </div>
+                    {isAdmin() && (
                     <table className="fl-table">
                       <thead>
                         <th>Document Name</th>
-                        <th>Date</th>
+                       
                         <th>More Details</th>
                       </thead>
                       <tbody>
@@ -235,7 +236,6 @@ function ClientDetails() {
                             ([key, value]) => (
                               <tr>
                                 <td>{key}</td>
-                                <td>12-10-2024</td>
                                 <td>
                                   <a
                                     href={value}
@@ -250,8 +250,9 @@ function ClientDetails() {
                           )}
                       </tbody>
                     </table>
-                  </div>
+                  
                 )}
+                </div>
                 <div className="plots">
                   {/* <h1>Plots Details</h1> */}
                   <div className="plot-cards">

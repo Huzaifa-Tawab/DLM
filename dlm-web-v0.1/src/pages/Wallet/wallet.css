@@ -50,21 +50,17 @@
 
 }
 .invoice-list{
-    display: flex;
-    justify-content: center;
-    gap: 50px;
+  /* margin: 1rem; */
 }
 .wallet-invoice{
-   width: 450px;
-   height: 40vh;
    background: #fff;
    /* margin: 15px; */
    border-radius: 10px;
    padding: 20px;
+   margin: 0 1rem 1rem 1rem;
 
 }
 .wallet-invoice-table{
-    width: 400px;
     text-align: left;
     margin-top: 10px;
     color: #fff;
@@ -79,10 +75,9 @@
     
 }
 .history-records{
-    width: 450px;
-    height: 40vh;
+    margin: 1rem;
     background: #fff;
-    /* margin: 15px; */
+    margin-top: 25px;
     border-radius: 10px;
     padding: 20px;
 }
@@ -91,14 +86,12 @@
   font-size: 25px;
 }
 .wallet-history-table{
-    width: 400px;
     text-align: left;
     margin-top: 10px;
     color: #fff;
 }
 .main--content{
     position: relative;
-    background-color: #ebe9e9;
     width: 100%;
     padding: 1rem;
 }
@@ -241,10 +234,10 @@
 }
 .levels-row{
     display: flex;
-    background: rgb(127, 0, 255);
+    /* background: rgb(127, 0, 255); */
     gap: 10px;
     flex-wrap: wrap;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     border-radius: 10px;
 }
 .levelsflex{

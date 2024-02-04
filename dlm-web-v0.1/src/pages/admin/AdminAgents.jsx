@@ -89,6 +89,7 @@ function AdminAgents() {
                     onChange={(e) => debouncedFilterData(e.target.value)}
                     className="nosubmit"
                   />
+                  
                 </form>
                 <div className="table-wrapper">
                   <table className="fl-table">
