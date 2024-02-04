@@ -25,6 +25,7 @@ const PlotRegistrationForm = () => {
   const [AgentsList, setAgentsList] = useState([]);
   const [CatagoryList, setCatagoryList] = useState([]);
   const [SocietyList, setSocietyList] = useState([]);
+  const [PlotSizeList, setPlotSizeList] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
   const id = location.state.Cuid;
@@ -62,7 +63,6 @@ const PlotRegistrationForm = () => {
       const number = await generateRandomNumber("Plots", "DYN");
       setfileNumber(number);
     };
-    getCatagories();
     generateNumber();
     getAgents();
     getSocieties();
@@ -148,11 +148,7 @@ const PlotRegistrationForm = () => {
       setBlockError("Select your block");
       error++;
     }
-    if (Selectedsize.trim() === "") {
-      console.log(1);
-      setlabelError("Select your Option");
-      error++;
-    }
+
     console.log(error);
     if (error == 0) {
       await createPlot();
@@ -187,7 +183,7 @@ const PlotRegistrationForm = () => {
         CustomerId: id,
         FileNumber: fileNumber,
         paidAmount: PaidAmount,
-        Unit: Selectedsize,
+
         PlotSize: PlotSize,
         TotalAmount: TotalAmount,
         Block: Block,
@@ -255,7 +251,6 @@ const PlotRegistrationForm = () => {
     });
   }
   const updateAgent = async () => {
-    // console.log(formData.AgentId);
     await updateDoc(doc(db, "Agent", userid), {
       Plots: arrayUnion(fileNumber),
     });
@@ -274,14 +269,59 @@ const PlotRegistrationForm = () => {
     });
     setAgentsList(agents);
   }
-  async function getCatagories() {
-    const querySnapshot = await getDocs(collection(db, "PlotCategories"));
+
+  async function getCatagories(soc) {
     const cat = [];
-    querySnapshot.forEach((doc) => {
-      cat.push(doc.data());
+    SocietyList.forEach((element) => {
+      if (element.name === soc) {
+        Object.entries(element.catagories).map(([key, value]) => {
+          // console.log("Key:", key);
+          // console.log("Value:", value);
+          cat.push(key);
+        });
+      }
     });
     setCatagoryList(cat);
   }
+  async function getPlotSizes(_Psize) {
+    const temp = [];
+    console.log(_Psize);
+    SocietyList.forEach((element) => {
+      if (element.name === Society) {
+        Object.entries(element.catagories).map(([key, value]) => {
+          if (key === _Psize) {
+            console.log(value);
+            Object.entries(value).map(([plotsizekey, plotsizevalue]) => {
+              console.log(plotsizekey);
+              temp.push(plotsizekey);
+            });
+          }
+        });
+      }
+    });
+    setPlotSizeList(temp);
+  }
+
+  function setPlotData(params) {
+    SocietyList.forEach((element) => {
+      if (element.name === Society) {
+        Object.entries(element.catagories).map(([key, value]) => {
+          if (key === Catagory) {
+            Object.entries(value).map(([plotSizeKey, plotSizeValue]) => {
+              // console.log(plotsizekey);
+              if (plotSizeKey === params) {
+                // Object.entries(value).map((plotPayments) => {
+                //   console.log(plotPayments);
+                // });
+                console.log(plotSizeValue);
+              }
+            });
+          }
+        });
+      }
+    });
+  }
+
   async function getSocieties() {
     const querySnapshot = await getDocs(collection(db, "Society"));
     const cat = [];
@@ -331,30 +371,20 @@ const PlotRegistrationForm = () => {
                           className="marla-labal"
                           style={{ display: "block", marginBottom: "5px" }}
                         >
-                          Plot Size In
-                          <select
-                            className="marla"
-                            name=""
-                            id=""
-                            onChange={handlesizechange}
-                          >
-                            <option value=""></option>
-                            <option value="Marla">Marla</option>
-                            <option value="Sq ft">Sq ft</option>
-                          </select>
-                          :<p>{labelError}</p>
+                          Plot Size
                         </label>
-                        <input
-                          type="number"
-                          name="PlotSize In Marla"
-                          value={PlotSize}
+                        <select
                           onChange={(e) => {
-                            if (e.target.value > 0) {
-                              setPlotsize(e.target.value);
-                            }
+                            setPlotData(e.target.value);
                           }}
-                          style={{ width: "100%", padding: "8px" }}
-                        />
+                        >
+                          <option value="">Select Catagory First</option>
+                          {PlotSizeList.map((option) => (
+                            <option key={option} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </select>
                         <p>{PlotSizeError}</p>
                       </div>
                     </div>
@@ -400,19 +430,15 @@ const PlotRegistrationForm = () => {
                           Catageory:
                         </label>
                         <select
-                          value={
-                            selectedOptionIndex !== null
-                              ? selectedOptionIndex
-                              : ""
-                          }
-                          onChange={handleOptionChange}
+                          onChange={(e) => {
+                            setCatagory(e.target.value);
+                            getPlotSizes(e.target.value);
+                          }}
                         >
-                          <option value="" disabled>
-                            Select a category
-                          </option>
-                          {CatagoryList.map((option, index) => (
-                            <option key={index} value={index}>
-                              {option.name}
+                          <option value="">Select Society First</option>
+                          {CatagoryList.map((option) => (
+                            <option key={option} value={option}>
+                              {option}
                             </option>
                           ))}
                         </select>
@@ -430,6 +456,7 @@ const PlotRegistrationForm = () => {
                         <select
                           onChange={(e) => {
                             setSociety(e.target.value);
+                            getCatagories(e.target.value);
                           }}
                         >
                           <option value="" disabled>
