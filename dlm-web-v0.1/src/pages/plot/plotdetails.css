@@ -1,6 +1,7 @@
 .Plot{
     background: #fff;
     display: flex;
+    justify-content: center;
     margin: 20px;
     border-radius: 10px;
     color: #272727;
@@ -8,6 +9,7 @@
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+    gap: 10%;
 }
 .owner{
     text-align: center;
