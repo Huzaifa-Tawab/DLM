@@ -72,26 +72,26 @@ function Schedule() {
               <tr>
                 <td>Booking Fee</td>
                 <td>1</td>
-                <td>30,000 PKR</td>
-                <td>30,000 PKR</td>
+                <td>{SecheduleData.BookingAmount} PKR</td>
+                <td>{SecheduleData.BookingAmount} PKR</td>
               </tr>
               <tr>
                 <td>Down Payment</td>
                 <td>1</td>
-                <td>350,000 PKR</td>
-                <td>350,000 PKR</td>
+                <td>{SecheduleData.Downpayment} PKR</td>
+                <td>{SecheduleData.Downpayment} PKR</td>
               </tr>
               <tr>
                 <td>Installment/Month</td>
-                <td>60</td>
-                <td>6,666.6 PKR</td>
-                <td>400,000 PKR</td>
+                <td>{SecheduleData.InstallmentMonth}</td>
+                <td>{SecheduleData.Installment} PKR</td>
+                <td>{SecheduleData.InstallmentMonth*SecheduleData.Installment} PKR</td>
               </tr>
               <tr>
                 <td>Position Amount</td>
                 <td>1</td>
-                <td>350,000 PKR</td>
-                <td>350,000 PKR</td>
+                <td>{SecheduleData.PossessionAmount} PKR</td>
+                <td>{SecheduleData.PossessionAmount} PKR</td>
               </tr>
               <tr>
                 <td>Transfer</td>
@@ -105,7 +105,7 @@ function Schedule() {
                 <th></th>
                 <th></th>
                 <th>Total Amount</th>
-                <th>1,140,000 PKR</th>
+                <th>{SecheduleData.BookingAmount+SecheduleData.Downpayment+SecheduleData.PossessionAmount+(SecheduleData.Installment*SecheduleData.InstallmentMonth)+10000} PKR</th>
               </tr>
             </tfoot>
           </table>
@@ -129,10 +129,10 @@ function Schedule() {
           <br />
           <span>Warm regards,</span>
           <br />
-          <h5>Salman</h5>
-          <h5>Agent</h5>
-          <h5>SoftXion</h5>
-          <h5>03165545690</h5>
+          <h5>Isfan Arif</h5>
+          <h5>CEO</h5>
+          <h5>DLM</h5>
+          <h5>03160000000</h5>
         </div>
       </div>
     </>
