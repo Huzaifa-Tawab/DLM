@@ -42,6 +42,10 @@ const PlotRegistrationForm = () => {
   const [TotalAmount, setTotalAmount] = useState("");
   const [possessionAmount, setpossessionAmount] = useState("");
   const [InstallmentMonth, setInstallmentMonth] = useState("");
+  const [Downpayment, setDownPayment] = useState("");
+  const [Installment, setInstallment] = useState("");
+  const [BookingAmount, setBookingAmount] = useState("");
+
   const [OtherAmountTitle, setOtherAmountTitle] = useState("None");
   const [OtherAmount, setOtherAmount] = useState("0");
   const [AddressError, setAddressError] = useState("");
@@ -87,18 +91,7 @@ const PlotRegistrationForm = () => {
     setSelectedsize(e.target.value);
     console.log(Selectedsize);
   };
-  // const handleSocietyChange = (event) => {
-  //   const selectedIndex = event.target.value;
-  //   setSelectedOptionIndex(
-  //     selectedIndex !== "" ? parseInt(selectedIndex, 10) : null
-  //   );
-  //   setSociety(SocietyList[selectedIndex].name);
-  // setpossessionAmount(CatagoryList[selectedIndex].PossessionAmount);
-  // setInstallmentMonth(CatagoryList[selectedIndex].InstallmentAmount);
-  // setPaidAmount(CatagoryList[selectedIndex].DownPayment);
-  // setTotalAmount(CatagoryList[selectedIndex].TotalAmount);
-  // console.log(CatagoryList[selectedIndex].name);
-  // };
+
   const handleSubmit = async (e) => {
     setisLoading(true);
     e.preventDefault();
@@ -184,10 +177,13 @@ const PlotRegistrationForm = () => {
         CustomerId: id,
         FileNumber: fileNumber,
         paidAmount: PaidAmount,
-
         PlotSize: PlotSize,
         TotalAmount: TotalAmount,
         Block: Block,
+        BookingAmount: BookingAmount,
+        Installment: Installment,
+        InstallmentMonth: InstallmentMonth,
+        Downpayment: Downpayment,
         PossessionAmount: possessionAmount,
         OtherAmount: OtherAmount,
         OtherAmountTitle: OtherAmountTitle,
@@ -275,9 +271,9 @@ const PlotRegistrationForm = () => {
     const cat = [];
     SocietyList.forEach((element) => {
       if (element.name === soc) {
+        setisFileNumberEditable(element.isFileNumberEditable);
+
         Object.entries(element.catagories).map(([key, value]) => {
-          // console.log("Key:", key);
-          // console.log("Value:", value);
           cat.push(key);
         });
       }
@@ -314,6 +310,12 @@ const PlotRegistrationForm = () => {
                 // Object.entries(value).map((plotPayments) => {
                 //   console.log(plotPayments);
                 // });
+                setTotalAmount(plotSizeValue.total);
+                setInstallmentMonth(plotSizeValue.noOfInstallments);
+                setInstallment(plotSizeValue.installment);
+                setDownPayment(plotSizeValue.downpayment);
+                setpossessionAmount(plotSizeValue.possession);
+                setBookingAmount(plotSizeValue.booking);
                 console.log(plotSizeValue);
               }
             });
@@ -357,7 +359,7 @@ const PlotRegistrationForm = () => {
                           File Number:
                         </label>
                         <input
-                          // disabled
+                          disabled={!isFileNumberEditable}
                           type="text"
                           name="FileNumber"
                           value={fileNumber}
