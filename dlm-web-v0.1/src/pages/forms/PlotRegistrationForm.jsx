@@ -306,11 +306,7 @@ const PlotRegistrationForm = () => {
         Object.entries(element.catagories).map(([key, value]) => {
           if (key === Catagory) {
             Object.entries(value).map(([plotSizeKey, plotSizeValue]) => {
-              // console.log(plotsizekey);
               if (plotSizeKey === params) {
-                // Object.entries(value).map((plotPayments) => {
-                //   console.log(plotPayments);
-                // });
                 setTotalAmount(plotSizeValue.total);
                 setInstallmentMonth(plotSizeValue.noOfInstallments);
                 setInstallment(plotSizeValue.installment);
