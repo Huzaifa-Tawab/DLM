@@ -54,6 +54,7 @@ const PlotRegistrationForm = () => {
   const [possessionAmountError, setpossessionAmountError] = useState("");
   const [InstallmentMonthError, setInstallmentMonthError] = useState("");
   const [Block, setBlock] = useState("");
+  const [isFileNumberEditable, setisFileNumberEditable] = useState(false);
   const [labelError, setlabelError] = useState("");
 
   const [Selectedsize, setSelectedsize] = useState("");
