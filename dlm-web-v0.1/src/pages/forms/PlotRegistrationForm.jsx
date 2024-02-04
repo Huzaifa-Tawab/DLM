@@ -527,12 +527,12 @@ const PlotRegistrationForm = () => {
                         <input
                           type="number"
                           name="PaidAmount"
-                          value={PaidAmount}
+                          value={Downpayment}
                           onChange={(e) => {
                             if (parseInt(e.target.value) < 0) {
-                              setPaidAmount(0);
+                              setDownPayment(0);
                             } else {
-                              setPaidAmount(e.target.value);
+                              setDownPayment(e.target.value);
                             }
                           }}
                           style={{ width: "100%", padding: "8px" }}
