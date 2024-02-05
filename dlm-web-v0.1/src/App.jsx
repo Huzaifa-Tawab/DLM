@@ -49,11 +49,12 @@ import AdminDash from "./pages/Dashboard/Admindash";
 import AgentDash from "./pages/Dashboard/Agentdash";
 import FinanceDash from "./pages/Dashboard/Financedash";
 import AdminPromosResults from "./pages/admin/AdminPromosResults";
-import blocked from './Assets/notfound.jpg'
+import blocked from "./Assets/notfound.jpg";
 import ChangePassword from "./pages/Forget Password/changepass";
 import EditProfile from "./pages/Edit Profile/Editprofile";
 import Schedule from "./pages/Schedule/Schedule";
-import Walletnew from "./pages/Wallet/walletnew";
+// import Walletnew from "./pages/Wallet/walletnew";
+import AdminWithdralView from "./pages/admin/AdminWithdralView";
 
 function App() {
   const [open, setOpen] = useState();
@@ -86,8 +87,7 @@ function App() {
         /> */}
 
         <Route path="/login" element={<Login />} />
-        <Route path="/agent/wallet" element={<Wallet />} />
-        <Route path="/agent/walletnew" element={<Walletnew/>}/>
+        {/* <Route path="/agent/walletnew" element={<Walletnew />} /> */}
         <Route path="/endsession" element={<Logout />} />
         <Route path="/details/plot" element={<PlotDetails />} />
         <Route path="/create/client/" element={<ClientRegistrationFrom />} />
@@ -100,7 +100,11 @@ function App() {
         <Route
           path="/blocked"
           element={
-            <ErrorPage errorCode={401} errorMessage="You Have Been Blocked" errorimage={blocked}/>
+            <ErrorPage
+              errorCode={401}
+              errorMessage="You Have Been Blocked"
+              errorimage={blocked}
+            />
           }
         />
         <Route
@@ -125,9 +129,12 @@ function App() {
           <Route path="/finance/unverified" element={<FinancePending />} />
         </Route>
         <Route path="/print/:id" element={<PrintFile />} />
-        <Route path="/admin/marquee" element={<MarqueeInput />} />
 
         <Route element={<AdminRoutes />}>
+       <Route path="/agent/wallet" element={<Wallet />} />
+
+        <Route path="/admin/marquee" element={<MarqueeInput />} />
+        <Route path="/admin/withdraw" element={<AdminWithdralView />} />
           <Route path="/admin/promo/winners" element={<AdminPromosResults />} />
           <Route path="/admin/home" element={<AdminDash />} />
           <Route path="/agent/home" element={<AgentDash />} />

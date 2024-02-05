@@ -38,6 +38,11 @@ export const superAdminNavLinks = [
     title: "Invoices",
   },
   {
+    to: "/admin/withdraw",
+    icon: <i className="fa-solid fa-file-invoice"></i>,
+    title: "Widthdrawal",
+  },
+  {
     to: "/admin/expense",
     icon: <i className="fa-solid fa-chart-pie"></i>,
     title: "Expenses",

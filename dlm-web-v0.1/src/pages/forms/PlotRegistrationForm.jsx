@@ -25,6 +25,7 @@ const PlotRegistrationForm = () => {
   const [AgentsList, setAgentsList] = useState([]);
   const [CatagoryList, setCatagoryList] = useState([]);
   const [SocietyList, setSocietyList] = useState([]);
+  const [PlotSizeList, setPlotSizeList] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
   const id = location.state.Cuid;
@@ -38,9 +39,13 @@ const PlotRegistrationForm = () => {
   const [CityTown, setCityTown] = useState("");
   const [PaidAmount, setPaidAmount] = useState("");
   const [PlotSize, setPlotsize] = useState("");
-  const [TotalAmount, setTotalAmount] = useState("");
-  const [possessionAmount, setpossessionAmount] = useState("");
+  const [TotalAmount, setTotalAmount] = useState(0);
+  const [possessionAmount, setpossessionAmount] = useState(0);
   const [InstallmentMonth, setInstallmentMonth] = useState("");
+  const [Downpayment, setDownPayment] = useState("");
+  const [Installment, setInstallment] = useState("");
+  const [BookingAmount, setBookingAmount] = useState("");
+
   const [OtherAmountTitle, setOtherAmountTitle] = useState("None");
   const [OtherAmount, setOtherAmount] = useState("0");
   const [AddressError, setAddressError] = useState("");
@@ -53,6 +58,7 @@ const PlotRegistrationForm = () => {
   const [possessionAmountError, setpossessionAmountError] = useState("");
   const [InstallmentMonthError, setInstallmentMonthError] = useState("");
   const [Block, setBlock] = useState("");
+  const [isFileNumberEditable, setisFileNumberEditable] = useState(false);
   const [labelError, setlabelError] = useState("");
 
   const [Selectedsize, setSelectedsize] = useState("");
@@ -62,7 +68,6 @@ const PlotRegistrationForm = () => {
       const number = await generateRandomNumber("Plots", "DYN");
       setfileNumber(number);
     };
-    getCatagories();
     generateNumber();
     getAgents();
     getSocieties();
@@ -86,18 +91,7 @@ const PlotRegistrationForm = () => {
     setSelectedsize(e.target.value);
     console.log(Selectedsize);
   };
-  // const handleSocietyChange = (event) => {
-  //   const selectedIndex = event.target.value;
-  //   setSelectedOptionIndex(
-  //     selectedIndex !== "" ? parseInt(selectedIndex, 10) : null
-  //   );
-  //   setSociety(SocietyList[selectedIndex].name);
-  // setpossessionAmount(CatagoryList[selectedIndex].PossessionAmount);
-  // setInstallmentMonth(CatagoryList[selectedIndex].InstallmentAmount);
-  // setPaidAmount(CatagoryList[selectedIndex].DownPayment);
-  // setTotalAmount(CatagoryList[selectedIndex].TotalAmount);
-  // console.log(CatagoryList[selectedIndex].name);
-  // };
+
   const handleSubmit = async (e) => {
     setisLoading(true);
     e.preventDefault();
@@ -120,24 +114,24 @@ const PlotRegistrationForm = () => {
       console.log(8);
       error++;
     }
-    if (PaidAmount.trim() === "") {
-      console.log(7);
+    // if (PaidAmount.trim() === "") {
+    //   console.log(7);
 
-      setPaidAmountError("PaidAmount Can not be empty");
-      error++;
-    }
+    //   setPaidAmountError("PaidAmount Can not be empty");
+    //   error++;
+    // }
 
     if (PlotSize.trim() === "") {
       console.log(6);
       setPlotsizeError("Plot Size Can not be empty");
       error++;
     }
-    if (TotalAmount.trim() === "") {
+    if (TotalAmount === 0) {
       console.log(5);
       setTotalAmountError("Total Amount Can not be empty");
       error++;
     }
-    if (possessionAmount.trim() === "") {
+    if (possessionAmount === 0) {
       console.log(4);
       setpossessionAmountError("Possession Amount Can not be empty");
       error++;
@@ -148,11 +142,7 @@ const PlotRegistrationForm = () => {
       setBlockError("Select your block");
       error++;
     }
-    if (Selectedsize.trim() === "") {
-      console.log(1);
-      setlabelError("Select your Option");
-      error++;
-    }
+
     console.log(error);
     if (error == 0) {
       await createPlot();
@@ -187,11 +177,15 @@ const PlotRegistrationForm = () => {
         CustomerId: id,
         FileNumber: fileNumber,
         paidAmount: PaidAmount,
-        Unit: Selectedsize,
         PlotSize: PlotSize,
         TotalAmount: TotalAmount,
         Block: Block,
+        BookingAmount: BookingAmount,
+        Installment: Installment,
+        InstallmentMonth: InstallmentMonth,
         PossessionAmount: possessionAmount,
+        Downpayment: Downpayment,
+
         OtherAmount: OtherAmount,
         OtherAmountTitle: OtherAmountTitle,
         Society: Society,
@@ -255,7 +249,6 @@ const PlotRegistrationForm = () => {
     });
   }
   const updateAgent = async () => {
-    // console.log(formData.AgentId);
     await updateDoc(doc(db, "Agent", userid), {
       Plots: arrayUnion(fileNumber),
     });
@@ -274,14 +267,62 @@ const PlotRegistrationForm = () => {
     });
     setAgentsList(agents);
   }
-  async function getCatagories() {
-    const querySnapshot = await getDocs(collection(db, "PlotCategories"));
+
+  async function getCatagories(soc) {
     const cat = [];
-    querySnapshot.forEach((doc) => {
-      cat.push(doc.data());
+    SocietyList.forEach((element) => {
+      if (element.name === soc) {
+        setisFileNumberEditable(element.isFileNumberEditable);
+
+        Object.entries(element.catagories).map(([key, value]) => {
+          cat.push(key);
+        });
+      }
     });
     setCatagoryList(cat);
   }
+  async function getPlotSizes(_Psize) {
+    const temp = [];
+    console.log(_Psize);
+    SocietyList.forEach((element) => {
+      if (element.name === Society) {
+        Object.entries(element.catagories).map(([key, value]) => {
+          if (key === _Psize) {
+            console.log(value);
+            Object.entries(value).map(([plotsizekey, plotsizevalue]) => {
+              console.log(plotsizekey);
+              temp.push(plotsizekey);
+            });
+          }
+        });
+      }
+    });
+    setPlotSizeList(temp);
+  }
+
+  function setPlotData(params) {
+    setPlotsize(params);
+    SocietyList.forEach((element) => {
+      if (element.name === Society) {
+        Object.entries(element.catagories).map(([key, value]) => {
+          if (key === Catagory) {
+            Object.entries(value).map(([plotSizeKey, plotSizeValue]) => {
+              if (plotSizeKey === params) {
+                setTotalAmount(plotSizeValue.total);
+                setInstallmentMonth(plotSizeValue.noOfInstallments);
+                setInstallment(plotSizeValue.installment);
+                setDownPayment(plotSizeValue.downpayment);
+                setpossessionAmount(plotSizeValue.possession);
+                setBookingAmount(plotSizeValue.booking);
+                console.log(plotSizeValue);
+              }
+            });
+          }
+        });
+      }
+    });
+  }
+
   async function getSocieties() {
     const querySnapshot = await getDocs(collection(db, "Society"));
     const cat = [];
@@ -313,123 +354,12 @@ const PlotRegistrationForm = () => {
                         <label
                           style={{ display: "block", marginBottom: "5px" }}
                         >
-                          File Number:
-                        </label>
-                        <input
-                          // disabled
-                          type="text"
-                          name="FileNumber"
-                          value={fileNumber}
-                          style={{ width: "100%", padding: "8px" }}
-                        />
-                      </div>
-                    </div>
-                    {/*  */}
-                    <div className="input-box">
-                      <div style={{ marginBottom: "10px" }}>
-                        <label
-                          className="marla-labal"
-                          style={{ display: "block", marginBottom: "5px" }}
-                        >
-                          Plot Size In
-                          <select
-                            className="marla"
-                            name=""
-                            id=""
-                            onChange={handlesizechange}
-                          >
-                            <option value=""></option>
-                            <option value="Marla">Marla</option>
-                            <option value="Sq ft">Sq ft</option>
-                          </select>
-                          :<p>{labelError}</p>
-                        </label>
-                        <input
-                          type="number"
-                          name="PlotSize In Marla"
-                          value={PlotSize}
-                          onChange={(e) => {
-                            if (e.target.value > 0) {
-                              setPlotsize(e.target.value);
-                            }
-                          }}
-                          style={{ width: "100%", padding: "8px" }}
-                        />
-                        <p>{PlotSizeError}</p>
-                      </div>
-                    </div>
-                    <div className="input-box">
-                      <div style={{ marginBottom: "10px" }}>
-                        <label
-                          style={{ display: "block", marginBottom: "5px" }}
-                        >
-                          City/Town:
-                        </label>
-                        <input
-                          type="text"
-                          name="CityTown"
-                          value={CityTown}
-                          onChange={(e) => {
-                            setCityTown(e.target.value);
-                          }}
-                          style={{ width: "100%", padding: "8px" }}
-                        />
-                        <p>{CityTownError}</p>
-                      </div>
-                    </div>
-                    <div className="input-box">
-                      <label style={{ display: "block", marginBottom: "5px" }}>
-                        Address:
-                      </label>
-                      <input
-                        type="text"
-                        name="Address"
-                        value={Address}
-                        onChange={(e) => {
-                          setAdress(e.target.value);
-                        }}
-                        style={{ width: "100%", padding: "8px" }}
-                      />
-                      <p>{AddressError}</p>
-                    </div>
-                    <div className="input-box">
-                      <div style={{ marginBottom: "10px" }}>
-                        <label
-                          style={{ display: "block", marginBottom: "5px" }}
-                        >
-                          Catageory:
-                        </label>
-                        <select
-                          value={
-                            selectedOptionIndex !== null
-                              ? selectedOptionIndex
-                              : ""
-                          }
-                          onChange={handleOptionChange}
-                        >
-                          <option value="" disabled>
-                            Select a category
-                          </option>
-                          {CatagoryList.map((option, index) => (
-                            <option key={index} value={index}>
-                              {option.name}
-                            </option>
-                          ))}
-                        </select>
-                        <p>{CatagoryError}</p>
-                      </div>
-                    </div>
-
-                    <div className="input-box">
-                      <div style={{ marginBottom: "10px" }}>
-                        <label
-                          style={{ display: "block", marginBottom: "5px" }}
-                        >
                           Society:
                         </label>
                         <select
                           onChange={(e) => {
                             setSociety(e.target.value);
+                            getCatagories(e.target.value);
                           }}
                         >
                           <option value="" disabled>
@@ -450,6 +380,29 @@ const PlotRegistrationForm = () => {
                         <label
                           style={{ display: "block", marginBottom: "5px" }}
                         >
+                          Catageory:
+                        </label>
+                        <select
+                          onChange={(e) => {
+                            setCatagory(e.target.value);
+                            getPlotSizes(e.target.value);
+                          }}
+                        >
+                          <option value="">Select Society First</option>
+                          {CatagoryList.map((option) => (
+                            <option key={option} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </select>
+                        <p>{CatagoryError}</p>
+                      </div>
+                    </div>
+                    <div className="input-box">
+                      <div style={{ marginBottom: "10px" }}>
+                        <label
+                          style={{ display: "block", marginBottom: "5px" }}
+                        >
                           Block:
                         </label>
                         <select
@@ -462,6 +415,83 @@ const PlotRegistrationForm = () => {
                           <option value="B">B</option>
                         </select>
                         <p>{BlockError}</p>
+                      </div>
+                    </div>
+
+                    {/*  */}
+                    <div className="input-box">
+                      <div style={{ marginBottom: "10px" }}>
+                        <label
+                          className="marla-labal"
+                          style={{ display: "block", marginBottom: "5px" }}
+                        >
+                          Plot Size
+                        </label>
+                        <select
+                          onChange={(e) => {
+                            setPlotData(e.target.value);
+                          }}
+                        >
+                          <option value="">Select Catagory First</option>
+                          {PlotSizeList.map((option) => (
+                            <option key={option} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </select>
+                        <p>{PlotSizeError}</p>
+                      </div>
+                    </div>
+                    <div className="input-box">
+                      <div style={{ marginBottom: "10px" }}>
+                        <label
+                          style={{ display: "block", marginBottom: "5px" }}
+                        >
+                          File Number:
+                        </label>
+                        <input
+                          // disabled
+                          type="text"
+                          name="FileNumber"
+                          value={fileNumber}
+                          style={{ width: "100%", padding: "8px" }}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="input-box">
+                      <label style={{ display: "block", marginBottom: "5px" }}>
+                        Address:
+                      </label>
+                      <input
+                        type="text"
+                        name="Address"
+                        value={Address}
+                        onChange={(e) => {
+                          setAdress(e.target.value);
+                        }}
+                        style={{ width: "100%", padding: "8px" }}
+                      />
+                      <p>{AddressError}</p>
+                    </div>
+
+                    <div className="input-box">
+                      <div style={{ marginBottom: "10px" }}>
+                        <label
+                          style={{ display: "block", marginBottom: "5px" }}
+                        >
+                          City/Town:
+                        </label>
+                        <input
+                          type="text"
+                          name="CityTown"
+                          value={CityTown}
+                          onChange={(e) => {
+                            setCityTown(e.target.value);
+                          }}
+                          style={{ width: "100%", padding: "8px" }}
+                        />
+                        <p>{CityTownError}</p>
                       </div>
                     </div>
 
@@ -480,7 +510,7 @@ const PlotRegistrationForm = () => {
                             if (parseInt(e.target.value) < 0) {
                               setTotalAmount(0);
                             } else {
-                              setTotalAmount(e.target.value);
+                              setTotalAmount(parseInt(e.target.value));
                             }
                           }}
                           style={{ width: "100%", padding: "8px" }}
@@ -498,12 +528,12 @@ const PlotRegistrationForm = () => {
                         <input
                           type="number"
                           name="PaidAmount"
-                          value={PaidAmount}
+                          value={Downpayment}
                           onChange={(e) => {
                             if (parseInt(e.target.value) < 0) {
-                              setPaidAmount(0);
+                              setDownPayment(0);
                             } else {
-                              setPaidAmount(e.target.value);
+                              setDownPayment(e.target.value);
                             }
                           }}
                           style={{ width: "100%", padding: "8px" }}
@@ -523,7 +553,7 @@ const PlotRegistrationForm = () => {
                           if (parseInt(e.target.value) < 0) {
                             setpossessionAmount(0);
                           } else {
-                            setpossessionAmount(e.target.value);
+                            setpossessionAmount(parseInt(e.target.value));
                           }
                         }}
                         style={{ width: "100%", padding: "8px" }}

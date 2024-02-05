@@ -40,6 +40,7 @@ function Widrawal({ showModal, onClose, uid, totalCredit, name }) {
   async function UpdateData() {
     try {
       await addDoc(collection(db, "WithDraw"), {
+        Name: name,
         amount: Amount,
         status: "Pending",
         created: serverTimestamp(),

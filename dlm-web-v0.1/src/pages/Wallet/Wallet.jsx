@@ -185,20 +185,20 @@ function Wallet() {
               </div>
             </div> */}
            <div className="main--content">
-            <div className="header--wrapper">
+            {/* <div className="header--wrapper">
               <div className="header--title">
                 <span>Primary</span>
                 <h2>Dashboard</h2>
-              </div>
-              <div className="user--info">
+              </div> */}
+              {/* <div className="user--info">
                 <div className="search--box">
                   <i className="fa-solid-fa-search"></i>
                   <input type="text"
                   placeholder="search"/>
                 </div>
                 <img src={avatarpic} alt=""/>
-              </div>
-            </div>
+              </div> */}
+            {/* </div> */}
              <div className="card-----container">
               <h3 className="main-----title">Wallet Data</h3>
               <div className="card-----wrapper">
@@ -206,7 +206,7 @@ function Wallet() {
                   <div className="card-----header">
                     <div className="amount">
                       <span className="title">Total Amount</span>
-                      <span className="amount-value"> RS 1000000</span>
+                      <span className="amount-value"> {TotalCredit}</span>
                     </div>
                     <i className="fas fa-rupee-sign iconer"></i>
 
@@ -218,7 +218,7 @@ function Wallet() {
                   <div className="card-----header">
                     <div className="amount">
                       <span className="title">Remaining Amount</span>
-                      <span className="amount-value"> RS 1000000</span>
+                      <span className="amount-value">{userData.credit}</span>
                     </div>
                     <i className="fas fa-rupee-sign iconer dark-purple" ></i>
 
@@ -230,21 +230,9 @@ function Wallet() {
                   <div className="card-----header">
                     <div className="amount">
                       <span className="title">Withdrawal</span>
-                      <span className="amount-value"> RS 1000000</span>
+                      <span className="amount-value">{TotalWithDraw}</span>
                     </div>
                     <i className="fas fa-rupee-sign iconer dark-green"></i>
-
-                  </div>
-                  {/* <span className="card-----detail">****** *** 675</span> */}
-                </div>
-
-                <div className="payment-----card light-blue">
-                  <div className="card-----header">
-                    <div className="amount">
-                      <span className="title">Direct Commision</span>
-                      <span className="amount-value"> RS 1000000</span>
-                    </div>
-                    <i className="fas fa-rupee-sign iconer dark-blue"></i>
 
                   </div>
                   {/* <span className="card-----detail">****** *** 675</span> */}
@@ -256,26 +244,85 @@ function Wallet() {
              <div className="card-----container">
              <h3 className="main-----title">Commision Levels</h3>
               <div className="levels-row">
-                <div className="levelsflex">
+              <div className="payment-----card light-green">
+                  <div className="card-----header">
+                    <div className="amount">
+                      <span className="title">Direct Commision</span>
+                      <span className="amount-value">{totalDirect}</span>
+                    </div>
+                    <i className="fas fa-rupee-sign iconer dark-green"></i>
+
+                  </div>
+                  {/* <span className="card-----detail">****** *** 675</span> */}
+                </div>
+
+                <div className="payment-----card light-purple">
+                  <div className="card-----header">
+                    <div className="amount">
+                      <span className="title">Level 2</span>
+                      <span className="amount-value">{totalLevel2}</span>
+                    </div>
+                    <i className="fas fa-rupee-sign iconer dark-purple"></i>
+
+                  </div>
+                  {/* <span className="card-----detail">****** *** 675</span> */}
+                </div>
+
+                <div className="payment-----card light-red">
+                  <div className="card-----header">
+                    <div className="amount">
+                      <span className="title">Level 3</span>
+                      <span className="amount-value">{totalLevel3}</span>
+                    </div>
+                    <i className="fas fa-rupee-sign iconer iconer"></i>
+
+                  </div>
+                  {/* <span className="card-----detail">****** *** 675</span> */}
+                </div>
+
+                <div className="payment-----card light-blue">
+                  <div className="card-----header">
+                    <div className="amount">
+                      <span className="title">Level 4</span>
+                      <span className="amount-value">{totalLevel4}</span>
+                    </div>
+                    <i className="fas fa-rupee-sign iconer dark-blue"></i>
+
+                  </div>
+                  {/* <span className="card-----detail">****** *** 675</span> */}
+                </div>
+
+                <div className="payment-----card light-red">
+                  <div className="card-----header">
+                    <div className="amount">
+                      <span className="title">Level 5</span>
+                      <span className="amount-value">{totalLevel5}</span>
+                    </div>
+                    <i className="fas fa-rupee-sign iconer iconer"></i>
+
+                  </div>
+                  {/* <span className="card-----detail">****** *** 675</span> */}
+                </div>
+                {/* <div className="levelsflex">
                 <h3>Level<span className="level-points">1</span></h3>
-                <h1 className="points">10000</h1>
+                <h1 className="points">{totalLevel2}</h1>
                 </div>
                 <div className="levelsflex">
                 <h3>Level<span  className="level-points">2</span></h3>
-                <h1 className="points">10000</h1>
+                <h1 className="points">{totalLevel3}</h1>
                 </div>
                 <div className="levelsflex">
-                <h3>Level<span  className="level-points">2</span></h3>
-                <h1 className="points">10000</h1>
+                <h3>Level<span  className="level-points">3</span></h3>
+                <h1 className="points">{totalLevel4}</h1>
                 </div>
                 <div className="levelsflex">
-                <h3>Level<span  className="level-points">2</span></h3>
-                <h1 className="points">10000</h1>
+                <h3>Level<span  className="level-points">4</span></h3>
+                <h1 className="points">{totalLevel5}</h1>
                 </div>
                 <div className="levelsflex">
-                <h3>Level<span  className="level-points">2</span></h3>
-                <h1 className="points">10000</h1>
-                </div>
+                <h3>Level<span  className="level-points">5</span></h3>
+                <h1 className="points">{totalLevel5}</h1>
+                </div> */}
               </div>
              </div>
             
@@ -286,7 +333,7 @@ function Wallet() {
             <div className="invoice-list">
               <div className="wallet-invoice">
                 <h5>Credit List</h5>
-                <table className="wallet-invoice-table">
+                <table className="wallet-invoice-table fl-table">
                   <thead>
                     <tr>
                       <th>Invoice Id</th>
@@ -308,9 +355,12 @@ function Wallet() {
                   </tbody>
                 </table>
               </div>
+              
+            
+
               <div className="history-records">
                 <h5>WithDrawal List</h5>
-                <table className="wallet-history-table">
+                <table className="wallet-history-table fl-table">
                   <thead>
                     <tr>
                       <th>Amount</th>
@@ -339,8 +389,8 @@ function Wallet() {
                       ))}
                   </tbody>
                 </table>
+              
               </div>
-              <div></div>
             </div>
             <Widrawal
               showModal={ShowWidrawalModal}

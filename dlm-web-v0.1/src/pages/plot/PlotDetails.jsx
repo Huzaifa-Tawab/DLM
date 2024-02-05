@@ -28,7 +28,7 @@ function PlotDetails() {
     }
   }
   return isLoading ?( <Loader/> ) : (
-   true ? (<>You Are Blocked</>):(
+   true ? (
     <>
     <div className="Plot">
       <div className="owner">
@@ -43,7 +43,7 @@ function PlotDetails() {
       </div>
     </div>
     </>
-   )
+   ):(<>You Are Blocked</>)
   );
 }
 

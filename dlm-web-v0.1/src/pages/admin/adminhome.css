@@ -122,6 +122,21 @@ thead{
 tbody{
   background: #F4B266;
 }
+.calender{
+  /* background: #fff; */
+  /* background: #fff; */
+  border: 1px solid #000;
+  border-radius: 5px;
+  height: 40px;
+  margin: 20px 70px 0px 0px;
+  cursor: pointer;
+  
+}
+.alignment-cal-serch{
+  display: flex;
+  justify-content: space-between !important;
+  align-items: center;
+}
 
 
 

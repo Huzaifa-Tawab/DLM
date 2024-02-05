@@ -7,25 +7,7 @@ import isLogedIn from "../isLogedIn";
 const AdminRoutes = () => {
   // const [Auth, setauth] = useState(false);
   const auth = isLogedIn();
-
-  // const auth = getAuth();
-  // const uid = auth.currentUser.uid;
-
-  // useEffect(() => {
-  //   getAuthFromFirebase();
-  // }, []);
-
-  // async function getAuthFromFirebase() {
-  //   const docRef = doc(db, "Users", uid);
-  //   const docSnap = await getDoc(docRef);
-  //   if (docSnap.exists()) {
-  //     if (docSnap.data().Type === "Admin") {
-  //       setauth(true);
-  //     }
-  //   } else {
-  //     console.log("No such document!");
-  //   }
-  // }
+  // const auth = isLogedIn() && isAdmin();
 
   return auth ? <Outlet /> : <Navigate to="/login" />;
 };
