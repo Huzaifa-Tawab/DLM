@@ -30,7 +30,7 @@ function FinanceDash() {
                 <div className="up-hd">
                   <h3>AGENT PROFILE</h3>
                 </div>
-                <div className="agent-dash-content-col1-row1 light-red">
+                <div className="agent-dash-content-col1-row1 light-blue">
                   <img src={User.imgUrl} className="dash-avatar" />
                   <div className="rower-fle">
                   <div className="rower">
@@ -85,7 +85,7 @@ function FinanceDash() {
                       <h1>{LevelFive.length} persons </h1>
                     </div>
                   </div>
-                  <div className="agent-dash-content-col1-row2-card2 light-blue">
+                  <div className="agent-dash-content-col1-row2-card2 light-purple">
                   <div className="level-card">
                       <h1>Plots </h1>
                       </div>

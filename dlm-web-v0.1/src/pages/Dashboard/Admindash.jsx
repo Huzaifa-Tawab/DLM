@@ -173,7 +173,7 @@ function AdminDash() {
                   <div className="up-hd">
                     <h3>ADMIN PROFILE</h3>
                   </div>
-                  <div className="agent-dash-content-col1-row1 light-red">
+                  <div className="agent-dash-content-col1-row1 light-blue">
                     <img src={User.img} className="dash-avatar" />
                     <div className="inf--flex-col">
                     <span><strong className="strong">Name:</strong>{User.Name}</span>
@@ -200,13 +200,30 @@ function AdminDash() {
                         <h1>{NoAgent} Agents </h1>
                       </div>
                     </div>
-                    <div className="agent-dash-content-col1-row2-card2 light-blue">
+                    <div className="agent-dash-content-col1-row2-card2 light-purple">
+                      
                       <h4>Files Details</h4>
-                      <p> Total {NoPlots} Plots </p>
-                      <p>DynamicLandManagement {dynamicLandManagement}</p>
-                      <p>sydneyHawks7 {sydneyHawks7}</p>
-                      <p>newCityParadise {newCityParadise}</p>
-                      <p>Unknown {UnKnowSociety}</p>
+                      
+                      <div className="level-card">
+                      <h1> Total Plots </h1>
+                      <h1>{NoPlots}</h1>
+                      </div>
+                      <div className="level-card">
+                      <h1>DynamicLandManagement</h1>
+                      <h1> {dynamicLandManagement}</h1>
+                      </div>
+                      <div className="level-card">
+                      <h1>sydneyHawks7 </h1>
+                      <h1>{sydneyHawks7}</h1>
+                      </div>
+                      <div className="level-card">
+                      <h1>newCityParadise</h1>
+                      <h1> {newCityParadise}</h1>
+                      </div>
+                      <div className="level-card">
+                      <h1>Unknown </h1>
+                      <h1>{UnKnowSociety}</h1>
+                      </div>
                     </div>
                   </div>
                 </div>
