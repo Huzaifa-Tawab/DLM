@@ -251,17 +251,30 @@ function AgentDash() {
                     <img src={User.imgUrl} className="dash-avatar" />
                     <div className="rower-fle">
                     <div className="rower">
-                      <span><strong className="strong">Name:</strong>{User.Name}</span>
-                      <span><strong className="strong" >Gender:</strong>{User.Gender}</span>
-                      <span><strong className="strong">CNIC:</strong>{User.Cnic}</span>
-                      <span><strong className="strong">Invoice Id:</strong> {ChildOf.InvId}</span>
-                      <span><strong className="strong">Sponsor of:</strong>{ChildOf.Name}</span>
+                      <span><strong className="strong">Name:</strong></span>
+                      <span><strong className="strong" >Gender:</strong></span>
+                      <span><strong className="strong">CNIC:</strong></span>
+                      <span><strong className="strong">Invoice Id:</strong> </span>
+                      <span><strong className="strong">Sponsor of:</strong></span>
                     </div>
                     <div className="rower">
-                      <span><strong className="strong">F/H Name:</strong>{User.FName}</span>
-                      <span><strong className="strong">D.O.B:</strong>{User.Dob}</span>
-                      <span><strong className="strong">Phone No:</strong> {ChildOf.phNo}</span>
-                      <span><strong className="strong">TownCity:</strong>{ChildOf.TownCity}</span>
+                      <span>{User.Name}</span>
+                      <span>{User.Gender}</span>
+                      <span>{User.Cnic}</span>
+                      <span> {ChildOf.InvId}</span>
+                      <span>{ChildOf.Name}</span>
+                    </div>
+                    <div className="rower">
+                      <span><strong className="strong">F/H Name:</strong></span>
+                      <span><strong className="strong">D.O.B:</strong></span>
+                      <span><strong className="strong">Phone No:</strong></span>
+                      <span><strong className="strong">TownCity:</strong></span>
+                    </div>
+                    <div className="rower">
+                      <span>{User.FName}</span>
+                      <span>{User.Dob}</span>
+                      <span>{ChildOf.phNo}</span>
+                      <span>{ChildOf.TownCity}</span>
                     </div>
                   </div>
                   </div>
