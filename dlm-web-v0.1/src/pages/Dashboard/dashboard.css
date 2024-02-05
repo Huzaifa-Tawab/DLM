@@ -61,7 +61,7 @@
     justify-content: space-between;
   }
   .agent-dash-content-col2 {
-    background: #fff;
+    /* background: #fff; */
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     height: 80vh;
     width: 30%;
@@ -129,7 +129,7 @@
   }
   .agent-dash-content-col1-row2-card1,
   .agent-dash-content-col1-row2-card2 {
-    background: #fff;
+    /* background: #fff; */
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     /* height: 100%; */
     width: 45%;
@@ -218,7 +218,9 @@
   flex-direction: column;
   padding-left: 40px;
   padding-top: 50px; */
-  gap: 30px;
+  /* gap: 30px; */
+  align-self: center;
+  margin-right: 10%;
 }
 .rower{
   display: flex;
@@ -318,4 +320,17 @@
   justify-content: center;
 }
   }
+  /* color.css */
+.light-red{
+  background-color: rgba(251, 233,233);
+}
+.light-purple{
+  background: rgb(254, 218, 235);
+}
+.light-green{
+  background: rgba(235, 254,235);
+}
+.light-blue{
+  background: rgba(236, 234,254);
+}
   

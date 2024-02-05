@@ -10,9 +10,9 @@
 .cus-details h2{
   font-size: 1rem;
 }
-.avatar-section{
+/* .avatar-section{
 
-}
+} */
 .info-box {
   display: flex;
 }
@@ -309,10 +309,10 @@ margin: 25px 0;
   .info-box-2 > h1 {
     font-size: 1.5rem;
   }
-  .data-client {
-    /* gap: 10px; */
-    /* flex-direction: column; */
-  }
+  /* .data-client {
+    gap: 10px;
+    flex-direction: column;
+  } */
 
   .client-pic {
     width: 100%;

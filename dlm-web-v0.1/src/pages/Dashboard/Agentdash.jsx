@@ -247,7 +247,7 @@ function AgentDash() {
                   <div className="up-hd">
                     <h3>AGENT PROFILE</h3>
                   </div>
-                  <div className="agent-dash-content-col1-row1">
+                  <div className="agent-dash-content-col1-row1 light-red" >
                     <img src={User.imgUrl} className="dash-avatar" />
                     <div className="rower-fle">
                     <div className="rower">
@@ -280,7 +280,7 @@ function AgentDash() {
                   </div>
 
                   <div className="agent-dash-content-col1-row2">
-                    <div className="agent-dash-content-col1-row2-card1">
+                    <div className="agent-dash-content-col1-row2-card1 light-purple">
                       <div className="level-card">
                         <h1>Direct </h1>
                         <h1>{User.Plots.length} plots </h1>
@@ -302,7 +302,7 @@ function AgentDash() {
                         <h1>{LevelFive.length} persons </h1>
                       </div>
                     </div>
-                    <div className="agent-dash-content-col1-row2-card2">
+                    <div className="agent-dash-content-col1-row2-card2 light-blue">
                     <div className="level-card">
                         <h1>Plots </h1>
                         </div>
@@ -317,7 +317,7 @@ function AgentDash() {
                     </div>
                   </div>
                 </div>
-                <div className="agent-dash-content-col2">
+                <div className="agent-dash-content-col2 light-green">
                   {PromosWithStatus &&
                     PromosWithStatus.map((promo, index) => (
                       //     promo.status === "completed" ? "goal-achieved" : ""

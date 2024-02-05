@@ -7,10 +7,10 @@
     justify-content: center;
     gap: 70px;
     margin: 50px;
-}
+/* }
 .flex-cards-wallet-com{
     /* margin: 50px; */
-}
+} */
 .flex-cards-wallet-levels{
     display: flex;
     justify-content: space-between;
@@ -49,9 +49,9 @@
     align-items: center;
 
 }
-.invoice-list{
-  /* margin: 1rem; */
-}
+/* .invoice-list{
+  margin: 1rem;
+} */
 .wallet-invoice{
    background: #fff;
    /* margin: 15px; */
@@ -71,9 +71,9 @@
     font-size: 25px;
 
 }
-.wallet-invoice-table tbody{
+/* .wallet-invoice-table tbody{
     
-}
+} */
 .history-records{
     margin: 1rem;
     background: #fff;

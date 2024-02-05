@@ -173,7 +173,7 @@ function AdminDash() {
                   <div className="up-hd">
                     <h3>ADMIN PROFILE</h3>
                   </div>
-                  <div className="agent-dash-content-col1-row1">
+                  <div className="agent-dash-content-col1-row1 light-red">
                     <img src={User.img} className="dash-avatar" />
                     <div className="inf--flex-col">
                     <span><strong className="strong">Name:</strong>{User.Name}</span>
@@ -182,7 +182,7 @@ function AdminDash() {
                   </div>
 
                   <div className="agent-dash-content-col1-row2">
-                    <div className="agent-dash-content-col1-row2-card1">
+                    <div className="agent-dash-content-col1-row2-card1 light-purple">
                       <div className="level-card">
                         <h1>Total Users </h1>
                         <h1>{NoCustomers + NoAgent} Users </h1>
@@ -200,7 +200,7 @@ function AdminDash() {
                         <h1>{NoAgent} Agents </h1>
                       </div>
                     </div>
-                    <div className="agent-dash-content-col1-row2-card2">
+                    <div className="agent-dash-content-col1-row2-card2 light-blue">
                       <h4>Files Details</h4>
                       <p> Total {NoPlots} Plots </p>
                       <p>DynamicLandManagement {dynamicLandManagement}</p>
@@ -210,7 +210,7 @@ function AdminDash() {
                     </div>
                   </div>
                 </div>
-                <div className="agent-dash-content-col2">
+                <div className="agent-dash-content-col2 light-green">
                   {PromosWithStatus &&
                     PromosWithStatus.map((promo, index) => (
                       // promo.status === "completed" ? "goal-achieved" : ""
