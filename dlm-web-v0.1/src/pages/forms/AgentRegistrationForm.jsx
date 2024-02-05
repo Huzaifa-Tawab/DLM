@@ -11,6 +11,8 @@ import generateRandomString from "../../../RandomString";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
 import SideBar from "../../components/Sidebar/sidebar";
+import isAdmin from "../../../IsAdmin";
+import { onAuthStateChanged } from "firebase/auth";
 
 const ErrorMessage = ({ message }) => (
   <span style={{ color: "red", fontSize: "0.8em" }}>{message}</span>
@@ -142,6 +144,7 @@ const AgentRegistrationForm = () => {
   const [AgentList, setAgentList] = useState([]);
   const [Reff, setReff] = useState("");
   const [isLoading, setisLoading] = useState(true);
+  const [createdBy, setcreatedBy] = useState();
 
   const [formData, setFormData] = useState({
     Name: "",
@@ -161,17 +164,42 @@ const AgentRegistrationForm = () => {
     Credit: 0,
   });
   useEffect(() => {
-    const getInvId = async () => {
-      const id = await generateRandomString("INV", "Agent", "");
-      setFormData((prevData) => ({
-        ...prevData,
-        ["InvId"]: id,
-      }));
-    };
-    getInvId();
-    getAgentsList();
-    setisLoading(false);
+    if (isAdmin()) {
+      const getInvId = async () => {
+        const id = await generateRandomString("INV", "Agent", "");
+        setFormData((prevData) => ({
+          ...prevData,
+          ["InvId"]: id,
+        }));
+      };
+      getUserName();
+      getInvId();
+      getAgentsList();
+      setisLoading(false);
+    } else {
+      navigat("/login");
+    }
   }, []);
+  async function getUserName(params) {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const docRef = doc(db, "Users", user.uid);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          setFormData((prevData) => ({
+            ...prevData,
+            ["createdBy"]: docSnap.data().Name,
+          }));
+        } else {
+          // docSnap.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      } else {
+        navigate("/login");
+      }
+    });
+  }
   async function getAgentsList() {
     const querySnapshot = await getDocs(collection(db, "Agent"));
     let temp = [];
