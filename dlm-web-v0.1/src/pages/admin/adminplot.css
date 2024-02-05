@@ -11,7 +11,7 @@
 }
 .Plot-box > h1 {
   color: #1a202c;
-  font-family: "Plus Jakarta Sans";
+  /* font-family: "Plus Jakarta Sans"; */
   font-size: 28px;
   font-style: normal;
   font-weight: 700;
@@ -75,7 +75,7 @@
 }
 .first {
   color: #90a3bf;
-  font-family: "Plus Jakarta Sans";
+  /* font-family: "Plus Jakarta Sans"; */
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -87,7 +87,7 @@
 .second {
   font-weight: 700;
   color: #596780;
-  font-family: "Plus Jakarta Sans";
+  /* font-family: "Plus Jakarta Sans"; */
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -108,7 +108,7 @@
 }
 .comment-box > h1 {
   color: #1a202c;
-  font-family: "Plus Jakarta Sans";
+  /* font-family: "Plus Jakarta Sans"; */
   font-size: 20px;
   font-style: normal;
   font-weight: 600;

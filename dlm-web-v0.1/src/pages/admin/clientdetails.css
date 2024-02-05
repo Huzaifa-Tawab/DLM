@@ -97,7 +97,7 @@
 .row > span {
   /* Regular/Type@20 */
   color: #90a3bf;
-  font-family: "Plus Jakarta Sans";
+ 
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -252,7 +252,7 @@ margin: 25px 0;
 }
 .row > .secon-row {
   /* Semibold/Type@20 */
-  font-family: "Plus Jakarta Sans";
+  
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -262,7 +262,7 @@ margin: 25px 0;
 }
 .sec-heading > .first-text {
   color: #596780;
-  font-family: "Plus Jakarta Sans";
+ 
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -275,7 +275,7 @@ margin: 25px 0;
 .sec-heading > .secon-text {
   font-weight: 700;
   color: #596780;
-  font-family: "Plus Jakarta Sans";
+  
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
