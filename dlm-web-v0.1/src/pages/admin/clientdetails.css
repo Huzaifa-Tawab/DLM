@@ -295,12 +295,24 @@ margin: 25px 0;
     padding: 0px 5px;
   }
 }
+form.nosubmit {
+  border: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
 @media (max-width: 728px) {
   .info-box {
     flex-direction: column;
     margin: 0px;
     padding: 0px;
   }
+  form.nosubmit {
+    border: none;
+    padding: 0;
+    display: flex;
+    justify-content: normal;
+}
   .info-box-2 {
     padding: 20px;
     margin: 20px 0px;
@@ -379,6 +391,7 @@ margin: 25px 0;
   .view-more{
     margin: 0 0 10px 0;
   }
+ 
 }
 .blocked-user {
   background: #a4243b !important;
@@ -392,12 +405,7 @@ tbody tr:nth-child(odd) {
   /* background-color: #ba884f; */
   color: #fff;
 }
-form.nosubmit {
-  border: none;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-}
+
 
 input.nosubmit {
   width: 260px;
