@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import logo from "../../Assets/Logo.png";
+import sliderlogo from "../../Assets/mainpageLogo.png";
 
 const LogoWrapper = styled.div`
   width: 100%;
@@ -28,7 +28,7 @@ const LogoWrapper = styled.div`
       justify-content: center;
       //   border-radius: 50px;
       > img {
-        width: 100px;
+        width: 150px;
         margin-left: 2px;
       }
     }
@@ -39,7 +39,7 @@ const Logo = () => {
     <LogoWrapper>
       <Link to="dashboard/home">
         <div>
-          <img src={logo} alt="" />
+          <img src={sliderlogo} alt="" />
         </div>
         {/* <h4>DLM</h4> */}
       </Link>

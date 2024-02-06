@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../../Assets/SoftXion.png";
+import sliderlogo from "../../Assets/sliderlogo.png";
 import hero from "../../Assets/hero.jpg";
 import paradise from '../../Assets/paradise.png'
 import city from '../../Assets/cityparadise.jpeg'
@@ -22,7 +22,7 @@ function HomeNew() {
       <div className="landing-page">
         <div className="head-home">
           <div className="logo">
-            <img src={logo} alt="" />
+            <img src={sliderlogo} alt="" />
           </div>
           <div className="cta">
             <button
