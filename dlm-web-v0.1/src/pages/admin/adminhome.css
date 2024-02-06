@@ -204,4 +204,7 @@ tbody{
       display: block;
       text-align: center;
   }
+  .hero--head{
+    width: 100vw;
+  }
 }

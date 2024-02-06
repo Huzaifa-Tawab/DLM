@@ -36,6 +36,7 @@ const PageWrapper = styled.div`
   transition: transform 0.3s ease-in-out;
   @media (max-width: 775px) {
     transform: ${({ open }) => (open ? "translateX(0%)" : "translateX(-100%)")};
+    left:34%;
   }
 `;
 
