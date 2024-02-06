@@ -205,10 +205,11 @@ tbody{
       text-align: center;
   }
   .hero--head{
-    width: 90vw;
+    width: 100vw;
   }
   .hero--head button{
     width: 100px;
     padding: 0px;
+    justify-content: space-around;
   }
 }
