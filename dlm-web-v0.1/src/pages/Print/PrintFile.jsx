@@ -6,6 +6,7 @@ import { doc, getDoc } from "firebase/firestore";
 import isAdmin from "../../../IsAdmin";
 import { db } from "../../firebase";
 import Loader from "../../components/loader/Loader";
+import softx from "../../Assets/SoftXion.png";
 
 function PrintFile() {
   const { id } = useParams();
@@ -270,6 +271,19 @@ function PrintFile() {
           <h3>Customer</h3>
           <h3>Booking Officer</h3>
           <h3>Admin</h3>
+        </div>
+        <div className="foter-softxion">
+        <h5>This site is created by  </h5>
+        <div>
+          <img src={softx } alt=""></img>
+          <h3>Email:info@softxion.com</h3>
+          </div>
+        </div>
+         {/* code is in schedule.css */}
+         <div >
+          
+         
+          
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
+import softx from "../../Assets/SoftXion.png"
 function Schedule() {
   const { id } = useParams();
   const [Total, setTotal] = useState("");
@@ -133,6 +134,15 @@ function Schedule() {
           <h5>CEO</h5>
           <h5>DLM</h5>
           <h5>03160000000</h5>
+        </div> 
+        {/* code is in schedule.css */}
+        <div className="foter-softxion">
+          <h5>This site is created by  </h5>
+          <div>
+          <img src={softx } alt=""></img>
+          <h3>Email:info@softxion.com</h3>
+          </div>
+          
         </div>
       </div>
     </>

@@ -71,6 +71,24 @@ text-align: justify;
   tbody{
     background: #F4B266;
   }
+  .foter-softxion{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    align-items: flex-end;
+  }
+  .foter-softxion img{
+    height: 30px;
+  }
+  .foter-softxion h5{
+    font-size:  15px;
+    font-weight: 400;
+  }
+  .foter-softxion h3{
+   
+    font-size: 10px;
+    line-height: 25px;
+  }
 @media (max-width: 767px) {
       
       .invoice-table {
