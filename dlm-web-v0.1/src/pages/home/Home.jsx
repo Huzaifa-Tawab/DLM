@@ -9,6 +9,7 @@ import { db } from "../../firebase";
 import Footer from "../../components/Footer/Footer";
 import logo from "../../Assets/SoftXion.png";
 
+
 const Home = () => {
   const [referenceId, setReferenceId] = useState("");
   const [cnic, setCnic] = useState("");
