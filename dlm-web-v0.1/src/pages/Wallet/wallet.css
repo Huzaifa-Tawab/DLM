@@ -295,4 +295,9 @@
     width: 100%;
     text-align: left;
 }
+.wallet-main {
+    height: 100%;
+    overflow: auto;
+    width: 100vw;
+}
 }
