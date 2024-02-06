@@ -95,6 +95,7 @@ function AdminAgents() {
                   <table className="fl-table">
                     <thead>
                       <tr>
+                        <th>DP</th>
                         <th>Name</th>
                         <th>Phone Number</th>
                         <th>CNIC No</th>
@@ -105,12 +106,13 @@ function AdminAgents() {
                     <tbody>
                       {filteredCustomersDataMemoized.map((e) => (
                         <tr key={e.Cnic}>
-                          <td className="avatar-image width-adjust">
-                            <img
+                          <td><img
                               src={avatar}
                               alt="avatar"
                               className="avatar-table"
-                            />
+                            /></td>
+                          {/* <td className="avatar-image width-adjust"> */}
+                            <td>
                             {e.Name}
                           </td>
                           <td>{e.phNo}</td>

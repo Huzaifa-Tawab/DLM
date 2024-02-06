@@ -157,9 +157,10 @@ function AdminHome() {
               />
                   </form>
                   <div className="table-wrapper">
-                    <table className="fl-table">
+                    <table className="fl-table table-hame">
                       <thead>
                         <tr>
+                          <th>DP</th>
                           <th>Name</th>
                           <th>FName</th>
                           <th>Phone Number</th>
@@ -174,9 +175,9 @@ function AdminHome() {
                       </thead>
                       <tbody>
                         {filteredCustomersDataMemoized.map((e) => (
+                          
                           <tr key={e.Cnic}>
-                            <td className="avatar-image">
-                              <img
+                            <td> <img
                                 src={
                                   e.Gender === "female"
                                     ? isAdmin()
@@ -186,7 +187,19 @@ function AdminHome() {
                                 }
                                 alt="avatar"
                                 className="avatar-table"
-                              />
+                              /></td>
+                            <td >
+                              {/* <img
+                                src={
+                                  e.Gender === "female"
+                                    ? isAdmin()
+                                      ? e.imgUrl
+                                      : avatar
+                                    : e.imgUrl
+                                }
+                                alt="avatar"
+                                className="avatar-table"
+                              /> */}
                               <p>{e.Name}</p>
                             </td>
                             <td>{e.FName}</td>

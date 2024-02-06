@@ -353,14 +353,14 @@ form.nosubmit {
     font-weight: 600;
   }
   .plots{
-    width: 90vw;
+    margin: 10px 0 40px 0;
     padding: 20px;
   }
   .plots h1{
     font-size: 2rem;
   }
   .plot-cards{
-    gap: 12px;
+    gap: 25px;
   }
   .card{
     width: 10rem;
@@ -369,6 +369,9 @@ form.nosubmit {
   }
   .card h4{
     font-size: 1rem;
+  }
+  .clients-buttons{
+    gap: 10px;
   }
   .first{
     font-size: 16px;

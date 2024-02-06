@@ -78,6 +78,9 @@
 .table-wrapper{
   margin: 10px 70px 70px;
   box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
+  height: 70vh;
+  border-radius: 10px;
+  overflow: auto;
 }
 
 .fl-table {
@@ -137,6 +140,7 @@ tbody{
   justify-content: space-between !important;
   align-items: center;
 }
+
 
 
 
@@ -205,11 +209,13 @@ tbody{
       text-align: center;
   }
   .hero--head{
-    width: 95vw;
+    /* width: 95vw; */
+    /* justify-content: space-around; */
   }
   .hero--head button{
     width: 100px;
     padding: 0px;
+    margin-right: 4rem;
    
   }
   .table-wrapper {
