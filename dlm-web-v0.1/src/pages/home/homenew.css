@@ -172,7 +172,8 @@
         width: auto;
     }
     .Hero h1{
-        font-size: 3rem;
+        font-size: 2.5rem;
+      
     }
     .Hero P{
         width: auto;
@@ -199,7 +200,10 @@
     }
 
     .market-img img{
-        width: 400px;
+        width: 300px;
         margin-top: 20px;
+    }
+    .logos-slider img {
+      width: 150px;
     }
 }
