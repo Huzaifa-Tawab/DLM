@@ -208,6 +208,7 @@ tbody{
     width: 100vw;
   }
   .hero--head button{
-    width: auto;
+    width: 100px;
+    padding: 0px;
   }
 }
