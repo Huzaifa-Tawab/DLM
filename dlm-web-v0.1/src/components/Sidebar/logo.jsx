@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import sliderlogos from "../../Assets/mainpageLogo.png";
+import sliderlogos from "../../assets/mainpageLogo.png";
 
 const LogoWrapper = styled.div`
   width: 100%;
