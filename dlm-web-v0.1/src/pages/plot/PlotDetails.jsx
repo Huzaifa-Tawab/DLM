@@ -29,7 +29,7 @@ function PlotDetails() {
   }
   return isLoading ? (
     <Loader />
-  ) : true ? (
+  ) : isBlocked ? (
     <>
       <div className="Plot">
         <div className="owner">
