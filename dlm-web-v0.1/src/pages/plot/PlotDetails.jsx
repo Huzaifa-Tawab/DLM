@@ -23,13 +23,15 @@ function PlotDetails() {
     const docRef = doc(db, "Plots", id);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
+      if (docSnap.data().Blocked) {
+        navigate("/blocked");
+      }
       setPlotDetail(docSnap.data());
-      setisBlocked(docSnap.data().Blocked);
     }
   }
   return isLoading ? (
     <Loader />
-  ) : isBlocked ? (
+  ) : (
     <>
       <div className="Plot">
         <div className="owner">
@@ -42,7 +44,7 @@ function PlotDetails() {
             <h1> {PlotDetail.TotalAmount} PKR</h1>
           </div>
           <div className="details">
-            <span>Piad</span> <h1>{PlotDetail.paidAmount} PKR</h1>
+            <span>Paid</span> <h1>{PlotDetail.paidAmount} PKR</h1>
           </div>
           <div className="details">
             <span>Plot Size</span> <h1>{PlotDetail.PlotSize} Marla</h1>
@@ -53,8 +55,6 @@ function PlotDetails() {
         </div>
       </div>
     </>
-  ) : (
-    <>You Are Blocked</>
   );
 }
 
