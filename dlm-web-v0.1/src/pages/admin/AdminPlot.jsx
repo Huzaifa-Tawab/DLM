@@ -8,6 +8,7 @@ import {
   getDoc,
   getDocs,
   query,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import { db } from "../../firebase";
@@ -31,6 +32,7 @@ function AdminPlot() {
   const [isLoading, setisLoading] = useState(true);
   const [Transactions, setTransactions] = useState([]);
   const [Comments, setComments] = useState([]);
+  const [isBlocked, setisBlocked] = useState(false);
   const [showDocModal, setShowDocModal] = useState(false);
   const [showTransferModal, setShowTransferModal] = useState(false);
   const [showCommentsModal, setShowCommentsModal] = useState(false);
@@ -56,8 +58,19 @@ function AdminPlot() {
     if (docSnap.exists()) {
       setPlotDetails(docSnap.data());
       console.log(docSnap.data());
+      setisBlocked(docSnap.data().Blocked);
       setisLoading(false);
     }
+  }
+  async function toggleBlockStatus() {
+    setisLoading(true);
+    const Ref = doc(db, "Plots", id);
+    await updateDoc(Ref, {
+      Blocked: !isBlocked,
+    }).then(() => {
+      getPlotDetails();
+      setisLoading(false);
+    });
   }
   async function getTransactions() {
     const q = query(
@@ -172,7 +185,6 @@ function AdminPlot() {
                       >
                         Print
                       </button>
-                     
                     </>
                   )}
                   {!isAdmin() && (
@@ -184,7 +196,6 @@ function AdminPlot() {
                     >
                       Payment
                     </button>
-
                   )}
 
                   <button
@@ -196,19 +207,27 @@ function AdminPlot() {
                     Comment
                   </button>
                   <button
-                        className="yellow-color"
-                        onClick={() => {
-                          navigate(`/print/schedule/${PlotDetails.FileNumber}`);
-                        }}
-                      >
-                        Schedule
-                      </button>
+                    className="yellow-color"
+                    onClick={() => {
+                      navigate(`/print/schedule/${PlotDetails.FileNumber}`);
+                    }}
+                  >
+                    Schedule
+                  </button>
                   {isAdmin() && (
                     <button
                       className="yellow-color"
                       onClick={() => navigate(`/edit/plot/${id}`)}
                     >
                       Edit
+                    </button>
+                  )}
+                  {isAdmin() && (
+                    <button
+                      className="yellow-color"
+                      onClick={toggleBlockStatus}
+                    >
+                      {isBlocked ? "Un Block" : "Block"}File
                     </button>
                   )}
                 </div>
