@@ -24,7 +24,7 @@ function PlotDetails() {
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       setPlotDetail(docSnap.data());
-      setisBlocked(docSnap.data()).Blocked;
+      setisBlocked(docSnap.data().Blocked);
     }
   }
   return isLoading ? (
