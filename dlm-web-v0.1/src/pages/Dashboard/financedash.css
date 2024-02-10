@@ -1,0 +1,42 @@
+.financeDash {
+  height: calc(100vh - 50px);
+  background-color: green;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.financeDash-aboutFinance {
+  height: 35%;
+  width: 100%;
+  background: red;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+.financeDash-Details {
+  width: 40%;
+  height: 100%;
+  background: aquamarine;
+  border-radius: 16px;
+}
+.financeDash-stats {
+  width: 40%;
+  height: 100%;
+  background: purple;
+  border-radius: 16px;
+}
+.financeDash-Bottom {
+  background: darkcyan;
+  height: 50%;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+.financeDash-Bottom-card {
+  background-color: bisque;
+  border-radius: 16px;
+  min-width: 300px;
+  width: 20%;
+}
