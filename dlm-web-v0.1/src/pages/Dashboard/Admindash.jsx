@@ -36,17 +36,20 @@ function AdminDash() {
   const [newCityParadise, setNewCityParadise] = useState(0);
   const [dynamicLandManagement, setDynamicLandManagement] = useState(0);
   const [UnKnowSociety, setUnKnowSociety] = useState(0);
+  const [PlotsWith10OrLessDaysLeft, setPlotsWith10OrLessDaysLeft] = useState(
+    []
+  );
 
   const navigate = useNavigate();
   useEffect(() => {
-    if ((isLogedIn()&&isAdmin())&& !isFinance()){
-    getUser();
-    getListText();
+    if (isLogedIn() && isAdmin() && !isFinance()) {
+      getUser();
+      getListText();
 
-    // getPromos();
-    // getPayments();
-    getStats();
-    }else{
+      // getPromos();
+      // getPayments();
+      getStats();
+    } else {
       navigate("/login");
     }
   }, []);
@@ -149,6 +152,83 @@ function AdminDash() {
     });
     console.log(temp);
   }
+  useEffect(() => {
+    fetchPlots();
+  }, []);
+
+  const hasPassedTwoMonths = (timestamp) => {
+    const date = timestamp.toDate();
+    const currentDate = new Date();
+
+    currentDate.setMonth(currentDate.getMonth() - 2);
+    currentDate.setHours(0, 0, 0, 0);
+    date.setHours(0, 0, 0, 0);
+    console.log(date < currentDate);
+    console.log(date);
+    console.log(currentDate);
+    return date <= currentDate;
+  };
+
+  const fetchPlots = async () => {
+    setPlotsWith10OrLessDaysLeft(null);
+    try {
+      const plotsSnapshot = await getDocs(collection(db, "Plots"));
+      const plotsToUpdate = [];
+      const plotsWithLessThan10DaysLeft = [];
+
+      plotsSnapshot.forEach(async (doc) => {
+        const lastPaymentTimestamp = doc.data().lastPayment;
+
+        if (lastPaymentTimestamp) {
+          // Convert lastPaymentTimestamp to a Date object
+          const lastPaymentDate = new Date(lastPaymentTimestamp.toMillis());
+
+          // Calculate the timestamp for 60 days ago
+          const sixtyDaysAgo = new Date();
+          sixtyDaysAgo.setDate(sixtyDaysAgo.getDate() - 60);
+
+          // Calculate the number of days left
+          let daysLeft = Math.floor(
+            (sixtyDaysAgo.getTime() - lastPaymentDate.getTime()) /
+              (1000 * 60 * 60 * 24)
+          );
+          daysLeft = -daysLeft;
+          console.log(
+            `There are ${daysLeft} days left until lastPayment is 60 days old.`
+          );
+
+          if (hasPassedTwoMonths(lastPaymentTimestamp)) {
+            await updatePlot(doc.id, { Blocked: true });
+            plotsToUpdate.push(doc.id);
+            console.log(`Document ${doc.id} has been updated: Blocked = true`);
+          } else if (daysLeft <= 10 && daysLeft >= 0) {
+            plotsWithLessThan10DaysLeft.push({
+              id: doc.id,
+              days: daysLeft,
+            });
+          }
+        }
+      });
+
+      console.log("Plots to update: ", plotsToUpdate);
+      console.log(
+        "Plots with less than 10 days left: ",
+        plotsWithLessThan10DaysLeft
+      );
+      setPlotsWith10OrLessDaysLeft(plotsWithLessThan10DaysLeft);
+    } catch (error) {
+      console.error("Error getting documents:", error);
+    }
+  };
+
+  const updatePlot = async (plotId, data) => {
+    try {
+      const plotRef = doc(db, "Plots", plotId);
+      await updateDoc(plotRef, data);
+    } catch (error) {
+      console.error("Error updating document:", error);
+    }
+  };
 
   return (
     <SideBar
@@ -176,8 +256,10 @@ function AdminDash() {
                   <div className="agent-dash-content-col1-row1 light-blue">
                     <img src={User.img} className="dash-avatar" />
                     <div className="inf--flex-col">
-                    <span><strong className="strong">Name:</strong>{User.Name}</span>
-
+                      <span>
+                        <strong className="strong">Name:</strong>
+                        {User.Name}
+                      </span>
                     </div>
                   </div>
 
@@ -201,66 +283,62 @@ function AdminDash() {
                       </div>
                     </div>
                     <div className="agent-dash-content-col1-row2-card2 light-purple">
-                      
                       <h4>Files Details</h4>
-                      
+
                       <div className="level-card">
-                      <h1> Total Plots </h1>
-                      <h1>{NoPlots}</h1>
+                        <h1> Total Plots </h1>
+                        <h1>{NoPlots}</h1>
                       </div>
                       <div className="level-card">
-                      <h1>DynamicLandManagement</h1>
-                      <h1> {dynamicLandManagement}</h1>
+                        <h1>DynamicLandManagement</h1>
+                        <h1> {dynamicLandManagement}</h1>
                       </div>
                       <div className="level-card">
-                      <h1>sydneyHawks7 </h1>
-                      <h1>{sydneyHawks7}</h1>
+                        <h1>sydneyHawks7 </h1>
+                        <h1>{sydneyHawks7}</h1>
                       </div>
                       <div className="level-card">
-                      <h1>newCityParadise</h1>
-                      <h1> {newCityParadise}</h1>
+                        <h1>newCityParadise</h1>
+                        <h1> {newCityParadise}</h1>
                       </div>
                       <div className="level-card">
-                      <h1>Unknown </h1>
-                      <h1>{UnKnowSociety}</h1>
+                        <h1>Unknown </h1>
+                        <h1>{UnKnowSociety}</h1>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="agent-dash-content-col2 light-green">
-                  {PromosWithStatus &&
-                    PromosWithStatus.map((promo, index) => (
-                      // promo.status === "completed" ? "goal-achieved" : ""
-
-                      <div
-                        key={index}
-                        className={`agent-dash-content-col2-card ${
-                          promo.status === "completed" ? "goal-achieved" : ""
-                        }`}
-                      >
-                        <div className="mymistake-huxi">
-                          <div className="agent-dash-content-col2-card-content">
-                            <h1>{promo.title}</h1>
-                            <h3>Pts :{promo.totalAmount}</h3>
-                            <h3>Target :{promo.target}</h3>
-                          </div>
-                          <div className="agent-dash-content-col2-card-progress">
-                            <CircularProgressbar
-                              className="progress-percent"
-                              value={parseInt(promo.per)}
-                              text={`${parseInt(promo.per)}%`}
-                            />
-                          </div>
+                  <div className="admin-dash-daysleft-header">
+                    <h1>Near Due</h1>
+                    <p>
+                      {PlotsWith10OrLessDaysLeft &&
+                        PlotsWith10OrLessDaysLeft.length + " Files"}
+                    </p>
+                    <button onClick={fetchPlots}>Refresh</button>
+                  </div>
+                  {PlotsWith10OrLessDaysLeft ? (
+                    PlotsWith10OrLessDaysLeft.map((Plot, index) => (
+                      <div key={index}>
+                        <div className="plotsdayleft-data">
+                          <p>{Plot.id}</p>
+                          <p>{Plot.days} Days Left</p>
                         </div>
-                        <div className="flex-justify">
-                          <h3>Prize:{promo.prize}</h3>
-                          <h3>
-                            {calculateRemainingHours(promo.endsAt.toDate())}hrs
-                            left
-                          </h3>
+                        <div className="plotsdayleft-button">
+                          <butto
+                            onClick={() => {
+                              navigate(`/details/plot/${Plot.id}`);
+                            }}
+                          >
+                            {" "}
+                            view{" "}
+                          </butto>
                         </div>
                       </div>
-                    ))}
+                    ))
+                  ) : (
+                    <Loader />
+                  )}
                 </div>
               </div>
             </div>

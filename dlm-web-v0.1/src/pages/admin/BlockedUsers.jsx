@@ -10,6 +10,7 @@ import { debounce } from "lodash";
 import arrow from "../../Assets/Plus.png";
 import "./adminhome.css";
 import SideBar from "../../components/Sidebar/sidebar";
+import getDate from "../../../GetDDMMYY";
 
 function BlockedUsers() {
   const navigate = useNavigate();
@@ -23,10 +24,10 @@ function BlockedUsers() {
   }, []);
 
   async function getCustomersData() {
-    const querySnapshot = await getDocs(collection(db, "Customers"));
+    const querySnapshot = await getDocs(collection(db, "Plots"));
     const newCustomersData = [];
     querySnapshot.forEach((doc) => {
-      console.log(doc.data().Blocked);
+      console.log(doc.data());
 
       if (doc.data().Blocked) {
         newCustomersData.push(doc.data());
@@ -38,7 +39,7 @@ function BlockedUsers() {
   }
   async function toggleBlockStatus(id) {
     setisLoading(true);
-    const Ref = doc(db, "Customers", id);
+    const Ref = doc(db, "Plots", id);
     await updateDoc(Ref, {
       Blocked: false,
     }).then(() => {
@@ -76,65 +77,70 @@ function BlockedUsers() {
 
   return (
     <SideBar
-    element={
-      isloading ? (
-        <Loader/>
-      ) : (
-        <>
-          <div className="Admin-Home">
-            <div className="hero--head">
-              <h1>Blocked Users</h1>
-            </div>
-            <div className="Admin-Home-content">
-              <div className="Admin-Home-table">
-                <form className="nosubmit">
-                  <input
-                    type="text"
-                    placeholder="Search by Id"
-                    onChange={(e) => debouncedFilterData(e.target.value)}
-                    className="nosubmit"
-                  />
-                </form>
-                <div className="table-wrapper">
-                  <table className="fl-table">
-                    <thead>
-                      <tr>
-                        <th>Name</th>
+      element={
+        isloading ? (
+          <Loader />
+        ) : (
+          <>
+            <div className="Admin-Home">
+              <div className="hero--head">
+                <h1>Blocked User Plots</h1>
+              </div>
+              <div className="Admin-Home-content">
+                <div className="Admin-Home-table">
+                  <form className="nosubmit">
+                    <input
+                      type="text"
+                      placeholder="Search by Id"
+                      onChange={(e) => debouncedFilterData(e.target.value)}
+                      className="nosubmit"
+                    />
+                  </form>
+                  <div className="table-wrapper">
+                    <table className="fl-table">
+                      <thead>
+                        <tr>
+                          <th>Customer Name</th>
 
-                        <th>CNIC No</th>
-                        <th>Plots</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {filteredCustomersDataMemoized.map((e) => (
-                        <tr key={e.Cnic}>
-                          <td>{e.Name}</td>
+                          <th>Agent Name</th>
 
-                          <td>{e.Cnic}</td>
-                          <td className="tddr">
-                            <span>{e.Plots.length} Plots</span>
-                          </td>
-                          <td>
-                            <button
-                              className="button-view"
-                              onClick={() => {
-                                toggleBlockStatus(e.Cnic);
-                              }}
-                            >
-                              UnBlock User
-                            </button>
-                          </td>
+                          <th>File Number</th>
+                          <th>Last Payment</th>
+                          <th>Society</th>
+                          <th>Actions</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {filteredCustomersDataMemoized.map((e) => (
+                          <tr key={e.FileNumber}>
+                            <td>{e.CustomerName}</td>
+                            <td>{e.AgentName}</td>
+                            <td>{e.FileNumber}</td>
+
+                            <td>{getDate(e.lastPayment.seconds)}</td>
+                            <th>{e.Society}</th>
+
+                            <td>
+                              <button
+                                className="button-view"
+                                onClick={() => {
+                                  toggleBlockStatus(e.FileNumber);
+                                }}
+                              >
+                                UnBlock User
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </>
-   ) }
+          </>
+        )
+      }
     />
   );
 }
