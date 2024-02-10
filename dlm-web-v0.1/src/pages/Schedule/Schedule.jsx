@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
-import softx from "../../Assets/SoftXion.png"
+import softx from "../../Assets/SoftXion.png";
 function Schedule() {
   const { id } = useParams();
   const [Total, setTotal] = useState("");
@@ -86,7 +86,10 @@ function Schedule() {
                 <td>Installment/Month</td>
                 <td>{SecheduleData.InstallmentMonth}</td>
                 <td>{SecheduleData.Installment} PKR</td>
-                <td>{SecheduleData.InstallmentMonth*SecheduleData.Installment} PKR</td>
+                <td>
+                  {SecheduleData.InstallmentMonth * SecheduleData.Installment}{" "}
+                  PKR
+                </td>
               </tr>
               <tr>
                 <td>Position Amount</td>
@@ -106,7 +109,14 @@ function Schedule() {
                 <th></th>
                 <th></th>
                 <th>Total Amount</th>
-                <th>{SecheduleData.BookingAmount+SecheduleData.Downpayment+SecheduleData.PossessionAmount+(SecheduleData.Installment*SecheduleData.InstallmentMonth)+10000} PKR</th>
+                <th>
+                  {SecheduleData.BookingAmount +
+                    SecheduleData.Downpayment +
+                    SecheduleData.PossessionAmount +
+                    SecheduleData.Installment * SecheduleData.InstallmentMonth +
+                    10000}{" "}
+                  PKR
+                </th>
               </tr>
             </tfoot>
           </table>
@@ -130,20 +140,20 @@ function Schedule() {
           <br />
           <span>Warm regards,</span>
           <br />
-          <h5>Isfan Arif</h5>
+          {/* <h5>Isfan Arif</h5>
           <h5>CEO</h5>
           <h5>DLM</h5>
-          <h5>03160000000</h5>
-        </div> 
+          <h5>03160000000</h5> */}
+        </div>
         {/* code is in schedule.css */}
-        <div className="foter-softxion">
+        {/* <div className="foter-softxion">
           <h5>This site is created by  </h5>
           <div>
           <img src={softx } alt=""></img>
           <h3>Email:info@softxion.com</h3>
-          </div>
-          
-        </div>
+          </div> */}
+
+        {/* </div> */}
       </div>
     </>
   );

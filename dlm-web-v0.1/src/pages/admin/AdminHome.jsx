@@ -12,7 +12,7 @@ import arrow from "../../Assets/Plus.png";
 import isAdmin from "../../../IsAdmin";
 import { onAuthStateChanged } from "firebase/auth";
 import SideBar from "../../components/Sidebar/sidebar";
-
+import cnicFormat from "../../../cnicFormatter";
 function AdminHome() {
   const navigate = useNavigate();
   const [CustomersData, setCustomersData] = useState([]);
@@ -138,7 +138,7 @@ function AdminHome() {
                   </button>
                 )}
               </div>
-             
+
               <div className="Admin-Home-content">
                 <div className="Admin-Home-table">
                   <form class="nosubmit alignment-cal-serch">
@@ -148,13 +148,12 @@ function AdminHome() {
                       placeholder="Search by Id"
                       onChange={(e) => debouncedFilterData(e.target.value)}
                     />
-                     <input
-                     className="calender"
+                    <input
+                      className="calender"
                       type="month"
-                    name="Select month"
-                    onChange={onDateSelect}
-              
-              />
+                      name="Select month"
+                      onChange={onDateSelect}
+                    />
                   </form>
                   <div className="table-wrapper">
                     <table className="fl-table table-hame">
@@ -167,7 +166,7 @@ function AdminHome() {
                           {isAdmin() && <th>CNIC No</th>}
                           <th>GENDER</th>
                           {isAdmin() && <th>Created By</th>}
-                          {isAdmin() && <th>Cnic</th>}
+                          {isAdmin() && <th>Agent ID</th>}
 
                           <th>Plots</th>
                           <th>Actions</th>
@@ -175,9 +174,10 @@ function AdminHome() {
                       </thead>
                       <tbody>
                         {filteredCustomersDataMemoized.map((e) => (
-                          
                           <tr key={e.Cnic}>
-                            <td> <img
+                            <td>
+                              {" "}
+                              <img
                                 src={
                                   e.Gender === "female"
                                     ? isAdmin()
@@ -187,8 +187,9 @@ function AdminHome() {
                                 }
                                 alt="avatar"
                                 className="avatar-table"
-                              /></td>
-                            <td >
+                              />
+                            </td>
+                            <td>
                               {/* <img
                                 src={
                                   e.Gender === "female"
@@ -205,10 +206,10 @@ function AdminHome() {
                             <td>{e.FName}</td>
 
                             <td>{e.phNo}</td>
-                            {isAdmin() && <td>{e.Cnic}</td>}
+                            {isAdmin() && <td>{cnicFormat(e.Cnic)}</td>}
                             <td>{e.Gender}</td>
                             {isAdmin() && <td>{e.agentName}</td>}
-                            {isAdmin() && <td>{e.agentId}</td>}
+                            {isAdmin() && <td>{cnicFormat(e.agentId)}</td>}
 
                             <td className="tddr">
                               <p>{e.Plots.length} Plots</p>
