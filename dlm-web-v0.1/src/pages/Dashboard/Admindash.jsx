@@ -265,6 +265,7 @@ function AdminDash() {
 
                   <div className="agent-dash-content-col1-row2">
                     <div className="agent-dash-content-col1-row2-card1 light-purple">
+                    <h4>User Details</h4>
                       <div className="level-card">
                         <h1>Total Users </h1>
                         <h1>{NoCustomers + NoAgent} Users </h1>

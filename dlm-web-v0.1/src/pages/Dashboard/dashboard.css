@@ -124,6 +124,7 @@
 .agent-dash-content-col1-row2 {
   display: flex;
   justify-content: space-between;
+  margin-top: 30px;
 }
 .agent-dash-content-col1-row2-card1,
 .agent-dash-content-col1-row2-card2 {
@@ -327,4 +328,12 @@
 }
 .light-blue {
   background: rgba(236, 234, 254);
+}
+.admin-dash-daysleft-header h1{
+        padding:20px;
+}
+.agent-dash-content-col1-row2-card1>h4,.agent-dash-content-col1-row2-card2>h4{
+  background:#F4B266;
+  border-radius: 7px;
+  padding-left: 3px;
 }
