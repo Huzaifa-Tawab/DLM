@@ -1,6 +1,6 @@
 .financeDash {
   height: calc(100vh - 50px);
-  background-color: green;
+
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -8,7 +8,7 @@
 .financeDash-aboutFinance {
   height: 35%;
   width: 100%;
-  background: red;
+
   display: flex;
   justify-content: space-between;
   padding: 20px;
@@ -26,7 +26,6 @@
   border-radius: 16px;
 }
 .financeDash-Bottom {
-  background: darkcyan;
   height: 50%;
   width: 100%;
 
@@ -35,8 +34,12 @@
   padding: 20px;
 }
 .financeDash-Bottom-card {
-  background-color: bisque;
+  background-color: #a4243b;
   border-radius: 16px;
   min-width: 300px;
   width: 20%;
+}
+.societyHeading {
+  background-color: rgb(188, 188, 188);
+  width: 100%;
 }
