@@ -7,7 +7,7 @@
     margin: 0px;
   }
 }
-.cus-details h2{
+.cus-details h2 {
   font-size: 1rem;
 }
 /* .avatar-section{
@@ -59,7 +59,7 @@
   font-size: 12px;
   border-radius: 5px;
 }
-.doc-button{
+.doc-button {
   width: 8rem;
   height: 1.8rem;
   gap: 5px;
@@ -82,7 +82,7 @@
   padding: 10px;
   color: black;
 }
-.info-box-2>h1{
+.info-box-2 > h1 {
   font-size: 2rem;
 }
 .row {
@@ -97,7 +97,7 @@
 .row > span {
   /* Regular/Type@20 */
   color: #90a3bf;
- 
+
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -110,7 +110,7 @@
   align-items: center;
   justify-content: center;
 }
-.client-pic-detail img{
+.client-pic-detail img {
   padding: 15px 0px;
 }
 .documents {
@@ -134,7 +134,7 @@ td > a {
   border-radius: 5px;
   padding: 5px 20px;
 }
-td > a:hover{
+td > a:hover {
   text-decoration: none;
   color: #000;
 }
@@ -160,7 +160,6 @@ td > a:hover{
   box-shadow: 0 0 3px 1px maroon;
   border-radius: 10px;
 }
-
 
 /* .view-more {
 } */
@@ -194,7 +193,7 @@ td > a:hover{
   display: flex;
   align-items: center;
 }
-.row-start h2{
+.row-start h2 {
   font-size: 1rem;
 }
 .plot-des {
@@ -203,12 +202,12 @@ td > a:hover{
   text-align: center;
   border-radius: 5px;
   padding: 10px 0px;
-    margin: 15px;
+  margin: 15px;
 
-    box-shadow: 0 0 2px 2px orange, 0 0 2px 2px maroon;
+  box-shadow: 0 0 2px 2px orange, 0 0 2px 2px maroon;
 }
 .row-start {
-margin: 25px 0;
+  margin: 25px 0;
   gap: 10px;
 
   h2 {
@@ -238,7 +237,7 @@ margin: 25px 0;
   justify-content: space-between;
   align-items: center;
 }
-.doc-row h1{
+.doc-row h1 {
   font-size: 2rem;
 }
 .documents table {
@@ -252,7 +251,7 @@ margin: 25px 0;
 }
 .row > .secon-row {
   /* Semibold/Type@20 */
-  
+
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -262,7 +261,7 @@ margin: 25px 0;
 }
 .sec-heading > .first-text {
   color: #596780;
- 
+
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -275,7 +274,7 @@ margin: 25px 0;
 .sec-heading > .secon-text {
   font-weight: 700;
   color: #596780;
-  
+
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -312,7 +311,7 @@ form.nosubmit {
     padding: 0;
     display: flex;
     justify-content: normal;
-}
+  }
   .info-box-2 {
     padding: 20px;
     margin: 20px 0px;
@@ -330,13 +329,13 @@ form.nosubmit {
     width: 100%;
     margin: 0px;
   }
-  .ClientDetails{
+  .ClientDetails {
     width: 90vw;
   }
   .documents {
     margin: 0px;
   }
-  .doc-row h1{
+  .doc-row h1 {
     font-size: 1.5rem;
   }
   .row > span {
@@ -352,49 +351,48 @@ form.nosubmit {
     font-style: normal;
     font-weight: 600;
   }
-  .plots{
+  .plots {
     margin: 10px 0 40px 0;
     padding: 20px;
   }
-  .plots h1{
+  .plots h1 {
     font-size: 2rem;
   }
-  .plot-cards{
+  .plot-cards {
     gap: 25px;
   }
-  .card{
+  .card {
     width: 10rem;
     padding: 0px;
     text-align: center;
   }
-  .card h4{
+  .card h4 {
     font-size: 1rem;
   }
-  .clients-buttons{
+  .clients-buttons {
     gap: 10px;
   }
-  .first{
+  .first {
     font-size: 16px;
   }
-  .plot-des{
+  .plot-des {
     margin: 10px;
     padding: 5px 0px;
   }
-  .plot-des span{
+  .plot-des span {
     font-size: 12px;
   }
-  .row-start{
+  .row-start {
     margin: 15px 0px;
     justify-content: center;
   }
-  .view-more > button{
+  .view-more > button {
     width: 7rem;
     height: 2rem;
   }
-  .view-more{
+  .view-more {
     margin: 0 0 10px 0;
   }
- 
 }
 .blocked-user {
   background: #a4243b !important;
@@ -409,7 +407,6 @@ tbody tr:nth-child(odd) {
   color: #fff;
 }
 
-
 input.nosubmit {
   width: 260px;
   border: 1px solid #555;
@@ -421,4 +418,19 @@ input.nosubmit {
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E")
     no-repeat 13px center;
   background-color: white;
+}
+.soloButton {
+  width: 15.1rem;
+  height: 1.8rem;
+  gap: 5px;
+  background: #f4b266;
+
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  border-radius: 5px;
+  color: white;
+}
+.Blocked {
+  background: #a4243b;
 }

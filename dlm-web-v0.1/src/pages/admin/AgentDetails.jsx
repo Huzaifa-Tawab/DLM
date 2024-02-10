@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
-import { Timestamp, doc, getDoc } from "firebase/firestore";
+import { Timestamp, doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import "./clientdetails.css";
 import avatar from "../../Assets/avatar.png";
@@ -19,6 +19,7 @@ function AgentDetails() {
   const [Plots, setPlots] = useState([]);
   const [showDocModal, setShowDocModal] = useState(false);
   const [UserDocs, setUseDocs] = useState({});
+  const [SponcerName, setSponcerName] = useState("");
 
   const prams = useParams();
 
@@ -35,15 +36,26 @@ function AgentDetails() {
       setData(docSnap.data());
 
       if (docSnap.data().Plots != null) {
-        console.log("ok");
         getPlotsData(docSnap.data().Plots);
         setUseDocs(docSnap.data().Document);
+        if (docSnap.data().ChildOf) {
+          getAgentName(docSnap.data().ChildOf);
+        } else {
+          setSponcerName("None");
+        }
       }
       setisloading(false);
     }
   }
+  async function getAgentName(id) {
+    const docRef = doc(db, "Agent", id);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      console.log(docSnap.data());
+      setSponcerName(docSnap.data().Name);
+    }
+  }
   async function getPlotsData(Plots) {
-    console.log(Plots);
     var tempList = [];
 
     for (const plot_id in Plots) {
@@ -67,6 +79,19 @@ function AgentDetails() {
   const closeDocModal = () => {
     setShowDocModal(false);
   };
+  async function toggleBlock() {
+    let state = true;
+    const AgentRef = doc(db, "Agent", prams.id);
+    if (userData.Blocked) {
+      state = false;
+    }
+    await updateDoc(AgentRef, {
+      Blocked: state,
+    }).then(() => {
+      setisloading(true);
+      getdata();
+    });
+  }
   return isloading ? (
     <Loader />
   ) : (
@@ -129,6 +154,18 @@ function AgentDetails() {
                           </div>
                         )}
                       </div>
+                      <button
+                        className={`soloButton  ${
+                          userData.Blocked && userData.Blocked ? "Blocked" : ""
+                        }
+                            `}
+                        onClick={toggleBlock}
+                      >
+                        {userData.Blocked && userData.Blocked
+                          ? "Block"
+                          : "Unblock"}{" "}
+                        Agent
+                      </button>
                     </div>
                     <div className="info-box-2">
                       <h1>Agent Information</h1>
@@ -173,20 +210,20 @@ function AgentDetails() {
                               {userData["InvId"]}
                             </span>
                             <span className="secon-row">
-                              {userData["createdBy"]}
+                              {userData["createdBy"]
+                                ? userData["createdBy"]
+                                : "None"}
                             </span>
-                            <span className="secon-row">
-                              {userData["ChildOf"]}
-                            </span>
+                            <span className="secon-row">{SponcerName}</span>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                   {isAdmin() && (
-                    <div className="documents">
+                    <div className="AgentRef">
                       <div className="doc-row">
-                        <h1>Documents</h1>
+                        <h1>AgentRef</h1>
                         {/* <button>Add Document</button> */}
                       </div>
                       <table className="fl-table">
@@ -196,8 +233,8 @@ function AgentDetails() {
                           <th>Acitons</th>
                         </thead>
                         <tbody>
-                          {userData.Documents &&
-                            Object.entries(userData.Documents).map(
+                          {userData.AgentRef &&
+                            Object.entries(userData.AgentRef).map(
                               ([key, value]) => (
                                 <tr>
                                   <td>{key}</td>
@@ -254,7 +291,7 @@ function AgentDetails() {
       <AddDocs
         showModal={showDocModal}
         onClose={closeDocModal}
-        olddocs={userData.Documents}
+        olddocs={userData.AgentRef}
         uid={userData.Cnic}
       />
     </>

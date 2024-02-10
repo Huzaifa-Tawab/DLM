@@ -57,7 +57,7 @@ const PlotRegistrationForm = () => {
   const [BlockError, setBlockError] = useState("");
   const [possessionAmountError, setpossessionAmountError] = useState("");
   const [InstallmentMonthError, setInstallmentMonthError] = useState("");
-  const [Block, setBlock] = useState("");
+  const [Block, setBlock] = useState("General");
   const [isFileNumberEditable, setisFileNumberEditable] = useState(false);
   const [labelError, setlabelError] = useState("");
 
@@ -315,6 +315,10 @@ const PlotRegistrationForm = () => {
                 setpossessionAmount(plotSizeValue.possession);
                 setBookingAmount(plotSizeValue.booking);
                 console.log(plotSizeValue);
+                if (plotSizeValue.Balloting) {
+                  setOtherAmountTitle("Balloting");
+                  setOtherAmount(plotSizeValue.Balloting);
+                }
               }
             });
           }
@@ -362,9 +366,7 @@ const PlotRegistrationForm = () => {
                             getCatagories(e.target.value);
                           }}
                         >
-                          <option value="" disabled>
-                            Select a Society
-                          </option>
+                          <option value="">Select a Society</option>
                           {SocietyList.map((option, index) => (
                             <option key={index} value={option.name}>
                               {option.name}
@@ -405,15 +407,15 @@ const PlotRegistrationForm = () => {
                         >
                           Block:
                         </label>
-                        <select
+                        <input
+                          type="text"
+                          name="Block"
+                          value={Block}
+                          style={{ width: "100%", padding: "8px" }}
                           onChange={(e) => {
                             setBlock(e.target.value);
                           }}
-                        >
-                          <option value="">Select block</option>
-                          <option value="A">A</option>
-                          <option value="B">B</option>
-                        </select>
+                        />
                         <p>{BlockError}</p>
                       </div>
                     </div>
@@ -450,11 +452,14 @@ const PlotRegistrationForm = () => {
                           File Number:
                         </label>
                         <input
-                          // disabled
+                          disabled={!isFileNumberEditable}
                           type="text"
                           name="FileNumber"
                           value={fileNumber}
                           style={{ width: "100%", padding: "8px" }}
+                          onChange={(e) => {
+                            setfileNumber(e.target.value);
+                          }}
                         />
                       </div>
                     </div>
