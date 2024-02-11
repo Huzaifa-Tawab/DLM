@@ -212,12 +212,10 @@ function PrintFile() {
                 <div className="column-1">
                   <span>File Number:</span>
                   <span>Plot Size:</span>
-                  <span>Address:</span>
                 </div>
                 <div className="column-2">
                   <span>{FileNumber}</span>
                   <span>{PlotSize} Marla</span>
-                  <span>{Address}</span>
                 </div>
               </div>
               <div className="sectop-right-44">
@@ -231,6 +229,11 @@ function PrintFile() {
                 </div>
               </div>
             </div>
+            <div className="fileaddressfield">
+              <span className="file-address-heading">Address:</span>
+              <span className="file-address">{Address}</span>
+            </div>
+
             <div className="top-sec-heading">
               <h3>CONTRACT DETAILS</h3>
             </div>
@@ -238,12 +241,12 @@ function PrintFile() {
               <div className="sectop-row">
                 <div className="columnfrth-sec">
                   <span>Adjustment:</span>
-                  <span>Other Amount: </span>
-                  <span> Amount:</span>
+                  <span>Other Amount Title: </span>
+                  <span>Amount:</span>
                 </div>
                 <div className="column-2">
                   <form className="chckbox-flex">
-                    <label> C.</label>
+                    <label>#</label>
                   </form>
                   <span className="underline-1">{OtherAmountTitle}</span>
                   <span className="underline-1">{OtherAmount}</span>
