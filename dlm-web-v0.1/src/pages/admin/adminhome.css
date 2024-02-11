@@ -72,8 +72,9 @@
 }
 
 .avatar-table {
-  width: 35px;
-  margin: 5px;
+  width: 55px;
+  /* margin: 5px; */
+  height: 55px;
 }
 .table-wrapper{
   margin: 10px 70px 70px;
@@ -174,7 +175,7 @@ tbody{
       overflow-x: auto;
   }
   .fl-table td, .fl-table th {
-      padding: 20px .625em .625em .625em;
+    padding: 7px 0.625em 0.625em 0.625em;
       height: 60px;
       vertical-align: middle;
       box-sizing: border-box;

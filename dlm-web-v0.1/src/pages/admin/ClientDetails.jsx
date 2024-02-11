@@ -106,7 +106,7 @@ function ClientDetails() {
                             : userData.imgUrl
                         }
                         alt="User"
-                        style={{ maxWidth: "100px" }}
+                        // style={{ maxWidth: "100px" }}
                       />
                       <div className="cus-details">
                         <h2>{userData.Name}</h2>

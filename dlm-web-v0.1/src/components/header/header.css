@@ -142,7 +142,10 @@
   .Nav-links {
     display: none;
   }
-
+  .logo img {
+   
+    width: 210px;
+  }
   .Header.show-sidebar .Nav-links {
     display: flex;
   }
