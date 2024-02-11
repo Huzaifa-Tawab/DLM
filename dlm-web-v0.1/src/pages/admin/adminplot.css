@@ -36,7 +36,7 @@
   justify-content: space-evenly;
 }
 .column > button {
-  margin: 25px 5px 0px 0px;
+  margin: 35px 5px 0px 0px;
   width: 6rem;
   height: 2.2rem;
   border-radius: 5px;
@@ -189,22 +189,27 @@
   justify-content: space-between;
   line-height: 25px;
   font-size: 13px;
+  align-items: center;
 }
 .transaction-row > .trans-id {
   color: #1a202c;
   font-size: 12px;
   font-style: normal;
   font-weight: 700;
+  
   /* line-height: 150%;  */
   /* letter-spacing: -0.32px; */
+}
+.transaction-row>span{
+  text-align: left;
 }
 .transaction-main {
   padding: 2px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 4px;
   line-height: 20px;
-  /* margin: 5px; */
+  margin: 5px 0px 10px 0px;
   border-radius: 2px;
-  height: 5rem;
+  height: auto;
 }
 .transaction-main:hover {
   cursor: pointer;
