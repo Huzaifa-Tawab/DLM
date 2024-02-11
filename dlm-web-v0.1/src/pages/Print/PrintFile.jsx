@@ -66,10 +66,10 @@ function PrintFile() {
       setGender(Customer.Gender);
       setphNo(Customer.phNo);
       setDob(Customer.Dob);
-      setNexttoKin(Customer.NexttoKin);
-      setCnicKin(Customer.CnicKin);
-      setKinRelation(Customer.KinRelation);
-      setPhNoKin(Customer.PhNoKin);
+      setNexttoKin(Customer.NexttoKin || "Not Provided");
+      setCnicKin(Customer.CnicKin || "Not Provided");
+      setKinRelation(Customer.KinRelation || "Not Provided");
+      setPhNoKin(Customer.PhNoKin || "Not Provided");
       // setPhNo(Customer.PhNo);
     } else {
       navi("/notfound");
@@ -91,10 +91,10 @@ function PrintFile() {
       setFileNumber(Plot.FileNumber);
       setPossessionAmount(Plot.PossessionAmount);
       setTotalAmount(Plot.TotalAmount);
-      setOtherAmountTitle(Plot.OtherAmountTitle);
-      setOtherAmount(Plot.OtherAmount);
+      setOtherAmountTitle(Plot.OtherAmountTitle || "none");
+      setOtherAmount(Plot.OtherAmount || 0);
       setPlotSize(Plot.PlotSize);
-      setDownPayment(Plot.DownPayment);
+      setDownPayment(Plot.DownPayment || 0);
       setSociety(Plot.Society);
       const ms = Plot["creationTime"]["seconds"] * 1000;
       const time = new Date(ms).toDateString();
@@ -212,12 +212,10 @@ function PrintFile() {
                 <div className="column-1">
                   <span>File Number:</span>
                   <span>Plot Size:</span>
-                  <span>Address:</span>
                 </div>
                 <div className="column-2">
                   <span>{FileNumber}</span>
                   <span>{PlotSize} Marla</span>
-                  <span>{Address}</span>
                 </div>
               </div>
               <div className="sectop-right-44">
@@ -231,6 +229,11 @@ function PrintFile() {
                 </div>
               </div>
             </div>
+            <div className="fileaddressfield">
+              <span className="file-address-heading">Address:</span>
+              <span className="file-address">{Address}</span>
+            </div>
+
             <div className="top-sec-heading">
               <h3>CONTRACT DETAILS</h3>
             </div>
@@ -238,12 +241,12 @@ function PrintFile() {
               <div className="sectop-row">
                 <div className="columnfrth-sec">
                   <span>Adjustment:</span>
-                  <span>Other Amount: </span>
-                  <span> Amount:</span>
+                  <span>Other Amount Title: </span>
+                  <span>Amount:</span>
                 </div>
                 <div className="column-2">
                   <form className="chckbox-flex">
-                    <label> C.</label>
+                    <label>#</label>
                   </form>
                   <span className="underline-1">{OtherAmountTitle}</span>
                   <span className="underline-1">{OtherAmount}</span>
