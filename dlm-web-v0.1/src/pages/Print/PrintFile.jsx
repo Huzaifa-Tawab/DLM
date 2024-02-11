@@ -91,10 +91,10 @@ function PrintFile() {
       setFileNumber(Plot.FileNumber);
       setPossessionAmount(Plot.PossessionAmount);
       setTotalAmount(Plot.TotalAmount);
-      setOtherAmountTitle(Plot.OtherAmountTitle);
-      setOtherAmount(Plot.OtherAmount);
+      setOtherAmountTitle(Plot.OtherAmountTitle || "none");
+      setOtherAmount(Plot.OtherAmount || 0);
       setPlotSize(Plot.PlotSize);
-      setDownPayment(Plot.DownPayment);
+      setDownPayment(Plot.DownPayment || 0);
       setSociety(Plot.Society);
       const ms = Plot["creationTime"]["seconds"] * 1000;
       const time = new Date(ms).toDateString();
