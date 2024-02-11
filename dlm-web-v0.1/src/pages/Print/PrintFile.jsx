@@ -66,10 +66,10 @@ function PrintFile() {
       setGender(Customer.Gender);
       setphNo(Customer.phNo);
       setDob(Customer.Dob);
-      setNexttoKin(Customer.NexttoKin);
-      setCnicKin(Customer.CnicKin);
-      setKinRelation(Customer.KinRelation);
-      setPhNoKin(Customer.PhNoKin);
+      setNexttoKin(Customer.NexttoKin || "Not Provided");
+      setCnicKin(Customer.CnicKin || "Not Provided");
+      setKinRelation(Customer.KinRelation || "Not Provided");
+      setPhNoKin(Customer.PhNoKin || "Not Provided");
       // setPhNo(Customer.PhNo);
     } else {
       navi("/notfound");
