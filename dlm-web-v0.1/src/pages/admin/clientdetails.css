@@ -112,6 +112,8 @@
 }
 .client-pic-detail img {
   padding: 15px 0px;
+  width: 150px;
+  height: 150px;
 }
 .documents {
   background: #fff;
