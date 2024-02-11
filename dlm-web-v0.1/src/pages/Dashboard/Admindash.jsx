@@ -311,29 +311,33 @@ function AdminDash() {
                 </div>
                 <div className="agent-dash-content-col2 light-green">
                   <div className="admin-dash-daysleft-header">
+                    
                     <h1>Near Due</h1>
+                    <div className="level-card-col2">
                     <p>
                       {PlotsWith10OrLessDaysLeft &&
                         PlotsWith10OrLessDaysLeft.length + " Files"}
                     </p>
-                    <button onClick={fetchPlots}>Refresh</button>
+                    <button onClick={fetchPlots}className="refreshbutton"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+                    </div>
                   </div>
                   {PlotsWith10OrLessDaysLeft ? (
                     PlotsWith10OrLessDaysLeft.map((Plot, index) => (
                       <div key={index}>
                         <div className="plotsdayleft-data">
                           <p>{Plot.id}</p>
-                          <p>{Plot.days} Days Left</p>
-                        </div>
-                        <div className="plotsdayleft-button">
-                          <butto
+                          <button className="refreshbutton"
                             onClick={() => {
                               navigate(`/details/plot/${Plot.id}`);
                             }}
                           >
                             {" "}
                             view{" "}
-                          </butto>
+                          </button>
+                          <p>{Plot.days} Days Left</p>
+                        </div>
+                        <div className="plotsdayleft-button">
+                          
                         </div>
                       </div>
                     ))

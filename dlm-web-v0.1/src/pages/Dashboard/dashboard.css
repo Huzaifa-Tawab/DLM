@@ -329,11 +329,84 @@
 .light-blue {
   background: rgba(236, 234, 254);
 }
-.admin-dash-daysleft-header h1{
-        padding:20px;
-}
+/* .admin-dash-daysleft-header {
+        padding:7px;
+} */
 .agent-dash-content-col1-row2-card1>h4,.agent-dash-content-col1-row2-card2>h4{
   background:#F4B266;
   border-radius: 7px;
   padding-left: 3px;
+}
+.level-card-col2{
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  margin: 0 5px;
+  border-bottom: 1px solid black;
+  box-shadow: #a4243b 2px 2px 2px;
+  box-shadow: blue;
+  border-radius: 7px;
+  margin-top: 10px;
+  background-color: #ECEAFE;
+  align-items: center;
+}
+
+
+.admin-dash-daysleft-header>h1{
+   font-size: 16px;
+   font-weight: 600;
+   padding: 7px;
+   background-color: #A4243B;
+   color: #fff;
+}
+.level-card-col2>p{
+  font-size: 16px;
+  font-weight: 600;
+
+}
+.level-card-col2 .refreshbutton{
+  display: flex;
+  width: 70px;
+  height: 30px;
+
+  justify-content: center;
+  align-items: center;
+  gap: var(--Compressed, 8px);
+  flex-direction: row-reverse;
+  flex-shrink: 0;
+  border-radius: 7px;
+  background: #A4243B;
+  font-weight: 600;
+  color: #F4B266;
+ 
+}
+.plotsdayleft-data{
+  display: flex;
+  padding: 5px;
+  margin: 0 5px;
+  border-bottom: 1px solid black;
+  box-shadow: #a4243b 2px 2px 2px;
+  box-shadow: blue;
+  border-radius: 7px;
+  margin-top: 10px;
+  background-color:rgba(251, 233, 233);
+  flex-direction: column;
+  font-weight: 600;
+}
+.plotsdayleft-data .refreshbutton{
+  display: flex;
+  width: 70px;
+  height: 30px;
+
+  justify-content: center;
+  align-items: center;
+  gap: var(--Compressed, 8px);
+  flex-direction: row-reverse;
+  flex-shrink: 0;
+  border-radius: 7px;
+  background: #A4243B;
+  font-weight: 600;
+  color: #F4B266;
+  margin-left: 76%;
+
 }
