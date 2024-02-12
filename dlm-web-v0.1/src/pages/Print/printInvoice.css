@@ -316,8 +316,8 @@
 .print-file-footer {
   position: relative;
   /* position: absolute; */
-  bottom: -145px;
+  bottom: -95px;
 }
 .file-footer-left {
-  font-size: 13px;
+  font-size: 11px;
 }
