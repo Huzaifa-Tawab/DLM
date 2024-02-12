@@ -121,17 +121,27 @@ function FinanceDash() {
                       width={"100px"}
                       height={"100px"}
                     />
-                    Name:{UserData.Name}
-                    <br />
-                    Cnic: {UserData.Cnic} <br />
-                    Email: {UserData.Email} <br />
+                    <div className="about-col1">
+                    <h3>Name:{UserData.Name}</h3>
+                    
+                    <h3>Cnic: {UserData.Cnic}</h3> 
+                   <h3> Email: {UserData.Email} </h3>
+
                     <img
                       src={UserData.signature}
                       width={"100px"}
                       height={"100px"}
                       alt=""
                     />
-                    Address:
+                   <h3> Address:</h3>
+                    </div>
+                    <div className="about-col2">
+                    <span>{UserData.Name}</span>
+                    
+                    <span>{UserData.Cnic}</span> 
+                   <span>{UserData.Email} </span>
+                   <span> Address</span>
+                    </div>
                   </div>
                 )}
                 <div className="financeDash-stats">
