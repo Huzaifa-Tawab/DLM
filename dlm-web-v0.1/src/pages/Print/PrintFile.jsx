@@ -48,12 +48,10 @@ function PrintFile() {
     }
   }, []);
   async function getCustomerInfo(id) {
-    console.log("hello");
     const user = doc(db, "Customers", id);
     const UserData = await getDoc(user);
 
     if (UserData.exists()) {
-      setisLoading(false);
       console.log("Customer data:", UserData.data());
       const Customer = UserData.data();
       // Customer Data
@@ -72,6 +70,7 @@ function PrintFile() {
       setKinRelation(Customer.KinRelation || "Not Provided");
       setPhNoKin(Customer.PhNoKin || "Not Provided");
       // setPhNo(Customer.PhNo);
+      setisLoading(false);
     } else {
       navi("/notfound");
     }
