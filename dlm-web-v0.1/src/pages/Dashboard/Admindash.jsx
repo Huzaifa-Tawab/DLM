@@ -264,7 +264,8 @@ function AdminDash() {
                   </div>
 
                   <div className="agent-dash-content-col1-row2">
-                    <div className="agent-dash-content-col1-row2-card1 light-purple">
+                  
+                    <div className="agent-dash-content-col1-row2-card1">
                     <h4>User Details</h4>
                       <div className="level-card">
                         <h1>Total Users </h1>
@@ -283,7 +284,7 @@ function AdminDash() {
                         <h1>{NoAgent} Agents </h1>
                       </div>
                     </div>
-                    <div className="agent-dash-content-col1-row2-card2 light-purple">
+                    <div className="agent-dash-content-col1-row2-card2 ">
                       <h4>Files Details</h4>
 
                       <div className="level-card">
@@ -313,20 +314,23 @@ function AdminDash() {
                   <div className="admin-dash-daysleft-header">
                     
                     <h1>Near Due</h1>
-                    <div className="level-card-col2">
                     <p>
                       {PlotsWith10OrLessDaysLeft &&
                         PlotsWith10OrLessDaysLeft.length + " Files"}
                     </p>
                     <button onClick={fetchPlots}className="refreshbutton"><i class="fa fa-refresh" aria-hidden="true"></i></button>
-                    </div>
+                   
                   </div>
                   {PlotsWith10OrLessDaysLeft ? (
                     PlotsWith10OrLessDaysLeft.map((Plot, index) => (
                       <div key={index}>
                         <div className="plotsdayleft-data">
+                          <div className="data-data">
                           <p>{Plot.id}</p>
-                          <button className="refreshbutton"
+                          <p>{Plot.days} Days Left</p>
+                          </div>
+                          <div className="plotsdayleft-sec-data">
+                          <button className="view-button"
                             onClick={() => {
                               navigate(`/details/plot/${Plot.id}`);
                             }}
@@ -334,7 +338,7 @@ function AdminDash() {
                             {" "}
                             view{" "}
                           </button>
-                          <p>{Plot.days} Days Left</p>
+                          </div>
                         </div>
                         <div className="plotsdayleft-button">
                           

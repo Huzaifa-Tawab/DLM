@@ -280,7 +280,7 @@ function AgentDash() {
                   </div>
 
                   <div className="agent-dash-content-col1-row2">
-                    <div className="agent-dash-content-col1-row2-card1 light-purple">
+                    <div className="agent-dash-content-col1-row2-card1">
                       <div className="level-card">
                         <h1>Direct </h1>
                         <h1>{User.Plots.length} plots </h1>
@@ -302,7 +302,7 @@ function AgentDash() {
                         <h1>{LevelFive.length} persons </h1>
                       </div>
                     </div>
-                    <div className="agent-dash-content-col1-row2-card2 light-purple">
+                    <div className="agent-dash-content-col1-row2-card2">
                     <div className="level-card">
                         <h1>Plots </h1>
                         </div>
