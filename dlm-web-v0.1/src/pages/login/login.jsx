@@ -72,36 +72,38 @@ const Login = () => {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      localStorage.setItem("Name", docSnap.data().Name);
-      localStorage.setItem("id", docSnap.id);
-      localStorage.setItem("Type", docSnap.data().Type);
+      if (docSnap.data().Blocked === true) {
+        setError("User Have Been Blocked By Super Admin ");
+      } else {
+        localStorage.setItem("Name", docSnap.data().Name);
+        localStorage.setItem("id", docSnap.id);
+        localStorage.setItem("Type", docSnap.data().Type);
+        console.log("user Status", docSnap.data().Blocked);
+        switch (docSnap.data()["Type"]) {
+          case "Admin":
+            localStorage.setItem("Login", true);
 
-      switch (docSnap.data()["Type"]) {
-        case "Admin":
-          localStorage.setItem("Login", true);
+            navi("/admin/home");
+            break;
+          case "SubAdmin":
+            localStorage.setItem("Type", docSnap.data().Type);
+            localStorage.setItem("Login", true);
 
-          navi("/admin/home");
-          break;
-        case "SubAdmin":
-          localStorage.setItem("Type", docSnap.data().Type);
-          localStorage.setItem("Login", true);
+            navi("/agent/home");
 
-          navi("/agent/home");
+            break;
+          case "finance":
+            localStorage.setItem("Type", docSnap.data().Type);
+            navi("/finance/dashboard");
 
-          break;
-        case "finance":
-          localStorage.setItem("Type", docSnap.data().Type);
-          navi("/finance/dashboard");
+            break;
 
-          break;
-
-        default:
-          setError("Record Not Found");
-          auth.signOut();
-          localStorage.clear();
-          break;
-      }
-      if (docSnap.data()["Type"] === "Admin") {
+          default:
+            setError("Record Not Found");
+            auth.signOut();
+            localStorage.clear();
+            break;
+        }
       }
     } else {
       console.log("No such document!");
