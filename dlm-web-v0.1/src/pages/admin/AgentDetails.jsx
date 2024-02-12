@@ -20,7 +20,7 @@ function AgentDetails() {
   const [showDocModal, setShowDocModal] = useState(false);
   const [UserDocs, setUseDocs] = useState({});
   const [SponcerName, setSponcerName] = useState("");
-
+  const [UserStatus, setUserStatus] = useState();
   const prams = useParams();
 
   useEffect(() => {
@@ -38,6 +38,7 @@ function AgentDetails() {
       if (docSnap.data().Plots != null) {
         getPlotsData(docSnap.data().Plots);
         setUseDocs(docSnap.data().Document);
+        getUserStatus(prams.id);
         if (docSnap.data().ChildOf) {
           getAgentName(docSnap.data().ChildOf);
         } else {
@@ -53,6 +54,14 @@ function AgentDetails() {
     if (docSnap.exists()) {
       console.log(docSnap.data());
       setSponcerName(docSnap.data().Name);
+    }
+  }
+  async function getUserStatus(id) {
+    const docRef = doc(db, "Users", id);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      console.log(docSnap.data());
+      setUserStatus(docSnap.data().Blocked || false);
     }
   }
   async function getPlotsData(Plots) {
@@ -80,16 +89,14 @@ function AgentDetails() {
     setShowDocModal(false);
   };
   async function toggleBlock() {
-    let state = true;
-    const AgentRef = doc(db, "Agent", prams.id);
-    if (userData.Blocked) {
-      state = false;
-    }
+    const AgentRef = doc(db, "Users", prams.id);
+
     await updateDoc(AgentRef, {
-      Blocked: state,
+      Blocked: !UserStatus,
     }).then(() => {
       setisloading(true);
-      getdata();
+      getUserStatus(prams.id);
+      setisloading(false);
     });
   }
   return isloading ? (
@@ -155,16 +162,11 @@ function AgentDetails() {
                         )}
                       </div>
                       <button
-                        className={`soloButton  ${
-                          userData.Blocked && userData.Blocked ? "Blocked" : ""
-                        }
+                        className={`soloButton  ${UserStatus ? "Blocked" : ""}
                             `}
                         onClick={toggleBlock}
                       >
-                        {userData.Blocked && userData.Blocked
-                          ? "Block"
-                          : "Unblock"}{" "}
-                        Agent
+                        {!UserStatus ? "Block" : "Unblock"} Agent
                       </button>
                     </div>
                     <div className="info-box-2">
