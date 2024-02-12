@@ -2,17 +2,18 @@ import React, { useEffect, useState } from "react";
 import "./printInvoice.css";
 // import imageava from "./avat.png"
 import { useNavigate, useParams } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, serverTimestamp } from "firebase/firestore";
 import isAdmin from "../../../IsAdmin";
 import { db } from "../../firebase";
 import Loader from "../../components/loader/Loader";
 import softx from "../../Assets/SoftXion.png";
+import getDate from "../../../GetDDMMYY";
 
 function PrintFile() {
   const { id } = useParams();
   console.log(id);
   const navi = useNavigate();
-
+  const date = new Date().toDateString();
   const [isLoading, setisLoading] = useState(true);
   const [UserImage, setUserImage] = useState("");
   const [Society, setSociety] = useState();
@@ -289,6 +290,7 @@ function PrintFile() {
               <h3>Booking Officer</h3>
               <h3>Admin</h3>
             </div>
+
             {/* <div className="foter-softxion">
         <h5>This site is created by  </h5>
         <div>
@@ -297,7 +299,13 @@ function PrintFile() {
           </div>
         </div> */}
             {/* code is in schedule.css */}
-            <div></div>
+            <div className="print-file-footer">
+              <div className="file-footer-left">
+                <p>
+                  Computer Generated File Printed on : <strong>{date}</strong>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

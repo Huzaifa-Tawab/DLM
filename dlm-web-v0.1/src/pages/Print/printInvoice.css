@@ -313,3 +313,11 @@
 .file-address-heading {
   margin-right: 13.6%;
 }
+.print-file-footer {
+  position: relative;
+  /* position: absolute; */
+  bottom: -145px;
+}
+.file-footer-left {
+  font-size: 13px;
+}
