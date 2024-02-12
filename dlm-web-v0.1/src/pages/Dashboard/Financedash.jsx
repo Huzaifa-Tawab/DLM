@@ -114,7 +114,7 @@ function FinanceDash() {
             <div className="financeDash">
               <div className="financeDash-aboutFinance">
                 {UserData && (
-                  <div className="financeDash-Details">
+                  <div className="financeDash-Details light-red ">
                     <img
                       src={UserData.img}
                       alt=""
@@ -122,33 +122,34 @@ function FinanceDash() {
                       height={"100px"}
                     />
                     <div className="about-col1">
-                    <h3>Name:{UserData.Name}</h3>
+                    <h3>Name:<span>{UserData.Name}</span></h3>
                     
-                    <h3>Cnic: {UserData.Cnic}</h3> 
-                   <h3> Email: {UserData.Email} </h3>
+                    <h3>Cnic:<span> {UserData.Cnic}</span></h3> 
+                   <h3> Email:<span> {UserData.Email} </span></h3>
 
-                    <img
+                    
+                   <h3> Address:<span></span></h3>
+                   <div className="sig-finance">
+                   <h3> Digital Signature: </h3>
+                   <img
                       src={UserData.signature}
-                      width={"100px"}
-                      height={"100px"}
+                      width={"40px"}
+                      height={"40px"}
                       alt=""
                     />
-                   <h3> Address:</h3>
                     </div>
-                    <div className="about-col2">
-                    <span>{UserData.Name}</span>
-                    
-                    <span>{UserData.Cnic}</span> 
-                   <span>{UserData.Email} </span>
-                   <span> Address</span>
                     </div>
                   </div>
                 )}
-                <div className="financeDash-stats">
+                <div className="financeDash-stats light-red">
+                  <div className="bottom-cards-content">
                   <p>No Of Trans Approved py You</p>
                   <span>{NoOfVerifiedTrans}</span>
+                  </div>
+                  <div className="bottom-cards-content">
                   <p>Pending Invoices</p>
                   <span>{pendingInvoices}</span>
+                  </div>
                   <p></p>
                 </div>
               </div>
@@ -157,42 +158,58 @@ function FinanceDash() {
               {SocietiesData && (
                 <div className="financeDash-Bottom">
                   <div className="financeDash-Bottom-card">
-                    <p>New City Paradise</p>
+                    <h1>New City Paradise</h1>
+                    <div className="bottom-cards-content">
                     <p>Number Of Plots:</p>
                     <span>{SocietiesData["New City Paradise"].Plots};</span>
-
+                    </div>
+                    <div className="bottom-cards-content">
                     <p>Blocked Plots:</p>
                     <span>{SocietiesData["New City Paradise"].blocked};</span>
-
+                    </div>
+                    <div className="bottom-cards-content">
                     <p>Amount Received:</p>
                     <span>{SocietiesData["New City Paradise"].Amount}</span>
+                    </div>
                   </div>
                   <div className="financeDash-Bottom-card">
-                    <p>Dynamic Land Management</p>
+                    <h1>Dynamic Land Management</h1>
+                    <div className="bottom-cards-content">
                     <p>Number Of Plots:</p>
                     <span>
                       {SocietiesData["Dyanmic Land Management"].Plots};
                     </span>
+                    </div>
+                    <div className="bottom-cards-content">
                     <p>Blocked Plots:</p>
                     <span>
                       {SocietiesData["Dyanmic Land Management"].blocked};
                     </span>
+                    </div>
+                    <div className="bottom-cards-content">
                     <p>Amount Received:</p>
                     <span>
                       {SocietiesData["Dyanmic Land Management"].Amount}
                     </span>
+                    </div>
                   </div>
                   <div className="financeDash-Bottom-card">
-                    <p>Sydney Hawks 7</p>
+                    <h1>Sydney Hawks 7</h1>
+                    <div className="bottom-cards-content">
                     <p>Number Of Plots:</p>
                     <span>{SocietiesData["Sydney Hawks 7"].Plots};</span>
+                    </div>
+                    <div className="bottom-cards-content">
                     <p>Blocked Plots:</p>
                     <span>{SocietiesData["Sydney Hawks 7"].blocked};</span>
+                    </div>
+                    <div className="bottom-cards-content">
                     <p>Amount Received:</p>
                     <span>{SocietiesData["Sydney Hawks 7"].Amount}</span>
+                    </div>
                   </div>
                   <div className="financeDash-Bottom-card">
-                    <p>Unknown</p>
+                    <h1>Unknown</h1>
                   </div>
                 </div>
               )}

@@ -14,16 +14,35 @@
   padding: 20px;
 }
 .financeDash-Details {
-  width: 40%;
+  width: 60%;
   height: 100%;
-  background: aquamarine;
+  /* background: aquamarine; */
   border-radius: 16px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  box-shadow: grey 0px 2px 2px 0px;
+  
 }
+
 .financeDash-stats {
-  width: 40%;
+  width: 30%;
   height: 100%;
-  background: purple;
+  /* background: purple; */
   border-radius: 16px;
+  box-shadow: grey 0px 2px 2px 0px;
+}
+.about-col1{
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    padding-top: 20px;
+
+}
+.about-col1 h3{
+  font-size: 12px;
+  line-height: normal;
 }
 .financeDash-Bottom {
   height: 50%;
@@ -34,12 +53,67 @@
   padding: 20px;
 }
 .financeDash-Bottom-card {
-  background-color: #a4243b;
+  background-color: #fff;
   border-radius: 16px;
-  min-width: 300px;
-  width: 20%;
+  
+  width: 250px;
+}
+.financeDash-Bottom-card>h1{
+  font-size: 15px;
+  line-height: normal;
+  padding: 10px;
+  background-color:#F4B266;
+  box-shadow: grey 0px 2px 2px 0px;
+  border-radius: 7px 7px 0px 0px;
 }
 .societyHeading {
   background-color: rgb(188, 188, 188);
   width: 100%;
+  padding-left: 15px;
 }
+.bottom-cards-content{
+  padding: 10px;
+  border-bottom: 1px solid grey;
+}
+.sig-finance{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media screen and (max-width: 700px) {
+  .financeDash-aboutFinance {
+    flex-direction: column;
+    width: 100%;
+    height:auto; 
+    width: 100%;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+.financeDash-Details {
+  width: auto;
+  flex-direction: column;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+.financeDash-stats {
+  width: 100%;
+  height: auto;
+  /* background: purple; */
+  border-radius: 16px;
+  box-shadow: grey 0px 2px 2px 0px;
+}
+.financeDash-Bottom {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+ overflow: scroll;
+ gap: 15px;
+}
+.financeDash-Bottom-card {
+  width: 100%;
+}
+   
+}
+
