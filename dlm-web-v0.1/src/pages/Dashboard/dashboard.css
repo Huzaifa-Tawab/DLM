@@ -133,7 +133,7 @@
   /* height: 100%; */
   width: 45%;
   border-radius: 16px;
-  padding: 1rem;
+  /* padding: 1rem; */
 }
 .progress-percent {
   height: 100px;
@@ -192,9 +192,9 @@
   padding: 5px;
   margin: 0 5px;
   border-bottom: 1px solid black;
-  box-shadow: #a4243b 2px 2px 2px;
+  /* box-shadow: #a4243b 2px 2px 2px;
   box-shadow: blue;
-  border-radius: 7px;
+  border-radius: 7px; */
   margin-top: 10px;
 }
 .up-hd {
@@ -248,7 +248,31 @@
 /* .strong{
   padding-right: 10px;
 } */
+.admin-dash-daysleft-header{
+  display: flex;
+  justify-content: space-between;
+  background: #A4243B;
+  color: #fff;
+  align-items: center;
+padding: 7px;
+}
+.admin-dash-daysleft-header .refreshbutton{
+  display: flex;
+  /* width: 70px;
+  height: 30px; */
 
+  justify-content: center;
+  align-items: center;
+  gap: var(--Compressed, 8px);
+  flex-direction: row-reverse;
+  flex-shrink: 0;
+  border-radius: 7px;
+  background: #A4243B;
+  font-weight: 600;
+  color: #F4B266;
+ 
+
+}
 @media screen and (max-width: 700px) {
   .inf--flex-col {
     gap: 5px;
@@ -334,9 +358,10 @@
         padding:7px;
 } */
 .agent-dash-content-col1-row2-card1>h4,.agent-dash-content-col1-row2-card2>h4{
-  background:#F4B266;
-  border-radius: 7px;
+  background-color:#F4B266;
+  border-radius: 7px 7px 0px 0px;
   padding-left: 3px;
+  font-size: 16px;
 }
 .level-card-col2{
   display: flex;
@@ -356,8 +381,8 @@
 .admin-dash-daysleft-header>h1{
    font-size: 16px;
    font-weight: 600;
-   padding: 7px;
-   background-color: #A4243B;
+   
+   /* background-color: #A4243B; */
    color: #fff;
 }
 .level-card-col2>p{
@@ -365,39 +390,29 @@
   font-weight: 600;
 
 }
-.level-card-col2 .refreshbutton{
-  display: flex;
-  width: 70px;
-  height: 30px;
 
-  justify-content: center;
-  align-items: center;
-  gap: var(--Compressed, 8px);
-  flex-direction: row-reverse;
-  flex-shrink: 0;
-  border-radius: 7px;
-  background: #A4243B;
-  font-weight: 600;
-  color: #F4B266;
- 
-}
 .plotsdayleft-data{
   display: flex;
-  padding: 5px;
-  margin: 0 5px;
-  border-bottom: 1px solid black;
-  box-shadow: #a4243b 2px 2px 2px;
-  box-shadow: blue;
-  border-radius: 7px;
-  margin-top: 10px;
-  background-color:rgba(251, 233, 233);
-  flex-direction: column;
-  font-weight: 600;
+ justify-content: space-between;
+ padding: 7px;
+ padding: 5px;
+ margin: 0 5px;
+ border-bottom: 1px solid black;
+ box-shadow: #a4243b 2px 2px 2px;
+ box-shadow: blue;
+ border-radius: 7px;
+ margin-top: 10px;
+ background-color:rgba(251, 233, 233);
+
+ font-weight: 600;
 }
-.plotsdayleft-data .refreshbutton{
+.plotsdayleft-sec-data{
   display: flex;
-  width: 70px;
-  height: 30px;
+}
+.plotsdayleft-sec-data .view-button{
+  display: flex;
+  width: 50px;
+  height: 25px;
 
   justify-content: center;
   align-items: center;
@@ -408,6 +423,7 @@
   background: #A4243B;
   font-weight: 600;
   color: #F4B266;
-  margin-left: 76%;
+  align-self: center;
+  
 
 }
