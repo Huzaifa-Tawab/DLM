@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,500;0,600;0,700;1,400&display=swap');
 .modal-body{
   display: flex;
   justify-content: center;
@@ -19,6 +20,7 @@ span {
   /* color: red; */
   color: black;
   text-align: center;
+  font-family: 'Open Sans', sans-serif;
 }
 .Modal-row > h2 {
   color: black;

@@ -293,7 +293,8 @@
     transform: translateX(0%) !important;
   }
   .dash-avatar {
-    width: 40%;
+    width: 150px;
+    height: 150px;
     align-self: center;
     margin: 20px;
   }

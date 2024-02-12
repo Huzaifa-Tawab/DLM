@@ -112,6 +112,8 @@
 }
 .client-pic-detail img {
   padding: 15px 0px;
+  width: 150px;
+  height: 150px;
 }
 .documents {
   background: #fff;
@@ -198,7 +200,7 @@ td > a:hover {
 }
 .plot-des {
   background: white;
-  height: 3.5rem;
+  height: 4.5rem;
   text-align: center;
   border-radius: 5px;
   padding: 10px 0px;

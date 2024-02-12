@@ -36,7 +36,7 @@
   justify-content: space-evenly;
 }
 .column > button {
-  margin: 15px 25px 0 25px;
+  margin: 35px 5px 0px 0px;
   width: 6rem;
   height: 2.2rem;
   border-radius: 5px;
@@ -76,10 +76,10 @@
 .first {
   color: #90a3bf;
   /* font-family: "Plus Jakarta Sans"; */
-  font-size: 20px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 200%;
+  /* line-height: 200%; */
   letter-spacing: -0.4;
 }
 /* .transaction-heading {
@@ -189,22 +189,27 @@
   justify-content: space-between;
   line-height: 25px;
   font-size: 13px;
+  align-items: center;
 }
 .transaction-row > .trans-id {
   color: #1a202c;
   font-size: 12px;
   font-style: normal;
   font-weight: 700;
+  
   /* line-height: 150%;  */
   /* letter-spacing: -0.32px; */
+}
+.transaction-row>span{
+  text-align: left;
 }
 .transaction-main {
   padding: 2px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 4px;
   line-height: 20px;
-  /* margin: 5px; */
+  margin: 5px 0px 10px 0px;
   border-radius: 2px;
-  height: 5rem;
+  height: auto;
 }
 .transaction-main:hover {
   cursor: pointer;
@@ -230,10 +235,12 @@
 .column > button {
   width: auto;
   height: auto;
-  margin: 10px;
+  margin-top: 15px;
 }
 .column{
   justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
 }
 .bottom-part-plot {
   flex-direction: column;
