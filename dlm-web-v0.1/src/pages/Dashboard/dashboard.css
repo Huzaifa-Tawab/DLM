@@ -248,15 +248,18 @@
 /* .strong{
   padding-right: 10px;
 } */
+.admin-dash-daysleft-header-main{
+  display: flex;
+  background:#F4B266;
+  justify-content: space-between;
+}
 .admin-dash-daysleft-header{
   display: flex;
-  justify-content: space-between;
-  background: #A4243B;
   color: #fff;
   align-items: center;
 padding: 7px;
 }
-.admin-dash-daysleft-header .refreshbutton{
+.admin-dash-daysleft-header-main .refreshbutton{
   display: flex;
   /* width: 70px;
   height: 30px; */
@@ -267,11 +270,29 @@ padding: 7px;
   flex-direction: row-reverse;
   flex-shrink: 0;
   border-radius: 7px;
-  background: #A4243B;
+  background: #F4B266;
   font-weight: 600;
-  color: #F4B266;
+  color: #A4243B;
  
 
+}
+
+.plots-num{
+  background-color:black;
+  width: 20px;
+  text-align: center;
+  border-radius: 50%;
+  margin-left: 5px;
+  color: #fff;
+
+}
+.data-flex-col{
+  display: flex;
+  flex-direction: column;
+align-items: flex-start
+}
+.strong{
+  padding-left: 6px;
 }
 @media screen and (max-width: 700px) {
   .inf--flex-col {
@@ -360,7 +381,7 @@ padding: 7px;
 .agent-dash-content-col1-row2-card1>h4,.agent-dash-content-col1-row2-card2>h4{
   background-color:#F4B266;
   border-radius: 7px 7px 0px 0px;
-  padding-left: 3px;
+  padding-left: 7px;
   font-size: 16px;
 }
 .level-card-col2{
@@ -383,7 +404,7 @@ padding: 7px;
    font-weight: 600;
    
    /* background-color: #A4243B; */
-   color: #fff;
+   color:#575757;
 }
 .level-card-col2>p{
   font-size: 16px;
@@ -426,4 +447,10 @@ padding: 7px;
   align-self: center;
   
 
+}
+.view-button:hover{
+  /* background: #F4B266;
+  color: #A4243B; */
+  transform: scale(1.1);
+  box-shadow: #F4B266 0px 2px 8px 0px;
 }

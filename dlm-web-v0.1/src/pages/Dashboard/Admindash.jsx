@@ -256,10 +256,20 @@ function AdminDash() {
                   <div className="agent-dash-content-col1-row1 light-blue">
                     <img src={User.img} className="dash-avatar" />
                     <div className="inf--flex-col">
-                      <span>
-                        <strong className="strong">Name:</strong>
-                        {User.Name}
+                      <div className="data-flex-col">
+                      <span>Name:
+                        <strong className="strong">{User.Name}</strong>
+                        
                       </span>
+                      <span>Gender:
+                        <strong className="strong">{User.Gender}</strong>
+                        
+                      </span>
+                      <span>D.O.B:
+                        <strong className="strong"> {User.Dob}</strong>
+                       
+                      </span>
+                      </div>
                     </div>
                   </div>
 
@@ -311,13 +321,16 @@ function AdminDash() {
                   </div>
                 </div>
                 <div className="agent-dash-content-col2 light-green">
+                <div className="admin-dash-daysleft-header-main">
                   <div className="admin-dash-daysleft-header">
                     
-                    <h1>Near Due</h1>
-                    <p>
+                    <h1>Near Due </h1>
+                    <span className="plots-num">
                       {PlotsWith10OrLessDaysLeft &&
-                        PlotsWith10OrLessDaysLeft.length + " Files"}
-                    </p>
+                        PlotsWith10OrLessDaysLeft.length}
+                    </span>
+                    </div>
+                    
                     <button onClick={fetchPlots}className="refreshbutton"><i class="fa fa-refresh" aria-hidden="true"></i></button>
                    
                   </div>
