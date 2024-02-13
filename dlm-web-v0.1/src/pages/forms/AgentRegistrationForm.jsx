@@ -402,7 +402,7 @@ const AgentRegistrationForm = () => {
                     </div>
                     <div className="input-box">
                       <TextInput
-                        label="Father's Name"
+                        label="Father/Spouse Name"
                         name="FName"
                         value={formData.FName}
                         onChange={handleChange}
