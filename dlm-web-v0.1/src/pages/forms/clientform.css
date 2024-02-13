@@ -107,7 +107,7 @@
    #dot-2:checked ~ .category label .two,
    #dot-3:checked ~ .category label .three,
    #dot-4:checked ~ .category label .four{
-     background: rgb(78, 173, 231);
+     background:#A4243B;
      border-color: #d9d9d9;
    }
    form input[type="radio"]{
@@ -139,10 +139,11 @@
         text-align: center;
         border-radius: 5px;
         border: 1px solid #ddd;
+        background: #F4B266;
     }
     .download-pdf> a{
         text-decoration: none;
-        color: #000;
+        color: #fff;
     }
     .check-box{
         padding: 30px 0px;

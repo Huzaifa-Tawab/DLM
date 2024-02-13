@@ -122,8 +122,10 @@ const FileInput = ({ label, onChange, previewUrl, error }) => {
             borderRadius: "50%",
             cursor: "pointer",
             textAlign: "center",
+            border:"1px solid #A4243B",
             lineHeight: "150px",
             fontSize: "16px",
+          
           }}
           onClick={handleClick}
         >
@@ -266,9 +268,9 @@ const ClientRegistrationForm = () => {
     if (!data.Cnic || !/^\d{13}$/.test(data.Cnic)) {
       errors.Cnic = "CNIC is required";
     }
-    if (!data.phNo || !/^\d{11}$/.test(data.phNo)) {
-      errors.phNo = "Phone No is required";
-    }
+    // if (!data.phNo || !/^\d{15}$/.test(data.phNo)) {
+    //   errors.phNo = "Phone No is required";
+    // }
     if (!data.TownCity.trim()) {
       errors.TownCity = "Please specify your city/town";
     }
