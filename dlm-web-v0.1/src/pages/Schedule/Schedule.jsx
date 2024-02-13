@@ -24,7 +24,7 @@ function Schedule() {
     <>
       <div className="schedule-main">
         <div className="schedule-head">
-          <h2>Warm Greetings and Congratulations on Your Purchase!</h2>
+          <h2>Greeting Letter</h2>
           <div className="schedule-subject">
             <span>
               Dear: <strong>{SecheduleData.CustomerName}</strong>
@@ -33,7 +33,7 @@ function Schedule() {
         </div>
         <div className="schedule-desc">
           <p>
-            On behalf of <strong>{SecheduleData.Society}</strong>, we extend our
+            On behalf of <strong>{SecheduleData.Society==="Dyanmic Land Management"? "Dynamic Land Management":"Property Bank"}</strong>, we extend our
             heartfelt congratulations to you on the successful purchase of your
             plot/shop through our web portal. We are thrilled to have you as a
             valued member of our community, and we appreciate your trust in
@@ -97,12 +97,7 @@ function Schedule() {
                 <td>{SecheduleData.PossessionAmount} PKR</td>
                 <td>{SecheduleData.PossessionAmount} PKR</td>
               </tr>
-              <tr>
-                <td>Transfer</td>
-                <td>#</td>
-                <td>10,000 PKR</td>
-                <td>10,000 PKR</td>
-              </tr>
+          
             </tbody>
             <tfoot>
               <tr>
@@ -110,11 +105,11 @@ function Schedule() {
                 <th></th>
                 <th>Total Amount</th>
                 <th>
-                  {SecheduleData.BookingAmount +
-                    SecheduleData.Downpayment +
-                    SecheduleData.PossessionAmount +
-                    SecheduleData.Installment * SecheduleData.InstallmentMonth +
-                    10000}{" "}
+                  {parseInt(SecheduleData.BookingAmount) +
+                   parseInt( SecheduleData.Downpayment) +
+                    parseInt(SecheduleData.PossessionAmount) +
+                  ( parseInt( SecheduleData.Installment) * parseInt(SecheduleData.InstallmentMonth) )
+                    }
                   PKR
                 </th>
               </tr>
@@ -123,6 +118,9 @@ function Schedule() {
         </div>
 
         <div className="schedule-desc-bottom">
+         <p>
+          We have recived booking fee.
+         </p>
           <p>
             Please review the schedule carefully, and if you have any questions
             or require further clarification, do not hesitate to reach out to
@@ -130,17 +128,21 @@ function Schedule() {
             Number]. We are here to assist you and ensure that your property
             ownership journey is as smooth as possible.
           </p>
-          <br />
+    
           <p>
             Once again, congratulations on your new investment! We look forward
             to building a lasting relationship with you and hope that your
             property brings you joy, prosperity, and countless memorable
             moments.
           </p>
-          <br />
+    
+          <p>This is a system-generated form and is valid for 60 days from the date of booking. Once it is cancelled, it cannot be retained or refunded</p>
+   
           <span>Warm regards,</span>
           <br />
-          {/* <h5>Isfan Arif</h5>
+          <br />
+          <h5>{SecheduleData.Society==="Dyanmic Land Management"? "Dynamic Land Management":"Property Bank"}</h5>
+          {/*
           <h5>CEO</h5>
           <h5>DLM</h5>
           <h5>03160000000</h5> */}

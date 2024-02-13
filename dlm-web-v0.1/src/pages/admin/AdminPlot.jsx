@@ -142,7 +142,7 @@ function AdminPlot() {
                   </div>
                   <div className="row">
                     <span className="secon-row">
-                      {PlotDetails.PlotSize} Marla
+                      {PlotDetails.PlotSize} 
                     </span>
                     <span className="secon-row">{PlotDetails.AgentId}</span>
                     {isAdmin() && (
