@@ -114,7 +114,7 @@ function FinanceDash() {
             <div className="financeDash">
               <div className="financeDash-aboutFinance">
                 {UserData && (
-                  <div className="financeDash-Details light-red ">
+                  <div className="financeDash-Details  ">
                     <img
                       src={UserData.img}
                       alt=""
@@ -122,26 +122,31 @@ function FinanceDash() {
                       height={"100px"}
                     />
                     <div className="about-col1">
-                    <h3>Name:<span>{UserData.Name}</span></h3>
+                      <div className="about-flex-col1">
+                    <h3>Name:</h3>
                     
-                    <h3>Cnic:<span> {UserData.Cnic}</span></h3> 
-                   <h3> Email:<span> {UserData.Email} </span></h3>
-
-                    
-                   <h3> Address:<span></span></h3>
-                   <div className="sig-finance">
+                    <h3>Cnic:</h3> 
+                   <h3> Email:</h3> 
+                   <h3> Address:</h3>
                    <h3> Digital Signature: </h3>
+                   </div>
+                   <div className="about-flex-col2">
+                   <span>{UserData.Name}</span>
+                   <span> {UserData.Cnic}</span>
+                   <span> {UserData.Email} </span>
+                   <span>islamabad</span>
                    <img
                       src={UserData.signature}
                       width={"40px"}
                       height={"40px"}
                       alt=""
                     />
-                    </div>
+                   </div>
+                 
                     </div>
                   </div>
                 )}
-                <div className="financeDash-stats light-red">
+                <div className="financeDash-stats ">
                   <div className="bottom-cards-content">
                   <p>No Of Trans Approved py You</p>
                   <span>{NoOfVerifiedTrans}</span>

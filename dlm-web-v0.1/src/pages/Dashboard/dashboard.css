@@ -294,6 +294,15 @@ align-items: flex-start
 .strong{
   padding-left: 6px;
 }
+/* agent col2 main heading */
+.agent-dash-content-col2 >h1{
+  background-color: #F4B266;
+  padding: 6px 6px 6px 12px;
+}
+
+ 
+
+
 @media screen and (max-width: 700px) {
   .inf--flex-col {
     gap: 5px;

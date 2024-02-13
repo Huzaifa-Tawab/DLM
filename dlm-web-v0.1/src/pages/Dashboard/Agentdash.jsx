@@ -320,6 +320,7 @@ function AgentDash() {
                   </div>
                 </div>
                 <div className="agent-dash-content-col2 light-green">
+                  <h1>Promotions</h1>
                   {PromosWithStatus &&
                     PromosWithStatus.map((promo, index) => (
                       //     promo.status === "completed" ? "goal-achieved" : ""

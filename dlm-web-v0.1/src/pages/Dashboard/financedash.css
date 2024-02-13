@@ -16,7 +16,7 @@
 .financeDash-Details {
   width: 60%;
   height: 100%;
-  /* background: aquamarine; */
+  background:#F4B266;
   border-radius: 16px;
   display: flex;
   justify-content: space-evenly;
@@ -31,10 +31,11 @@
   /* background: purple; */
   border-radius: 16px;
   box-shadow: grey 0px 2px 2px 0px;
+  background: #F4B266;
 }
 .about-col1{
   display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
     gap: 4px;
     padding-top: 20px;
@@ -62,23 +63,50 @@
   font-size: 15px;
   line-height: normal;
   padding: 10px;
-  background-color:#F4B266;
+  background-color:#A4243B;
   box-shadow: grey 0px 2px 2px 0px;
   border-radius: 7px 7px 0px 0px;
+  color:#fff ;
 }
 .societyHeading {
-  background-color: rgb(188, 188, 188);
+  background-color:#A4243B;
   width: 100%;
   padding-left: 15px;
+  color:#fff
+  ;
 }
 .bottom-cards-content{
   padding: 10px;
   border-bottom: 1px solid grey;
+
+  p{
+    font-weight: 700;
+  }
 }
-.sig-finance{
+/* .sig-finance{
   display: flex;
   justify-content: space-between;
   align-items: center;
+} */
+.about-flex-col1{
+  display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 9px;
+
+}
+.about-flex-col2{
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 12px;
+  gap: 5px;
+
+  span{
+    font-size: 12px;
+  }
+
 }
 @media screen and (max-width: 700px) {
   .financeDash-aboutFinance {
