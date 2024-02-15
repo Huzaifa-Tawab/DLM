@@ -271,6 +271,9 @@ const ClientRegistrationForm = () => {
     // if (!data.phNo || !/^\d{15}$/.test(data.phNo)) {
     //   errors.phNo = "Phone No is required";
     // }
+    if (!data.phNo.trim()) {
+      errors.phNo = "Phone No is required";
+    }
     if (!data.TownCity.trim()) {
       errors.TownCity = "Please specify your city/town";
     }
