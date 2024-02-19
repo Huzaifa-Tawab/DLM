@@ -131,10 +131,10 @@ function App() {
         <Route path="/print/:id" element={<PrintFile />} />
 
         <Route element={<AdminRoutes />}>
-       <Route path="/agent/wallet" element={<Wallet />} />
+          <Route path="/agent/wallet" element={<Wallet />} />
 
-        <Route path="/admin/marquee" element={<MarqueeInput />} />
-        <Route path="/admin/withdraw" element={<AdminWithdralView />} />
+          <Route path="/admin/marquee" element={<MarqueeInput />} />
+          <Route path="/admin/withdraw" element={<AdminWithdralView />} />
           <Route path="/admin/promo/winners" element={<AdminPromosResults />} />
           <Route path="/admin/home" element={<AdminDash />} />
           <Route path="/agent/home" element={<AgentDash />} />

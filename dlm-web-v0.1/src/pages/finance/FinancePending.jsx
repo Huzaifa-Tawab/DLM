@@ -55,8 +55,8 @@ function FinancePending() {
     setisLoading(true);
 
     invoiceId = id;
-
-    const PlotSnap = await getDoc(doc(db, "Plots", fileNumber));
+    const plotRef = doc(db, "Plots", fileNumber);
+    const PlotSnap = await getDoc(plotRef);
 
     if (nature === "transfer") {
       const senderPending = doc(db, "Customers", data.senderCustomerID);
@@ -71,6 +71,10 @@ function FinancePending() {
       });
     }
     if (PlotSnap.exists()) {
+      await updateDoc(plotRef, {
+        paidAmount:
+          parseInt(PlotSnap.data().paidAmount) || 0 + parseInt(data.payment),
+      });
       // Calculate commissions
       const levelOneCommission = data.payment * 0.1;
       const otherLevelCommission = levelOneCommission * 0.1;
