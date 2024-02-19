@@ -28,7 +28,7 @@ function PrintFile() {
   const [Size, setSize] = useState("");
   const [Address, setAddress] = useState("");
   const [Category, setCategory] = useState("");
-  const [TownCity, setTownCity] = useState("");
+  const [Block, setBlock] = useState("");
   const [NexttoKin, setNexttoKin] = useState("");
   const [CnicKin, setCnicKin] = useState("");
   const [KinRelation, setKinRelation] = useState("");
@@ -39,6 +39,7 @@ function PrintFile() {
   const [PlotSize, setPlotSize] = useState("");
   const [OtherAmount, setOtherAmount] = useState("");
   const [OtherAmountTitle, setOtherAmountTitle] = useState("");
+  const [PaidAmount, setPaidAmount] = useState("");
 
   useEffect(() => {
     if (isAdmin()) {
@@ -60,7 +61,6 @@ function PrintFile() {
       setName(Customer.Name);
       setFName(Customer.FName);
       setCnic(Customer.Cnic);
-      setTownCity(Customer.TownCity);
       setAddress(Customer.Address);
       setGender(Customer.Gender);
       setphNo(Customer.phNo);
@@ -69,6 +69,7 @@ function PrintFile() {
       setCnicKin(Customer.CnicKin || "Not Provided");
       setKinRelation(Customer.KinRelation || "Not Provided");
       setPhNoKin(Customer.PhNoKin || "Not Provided");
+      setPaidAmount(Customer.paidAmount || 0);
       // setPhNo(Customer.PhNo);
       setisLoading(false);
     } else {
@@ -84,6 +85,7 @@ function PrintFile() {
       console.log("Plot data:", PlotData.data());
       const Plot = PlotData.data();
       // Plot Data
+      setBlock(Plot.Block);
 
       setFileNumber(Plot.FileNumber);
       setFileNumber(Plot.FileNumber);
@@ -114,7 +116,7 @@ function PrintFile() {
             <h1>
               {Society === "Dyanmic Land Management"
                 ? "DYNAMIC LAND MANAGEMENT"
-                : "D LEGENDS MARKETING"}
+                : Society}
             </h1>
 
             <div className="top-sec-cont">
@@ -166,7 +168,7 @@ function PrintFile() {
               </div>
               <div className="sectop-right">
                 <div className="column-3">
-                  <span>FName:</span>
+                  <span>F/H Name:</span>
                   <span>Phone No:</span>
                   <span>Gender:</span>
                 </div>
@@ -180,7 +182,6 @@ function PrintFile() {
             <div className="top-sec-heading">
               <h3>NEXT TO KIN</h3>
             </div>
-
             <div className="sectop-section-content">
               <div className="sectop-row">
                 <div className="column-1">
@@ -215,7 +216,7 @@ function PrintFile() {
                 </div>
                 <div className="column-2">
                   <span>{FileNumber}</span>
-                  <span>{PlotSize} Marla</span>
+                  <span>{PlotSize}</span>
                 </div>
               </div>
               <div className="sectop-right-44">
@@ -225,7 +226,7 @@ function PrintFile() {
                 </div>
                 <div className="column-444">
                   <span>{Category}</span>
-                  <span>{TownCity}</span>
+                  <span>{Block}</span>
                 </div>
               </div>
             </div>
@@ -254,33 +255,19 @@ function PrintFile() {
               </div>
               <div className="sectop-right-last">
                 <div className="column-7">
-                  <span>Total Price:</span>
-                  <span>Possession Amount:</span>
-                  <span>Down Payment:</span>
+                  <span>Total Amount:</span>
                   <br />
-                  <h3 className="bold-700">Total Amount</h3>
+                  <h3 className="bold-700">Remaining Amount</h3>
                 </div>
                 <div className="column-8">
                   <span className="underline-1">{TotalAmount}</span>
-                  <span className="underline-1">{PossessionAmount}</span>
-                  <span className="underline-1">{DownPayment}</span>
+
                   <br />
-                  <h3 className="bold-400">{TotalAmount}</h3>
+                  <h3 className="bold-400">{TotalAmount - PaidAmount}</h3>
                 </div>
               </div>
             </div>
-            <div className="top-last-heading"></div>
-            <div className="last-text-content">
-              <span>Note:</span>
-              <p>
-                Permission of plot will be as per schedule i.e 62 Months from
-                the date of booking.
-              </p>
-              <p>
-                {Society === "Dyanmic Land Management" &&
-                  "Non Developed Society"}
-              </p>
-            </div>
+
             <div className="signatures-text">
               <h3>Signatures</h3>
             </div>
