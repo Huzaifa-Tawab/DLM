@@ -259,12 +259,12 @@ function PrintFile() {
               </div>
               <div className="sectop-right-last">
                 <div className="column-7">
-                  <span>Total Amount:</span>
+                  {/* <span>Total Amount:</span> */}
                   <br />
                   <h3 className="bold-700">Remaining Amount</h3>
                 </div>
                 <div className="column-8">
-                  <span className="underline-1">{TotalAmount}</span>
+                  {/* <span className="underline-1">{TotalAmount}</span> */}
 
                   <br />
                   <h3 className="bold-400">{TotalAmount - PaidAmount}</h3>

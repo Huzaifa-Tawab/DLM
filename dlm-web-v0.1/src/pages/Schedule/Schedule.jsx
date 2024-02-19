@@ -93,17 +93,21 @@ function Schedule() {
                   PKR
                 </td>
               </tr>
-              <tr>
-                <td>Down Payment</td>
-                <td>1</td>
-                <td>
-                  {" "}
-                  {SecheduleData.Society === "Dyanmic Land Management"
-                    ? "0"
-                    : SecheduleData.Downpayment}{" "}
-                  PKR
-                </td>
-              </tr>
+              {SecheduleData.Society === "Dyanmic Land Management" ? (
+                <></>
+              ) : (
+                <tr>
+                  <td>Down Payment</td>
+                  <td>1</td>
+                  <td>
+                    {" "}
+                    {SecheduleData.Society === "Dyanmic Land Management"
+                      ? "0"
+                      : SecheduleData.Downpayment}{" "}
+                    PKR
+                  </td>
+                </tr>
+              )}
               <tr>
                 <td>Installment/Month</td>
                 <td>{SecheduleData.InstallmentMonth}</td>
@@ -113,17 +117,21 @@ function Schedule() {
                   PKR
                 </td>
               </tr>
-              <tr>
-                <td>Position Amount</td>
-                <td>1</td>
-                <td>
-                  {" "}
-                  {SecheduleData.Society === "Dyanmic Land Management"
-                    ? "0"
-                    : SecheduleData.PossessionAmount}{" "}
-                  PKR
-                </td>
-              </tr>
+
+              {SecheduleData.Society === "Dyanmic Land Management" ? (
+                <></>
+              ) : (
+                <tr>
+                  <td>Position Amount</td>
+                  <td>1</td>
+                  <td>
+                    {SecheduleData.Society === "Dyanmic Land Management"
+                      ? "0"
+                      : SecheduleData.PossessionAmount}{" "}
+                    PKR
+                  </td>
+                </tr>
+              )}
             </tbody>
             <tfoot>
               <tr>
@@ -189,9 +197,9 @@ function Schedule() {
 
         {/* </div> */}
       </div>
-      {/* {SecheduleData.Society === "Dyanmic Land Management" ? (
+      {SecheduleData.Society === "Dyanmic Land Management" ? (
         <>
-          <div className="a4Page">
+          {/* <div className="a4Page">
             <h2>Terms and Conditions</h2>
             <ol>
               <li>
@@ -260,7 +268,7 @@ function Schedule() {
               for both parties involved in the agreement. Feel free to customize
               them further to meet your specific requirements and circumstances.
             </p>
-          </div>
+          </div> */}
           <div className="a4Page">
             <div className="a4Img">
               <img src={dlmDiagram} alt="" />
@@ -269,7 +277,7 @@ function Schedule() {
         </>
       ) : (
         <></>
-      )} */}
+      )}
     </>
   );
 }
