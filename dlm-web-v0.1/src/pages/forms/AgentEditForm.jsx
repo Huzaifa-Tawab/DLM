@@ -9,6 +9,7 @@ import Footer from "../../components/Footer/Footer";
 import generateRandomString from "../../../RandomString";
 // const axios = require("axios");
 import axios from "axios";
+import SideBar from "../../components/Sidebar/sidebar";
 
 const ErrorMessage = ({ message }) => (
   <span style={{ color: "red", fontSize: "0.8em" }}>{message}</span>
@@ -283,7 +284,7 @@ const AgentEditForm = () => {
   };
   return (
     <>
-      <Header />
+      <SideBar />
       <div className="container">
         <h1 className="title" style={{ textAlign: "justify" }}>
           Registration Form {InvoiceID}
@@ -467,7 +468,6 @@ const AgentEditForm = () => {
           </form>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
