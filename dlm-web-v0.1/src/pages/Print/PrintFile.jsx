@@ -132,7 +132,11 @@ function PrintFile() {
               <div className="top-p-fle">
                 <p>Date: {FDate}</p>
                 <p>The Management committee,</p>
-                <p>Dynamic Land Management</p>
+                <p>
+                  {Society === "Dyanmic Land Management"
+                    ? "DYNAMIC LAND MANAGEMENT"
+                    : Society}
+                </p>
               </div>
               <div className="imgtop">
                 <img src={UserImage}></img>

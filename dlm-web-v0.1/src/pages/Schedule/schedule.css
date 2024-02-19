@@ -23,6 +23,9 @@
 .schedule-head h2 {
   text-align: left;
   font-size: 22px;
+  text-align: center;
+  background: #ba884f;
+  color: #fff;
 }
 .schedule-subject {
   margin: 1rem 0;
