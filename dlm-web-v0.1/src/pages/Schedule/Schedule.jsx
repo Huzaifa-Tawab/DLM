@@ -10,6 +10,8 @@ function Schedule() {
   const { id } = useParams();
   const [Total, setTotal] = useState("");
   const [SecheduleData, setSecheduleData] = useState({});
+  const date = new Date().toDateString();
+
   useEffect(() => {
     getBookingInfo();
   }, []);
@@ -126,8 +128,9 @@ function Schedule() {
                   <td>1</td>
                   <td>
                     {SecheduleData.Society === "Dyanmic Land Management"
-                      ? "0"
-                      : SecheduleData.PossessionAmount}{" "}
+                      ? SecheduleData.InstallmentMonth *
+                        SecheduleData.Installment
+                      : SecheduleData.PossessionAmount}
                     PKR
                   </td>
                 </tr>
@@ -139,11 +142,13 @@ function Schedule() {
                 <th></th>
                 <th>Total Amount</th>
                 <th>
-                  {parseInt(SecheduleData.BookingAmount) +
-                    parseInt(SecheduleData.Downpayment) +
-                    parseInt(SecheduleData.PossessionAmount) +
-                    parseInt(SecheduleData.Installment) *
-                      parseInt(SecheduleData.InstallmentMonth)}
+                  {SecheduleData.Society === "Dyanmic Land Management"
+                    ? "0"
+                    : parseInt(SecheduleData.BookingAmount) +
+                      parseInt(SecheduleData.Downpayment) +
+                      parseInt(SecheduleData.PossessionAmount) +
+                      parseInt(SecheduleData.Installment) *
+                        parseInt(SecheduleData.InstallmentMonth)}
                   PKR
                 </th>
               </tr>
@@ -152,13 +157,13 @@ function Schedule() {
         </div>
 
         <div className="schedule-desc-bottom">
-          <p>We have recived your booking fee.</p>
+          <p>We have received your booking fee.</p>
           <p>
             Please review the schedule carefully, and if you have any questions
             or require further clarification, do not hesitate to reach out to
-            our dedicated customer service team at [Customer Service Email/Phone
-            Number]. We are here to assist you and ensure that your property
-            ownership journey is as smooth as possible.
+            our dedicated customer service team at support@propertydlm.com. We
+            are here to assist you and ensure that your property ownership
+            journey is as smooth as possible.
           </p>
 
           <p>
@@ -186,6 +191,13 @@ function Schedule() {
           <h5>CEO</h5>
           <h5>DLM</h5>
           <h5>03160000000</h5> */}
+          <div className="print-file-footer">
+            <div className="file-footer-left">
+              <p>
+                Computer Generated File Printed on : <strong>{date}</strong>
+              </p>
+            </div>
+          </div>
         </div>
         {/* code is in schedule.css */}
         {/* <div className="foter-softxion">
