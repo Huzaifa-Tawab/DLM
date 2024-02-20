@@ -12,6 +12,7 @@ import AddDocs from "../../components/Modals/AddDocs";
 import { PiBuildingsBold } from "react-icons/pi";
 import isAdmin from "../../../IsAdmin";
 import SideBar from "../../components/Sidebar/sidebar";
+import cnicFormat from "../../../cnicFormatter";
 function AgentDetails() {
   const navigate = useNavigate();
   const [isloading, setisloading] = useState(true);
@@ -188,7 +189,7 @@ function AgentDetails() {
                             <span className="secon-row">{userData.Name}</span>
                             <span className="secon-row">{userData.FName}</span>
                             <span className="secon-row">
-                              {isAdmin() && userData.Cnic}
+                              {isAdmin() && cnicFormat(userData.Cnic)}
                             </span>
                             <span className="secon-row">{userData.Gender}</span>
                             <span className="secon-row">{userData.Dob}</span>

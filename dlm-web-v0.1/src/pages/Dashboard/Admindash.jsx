@@ -257,26 +257,25 @@ function AdminDash() {
                     <img src={User.img} className="dash-avatar" />
                     <div className="inf--flex-col">
                       <div className="data-flex-col">
-                      <span>Name:
-                        <strong className="strong">{User.Name}</strong>
-                        
-                      </span>
-                      <span>Gender:
-                        <strong className="strong">{User.Gender}</strong>
-                        
-                      </span>
-                      <span>D.O.B:
-                        <strong className="strong"> {User.Dob}</strong>
-                       
-                      </span>
+                        <span>
+                          Name:
+                          <strong className="strong">{User.Name}</strong>
+                        </span>
+                        <span>
+                          Gender:
+                          <strong className="strong">{User.Gender}</strong>
+                        </span>
+                        <span>
+                          D.O.B:
+                          <strong className="strong"> {User.Dob}</strong>
+                        </span>
                       </div>
                     </div>
                   </div>
 
                   <div className="agent-dash-content-col1-row2">
-                  
                     <div className="agent-dash-content-col1-row2-card1">
-                    <h4>User Details</h4>
+                      <h4>User Details</h4>
                       <div className="level-card">
                         <h1>Total Users </h1>
                         <h1>{NoCustomers + NoAgent} Users </h1>
@@ -321,41 +320,40 @@ function AdminDash() {
                   </div>
                 </div>
                 <div className="agent-dash-content-col2 light-green">
-                <div className="admin-dash-daysleft-header-main">
-                  <div className="admin-dash-daysleft-header">
-                    
-                    <h1>Near Due </h1>
-                    <span className="plots-num">
-                      {PlotsWith10OrLessDaysLeft &&
-                        PlotsWith10OrLessDaysLeft.length}
-                    </span>
+                  <div className="admin-dash-daysleft-header-main">
+                    <div className="admin-dash-daysleft-header">
+                      <h1>Near Due </h1>
+                      <span className="plots-num">
+                        {PlotsWith10OrLessDaysLeft &&
+                          PlotsWith10OrLessDaysLeft.length}
+                      </span>
                     </div>
-                    
-                    <button onClick={fetchPlots}className="refreshbutton"><i class="fa fa-refresh" aria-hidden="true"></i></button>
-                   
+
+                    <button onClick={fetchPlots} className="refreshbutton">
+                      <i class="fa fa-refresh" aria-hidden="true"></i>
+                    </button>
                   </div>
                   {PlotsWith10OrLessDaysLeft ? (
                     PlotsWith10OrLessDaysLeft.map((Plot, index) => (
                       <div key={index}>
                         <div className="plotsdayleft-data">
                           <div className="data-data">
-                          <p>{Plot.id}</p>
-                          <p>{Plot.days} Days Left</p>
+                            <p>{Plot.id}</p>
+                            <p>{Plot.days} Days Left</p>
                           </div>
                           <div className="plotsdayleft-sec-data">
-                          <button className="view-button"
-                            onClick={() => {
-                              navigate(`/details/plot/${Plot.id}`);
-                            }}
-                          >
-                            {" "}
-                            view{" "}
-                          </button>
+                            <button
+                              className="view-button"
+                              onClick={() => {
+                                navigate(`/details/plot/${Plot.id}`);
+                              }}
+                            >
+                              {" "}
+                              view{" "}
+                            </button>
                           </div>
                         </div>
-                        <div className="plotsdayleft-button">
-                          
-                        </div>
+                        <div className="plotsdayleft-button"></div>
                       </div>
                     ))
                   ) : (

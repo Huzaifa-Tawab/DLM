@@ -18,6 +18,7 @@ import Loader from "../../components/loader/Loader";
 import { useEffect } from "react";
 import SideBar from "../../components/Sidebar/sidebar";
 import { onAuthStateChanged } from "firebase/auth";
+import cnicFormat from "../../../cnicFormatter";
 
 const ErrorMessage = ({ message }) => (
   <span style={{ color: "red", fontSize: "0.8em" }}>{message}</span>
@@ -122,10 +123,9 @@ const FileInput = ({ label, onChange, previewUrl, error }) => {
             borderRadius: "50%",
             cursor: "pointer",
             textAlign: "center",
-            border:"1px solid #A4243B",
+            border: "1px solid #A4243B",
             lineHeight: "150px",
             fontSize: "16px",
-          
           }}
           onClick={handleClick}
         >
@@ -370,7 +370,7 @@ const ClientRegistrationForm = () => {
                       <NumberInput
                         label="CNIC"
                         name="Cnic"
-                        value={formData.Cnic}
+                        value={cnicFormat(formData.Cnic)}
                         onChange={handleChange}
                         error={errors.Cnic}
                       />

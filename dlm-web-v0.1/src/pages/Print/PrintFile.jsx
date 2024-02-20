@@ -8,6 +8,7 @@ import { db } from "../../firebase";
 import Loader from "../../components/loader/Loader";
 import softx from "../../Assets/SoftXion.png";
 import getDate from "../../../GetDDMMYY";
+import cnicFormat from "../../../cnicFormatter";
 
 function PrintFile() {
   const { id } = useParams();
@@ -166,7 +167,7 @@ function PrintFile() {
                 </div>
                 <div className="column-2">
                   <span>{Name}</span>
-                  <span>{Cnic}</span>
+                  <span>{cnicFormat(Cnic)}</span>
                   <span>{Dob}</span>
                 </div>
               </div>
@@ -204,7 +205,7 @@ function PrintFile() {
                 </div>
                 <div className="column-44">
                   <span>{PhNoKin}</span>
-                  <span>{CnicKin}</span>
+                  <span>{cnicFormat(CnicKin)}</span>
                 </div>
               </div>
             </div>

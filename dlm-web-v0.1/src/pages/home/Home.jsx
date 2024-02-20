@@ -8,6 +8,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import Footer from "../../components/Footer/Footer";
 import logo from "../../Assets/SoftXion.png";
+import cnicFormat from "../../../cnicFormatter";
 
 const Home = () => {
   const [referenceId, setReferenceId] = useState("");
@@ -120,7 +121,7 @@ const Home = () => {
           <br />
           <input
             type="text"
-            value={cnic}
+            value={cnicFormat(cnic)}
             onChange={handleCnicChange}
             className="input-field"
           />

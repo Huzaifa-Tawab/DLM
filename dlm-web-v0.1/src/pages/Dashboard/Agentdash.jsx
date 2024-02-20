@@ -15,6 +15,7 @@ import "./dashboard.css"; // Import your CSS file for styling
 import { onAuthStateChanged } from "firebase/auth";
 import { CircularProgressbar } from "react-circular-progressbar";
 import Loader from "../../components/loader/Loader";
+import cnicFormat from "../../../cnicFormatter";
 
 function AgentDash() {
   const [LevelOne, setLevelOne] = useState([]);
@@ -247,41 +248,59 @@ function AgentDash() {
                   <div className="up-hd">
                     <h3>AGENT PROFILE</h3>
                   </div>
-                  <div className="agent-dash-content-col1-row1 light-blue" >
+                  <div className="agent-dash-content-col1-row1 light-blue">
                     <img src={User.imgUrl} className="dash-avatar" />
                     <div className="rower-fle">
-                    <div className="rower">
-                      <span><strong className="strong">Name:</strong></span>
-                      <span><strong className="strong" >Gender:</strong></span>
-                      <span><strong className="strong">CNIC:</strong></span>
-                      <span><strong className="strong">Invoice Id:</strong> </span>
-                      <span><strong className="strong">Sponsor of:</strong></span>
+                      <div className="rower">
+                        <span>
+                          <strong className="strong">Name:</strong>
+                        </span>
+                        <span>
+                          <strong className="strong">Gender:</strong>
+                        </span>
+                        <span>
+                          <strong className="strong">CNIC:</strong>
+                        </span>
+                        <span>
+                          <strong className="strong">Invoice Id:</strong>{" "}
+                        </span>
+                        <span>
+                          <strong className="strong">Sponsor of:</strong>
+                        </span>
+                      </div>
+                      <div className="rower">
+                        <span>{User.Name}</span>
+                        <span>{User.Gender}</span>
+                        <span>{cnicFormat(User.Cnic)}</span>
+                        <span>{ChildOf.InvId}</span>
+                        <span>{ChildOf.Name}</span>
+                      </div>
+                      <div className="rower">
+                        <span>
+                          <strong className="strong">F/H Name:</strong>
+                        </span>
+                        <span>
+                          <strong className="strong">D.O.B:</strong>
+                        </span>
+                        <span>
+                          <strong className="strong">Phone No:</strong>
+                        </span>
+                        <span>
+                          <strong className="strong">TownCity:</strong>
+                        </span>
+                      </div>
+                      <div className="rower">
+                        <span>{User.FName}</span>
+                        <span>{User.Dob}</span>
+                        <span>{ChildOf.phNo}</span>
+                        <span>{ChildOf.TownCity}</span>
+                      </div>
                     </div>
-                    <div className="rower">
-                      <span>{User.Name}</span>
-                      <span>{User.Gender}</span>
-                      <span>{User.Cnic}</span>
-                      <span>{ChildOf.InvId}</span>
-                      <span>{ChildOf.Name}</span>
-                    </div>
-                    <div className="rower">
-                      <span><strong className="strong">F/H Name:</strong></span>
-                      <span><strong className="strong">D.O.B:</strong></span>
-                      <span><strong className="strong">Phone No:</strong></span>
-                      <span><strong className="strong">TownCity:</strong></span>
-                    </div>
-                    <div className="rower">
-                      <span>{User.FName}</span>
-                      <span>{User.Dob}</span>
-                      <span>{ChildOf.phNo}</span>
-                      <span>{ChildOf.TownCity}</span>
-                    </div>
-                  </div>
                   </div>
 
                   <div className="agent-dash-content-col1-row2">
                     <div className="agent-dash-content-col1-row2-card1">
-                    <h4>User Details</h4>
+                      <h4>User Details</h4>
                       <div className="level-card">
                         <h1>Direct </h1>
                         <h1>{User.Plots.length} plots </h1>
@@ -304,16 +323,15 @@ function AgentDash() {
                       </div>
                     </div>
                     <div className="agent-dash-content-col1-row2-card2">
-                    <h4>Files Details</h4>
-                    <div className="level-card">
+                      <h4>Files Details</h4>
+                      <div className="level-card">
                         <h1>Plots </h1>
-                        </div>
-                      <ul >
+                      </div>
+                      <ul>
                         {User.Plots.lenght === 0 ? (
                           <p>NO Plots</p>
                         ) : (
                           User.Plots.map((e) => <li>{e}</li>)
-
                         )}
                       </ul>
                     </div>
@@ -327,8 +345,9 @@ function AgentDash() {
 
                       <div
                         key={index}
-                        className={`agent-dash-content-col2-card ${promo.status === "completed" ? "goal-achieved" : ""
-                          }`}
+                        className={`agent-dash-content-col2-card ${
+                          promo.status === "completed" ? "goal-achieved" : ""
+                        }`}
                       >
                         <div className="mymistake-huxi">
                           <div className="agent-dash-content-col2-card-content">

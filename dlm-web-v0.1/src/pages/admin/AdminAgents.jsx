@@ -10,6 +10,7 @@ import { debounce } from "lodash";
 import arrow from "../../Assets/Plus.png";
 import "./adminhome.css";
 import SideBar from "../../components/Sidebar/sidebar";
+import cnicFormat from "../../../cnicFormatter";
 
 function AdminAgents() {
   const navigate = useNavigate();
@@ -60,87 +61,87 @@ function AdminAgents() {
     [filteredCustomersData]
   );
 
-  return(
+  return (
     <>
-    <SideBar
-    element={
-      isLoading ? (
-        <Loader/>
-      ) : (
-        <>
-          <div className="Admin-Home">
-            <div className="hero--head">
-              <h1>Agents</h1>
-              <button
-                onClick={() => {
-                  navigate("/create/agent/");
-                }}
-              >
-                Add New
-                <img src={arrow}></img>
-              </button>
-            </div>
-            <div className="Admin-Home-content">
-              <div className="Admin-Home-table">
-                <form class="nosubmit">
-                  <input
-                    type="text"
-                    placeholder="Search by Id"
-                    onChange={(e) => debouncedFilterData(e.target.value)}
-                    className="nosubmit"
-                  />
-                  
-                </form>
-                <div className="table-wrapper">
-                  <table className="fl-table">
-                    <thead>
-                      <tr>
-                        <th>DP</th>
-                        <th>Name</th>
-                        <th>Phone Number</th>
-                        <th>CNIC No</th>
-                        <th>Plots</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {filteredCustomersDataMemoized.map((e) => (
-                        <tr key={e.Cnic}>
-                          <td><img
-                              src={avatar}
-                              alt="avatar"
-                              className="avatar-table"
-                            /></td>
-                          {/* <td className="avatar-image width-adjust"> */}
-                            <td>
-                            {e.Name}
-                          </td>
-                          <td>{e.phNo}</td>
-                          <td>{e.Cnic}</td>
-                          <td className="tddr">
-                            <p>{e.Plots.length} Plots</p>
-                          </td>
-                          <td>
-                            <button
-                              className="button-view"
-                              onClick={() =>
-                                navigate(`/details/agent/${e.Cnic}`)
-                              }
-                            >
-                              View
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+      <SideBar
+        element={
+          isLoading ? (
+            <Loader />
+          ) : (
+            <>
+              <div className="Admin-Home">
+                <div className="hero--head">
+                  <h1>Agents</h1>
+                  <button
+                    onClick={() => {
+                      navigate("/create/agent/");
+                    }}
+                  >
+                    Add New
+                    <img src={arrow}></img>
+                  </button>
+                </div>
+                <div className="Admin-Home-content">
+                  <div className="Admin-Home-table">
+                    <form class="nosubmit">
+                      <input
+                        type="text"
+                        placeholder="Search by Id"
+                        onChange={(e) => debouncedFilterData(e.target.value)}
+                        className="nosubmit"
+                      />
+                    </form>
+                    <div className="table-wrapper">
+                      <table className="fl-table">
+                        <thead>
+                          <tr>
+                            <th>DP</th>
+                            <th>Name</th>
+                            <th>Phone Number</th>
+                            <th>CNIC No</th>
+                            <th>Plots</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {filteredCustomersDataMemoized.map((e) => (
+                            <tr key={e.Cnic}>
+                              <td>
+                                <img
+                                  src={avatar}
+                                  alt="avatar"
+                                  className="avatar-table"
+                                />
+                              </td>
+                              {/* <td className="avatar-image width-adjust"> */}
+                              <td>{e.Name}</td>
+                              <td>{e.phNo}</td>
+                              <td>{cnicFormat(e.Cnic)}</td>
+                              <td className="tddr">
+                                <p>{e.Plots.length} Plots</p>
+                              </td>
+                              <td>
+                                <button
+                                  className="button-view"
+                                  onClick={() =>
+                                    navigate(`/details/agent/${e.Cnic}`)
+                                  }
+                                >
+                                  View
+                                </button>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </>
-   ) }
-    />
+            </>
+          )
+        }
+      />
     </>
   );
 }

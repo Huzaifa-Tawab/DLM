@@ -16,6 +16,7 @@ import profile from "../../Assets/profile.svg";
 import block from "../../Assets/block.svg";
 import downtown from "../../Assets/Downtown.svg";
 import SideBar from "../../components/Sidebar/sidebar";
+import cnicFormat from "../../../cnicFormatter";
 
 function ClientDetails() {
   const navigate = useNavigate();
@@ -114,7 +115,7 @@ function ClientDetails() {
                       </div>
                     </div>
                     {/* <span>info@infogmail.com</span> */}
-                  
+
                     {/* <span>+92 317 5545690</span> */}
                     <div className="clients-buttons">
                       <div className="button-pair">
@@ -129,23 +130,20 @@ function ClientDetails() {
                           </button>
                         )}
 
-                        
                         {!isAdmin() && (
                           <button
-                          onClick={() => {
-                            navigate("/create/plot/", {
-                              state: {
-                                Cuid: userData.Cnic,
-                              },
-                            });
-                          }}
-                        >
-                          <img src={plot} alt="" />
-                          <p>Add Plot </p>
-                        </button>
-
+                            onClick={() => {
+                              navigate("/create/plot/", {
+                                state: {
+                                  Cuid: userData.Cnic,
+                                },
+                              });
+                            }}
+                          >
+                            <img src={plot} alt="" />
+                            <p>Add Plot </p>
+                          </button>
                         )}
-                        
                       </div>
 
                       <div className="button-pair ">
@@ -184,7 +182,9 @@ function ClientDetails() {
                           <span className="secon-row">{userData.Name}</span>
                           <span className="secon-row">{userData.FName}</span>
                           <span className="secon-row">
-                            {isAdmin() ? userData.Cnic : "************"}
+                            {isAdmin()
+                              ? cnicFormat(userData.Cnic)
+                              : "************"}
                           </span>
                           <span className="secon-row">{userData.Gender}</span>
                           <span className="secon-row">{userData.Dob}</span>
@@ -215,19 +215,21 @@ function ClientDetails() {
                     </div>
                   </div>
                 </div>
-               
-                  <div className="documents">
-                    <div className="doc-row">
-                      <h1>Documents</h1>
-                      
-                      <button className="doc-button" onClick={openDocModal}><img src={adddoc} alt="" />Add Document</button>
-                      
-                    </div>
-                    {isAdmin() && (
+
+                <div className="documents">
+                  <div className="doc-row">
+                    <h1>Documents</h1>
+
+                    <button className="doc-button" onClick={openDocModal}>
+                      <img src={adddoc} alt="" />
+                      Add Document
+                    </button>
+                  </div>
+                  {isAdmin() && (
                     <table className="fl-table">
                       <thead>
                         <th>Document Name</th>
-                       
+
                         <th>More Details</th>
                       </thead>
                       <tbody>
@@ -250,8 +252,7 @@ function ClientDetails() {
                           )}
                       </tbody>
                     </table>
-                  
-                )}
+                  )}
                 </div>
                 <div className="plots">
                   {/* <h1>Plots Details</h1> */}

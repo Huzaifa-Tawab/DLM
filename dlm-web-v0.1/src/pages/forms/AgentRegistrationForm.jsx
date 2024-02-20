@@ -13,6 +13,7 @@ import Loader from "../../components/loader/Loader";
 import SideBar from "../../components/Sidebar/sidebar";
 import isAdmin from "../../../IsAdmin";
 import { onAuthStateChanged } from "firebase/auth";
+import cnicFormat from "../../../cnicFormatter";
 
 const ErrorMessage = ({ message }) => (
   <span style={{ color: "red", fontSize: "0.8em" }}>{message}</span>
@@ -440,7 +441,7 @@ const AgentRegistrationForm = () => {
                       <TextInput
                         label="CNIC"
                         name="Cnic"
-                        value={formData.Cnic}
+                        value={cnicFormat(formData.Cnic)}
                         onChange={handleChange}
                         error={errors && errors.Cnic}
                       />
