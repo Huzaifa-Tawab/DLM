@@ -133,8 +133,9 @@ const PlotRegistrationForm = () => {
     }
     if (possessionAmount === 0) {
       console.log(4);
-      setpossessionAmountError("Possession Amount Can not be empty");
-      error++;
+
+      // setpossessionAmountError("Possession Amount Can not be empty");
+      // error++;
     }
 
     if (Block.trim() === "") {

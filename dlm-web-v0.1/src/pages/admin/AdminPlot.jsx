@@ -141,9 +141,7 @@ function AdminPlot() {
                     <span>City/Town</span>
                   </div>
                   <div className="row">
-                    <span className="secon-row">
-                      {PlotDetails.PlotSize} 
-                    </span>
+                    <span className="secon-row">{PlotDetails.PlotSize}</span>
                     <span className="secon-row">{PlotDetails.AgentId}</span>
                     {isAdmin() && (
                       <span className="secon-row">
@@ -161,7 +159,9 @@ function AdminPlot() {
                   <div className="row">
                     <span className="secon-row">{PlotDetails.FileNumber}</span>
                     <span className="secon-row">{PlotDetails.Category}</span>
-                    <span className="secon-row">{PlotDetails.paidAmount}</span>
+                    <span className="secon-row">
+                      {PlotDetails.paidAmount ? PlotDetails.paidAmount : 0}
+                    </span>
                     <span className="secon-row">{PlotDetails.TotalAmount}</span>
                   </div>
                 </div>

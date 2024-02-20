@@ -227,7 +227,7 @@ function PrintFile() {
               <div className="sectop-right-44">
                 <div className="column-333">
                   <span>Category:</span>
-                  <span>Town/City:</span>
+                  <span>Block:</span>
                 </div>
                 <div className="column-444">
                   <span>{Category}</span>
