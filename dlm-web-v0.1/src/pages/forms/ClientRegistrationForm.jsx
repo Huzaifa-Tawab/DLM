@@ -370,7 +370,7 @@ const ClientRegistrationForm = () => {
                       <NumberInput
                         label="CNIC"
                         name="Cnic"
-                        value={cnicFormat(formData.Cnic)}
+                        value={formData.Cnic}
                         onChange={handleChange}
                         error={errors.Cnic}
                       />

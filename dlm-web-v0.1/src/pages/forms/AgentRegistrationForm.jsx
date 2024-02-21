@@ -441,7 +441,7 @@ const AgentRegistrationForm = () => {
                       <TextInput
                         label="CNIC"
                         name="Cnic"
-                        value={cnicFormat(formData.Cnic)}
+                        value={formData.Cnic}
                         onChange={handleChange}
                         error={errors && errors.Cnic}
                       />
