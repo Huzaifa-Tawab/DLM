@@ -45,7 +45,7 @@ function AdminHome() {
       newCustomersData.push(doc.data());
     });
     setCustomersData(newCustomersData);
-    setFilteredCustomersData(newCustomersData);
+    setFilteredCustomersData([]);
     setisLoading(false);
   }
 
@@ -55,12 +55,15 @@ function AdminHome() {
       if (searchText && searchText.length > 0) {
         newData = CustomersData.filter(
           (data) =>
-            data.Name.toLowerCase().includes(searchText.toLowerCase()) ||
-            data.Cnic.toLowerCase().includes(searchText.toLowerCase()) ||
+            data.Name.toLowerCase() == searchText.toLowerCase() ||
+            data.Cnic == searchText ||
+            data.phNo == searchText ||
             data.Plots.some((plot) =>
               plot.toLowerCase().includes(searchText.toLowerCase())
             )
         );
+      } else {
+        newData = [];
       }
       setFilteredCustomersData(newData);
     },
