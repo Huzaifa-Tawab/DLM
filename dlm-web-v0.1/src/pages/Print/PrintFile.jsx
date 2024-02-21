@@ -228,10 +228,16 @@ function PrintFile() {
                 <div className="column-333">
                   <span>Category:</span>
                   <span>Block:</span>
+                  <span>Status</span>
                 </div>
                 <div className="column-444">
                   <span>{Category}</span>
                   <span>{Block}</span>
+                  <span>
+                    {Society === "Dyanmic Land Management"
+                      ? "Non Developed"
+                      : "Developed"}
+                  </span>
                 </div>
               </div>
             </div>
