@@ -40,6 +40,14 @@ function FinancePending() {
     });
     getCustomersData();
   }, [1]);
+  const openNewWindow = (Link) => {
+    // Open a new window
+    const newWindow = window.open("", "_blank");
+
+    // Navigate to the specified URL in the new window
+    newWindow.location.href = Link;
+  };
+
   async function getFinanceUser(id) {
     const docRef = doc(db, "Users", id);
     const docSnap = await getDoc(docRef);

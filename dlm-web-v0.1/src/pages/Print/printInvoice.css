@@ -53,10 +53,10 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-
   padding-top: 4vh;
   padding-bottom: 5vh;
 }
+
 .secnd-comp-in-head {
   /* margin-left: 5.5rem; */
   font-size: 1.4rem;
@@ -68,7 +68,7 @@
   flex-shrink: 0;
 }
 .secnd-comp-in-head-sec {
-  margin-left: 27%;
+  margin-left: 13%;
   /* margin-top: 0.2rem; */
   width: 10rem;
   height: 2.2rem;
@@ -317,6 +317,12 @@
   position: relative;
   /* position: absolute; */
   bottom: -185px;
+}
+.secnd-comp-in img {
+  height: 30px;
+}
+.secnd-comp-inter img {
+  height: 30px;
 }
 .file-footer-left {
   font-size: 11px;

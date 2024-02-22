@@ -28,6 +28,7 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
   const [NumberOfPenelties, setNumberOfPenelties] = useState(0);
   const [Amount, setAmount] = useState(0);
   const [PendingInstallments, setPendingInstallments] = useState(0);
+  const [DisableButton, setDisableButton] = useState(false);
 
   useEffect(() => {
     getDataFromDb();
@@ -38,7 +39,9 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
   }
 
   const handleUpload = () => {
+    setDisableButton(true);
     if (!file) {
+      setDisableButton(false);
       alert("Please upload an image first!");
     } else {
       uploadToFirebase();
@@ -217,7 +220,11 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
           <input type="file" onChange={handleChange} accept="/image/*" />
         </div>
 
-        <button className="modal-button" onClick={handleUpload}>
+        <button
+          disabled={DisableButton}
+          className="modal-button"
+          onClick={handleUpload}
+        >
           Submit
         </button>
         <p style={{ textAlign: "center" }}>{percent}% done</p>
