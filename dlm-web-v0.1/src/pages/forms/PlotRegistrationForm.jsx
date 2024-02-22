@@ -122,16 +122,16 @@ const PlotRegistrationForm = () => {
     // }
 
     if (PlotSize.trim() === "") {
-      console.log(6);
-      setPlotsizeError("Plot Size Can not be empty");
-      error++;
+      // console.log(6);
+      // setPlotsizeError("Plot Size Can not be empty");
+      // error++;
     }
-    if (TotalAmount === 0) {
-      console.log(5);
-      setTotalAmountError("Total Amount Can not be empty");
-      error++;
+    if (TotalAmount < -1) {
+      // console.log(5);
+      // setTotalAmountError("Total Amount Can not be empty");
+      // error++;
     }
-    if (possessionAmount === 0) {
+    if (possessionAmount < -1) {
       console.log(4);
 
       // setpossessionAmountError("Possession Amount Can not be empty");
@@ -513,7 +513,7 @@ const PlotRegistrationForm = () => {
                           name="TotalAmount"
                           value={TotalAmount}
                           onChange={(e) => {
-                            if (parseInt(e.target.value) < 0) {
+                            if (parseInt(e.target.value) < -1) {
                               setTotalAmount(0);
                             } else {
                               setTotalAmount(parseInt(e.target.value));
@@ -536,7 +536,7 @@ const PlotRegistrationForm = () => {
                           name="PaidAmount"
                           value={Downpayment}
                           onChange={(e) => {
-                            if (parseInt(e.target.value) < 0) {
+                            if (parseInt(e.target.value) < -1) {
                               setDownPayment(0);
                             } else {
                               setDownPayment(e.target.value);
@@ -556,7 +556,7 @@ const PlotRegistrationForm = () => {
                         name="PossessionAmount"
                         value={possessionAmount}
                         onChange={(e) => {
-                          if (parseInt(e.target.value) < 0) {
+                          if (parseInt(e.target.value) < -1) {
                             setpossessionAmount(0);
                           } else {
                             setpossessionAmount(parseInt(e.target.value));
@@ -575,7 +575,7 @@ const PlotRegistrationForm = () => {
                   name="InstallmentMonth"
                   value={InstallmentMonth}
                   onChange={(e) => {
-                    if (parseInt(e.target.value) < 0) {
+                    if (parseInt(e.target.value) < -1) {
                       setInstallmentMonth(0);
                     } else {
                       setInstallmentMonth(e.target.value);
@@ -608,7 +608,7 @@ const PlotRegistrationForm = () => {
                         name="OtherAmount"
                         value={OtherAmount}
                         onChange={(e) => {
-                          if (parseInt(e.target.value) < 0) {
+                          if (parseInt(e.target.value) < -1) {
                             setOtherAmount(0);
                           } else {
                             setOtherAmount(e.target.value);
