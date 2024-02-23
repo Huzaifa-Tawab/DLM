@@ -44,8 +44,13 @@ function AdminHome() {
     querySnapshot.forEach((doc) => {
       newCustomersData.push(doc.data());
     });
+    if (isAdmin()) {
+      setFilteredCustomersData(newCustomersData);
+    } else {
+      setFilteredCustomersData([]);
+    }
+    console.log(newCustomersData);
     setCustomersData(newCustomersData);
-    setFilteredCustomersData([]);
     setisLoading(false);
   }
 
@@ -63,7 +68,11 @@ function AdminHome() {
             )
         );
       } else {
-        newData = [];
+        if (isAdmin()) {
+          newData = CustomersData;
+        } else {
+          newData = [];
+        }
       }
       setFilteredCustomersData(newData);
     },
