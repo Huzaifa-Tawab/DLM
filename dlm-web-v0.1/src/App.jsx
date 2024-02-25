@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+
 import Login from "./pages/login/login";
 import AdminHome from "./pages/admin/AdminHome";
 import SubAdmin from "./pages/subadmin/SubAdmin";
@@ -55,6 +56,8 @@ import EditProfile from "./pages/Edit Profile/Editprofile";
 import Schedule from "./pages/Schedule/Schedule";
 // import Walletnew from "./pages/Wallet/walletnew";
 import AdminWithdralView from "./pages/admin/AdminWithdralView";
+import Employspaytable from "./pages/finance/Employspaytable";
+import Emppayslip from "./pages/Print/Emppayslip";
 
 function App() {
   const [open, setOpen] = useState();
@@ -73,6 +76,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/emppayslip" element={<Emppayslip />} />
+        <Route path="/employtable" element={<Employspaytable />} />
         <Route path="/print/invoice/:id" element={<PrintInvoice />} />
         <Route path="print/schedule/:id" element={<Schedule />} />
         {/* <Route path="/" element={<FinancePlotsView />} /> */}
