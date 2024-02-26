@@ -316,7 +316,7 @@
 .print-file-footer {
   position: relative;
   /* position: absolute; */
-  bottom: -185px;
+  top: 150px;
 }
 .secnd-comp-in img {
   height: 30px;

@@ -178,10 +178,10 @@ function Schedule() {
             date of booking. Once it is cancelled, it cannot be
             retained or refunded
           </p>
-
+          <br />
           <span>Warm regards,</span>
           <br />
-          <br />
+
           <h5>
             {SecheduleData.Society === "Dyanmic Land Management"
               ? "Dynamic Land Management"

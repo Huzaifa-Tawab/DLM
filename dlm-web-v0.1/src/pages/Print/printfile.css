@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,500;0,600;0,700;1,400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,500;0,600;0,700;1,400&display=swap");
 
 .webpage {
   width: 230mm;
@@ -64,8 +64,7 @@
   width: 550px;
   display: flex;
   justify-content: center;
-  font-family: 'Open Sans', sans-serif;
-  
+  font-family: "Open Sans", sans-serif;
 }
 .top-sec-cont {
   width: 250px;
@@ -99,7 +98,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 .sec-section {
   width: 770px;
@@ -113,7 +112,7 @@
   font-weight: 400;
   line-height: normal;
   margin-top: 20px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 .sec-section-last {
   color: #000;
@@ -122,11 +121,11 @@
   font-weight: 700;
   line-height: normal;
   padding-bottom: 20px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 .sec-section-last > span {
   font-weight: 400;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 .top-sec-heading {
   width: 770px;
@@ -144,7 +143,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 .sectop-section-content {
   display: flex;
@@ -172,7 +171,7 @@
   margin-top: 20px;
   margin-bottom: 20px;
   align-items: flex-start;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 .sectop-row > .column-2 {
   display: flex;
@@ -185,7 +184,7 @@
   margin-top: 20px;
   margin-bottom: 20px;
   align-items: flex-start;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 .sectop-right > .column-3 {
   display: flex;
@@ -199,13 +198,13 @@
   margin-top: 20px;
   margin-bottom: 20px;
   align-items: flex-start;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 .sectop-right > .column-4 {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 
   color: #000;
   font-size: 13px;
@@ -228,7 +227,7 @@
   margin-top: 20px;
   margin-bottom: 20px;
   align-items: flex-start;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .columnfrth-sec > .column-2 {
@@ -236,7 +235,7 @@
   flex-direction: column;
   gap: 5px;
   color: #000;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -258,7 +257,7 @@
   flex-direction: column;
   gap: 5px;
   color: #000;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 13px;
   font-style: normal;
   font-weight: 700;
@@ -279,7 +278,7 @@
   margin-top: 20px;
   margin-bottom: 10px;
   align-items: flex-start;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 .underline-1 {
   text-decoration: underline;
@@ -302,7 +301,7 @@
   gap: 5px;
   color: #000;
   font-size: 14px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -326,20 +325,20 @@
   color: #000;
   font-size: 11px;
   font-style: normal;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 400;
   line-height: normal;
 }
 .last-text-content > span {
   font-weight: 700;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .signatures-text {
   margin-top: 30px;
   width: 134px;
   height: 20px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   flex-shrink: 0;
   border-radius: 1px;
   background: #f4b266;
@@ -350,7 +349,7 @@
 }
 .signatures-text > h3 {
   color: #fff;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 15px;
   font-style: normal;
   font-weight: 700;
@@ -366,7 +365,7 @@
   font-size: 15px;
   font-style: normal;
   font-weight: 700;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   line-height: normal;
   letter-spacing: 0.33px;
   color: #a4243b;
@@ -384,7 +383,7 @@
 .head-top-cont {
   display: flex;
   color: #000;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -406,7 +405,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   margin-top: 20px;
   margin-bottom: 20px;
   align-items: flex-start;
@@ -422,7 +421,7 @@
   line-height: normal;
   margin-top: 20px;
   margin-bottom: 20px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   align-items: flex-start;
 }
 .sectop-right-33 {
@@ -435,8 +434,8 @@
   flex-direction: column;
   gap: 5px;
   color: #000;
-  font-family: 'Open Sans', sans-serif;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 13px;
   font-style: normal;
   font-weight: 700;
@@ -451,7 +450,7 @@
   gap: 5px;
   color: #000;
   font-size: 13px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -463,4 +462,9 @@
   display: flex;
   justify-content: space-between;
   width: 35%;
+}
+.file-footer-left {
+  position: relative;
+  /* position: absolute; */
+  top: 5px;
 }

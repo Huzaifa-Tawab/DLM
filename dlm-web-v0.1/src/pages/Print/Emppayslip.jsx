@@ -59,6 +59,39 @@ function Emppayslip() {
                   <span>311dmfdf1</span>
                 </div>
               </div>
+              <div className="des-col-4-sec-2">
+                <div className="des-col-4-iner4">
+                  <span>Company Id</span>
+                  <span>Phone</span>
+                  <span>Terms</span>
+                </div>
+                <div className="des-col-4-iner5">
+                  <span>xxxxxxxxxx</span>
+                  <span>0234444444</span>
+                  <span>Due on Recipt</span>
+                </div>
+              </div>
+            </div>
+            <div className="des-col-5-slip">
+              <div className="col-5-slip-head">
+                <div>
+                  <h1>Particulars</h1>
+                  <h1>Advance</h1>
+                  <h1>Amount</h1>
+                </div>
+              </div>
+              <div className="inner-slip-col-5">
+                <div className="inner-slip-5-col1">
+                  <span>Company Id</span>
+                  <span>Phone</span>
+                  <span>Terms</span>
+                </div>
+                <div className="inner-slip-5-col1">
+                  <span>Company Id</span>
+                  <span>Phone</span>
+                  <span>Terms</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
