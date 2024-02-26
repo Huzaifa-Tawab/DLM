@@ -32,10 +32,10 @@ const Home = () => {
       newErrors.cnic = "CNIC format is invalid. Use 12345-6789012-3.";
     }
 
-    if (!phoneNumber || !/^\d{11}$/.test(phoneNumber)) {
-      isValid = false;
-      newErrors.phoneNumber = "Phone number must be 11 digits.";
-    }
+    // if (!phoneNumber || !/^\d{11}$/.test(phoneNumber)) {s
+    //   isValid = false;
+    //   newErrors.phoneNumber = "Phone number must be 11 digits.";
+    // }
 
     setErrors(newErrors);
     return isValid;
