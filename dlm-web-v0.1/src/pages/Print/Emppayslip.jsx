@@ -128,9 +128,10 @@ function Emppayslip() {
               </div>
             </div>
           </div>
-          <br></br>
-          <br></br>
-          <h2>Employee's Signature</h2>
+          <div className="slip-finance-signature">
+            <div className="sig-underline"></div>
+            <h4>Employee's Signature</h4>
+          </div>
         </div>
       </div>
     </div>

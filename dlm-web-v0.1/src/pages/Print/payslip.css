@@ -169,3 +169,16 @@
   justify-content: space-around;
   background: #f1a949;
 }
+.sig-underline {
+  border-bottom: 4px solid grey;
+  width: 300px;
+  h4 {
+    font-size: 14px;
+  }
+}
+.slip-finance-signature {
+  position: relative;
+  position: relative;
+  top: 200px;
+  margin: 20px;
+}
