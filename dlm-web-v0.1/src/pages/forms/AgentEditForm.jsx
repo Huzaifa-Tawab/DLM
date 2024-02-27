@@ -9,6 +9,7 @@ import Footer from "../../components/Footer/Footer";
 import generateRandomString from "../../../RandomString";
 // const axios = require("axios");
 import axios from "axios";
+// import SideBar from "../../components/Sidebar/sidebar";
 import SideBar from "../../components/Sidebar/sidebar";
 
 const ErrorMessage = ({ message }) => (

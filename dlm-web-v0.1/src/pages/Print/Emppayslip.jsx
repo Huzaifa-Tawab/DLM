@@ -116,7 +116,21 @@ function Emppayslip() {
                 </div>
               </div>
             </div>
+            <br></br>
+            <br></br>
+            <div className="last-col-payslip">
+              <div className="blank"></div>
+              <div className="Net-Salary">
+                <h4>NET SALARY</h4>
+                <div className="subtotal">
+                  <h4>20000000</h4>
+                </div>
+              </div>
+            </div>
           </div>
+          <br></br>
+          <br></br>
+          <h2>Employee's Signature</h2>
         </div>
       </div>
     </div>

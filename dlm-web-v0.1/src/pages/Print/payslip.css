@@ -159,3 +159,13 @@
   justify-content: space-around;
   background: #f1a949;
 }
+.last-col-payslip {
+  display: flex;
+  margin: 0px 20px 0px 0px;
+}
+.Net-Salary {
+  display: flex;
+  width: 50%;
+  justify-content: space-around;
+  background: #f1a949;
+}
