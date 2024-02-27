@@ -239,9 +239,9 @@ const ClientEditForm = () => {
     if (!data.Cnic || !/^\d{13}$/.test(data.Cnic)) {
       errors.Cnic = "CNIC is required";
     }
-    if (!data.phNo || !/^\d{11}$/.test(data.phNo)) {
-      errors.phNo = "Phone No is required";
-    }
+    // if (!data.phNo || !/^\d{11}$/.test(data.phNo)) {
+    //   errors.phNo = "Phone No is required";
+    // }
     if (!data.TownCity.trim()) {
       errors.TownCity = "Please specify your city/town";
     }
@@ -426,7 +426,7 @@ const ClientEditForm = () => {
                         name="PhNoKin"
                         value={formData.PhNoKin}
                         onChange={handleChange}
-                        error={errors.PhNoKin}
+                        // error={errors.PhNoKin}
                       />
                     </div>
                     <div className="input-box">

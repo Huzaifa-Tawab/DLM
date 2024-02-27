@@ -74,22 +74,45 @@ function Emppayslip() {
             </div>
             <div className="des-col-5-slip">
               <div className="col-5-slip-head">
-                <div>
-                  <h1>Particulars</h1>
-                  <h1>Advance</h1>
-                  <h1>Amount</h1>
-                </div>
+                <h1>Particulars</h1>
+                <h1>Advance</h1>
+                <h1>Amount</h1>
               </div>
               <div className="inner-slip-col-5">
-                <div className="inner-slip-5-col1">
-                  <span>Company Id</span>
-                  <span>Phone</span>
-                  <span>Terms</span>
+                <div className="innerslip-col-5">
+                  <div className="inner-slip-5-col1">
+                    <span>Basic</span>
+                    <span>Commision</span>
+                    <span>Allowances</span>
+                  </div>
+                  <div className="inner-slip-5-col1">
+                    <span>20000</span>
+                    <span>40000</span>
+                    <span>600000</span>
+                  </div>
                 </div>
-                <div className="inner-slip-5-col1">
-                  <span>Company Id</span>
-                  <span>Phone</span>
-                  <span>Terms</span>
+                <div className="inner-slip-col2">
+                  <div className="inner-slip-5-collast">
+                    <span>20000</span>
+                    <span>200000</span>
+                    <span>2000</span>
+                  </div>
+                </div>
+                <div className="inner-slip-col2-end">
+                  <div className="inner-slip-5-colend">
+                    <span>20000</span>
+                    <span>200000</span>
+                    <span>2000</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="scndlast-col-payslip">
+              <div className="blank"></div>
+              <div className="subtotal-pay">
+                <h4>SUBTOTAL</h4>
+                <div className="subtotal">
+                  <h4>20000000</h4>
                 </div>
               </div>
             </div>

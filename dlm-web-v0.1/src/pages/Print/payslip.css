@@ -96,15 +96,66 @@
   flex-direction: column;
   align-items: flex-start;
 }
+.des-col-5-slip {
+  margin: 0px 20px 20px 20px;
+}
 .col-5-slip-head {
   background: #f1a949;
   display: flex;
-  margin: 3px 20px 0px 20px;
-  height: 40px;
+  margin: 0px;
+  padding: 0px 10px 0px 10px;
   justify-content: space-between;
 
   h1 {
     background: none;
     font-size: 20px;
+    height: auto;
+    line-height: 30px;
   }
+}
+.inner-slip-col-5 {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  justify-content: space-between;
+}
+.innerslip-col-5 {
+  display: flex;
+  gap: 20px;
+}
+.inner-slip-5-col1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.inner-slip-5-collast {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.inner-slip-5-colend {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.inner-slip-col2 {
+  padding-right: 70px;
+}
+.inner-slip-col2-end {
+  padding-right: 30px;
+}
+.scndlast-col-payslip {
+  display: flex;
+  margin: 0px 20px 0px 0px;
+}
+.blank {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+}
+.subtotal-pay {
+  display: flex;
+  width: 50%;
+  justify-content: space-around;
+  background: #f1a949;
 }
