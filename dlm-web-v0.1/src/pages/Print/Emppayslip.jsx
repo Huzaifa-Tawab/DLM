@@ -73,7 +73,7 @@ function Emppayslip() {
               <div className="col-5-slip-head">
                 <h1>Pay Details</h1>
 
-                <h1>Amount</h1>
+                <h1 className="amount">Amount</h1>
               </div>
               <div className="inner-slip-col-5">
                 <div className="innerslip-col-5">

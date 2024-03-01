@@ -123,9 +123,7 @@ function Employspaytable() {
                               <td>
                                 <button
                                   className="button-view"
-                                  onClick={() =>
-                                    navigate(`/details/agent/${e.Cnic}`)
-                                  }
+                                  onClick={() => navigate(`/employe`)}
                                 >
                                   View
                                 </button>
