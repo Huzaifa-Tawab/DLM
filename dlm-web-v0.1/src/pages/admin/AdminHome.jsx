@@ -58,15 +58,27 @@ function AdminHome() {
     (searchText) => {
       let newData = CustomersData;
       if (searchText && searchText.length > 0) {
-        newData = CustomersData.filter(
-          (data) =>
-            data.Name.toLowerCase() == searchText.toLowerCase() ||
-            data.Cnic == searchText ||
-            data.phNo == searchText ||
-            data.Plots.some((plot) =>
-              plot.toLowerCase().includes(searchText.toLowerCase())
-            )
-        );
+        if (isAdmin()) {
+          newData = CustomersData.filter(
+            (data) =>
+              data.Name.toLowerCase().includes(searchText.toLowerCase()) ||
+              data.Cnic.toLowerCase().includes(searchText.toLowerCase()) ||
+              data.phNo.includes(searchText) ||
+              data.Plots.some((plot) =>
+                plot.toLowerCase().includes(searchText.toLowerCase())
+              )
+          );
+        } else {
+          newData = CustomersData.filter(
+            (data) =>
+              data.Name.toLowerCase() == searchText.toLowerCase() ||
+              data.Cnic == searchText ||
+              data.phNo == searchText ||
+              data.Plots.some((plot) =>
+                plot.toLowerCase().includes(searchText.toLowerCase())
+              )
+          );
+        }
       } else {
         if (isAdmin()) {
           newData = CustomersData;
@@ -92,22 +104,31 @@ function AdminHome() {
     filteredBasedOnDate(e.target.value);
   };
   const filteredBasedOnDate = (value) => {
+    console.log(value);
     let list = [];
     let selectedMonth = null;
     let selectedYear = null;
+    let selectedDay = null;
     if (value) {
       let selectedDate = value.split("-");
+      selectedDay = selectedDate[2];
       selectedMonth = selectedDate[1];
       selectedYear = selectedDate[0];
       CustomersData.forEach((customer) => {
         if (customer.createdAt.seconds) {
           let date = getDate(customer.createdAt.seconds);
+          console.log("----");
+          console.log(date);
           let splitDate = date.split("/");
           let month = splitDate[0];
           if (month.length == 1) {
             month = 0 + month;
           }
-          if (splitDate[2] == selectedYear && month == selectedMonth) {
+          if (
+            splitDate[2] == selectedYear &&
+            month == selectedMonth &&
+            splitDate[1] == selectedDay
+          ) {
             list.push(customer);
           }
         }
@@ -162,8 +183,8 @@ function AdminHome() {
                     />
                     <input
                       className="calender"
-                      type="month"
-                      name="Select month"
+                      type="date"
+                      name="Select date"
                       onChange={onDateSelect}
                     />
                   </form>
