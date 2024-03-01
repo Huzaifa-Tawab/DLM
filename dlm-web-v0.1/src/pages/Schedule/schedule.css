@@ -2,7 +2,7 @@
   background: #fff;
   width: 210mm;
   height: 297mm;
-  padding: 20px;
+  padding: 20px 40px 20px 40px;
   border-radius: 5px;
   -webkit-box-shadow: 2px 0px 20px -4px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 2px 0px 20px -4px rgba(0, 0, 0, 0.75);
@@ -13,7 +13,7 @@
   background: #fff;
   width: 210mm;
   height: 297mm;
-  margin-top: 20px;
+  margin-top: 20px 40px 20px 40px;
   padding: 20px;
   border-radius: 5px;
   -webkit-box-shadow: 2px 0px 20px -4px rgba(0, 0, 0, 0.75);

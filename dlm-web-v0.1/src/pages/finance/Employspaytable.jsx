@@ -69,10 +69,10 @@ function Employspaytable() {
             <>
               <div className="Admin-Home">
                 <div className="hero--head">
-                  <h1>Employs Pay Details</h1>
+                  <h1>Employee Pay Details</h1>
                   <button
                     onClick={() => {
-                      navigate("/create/agent/");
+                      navigate("/empdetailfrom");
                     }}
                   >
                     Add New

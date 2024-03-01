@@ -58,6 +58,8 @@ import Schedule from "./pages/Schedule/Schedule";
 import AdminWithdralView from "./pages/admin/AdminWithdralView";
 import Employspaytable from "./pages/finance/Employspaytable";
 import Emppayslip from "./pages/Print/Emppayslip";
+import Emplysdetailsform from "./pages/forms/Emplysdetailsform";
+import Empdetafinance from "./pages/finance/Empdetafinance";
 
 function App() {
   const [open, setOpen] = useState();
@@ -76,6 +78,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/employe" element={<Empdetafinance />} />
+        <Route path="/empdetailfrom" element={<Emplysdetailsform />} />
         <Route path="/emppayslip" element={<Emppayslip />} />
         <Route path="/employtable" element={<Employspaytable />} />
         <Route path="/print/invoice/:id" element={<PrintInvoice />} />

@@ -7,6 +7,11 @@
   display: flex;
   flex-direction: column;
 }
+.upper-sec-detail-flex img {
+  height: auto;
+  width: 400px;
+  margin-bottom: 30px;
+}
 .info-details {
   display: flex;
   flex-direction: row;
@@ -49,14 +54,21 @@
 .des-col-3-slip {
   padding: 20px;
   display: flex;
-  gap: 20px;
+  justify-content: space-between;
   background: #f7edb3;
   margin: 0px 20px 20px 20px;
 }
-.column3-finance-slip h1 {
+.col-3flex {
+  display: flex;
+  gap: 20px;
+}
+.column3-finance-slip h5 {
   background-color: #f1a949;
   height: 40px;
   margin: 3px 20px 0px 20px;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px 0px 10px;
 }
 .des-col-4-slip {
   padding: 20px;
@@ -99,12 +111,14 @@
 .des-col-5-slip {
   margin: 0px 20px 20px 20px;
 }
+
 .col-5-slip-head {
-  background: #f1a949;
+  background: linear-gradient(90deg, white 40%, #f1a949 0, #f1a949 100%);
   display: flex;
   margin: 0px;
-  padding: 0px 10px 0px 10px;
-  justify-content: space-between;
+  padding: 0px 40px 0px 10px;
+  justify-content: flex-end;
+  gap: 220px;
 
   h1 {
     background: none;
@@ -117,7 +131,8 @@
   display: flex;
   gap: 20px;
   padding: 20px;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 170px;
 }
 .innerslip-col-5 {
   display: flex;
@@ -138,12 +153,12 @@
   flex-direction: column;
   align-items: flex-start;
 }
-.inner-slip-col2 {
+/* .inner-slip-col2 {
   padding-right: 70px;
-}
-.inner-slip-col2-end {
+} */
+/* .inner-slip-col2-end {
   padding-right: 30px;
-}
+} */
 .scndlast-col-payslip {
   display: flex;
   margin: 0px 20px 0px 0px;
