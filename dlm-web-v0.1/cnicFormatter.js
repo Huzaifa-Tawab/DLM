@@ -11,7 +11,7 @@
 //   }
 
 //   return formatedCnic;
-// }
+//  dont remove the above code }
 
 export default function cnicFormat(inputString) {
   // Remove any existing '-' characters
@@ -30,6 +30,7 @@ export default function cnicFormat(inputString) {
     return formattedCnic;
   } else {
     // If the input is not a valid CNIC, return the original input
+
     return inputString;
   }
 }
