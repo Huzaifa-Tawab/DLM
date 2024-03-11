@@ -17,7 +17,7 @@
   display: flex;
 }
 .client-pic {
-  width: 35%;
+  width: 30%;
   background: #fff;
   text-align: center;
   margin: 10px;
@@ -75,7 +75,7 @@
   background: #f4b266;
 }
 .info-box-2 {
-  width: 65%;
+  width: 70%;
   background: #fff;
   margin: 10px;
   border-radius: 10px;
@@ -98,11 +98,12 @@
   /* Regular/Type@20 */
   color: #90a3bf;
 
-  font-size: 16px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 400;
   line-height: 150%; /* 30px */
   letter-spacing: -0.4px;
+  text-align: left;
 }
 
 .client-pic-detail {
@@ -247,19 +248,18 @@ td > a:hover {
 }
 .data-client {
   display: flex;
-  justify-content: space-between;
-  width: 80%;
-  margin-left: 20px;
+  justify-content: space-around;
 }
 .row > .secon-row {
   /* Semibold/Type@20 */
 
-  font-size: 16px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 600;
   line-height: 150%; /* 30px */
   letter-spacing: -0.4px;
   color: #596780;
+  text-align: left;
 }
 .sec-heading > .first-text {
   color: #596780;
@@ -286,7 +286,7 @@ td > a:hover {
 .data-client-div {
   display: flex;
 
-  gap: 20px;
+  gap: 10px;
 }
 .table {
   th {
