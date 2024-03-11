@@ -15,6 +15,7 @@
 
 export default function cnicFormat(inputString) {
   // Remove any existing '-' characters
+try {
   const cnicWithoutHyphens = inputString.replace(/-/g, "");
 
   // Check if the input is a valid CNIC (numeric with a length of 13 digits)
@@ -28,8 +29,12 @@ export default function cnicFormat(inputString) {
       cnicWithoutHyphens.charAt(12);
 
     return formattedCnic;
-  } else {
-    // If the input is not a valid CNIC, return the original input
-    return inputString;
-  }
+} else {
+  // If the input is not a valid CNIC, return the original input
+  return inputString;
+}
+} catch (error) {
+  console.log(error)
+}
+  
 }

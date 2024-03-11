@@ -226,7 +226,7 @@ function AgentDetails() {
                   {isAdmin() && (
                     <div className="AgentRef">
                       <div className="doc-row">
-                        <h1>AgentRef</h1>
+                        <h1>Documents</h1>
                         {/* <button>Add Document</button> */}
                       </div>
                       <table className="fl-table">
@@ -236,8 +236,8 @@ function AgentDetails() {
                           <th>Acitons</th>
                         </thead>
                         <tbody>
-                          {userData.AgentRef &&
-                            Object.entries(userData.AgentRef).map(
+                          {userData.Documents &&
+                            Object.entries(userData.Documents).map(
                               ([key, value]) => (
                                 <tr>
                                   <td>{key}</td>
@@ -294,7 +294,7 @@ function AgentDetails() {
       <AddDocs
         showModal={showDocModal}
         onClose={closeDocModal}
-        olddocs={userData.AgentRef}
+        olddocs={userData.Documents}
         uid={userData.Cnic}
       />
     </>
