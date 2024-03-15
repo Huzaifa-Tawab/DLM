@@ -13,6 +13,7 @@ import { PiBuildingsBold } from "react-icons/pi";
 import isAdmin from "../../../IsAdmin";
 import SideBar from "../../components/Sidebar/sidebar";
 import cnicFormat from "../../../cnicFormatter";
+import AddDocsAgent from "../../components/Modals/AddDocsAgent";
 function AgentDetails() {
   const navigate = useNavigate();
   const [isloading, setisloading] = useState(true);
@@ -291,7 +292,7 @@ function AgentDetails() {
         }
       />
 
-      <AddDocs
+      <AddDocsAgent
         showModal={showDocModal}
         onClose={closeDocModal}
         olddocs={userData.Documents}

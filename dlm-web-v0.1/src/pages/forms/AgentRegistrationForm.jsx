@@ -159,7 +159,7 @@ const AgentRegistrationForm = () => {
     mail: "",
     credit: 0,
     Plots: [],
-    Documents: [],
+    Documents: {},
     agree: false,
     InvId: InvoiceID,
     Credit: 0,

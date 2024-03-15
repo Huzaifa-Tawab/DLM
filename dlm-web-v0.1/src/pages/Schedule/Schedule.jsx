@@ -10,6 +10,7 @@ function Schedule() {
   const { id } = useParams();
   const [Total, setTotal] = useState("");
   const [SecheduleData, setSecheduleData] = useState({});
+  const [ballotingAmount, setballotingAmount] = useState(0);
   const date = new Date().toDateString();
 
   useEffect(() => {
@@ -20,7 +21,10 @@ function Schedule() {
     const PlotData = await getDoc(plot);
     if (PlotData.exists()) {
       setSecheduleData(PlotData.data());
-      console.log(PlotData.data());
+      console.log(PlotData.data().PlotSize);
+      if (PlotData.data().PlotSize == "10x11 Sq.Ft") {
+        setballotingAmount(525000);
+      }
     }
   }
   return (
@@ -85,14 +89,14 @@ function Schedule() {
                   {SecheduleData.Society === "Dyanmic Land Management"
                     ? "0"
                     : SecheduleData.BookingAmount}
-                  PKR
+                  &nbsp;PKR
                 </td>
                 <td>
                   {" "}
                   {SecheduleData.Society === "Dyanmic Land Management"
                     ? "0"
                     : SecheduleData.BookingAmount}{" "}
-                  PKR
+                  &nbsp;PKR
                 </td>
               </tr>
               {SecheduleData.Society === "Dyanmic Land Management" ? (
@@ -101,6 +105,13 @@ function Schedule() {
                 <tr>
                   <td>Down Payment</td>
                   <td>1</td>
+                  <td>
+                    {" "}
+                    {SecheduleData.Society === "Dyanmic Land Management"
+                      ? "0"
+                      : SecheduleData.Downpayment}{" "}
+                    PKR
+                  </td>
                   <td>
                     {" "}
                     {SecheduleData.Society === "Dyanmic Land Management"
@@ -131,7 +142,30 @@ function Schedule() {
                       ? SecheduleData.InstallmentMonth *
                         SecheduleData.Installment
                       : SecheduleData.PossessionAmount}
-                    PKR
+                    &nbsp;PKR
+                  </td>
+                  <td>
+                    {SecheduleData.Society === "Dyanmic Land Management"
+                      ? SecheduleData.InstallmentMonth *
+                        SecheduleData.Installment
+                      : SecheduleData.PossessionAmount}
+                    &nbsp;PKR
+                  </td>
+                </tr>
+              )}
+              {ballotingAmount === 0 ? (
+                <></>
+              ) : (
+                <tr>
+                  <td>Balloting Amount</td>
+                  <td>1</td>
+                  <td>
+                    {ballotingAmount}
+                    &nbsp;PKR
+                  </td>
+                  <td>
+                    {ballotingAmount}
+                    &nbsp; PKR
                   </td>
                 </tr>
               )}
@@ -147,6 +181,7 @@ function Schedule() {
                     : parseInt(SecheduleData.BookingAmount) +
                       parseInt(SecheduleData.Downpayment) +
                       parseInt(SecheduleData.PossessionAmount) +
+                      ballotingAmount +
                       parseInt(SecheduleData.Installment) *
                         parseInt(SecheduleData.InstallmentMonth)}
                   PKR
