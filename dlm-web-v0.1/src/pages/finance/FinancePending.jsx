@@ -259,64 +259,6 @@ function FinancePending() {
     let temp = date.toLocaleDateString();
     return temp;
   }
-  async function deleteInvoice(id) {
-    console.log("delete", id);
-    setisLoading(true);
-    await deleteDoc(doc(db, "Transactions", id));
-    getCustomersData();
-    setisLoading(false);
-  }
-  const onDateSelect = (e) => {
-    filteredBasedOnDate(e.target.value);
-  };
-  const filteredBasedOnDate = (value) => {
-    console.log(value);
-    let list = [];
-    let int = 0;
-    let selectedMonth = null;
-    let selectedYear = null;
-    let selectedDay = null;
-    if (value) {
-      let selectedDate = value.split("-");
-      selectedDay = selectedDate[2];
-      selectedMonth = selectedDate[1];
-      selectedYear = selectedDate[0];
-      CustomersData.forEach((customer) => {
-        if (customer.time.seconds) {
-          let date = getDate(customer.time.seconds);
-          console.log("----");
-          console.log(date);
-          let splitDate = date.split("/");
-          let month = splitDate[0];
-          if (month.length == 1) {
-            month = 0 + month;
-          }
-          if (
-            splitDate[2] == selectedYear &&
-            month == selectedMonth &&
-            splitDate[1] == selectedDay
-          ) {
-            if (customer.total != "") {
-              int = parseInt(int) + parseInt(customer.total);
-            }
-
-            list.push(customer);
-          }
-        }
-      });
-
-      setTotal(int);
-      setFilteredCustomersData(list);
-    } else {
-      setFilteredCustomersData(CustomersData);
-    }
-  };
-  function getDate(seconds) {
-    let date = new Date(seconds * 1000);
-    let temp = date.toLocaleDateString();
-
-    return temp;
-  }
   function downloadExcel() {
     exportToExcel(filteredCustomersDataMemoized, "Unverified");
   }
