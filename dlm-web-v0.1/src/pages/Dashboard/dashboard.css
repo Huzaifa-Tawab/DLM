@@ -244,22 +244,24 @@
   border-radius: 7px;
   margin: 5px;
   list-style: circle;
+  overflow: scroll;
+  height: 140px;
 }
 /* .strong{
   padding-right: 10px;
 } */
-.admin-dash-daysleft-header-main{
+.admin-dash-daysleft-header-main {
   display: flex;
-  background:#F4B266;
+  background: #f4b266;
   justify-content: space-between;
 }
-.admin-dash-daysleft-header{
+.admin-dash-daysleft-header {
   display: flex;
   color: #fff;
   align-items: center;
-padding: 7px;
+  padding: 7px;
 }
-.admin-dash-daysleft-header-main .refreshbutton{
+.admin-dash-daysleft-header-main .refreshbutton {
   display: flex;
   /* width: 70px;
   height: 30px; */
@@ -270,38 +272,32 @@ padding: 7px;
   flex-direction: row-reverse;
   flex-shrink: 0;
   border-radius: 7px;
-  background: #F4B266;
+  background: #f4b266;
   font-weight: 600;
-  color: #A4243B;
- 
-
+  color: #a4243b;
 }
 
-.plots-num{
-  background-color:black;
+.plots-num {
+  background-color: black;
   width: 20px;
   text-align: center;
   border-radius: 50%;
   margin-left: 5px;
   color: #fff;
-
 }
-.data-flex-col{
+.data-flex-col {
   display: flex;
   flex-direction: column;
-align-items: flex-start
+  align-items: flex-start;
 }
-.strong{
+.strong {
   padding-left: 6px;
 }
 /* agent col2 main heading */
-.agent-dash-content-col2 >h1{
-  background-color: #F4B266;
+.agent-dash-content-col2 > h1 {
+  background-color: #f4b266;
   padding: 6px 6px 6px 12px;
 }
-
- 
-
 
 @media screen and (max-width: 700px) {
   .inf--flex-col {
@@ -387,13 +383,14 @@ align-items: flex-start
 /* .admin-dash-daysleft-header {
         padding:7px;
 } */
-.agent-dash-content-col1-row2-card1>h4,.agent-dash-content-col1-row2-card2>h4{
-  background-color:#F4B266;
+.agent-dash-content-col1-row2-card1 > h4,
+.agent-dash-content-col1-row2-card2 > h4 {
+  background-color: #f4b266;
   border-radius: 7px 7px 0px 0px;
   padding-left: 7px;
   font-size: 16px;
 }
-.level-card-col2{
+.level-card-col2 {
   display: flex;
   justify-content: space-between;
   padding: 5px;
@@ -403,43 +400,41 @@ align-items: flex-start
   box-shadow: blue;
   border-radius: 7px;
   margin-top: 10px;
-  background-color: #ECEAFE;
+  background-color: #eceafe;
   align-items: center;
 }
 
-
-.admin-dash-daysleft-header>h1{
-   font-size: 16px;
-   font-weight: 600;
-   
-   /* background-color: #A4243B; */
-   color:#575757;
-}
-.level-card-col2>p{
+.admin-dash-daysleft-header > h1 {
   font-size: 16px;
   font-weight: 600;
 
+  /* background-color: #A4243B; */
+  color: #575757;
+}
+.level-card-col2 > p {
+  font-size: 16px;
+  font-weight: 600;
 }
 
-.plotsdayleft-data{
+.plotsdayleft-data {
   display: flex;
- justify-content: space-between;
- padding: 7px;
- padding: 5px;
- margin: 0 5px;
- border-bottom: 1px solid black;
- box-shadow: #a4243b 2px 2px 2px;
- box-shadow: blue;
- border-radius: 7px;
- margin-top: 10px;
- background-color:rgba(251, 233, 233);
+  justify-content: space-between;
+  padding: 7px;
+  padding: 5px;
+  margin: 0 5px;
+  border-bottom: 1px solid black;
+  box-shadow: #a4243b 2px 2px 2px;
+  box-shadow: blue;
+  border-radius: 7px;
+  margin-top: 10px;
+  background-color: rgba(251, 233, 233);
 
- font-weight: 600;
+  font-weight: 600;
 }
-.plotsdayleft-sec-data{
+.plotsdayleft-sec-data {
   display: flex;
 }
-.plotsdayleft-sec-data .view-button{
+.plotsdayleft-sec-data .view-button {
   display: flex;
   width: 50px;
   height: 25px;
@@ -450,16 +445,14 @@ align-items: flex-start
   flex-direction: row-reverse;
   flex-shrink: 0;
   border-radius: 7px;
-  background: #A4243B;
+  background: #a4243b;
   font-weight: 600;
-  color: #F4B266;
+  color: #f4b266;
   align-self: center;
-  
-
 }
-.view-button:hover{
+.view-button:hover {
   /* background: #F4B266;
   color: #A4243B; */
   transform: scale(1.1);
-  box-shadow: #F4B266 0px 2px 8px 0px;
+  box-shadow: #f4b266 0px 2px 8px 0px;
 }

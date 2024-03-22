@@ -22,10 +22,10 @@ function Employspaytable() {
   }, []);
 
   async function getCustomersData() {
-    const querySnapshot = await getDocs(collection(db, "Agent"));
+    const querySnapshot = await getDocs(collection(db, "Employe"));
     const newCustomersData = [];
     querySnapshot.forEach((doc) => {
-      newCustomersData.push(doc.data());
+      newCustomersData.push({ ...doc.data(), id: doc.id });
     });
     setCustomersData(newCustomersData);
     setFilteredCustomersData(newCustomersData);
@@ -38,11 +38,8 @@ function Employspaytable() {
       if (searchText && searchText.length > 0) {
         newData = CustomersData.filter(
           (data) =>
-            data.Name.toLowerCase().includes(searchText.toLowerCase()) ||
-            data.Cnic.toLowerCase().includes(searchText.toLowerCase()) ||
-            data.Plots.some((plot) =>
-              plot.toLowerCase().includes(searchText.toLowerCase())
-            )
+            data.name.toLowerCase().includes(searchText.toLowerCase()) ||
+            data.cnic.toLowerCase().includes(searchText.toLowerCase())
         );
       }
       setFilteredCustomersData(newData);
@@ -93,7 +90,6 @@ function Employspaytable() {
                       <table className="fl-table">
                         <thead>
                           <tr>
-                            <th>Employ Pic</th>
                             <th>Name</th>
                             <th>Phone Number</th>
                             <th>CNIC No</th>
@@ -104,26 +100,19 @@ function Employspaytable() {
                         <tbody>
                           {filteredCustomersDataMemoized.map((e) => (
                             <tr key={e.Cnic}>
-                              <td>
-                                <img
-                                  src={avatar}
-                                  alt="avatar"
-                                  className="avatar-table"
-                                />
-                              </td>
                               {/* <td className="avatar-image width-adjust"> */}
-                              <td>{e.Name}</td>
-                              <td>{e.phNo}</td>
-                              <td>{cnicFormat(e.Cnic)}</td>
+                              <td>{e.name}</td>
+                              <td>{e.phone}</td>
+                              <td>{cnicFormat(e.cnic)}</td>
                               <td className="tddr">
                                 <p className="adress-finance-box">
-                                  abc town xxxx islamabad
+                                  {e.address}
                                 </p>
                               </td>
                               <td>
                                 <button
                                   className="button-view"
-                                  onClick={() => navigate(`/employe`)}
+                                  onClick={() => navigate(`/employe/${e.id}`)}
                                 >
                                   View
                                 </button>

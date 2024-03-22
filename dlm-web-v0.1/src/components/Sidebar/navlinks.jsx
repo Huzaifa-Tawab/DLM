@@ -9,12 +9,12 @@ export const superAdminNavLinks = [
     icon: <i className="fa-solid fa-user"></i>,
     title: "Customer",
   },
-    {
-      to: "/admin",
-      icon: <i className="fa-solid fa-id-card"></i>,
-      title: "Profile",
-      subBtn: ["Change Password"],
-    },
+  {
+    to: "/admin",
+    icon: <i className="fa-solid fa-id-card"></i>,
+    title: "Profile",
+    subBtn: ["Change Password"],
+  },
   {
     to: "/admin/agents",
     icon: <i className="fa-solid fa-circle-user"></i>,
@@ -24,7 +24,7 @@ export const superAdminNavLinks = [
     to: "/admin",
     icon: <i className="fa-solid fa-clone"></i>,
     title: "Features",
-    subBtn: [ "Marquee"],
+    subBtn: ["Marquee"],
   },
   {
     to: "/admin/promo",
@@ -81,12 +81,12 @@ export const subAdminNavLinks = [
     icon: <i className="fa-solid fa-user"></i>,
     title: "Customer",
   },
-    {
-      to: "/admin",
-      icon: <i className="fa-solid fa-id-card"></i>,
-      title: "Profile",
-      subBtn: ["Change Password"],
-    },
+  {
+    to: "/admin",
+    icon: <i className="fa-solid fa-id-card"></i>,
+    title: "Profile",
+    subBtn: ["Change Password"],
+  },
   {
     to: "/admin/invoices",
     icon: <i className="fa-solid fa-file-invoice"></i>,
@@ -120,12 +120,12 @@ export const financeNavLinks = [
     icon: <i className="fa-solid fa-house"></i>,
     title: "Dashboard",
   },
-    {
-      to: "/admin",
-      icon: <i className="fa-solid fa-id-card"></i>,
-      title: "Profile",
-      subBtn: ["Change Password"],
-    },
+  {
+    to: "/admin",
+    icon: <i className="fa-solid fa-id-card"></i>,
+    title: "Profile",
+    subBtn: ["Change Password"],
+  },
   {
     to: "/finance",
     icon: <i className="fa-solid fa-file-invoice"></i>,
@@ -137,6 +137,11 @@ export const financeNavLinks = [
     icon: <i className="fa-solid fa-money-bill"></i>,
     title: "Withdrawal",
     subBtn: ["History", "Requests"],
+  },
+  {
+    to: "/employtable",
+    icon: <i class="fa-regular fa-circle-user"></i>,
+    title: "Employees",
   },
   {
     to: "/endsession",

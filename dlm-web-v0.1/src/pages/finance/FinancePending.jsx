@@ -10,6 +10,7 @@ import {
   setDoc,
   serverTimestamp,
   addDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import { auth, db } from "../../firebase";
 import { useNavigate } from "react-router-dom";
@@ -18,14 +19,17 @@ import FinanceHeader from "../../components/header/FinanceHeader";
 import { debounce, uniqueId } from "lodash";
 import SideBar from "../../components/Sidebar/sidebar";
 import { onAuthStateChanged } from "firebase/auth";
+import { exportToExcel } from "../Print/exportToExcel";
 
 function FinancePending() {
   const navigate = useNavigate();
   const [CustomersData, setCustomersData] = useState([]);
+  const [total, setTotal] = useState(0);
   const [FinanceData, setFinanceData] = useState({});
   const [filteredCustomersData, setFilteredCustomersData] = useState([]);
   const [isLoading, setisLoading] = useState(true);
   let invoiceId = "";
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -255,7 +259,67 @@ function FinancePending() {
     let temp = date.toLocaleDateString();
     return temp;
   }
+  async function deleteInvoice(id) {
+    console.log("delete", id);
+    setisLoading(true);
+    await deleteDoc(doc(db, "Transactions", id));
+    getCustomersData();
+    setisLoading(false);
+  }
+  const onDateSelect = (e) => {
+    filteredBasedOnDate(e.target.value);
+  };
+  const filteredBasedOnDate = (value) => {
+    console.log(value);
+    let list = [];
+    let int = 0;
+    let selectedMonth = null;
+    let selectedYear = null;
+    let selectedDay = null;
+    if (value) {
+      let selectedDate = value.split("-");
+      selectedDay = selectedDate[2];
+      selectedMonth = selectedDate[1];
+      selectedYear = selectedDate[0];
+      CustomersData.forEach((customer) => {
+        if (customer.time.seconds) {
+          let date = getDate(customer.time.seconds);
+          console.log("----");
+          console.log(date);
+          let splitDate = date.split("/");
+          let month = splitDate[0];
+          if (month.length == 1) {
+            month = 0 + month;
+          }
+          if (
+            splitDate[2] == selectedYear &&
+            month == selectedMonth &&
+            splitDate[1] == selectedDay
+          ) {
+            if (customer.total != "") {
+              int = parseInt(int) + parseInt(customer.total);
+            }
 
+            list.push(customer);
+          }
+        }
+      });
+
+      setTotal(int);
+      setFilteredCustomersData(list);
+    } else {
+      setFilteredCustomersData(CustomersData);
+    }
+  };
+  function getDate(seconds) {
+    let date = new Date(seconds * 1000);
+    let temp = date.toLocaleDateString();
+
+    return temp;
+  }
+  function downloadExcel() {
+    exportToExcel(filteredCustomersDataMemoized, "Unverified");
+  }
   return (
     <SideBar
       element={
@@ -266,15 +330,22 @@ function FinancePending() {
             <div className="Admin-Home">
               <div className="hero--head">
                 <h1>Unverified</h1>
+                <button onClick={downloadExcel}>Export</button>
               </div>
               <div className="Admin-Home-content">
                 <div className="Admin-Home-table">
-                  <form className="nosubmit">
+                  <form className="nosubmit nosubmit alignment-cal-serch">
                     <input
                       type="text"
                       placeholder="Search"
                       onChange={(e) => debouncedFilterData(e.target.value)}
                       className="nosubmit"
+                    />
+                    <input
+                      className="calender"
+                      type="date"
+                      name="Select date"
+                      onChange={onDateSelect}
                     />
                   </form>
 
@@ -301,11 +372,19 @@ function FinancePending() {
                             <td>{e.InvId}</td>
                             <td>{e.fileNumber}</td>
                             <td>{e.nature}</td>
-                            <td>{e.payment}</td>
-                            <td>{e.panelty}</td>
+                            <td>{e.total}</td>
+                            <td>{e.penalty}</td>
                             <td>{getDate(e.time.seconds)}</td>
 
                             <td>
+                              <button
+                                className="button-view"
+                                onClick={() => {
+                                  deleteInvoice(e.InvId);
+                                }}
+                              >
+                                Delete
+                              </button>
                               <button
                                 className="button-view"
                                 onClick={() => {

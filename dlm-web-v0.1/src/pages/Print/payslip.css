@@ -141,6 +141,7 @@
 .innerslip-col-5 {
   display: flex;
   gap: 20px;
+  width: 55%;
 }
 .inner-slip-5-col1 {
   display: flex;

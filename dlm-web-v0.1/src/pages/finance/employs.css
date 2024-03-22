@@ -21,7 +21,7 @@
 .empdata-coldata-1 {
   display: flex;
   background: #f4b266;
-
+  justify-content: center;
   /* justify-content: space-between; */
   width: 50vw;
   height: auto;
@@ -30,10 +30,12 @@
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   gap: 10px;
   border-radius: 10px;
+  padding: 30px;
 }
 .coldata-1-data {
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 .col-data-1 {
   display: flex;
@@ -56,6 +58,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  padding: 30px;
   gap: 10px;
 
   span {
@@ -118,6 +121,32 @@
   background: blue;
   height: 70px;
 }
+.empl-hero-head-sec {
+  display: flex;
+  background: #a4243b;
+  justify-content: space-between;
+  padding: 5px 10px;
+}
+.finance-invoice-button {
+  background: #f4b266;
+  color: #ffffff;
+  /* width: 60px; */
+  border-radius: 6px;
+  padding: 3px;
+  margin-left: 3px;
+  box-shadow: 3px 3px 3px 3px #a4243b;
+  display: flex;
+  align-items: center;
+}
+.fa-plus {
+  font-size: 20px;
+  padding: 0px 3px;
+}
+.invoice-col-scroll {
+  overflow: scroll;
+  height: 200px;
+}
+
 @media (max-width: 767px) {
   .empdatafinance-main {
     margin-top: 17px;

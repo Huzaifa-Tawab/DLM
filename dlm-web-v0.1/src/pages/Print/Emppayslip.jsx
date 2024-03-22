@@ -1,8 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import avatar from "../../Assets/avatar.png";
 import "./payslip.css";
 import sliderlogo from "../../Assets/sliderlogo.png";
+import { db } from "../../firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { useNavigate, useParams } from "react-router-dom";
+import PaySlip from "../forms/PaySlip";
 function Emppayslip() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [isLoading, setisLoading] = useState(true);
+  const [employeData, setEmployeData] = useState({});
+  const [invoiceData, setInvoiceData] = useState({});
+
+  useEffect(() => {
+    getPaySlip();
+  }, []);
+  async function getPaySlip() {
+    const docRef = doc(db, "Payslip", id);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      setInvoiceData(docSnap.data());
+      setisLoading(false);
+      console.log(id);
+      getEmpDetails(docSnap.data().uid);
+    } else {
+      // docSnap.data() will be undefined in this case
+      navigate("/");
+    }
+  }
+  async function getEmpDetails(uid) {
+    const docRef = doc(db, "Employe", uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      setEmployeData(docSnap.data());
+      setisLoading(false);
+      console.log(id);
+      console.log(docSnap.data());
+    } else {
+      // docSnap.data() will be undefined in this case
+      navigate("/");
+    }
+  }
+
   return (
     <div className="webpage">
       <div className="main-page">
@@ -33,24 +75,24 @@ function Emppayslip() {
             <div className="des-col-3-slip">
               <div className="col-3flex">
                 <div className="info-details-col3">
-                  <span>Employee Name</span>
-                  <span>Designation</span>
-                  <span>Department</span>
+                  <span>Employee Name: </span>
+                  <span>Designation: </span>
+                  <span>Department:</span>
                 </div>
                 <div className="info-details-col3">
-                  <span>Employee Name</span>
-                  <span>Designation</span>
-                  <span>Department</span>
+                  <span>{employeData.name}</span>
+                  <span>{employeData.designation}</span>
+                  <span>{employeData.department}</span>
                 </div>
               </div>
               <div className="col-3flex">
                 <div className="info-details-col3">
-                  <span>CNIC</span>
-                  <span>Phone Number</span>
+                  <span>CNIC:</span>
+                  <span>Phone Number:</span>
                 </div>
                 <div className="info-details-col3">
-                  <span>13504-3333333-33</span>
-                  <span>03123333333</span>
+                  <span>{employeData.cnic}</span>
+                  <span>{employeData.phone}</span>
                 </div>
               </div>
             </div>
@@ -60,39 +102,41 @@ function Emppayslip() {
             <div className="des-col-4-slip">
               <div className="des-col-4-sec-1">
                 <div className="des-col-4-iner1">
-                  <span>Date</span>
-                  <span>Month Of</span>
+                  <span>Date:</span>
+                  <span>Month Of:</span>
                 </div>
                 <div className="des-col-4-iner2">
-                  <span>22-feb-2024</span>
-                  <span>February</span>
+                  <span>{invoiceData.salarydate}</span>
+                  <span>{invoiceData.salarymonth}</span>
                 </div>
               </div>
             </div>
             <div className="des-col-5-slip">
+              <div className="blank"></div>
               <div className="col-5-slip-head">
                 <h1>Pay Details</h1>
 
                 <h1 className="amount">Amount</h1>
               </div>
               <div className="inner-slip-col-5">
+                <div className="blank"></div>
                 <div className="innerslip-col-5">
                   <div className="inner-slip-5-col1">
-                    <span>Basic Pay</span>
+                    <span>Basic Pay:</span>
 
-                    <span>Allowances</span>
+                    <span>Allowances:</span>
                   </div>
                   <div className="inner-slip-5-col1">
-                    <span>20000 Pkr</span>
+                    <span></span>
 
-                    <span>600000 Pkr</span>
+                    <span></span>
                   </div>
                 </div>
 
                 <div className="inner-slip-col2-end">
                   <div className="inner-slip-5-colend">
-                    <span>20000 Pkr</span>
-                    <span>2000 Pkr</span>
+                    <span>{invoiceData.basicpay}</span>
+                    <span>{invoiceData.allowance}</span>
                   </div>
                 </div>
               </div>
@@ -102,7 +146,10 @@ function Emppayslip() {
               <div className="subtotal-pay">
                 <h4>SUBTOTAL</h4>
                 <div className="subtotal">
-                  <h4>20000000 Pkr</h4>
+                  <h4>
+                    {parseInt(invoiceData.basicpay) +
+                      parseInt(invoiceData.allowance)}
+                  </h4>
                 </div>
               </div>
             </div>
@@ -113,7 +160,7 @@ function Emppayslip() {
               <div className="Net-Salary">
                 <h4>NET SALARY</h4>
                 <div className="subtotal">
-                  <h4>20000000 Pkr</h4>
+                  <h4>{invoiceData.netsalary}</h4>
                 </div>
               </div>
             </div>

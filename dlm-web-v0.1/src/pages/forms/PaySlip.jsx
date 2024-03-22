@@ -5,11 +5,12 @@ import {
   getDocs,
   collection,
   addDoc,
+  serverTimestamp,
 } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { auth, db, storage } from "../../firebase";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import { db } from "../../firebase";
+
 import "./clientform.css";
 import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
@@ -18,8 +19,6 @@ import generateRandomString from "../../../RandomString";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
 import SideBar from "../../components/Sidebar/sidebar";
-
-import { onAuthStateChanged } from "firebase/auth";
 
 const ErrorMessage = ({ message }) => (
   <span style={{ color: "red", fontSize: "0.8em" }}>{message}</span>
@@ -96,17 +95,17 @@ const FileInput = ({ label, onChange, previewUrl, error }) => {
     </div>
   );
 };
-const Emplysdetailsform = () => {
+function PaySlip() {
+  const { uid } = useParams();
+  console.log(uid);
   const [File, setFile] = useState();
-  const [Name, setName] = useState("");
-  const [Number, setNumber] = useState("");
-  const [Cnicform, setCnicform] = useState("");
-  const [Formaddres, setFormaddres] = useState("");
-  const [Dateobrth, setDateobrth] = useState("");
-  const [AvatarPreview, setAvatarPreview] = useState("");
-  const [Email, setEmail] = useState("");
-  const [Department, setDepartment] = useState("");
-  const [Designation, setDesignation] = useState("");
+  const [BasicPay, setbasicPay] = useState("");
+  const [Allowance, setAllowance] = useState("");
+  const [Subtotal, setSubtotal] = useState("");
+  const [Netsalary, setNetsalary] = useState("");
+  const [SalaryDate, setSalarydate] = useState("");
+  const [SalaryMonth, setSalaryMonth] = useState("");
+
   const [isLoading, setisLoading] = useState(false);
   const handleFileChange = (file) => {
     setFile(file);
@@ -136,38 +135,31 @@ const Emplysdetailsform = () => {
 
   const validateForm = () => {
     let errors = false;
-    if (Name === "") {
-      alert("Please Enter Name");
+    if (BasicPay === "") {
+      alert("Please Enter Basicpay Amount");
       errors = true;
     }
-    if (Number == "") {
-      alert("Please Enter Your Number");
+    if (Allowance == "") {
+      alert("Please Enter Allowance Amount");
       errors = true;
     }
-    if (Cnicform == "") {
-      alert("Please Enter Your Cnic Number");
+    if (Subtotal == "") {
+      alert("Please Enter SubtotalAmount");
       errors = true;
     }
-    if (Email == "") {
-      alert("Please Enter Your Email");
+    if (Netsalary == "") {
+      alert("Please Enter Net Salary");
       errors = true;
     }
-    if (Formaddres == "") {
-      alert("Please Enter Your Address");
+    if (SalaryDate == "") {
+      alert("Please Enter Salary Date");
       errors = true;
     }
-    if (Dateobrth == "") {
-      alert("Please Enter Date Of Birth");
+    if (SalaryMonth == "") {
+      alert("Please Enter Salary Date");
       errors = true;
     }
-    if (Designation == "") {
-      alert("Please Enter Your Designation");
-      errors = true;
-    }
-    if (Department == "") {
-      alert("Please Enter Your Department");
-      errors = true;
-    }
+
     // if (AvatarPreview == "") {
     //   alert("Add Image");
     // }
@@ -183,18 +175,19 @@ const Emplysdetailsform = () => {
     return errors;
   };
   async function uplaodToFirebase() {
-    await addDoc(collection(db, "Employe"), {
-      name: Name,
-      phone: Number,
-      email: Email,
-      cnic: Cnicform,
-      dob: Dateobrth,
-      address: Formaddres,
-      designation: Designation,
-      department: Department,
+    console.log(uid);
+    await addDoc(collection(db, "Payslip"), {
+      uid: uid,
+      createdAt: serverTimestamp(),
+      basicpay: BasicPay,
+      allowance: Allowance,
+      subtotal: Subtotal,
+      netsalary: Netsalary,
+      salarydate: SalaryDate,
+      salarymonth: SalaryMonth,
     }).then(() => {
       setisLoading(false);
-      alert("Employee Uplaoded");
+      alert("Employee Salary Date Uplaoded");
     });
   }
   return (
@@ -217,72 +210,50 @@ const Emplysdetailsform = () => {
                   /> */}
                   <div className="user-details">
                     <div className="input-box">
-                      <p>Name</p>
+                      <p>Basic Pay</p>
                       <input
+                        type="number"
                         label="Name"
                         name="Name"
-                        value={Name}
+                        value={BasicPay}
                         onChange={(e) => {
-                          setName(e.target.value);
+                          setbasicPay(e.target.value);
                         }}
                       />
                     </div>
                     <div className="input-box">
-                      <p>Phone Number</p>
+                      <p>Allowance</p>
                       <input
-                        type="tel"
-                        label="Phone Number"
-                        name="phNo"
-                        value={Number}
+                        type="number"
+                        label="allowance"
+                        name="allowance"
+                        value={Allowance}
                         onChange={(e) => {
-                          setNumber(e.target.value);
+                          setAllowance(e.target.value);
                         }}
                       />
                     </div>
                     <div className="input-box">
-                      <p>CNIC</p>
+                      <p>Sub Total</p>
                       <input
-                        label="CNIC"
-                        name="Cnic"
-                        value={Cnicform}
+                        label="subtotal"
+                        type="number"
+                        name="subtotal"
+                        value={Subtotal}
                         onChange={(e) => {
-                          setCnicform(e.target.value);
+                          setSubtotal(e.target.value);
                         }}
                       />
                     </div>
                     <div className="input-box">
-                      <p>Email</p>
+                      <p>Net Salary</p>
                       <input
-                        type="email"
-                        label="Email"
-                        name="Email"
-                        value={Email}
+                        type="number"
+                        label="number"
+                        name="number"
+                        value={Netsalary}
                         onChange={(e) => {
-                          setEmail(e.target.value);
-                        }}
-                      />
-                    </div>
-                    <div className="input-box">
-                      <p>Department</p>
-                      <input
-                        type="text"
-                        label="text"
-                        name="Department"
-                        value={Department}
-                        onChange={(e) => {
-                          setDepartment(e.target.value);
-                        }}
-                      />
-                    </div>
-                    <div className="input-box">
-                      <p>Designation</p>
-                      <input
-                        type="text"
-                        label="text"
-                        name="Designation"
-                        value={Designation}
-                        onChange={(e) => {
-                          setDesignation(e.target.value);
+                          setNetsalary(e.target.value);
                         }}
                       />
                     </div>
@@ -294,35 +265,30 @@ const Emplysdetailsform = () => {
                         <label
                           style={{ display: "block", marginBottom: "5px" }}
                         >
-                          Joining Date:
+                          Salary Date:
                         </label>
                         <input
                           type="date"
                           name="Dob"
-                          value={Dateobrth}
+                          value={SalaryDate}
                           onChange={(e) => {
-                            setDateobrth(e.target.value);
+                            setSalarydate(e.target.value);
                           }}
                           style={{ width: "100%", padding: "8px" }}
                         />
                       </div>
                     </div>
                     <div className="input-box">
-                      <div style={{ marginBottom: "10px" }}>
-                        <label
-                          style={{ display: "block", marginBottom: "5px" }}
-                        >
-                          Address:
-                        </label>
-                        <input
-                          name="Address"
-                          value={Formaddres}
-                          onChange={(e) => {
-                            setFormaddres(e.target.value);
-                          }}
-                          style={{ width: "100%", padding: "8px" }}
-                        ></input>
-                      </div>
+                      <p>Pay Month</p>
+                      <input
+                        type="text"
+                        label="text"
+                        name="text"
+                        value={SalaryMonth}
+                        onChange={(e) => {
+                          setSalaryMonth(e.target.value);
+                        }}
+                      />
                     </div>
                   </div>
 
@@ -367,6 +333,6 @@ const Emplysdetailsform = () => {
       }
     />
   );
-};
+}
 
-export default Emplysdetailsform;
+export default PaySlip;

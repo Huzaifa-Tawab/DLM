@@ -60,6 +60,7 @@ import Employspaytable from "./pages/finance/Employspaytable";
 import Emppayslip from "./pages/Print/Emppayslip";
 import Emplysdetailsform from "./pages/forms/Emplysdetailsform";
 import Empdetafinance from "./pages/finance/Empdetafinance";
+import PaySlip from "./pages/forms/PaySlip";
 
 function App() {
   const [open, setOpen] = useState();
@@ -78,11 +79,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/employe" element={<Empdetafinance />} />
+        <Route path="/employe/:id" element={<Empdetafinance />} />
         <Route path="/empdetailfrom" element={<Emplysdetailsform />} />
-        <Route path="/emppayslip" element={<Emppayslip />} />
+        <Route path="/print/payslip/:id" element={<Emppayslip />} />
         <Route path="/employtable" element={<Employspaytable />} />
         <Route path="/print/invoice/:id" element={<PrintInvoice />} />
+        <Route path="/create/payslip/:uid" element={<PaySlip />} />
         <Route path="print/schedule/:id" element={<Schedule />} />
         {/* <Route path="/" element={<FinancePlotsView />} /> */}
         {/* <Route path="/" element={<Home />} /> */}
