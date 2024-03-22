@@ -287,7 +287,7 @@ function FinancePending() {
                       className="calender"
                       type="date"
                       name="Select date"
-                      onChange={onDateSelect}
+                      // onChange={onDateSelect}
                     />
                   </form>
 

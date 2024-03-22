@@ -9,12 +9,14 @@ import { debounce } from "lodash";
 import FinanceHeader from "../../components/header/FinanceHeader";
 import arrow from "../../Assets/Plus.png";
 import SideBar from "../../components/Sidebar/sidebar";
+import { exportToExcel } from "../Print/exportToExcel";
 
 function Finance() {
   const navigate = useNavigate();
   const [CustomersData, setCustomersData] = useState([]);
   const [filteredCustomersData, setFilteredCustomersData] = useState([]);
   const [isLoading, setisLoading] = useState(true);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     getCustomersData();
@@ -53,6 +55,13 @@ function Finance() {
             data.fileNumber.toLowerCase().includes(searchText.toLowerCase())
         );
       }
+      let _total = 0;
+      newData.forEach((e) => {
+        // console.log(parseInt(e.total) || 0);
+        _total = _total + parseInt(e.total) || 0;
+      });
+      // console.log(_total);
+      setTotal(_total);
       setFilteredCustomersData(newData);
     },
     [CustomersData]
@@ -73,80 +82,144 @@ function Finance() {
 
     return temp;
   }
-  return  (
-    <SideBar element={
-      isLoading ?
-        <Loader />
-:      <>
-          <div className="Admin-Home">
-            <div className="hero--head">
-              <h1>Invoices</h1>
-            </div>
-            <div className="Admin-Home-content">
-              <div className="Admin-Home-table">
-                <form class="nosubmit">
-                  <input
-                    class="nosubmit"
-                    type="search"
-                    placeholder="Search by Id"
-                    onChange={(e) => debouncedFilterData(e.target.value)}
-                  />
-                </form>
-                <div className="table-wrapper">
-                  <table className="fl-table">
-                    <thead>
-                      <tr>
-                        <th>Name</th>
-                        <th>Uploaded By</th>
-                        <th>File Number</th>
-                        <th>Nature</th>
-                        <th>Payment</th>
-                        <th>penalty</th>
-                        <th>Verified By</th>
-                        <th>Created At</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {filteredCustomersDataMemoized.map((e, index) => (
-                        <tr key={index}>
-                          <td >{e.customerName}</td>
-                          <td>{e.agentName}</td>
-                          <td>{e.fileNumber}</td>
-                          <td>{e.nature}</td>
-                          <td>{e.payment}</td>
-                          <td>{e.panelty}</td>
-                          <td>{e.verifiedBy}</td>
-                          <td>{getDate(e.time.seconds)}</td>
+  const onDateSelect = (e) => {
+    filteredBasedOnDate(e.target.value);
+  };
+  const filteredBasedOnDate = (value) => {
+    console.log(value);
+    let list = [];
+    let int = 0;
+    let selectedMonth = null;
+    let selectedYear = null;
+    let selectedDay = null;
+    if (value) {
+      let selectedDate = value.split("-");
+      selectedDay = selectedDate[2];
+      selectedMonth = selectedDate[1];
+      selectedYear = selectedDate[0];
+      CustomersData.forEach((customer) => {
+        if (customer.time.seconds) {
+          let date = getDate(customer.time.seconds);
+          console.log("----");
+          console.log(date);
+          let splitDate = date.split("/");
+          let month = splitDate[0];
+          if (month.length == 1) {
+            month = 0 + month;
+          }
+          if (
+            splitDate[2] == selectedYear &&
+            month == selectedMonth &&
+            splitDate[1] == selectedDay
+          ) {
+            int = parseInt(customer.total) + int;
+            list.push(customer);
+          }
+        }
+      });
+      setFilteredCustomersData(list);
+      setTotal(int);
+    } else {
+      setFilteredCustomersData(CustomersData);
+      setTotal(0);
+    }
+  };
 
-                          <td>
-                            <button
-                              className="button-view"
-                              onClick={() => {
-                                openNewWindow(e.proof);
-                              }}
-                            >
-                              View
-                            </button>
-                            <button
-                              className="button-view"
-                              onClick={() => {
-                                // openNewWindow(e.InvId);
-                                openNewWindow(`/print/invoice/${e.InvId}`);
-                              }}
-                            >
-                              Print
-                            </button>
-                          </td>
+  function getDate(seconds) {
+    let date = new Date(seconds * 1000);
+    let temp = date.toLocaleDateString();
+
+    return temp;
+  }
+
+  function downloadExcel() {
+    exportToExcel(filteredCustomersDataMemoized, "invoices");
+  }
+  return (
+    <SideBar
+      element={
+        isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            <div className="Admin-Home">
+              <div className="hero--head">
+                <h1>Invoices</h1>
+                <h1>{total} PKR</h1>
+                <button onClick={downloadExcel}>Export</button>
+              </div>
+              <div className="Admin-Home-content">
+                <div className="Admin-Home-table">
+                  <form class="nosubmit alignment-cal-serch">
+                    <input
+                      class="nosubmit"
+                      type="search"
+                      placeholder="Search by Id"
+                      onChange={(e) => debouncedFilterData(e.target.value)}
+                    />
+                    <input
+                      className="calender"
+                      type="date"
+                      name="Select date"
+                      onChange={onDateSelect}
+                    />
+                  </form>
+                  <div className="table-wrapper">
+                    <table className="fl-table">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Uploaded By</th>
+                          <th>File Number</th>
+                          <th>Nature</th>
+                          <th>Payment</th>
+                          <th>penalty</th>
+                          <th>Verified By</th>
+                          <th>Created At</th>
+                          <th>Actions</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {filteredCustomersDataMemoized.map((e, index) => (
+                          <tr key={index}>
+                            <td>{e.customerName}</td>
+                            <td>{e.agentName}</td>
+                            <td>{e.fileNumber}</td>
+                            <td>{e.nature}</td>
+                            <td>{e.payment}</td>
+                            <td>{e.panelty}</td>
+                            <td>{e.verifiedBy}</td>
+                            <td>{getDate(e.time.seconds)}</td>
+
+                            <td>
+                              <button
+                                className="button-view"
+                                onClick={() => {
+                                  openNewWindow(e.proof);
+                                }}
+                              >
+                                View
+                              </button>
+                              <button
+                                className="button-view"
+                                onClick={() => {
+                                  // openNewWindow(e.InvId);
+                                  openNewWindow(`/print/invoice/${e.InvId}`);
+                                }}
+                              >
+                                Print
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </>
+          </>
+        )
       }
     />
   );

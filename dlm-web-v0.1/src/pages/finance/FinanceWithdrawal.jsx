@@ -113,7 +113,7 @@ function FinanceWithdrawal() {
                         <tbody>
                           {filteredCustomersDataMemoized.map((e, index) => (
                             <tr key={index}>
-                              <td >{e.Name}</td>
+                              <td>{e.Name}</td>
                               <td>{e.agentid}</td>
                               <td>{e.chequeOf}</td>
                               <td>{e.chequeNo}</td>
