@@ -18,6 +18,7 @@ import FinanceHeader from "../../components/header/FinanceHeader";
 import { debounce, uniqueId } from "lodash";
 import SideBar from "../../components/Sidebar/sidebar";
 import { onAuthStateChanged } from "firebase/auth";
+import { exportToExcel } from "../Print/exportToExcel";
 
 function FinancePending() {
   const navigate = useNavigate();
@@ -255,7 +256,9 @@ function FinancePending() {
     let temp = date.toLocaleDateString();
     return temp;
   }
-
+  function downloadExcel() {
+    exportToExcel(filteredCustomersDataMemoized, "Unverified");
+  }
   return (
     <SideBar
       element={
@@ -266,6 +269,7 @@ function FinancePending() {
             <div className="Admin-Home">
               <div className="hero--head">
                 <h1>Unverified</h1>
+                <button onClick={downloadExcel}>Export</button>
               </div>
               <div className="Admin-Home-content">
                 <div className="Admin-Home-table">

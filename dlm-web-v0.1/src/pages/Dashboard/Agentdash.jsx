@@ -262,18 +262,18 @@ function AgentDash() {
                           <strong className="strong">CNIC:</strong>
                         </span>
                         <span>
-                          <strong className="strong">Invoice Id:</strong>{" "}
+                          <strong className="strong">Invoice ID:</strong>{" "}
                         </span>
                         <span>
-                          <strong className="strong">Sponsor of:</strong>
+                          <strong className="strong">Sponsored By:</strong>
                         </span>
                       </div>
                       <div className="rower">
                         <span>{User.Name}</span>
                         <span>{User.Gender}</span>
                         <span>{cnicFormat(User.Cnic)}</span>
-                        <span>{ChildOf.InvId}</span>
-                        <span>{ChildOf.Name}</span>
+                        <span>{User.InvId}</span>
+                        <span>{User.Name}</span>
                       </div>
                       <div className="rower">
                         <span>
@@ -286,14 +286,13 @@ function AgentDash() {
                           <strong className="strong">Phone No:</strong>
                         </span>
                         <span>
-                          <strong className="strong">TownCity:</strong>
+                          {/* <strong className="strong">TownCity:</strong> */}
                         </span>
                       </div>
                       <div className="rower">
                         <span>{User.FName}</span>
                         <span>{User.Dob}</span>
-                        <span>{ChildOf.phNo}</span>
-                        <span>{ChildOf.TownCity}</span>
+                        <span>{User.phNo}</span>
                       </div>
                     </div>
                   </div>
