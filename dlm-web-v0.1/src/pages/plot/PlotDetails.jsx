@@ -47,10 +47,17 @@ function PlotDetails() {
             <span>Paid</span> <h1>{PlotDetail.paidAmount} PKR</h1>
           </div>
           <div className="details">
-            <span>Plot Size</span> <h1>{PlotDetail.PlotSize} Marla</h1>
+            <span>Plot Size</span> <h1>{PlotDetail.PlotSize}</h1>
           </div>
           <div className="details">
             <span>File No</span> <h1> {PlotDetail.FileNumber}</h1>
+          </div>
+          <div className="details">
+            <span>Remaining Amount</span>{" "}
+            <h1>
+              {parseInt(PlotDetail.TotalAmount) -
+                parseInt(PlotDetail.paidAmount)}
+            </h1>
           </div>
         </div>
       </div>
