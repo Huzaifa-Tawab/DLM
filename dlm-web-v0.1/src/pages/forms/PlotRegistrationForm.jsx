@@ -196,7 +196,7 @@ const PlotRegistrationForm = () => {
       });
       await updateAgent();
       await updateCustomer();
-      await updateTransaction();
+      // await updateTransaction();
 
       navigate(`/details/plot/${fileNumber}`);
     }

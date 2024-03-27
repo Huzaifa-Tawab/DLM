@@ -283,12 +283,6 @@ function FinancePending() {
                       onChange={(e) => debouncedFilterData(e.target.value)}
                       className="nosubmit"
                     />
-                    <input
-                      className="calender"
-                      type="date"
-                      name="Select date"
-                      // onChange={onDateSelect}
-                    />
                   </form>
 
                   <div className="table-wrapper">

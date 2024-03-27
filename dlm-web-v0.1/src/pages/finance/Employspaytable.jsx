@@ -78,7 +78,7 @@ function Employspaytable() {
                 </div>
                 <div className="Admin-Home-content">
                   <div className="Admin-Home-table">
-                    <form class="nosubmit">
+                    <form className="nosubmit">
                       <input
                         type="text"
                         placeholder="Search by Id"
