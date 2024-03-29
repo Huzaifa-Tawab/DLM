@@ -52,7 +52,8 @@ function Finance() {
             data.customerName
               .toLowerCase()
               .includes(searchText.toLowerCase()) ||
-            data.fileNumber.toLowerCase().includes(searchText.toLowerCase())
+            data.fileNumber.toLowerCase().includes(searchText.toLowerCase()) ||
+            data.verifiedBy.toLowerCase().includes(searchText.toLowerCase())
         );
       }
       let _total = 0;
@@ -145,6 +146,7 @@ function Finance() {
             <div className="Admin-Home">
               <div className="hero--head">
                 <h1>Invoices</h1>
+                <h1>{filteredCustomersDataMemoized.length}</h1>
                 <h1>{total} PKR</h1>
                 <button onClick={downloadExcel}>Export</button>
               </div>
