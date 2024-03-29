@@ -60,9 +60,9 @@ function Emppayslip() {
                   <span>Company Address</span>
                 </div>
                 <div className="info-details-col2">
-                  <span>0333333333</span>
+                  <span>0314-5142209</span>
                   <span>support@propertydlm.com</span>
-                  <span>D-17, J-17 Mall, Islamabad, Pakistan</span>
+                  <span>Flat No 217, J-7 Mall, D-17 Islamabad</span>
                 </div>
               </div>
             </div>

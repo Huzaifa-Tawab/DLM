@@ -152,7 +152,7 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
     await setDoc(doc(db, "Transactions", randomNum), {
       fileNumber: pid,
       agentID: aid,
-      agentName: agent.Name + " " + agent.FName,
+      agentName: agent.Name,
       customerName: customer.Name,
       customerLastName: customer.FName,
       customerID: cid,

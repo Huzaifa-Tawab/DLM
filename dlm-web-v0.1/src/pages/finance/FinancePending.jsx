@@ -262,6 +262,13 @@ function FinancePending() {
   function downloadExcel() {
     exportToExcel(filteredCustomersDataMemoized, "Unverified");
   }
+  async function deleteInvoice(id) {
+    console.log("delete", id);
+    setisLoading(true);
+    await deleteDoc(doc(db, "Transactions", id));
+    getCustomersData();
+    setisLoading(false);
+  }
   return (
     <SideBar
       element={
