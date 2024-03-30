@@ -160,7 +160,10 @@ function Emppayslip() {
               <div className="Net-Salary">
                 <h4>NET SALARY</h4>
                 <div className="subtotal">
-                  <h4>{invoiceData.netsalary}</h4>
+                  <h4>
+                    {parseInt(invoiceData.basicpay) +
+                      parseInt(invoiceData.allowance)}
+                  </h4>
                 </div>
               </div>
             </div>

@@ -144,10 +144,10 @@ function PaySlip() {
       errors = true;
     }
 
-    if (Netsalary == "") {
-      alert("Please Enter Net Salary");
-      errors = true;
-    }
+    // if (Netsalary == "") {
+    //   alert("Please Enter Net Salary");
+    //   errors = true;
+    // }
     if (SalaryDate == "") {
       alert("Please Enter Salary Date");
       errors = true;
@@ -196,7 +196,7 @@ function PaySlip() {
           <>
             <div className="container">
               <h1 className="title-form" style={{ textAlign: "justify" }}>
-                Employee Registration Form
+                Employee Pay Detail Form
               </h1>
               <div className="content">
                 <form action="#" onSubmit={handleSubmit}>
@@ -231,7 +231,7 @@ function PaySlip() {
                       />
                     </div>
 
-                    <div className="input-box">
+                    {/* <div className="input-box">
                       <p>Net Salary</p>
                       <input
                         type="number"
@@ -242,7 +242,7 @@ function PaySlip() {
                           setNetsalary(e.target.value);
                         }}
                       />
-                    </div>
+                    </div> */}
                   </div>
 
                   <div className="user-details">
