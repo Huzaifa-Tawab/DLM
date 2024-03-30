@@ -143,10 +143,7 @@ function PaySlip() {
       alert("Please Enter Allowance Amount");
       errors = true;
     }
-    if (Subtotal == "") {
-      alert("Please Enter SubtotalAmount");
-      errors = true;
-    }
+
     if (Netsalary == "") {
       alert("Please Enter Net Salary");
       errors = true;
@@ -233,18 +230,7 @@ function PaySlip() {
                         }}
                       />
                     </div>
-                    <div className="input-box">
-                      <p>Sub Total</p>
-                      <input
-                        label="subtotal"
-                        type="number"
-                        name="subtotal"
-                        value={Subtotal}
-                        onChange={(e) => {
-                          setSubtotal(e.target.value);
-                        }}
-                      />
-                    </div>
+
                     <div className="input-box">
                       <p>Net Salary</p>
                       <input
