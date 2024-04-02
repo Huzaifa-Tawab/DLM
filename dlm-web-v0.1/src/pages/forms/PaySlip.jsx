@@ -105,6 +105,8 @@ function PaySlip() {
   const [Netsalary, setNetsalary] = useState("");
   const [SalaryDate, setSalarydate] = useState("");
   const [SalaryMonth, setSalaryMonth] = useState("");
+  const [Chequeid, setChequeid] = useState("");
+  const [Accountno, setAccountno] = useState("");
 
   const [isLoading, setisLoading] = useState(false);
   const handleFileChange = (file) => {
@@ -156,6 +158,14 @@ function PaySlip() {
       alert("Please Enter Salary Date");
       errors = true;
     }
+    if (Chequeid == "") {
+      alert("Please Enter Cheque ID No");
+      errors = true;
+    }
+    if (Accountno == "") {
+      alert("Please Enter Account No");
+      errors = true;
+    }
 
     // if (AvatarPreview == "") {
     //   alert("Add Image");
@@ -182,6 +192,8 @@ function PaySlip() {
       netsalary: Netsalary,
       salarydate: SalaryDate,
       salarymonth: SalaryMonth,
+      chequeid: Chequeid,
+      accountno: Accountno,
     }).then(() => {
       setisLoading(false);
       alert("Employee Salary Date Uplaoded");
@@ -231,18 +243,30 @@ function PaySlip() {
                       />
                     </div>
 
-                    {/* <div className="input-box">
-                      <p>Net Salary</p>
+                    <div className="input-box">
+                      <p>Cheque Id/ Trx ID</p>
                       <input
-                        type="number"
-                        label="number"
-                        name="number"
-                        value={Netsalary}
+                        type="text"
+                        label="text"
+                        name="chequeid"
+                        value={Chequeid}
                         onChange={(e) => {
-                          setNetsalary(e.target.value);
+                          setChequeid(e.target.value);
                         }}
                       />
-                    </div> */}
+                    </div>
+                    <div className="input-box">
+                      <p>Account No</p>
+                      <input
+                        type="text"
+                        label="text"
+                        name="text"
+                        value={Accountno}
+                        onChange={(e) => {
+                          setAccountno(e.target.value);
+                        }}
+                      />
+                    </div>
                   </div>
 
                   <div className="user-details">

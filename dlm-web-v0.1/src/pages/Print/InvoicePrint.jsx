@@ -22,6 +22,7 @@ function PrintInvoice() {
   const [panelty, setpanelty] = useState("0.0");
   const [Society, setSociety] = useState("0");
   const [signature, setSignature] = useState("");
+
   useEffect(() => {
     getData();
   }, []);
@@ -47,8 +48,14 @@ function PrintInvoice() {
       console.log(data["Society"]);
       setNature(data["nature"]);
       setSignature(data["Esign"]);
-
       // window.print();
+
+      // const docRef = doc(db, "Plots", data["fileNumber"]);
+      // const docSnap = await getDoc(docRef);
+
+      // if (docSnap.exists() && docSnap.data()["varified"]) {
+
+      // }
     } else {
       // docSnap.data() will be undefined in this case
       // console.log("No such document!");

@@ -90,6 +90,7 @@
 .des-col-4-iner2 {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 .des-col-4-sec-2 {
   display: flex;

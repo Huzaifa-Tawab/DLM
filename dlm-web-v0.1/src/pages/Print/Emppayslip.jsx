@@ -110,6 +110,16 @@ function Emppayslip() {
                   <span>{invoiceData.salarymonth}</span>
                 </div>
               </div>
+              <div className="des-col-4-sec-1">
+                <div className="des-col-4-iner1">
+                  <span>Cheque ID/ Trx ID:</span>
+                  <span>Account No:</span>
+                </div>
+                <div className="des-col-4-iner2">
+                  <span>{invoiceData.chequeid}</span>
+                  <span>{invoiceData.accountno}</span>
+                </div>
+              </div>
             </div>
             <div className="des-col-5-slip">
               <div className="blank"></div>
