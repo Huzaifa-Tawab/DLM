@@ -282,6 +282,7 @@ function PrintFile() {
             <div className="signatures-text">
               <h3>Signatures</h3>
             </div>
+            <h4 className="Admin">CH Bilal</h4>
             <div className="signature-area">
               <h3>Customer</h3>
               <h3>Booking Officer</h3>
@@ -296,7 +297,7 @@ function PrintFile() {
           </div>
         </div> */}
             {/* code is in schedule.css */}
-            <div className="print-file-footer">
+            <div className="print-file-footerr">
               <div className="file-footer-left">
                 <p>
                   Computer Generated File Printed on : <strong>{date}</strong>

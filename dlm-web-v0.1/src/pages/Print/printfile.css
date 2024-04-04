@@ -464,7 +464,22 @@
   width: 35%;
 }
 .file-footer-left {
-  position: relative;
+  p {
+    margin-top: 110px;
+  }
+}
+.print-file-footerr {
+  /* position: relative;
   /* position: absolute; */
-  top: 5px;
+}
+.Admin {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  top: 95px;
+  right: 85px;
+  font-family: "Open Sans", sans-serif;
+  h4 {
+    color: rgb(48, 46, 46);
+  }
 }
