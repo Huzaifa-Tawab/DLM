@@ -60,6 +60,7 @@ const PlotRegistrationForm = () => {
   const [Block, setBlock] = useState("General");
   const [isFileNumberEditable, setisFileNumberEditable] = useState(false);
   const [labelError, setlabelError] = useState("");
+  const [tempFile, setTempFile] = useState("");
 
   const [Selectedsize, setSelectedsize] = useState("");
 
@@ -67,6 +68,7 @@ const PlotRegistrationForm = () => {
     const generateNumber = async () => {
       const number = await generateRandomNumber("Plots", "DYN");
       setfileNumber(number);
+      setTempFile(number);
     };
     generateNumber();
     getAgents();
@@ -80,6 +82,7 @@ const PlotRegistrationForm = () => {
       selectedIndex !== "" ? parseInt(selectedIndex, 10) : null
     );
     setCatagory(CatagoryList[selectedIndex].name);
+
     // setpossessionAmount(CatagoryList[selectedIndex].PossessionAmount);
     // setInstallmentMonth(CatagoryList[selectedIndex].InstallmentAmount);
     // setPaidAmount(CatagoryList[selectedIndex].DownPayment);
@@ -291,7 +294,7 @@ const PlotRegistrationForm = () => {
           if (key === _Psize) {
             console.log(value);
             Object.entries(value).map(([plotsizekey, plotsizevalue]) => {
-              console.log(plotsizekey);
+              console.log("kk", plotsizekey);
               temp.push(plotsizekey);
             });
           }
@@ -303,6 +306,15 @@ const PlotRegistrationForm = () => {
 
   function setPlotData(params) {
     setPlotsize(params);
+    const firstThreeLetters = tempFile.substring(0, 3);
+    const remainingLetters = tempFile.substring(3);
+    if (params == "50x100 Sq.Ft") {
+      setfileNumber(`${firstThreeLetters}-H${remainingLetters}`);
+    } else if (params == "50x50 Sq.Ft") {
+      setfileNumber(`${firstThreeLetters}-D${remainingLetters}`);
+    } else if (params == "25x50 Sq.Ft") {
+      setfileNumber(`${firstThreeLetters}-K${remainingLetters}`);
+    }
     SocietyList.forEach((element) => {
       if (element.name === Society) {
         Object.entries(element.catagories).map(([key, value]) => {

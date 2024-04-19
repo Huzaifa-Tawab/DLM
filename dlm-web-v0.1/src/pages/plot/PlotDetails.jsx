@@ -29,6 +29,7 @@ function PlotDetails() {
       setPlotDetail(docSnap.data());
     }
   }
+  const x = parseInt(PlotDetail.TotalAmount) - parseInt(PlotDetail.paidAmount);
   return isLoading ? (
     <Loader />
   ) : (
@@ -44,7 +45,8 @@ function PlotDetails() {
             <h1> {PlotDetail.TotalAmount} PKR</h1>
           </div>
           <div className="details">
-            <span>Paid</span> <h1>{PlotDetail.paidAmount} PKR</h1>
+            <span>Paid</span>{" "}
+            <h1>{PlotDetail.paidAmount ? PlotDetail.paidAmount : "0"} PKR</h1>
           </div>
           <div className="details">
             <span>Plot Size</span> <h1>{PlotDetail.PlotSize}</h1>
@@ -53,11 +55,8 @@ function PlotDetails() {
             <span>File No</span> <h1> {PlotDetail.FileNumber}</h1>
           </div>
           <div className="details">
-            <span>Remaining Amount</span>{" "}
-            <h1>
-              {parseInt(PlotDetail.TotalAmount) -
-                parseInt(PlotDetail.paidAmount)}
-            </h1>
+            <span>Remaining Amount</span>
+            <h1>{x ? x : "0"} PKR</h1>
           </div>
         </div>
       </div>

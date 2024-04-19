@@ -61,6 +61,8 @@ import Emppayslip from "./pages/Print/Emppayslip";
 import Emplysdetailsform from "./pages/forms/Emplysdetailsform";
 import Empdetafinance from "./pages/finance/Empdetafinance";
 import PaySlip from "./pages/forms/PaySlip";
+import Balloting from "./pages/Balloting";
+import Ballotingmodel from "./components/Modals/Ballotingmodel";
 
 function App() {
   const [open, setOpen] = useState();
@@ -80,6 +82,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/employe/:id" element={<Empdetafinance />} />
+        <Route path="/balloting" element={<Balloting />} />
+
         <Route path="/empdetailfrom" element={<Emplysdetailsform />} />
         <Route path="/print/payslip/:id" element={<Emppayslip />} />
         <Route path="/employtable" element={<Employspaytable />} />

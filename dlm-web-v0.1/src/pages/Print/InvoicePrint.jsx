@@ -22,6 +22,8 @@ function PrintInvoice() {
   const [panelty, setpanelty] = useState("0.0");
   const [Society, setSociety] = useState("0");
   const [signature, setSignature] = useState("");
+  const [remainingAmount, setRemaingAmount] = useState("");
+  const [totalAmount, setTotalamount] = useState("");
 
   useEffect(() => {
     getData();
@@ -48,6 +50,7 @@ function PrintInvoice() {
       console.log(data["Society"]);
       setNature(data["nature"]);
       setSignature(data["Esign"]);
+      getPlotData(data["fileNumber"]);
       // window.print();
 
       // const docRef = doc(db, "Plots", data["fileNumber"]);
@@ -60,6 +63,15 @@ function PrintInvoice() {
       // docSnap.data() will be undefined in this case
       // console.log("No such document!");
       navigate("/login");
+    }
+  }
+  async function getPlotData(fn) {
+    const docRef = doc(db, "Plots", fn);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      setTotalamount(docSnap.data().TotalAmount);
+      setRemaingAmount(docSnap.data().TotalAmount - docSnap.data().paidAmount);
     }
   }
 
@@ -103,6 +115,8 @@ function PrintInvoice() {
                 <th>Nature</th>
                 <th>Penalty</th>
                 <th>Amount</th>
+                <th>Total Amount</th>
+                <th>Remaining Amount</th>
               </tr>
             </thead>
             <tbody>
@@ -111,6 +125,8 @@ function PrintInvoice() {
                 <td>{Nature}</td>
                 <td>{panelty}</td>
                 <td>{TotalInstalmentAmount}</td>
+                <td>{totalAmount}</td>
+                <td>{remainingAmount}</td>
               </tr>
             </tbody>
           </table>

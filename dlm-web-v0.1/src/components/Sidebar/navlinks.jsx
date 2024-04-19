@@ -109,6 +109,11 @@ export const subAdminNavLinks = [
     span: "New",
   },
   {
+    to: "/balloting",
+    icon: <i className="fa-solid fa-user-lock"></i>,
+    title: "Balloting",
+  },
+  {
     to: "/endsession",
     icon: <i className="fa-solid fa-user-lock"></i>,
     title: "Log Out",
