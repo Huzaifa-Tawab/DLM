@@ -5,7 +5,7 @@ import SideBar from "../components/Sidebar/sidebar";
 import Loader from "../components/loader/Loader";
 import Ballotingmodel from "../components/Modals/Ballotingmodel";
 import Modal from "simple-react-modal";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { db } from "../firebase";
 
 function Balloting() {
@@ -45,12 +45,22 @@ function Balloting() {
 
     return errors;
   };
+  //   const datestart = {Startdate};
+  // const [d, m, y] =  datestart.split(/-|\//); // splits "26-02-2012" or "26/02/2012"
+  // const date = new Date(y, m - 1, d);
+  // console.log(date.getTime());
+
+  // const dateend = {Enddate};
+  // const [date, month, year] =  dateend.split(/-|\//); // splits "26-02-2012" or "26/02/2012"
+  // const date = new Date(year, month - 1, date);
+  // console.log(date.getTime());
 
   async function uplaodToFirebase() {
     await addDoc(collection(db, "Balloting"), {
       title: Title,
       startDate: Startdate,
       endDate: Enddate,
+      createdAt: Timestamp.now(),
     }).then(() => {
       setisLoading(false);
       alert("Balloting Uploaded");
@@ -90,11 +100,11 @@ function Balloting() {
                       <table className="fl-table">
                         <thead>
                           <tr>
-                            <th>Name</th>
-                            <th>Phone Number</th>
-                            <th>CNIC No</th>
-                            <th>Address</th>
-                            <th></th>
+                            <th>Title</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Status</th>
+                            <th>Details</th>
                           </tr>
                         </thead>
                         <tbody>
