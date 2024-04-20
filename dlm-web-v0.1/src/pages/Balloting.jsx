@@ -5,7 +5,7 @@ import SideBar from "../components/Sidebar/sidebar";
 import Loader from "../components/loader/Loader";
 import Ballotingmodel from "../components/Modals/Ballotingmodel";
 import Modal from "simple-react-modal";
-import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { collection, addDoc, Timestamp, endAt } from "firebase/firestore";
 import { db } from "../firebase";
 
 function Balloting() {
@@ -45,21 +45,17 @@ function Balloting() {
 
     return errors;
   };
-  //   const datestart = {Startdate};
-  // const [d, m, y] =  datestart.split(/-|\//); // splits "26-02-2012" or "26/02/2012"
-  // const date = new Date(y, m - 1, d);
-  // console.log(date.getTime());
-
-  // const dateend = {Enddate};
-  // const [date, month, year] =  dateend.split(/-|\//); // splits "26-02-2012" or "26/02/2012"
-  // const date = new Date(year, month - 1, date);
-  // console.log(date.getTime());
+  function toTimestamp(strDate) {
+    var datum = Date.parse(strDate); //"Updated Firestore queries to include endAt parameter and added utility function to convert string date to Firebase Timestamp in Balloting.jsx"
+    console.log(datum / 1000);
+    return datum;
+  }
 
   async function uplaodToFirebase() {
     await addDoc(collection(db, "Balloting"), {
       title: Title,
-      startDate: Startdate,
-      endDate: Enddate,
+      startDate: Timestamp.fromMillis(toTimestamp(Startdate)), //"Updated Firestore queries to include endAt parameter and added utility function to convert string date to Firebase Timestamp in Balloting.jsx"
+      endDate: Timestamp.fromMillis(toTimestamp(Enddate)),
       createdAt: Timestamp.now(),
     }).then(() => {
       setisLoading(false);
