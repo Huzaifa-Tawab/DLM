@@ -188,6 +188,8 @@ function PrintInvoice() {
                 <th>Nature</th>
                 <th>Penalty</th>
                 <th>Amount</th>
+                <th>Total Amount</th>
+                <th>Remaining Amount</th>
               </tr>
             </thead>
             <tbody>
@@ -196,6 +198,8 @@ function PrintInvoice() {
                 <td>{Nature}</td>
                 <td>{panelty}</td>
                 <td>{TotalInstalmentAmount}</td>
+                <td>{totalAmount}</td>
+                <td>{remainingAmount}</td>
               </tr>
             </tbody>
           </table>

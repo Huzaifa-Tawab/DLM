@@ -309,11 +309,11 @@ const PlotRegistrationForm = () => {
     const firstThreeLetters = tempFile.substring(0, 3);
     const remainingLetters = tempFile.substring(3);
     if (params == "50x100 Sq.Ft") {
-      setfileNumber(`${firstThreeLetters}-H${remainingLetters}`);
-    } else if (params == "50x50 Sq.Ft") {
-      setfileNumber(`${firstThreeLetters}-D${remainingLetters}`);
-    } else if (params == "25x50 Sq.Ft") {
       setfileNumber(`${firstThreeLetters}-K${remainingLetters}`);
+    } else if (params == "50x50 Sq.Ft") {
+      setfileNumber(`${firstThreeLetters}-T${remainingLetters}`);
+    } else if (params == "25x50 Sq.Ft") {
+      setfileNumber(`${firstThreeLetters}-F${remainingLetters}`);
     }
     SocietyList.forEach((element) => {
       if (element.name === Society) {
