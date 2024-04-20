@@ -17,6 +17,9 @@ function Finance() {
   const [filteredCustomersData, setFilteredCustomersData] = useState([]);
   const [isLoading, setisLoading] = useState(true);
   const [total, setTotal] = useState(0);
+  const [Dropname1, setDropname1] = useState("");
+  const [Dropname2, setDropname2] = useState("");
+
   // const [startDate, setStartDate] = useState(null);
   // const [endDate, setEndDate] = useState(null);
 
@@ -227,6 +230,27 @@ function Finance() {
                     /> */}
 
                     {/* delete this calender after eid */}
+                    <select
+                      className="Calender"
+                      style={{
+                        width: "200px",
+                        display: "flex",
+                        alignItems: "center",
+                        height: "25px",
+                        marginTop: "15px",
+                        borderRadius: "8px",
+                        padding: "3px",
+                      }}
+                      onChange={(e) => {
+                        setDropname1(e.target.value);
+
+                        console.log(e.target.value);
+                      }}
+                    >
+                      <option>Choose Option</option>
+                      <option>Isfan Arif</option>
+                      <option>Hamza Sh</option>
+                    </select>
                     <input
                       className="calender"
                       type="date"
