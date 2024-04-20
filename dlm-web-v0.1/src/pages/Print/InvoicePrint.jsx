@@ -70,7 +70,7 @@ function PrintInvoice() {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      setTotalamount(docSnap.data().TotalAmount);
+      // setTotalamount(docSnap.data().TotalAmount);
       setRemaingAmount(docSnap.data().TotalAmount - docSnap.data().paidAmount);
     }
   }
@@ -115,7 +115,7 @@ function PrintInvoice() {
                 <th>Nature</th>
                 <th>Penalty</th>
                 <th>Amount</th>
-                <th>Total Amount</th>
+
                 <th>Remaining Amount</th>
               </tr>
             </thead>
@@ -125,7 +125,7 @@ function PrintInvoice() {
                 <td>{Nature}</td>
                 <td>{panelty}</td>
                 <td>{TotalInstalmentAmount}</td>
-                <td>{totalAmount}</td>
+
                 <td>{remainingAmount}</td>
               </tr>
             </tbody>
@@ -188,7 +188,7 @@ function PrintInvoice() {
                 <th>Nature</th>
                 <th>Penalty</th>
                 <th>Amount</th>
-                <th>Total Amount</th>
+
                 <th>Remaining Amount</th>
               </tr>
             </thead>
@@ -198,7 +198,7 @@ function PrintInvoice() {
                 <td>{Nature}</td>
                 <td>{panelty}</td>
                 <td>{TotalInstalmentAmount}</td>
-                <td>{totalAmount}</td>
+
                 <td>{remainingAmount}</td>
               </tr>
             </tbody>

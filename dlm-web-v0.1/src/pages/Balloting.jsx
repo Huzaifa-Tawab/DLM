@@ -18,8 +18,9 @@ function Balloting() {
 
   //   setisLoading(false);
   const handleSubmit = (e) => {
-    e.preventDefault();
     setisLoading(true);
+    e.preventDefault();
+
     const validationErrors = validateForm();
     if (validationErrors == false) {
       uplaodToFirebase();
@@ -30,15 +31,15 @@ function Balloting() {
   const validateForm = () => {
     let errors = false;
     if (Title === "") {
-      alert("Please Enter Name");
+      alert("Please Enter Title");
       errors = true;
     }
-    if (StartDate === "") {
-      alert("Please Enter Name");
+    if (Startdate === "") {
+      alert("Please Enter Start Date");
       errors = true;
     }
     if (Enddate === "") {
-      alert("Please Enter Name");
+      alert("Please Enter End Date");
       errors = true;
     }
 
@@ -59,7 +60,7 @@ function Balloting() {
     <>
       <SideBar
         element={
-          true ? (
+          isLoading ? (
             <Loader />
           ) : (
             <>
@@ -178,8 +179,8 @@ function Balloting() {
                 setEnddate(e.target.value);
               }}
             ></input>
+            <input type="submit"></input>
           </form>
-          <input type="submit"></input>
         </div>
       </Modal>
     </>
