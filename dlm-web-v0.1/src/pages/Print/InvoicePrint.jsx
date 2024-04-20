@@ -138,7 +138,7 @@ function PrintInvoice() {
               <br />
               بصورت دیگر کمپنی زمہ دار نہ ہو گی۔ <br />
               Non Refundable <br />
-              Thanks for the business
+              Thanks for the business.
             </h4>
 
             {/* <img className="sig"src={signature}></img> */}
@@ -203,6 +203,7 @@ function PrintInvoice() {
               </tr>
             </tbody>
           </table>
+
           {/* <div className="last-comp">
           <h3 className="hfff">File Number</h3>
           <h3 className="hfff">Nature</h3>
@@ -222,7 +223,7 @@ function PrintInvoice() {
               ایجنٹ کو رقم دینے پر رسید لیتے وقت آن لائین تصدیق ضرور کر لیں۔{" "}
               <br />
               بصورت دیگر کمپنی زمہ دار نہ ہو گی۔ <br /> Non Refundable <br />
-              Thanks for the business
+              Thanks for the business.
             </h4>
             {/* <img className="sig"src={signature}></img> */}
             <div className="sign">

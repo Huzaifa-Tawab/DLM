@@ -309,7 +309,7 @@ const PlotRegistrationForm = () => {
     const firstThreeLetters = tempFile.substring(0, 3);
     const remainingLetters = tempFile.substring(3);
     if (params == "50x100 Sq.Ft") {
-      setfileNumber(`${firstThreeLetters}-K${remainingLetters}`);
+      setfileNumber(`${firstThreeLetters}-K${remainingLetters}`); //value added
     } else if (params == "50x50 Sq.Ft") {
       setfileNumber(`${firstThreeLetters}-T${remainingLetters}`);
     } else if (params == "25x50 Sq.Ft") {
