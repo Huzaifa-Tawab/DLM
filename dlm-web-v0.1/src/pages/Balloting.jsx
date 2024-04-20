@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import arrow from "../Assets/Plus.png";
 import { useNavigate } from "react-router-dom";
 import SideBar from "../components/Sidebar/sidebar";
 import Loader from "../components/loader/Loader";
 import Ballotingmodel from "../components/Modals/Ballotingmodel";
 import Modal from "simple-react-modal";
-import { collection, addDoc, Timestamp, endAt } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  Timestamp,
+  endAt,
+  getDocs,
+} from "firebase/firestore";
 import { db } from "../firebase";
+import { useEffect } from "react";
+import { debounce } from "lodash";
 
 function Balloting() {
   const navigate = useNavigate();
@@ -15,6 +23,8 @@ function Balloting() {
   const [Title, setTitle] = useState("");
   const [Startdate, setStartDate] = useState("");
   const [Enddate, setEnddate] = useState("");
+  const [CustomersData, setCustomersData] = useState([]);
+  const [filteredCustomersData, setFilteredCustomersData] = useState([]);
 
   //   setisLoading(false);
   const handleSubmit = (e) => {
@@ -62,6 +72,42 @@ function Balloting() {
       alert("Balloting Uploaded");
     });
   }
+  useEffect(() => {
+    getCustomersData();
+  }, []);
+  async function getCustomersData() {
+    const querySnapshot = await getDocs(collection(db, "Balloting"));
+    const newCustomersData = [];
+    querySnapshot.forEach((doc) => {
+      newCustomersData.push(doc.data());
+      // newCustomersData.push({ ...doc.data(), id: doc.id });
+    });
+    setCustomersData(newCustomersData);
+    setFilteredCustomersData(newCustomersData);
+    setisLoading(false);
+  }
+  const filterData = useCallback(
+    (searchText) => {
+      let newData = CustomersData;
+      if (searchText && searchText.length > 0) {
+        newData = CustomersData.filter((data) =>
+          data.title.toLowerCase().includes(searchText.toLowerCase())
+        );
+      }
+      setFilteredCustomersData(newData);
+    },
+    [CustomersData]
+  );
+
+  const debouncedFilterData = useMemo(
+    () => debounce(filterData, 300),
+    [filterData]
+  );
+
+  const filteredCustomersDataMemoized = useMemo(
+    () => filteredCustomersData,
+    [filteredCustomersData]
+  );
   return (
     <>
       <SideBar
@@ -104,23 +150,25 @@ function Balloting() {
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            {/* <td className="avatar-image width-adjust"> */}
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td className="tddr">
-                              <p className="adress-finance-box"></p>
-                            </td>
-                            <td>
-                              <button
-                                className="button-view"
-                                onClick={() => navigate(`/employe/`)}
-                              >
-                                View
-                              </button>
-                            </td>
-                          </tr>
+                          {filteredCustomersDataMemoized.map((e) => (
+                            <tr key={e}>
+                              {/* <td className="avatar-image width-adjust"> */}
+                              <td>{e.title}</td>
+                              <td></td>
+                              <td></td>
+                              <td className="tddr">
+                                <p className="adress-finance-box"></p>
+                              </td>
+                              <td>
+                                <button
+                                  className="button-view"
+                                  onClick={() => navigate(`/employe/`)}
+                                >
+                                  View
+                                </button>
+                              </td>
+                            </tr>
+                          ))}
                         </tbody>
                       </table>
                     </div>
