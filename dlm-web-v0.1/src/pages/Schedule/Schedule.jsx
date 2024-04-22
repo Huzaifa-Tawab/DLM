@@ -25,6 +25,8 @@ function Schedule() {
       if (PlotData.data().PlotSize == "10x11 Sq.Ft") {
         setballotingAmount(525000);
       }
+      if (PlotData.data().PlotSize == "50x100 Sq.Ft") {
+      }
     }
   }
   return (

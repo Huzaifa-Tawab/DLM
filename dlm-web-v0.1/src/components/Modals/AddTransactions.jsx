@@ -41,8 +41,11 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
   const handleUpload = () => {
     setDisableButton(true);
     if (!file) {
-      setDisableButton(false);
-      alert("Please upload an image first!");
+      // setDisableButton(false);
+      // alert("Please upload an image first!");
+      uploadTansaction(
+        "https://firebasestorage.googleapis.com/v0/b/dlm-webapp.appspot.com/o/Heliotrope-1_075509-1024x288.webp?alt=media&token=201e7d47-c9b9-487b-80bf-2393c69f1184"
+      );
     } else {
       uploadToFirebase();
     }

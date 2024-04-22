@@ -55,6 +55,10 @@ function Balloting() {
 
     return errors;
   };
+  const formatTimestamp = (timestamp) => {
+    const date = timestamp.toDate(); // Convert Firebase Timestamp to JavaScript Date object
+    return date.toLocaleDateString(); // Format date as desired (e.g., 'MM/DD/YYYY')
+  };
   function toTimestamp(strDate) {
     var datum = Date.parse(strDate); //"Updated Firestore queries to include endAt parameter and added utility function to convert string date to Firebase Timestamp in Balloting.jsx"
     console.log(datum / 1000);
@@ -76,6 +80,7 @@ function Balloting() {
     getCustomersData();
   }, []);
   async function getCustomersData() {
+    //if we dont have search then we can get data by mapping this function name
     const querySnapshot = await getDocs(collection(db, "Balloting"));
     const newCustomersData = [];
     querySnapshot.forEach((doc) => {
@@ -150,19 +155,21 @@ function Balloting() {
                           </tr>
                         </thead>
                         <tbody>
-                          {filteredCustomersDataMemoized.map((e) => (
-                            <tr key={e}>
+                          {filteredCustomersDataMemoized.map((data) => (
+                            <tr key={data.id}>
                               {/* <td className="avatar-image width-adjust"> */}
-                              <td>{e.title}</td>
-                              <td></td>
-                              <td></td>
+                              <td>{data.title}</td>
+                              <td>{formatTimestamp(data.startDate)}</td>
+                              <td>{formatTimestamp(data.endDate)}</td>
                               <td className="tddr">
                                 <p className="adress-finance-box"></p>
                               </td>
                               <td>
                                 <button
                                   className="button-view"
-                                  onClick={() => navigate(`/employe/`)}
+                                  onClick={() =>
+                                    navigate("/balloting/userdetails")
+                                  }
                                 >
                                   View
                                 </button>

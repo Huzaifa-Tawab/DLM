@@ -82,11 +82,11 @@ function AdminPlot() {
 
     let temp = [];
     querySnapshot.forEach((doc) => {
-      if (doc.data()["varified"]) {
-        let single = doc.data();
-        single["id"] = doc.id;
-        temp.push(single);
-      }
+      // if (doc.data()["varified"]) {
+      let single = doc.data();
+      single["id"] = doc.id;
+      temp.push(single);
+      // }
     });
     setTransactions(temp);
   }
@@ -241,7 +241,9 @@ function AdminPlot() {
                     key={index}
                     className="transaction-main"
                     onClick={() => {
-                      navigate(`/print/invoice/${transaction.InvId}`);
+                      if (transaction["varified"]) {
+                        navigate(`/print/invoice/${transaction.InvId}`);
+                      }
                     }}
                   >
                     <div className="transaction-row">
@@ -255,12 +257,19 @@ function AdminPlot() {
                       <span>
                         <strong>Submited to:</strong> {transaction.agentName}
                       </span>
+                      <span>
+                        {/* <strong>Status</strong>{" "} */}
+                        {/* {transaction["varified"] ? "Verified" : "Pending"} */}
+                      </span>
 
                       <span>PKR {transaction.total}</span>
                     </div>
                     <div className="transaction-row">
                       <span>
-                        <strong>Approved by :</strong> {transaction.verifiedBy}
+                        <strong>Approved by :</strong>{" "}
+                        {transaction.verifiedBy
+                          ? transaction.verifiedBy
+                          : "Pending"}
                       </span>
 
                       <span></span>
