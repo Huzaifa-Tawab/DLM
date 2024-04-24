@@ -20,8 +20,8 @@ function Finance() {
   const [Dropname1, setDropname1] = useState("");
   const [Dropname2, setDropname2] = useState("");
 
-  // const [startDate, setStartDate] = useState(null);
-  // const [endDate, setEndDate] = useState(null);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   useEffect(() => {
     getCustomersData();
@@ -82,86 +82,70 @@ function Finance() {
     () => filteredCustomersData,
     [filteredCustomersData]
   );
+
+  const filteredBasedOnApprovedBy = (approvedBy) => {
+    let newData = CustomersData;
+    if (approvedBy && approvedBy.length > 0 && approvedBy != "All") {
+      newData = CustomersData.filter((data) =>
+        data.verifiedBy.toLowerCase().includes(approvedBy.toLowerCase())
+      );
+    }
+    let _total = 0;
+    newData.forEach((e) => {
+      _total = _total + parseInt(e.total) || 0;
+    });
+    setTotal(_total);
+    setFilteredCustomersData(newData);
+  };
+
   function getDate(seconds) {
     let date = new Date(seconds * 1000);
     let temp = date.toLocaleDateString();
 
     return temp;
   }
-  //delte these lines after eid so the calender range will work
-  const onDateSelect = (e) => {
-    filteredBasedOnDate(e.target.value);
-  };
-  const filteredBasedOnDate = (value) => {
-    console.log(value);
+
+  const filteredBasedOnDate = (startDate, endDate) => {
     let list = [];
     let int = 0;
-    let selectedMonth = null;
-    let selectedYear = null;
-    let selectedDay = null;
-    if (value) {
-      let selectedDate = value.split("-");
-      selectedDay = selectedDate[2];
-      selectedMonth = selectedDate[1];
-      selectedYear = selectedDate[0];
+    let startedMonth = null;
+    let endingMonth = null;
+    let startedYear = null;
+    let endingYear = null;
+    let startedDay = null;
+    let endingDay = null;
+
+    if (startDate && endDate) {
+      let startedDate = startDate.split("-");
+      startedDay = startedDate[2];
+      startedMonth = startedDate[1];
+      startedYear = startedDate[0];
+      let endingDate = endDate.split("-");
+      endingDay = endingDate[2];
+      endingMonth = endingDate[1];
+      endingYear = endingDate[0];
       CustomersData.forEach((customer) => {
         if (customer.time.seconds) {
-          let date = getDate(customer.time.seconds);
-          console.log("----");
-          console.log(date);
-          let splitDate = date.split("/");
+          let sDate = getDate(customer.time.seconds);
+
+          console.log(sDate);
+          let splitDate = sDate.split("/");
           let month = splitDate[0];
+          let day = splitDate[1];
+          let year = splitDate[2];
+
           if (month.length == 1) {
             month = 0 + month;
           }
+          console.log(startDate);
+          console.log(endDate);
           if (
-            splitDate[2] == selectedYear &&
-            month == selectedMonth &&
-            splitDate[1] == selectedDay //upto here
-
-            //uncommit these lines
-
-            // const filteredBasedOnDate = (startDate, endDate) => {
-            //   let list = [];
-            //   let int = 0;
-            //   let startedMonth = null;
-            //   let endingMonth = null;
-            //   let startedYear = null;
-            //   let endingYear = null;
-            //   let startedDay = null;
-            //   let endingDay = null;
-
-            //   if (startDate && endDate) {
-            //     let startedDate = startDate.split("-");
-            //     startedDay = startedDate[2];
-            //     startedMonth = startedDate[1];
-            //     startedYear = startedDate[0];
-            //     let endingDate = endDate.split("-");
-            //     endingDay = endingDate[2];
-            //     endingMonth = endingDate[1];
-            //     endingYear = endingDate[0];
-            //     CustomersData.forEach((customer) => {
-            //       if (customer.time.seconds) {
-            //         let sDate = getDate(customer.time.seconds);
-
-            //         console.log(sDate);
-            //         let splitDate = sDate.split("/");
-            //         let month = splitDate[0];
-            //         let day = splitDate[1];
-            //         let year = splitDate[2];
-
-            //         if (month.length == 1) {
-            //           month = 0 + month;
-            //         }
-            //         console.log(startDate);
-            //         console.log(endDate);
-            //         if (
-            //           year >= startedYear &&
-            //           month >= startedMonth &&
-            //           day >= startedDay &&
-            //           year <= endingYear &&
-            //           month <= endingMonth &&
-            //           day <= endingDay
+            year >= startedYear &&
+            month >= startedMonth &&
+            day >= startedDay &&
+            year <= endingYear &&
+            month <= endingMonth &&
+            day <= endingDay
           ) {
             int = parseInt(customer.total) + int;
             list.push(customer);
@@ -175,7 +159,6 @@ function Finance() {
       setTotal(0);
     }
   };
-
   function getDate(seconds) {
     let date = new Date(seconds * 1000);
     let temp = date.toLocaleDateString();
@@ -210,7 +193,7 @@ function Finance() {
                       onChange={(e) => debouncedFilterData(e.target.value)}
                     />
                     {/* uncomit these calenders for range calender search */}
-                    {/* <input
+                    <input
                       className="calender"
                       type="date"
                       name="Start date"
@@ -227,7 +210,7 @@ function Finance() {
                         setEndDate(e.target.value);
                         filteredBasedOnDate(startDate, e.target.value);
                       }}
-                    /> */}
+                    />
 
                     {/* delete this calender after eid */}
                     <select
@@ -243,20 +226,14 @@ function Finance() {
                       }}
                       onChange={(e) => {
                         setDropname1(e.target.value);
-
+                        filteredBasedOnApprovedBy(e.target.value);
                         console.log(e.target.value);
                       }}
                     >
-                      <option>Choose Option</option>
-                      <option>Isfan Arif</option>
-                      <option>Hamza Sh</option>
+                      <option value="All">Choose Option</option>
+                      <option value="Irfan Yousaf">Irfan Yousaf</option>
+                      <option value="Hamza Sh"> Hamza Sh</option>
                     </select>
-                    <input
-                      className="calender"
-                      type="date"
-                      name="Select date"
-                      onChange={onDateSelect}
-                    />
                   </form>
 
                   <div className="table-wrapper">
