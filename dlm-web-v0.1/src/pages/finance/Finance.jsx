@@ -10,7 +10,9 @@ import FinanceHeader from "../../components/header/FinanceHeader";
 import arrow from "../../Assets/Plus.png";
 import SideBar from "../../components/Sidebar/sidebar";
 import { exportToExcel } from "../Print/exportToExcel";
-
+import myPdfFile from "../../Assets/RequestBookingForm.pdf";
+import { CgExport } from "react-icons/cg";
+import { IoMdDownload } from "react-icons/io";
 function Finance() {
   const navigate = useNavigate();
   const [CustomersData, setCustomersData] = useState([]);
@@ -169,6 +171,10 @@ function Finance() {
   function downloadExcel() {
     exportToExcel(filteredCustomersDataMemoized, "invoices");
   }
+  const handleDownload = () => {
+    window.open(myPdfFile);
+  };
+
   return (
     <SideBar
       element={
@@ -181,12 +187,72 @@ function Finance() {
                 <h1>Invoices</h1>
                 <h1>{filteredCustomersDataMemoized.length}</h1>
                 <h1>{total} PKR</h1>
-                <button onClick={downloadExcel}>Export</button>
+                <button
+                  style={{
+                    background: "#F4B266",
+                    borderRadius: "8px",
+                    marginTop: "10px",
+                    fontSize: "13px",
+                    marginBottom: "15px",
+                    padding: "2px",
+                    width: "160px",
+                    fontWeight: "600",
+                    color: "#fff",
+                    marginLeft: "90px",
+                  }}
+                  onClick={downloadExcel}
+                >
+                  Export{" "}
+                  <div
+                    style={{
+                      fontSize: "18px",
+                      paddingTop: "5px",
+                      fontWeight: "800",
+                    }}
+                  >
+                    <CgExport />
+                  </div>
+                </button>
+
+                <button
+                  style={{
+                    padding: "2px",
+                    width: "160px",
+                    background: "#F4B266",
+                    borderRadius: "8px",
+                    marginTop: "10px",
+
+                    fontSize: "13px",
+                    marginBottom: "15px",
+                    fontWeight: "400",
+                    color: "#fff",
+                  }}
+                  onClick={handleDownload}
+                >
+                  Booking Form PDF
+                  <div
+                    style={{
+                      fontSize: "18px",
+                      paddingTop: "5px",
+                      fontWeight: "800",
+                    }}
+                  >
+                    <IoMdDownload />
+                  </div>
+                </button>
               </div>
               <div className="Admin-Home-content">
                 <div className="Admin-Home-table">
-                  <form class="nosubmit alignment-cal-serch">
+                  <form
+                    class="nosubmit alignment-cal-serch "
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-around",
+                      margin: "10px 0px 20px",
+                    }}
+                  >
                     <input
+                      style={{ border: "2px solid #F4B266" }}
                       class="nosubmit"
                       type="search"
                       placeholder="Search by Id"
@@ -194,6 +260,7 @@ function Finance() {
                     />
                     {/* uncomit these calenders for range calender search */}
                     <input
+                      style={{ border: "2px solid #F4B266" }}
                       className="calender"
                       type="date"
                       name="Start date"
@@ -203,6 +270,7 @@ function Finance() {
                       }}
                     />
                     <input
+                      style={{ border: "2px solid #F4B266" }}
                       className="calender"
                       type="date"
                       name="end date"
@@ -221,8 +289,10 @@ function Finance() {
                         alignItems: "center",
                         height: "25px",
                         marginTop: "15px",
+                        marginRight: "20px",
                         borderRadius: "8px",
                         padding: "3px",
+                        border: "2px solid #F4B266",
                       }}
                       onChange={(e) => {
                         setDropname1(e.target.value);

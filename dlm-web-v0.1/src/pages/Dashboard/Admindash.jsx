@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import {
   collection,
   query,
@@ -253,6 +254,7 @@ function AdminDash() {
                   <div className="up-hd">
                     <h3>ADMIN PROFILE</h3>
                   </div>
+
                   <div className="agent-dash-content-col1-row1 light-blue">
                     <img src={User.img} className="dash-avatar" />
                     <div className="inf--flex-col">
