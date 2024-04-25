@@ -10,9 +10,9 @@ import FinanceHeader from "../../components/header/FinanceHeader";
 import arrow from "../../Assets/Plus.png";
 import SideBar from "../../components/Sidebar/sidebar";
 import { exportToExcel } from "../Print/exportToExcel";
-import myPdfFile from "../../Assets/RequestBookingForm.pdf";
+
 import { CgExport } from "react-icons/cg";
-import { IoMdDownload } from "react-icons/io";
+
 function Finance() {
   const navigate = useNavigate();
   const [CustomersData, setCustomersData] = useState([]);
@@ -171,9 +171,6 @@ function Finance() {
   function downloadExcel() {
     exportToExcel(filteredCustomersDataMemoized, "invoices");
   }
-  const handleDownload = () => {
-    window.open(myPdfFile);
-  };
 
   return (
     <SideBar
@@ -185,61 +182,120 @@ function Finance() {
             <div className="Admin-Home">
               <div className="hero--head">
                 <h1>Invoices</h1>
-                <h1>{filteredCustomersDataMemoized.length}</h1>
-                <h1>{total} PKR</h1>
-                <button
+              </div>
+              <div
+                className="head-2nd-column"
+                style={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                  margin: "20px 50px 5px",
+                  background: "#F4B266",
+                }}
+              >
+                {" "}
+                <div
                   style={{
-                    background: "#F4B266",
-                    borderRadius: "8px",
-                    marginTop: "10px",
-                    fontSize: "13px",
-                    marginBottom: "15px",
-                    padding: "2px",
-                    width: "160px",
-                    fontWeight: "600",
-                    color: "#fff",
-                    marginLeft: "90px",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    marginBottom: "7px",
                   }}
-                  onClick={downloadExcel}
                 >
-                  Export{" "}
-                  <div
+                  <h1
                     style={{
-                      fontSize: "18px",
-                      paddingTop: "5px",
-                      fontWeight: "800",
+                      fontSize: "20px",
+                      lineHeight: "20px",
+                      paddingTop: "10px",
+                      color: "#fff",
                     }}
                   >
-                    <CgExport />
-                  </div>
-                </button>
-
-                <button
-                  style={{
-                    padding: "2px",
-                    width: "160px",
-                    background: "#F4B266",
-                    borderRadius: "8px",
-                    marginTop: "10px",
-
-                    fontSize: "13px",
-                    marginBottom: "15px",
-                    fontWeight: "400",
-                    color: "#fff",
-                  }}
-                  onClick={handleDownload}
-                >
-                  Booking Form PDF
-                  <div
+                    Total Files
+                  </h1>
+                  <h1
                     style={{
-                      fontSize: "18px",
-                      paddingTop: "5px",
-                      fontWeight: "800",
+                      fontSize: "20px",
+                      lineHeight: "20px",
+                      paddingTop: "10px",
                     }}
                   >
-                    <IoMdDownload />
-                  </div>
-                </button>
+                    {filteredCustomersDataMemoized.length}
+                  </h1>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    marginBottom: "7px",
+                  }}
+                >
+                  <h1
+                    style={{
+                      fontSize: "20px",
+                      lineHeight: "20px",
+                      paddingTop: "10px",
+                      color: "#fff",
+                    }}
+                  >
+                    Total Amount
+                  </h1>
+                  <h1
+                    style={{
+                      fontSize: "20px",
+                      lineHeight: "20px",
+                      paddingTop: "10px",
+                    }}
+                  >
+                    {total} PKR
+                  </h1>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    marginBottom: "5px",
+                  }}
+                >
+                  <h1
+                    style={{
+                      fontSize: "20px",
+                      lineHeight: "20px",
+                      paddingTop: "7px",
+                      color: "#fff",
+                    }}
+                  >
+                    Export File
+                  </h1>
+                  <button
+                    style={{
+                      marginTop: "9px",
+                      background: "#A4243B",
+                      width: "90px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "10px",
+                      padding: "5px",
+                      color: "#fff",
+                      fontWeight: "700",
+                      height: "27px",
+                      borderRadius: "8px",
+                    }}
+                    onClick={downloadExcel}
+                  >
+                    <div
+                      style={{
+                        fontSize: "15px",
+                        paddingTop: "3px",
+                        fontWeight: "800",
+                      }}
+                    >
+                      <CgExport />
+                    </div>
+                    Export{" "}
+                  </button>
+                </div>
               </div>
               <div className="Admin-Home-content">
                 <div className="Admin-Home-table">
@@ -259,26 +315,29 @@ function Finance() {
                       onChange={(e) => debouncedFilterData(e.target.value)}
                     />
                     {/* uncomit these calenders for range calender search */}
-                    <input
-                      style={{ border: "2px solid #F4B266" }}
-                      className="calender"
-                      type="date"
-                      name="Start date"
-                      onChange={(e) => {
-                        setStartDate(e.target.value);
-                        filteredBasedOnDate(e.target.value, endDate);
-                      }}
-                    />
-                    <input
-                      style={{ border: "2px solid #F4B266" }}
-                      className="calender"
-                      type="date"
-                      name="end date"
-                      onChange={(e) => {
-                        setEndDate(e.target.value);
-                        filteredBasedOnDate(startDate, e.target.value);
-                      }}
-                    />
+                    <div>
+                      <input
+                        style={{ border: "2px solid #F4B266" }}
+                        className="calender"
+                        type="date"
+                        name="Start date"
+                        onChange={(e) => {
+                          setStartDate(e.target.value);
+                          filteredBasedOnDate(e.target.value, endDate);
+                        }}
+                      />
+
+                      <input
+                        style={{ border: "2px solid #F4B266" }}
+                        className="calender"
+                        type="date"
+                        name="end date"
+                        onChange={(e) => {
+                          setEndDate(e.target.value);
+                          filteredBasedOnDate(startDate, e.target.value);
+                        }}
+                      />
+                    </div>
 
                     {/* delete this calender after eid */}
                     <select
