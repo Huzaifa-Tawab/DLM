@@ -300,24 +300,58 @@ function Finance() {
               <div className="Admin-Home-content">
                 <div className="Admin-Home-table">
                   <form
-                    class="nosubmit alignment-cal-serch "
+                    class="nosubmit "
                     style={{
                       display: "flex",
                       justifyContent: "space-around",
-                      margin: "10px 0px 20px",
+                      margin: "30px 50px 30px",
                     }}
                   >
-                    <input
-                      style={{ border: "2px solid #F4B266" }}
-                      class="nosubmit"
-                      type="search"
-                      placeholder="Search by Id"
-                      onChange={(e) => debouncedFilterData(e.target.value)}
-                    />
-                    {/* uncomit these calenders for range calender search */}
+                    <div style={{ display: "flex" }}>
+                      <select
+                        className="Calender"
+                        style={{
+                          width: "100px",
+                          display: "flex",
+                          alignItems: "center",
+                          height: "45px",
+                          position: "relative",
+                          borderRadius: "3px",
+                          background: "#A4243B",
+                          border: "2px solid #",
+                          left: "13px",
+                          color: "#fff",
+                          outline: "none",
+                        }}
+                        onChange={(e) => {
+                          setDropname1(e.target.value);
+                          filteredBasedOnApprovedBy(e.target.value);
+                          console.log(e.target.value);
+                        }}
+                      >
+                        <option value="All">Choose Option</option>
+                        <option value="Irfan Yousaf">Irfan Yousaf</option>
+                        <option value="Hamza Sh"> Hamza Sh</option>
+                      </select>
+                      <input
+                        style={{
+                          border: "2px solid #F4B266",
+                          margin: "0",
+                          borderRadius: "3px",
+                          paddingLeft: "50px",
+                          width: "220px",
+                          outline: "none",
+                        }}
+                        class="nosubmit"
+                        type="search"
+                        placeholder="Search by Id"
+                        onChange={(e) => debouncedFilterData(e.target.value)}
+                      />
+                      {/* uncomit these calenders for range calender search */}
+                    </div>
                     <div>
                       <input
-                        style={{ border: "2px solid #F4B266" }}
+                        style={{ border: "2px solid #F4B266", margin: "0" }}
                         className="calender"
                         type="date"
                         name="Start date"
@@ -328,7 +362,7 @@ function Finance() {
                       />
 
                       <input
-                        style={{ border: "2px solid #F4B266" }}
+                        style={{ border: "2px solid #F4B266", margin: "0" }}
                         className="calender"
                         type="date"
                         name="end date"
@@ -340,29 +374,6 @@ function Finance() {
                     </div>
 
                     {/* delete this calender after eid */}
-                    <select
-                      className="Calender"
-                      style={{
-                        width: "200px",
-                        display: "flex",
-                        alignItems: "center",
-                        height: "25px",
-                        marginTop: "15px",
-                        marginRight: "20px",
-                        borderRadius: "8px",
-                        padding: "3px",
-                        border: "2px solid #F4B266",
-                      }}
-                      onChange={(e) => {
-                        setDropname1(e.target.value);
-                        filteredBasedOnApprovedBy(e.target.value);
-                        console.log(e.target.value);
-                      }}
-                    >
-                      <option value="All">Choose Option</option>
-                      <option value="Irfan Yousaf">Irfan Yousaf</option>
-                      <option value="Hamza Sh"> Hamza Sh</option>
-                    </select>
                   </form>
 
                   <div className="table-wrapper">
