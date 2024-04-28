@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import softx from "../../Assets/SoftXion.png";
-import dlmDiagram from "../../assets/dimDiag.jpg";
+import dlmDiagram from "../../Assets/dimDiag.jpg";
 function Schedule() {
   const { id } = useParams();
   const [Total, setTotal] = useState("");

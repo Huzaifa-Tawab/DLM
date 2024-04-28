@@ -75,11 +75,8 @@ function Finance() {
     }
     if (startDate && endDate) {
       newData = filteredBasedOnDate(startDate, endDate, newData);
-    } else if (startDate) {
-      newData = filteredBasedOnDate(startDate, null, newData);
-    } else if (endDate) {
-      newData = filteredBasedOnDate(null, endDate, newData);
     }
+
     let _total = 0;
     newData.forEach((e) => {
       if (e.total) {
@@ -134,54 +131,6 @@ function Finance() {
             month <= endingMonth &&
             day <= endingDay
           ) {
-            list.push(customer);
-          }
-        }
-      });
-      return list;
-    } else if (startDate) {
-      let startedDate = startDate.split("-");
-      startedDay = startedDate[2];
-      startedMonth = startedDate[1];
-      startedYear = startedDate[0];
-      newData.forEach((customer) => {
-        if (customer.time.seconds) {
-          let sDate = getDate(customer.time.seconds);
-          let splitDate = sDate.split("/");
-          let month = splitDate[0];
-          let day = splitDate[1];
-          let year = splitDate[2];
-
-          if (month.length == 1) {
-            month = 0 + month;
-          }
-          if (
-            year >= startedYear &&
-            month >= startedMonth &&
-            day >= startedDay
-          ) {
-            list.push(customer);
-          }
-        }
-      });
-      return list;
-    } else if (endDate) {
-      let endingDate = endDate.split("-");
-      endingDay = endingDate[2];
-      endingMonth = endingDate[1];
-      endingYear = endingDate[0];
-      newData.forEach((customer) => {
-        if (customer.time.seconds) {
-          let sDate = getDate(customer.time.seconds);
-          let splitDate = sDate.split("/");
-          let month = splitDate[0];
-          let day = splitDate[1];
-          let year = splitDate[2];
-
-          if (month.length == 1) {
-            month = 0 + month;
-          }
-          if (year <= endingYear && month <= endingMonth && day <= endingDay) {
             list.push(customer);
           }
         }

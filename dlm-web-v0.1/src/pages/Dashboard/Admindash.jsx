@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import {
   collection,
   query,
@@ -19,6 +20,8 @@ import { useNavigate } from "react-router-dom";
 import isLogedIn from "../../../isLogedIn";
 import isAdmin from "../../../IsAdmin";
 import isFinance from "../../../IsFinance";
+import { IoMdDownload } from "react-icons/io";
+import myPdfFile from "../../Assets/RequestBookingForm.pdf";
 
 function AdminDash() {
   const [NoPlots, setNoPlots] = useState("");
@@ -229,7 +232,9 @@ function AdminDash() {
       console.error("Error updating document:", error);
     }
   };
-
+  const handleDownload = () => {
+    window.open(myPdfFile);
+  };
   return (
     <SideBar
       element={
@@ -248,11 +253,39 @@ function AdminDash() {
               >
                 {Marquee}
               </marquee>
+              <div
+                className="bookingformpdf"
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  marginRight: "100px",
+                }}
+              >
+                {" "}
+                <button
+                  style={{
+                    padding: "10px",
+                    width: "160px",
+                    background: "#F4B266",
+                    borderRadius: "8px",
+                    marginTop: "10px",
+
+                    fontSize: "13px",
+
+                    fontWeight: "400",
+                    color: "#fff",
+                  }}
+                  onClick={handleDownload}
+                >
+                  <IoMdDownload /> Booking Form PDF
+                </button>
+              </div>
               <div className="agent-dash-content">
                 <div className="agent-dash-content-col1">
                   <div className="up-hd">
                     <h3>ADMIN PROFILE</h3>
                   </div>
+
                   <div className="agent-dash-content-col1-row1 light-blue">
                     <img src={User.img} className="dash-avatar" />
                     <div className="inf--flex-col">
