@@ -17,11 +17,11 @@ function Finance() {
   const [filteredCustomersData, setFilteredCustomersData] = useState([]);
   const [isLoading, setisLoading] = useState(true);
   const [total, setTotal] = useState(0);
-  const [Dropname1, setDropname1] = useState("");
-  const [Dropname2, setDropname2] = useState("");
-
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [searchText, setSearchText] = useState(null);
+
+  const [approvedBy, setApprovedBy] = useState();
 
   useEffect(() => {
     getCustomersData();
@@ -44,55 +44,47 @@ function Finance() {
     });
     setCustomersData(newCustomersData);
     setFilteredCustomersData(newCustomersData);
+    let _total = 0;
+    newCustomersData.forEach((e) => {
+      _total = _total + parseInt(e.total) || 0;
+    });
+    setTotal(_total);
     setisLoading(false);
   }
-
-  const filterData = useCallback(
-    (searchText) => {
-      let newData = CustomersData;
-      if (searchText && searchText.length > 0) {
-        newData = CustomersData.filter(
-          (data) =>
-            data.agentName.toLowerCase().includes(searchText.toLowerCase()) ||
-            data.customerName
-              .toLowerCase()
-              .includes(searchText.toLowerCase()) ||
-            data.fileNumber.toLowerCase().includes(searchText.toLowerCase()) ||
-            data.verifiedBy.toLowerCase().includes(searchText.toLowerCase())
-        );
-      }
-      let _total = 0;
-      newData.forEach((e) => {
-        // console.log(parseInt(e.total) || 0);
-        _total = _total + parseInt(e.total) || 0;
-      });
-      // console.log(_total);
-      setTotal(_total);
-      setFilteredCustomersData(newData);
-    },
-    [CustomersData]
-  );
-
-  const debouncedFilterData = useMemo(
-    () => debounce(filterData, 300),
-    [filterData]
-  );
 
   const filteredCustomersDataMemoized = useMemo(
     () => filteredCustomersData,
     [filteredCustomersData]
   );
 
-  const filteredBasedOnApprovedBy = (approvedBy) => {
+  const filterData = (searchText, approvedBy, startDate, endDate) => {
     let newData = CustomersData;
+    if (searchText && searchText.length > 0) {
+      newData = newData.filter(
+        (data) =>
+          data.agentName.toLowerCase().includes(searchText.toLowerCase()) ||
+          data.customerName.toLowerCase().includes(searchText.toLowerCase()) ||
+          data.fileNumber.toLowerCase().includes(searchText.toLowerCase()) ||
+          data.verifiedBy.toLowerCase().includes(searchText.toLowerCase())
+      );
+    }
     if (approvedBy && approvedBy.length > 0 && approvedBy != "All") {
-      newData = CustomersData.filter((data) =>
+      newData = newData.filter((data) =>
         data.verifiedBy.toLowerCase().includes(approvedBy.toLowerCase())
       );
     }
+    if (startDate && endDate) {
+      newData = filteredBasedOnDate(startDate, endDate, newData);
+    } else if (startDate) {
+      newData = filteredBasedOnDate(startDate, null, newData);
+    } else if (endDate) {
+      newData = filteredBasedOnDate(null, endDate, newData);
+    }
     let _total = 0;
     newData.forEach((e) => {
-      _total = _total + parseInt(e.total) || 0;
+      if (e.total) {
+        _total = _total + parseInt(e.total) || 0;
+      }
     });
     setTotal(_total);
     setFilteredCustomersData(newData);
@@ -105,9 +97,8 @@ function Finance() {
     return temp;
   }
 
-  const filteredBasedOnDate = (startDate, endDate) => {
+  const filteredBasedOnDate = (startDate, endDate, newData) => {
     let list = [];
-    let int = 0;
     let startedMonth = null;
     let endingMonth = null;
     let startedYear = null;
@@ -124,11 +115,9 @@ function Finance() {
       endingDay = endingDate[2];
       endingMonth = endingDate[1];
       endingYear = endingDate[0];
-      CustomersData.forEach((customer) => {
+      newData.forEach((customer) => {
         if (customer.time.seconds) {
           let sDate = getDate(customer.time.seconds);
-
-          console.log(sDate);
           let splitDate = sDate.split("/");
           let month = splitDate[0];
           let day = splitDate[1];
@@ -137,8 +126,6 @@ function Finance() {
           if (month.length == 1) {
             month = 0 + month;
           }
-          console.log(startDate);
-          console.log(endDate);
           if (
             year >= startedYear &&
             month >= startedMonth &&
@@ -147,16 +134,59 @@ function Finance() {
             month <= endingMonth &&
             day <= endingDay
           ) {
-            int = parseInt(customer.total) + int;
             list.push(customer);
           }
         }
       });
-      setFilteredCustomersData(list);
-      setTotal(int);
-    } else {
-      setFilteredCustomersData(CustomersData);
-      setTotal(0);
+      return list;
+    } else if (startDate) {
+      let startedDate = startDate.split("-");
+      startedDay = startedDate[2];
+      startedMonth = startedDate[1];
+      startedYear = startedDate[0];
+      newData.forEach((customer) => {
+        if (customer.time.seconds) {
+          let sDate = getDate(customer.time.seconds);
+          let splitDate = sDate.split("/");
+          let month = splitDate[0];
+          let day = splitDate[1];
+          let year = splitDate[2];
+
+          if (month.length == 1) {
+            month = 0 + month;
+          }
+          if (
+            year >= startedYear &&
+            month >= startedMonth &&
+            day >= startedDay
+          ) {
+            list.push(customer);
+          }
+        }
+      });
+      return list;
+    } else if (endDate) {
+      let endingDate = endDate.split("-");
+      endingDay = endingDate[2];
+      endingMonth = endingDate[1];
+      endingYear = endingDate[0];
+      newData.forEach((customer) => {
+        if (customer.time.seconds) {
+          let sDate = getDate(customer.time.seconds);
+          let splitDate = sDate.split("/");
+          let month = splitDate[0];
+          let day = splitDate[1];
+          let year = splitDate[2];
+
+          if (month.length == 1) {
+            month = 0 + month;
+          }
+          if (year <= endingYear && month <= endingMonth && day <= endingDay) {
+            list.push(customer);
+          }
+        }
+      });
+      return list;
     }
   };
   function getDate(seconds) {
@@ -190,7 +220,15 @@ function Finance() {
                       class="nosubmit"
                       type="search"
                       placeholder="Search by Id"
-                      onChange={(e) => debouncedFilterData(e.target.value)}
+                      onChange={(e) => {
+                        setSearchText(e.target.value);
+                        filterData(
+                          e.target.value,
+                          approvedBy,
+                          startDate,
+                          endDate
+                        );
+                      }}
                     />
                     {/* uncomit these calenders for range calender search */}
                     <input
@@ -199,7 +237,12 @@ function Finance() {
                       name="Start date"
                       onChange={(e) => {
                         setStartDate(e.target.value);
-                        filteredBasedOnDate(e.target.value, endDate);
+                        filterData(
+                          searchText,
+                          approvedBy,
+                          e.target.value,
+                          endDate
+                        );
                       }}
                     />
                     <input
@@ -208,7 +251,12 @@ function Finance() {
                       name="end date"
                       onChange={(e) => {
                         setEndDate(e.target.value);
-                        filteredBasedOnDate(startDate, e.target.value);
+                        filterData(
+                          searchText,
+                          approvedBy,
+                          startDate,
+                          e.target.value
+                        );
                       }}
                     />
 
@@ -225,9 +273,13 @@ function Finance() {
                         padding: "3px",
                       }}
                       onChange={(e) => {
-                        setDropname1(e.target.value);
-                        filteredBasedOnApprovedBy(e.target.value);
-                        console.log(e.target.value);
+                        setApprovedBy(e.target.value);
+                        filterData(
+                          searchText,
+                          e.target.value,
+                          startDate,
+                          endDate
+                        );
                       }}
                     >
                       <option value="All">Choose Option</option>
