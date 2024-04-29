@@ -9,7 +9,7 @@ import Loader from "../../components/loader/Loader";
 import softx from "../../Assets/SoftXion.png";
 import getDate from "../../../GetDDMMYY";
 import cnicFormat from "../../../cnicFormatter";
-
+import sign from "./assets/bilal.png";
 function PrintFile() {
   const { id } = useParams();
   console.log(id);
@@ -282,7 +282,9 @@ function PrintFile() {
             <div className="signatures-text">
               <h3>Signatures</h3>
             </div>
-            <h4 className="Admin">CH Bilal</h4>
+            <h4 className="Admin">
+              <img width={'200pxs'} src={sign}></img>
+            </h4>
             <div className="signature-area">
               <h3>Customer</h3>
               <h3>Booking Officer</h3>
