@@ -213,7 +213,7 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       </div>
       <div>
         <div className="modal-field-group">
-          <h6>Payment Till : {month[Plot.lastPaymentMonth]} / {Plot.lastPaymentYear}</h6>
+          <h6>Payment Till :{Plot.lastPaymentMonth? month[Plot.lastPaymentMonth] + " / " + Plot.lastPaymentYear :"Only Works For New Plots"} </h6>
           <h6>Last Payment: {Plot.lastPayment?`${Plot.lastPayment.toDate().getDate()} / ${month[Plot.lastPayment.toDate().getMonth()]} / ${Plot.lastPayment.toDate().getFullYear()}`:"0"}</h6>
           <p>Number Of Installments</p>
 

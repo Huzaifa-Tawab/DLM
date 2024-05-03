@@ -185,19 +185,19 @@ function FinancePending() {
     //     }
     //   }
 
-      // Update transaction status to verified
-      // const transactionDoc = doc(db, "Transactions", id);
-      // await updateDoc(transactionDoc, {
-      //   Society: plot.Society,
-      //   verifiedBy: FinanceData.Name,
-      //   Esign: FinanceData.signature,
-      //   varified: true,
-      //   totalPaidTillNow:parseInt(plot.paidAmount) + parseInt(data.total),
-      // });
+      Update transaction status to verified
+      const transactionDoc = doc(db, "Transactions", id);
+      await updateDoc(transactionDoc, {
+        Society: plot.Society,
+        verifiedBy: FinanceData.Name,
+        Esign: FinanceData.signature,
+        varified: true,
+        remainingAmount:plot.TotalAmount - (parseInt(plot.paidAmount) ? parseInt(plot.paidAmount) : 0 ) + data.total
+
+      });
   
     
 
-// console.log();
 let x=parseInt(plot.lastPaymentMonth) + parseInt(data.numberofInstallmentMonth );
 let y=parseInt(plot.lastPaymentYear);
 if (x>11) {
@@ -211,7 +211,6 @@ if (x>11) {
       lastPaymentMonth:x,
       lastPaymentYear:y,
       invoicePending:false,
-      
     });
     // Refresh customer data after the update
     getCustomersData();
