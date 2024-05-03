@@ -29,7 +29,9 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
   const [Amount, setAmount] = useState(0);
   const [PendingInstallments, setPendingInstallments] = useState(0);
   const [DisableButton, setDisableButton] = useState(false);
-
+  const [NoOfInstallments, setNoOfInstallments] = useState(1);
+  
+  const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
   useEffect(() => {
     getDataFromDb();
   }, []);
@@ -59,6 +61,8 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
     const AdocSnap = await getDoc(doc(db, "Agent", aid));
     if (PlotdocSnap.exists()) {
       setPlot(PlotdocSnap.data());
+      setAmount(PlotdocSnap.data().Installment)
+
       console.log(PlotdocSnap.data());
       lastpaymentTime = PlotdocSnap.data().lastPayment;
       const dateLast = new Date(lastpaymentTime.seconds * 1000);
@@ -80,12 +84,13 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       }
       setPenalty(penalty);
       setNumberOfPenelties(i);
+      // setAmount(penalty*i + Amount)
     }
     if (CatadocSnap.exists()) {
       setcatagory(CatadocSnap.data());
-      installmentAmount = CatadocSnap.data().InstallmentAmount;
-      console.log(CatadocSnap.data());
-      setAmount(installmentAmount);
+      // installmentAmount = CatadocSnap.data().InstallmentAmount;
+      // console.log(CatadocSnap.data());
+      // setAmount(installmentAmount);
     }
     if (AdocSnap.exists()) {
       console.log(AdocSnap.data());
@@ -162,23 +167,39 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       proof: url,
       penalty: penalty,
       payment: Amount,
-      total: parseInt(penalty) + parseInt(Amount),
+      total: Amount,
       nature: "installment",
       time: serverTimestamp(),
       InvId: randomNum,
       Category: cata,
       varified: false,
-    });
+      totalPaidTillNow:parseInt(Plot.paidAmount) + parseInt(Amount),
+      totalPlotValue:Plot.TotalAmount,
+      numberofInstallmentMonth:NoOfInstallments,
 
+    });
+//     let x=Plot.lastPaymentMonth-11;
+//     let y=Plot.lastPaymentYear+1;
+// if (Plot.lastPaymentMonth>11) {
+//   x=Plot.lastPaymentMonth-11;
+//   y=Plot.lastPaymentYear+1;
+// } 
     await updateDoc(doc(db, "Plots", pid), {
       lastPayment: serverTimestamp(),
-      paidAmount:
-        parseInt(Plot.paidAmount) + parseInt(Amount) + parseInt(penalty),
-      installmentNo: parseInt(Plot.installmentNo) + 1,
+      // paidAmount:parseInt(Plot.paidAmount) + parseInt(Amount),
+      // installmentNo: parseInt(Plot.installmentNo) + 1,
+      // lastPaymentMonth:x,
+      // lastPaymentYear:y
+      invoicePending:true,
     });
-
     onClose();
   }
+  const d = new Date();
+
+  console.log(Plot.lastPaymentMonth,Plot.lastPaymentYear);
+  // console.log(Plot? Plot.lastPayment.toDate():"0");
+  // const date = new Date(Plot.lastPayment.seconds * 1000 + Plot.lastPayment.nanoseconds / 1000000); // Convert nanoseconds to milliseconds
+
   return (
     <Modal
       show={showModal}
@@ -192,15 +213,18 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       </div>
       <div>
         <div className="modal-field-group">
-          <p>Amount</p>
+          <h6>Payment Till : {month[Plot.lastPaymentMonth]} / {Plot.lastPaymentYear}</h6>
+          <h6>Last Payment: {Plot.lastPayment?`${Plot.lastPayment.toDate().getDate()} / ${month[Plot.lastPayment.toDate().getMonth()]} / ${Plot.lastPayment.toDate().getFullYear()}`:"0"}</h6>
+          <p>Number Of Installments</p>
 
           <input
             type="number"
             placeholder="Amount"
-            value={Amount}
+            value={NoOfInstallments}
             onChange={(e) => {
               if (parseInt(e.target.value) > 0) {
-                setAmount(parseInt(e.target.value));
+                setNoOfInstallments(parseInt(e.target.value));
+                setAmount(Plot.Installment * parseInt(e.target.value));
               }
             }}
           />

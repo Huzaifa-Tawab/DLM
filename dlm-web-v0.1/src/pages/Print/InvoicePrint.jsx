@@ -24,7 +24,7 @@ function PrintInvoice() {
   const [signature, setSignature] = useState("");
   const [remainingAmount, setRemaingAmount] = useState("");
   const [totalAmount, setTotalamount] = useState("");
-
+const [tra,setTra]=useState({});
   useEffect(() => {
     getData();
   }, []);
@@ -35,6 +35,7 @@ function PrintInvoice() {
 
     if (docSnap.exists() && docSnap.data()["varified"]) {
       const data = docSnap.data();
+      setTra(data)
       setName(data["customerName"]);
       const ms = data["time"]["seconds"] * 1000;
       const time = new Date(ms).toDateString();
@@ -47,7 +48,7 @@ function PrintInvoice() {
       setInstalmentAmount(data["total"]);
       setpanelty(data["penalty"]);
       setSociety(data["Society"]);
-      console.log(data["Society"]);
+
       setNature(data["nature"]);
       setSignature(data["Esign"]);
       getPlotData(data["fileNumber"]);
@@ -199,7 +200,7 @@ function PrintInvoice() {
                 <td>{panelty}</td>
                 <td>{TotalInstalmentAmount}</td>
 
-                <td>{remainingAmount}</td>
+                <td>{tra.totalPlotValue}</td>
               </tr>
             </tbody>
           </table>

@@ -96,6 +96,7 @@ function AdminPlot() {
 
   const closeDocModal = () => {
     setShowDocModal(false);
+    getPlotDetails()
   };
   const openTransferModal = () => {
     setShowTransferModal(true);
@@ -191,7 +192,12 @@ function AdminPlot() {
                     <button
                       className="yellow-color"
                       onClick={() => {
-                        setShowDocModal(true);
+if (PlotDetails.invoicePending) {
+  alert("Alreay Sent One Invoice For Aproval")
+}else{
+  setShowDocModal(true);  
+
+}
                       }}
                     >
                       Payment

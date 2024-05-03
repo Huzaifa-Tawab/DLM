@@ -64,135 +64,160 @@ function FinancePending() {
     }
   }
   async function AproveTrans(id, nature, data, fileNumber) {
+    const PlotdocSnap = await getDoc(doc(db, "Plots", fileNumber));
+    let plot = PlotdocSnap.data();
+
     setisLoading(true);
 
-    invoiceId = id;
-    const plotRef = doc(db, "Plots", fileNumber);
-    const PlotSnap = await getDoc(plotRef);
+    // invoiceId = id;
+    // const plotRef = doc(db, "Plots", fileNumber);
+    // const PlotSnap = await getDoc(plotRef);
 
-    if (nature === "transfer") {
-      const senderPending = doc(db, "Customers", data.senderCustomerID);
-      const receiverPending = doc(db, "Customers", data.receiverCustomerID);
+    // if (nature === "transfer") {
+    //   const senderPending = doc(db, "Customers", data.senderCustomerID);
+    //   const receiverPending = doc(db, "Customers", data.receiverCustomerID);
 
-      await updateDoc(senderPending, {
-        Plots: arrayRemove(data.fileNumber),
-      });
+    //   await updateDoc(senderPending, {
+    //     Plots: arrayRemove(data.fileNumber),
+    //   });
 
-      await updateDoc(receiverPending, {
-        Plots: arrayUnion(data.fileNumber),
-      });
-    }
-    if (PlotSnap.exists()) {
-      await updateDoc(plotRef, {
-        paidAmount:
-          parseInt(PlotSnap.data().paidAmount) || 0 + parseInt(data.payment),
-      });
-      // Calculate commissions
-      const levelOneCommission = data.payment * 0.1;
-      const otherLevelCommission = levelOneCommission * 0.1;
-      const level1DocRef = doc(db, "Agent", PlotSnap.data().AgentId);
-      const level1DocSnap = await getDoc(level1DocRef);
-      // Update main person (level 1) credits
-      await updateCredits(
-        PlotSnap.data().AgentId,
-        level1DocSnap.data().credit ?? 0,
-        levelOneCommission,
-        "Direct"
-      );
+    //   await updateDoc(receiverPending, {
+    //     Plots: arrayUnion(data.fileNumber),
+    //   });
+    // }
+    console.log(data);
+    // PlotSnap
+    // if (PlotSnap.exists()) {
+    //   await updateDoc(plotRef, {
+    //     paidAmount:
+    //       parseInt(PlotSnap.data().paidAmount) || 0 + parseInt(data.payment),
+    //   });
+    //   // Calculate commissions
+    //   const levelOneCommission = data.payment * 0.1;
+    //   const otherLevelCommission = levelOneCommission * 0.1;
+    //   const level1DocRef = doc(db, "Agent", PlotSnap.data().AgentId);
+    //   const level1DocSnap = await getDoc(level1DocRef);
+    //   // Update main person (level 1) credits
+    //   await updateCredits(
+    //     PlotSnap.data().AgentId,
+    //     level1DocSnap.data().credit ?? 0,
+    //     levelOneCommission,
+    //     "Direct"
+    //   );
 
-      let level2id = null;
-      if (level1DocSnap.exists()) {
-        level2id = level1DocSnap.data()["ChildOf"];
-      }
-      if (level2id) {
-        console.log(level2id);
-        // Retrieve the ChildOf for level 2
-        const level2DocRef = doc(db, "Agent", level2id);
-        const level2DocSnap = await getDoc(level2DocRef);
+    //   let level2id = null;
+    //   if (level1DocSnap.exists()) {
+    //     level2id = level1DocSnap.data()["ChildOf"];
+    //   }
+    //   if (level2id) {
+    //     console.log(level2id);
+    //     // Retrieve the ChildOf for level 2
+    //     const level2DocRef = doc(db, "Agent", level2id);
+    //     const level2DocSnap = await getDoc(level2DocRef);
 
-        // Update next level (level 2) credits
-        await updateCredits(
-          level2id,
-          level2DocSnap.data().credit ?? 0,
-          otherLevelCommission,
-          "Level2"
-        );
+    //     // Update next level (level 2) credits
+    //     await updateCredits(
+    //       level2id,
+    //       level2DocSnap.data().credit ?? 0,
+    //       otherLevelCommission,
+    //       "Level2"
+    //     );
 
-        let level3id = null;
-        if (level2DocSnap.exists()) {
-          level3id = level2DocSnap.data()["ChildOf"];
-        }
+    //     let level3id = null;
+    //     if (level2DocSnap.exists()) {
+    //       level3id = level2DocSnap.data()["ChildOf"];
+    //     }
 
-        if (level3id) {
-          console.log(level3id);
+    //     if (level3id) {
+    //       console.log(level3id);
 
-          const level3DocRef = doc(db, "Agent", level3id);
-          const level3DocSnap = await getDoc(level3DocRef);
-          // Update next level (level 3) credits
-          await updateCredits(
-            level3id,
-            level3DocSnap.data().credit ?? 0,
-            otherLevelCommission,
-            "Level3"
-          );
+    //       const level3DocRef = doc(db, "Agent", level3id);
+    //       const level3DocSnap = await getDoc(level3DocRef);
+    //       // Update next level (level 3) credits
+    //       await updateCredits(
+    //         level3id,
+    //         level3DocSnap.data().credit ?? 0,
+    //         otherLevelCommission,
+    //         "Level3"
+    //       );
 
-          // Repeat the process for level 4 if needed
+    //       // Repeat the process for level 4 if needed
 
-          let level4id = null;
-          if (level3DocSnap.exists()) {
-            level4id = level3DocSnap.data()["ChildOf"];
-          }
+    //       let level4id = null;
+    //       if (level3DocSnap.exists()) {
+    //         level4id = level3DocSnap.data()["ChildOf"];
+    //       }
 
-          if (level4id) {
-            console.log(level3id);
+    //       if (level4id) {
+    //         console.log(level3id);
 
-            const level4DocRef = doc(db, "Agent", level4id);
-            const level4DocSnap = await getDoc(level4DocRef);
-            // Update next level (level 3) credits
-            await updateCredits(
-              level4id,
-              level4DocSnap.data().credit ?? 0,
-              otherLevelCommission,
-              "Level4"
-            );
+    //         const level4DocRef = doc(db, "Agent", level4id);
+    //         const level4DocSnap = await getDoc(level4DocRef);
+    //         // Update next level (level 3) credits
+    //         await updateCredits(
+    //           level4id,
+    //           level4DocSnap.data().credit ?? 0,
+    //           otherLevelCommission,
+    //           "Level4"
+    //         );
 
-            // Repeat the process for level 5 if needed
+    //         // Repeat the process for level 5 if needed
 
-            let level5id = null;
-            if (level4DocSnap.exists()) {
-              level5id = level4DocSnap.data()["ChildOf"];
-            }
+    //         let level5id = null;
+    //         if (level4DocSnap.exists()) {
+    //           level5id = level4DocSnap.data()["ChildOf"];
+    //         }
 
-            if (level5id) {
-              console.log(level4id);
+    //         if (level5id) {
+    //           console.log(level4id);
 
-              const level5DocRef = doc(db, "Agent", level5id);
-              const level5DocSnap = await getDoc(level5DocRef);
-              // Update next level (level 3) credits
-              await updateCredits(
-                level5id,
-                level5DocSnap.data().credit ?? 0,
-                otherLevelCommission,
-                "Level5"
-              );
-            }
-          }
-        }
-      }
+    //           const level5DocRef = doc(db, "Agent", level5id);
+    //           const level5DocSnap = await getDoc(level5DocRef);
+    //           // Update next level (level 3) credits
+    //           await updateCredits(
+    //             level5id,
+    //             level5DocSnap.data().credit ?? 0,
+    //             otherLevelCommission,
+    //             "Level5"
+    //           );
+    //         }
+    //       }
+    //     }
+    //   }
 
       // Update transaction status to verified
-      const transactionDoc = doc(db, "Transactions", id);
-      await updateDoc(transactionDoc, {
-        Society: PlotSnap.data().Society,
-        verifiedBy: FinanceData.Name,
-        Esign: FinanceData.signature,
-        varified: true,
-      });
-    }
+      // const transactionDoc = doc(db, "Transactions", id);
+      // await updateDoc(transactionDoc, {
+      //   Society: plot.Society,
+      //   verifiedBy: FinanceData.Name,
+      //   Esign: FinanceData.signature,
+      //   varified: true,
+      //   totalPaidTillNow:parseInt(plot.paidAmount) + parseInt(data.total),
+      // });
+  
+    
+
+// console.log();
+let x=parseInt(plot.lastPaymentMonth) + parseInt(data.numberofInstallmentMonth );
+let y=parseInt(plot.lastPaymentYear);
+if (x>11) {
+  x=x-11;
+  y=y+1;
+} 
+    await updateDoc(doc(db, "Plots", fileNumber), {
+      lastPayment: serverTimestamp(),
+      paidAmount:(parseInt(plot.paidAmount) ? parseInt(plot.paidAmount) : 0 ) + parseInt(data.total),
+      installmentNo: parseInt(plot.installmentNo) + 1,
+      lastPaymentMonth:x,
+      lastPaymentYear:y,
+      invoicePending:false,
+      
+    });
     // Refresh customer data after the update
     getCustomersData();
     setisLoading(false);
   }
+
 
   async function updateCredits(agentId, credit, commission, level) {
     if (agentId) {

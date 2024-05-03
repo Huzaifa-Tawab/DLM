@@ -41,7 +41,7 @@ const PlotRegistrationForm = () => {
   const [PlotSize, setPlotsize] = useState("");
   const [TotalAmount, setTotalAmount] = useState(0);
   const [possessionAmount, setpossessionAmount] = useState(0);
-  const [InstallmentMonth, setInstallmentMonth] = useState("");
+  const [InstallmentMonth, setInstallmentMonth] = useState(1);
   const [Downpayment, setDownPayment] = useState("");
   const [Installment, setInstallment] = useState("");
   const [BookingAmount, setBookingAmount] = useState("");
@@ -61,6 +61,8 @@ const PlotRegistrationForm = () => {
   const [isFileNumberEditable, setisFileNumberEditable] = useState(false);
   const [labelError, setlabelError] = useState("");
   const [tempFile, setTempFile] = useState("");
+  const [NumOfInstallments, setNumOfInstallments] = useState(0);
+  const [InstalmentMonths, setInstallmentsMonths] = useState(0);
 
   const [Selectedsize, setSelectedsize] = useState("");
 
@@ -167,7 +169,8 @@ const PlotRegistrationForm = () => {
   const createPlot = async () => {
     const docRef = doc(db, "Customers", id);
     const docSnap = await getDoc(docRef);
-
+    const d = new Date();
+    // let year = ;
     if (docSnap.exists()) {
       console.log("Document data:", docSnap.data());
 
@@ -189,13 +192,14 @@ const PlotRegistrationForm = () => {
         InstallmentMonth: InstallmentMonth,
         PossessionAmount: possessionAmount,
         Downpayment: Downpayment,
-
         OtherAmount: OtherAmount,
         OtherAmountTitle: OtherAmountTitle,
         Society: Society,
         verified: false,
         creationTime: serverTimestamp(),
         lastPayment: serverTimestamp(),
+        lastPaymentYear:d.getFullYear(),
+        lastPaymentMonth:d.getMonth(),
       });
       await updateAgent();
       await updateCustomer();
@@ -250,6 +254,7 @@ const PlotRegistrationForm = () => {
       InvId: randomNum,
       Category: Catagory,
       varified: false,
+      invoicePending:false
     });
   }
   const updateAgent = async () => {
@@ -322,7 +327,7 @@ const PlotRegistrationForm = () => {
             Object.entries(value).map(([plotSizeKey, plotSizeValue]) => {
               if (plotSizeKey === params) {
                 setTotalAmount(plotSizeValue.total);
-                setInstallmentMonth(plotSizeValue.noOfInstallments);
+                // setInstallmentMonth(plotSizeValue.noOfInstallments);
                 setInstallment(plotSizeValue.installment);
                 setDownPayment(plotSizeValue.downpayment);
                 setpossessionAmount(plotSizeValue.possession);
@@ -348,7 +353,11 @@ const PlotRegistrationForm = () => {
     });
     setSocietyList(cat);
   }
-
+function updateInstalment(t,d,im,p){
+  var total=t-d-p  ;
+  total =total/im;
+setInstallment(total)
+}
   return (
     <SideBar
       element={
@@ -530,7 +539,11 @@ const PlotRegistrationForm = () => {
                             } else {
                               setTotalAmount(parseInt(e.target.value));
                             }
-                          }}
+                            updateInstalment(parseInt(e.target.value),Downpayment,InstallmentMonth,possessionAmount);
+
+                          }
+                        
+                        }
                           style={{ width: "100%", padding: "8px" }}
                         />
                         <p>{TotalAmountError}</p>
@@ -552,6 +565,9 @@ const PlotRegistrationForm = () => {
                               setDownPayment(0);
                             } else {
                               setDownPayment(e.target.value);
+                              updateInstalment(TotalAmount,parseInt(e.target.value),InstallmentMonth,possessionAmount);
+
+
                             }
                           }}
                           style={{ width: "100%", padding: "8px" }}
@@ -571,13 +587,60 @@ const PlotRegistrationForm = () => {
                           if (parseInt(e.target.value) < -1) {
                             setpossessionAmount(0);
                           } else {
+                          
+
                             setpossessionAmount(parseInt(e.target.value));
+                          updateInstalment(TotalAmount,Downpayment,InstallmentMonth,parseInt(e.target.value));
+
                           }
+
+
                         }}
                         style={{ width: "100%", padding: "8px" }}
                       />
                       <p>{possessionAmountError}</p>
                     </div>
+
+                    {/*  */}
+                    <div className="input-box">
+                      <label style={{ display: "block", marginBottom: "5px" }}>
+                        Installment Months:
+                      </label>
+                      <input
+                        type="number"
+                        value={InstallmentMonth}
+                        onChange={(e) => {
+                          if (parseInt(e.target.value) < -1) {
+                            setInstallmentMonth(1);
+                          } else {
+
+                            setInstallmentMonth(parseInt(e.target.value));
+                            updateInstalment(TotalAmount,Downpayment,parseInt(e.target.value),possessionAmount);
+
+                          }
+                        }}
+                        style={{ width: "100%", padding: "8px" }}
+                      />
+                      <p>{InstallmentMonthError}</p>
+                    </div>
+                    <div className="input-box">
+                      <div style={{ marginBottom: "10px" }}>
+                        <label
+                          style={{ display: "block", marginBottom: "5px" }}
+                        >
+                          Instalment Amount Per Month:
+                        </label>
+                        <input
+                          type="number"
+                       
+                          value={Installment}
+                         
+                          style={{ width: "100%", padding: "8px" }}
+                        />
+                        <p></p>
+                      </div>
+                    </div>
+                 
                     {/* <div className="input-box">
                 <label style={{ display: "block", marginBottom: "5px" }}>
                   Installment/Month:
