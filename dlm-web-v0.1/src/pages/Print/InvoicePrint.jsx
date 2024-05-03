@@ -200,7 +200,7 @@ const [tra,setTra]=useState({});
                 <td>{panelty}</td>
                 <td>{TotalInstalmentAmount}</td>
 
-                <td>{tra.totalPlotValue}</td>
+                <td>{tra. remainingAmount? tra.remainingAmount:remainingAmount}</td>
               </tr>
             </tbody>
           </table>

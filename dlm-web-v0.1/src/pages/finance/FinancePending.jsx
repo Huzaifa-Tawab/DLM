@@ -185,7 +185,7 @@ function FinancePending() {
     //     }
     //   }
 
-      Update transaction status to verified
+      // Update transaction status to verified
       const transactionDoc = doc(db, "Transactions", id);
       await updateDoc(transactionDoc, {
         Society: plot.Society,
