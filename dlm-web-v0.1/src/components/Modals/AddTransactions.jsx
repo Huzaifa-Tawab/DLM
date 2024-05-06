@@ -85,7 +85,7 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       
       }else{
         setnewInstallmentAmount(true)
-        console.log("kjklfjlkdfjldf");
+    
       }
       setPlot(PlotdocSnap.data());
       setAmount(PlotdocSnap.data().Installment)
