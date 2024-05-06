@@ -30,27 +30,35 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
   const [PendingInstallments, setPendingInstallments] = useState(0);
   const [DisableButton, setDisableButton] = useState(false);
   const [NoOfInstallments, setNoOfInstallments] = useState(1);
-  
-  const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+  const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+ const [newInstallmentAmount, setnewInstallmentAmount] = useState(false)
   useEffect(() => {
     getDataFromDb();
-  }, []);
+  }, [0]);
 
   function handleChange(event) {
     setFile(event.target.files[0]);
   }
 
   const handleUpload = () => {
+    console.log(newInstallmentAmount);
+   if (!newInstallmentAmount) {
+    alert("Please Set Installment Amount First ")
+    onClose()
+   }else{
     setDisableButton(true);
     if (!file) {
       // setDisableButton(false);
       // alert("Please upload an image first!");
+      
       uploadTansaction(
         "https://firebasestorage.googleapis.com/v0/b/dlm-webapp.appspot.com/o/Heliotrope-1_075509-1024x288.webp?alt=media&token=201e7d47-c9b9-487b-80bf-2393c69f1184"
       );
     } else {
       uploadToFirebase();
     }
+   }
   };
   async function getDataFromDb() {
     let installmentAmount = 0;
@@ -60,6 +68,25 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
     const CatadocSnap = await getDoc(doc(db, "PlotCategories", cata));
     const AdocSnap = await getDoc(doc(db, "Agent", aid));
     if (PlotdocSnap.exists()) {
+      console.log("ffff", PlotdocSnap.data().instamentVerified);
+      if (!PlotdocSnap.data().instamentVerified) {
+        try {
+          let x = parseInt(prompt('please set Up Installment amount once you set it it can not be changed'))
+          while (!x) {
+            x = parseInt(prompt('please set Up Installment amount once you set it it can not be changed'))
+          }
+          await updateDoc(doc(db, "Plots", pid), {
+            instamentVerified: true,
+            Installment:x,
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      
+      }else{
+        setnewInstallmentAmount(true)
+        console.log("kjklfjlkdfjldf");
+      }
       setPlot(PlotdocSnap.data());
       setAmount(PlotdocSnap.data().Installment)
 
@@ -147,9 +174,8 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       agent = AgentSnap.data();
     }
     while (!TSize == 0) {
-      randomNum = `INV-${
-        agent.InvId + (Math.floor(Math.random() * 1000000) + 1)
-      }`;
+      randomNum = `INV-${agent.InvId + (Math.floor(Math.random() * 1000000) + 1)
+        }`;
 
       const querySnapshotT = await getDocs(
         query(collection(db, "Transactions"), where("id", "==", randomNum))
@@ -173,30 +199,30 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       InvId: randomNum,
       Category: cata,
       varified: false,
-      totalPaidTillNow:parseInt(Plot.paidAmount) + parseInt(Amount),
-      totalPlotValue:Plot.TotalAmount,
-      numberofInstallmentMonth:NoOfInstallments,
+      totalPaidTillNow: parseInt(Plot.paidAmount) + parseInt(Amount),
+      totalPlotValue: Plot.TotalAmount,
+      numberofInstallmentMonth: NoOfInstallments,
 
     });
-//     let x=Plot.lastPaymentMonth-11;
-//     let y=Plot.lastPaymentYear+1;
-// if (Plot.lastPaymentMonth>11) {
-//   x=Plot.lastPaymentMonth-11;
-//   y=Plot.lastPaymentYear+1;
-// } 
+    //     let x=Plot.lastPaymentMonth-11;
+    //     let y=Plot.lastPaymentYear+1;
+    // if (Plot.lastPaymentMonth>11) {
+    //   x=Plot.lastPaymentMonth-11;
+    //   y=Plot.lastPaymentYear+1;
+    // } 
     await updateDoc(doc(db, "Plots", pid), {
       lastPayment: serverTimestamp(),
       // paidAmount:parseInt(Plot.paidAmount) + parseInt(Amount),
       // installmentNo: parseInt(Plot.installmentNo) + 1,
       // lastPaymentMonth:x,
       // lastPaymentYear:y
-      invoicePending:true,
+      invoicePending: true,
     });
     onClose();
   }
   const d = new Date();
 
-  console.log(Plot.lastPaymentMonth,Plot.lastPaymentYear);
+  console.log(Plot.lastPaymentMonth, Plot.lastPaymentYear);
   // console.log(Plot? Plot.lastPayment.toDate():"0");
   // const date = new Date(Plot.lastPayment.seconds * 1000 + Plot.lastPayment.nanoseconds / 1000000); // Convert nanoseconds to milliseconds
 
@@ -213,8 +239,8 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       </div>
       <div>
         <div className="modal-field-group">
-          <h6>Payment Till :{Plot.lastPaymentMonth? month[Plot.lastPaymentMonth] + " / " + Plot.lastPaymentYear :"Only Works For New Plots"} </h6>
-          <h6>Last Payment: {Plot.lastPayment?`${Plot.lastPayment.toDate().getDate()} / ${month[Plot.lastPayment.toDate().getMonth()]} / ${Plot.lastPayment.toDate().getFullYear()}`:"0"}</h6>
+          <h6>Payment Till :{Plot.lastPaymentMonth ? month[Plot.lastPaymentMonth] + " / " + Plot.lastPaymentYear : "Only Works For New Plots"} </h6>
+          <h6>Last Payment: {Plot.lastPayment ? `${Plot.lastPayment.toDate().getDate()} / ${month[Plot.lastPayment.toDate().getMonth()]} / ${Plot.lastPayment.toDate().getFullYear()}` : "0"}</h6>
           <p>Number Of Installments</p>
 
           <input

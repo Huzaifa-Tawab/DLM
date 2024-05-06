@@ -200,6 +200,7 @@ const PlotRegistrationForm = () => {
         lastPayment: serverTimestamp(),
         lastPaymentYear:d.getFullYear(),
         lastPaymentMonth:d.getMonth(),
+        instamentVerified:true,
       });
       await updateAgent();
       await updateCustomer();
