@@ -186,8 +186,17 @@ function AdminPlot() {
                       >
                         Print
                       </button>
+                      
                     </>
+                    
                   )}
+                  <button
+                        onClick={() => {
+                          navigate(`/Print/plotstatment/${PlotDetails.FileNumber}`);
+                        }}
+                      >
+                        Statment
+                      </button>
                   {!isAdmin() && (
                     <button
                       className="yellow-color"

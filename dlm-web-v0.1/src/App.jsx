@@ -64,6 +64,7 @@ import PaySlip from "./pages/forms/PaySlip";
 import Balloting from "./pages/Balloting";
 import Ballotingmodel from "./components/Modals/Ballotingmodel";
 import Ballotinguserdetails from "./pages/Ballotinguserdetails";
+import InvoiceStatment from "./pages/Print/InvoiceStatment";
 
 function App() {
   const [open, setOpen] = useState();
@@ -91,6 +92,7 @@ function App() {
 
         <Route path="/empdetailfrom" element={<Emplysdetailsform />} />
         <Route path="/print/payslip/:id" element={<Emppayslip />} />
+        <Route path="/print/plotstatment/:id" element={<InvoiceStatment />} />
         <Route path="/employtable" element={<Employspaytable />} />
         <Route path="/print/invoice/:id" element={<PrintInvoice />} />
         <Route path="/create/payslip/:uid" element={<PaySlip />} />
