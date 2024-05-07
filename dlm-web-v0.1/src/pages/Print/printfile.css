@@ -361,7 +361,7 @@
 .signature-area {
   display: flex;
   justify-content: space-around;
-  margin-top: 90px;
+  margin-top: 60px;
 }
 .signature-area > h3 {
   font-size: 15px;
@@ -467,7 +467,7 @@
 }
 .file-footer-left {
   p {
-    margin-top: 110px;
+    margin-top: 80px;
   }
 }
 .print-file-footerr {
@@ -478,7 +478,7 @@
   display: flex;
   justify-content: flex-end;
   position: relative;
-  top: 108px;
+  top: 85px;
   right: 25px;
   font-family: "Italianno", cursive;
   font-weight: 700;

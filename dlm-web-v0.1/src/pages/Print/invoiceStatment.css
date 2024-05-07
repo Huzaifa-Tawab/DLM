@@ -1,30 +1,65 @@
-.InvoiceStatment{
-    width: 2480px;
-    background: black;
-    margin: 10px;
+.InvoiceStatment {
+  width: 2480px;
+  background: black;
+  margin: 10px;
 }
-.InS-header{
-background: yellow;
-width: 100%;
-height: 200px;
-display: flex;
-justify-content: center;
+.InS-header {
+  background: #f4b266;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px;
 }
-.InS-logo{
-height: 200px;
+.InS-logo {
+  height: 100px;
+  padding: 5px;
+}
+.InS-logo img {
+  height: 100%;
+}
+.InS-content {
+  color: #fff;
 
+  text-align: center;
 }
-.InS-logo img{
-    height: 100%;
-
+.Ins-head-date {
+  display: flex;
+  align-items: center;
+  padding-right: 40px;
+  span {
+    font-size: 20px;
+  }
 }
-.InS-content{
-
+.InS-Body {
 }
-.InS-Body{
-
+.InS-Body table {
+  width: 90%;
+  margin: 25px;
+  tbody td {
+    padding: 13px;
+    text-align: center;
+  }
+  thead {
+    color: #fff;
+  }
 }
-.InS-Body table{
-    width: 100%;
-    margin: 0px;
+.Ins-body-content {
+  display: flex;
+  margin-top: 70px;
+  padding: 30px;
+}
+.Ins-cont-col1 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: flex-end;
+}
+.Ins-cont-col2 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  font-size: 17px;
 }

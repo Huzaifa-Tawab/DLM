@@ -283,7 +283,7 @@ function PrintFile() {
               <h3>Signatures</h3>
             </div>
             <h4 className="Admin">
-              <img width={'200pxs'} src={sign}></img>
+              <img width={"200px"} src={sign}></img>
             </h4>
             <div className="signature-area">
               <h3>Customer</h3>
