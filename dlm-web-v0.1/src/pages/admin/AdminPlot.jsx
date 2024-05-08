@@ -191,6 +191,7 @@ function AdminPlot() {
                     
                   )}
                   <button
+                      className="yellow-color"
                         onClick={() => {
                           navigate(`/Print/plotstatment/${PlotDetails.FileNumber}`);
                         }}

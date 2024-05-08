@@ -32,19 +32,7 @@
     font-size: 20px;
   }
 }
-.InS-Body {
-}
-.InS-Body table {
-  width: 90%;
-  margin: 25px;
-  tbody td {
-    padding: 13px;
-    text-align: center;
-  }
-  thead {
-    color: #fff;
-  }
-}
+
 .Ins-body-content {
   display: flex;
   margin-top: 70px;
@@ -62,4 +50,33 @@
   gap: 20px;
   align-items: center;
   font-size: 17px;
+}
+
+.InS-Body {
+}
+.InS-Body table {
+  border-collapse: collapse;
+  border: 1px solid;
+
+  width: 90%;
+  margin: 25px;
+  tbody td {
+    background: #fff;
+    padding: 13px;
+    text-align: center;
+    border: 1px solid black;
+
+  }
+  thead {
+    color: #fff;
+    background: black;
+    th{
+      border: 1px solid #fff;
+
+    }
+  }
+  tr {
+    background-color: #fff; color: black;
+    border: 1px solid black;
+  }
 }

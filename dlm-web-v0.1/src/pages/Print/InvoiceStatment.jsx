@@ -21,13 +21,26 @@ function InvoiceStatment() {
     let temp = [];
     querySnapshot.forEach((doc) => {
       // if (doc.data()["varified"]) {
+        
       let single = doc.data();
+      console.log(doc.data().time.toDate().toString());
       single["id"] = doc.id;
       temp.push(single);
       // }
     });
-    setTransactions(temp);
+
+    const sortedMaps = Object.values(temp).sort((a, b) => {
+      return  b.time - a.time ; // Assuming the timestamp is a numeric value
+    });
+ 
+    setTransactions(sortedMaps);
   }
+  const currentDate = new Date();
+const day = currentDate.getDate();
+const month = currentDate.getMonth() + 1; // Month is zero-based, so add 1
+const year = currentDate.getFullYear();
+
+const formattedDate = `${day}/${month}/${year}`;
   return (
     <div className="webpage">
       <div className="main-page">
@@ -37,14 +50,15 @@ function InvoiceStatment() {
               <img src="/logo.png" alt="" />
             </div>
             <div className="InS-content">
-              <h2>Plot Statement</h2>
+              <h2>Statement</h2>
+              <h4>{id}</h4>
             </div>
             <div className="Ins-head-date">
-              <h4>Date:</h4>
-              <span>Date</span>
+              <span> <strong>Date: </strong> </span>
+              <span>{formattedDate}</span>
             </div>
           </div>
-          <div className="Ins-body-content">
+          {/* <div className="Ins-body-content">
             <div className="Ins-cont-col1">
               <h5>Customer Name:</h5>
               <h5>File/Plot NO:</h5>
@@ -57,42 +71,31 @@ function InvoiceStatment() {
               <span>instalment</span>
               <span>date</span>
             </div>
-          </div>
+          </div> */}
           <div className="InS-Body">
             <table>
               <thead>
-                <th>Serial NO</th>
+                <th>Invoice #</th>
                 <th>Install Month</th>
-                <th>Deposit Date </th>
+                <th>Date </th>
                 <th>Penality</th>
               </thead>
               <tbody>
                 {Transactions.map((T, index) => (
+                  console.log("kkk",T.time),
                   <tr key={index}>
-                    <td>{T.nature}</td>
+                    <td>{T.InvId}</td>
                     <td>Instal month</td>
-                    <td>depositmonth</td>
+                    {/* <td>`${T.time.getDate().toString()}/${T.time.getMonth().toString() + 1}/${T.time.getFullYear().toString() % 100}`</td> */}
+<td>
+{T.time.toDate().getDate().toString()} / {T.time.toDate().getMonth().toString()} / {T.time.toDate().getFullYear().toString()}
+  </td>                
                     <td>{T.payment}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            <table>
-              <thead>
-                <th>Uploaded By</th>
-                <th>Approved By</th>
-                <th>Remaining Amount</th>
-              </thead>
-              <tbody>
-                {Transactions.map((T, index) => (
-                  <tr key={index}>
-                    <td>uploadedby</td>
-                    <td>approved by</td>
-                    <td>remaining amount</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+           
           </div>
         </div>
       </div>
