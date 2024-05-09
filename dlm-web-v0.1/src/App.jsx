@@ -65,6 +65,7 @@ import Balloting from "./pages/Balloting";
 import Ballotingmodel from "./components/Modals/Ballotingmodel";
 import Ballotinguserdetails from "./pages/Ballotinguserdetails";
 import InvoiceStatment from "./pages/Print/InvoiceStatment";
+import MaintenancePage from "./pages/MaintenancePage";
 
 function App() {
   const [open, setOpen] = useState();
@@ -100,6 +101,7 @@ function App() {
         {/* <Route path="/" element={<FinancePlotsView />} /> */}
         {/* <Route path="/" element={<Home />} /> */}
         <Route path="/home" element={<Home />} />
+        
         <Route path="/" element={<HomeNew />} />
         {/* <Route
           path="/123"

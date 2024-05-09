@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import "./invoiceStatment.css";
 import { useParams } from "react-router-dom";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -104,3 +104,4 @@ const formattedDate = `${day}/${month}/${year}`;
 }
 
 export default InvoiceStatment;
+
