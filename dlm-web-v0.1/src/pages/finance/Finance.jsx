@@ -127,12 +127,12 @@ function Finance() {
             month = 0 + month;
           }
           if (
-            year >= startedYear &&
-            month >= startedMonth &&
-            day >= startedDay &&
-            year <= endingYear &&
-            month <= endingMonth &&
-            day <= endingDay
+            year >= parseInt(startedYear) &&
+            month >= parseInt(startedMonth) &&
+            day >= parseInt(startedDay) &&
+            year <= parseInt(endingYear) &&
+            month <= parseInt(endingMonth) &&
+            day <= parseInt(endingDay)
           ) {
             list.push(customer);
           }
@@ -151,14 +151,13 @@ function Finance() {
           let month = splitDate[0];
           let day = splitDate[1];
           let year = splitDate[2];
+          console.log(year + "-" + month + "-" + day);
+          console.log(startedYear + "-" + startedMonth + "-" + startedDay);
 
-          if (month.length == 1) {
-            month = 0 + month;
-          }
           if (
-            year >= startedYear &&
-            month >= startedMonth &&
-            day >= startedDay
+            year >= parseInt(startedYear) &&
+            month >= parseInt(startedMonth) &&
+            day >= parseInt(startedDay)
           ) {
             list.push(customer);
           }
@@ -181,7 +180,11 @@ function Finance() {
           if (month.length == 1) {
             month = 0 + month;
           }
-          if (year <= endingYear && month <= endingMonth && day <= endingDay) {
+          if (
+            year <= parseInt(endingYear) &&
+            month <= parseInt(endingMonth) &&
+            day <= parseInt(endingDay)
+          ) {
             list.push(customer);
           }
         }
