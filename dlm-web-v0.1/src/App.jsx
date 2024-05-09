@@ -98,20 +98,14 @@ function App() {
         <Route path="/print/invoice/:id" element={<PrintInvoice />} />
         <Route path="/create/payslip/:uid" element={<PaySlip />} />
         <Route path="print/schedule/:id" element={<Schedule />} />
-        {/* <Route path="/" element={<FinancePlotsView />} /> */}
-        {/* <Route path="/" element={<Home />} /> */}
+      
         <Route path="/home" element={<Home />} />
         
         <Route path="/" element={<HomeNew />} />
-        {/* <Route
-          path="/123"
-          element={
-            <SideBar open={open} setOpen={setOpen} handleClick={handleClick} />
-          }
-        /> */}
+     
 
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/agent/walletnew" element={<Walletnew />} /> */}
+
         <Route path="/endsession" element={<Logout />} />
         <Route path="/details/plot" element={<PlotDetails />} />
         <Route path="/create/client/" element={<ClientRegistrationFrom />} />
