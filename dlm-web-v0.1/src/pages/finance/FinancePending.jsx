@@ -286,10 +286,14 @@ if (x>11) {
   function downloadExcel() {
     exportToExcel(filteredCustomersDataMemoized, "Unverified");
   }
-  async function deleteInvoice(id) {
+  async function deleteInvoice(id,pid) {
     console.log("delete", id);
     setisLoading(true);
     await deleteDoc(doc(db, "Transactions", id));
+
+    await updateDoc(doc(db, "Plots",pid ), {
+      invoicePending:false
+    })
     getCustomersData();
     setisLoading(false);
   }
@@ -347,7 +351,7 @@ if (x>11) {
                               <button
                                 className="button-view"
                                 onClick={() => {
-                                  deleteInvoice(e.InvId);
+                                  deleteInvoice(e.InvId,e.fileNumber);
                                 }}
                               >
                                 Delete

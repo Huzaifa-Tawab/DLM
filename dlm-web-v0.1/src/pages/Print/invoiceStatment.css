@@ -62,7 +62,7 @@
   margin: 25px;
   tbody td {
     background: #fff;
-    padding: 13px;
+    font-size: 12px;
     text-align: center;
     border: 1px solid black;
 
@@ -71,6 +71,8 @@
     color: #fff;
     background: black;
     th{
+    font-size: 12px;
+
       border: 1px solid #fff;
 
     }

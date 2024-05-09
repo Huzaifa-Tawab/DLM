@@ -21,7 +21,7 @@ function InvoiceStatment() {
     let temp = [];
     querySnapshot.forEach((doc) => {
       // if (doc.data()["varified"]) {
-        
+
       let single = doc.data();
       console.log(doc.data().time.toDate().toString());
       single["id"] = doc.id;
@@ -30,17 +30,17 @@ function InvoiceStatment() {
     });
 
     const sortedMaps = Object.values(temp).sort((a, b) => {
-      return  b.time - a.time ; // Assuming the timestamp is a numeric value
+      return   a.time-b.time; // Assuming the timestamp is a numeric value
     });
- 
+
     setTransactions(sortedMaps);
   }
   const currentDate = new Date();
-const day = currentDate.getDate();
-const month = currentDate.getMonth() + 1; // Month is zero-based, so add 1
-const year = currentDate.getFullYear();
+  const day = currentDate.getDate();
+  const month = currentDate.getMonth() + 1; // Month is zero-based, so add 1
+  const year = currentDate.getFullYear();
 
-const formattedDate = `${day}/${month}/${year}`;
+  const formattedDate = `${day}/${month}/${year}`;
   return (
     <div className="webpage">
       <div className="main-page">
@@ -75,27 +75,34 @@ const formattedDate = `${day}/${month}/${year}`;
           <div className="InS-Body">
             <table>
               <thead>
+                <th>S.N</th>
                 <th>Invoice #</th>
-                <th>Install Month</th>
-                <th>Date </th>
-                <th>Penality</th>
+                <th>Number Of Months</th>
+                <th>Deposit Date </th>
+                <th>Uploaded by</th>
+                <th>Approved By</th>
+                <th>Deposit</th>
+                <th>Remaining</th>
               </thead>
               <tbody>
                 {Transactions.map((T, index) => (
-                  console.log("kkk",T.time),
                   <tr key={index}>
+
+                    <td>{index + 1}</td>
                     <td>{T.InvId}</td>
-                    <td>Instal month</td>
-                    {/* <td>`${T.time.getDate().toString()}/${T.time.getMonth().toString() + 1}/${T.time.getFullYear().toString() % 100}`</td> */}
-<td>
-{T.time.toDate().getDate().toString()} / {T.time.toDate().getMonth().toString()} / {T.time.toDate().getFullYear().toString()}
-  </td>                
+                    <td>{T.numberofInstallmentMonth} Month(s)</td>
+                    <td>
+                      {T.time.toDate().getDate().toString()} / {(T.time.toDate().getMonth()+1).toString()} / {T.time.toDate().getFullYear().toString()}
+                    </td>
+                    <td>{T.agentName}</td>
+                    <td>{T.verifiedBy}</td>
                     <td>{T.payment}</td>
+                    <td>{T.remainingAmount}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
-           
+
           </div>
         </div>
       </div>
@@ -104,3 +111,4 @@ const formattedDate = `${day}/${month}/${year}`;
 }
 
 export default InvoiceStatment;
+//  Install Month  Penalty Uploaded by Approved By Deposit Remaining
