@@ -30,7 +30,7 @@ function InvoiceStatment() {
     });
 
     const sortedMaps = Object.values(temp).sort((a, b) => {
-      return   a.time-b.time; // Assuming the timestamp is a numeric value
+      return   b.time-a.time; // Assuming the timestamp is a numeric value
     });
 
     setTransactions(sortedMaps);

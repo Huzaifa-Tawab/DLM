@@ -88,7 +88,12 @@ function AdminPlot() {
       temp.push(single);
       // }
     });
-    setTransactions(temp);
+    const sortedMaps = Object.values(temp).sort((a, b) => {
+      return  b.time - a.time; 
+    });
+
+    setTransactions(sortedMaps);
+  
   }
   const openDocModal = () => {
     setShowDocModal(true);
