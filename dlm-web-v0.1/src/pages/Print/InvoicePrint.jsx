@@ -24,7 +24,7 @@ function PrintInvoice() {
   const [signature, setSignature] = useState("");
   const [remainingAmount, setRemaingAmount] = useState("");
   const [totalAmount, setTotalamount] = useState("");
-const [tra,setTra]=useState({});
+  const [tra, setTra] = useState({});
   useEffect(() => {
     getData();
   }, []);
@@ -35,7 +35,7 @@ const [tra,setTra]=useState({});
 
     if (docSnap.exists() && docSnap.data()["varified"]) {
       const data = docSnap.data();
-      setTra(data)
+      setTra(data);
       setName(data["customerName"]);
       const ms = data["time"]["seconds"] * 1000;
       const time = new Date(ms).toDateString();
@@ -200,7 +200,7 @@ const [tra,setTra]=useState({});
                 <td>{panelty}</td>
                 <td>{TotalInstalmentAmount}</td>
 
-                <td>{tra. remainingAmount? tra.remainingAmount:remainingAmount}</td>
+                <td>{remainingAmount}</td>
               </tr>
             </tbody>
           </table>
