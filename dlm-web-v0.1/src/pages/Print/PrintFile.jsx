@@ -41,7 +41,7 @@ function PrintFile() {
   const [OtherAmount, setOtherAmount] = useState("");
   const [OtherAmountTitle, setOtherAmountTitle] = useState("");
   const [PaidAmount, setPaidAmount] = useState("");
-
+  const [kinOverRiden, setkinOverRiden] = useState(false);
   useEffect(() => {
     if (isAdmin()) {
       getPlotInfo();
@@ -66,10 +66,12 @@ function PrintFile() {
       setGender(Customer.Gender);
       setphNo(Customer.phNo);
       setDob(Customer.Dob);
-      setNexttoKin(Customer.NexttoKin || "Not Provided");
-      setCnicKin(Customer.CnicKin || "Not Provided");
-      setKinRelation(Customer.KinRelation || "Not Provided");
-      setPhNoKin(Customer.PhNoKin || "Not Provided");
+      if (!kinOverRiden) {
+        setNexttoKin(Customer.NexttoKin || "Not Provided");
+        setCnicKin(Customer.CnicKin || "Not Provided");
+        setKinRelation(Customer.KinRelation || "Not Provided");
+        setPhNoKin(Customer.PhNoKin || "Not Provided");
+      }
       setPaidAmount(Customer.paidAmount || 0);
       // setPhNo(Customer.PhNo);
       setisLoading(false);
@@ -102,6 +104,14 @@ function PrintFile() {
       const ms = Plot["creationTime"]["seconds"] * 1000;
       const time = new Date(ms).toDateString();
       setFDate(time);
+      if (Plot.kinOverriden) {
+        const oK = Plot.extendedKin;
+        setkinOverRiden(true);
+        setNexttoKin(oK.name);
+        setCnicKin(oK.cnic);
+        setKinRelation(oK.relation);
+        setPhNoKin(oK.phone);
+      }
     } else {
       navi("/notfound");
     }

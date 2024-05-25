@@ -63,9 +63,37 @@ const PlotRegistrationForm = () => {
   const [tempFile, setTempFile] = useState("");
   const [NumOfInstallments, setNumOfInstallments] = useState(0);
   const [InstalmentMonths, setInstallmentsMonths] = useState(0);
-
   const [Selectedsize, setSelectedsize] = useState("");
+  const [overideKin, setoverideKin] = useState(false);
+  const [kinName, setkinName] = useState("");
+  const [kinPhone, setkinPhone] = useState("");
+  const [kinRelation, setkinRelation] = useState("");
+  const [kinCnic, setkinCnic] = useState("");
 
+  const TextInput = ({ label, name, value, onChange, error }) => (
+    <div style={{ marginBottom: "10px" }}>
+      <label style={{ display: "block", marginBottom: "5px" }}>{label}:</label>
+      <input
+        type="text"
+        name={name}
+        value={value}
+        onChange={onChange}
+        style={{ width: "100%", padding: "8px" }}
+      />
+    </div>
+  );
+  const NumberInput = ({ label, name, value, onChange, error }) => (
+    <div style={{ marginBottom: "10px" }}>
+      <label style={{ display: "block", marginBottom: "5px" }}>{label}:</label>
+      <input
+        type="number"
+        name={name}
+        value={value}
+        onChange={onChange}
+        style={{ width: "100%", padding: "8px" }}
+      />
+    </div>
+  );
   useEffect(() => {
     const generateNumber = async () => {
       const number = await generateRandomNumber("Plots", "DYN");
@@ -174,41 +202,81 @@ const PlotRegistrationForm = () => {
     if (docSnap.exists()) {
       console.log("Document data:", docSnap.data());
 
-      await setDoc(doc(db, "Plots", fileNumber), {
-        Address: Address,
-        AgentId: userid,
-        AgentName: name,
-        CustomerName: docSnap.data().Name,
-        Category: Catagory,
-        CityTown: CityTown,
-        CustomerId: id,
-        FileNumber: fileNumber,
-        paidAmount: PaidAmount,
-        PlotSize: PlotSize,
-        TotalAmount: TotalAmount,
-        Block: Block,
-        BookingAmount: BookingAmount,
-        Installment: Installment,
-        InstallmentMonth: InstallmentMonth,
-        PossessionAmount: possessionAmount,
-        Downpayment: Downpayment,
-        OtherAmount: OtherAmount,
-        OtherAmountTitle: OtherAmountTitle,
-        Society: Society,
-        verified: false,
-        creationTime: serverTimestamp(),
-        lastPayment: serverTimestamp(),
-        lastPaymentYear:d.getFullYear(),
-        lastPaymentMonth:d.getMonth(),
-        instamentVerified:true,
-      });
+      if (overideKin) {
+        await setDoc(doc(db, "Plots", fileNumber), {
+          Address: Address,
+          AgentId: userid,
+          AgentName: name,
+          CustomerName: docSnap.data().Name,
+          Category: Catagory,
+          CityTown: CityTown,
+          CustomerId: id,
+          FileNumber: fileNumber,
+          paidAmount: PaidAmount,
+          PlotSize: PlotSize,
+          TotalAmount: TotalAmount,
+          Block: Block,
+          BookingAmount: BookingAmount,
+          Installment: Installment,
+          InstallmentMonth: InstallmentMonth,
+          PossessionAmount: possessionAmount,
+          Downpayment: Downpayment,
+          OtherAmount: OtherAmount,
+          OtherAmountTitle: OtherAmountTitle,
+          Society: Society,
+          verified: false,
+          creationTime: serverTimestamp(),
+          lastPayment: serverTimestamp(),
+          lastPaymentYear: d.getFullYear(),
+          lastPaymentMonth: d.getMonth(),
+          instamentVerified: true,
+          extendedKin: {
+            name: kinName,
+            cnic: kinCnic,
+            phone: kinPhone,
+            relation: kinRelation,
+          },
+          kinOverriden: true,
+        });
+      } else {
+        await setDoc(doc(db, "Plots", fileNumber), {
+          Address: Address,
+          AgentId: userid,
+          AgentName: name,
+          CustomerName: docSnap.data().Name,
+          Category: Catagory,
+          CityTown: CityTown,
+          CustomerId: id,
+          FileNumber: fileNumber,
+          paidAmount: PaidAmount,
+          PlotSize: PlotSize,
+          TotalAmount: TotalAmount,
+          Block: Block,
+          BookingAmount: BookingAmount,
+          Installment: Installment,
+          InstallmentMonth: InstallmentMonth,
+          PossessionAmount: possessionAmount,
+          Downpayment: Downpayment,
+          OtherAmount: OtherAmount,
+          OtherAmountTitle: OtherAmountTitle,
+          Society: Society,
+          verified: false,
+          creationTime: serverTimestamp(),
+          lastPayment: serverTimestamp(),
+          lastPaymentYear: d.getFullYear(),
+          lastPaymentMonth: d.getMonth(),
+          instamentVerified: true,
+        });
+      }
       await updateAgent();
       await updateCustomer();
       // await updateTransaction();
 
       navigate(`/details/plot/${fileNumber}`);
+      setisLoading(false);
     }
   };
+
   async function updateTransaction() {
     let randomNum = 0;
     let TSize = 1;
@@ -239,7 +307,9 @@ const PlotRegistrationForm = () => {
       TSize = querySnapshotT.size;
     }
     console.log(randomNum);
-    await setDoc(doc(db, "Transactions", randomNum), {
+
+    //
+    let dataToSend = {
       fileNumber: fileNumber,
       agentID: userid,
       agentName: name,
@@ -255,8 +325,10 @@ const PlotRegistrationForm = () => {
       InvId: randomNum,
       Category: Catagory,
       varified: false,
-      invoicePending:false
-    });
+      invoicePending: false,
+    };
+
+    await setDoc(doc(db, "Transactions", randomNum), dataToSend);
   }
   const updateAgent = async () => {
     await updateDoc(doc(db, "Agent", userid), {
@@ -354,11 +426,11 @@ const PlotRegistrationForm = () => {
     });
     setSocietyList(cat);
   }
-function updateInstalment(t,d,im,p){
-  var total=t-d-p  ;
-  total =total/im;
-setInstallment(total)
-}
+  function updateInstalment(t, d, im, p) {
+    var total = t - d - p;
+    total = total / im;
+    setInstallment(total);
+  }
   return (
     <SideBar
       element={
@@ -540,11 +612,13 @@ setInstallment(total)
                             } else {
                               setTotalAmount(parseInt(e.target.value));
                             }
-                            updateInstalment(parseInt(e.target.value),Downpayment,InstallmentMonth,possessionAmount);
-
-                          }
-                        
-                        }
+                            updateInstalment(
+                              parseInt(e.target.value),
+                              Downpayment,
+                              InstallmentMonth,
+                              possessionAmount
+                            );
+                          }}
                           style={{ width: "100%", padding: "8px" }}
                         />
                         <p>{TotalAmountError}</p>
@@ -566,9 +640,12 @@ setInstallment(total)
                               setDownPayment(0);
                             } else {
                               setDownPayment(e.target.value);
-                              updateInstalment(TotalAmount,parseInt(e.target.value),InstallmentMonth,possessionAmount);
-
-
+                              updateInstalment(
+                                TotalAmount,
+                                parseInt(e.target.value),
+                                InstallmentMonth,
+                                possessionAmount
+                              );
                             }
                           }}
                           style={{ width: "100%", padding: "8px" }}
@@ -588,14 +665,14 @@ setInstallment(total)
                           if (parseInt(e.target.value) < -1) {
                             setpossessionAmount(0);
                           } else {
-                          
-
                             setpossessionAmount(parseInt(e.target.value));
-                          updateInstalment(TotalAmount,Downpayment,InstallmentMonth,parseInt(e.target.value));
-
+                            updateInstalment(
+                              TotalAmount,
+                              Downpayment,
+                              InstallmentMonth,
+                              parseInt(e.target.value)
+                            );
                           }
-
-
                         }}
                         style={{ width: "100%", padding: "8px" }}
                       />
@@ -614,10 +691,13 @@ setInstallment(total)
                           if (parseInt(e.target.value) < -1) {
                             setInstallmentMonth(1);
                           } else {
-
                             setInstallmentMonth(parseInt(e.target.value));
-                            updateInstalment(TotalAmount,Downpayment,parseInt(e.target.value),possessionAmount);
-
+                            updateInstalment(
+                              TotalAmount,
+                              Downpayment,
+                              parseInt(e.target.value),
+                              possessionAmount
+                            );
                           }
                         }}
                         style={{ width: "100%", padding: "8px" }}
@@ -633,15 +713,13 @@ setInstallment(total)
                         </label>
                         <input
                           type="number"
-                       
                           value={Installment}
-                         
                           style={{ width: "100%", padding: "8px" }}
                         />
                         <p></p>
                       </div>
                     </div>
-                 
+
                     {/* <div className="input-box">
                 <label style={{ display: "block", marginBottom: "5px" }}>
                   Installment/Month:
@@ -695,16 +773,16 @@ setInstallment(total)
                     </div>
                   </div>
 
-                  <div class="gender-details">
+                  <div className="gender-details">
                     <input type="radio" name="gender" id="dot-1" />
                     <input type="radio" name="gender" id="dot-2" />
                     <input type="radio" name="gender" id="dot-3" />
                     <input type="radio" name="gender" id="dot-4" />
-                    <label
+                    {/* <label
                       class="gender-title"
                       style={{ display: "block", marginBottom: "5px" }}
-                    >
-                      Adjustment
+                    > */}
+                    {/* Adjustment
                     </label>
                     <div class="category">
                       <label for="dot-1">
@@ -723,9 +801,98 @@ setInstallment(total)
                         <span class="dot four"></span>
                         <span class="gender">D</span>
                       </label>
-                    </div>
+                    </div> */}
                   </div>
-
+                  <div className="toogle">
+                    <h4>Overide Next Of Kin</h4>
+                    <label className="switch">
+                      <input
+                        type="checkbox"
+                        onChange={() => {
+                          setoverideKin(!overideKin);
+                        }}
+                      />
+                      <span className="slider round"></span>
+                    </label>
+                  </div>
+                  {overideKin && (
+                    <div className="user-details">
+                      <div className="input-box">
+                        <div style={{ marginBottom: "10px" }}>
+                          <label
+                            style={{ display: "block", marginBottom: "5px" }}
+                          >
+                            Name :
+                          </label>
+                        </div>
+                        <input
+                          label="Name"
+                          name="NameKin"
+                          style={{ width: "100%", padding: "8px" }}
+                          value={kinName}
+                          onChange={(e) => {
+                            console.log(e.target.value);
+                            setkinName(e.target.value);
+                          }}
+                        />
+                      </div>
+                      <div className="input-box">
+                        <div style={{ marginBottom: "10px" }}>
+                          <label
+                            style={{ display: "block", marginBottom: "5px" }}
+                          >
+                            Relation :
+                          </label>
+                        </div>
+                        <input
+                          label="Relation"
+                          name="KinRelation"
+                          style={{ width: "100%", padding: "8px" }}
+                          value={kinRelation}
+                          onChange={(e) => {
+                            setkinRelation(e.target.value);
+                          }}
+                        />
+                      </div>
+                      <div className="input-box">
+                        <div style={{ marginBottom: "10px" }}>
+                          <label
+                            style={{ display: "block", marginBottom: "5px" }}
+                          >
+                            Phone No :
+                          </label>
+                        </div>
+                        <input
+                          type="number"
+                          style={{ width: "100%", padding: "8px" }}
+                          name="PhNoKin"
+                          value={kinPhone}
+                          onChange={(e) => {
+                            setkinPhone(e.target.value);
+                          }}
+                        />
+                      </div>
+                      <div className="input-box">
+                        <div style={{ marginBottom: "10px" }}>
+                          <label
+                            style={{ display: "block", marginBottom: "5px" }}
+                          >
+                            CNIC No :
+                          </label>
+                        </div>
+                        <input
+                          type="number"
+                          name="CnicKin"
+                          style={{ width: "100%", padding: "8px" }}
+                          value={kinCnic}
+                          onChange={(e) => {
+                            console.log(e.target.value);
+                            setkinCnic(e.target.value);
+                          }}
+                        />
+                      </div>
+                    </div>
+                  )}
                   <div className="button">
                     <button type="submit" style={{ padding: "10px" }}>
                       Submit
