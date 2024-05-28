@@ -37,6 +37,7 @@ export const superAdminNavLinks = [
     icon: <i className="fa-solid fa-file-invoice"></i>,
     title: "Invoices",
   },
+
   {
     to: "/admin/withdraw",
     icon: <i className="fa-solid fa-file-invoice"></i>,
@@ -91,6 +92,11 @@ export const subAdminNavLinks = [
     to: "/admin/invoices",
     icon: <i className="fa-solid fa-file-invoice"></i>,
     title: "Invoices",
+  },
+  {
+    to: "/admin/files",
+    icon: <i className="fa-solid fa-regular fa-file"></i>,
+    title: "Files",
   },
   {
     to: "/admin/expense",
@@ -148,6 +154,7 @@ export const financeNavLinks = [
     icon: <i class="fa-regular fa-circle-user"></i>,
     title: "Employees",
   },
+  ,
   {
     to: "/endsession",
     icon: <i className="fa-solid fa-user-lock"></i>,

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../firebase";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
 import Header from "../../components/header/Header";
 import Footer from "../../components/Footer/Footer";
@@ -11,12 +11,13 @@ import isAdmin from "../../../IsAdmin";
 import "./admininvoice.css";
 import SideBar from "../../components/Sidebar/sidebar";
 
-function AdminInvoives() {
+function AdminFiles() {
   const navigate = useNavigate();
   const [CustomersData, setCustomersData] = useState([]);
   const [filteredCustomersData, setFilteredCustomersData] = useState([]);
   const [isLoading, setisLoading] = useState(true);
   const [Id, setId] = useState("");
+
   useEffect(() => {
     setId(localStorage.getItem("id"));
     console.log(Id);
@@ -31,15 +32,12 @@ function AdminInvoives() {
   };
 
   async function getCustomersData() {
-    // const querySnapshot = await getDocs(collection(db, "Transactions"));
     const newCustomersData = [];
-    const q = query(collection(db, "Transactions"), where("agentID", "==", Id));
+    const q = query(collection(db, "Plots"), where("AgentId", "==", Id));
 
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      if (doc.data()["varified"]) {
-        newCustomersData.push(doc.data());
-      }
+      newCustomersData.push(doc.data());
     });
     setCustomersData(newCustomersData);
     setFilteredCustomersData(newCustomersData);
@@ -52,11 +50,12 @@ function AdminInvoives() {
       if (searchText && searchText.length > 0) {
         newData = CustomersData.filter(
           (data) =>
-            data.agentName.toLowerCase().includes(searchText.toLowerCase()) ||
-            data.customerName
-              .toLowerCase()
-              .includes(searchText.toLowerCase()) ||
-            data.InvId.toLowerCase().includes(searchText.toLowerCase())
+            data.FileNumber.toLowerCase().includes(searchText.toLowerCase())
+          //  ||
+          // data.customerName
+          //   .toLowerCase()
+          //   .includes(searchText.toLowerCase()) ||
+          // data.InvId.toLowerCase().includes(searchText.toLowerCase())
         );
       }
       setFilteredCustomersData(newData);
@@ -88,7 +87,7 @@ function AdminInvoives() {
           <>
             <div className="Admin-Home-invoice">
               <div className="hero--head">
-                <h1>Invoices</h1>
+                <h1>Files</h1>
                 {/* {isAdmin() && <button
             onClick={() => {
               // navigate("/create/agent/");
@@ -103,7 +102,7 @@ function AdminInvoives() {
                   <form className="nosubmit">
                     <input
                       type="text"
-                      placeholder="Search by Id"
+                      placeholder="Search by File Number"
                       onChange={(e) => debouncedFilterData(e.target.value)}
                       className="nosubmit"
                     />
@@ -112,53 +111,40 @@ function AdminInvoives() {
                     <table className="fl-table">
                       <thead>
                         <tr>
-                          <th>Invoice Number</th>
+                          <th>Customer Name</th>
+                          <th>Customer Id</th>
                           <th>File Number</th>
-                          <th>Nature</th>
-                          <th>Payment</th>
-                          <th>Penalty</th>
-                          <th>Created At</th>
-                          <th>Created By</th>
-                          <th>Verified By</th>
-
-                          <th>Actions</th>
+                          <th>Agent Name</th>
+                          <th>Agent Id</th>
+                          <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
                         {filteredCustomersDataMemoized.map((e, index) => (
                           <tr key={index + 1}>
-                            <td>{e.InvId}</td>
-                            <td>{e.fileNumber}</td>
-                            <td>{e.nature}</td>
+                            <td>{e.CustomerName}</td>
+                            <td>{e.CustomerId}</td>
+                            <td>{e.FileNumber}</td>
+                            <td>{e.AgentName}</td>
+                            <td>{e.AgentId}</td>
+
+                            {/* <td>{e.nature}</td>
                             <td>{e.payment}</td>
                             <td>{e.panelty === null ? 1 : 0}</td>
                             <td>{getDate(e.time.seconds)}</td>
                             <td>{e.agentName}</td>
-                            <td>{e.verifiedBy}</td>
+                            <td>{e.verifiedBy}</td> */}
 
                             <td>
                               <div className="butn-viewer">
                                 <div>
-                                  {isAdmin() && (
-                                    <button
-                                      className="button-view button-invoice"
-                                      onClick={() => {
-                                        openNewWindow(e.proof);
-                                      }}
-                                    >
-                                      View
-                                    </button>
-                                  )}
+                                  <Link
+                                    className="button-view button-invoice"
+                                    to={`/details/plot/${e.FileNumber}`}
+                                  >
+                                    View
+                                  </Link>
                                 </div>
-                                <button
-                                  className="button-view button-invoice"
-                                  onClick={() => {
-                                    // openNewWindow(e.InvId);
-                                    openNewWindow(`/print/invoice/${e.InvId}`);
-                                  }}
-                                >
-                                  Print
-                                </button>
                               </div>
                             </td>
                           </tr>
@@ -175,4 +161,4 @@ function AdminInvoives() {
     />
   );
 }
-export default AdminInvoives;
+export default AdminFiles;

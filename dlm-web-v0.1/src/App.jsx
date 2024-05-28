@@ -65,7 +65,8 @@ import Balloting from "./pages/Balloting";
 import Ballotingmodel from "./components/Modals/Ballotingmodel";
 import Ballotinguserdetails from "./pages/Ballotinguserdetails";
 import InvoiceStatment from "./pages/Print/InvoiceStatment";
-
+import Files from "./pages/finance/Files";
+import AdminFiles from "./pages/admin/AdminFiles";
 
 function App() {
   const [open, setOpen] = useState();
@@ -98,11 +99,10 @@ function App() {
         <Route path="/print/invoice/:id" element={<PrintInvoice />} />
         <Route path="/create/payslip/:uid" element={<PaySlip />} />
         <Route path="print/schedule/:id" element={<Schedule />} />
-      
+
         <Route path="/home" element={<Home />} />
-        
+        <Route path="/admin/files" element={<AdminFiles />} />
         <Route path="/" element={<HomeNew />} />
-     
 
         <Route path="/login" element={<Login />} />
 
