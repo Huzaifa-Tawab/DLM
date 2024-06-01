@@ -126,13 +126,14 @@ function Finance() {
           if (month.length == 1) {
             month = 0 + month;
           }
+
           if (
-            year >= parseInt(startedYear) &&
-            month >= parseInt(startedMonth) &&
-            day >= parseInt(startedDay) &&
-            year <= parseInt(endingYear) &&
-            month <= parseInt(endingMonth) &&
-            day <= parseInt(endingDay)
+            (year >= parseInt(startedYear) &&
+              month >= parseInt(startedMonth) &&
+              day >= parseInt(startedDay)) ||
+            (year <= parseInt(endingYear) &&
+              month <= parseInt(endingMonth) &&
+              day <= parseInt(endingDay))
           ) {
             list.push(customer);
           }
@@ -151,13 +152,12 @@ function Finance() {
           let month = splitDate[0];
           let day = splitDate[1];
           let year = splitDate[2];
-          console.log(year + "-" + month + "-" + day);
-          console.log(startedYear + "-" + startedMonth + "-" + startedDay);
 
           if (
-            year >= parseInt(startedYear) &&
-            month >= parseInt(startedMonth) &&
-            day >= parseInt(startedDay)
+            (year >= parseInt(startedYear) &&
+              month == parseInt(startedMonth) &&
+              day >= parseInt(startedDay)) ||
+            (year >= parseInt(startedYear) && month > parseInt(startedMonth))
           ) {
             list.push(customer);
           }
@@ -181,9 +181,10 @@ function Finance() {
             month = 0 + month;
           }
           if (
-            year <= parseInt(endingYear) &&
-            month <= parseInt(endingMonth) &&
-            day <= parseInt(endingDay)
+            (year <= parseInt(endingYear) &&
+              month == parseInt(endingMonth) &&
+              day <= parseInt(endingDay)) ||
+            (year <= parseInt(endingYear) && month < parseInt(endingMonth))
           ) {
             list.push(customer);
           }
