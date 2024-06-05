@@ -127,7 +127,7 @@ function PrintInvoice() {
                 <td>{panelty}</td>
                 <td>{TotalInstalmentAmount}</td>
 
-                <td>{remainingAmount}</td>
+                <td>{tra.remainingAmount}</td>
               </tr>
             </tbody>
           </table>
@@ -200,7 +200,7 @@ function PrintInvoice() {
                 <td>{panelty}</td>
                 <td>{TotalInstalmentAmount}</td>
 
-                <td>{remainingAmount}</td>
+                <td>{tra.remainingAmount}</td>
               </tr>
             </tbody>
           </table>

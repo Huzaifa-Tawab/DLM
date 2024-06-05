@@ -198,7 +198,7 @@ function FinancePending() {
   
     
 
-let x=parseInt(plot.lastPaymentMonth) + parseInt(data.numberofInstallmentMonth );
+let x=parseInt(plot.lastPaymentMonth) - parseInt(data.numberofInstallmentMonth );
 let y=parseInt(plot.lastPaymentYear);
 if (x>11) {
   x=x-11;
