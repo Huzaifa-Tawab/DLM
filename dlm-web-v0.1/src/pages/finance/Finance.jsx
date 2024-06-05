@@ -93,101 +93,38 @@ function Finance() {
   function getDate(seconds) {
     let date = new Date(seconds * 1000);
     let temp = date.toLocaleDateString();
-
     return temp;
   }
 
   const filteredBasedOnDate = (startDate, endDate, newData) => {
     let list = [];
-    let startedMonth = null;
-    let endingMonth = null;
-    let startedYear = null;
-    let endingYear = null;
-    let startedDay = null;
-    let endingDay = null;
-
     if (startDate && endDate) {
-      let startedDate = startDate.split("-");
-      startedDay = startedDate[2];
-      startedMonth = startedDate[1];
-      startedYear = startedDate[0];
-      let endingDate = endDate.split("-");
-      endingDay = endingDate[2];
-      endingMonth = endingDate[1];
-      endingYear = endingDate[0];
+      let startedDate = new Date(startDate);
+      let endingDate = new Date(endDate);
       newData.forEach((customer) => {
         if (customer.time.seconds) {
-          let sDate = getDate(customer.time.seconds);
-          let splitDate = sDate.split("/");
-          let month = splitDate[0];
-          let day = splitDate[1];
-          let year = splitDate[2];
-
-          if (month.length == 1) {
-            month = 0 + month;
-          }
-
-          if (
-            (year >= parseInt(startedYear) &&
-              month >= parseInt(startedMonth) &&
-              day >= parseInt(startedDay)) ||
-            (year <= parseInt(endingYear) &&
-              month <= parseInt(endingMonth) &&
-              day <= parseInt(endingDay))
-          ) {
+          let date = new Date(getDate(customer.time.seconds));
+          if (date >= startedDate && date <= endingDate) {
             list.push(customer);
           }
         }
       });
       return list;
     } else if (startDate) {
-      let startedDate = startDate.split("-");
-      startedDay = startedDate[2];
-      startedMonth = startedDate[1];
-      startedYear = startedDate[0];
+      let startedDate = new Date(startDate);
       newData.forEach((customer) => {
-        if (customer.time.seconds) {
-          let sDate = getDate(customer.time.seconds);
-          let splitDate = sDate.split("/");
-          let month = splitDate[0];
-          let day = splitDate[1];
-          let year = splitDate[2];
-
-          if (
-            (year >= parseInt(startedYear) &&
-              month == parseInt(startedMonth) &&
-              day >= parseInt(startedDay)) ||
-            (year >= parseInt(startedYear) && month > parseInt(startedMonth))
-          ) {
-            list.push(customer);
-          }
+        let date = new Date(getDate(customer.time.seconds));
+        if (date >= startedDate) {
+          list.push(customer);
         }
       });
       return list;
     } else if (endDate) {
-      let endingDate = endDate.split("-");
-      endingDay = endingDate[2];
-      endingMonth = endingDate[1];
-      endingYear = endingDate[0];
+      let endingDate = new Date(endDate);
       newData.forEach((customer) => {
-        if (customer.time.seconds) {
-          let sDate = getDate(customer.time.seconds);
-          let splitDate = sDate.split("/");
-          let month = splitDate[0];
-          let day = splitDate[1];
-          let year = splitDate[2];
-
-          if (month.length == 1) {
-            month = 0 + month;
-          }
-          if (
-            (year <= parseInt(endingYear) &&
-              month == parseInt(endingMonth) &&
-              day <= parseInt(endingDay)) ||
-            (year <= parseInt(endingYear) && month < parseInt(endingMonth))
-          ) {
-            list.push(customer);
-          }
+        let date = new Date(getDate(customer.time.seconds));
+        if (date <= endingDate) {
+          list.push(customer);
         }
       });
       return list;
