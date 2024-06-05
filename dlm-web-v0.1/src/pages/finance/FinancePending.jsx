@@ -192,7 +192,7 @@ function FinancePending() {
         verifiedBy: FinanceData.Name,
         Esign: FinanceData.signature,
         varified: true,
-        remainingAmount:plot.TotalAmount - (parseInt(plot.paidAmount) ? parseInt(plot.paidAmount) : 0 ) + data.total
+        remainingAmount:plot.TotalAmount - (parseInt(plot.paidAmount) ? parseInt(plot.paidAmount) : 0 ) - data.total
 
       });
   

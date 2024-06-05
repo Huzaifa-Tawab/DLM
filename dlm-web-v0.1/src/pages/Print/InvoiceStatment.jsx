@@ -24,6 +24,7 @@ function InvoiceStatment() {
 
       let single = doc.data();
       console.log(doc.data().time.toDate().toString());
+      console.log(Transactions);
       single["id"] = doc.id;
       temp.push(single);
       // }
