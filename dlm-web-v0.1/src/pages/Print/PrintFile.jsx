@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./printInvoice.css";
+
 // import imageava from "./avat.png"
 import { useNavigate, useParams } from "react-router-dom";
 import { doc, getDoc, serverTimestamp } from "firebase/firestore";
@@ -75,6 +76,7 @@ function PrintFile() {
       setPaidAmount(Customer.paidAmount || 0);
       // setPhNo(Customer.PhNo);
       setisLoading(false);
+   
     } else {
       navi("/notfound");
     }

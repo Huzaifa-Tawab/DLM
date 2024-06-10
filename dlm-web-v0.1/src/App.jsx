@@ -67,6 +67,7 @@ import Ballotinguserdetails from "./pages/Ballotinguserdetails";
 import InvoiceStatment from "./pages/Print/InvoiceStatment";
 import Files from "./pages/finance/Files";
 import AdminFiles from "./pages/admin/AdminFiles";
+import InvoicePreview from "./pages/Print/InvoicePreview";
 
 function App() {
   const [open, setOpen] = useState();
@@ -92,6 +93,7 @@ function App() {
           element={<Ballotinguserdetails />}
         />
 
+        <Route path="/invoice/preview/:id" element={<InvoicePreview />} />
         <Route path="/empdetailfrom" element={<Emplysdetailsform />} />
         <Route path="/print/payslip/:id" element={<Emppayslip />} />
         <Route path="/print/plotstatment/:id" element={<InvoiceStatment />} />

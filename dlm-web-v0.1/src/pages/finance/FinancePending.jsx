@@ -194,10 +194,7 @@ function FinancePending() {
         varified: true,
         remainingAmount:plot.TotalAmount - (parseInt(plot.paidAmount) ? parseInt(plot.paidAmount) : 0 ) - data.total
 
-      });
-  
-    
-
+      })
 let x=parseInt(plot.lastPaymentMonth) + parseInt(data.numberofInstallmentMonth );
 let y=parseInt(plot.lastPaymentYear);
 if (x>11) {
@@ -215,6 +212,8 @@ if (x>11) {
     // Refresh customer data after the update
     getCustomersData();
     setisLoading(false);
+    // openNewWindow(`/print/invoice/${id}`);
+
   }
 
 

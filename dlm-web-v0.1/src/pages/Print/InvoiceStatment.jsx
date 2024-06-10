@@ -1,11 +1,15 @@
 import  { useEffect, useState } from "react";
+import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
+
 import "./invoiceStatment.css";
 import { useParams } from "react-router-dom";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "../../firebase";
+import { db } from "../../firebase";  
 function InvoiceStatment() {
   const { id } = useParams();
   const [Transactions, setTransactions] = useState([]);
+  const [img, setImg] = useState();
+
   useEffect(() => {
     getTransactions();
   }, []);
@@ -35,6 +39,12 @@ function InvoiceStatment() {
     });
 
     setTransactions(sortedMaps);
+    var delayInMilliseconds = 5000;
+
+setTimeout(function() {
+
+}, delayInMilliseconds);
+  
   }
   const currentDate = new Date();
   const day = currentDate.getDate();
@@ -43,7 +53,7 @@ function InvoiceStatment() {
 
   const formattedDate = `${day}/${month}/${year}`;
   return (
-    <div className="webpage">
+    <div className="webpage" id="stmnt-image">
       <div className="main-page">
         <div className="sub-page">
           <div className="InS-header">
@@ -107,6 +117,7 @@ function InvoiceStatment() {
           </div>
         </div>
       </div>
+      
     </div>
   );
 }
