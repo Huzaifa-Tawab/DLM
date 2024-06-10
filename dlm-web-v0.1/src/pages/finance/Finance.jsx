@@ -149,7 +149,7 @@ function Finance() {
           <>
             <div className="Admin-Home">
               <div className="hero--head">
-                <h1>Invoices</h1>
+                <h1>Invoices v1.0.0</h1>
                 <h1>{filteredCustomersDataMemoized.length}</h1>
                 <h1>{total} PKR</h1>
                 <button onClick={downloadExcel}>Export</button>
