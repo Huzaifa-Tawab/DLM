@@ -89,11 +89,10 @@ function AdminPlot() {
       // }
     });
     const sortedMaps = Object.values(temp).sort((a, b) => {
-      return  b.time - a.time; 
+      return b.time - a.time;
     });
 
     setTransactions(sortedMaps);
-  
   }
   const openDocModal = () => {
     setShowDocModal(true);
@@ -101,7 +100,7 @@ function AdminPlot() {
 
   const closeDocModal = () => {
     setShowDocModal(false);
-    getPlotDetails()
+    getPlotDetails();
   };
   const openTransferModal = () => {
     setShowTransferModal(true);
@@ -191,28 +190,25 @@ function AdminPlot() {
                       >
                         Print
                       </button>
-                      
                     </>
-                    
                   )}
                   <button
-                      className="yellow-color"
-                        onClick={() => {
-                          navigate(`/Print/plotstatment/${PlotDetails.FileNumber}`);
-                        }}
-                      >
-                        Statment
-                      </button>
+                    className="yellow-color"
+                    onClick={() => {
+                      navigate(`/Print/plotstatment/${PlotDetails.FileNumber}`);
+                    }}
+                  >
+                    Statment
+                  </button>
                   {!isAdmin() && (
                     <button
                       className="yellow-color"
                       onClick={() => {
-if (PlotDetails.invoicePending) {
-  alert("Alreay Sent One Invoice For Aproval")
-}else{
-  setShowDocModal(true);  
-
-}
+                        if (PlotDetails.invoicePending) {
+                          alert("Alreay Sent One Invoice For Aproval");
+                        } else {
+                          setShowDocModal(true);
+                        }
                       }}
                     >
                       Payment
@@ -243,12 +239,23 @@ if (PlotDetails.invoicePending) {
                       Edit
                     </button>
                   )}
+
                   {isAdmin() && (
                     <button
                       className="yellow-color"
                       onClick={toggleBlockStatus}
                     >
                       {isBlocked ? "Un Block" : "Block"}File
+                    </button>
+                  )}
+                </div>
+                <div className="Archieve-btn-div">
+                  {isAdmin() && (
+                    <button
+                      className="yellow-color"
+                      onClick={() => navigate("/archieve")}
+                    >
+                      Archieve
                     </button>
                   )}
                 </div>

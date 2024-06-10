@@ -197,7 +197,7 @@ tbody {
     background: transparent;
   }
   .fl-table tr td:nth-child(odd) {
-    background: #f8f8f8;
+    /* background: #f8f8f8; */
     border-right: 1px solid #e6e4e4;
   }
   .fl-table tr td:nth-child(even) {
