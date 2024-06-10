@@ -68,6 +68,7 @@ import InvoiceStatment from "./pages/Print/InvoiceStatment";
 import Files from "./pages/finance/Files";
 import AdminFiles from "./pages/admin/AdminFiles";
 import InvoicePreview from "./pages/Print/InvoicePreview";
+import Archieve from "./pages/admin/Archieve";
 
 function App() {
   const [open, setOpen] = useState();
@@ -88,6 +89,7 @@ function App() {
       <Routes>
         <Route path="/employe/:id" element={<Empdetafinance />} />
         <Route path="/balloting" element={<Balloting />} />
+        <Route path="/archieve" element={<Archieve />} />
         <Route
           path="/balloting/userdetails"
           element={<Ballotinguserdetails />}

@@ -73,6 +73,14 @@
   line-height: normal;
   letter-spacing: -0.4px;
 }
+.Archieve-btn-div button {
+  margin-top: 10px;
+  width: 6rem;
+  height: 2.2rem;
+  border-radius: 5px;
+  color: white;
+  font-size: 15px;
+}
 .first {
   color: #90a3bf;
   /* font-family: "Plus Jakarta Sans"; */
@@ -133,7 +141,7 @@
   line-height: 150%;
   letter-spacing: -0.6px;
 }
-.box-bg{
+.box-bg {
   border-radius: 2px !important;
   margin: 1rem 0 !important;
   height: 6rem;
@@ -196,11 +204,11 @@
   font-size: 12px;
   font-style: normal;
   font-weight: 700;
-  
+
   /* line-height: 150%;  */
   /* letter-spacing: -0.32px; */
 }
-.transaction-row>span{
+.transaction-row > span {
   text-align: left;
 }
 .transaction-main {
@@ -216,45 +224,49 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   background: #f4b266;
 }
-@media (Max-width: 728px) {
-  .head-plot{
+@media (max-width: 728px) {
+  .Archieve-btn-div button {
+    width: auto;
+    height: auto;
+    margin-top: 5px;
+  }
+  .head-plot {
     flex-direction: column;
   }
   .avatr-image > img {
     padding: 3rem 4.5rem;
-}
+  }
 
-.Plot-box{
-  width: 25rem;
-  margin: 10px;
-}
-.data-client {
-  gap: 60px;
-  overflow: auto;
-}
-.column > button {
-  width: auto;
-  height: auto;
-  margin-top: 15px;
-}
-.column{
-  justify-content: center;
-  flex-wrap: wrap;
-  align-content: center;
-}
-.bottom-part-plot {
-  flex-direction: column;
-}
-.transaction-box {
-  width: 25rem;
-  margin: 10px;
-}
-.transaction-main{
-  height: 5rem;
-}
-.comment-box {
-  width: 25rem;
-  margin: 10px;
-}
-  
+  .Plot-box {
+    width: 25rem;
+    margin: 10px;
+  }
+  .data-client {
+    gap: 60px;
+    overflow: auto;
+  }
+  .column > button {
+    width: auto;
+    height: auto;
+    margin-top: 15px;
+  }
+  .column {
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+  }
+  .bottom-part-plot {
+    flex-direction: column;
+  }
+  .transaction-box {
+    width: 25rem;
+    margin: 10px;
+  }
+  .transaction-main {
+    height: 5rem;
+  }
+  .comment-box {
+    width: 25rem;
+    margin: 10px;
+  }
 }
