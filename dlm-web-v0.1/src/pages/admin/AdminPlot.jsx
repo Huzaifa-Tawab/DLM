@@ -253,7 +253,7 @@ function AdminPlot() {
                   {isAdmin() && (
                     <button
                       className="yellow-color"
-                      onClick={() => navigate("/archieve")}
+                      onClick={() => navigate(`/archieve/${id}`)}
                     >
                       Archieve
                     </button>

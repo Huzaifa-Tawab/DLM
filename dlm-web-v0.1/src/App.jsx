@@ -89,7 +89,7 @@ function App() {
       <Routes>
         <Route path="/employe/:id" element={<Empdetafinance />} />
         <Route path="/balloting" element={<Balloting />} />
-        <Route path="/archieve" element={<Archieve />} />
+        <Route path="/archieve/:id" element={<Archieve />} />
         <Route
           path="/balloting/userdetails"
           element={<Ballotinguserdetails />}
