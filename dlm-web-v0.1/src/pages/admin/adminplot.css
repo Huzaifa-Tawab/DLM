@@ -73,6 +73,10 @@
   line-height: normal;
   letter-spacing: -0.4px;
 }
+.Archieve-btn-div {
+  display: flex;
+  justify-content: center;
+}
 .Archieve-btn-div button {
   margin-top: 10px;
   width: 6rem;
@@ -224,7 +228,13 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   background: #f4b266;
 }
+
 @media (max-width: 728px) {
+  .Archieve-btn-div {
+    display: flex;
+    justify-content: center;
+    margin-left: 0px;
+  }
   .Archieve-btn-div button {
     width: auto;
     height: auto;

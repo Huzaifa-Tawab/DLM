@@ -1,4 +1,4 @@
-import "./printfile.css";
+import "./invpreview.css";
 import { useEffect, useState } from "react";
 import dotSharp from "./assets/dots-shap.png";
 import { useNavigate, useParams } from "react-router-dom";
@@ -46,7 +46,7 @@ function InvoicePreview() {
   }, []);
   useEffect(() => {
     console.log("okk");
-    if (true) {
+    if (isFinance()) {
       if (!tra.null) {
         console.log("startijn");
         try {
@@ -85,10 +85,8 @@ function InvoicePreview() {
         .catch((err) => {
           console.log(err);
         });
-    }
-    else{
-        window.close();
-
+    } else {
+      window.close();
     }
   }
 
@@ -139,17 +137,17 @@ function InvoicePreview() {
     }
   }
 
-  return <div className="invoice-1-2Pn" id="inv-image">
-     
+  return (
+    <div className="invoice-1-2Pn-archv" id="inv-image">
       <div className="auto-group-z6we-Z8p">
-        <div className="frame-3608-zjv">
-          <div className="secnd-comp-in">
-            <img src={sliderlogo} className="secnd-comp-in-head"></img>
+        <div className="frame-3608-zjv-archv">
+          <div className="secnd-comp-in-archv">
+            <img src={sliderlogo} className="secnd-comp-in-head-archv"></img>
             <div className="secnd-comp-in-head-sec">Office</div>
             <p className="secnd-comp-in-head">{Society}</p>
           </div>
           <div className="sec-detl-comp">
-            <div className="info-sec-col">
+            <div className="info-sec-col-archv">
               <h3 className="hff">Name:</h3>
               <h3 className="hff">F/H Name:</h3>
               <h3 className="hff">Category:</h3>
@@ -217,6 +215,6 @@ function InvoicePreview() {
         </div>
       </div>
     </div>
-
+  );
 }
 export default InvoicePreview;
