@@ -67,7 +67,7 @@ function FinancePending() {
     const PlotdocSnap = await getDoc(doc(db, "Plots", fileNumber));
     let plot = PlotdocSnap.data();
 
-    setisLoading(true);
+    // setisLoading(true);
 
     // invoiceId = id;
     // const plotRef = doc(db, "Plots", fileNumber);
@@ -85,7 +85,14 @@ function FinancePending() {
     //     Plots: arrayUnion(data.fileNumber),
     //   });
     // }
-    console.log(data);
+    let totalAmountPlotRemaining = parseInt(plot.TotalAmount)
+    if (plot.paidAmount ) {
+      totalAmountPlotRemaining =  plot.TotalAmount -  parseInt(plot.paidAmount)
+    }
+    else{
+      console.log("null");
+    }
+   
     // PlotSnap
     // if (PlotSnap.exists()) {
     //   await updateDoc(plotRef, {
@@ -192,15 +199,14 @@ function FinancePending() {
         verifiedBy: FinanceData.Name,
         Esign: FinanceData.signature,
         varified: true,
-        remainingAmount:plot.TotalAmount - (parseInt(plot.paidAmount) ? parseInt(plot.paidAmount) : 0 ) - data.total
-
+        remainingAmount:totalAmountPlotRemaining - data.total
       })
-let x=parseInt(plot.lastPaymentMonth) + parseInt(data.numberofInstallmentMonth );
-let y=parseInt(plot.lastPaymentYear);
-if (x>11) {
-  x=x-11;
-  y=y+1;
-} 
+      let x=parseInt(plot.lastPaymentMonth) + parseInt(data.numberofInstallmentMonth );
+      let y=parseInt(plot.lastPaymentYear);
+      if (x>11) {
+        x=x-11;
+        y=y+1;
+      } 
     await updateDoc(doc(db, "Plots", fileNumber), {
       lastPayment: serverTimestamp(),
       paidAmount:(parseInt(plot.paidAmount) ? parseInt(plot.paidAmount) : 0 ) + parseInt(data.total),
@@ -212,9 +218,9 @@ if (x>11) {
     // Refresh customer data after the update
     getCustomersData();
     setisLoading(false);
-    // openNewWindow(`/print/invoice/${id}`);
+    openNewWindow(`/invoice/preview/${id}`);
 
-  }
+   }
 
 
   async function updateCredits(agentId, credit, commission, level) {

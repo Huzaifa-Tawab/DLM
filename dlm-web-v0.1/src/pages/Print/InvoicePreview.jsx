@@ -139,9 +139,8 @@ function InvoicePreview() {
     }
   }
 
-  return (
-    <div className="invoice-1-2Pn" id="inv-image">
-      {showLoader && <Loader />}
+  return <div className="invoice-1-2Pn" id="inv-image">
+     
       <div className="auto-group-z6we-Z8p">
         <div className="frame-3608-zjv">
           <div className="secnd-comp-in">
@@ -218,6 +217,6 @@ function InvoicePreview() {
         </div>
       </div>
     </div>
-  );
+
 }
 export default InvoicePreview;

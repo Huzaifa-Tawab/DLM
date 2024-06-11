@@ -21,11 +21,15 @@ function Archieve() {
     getData();
   }, []);
   const openNewWindow = (Link) => {
-    // Open a new window
-    const newWindow = window.open("", "_blank");
+    var win = window.open();
+    win.document.write('<iframe src="' + Link  + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>');
 
-    // Navigate to the specified URL in the new window
-    newWindow.location =Link;
+  
+    // Open a new window
+    // const newWindow =   window.open('' '_blank', 'noopener,noreferrer');;
+
+    // // // Navigate to the specified URL in the new window
+    // newWindow.location =Link;
   };
   function getDate(seconds) {
     let date = new Date(seconds * 1000);
