@@ -69,6 +69,7 @@ import Files from "./pages/finance/Files";
 import AdminFiles from "./pages/admin/AdminFiles";
 import InvoicePreview from "./pages/Print/InvoicePreview";
 import Archieve from "./pages/admin/Archieve";
+import PlotLogs from "./pages/admin/PlotsLogs";
 
 function App() {
   const [open, setOpen] = useState();
@@ -182,6 +183,7 @@ function App() {
           <Route path="/admin/expense" element={<AdminExpense />} />
           <Route path="/sub-admin/" element={<SubAdmin />} />
           <Route path="/create/plot/" element={<PlotRegistrationForm />} />
+          <Route path="/plot/logs/:id" element={<PlotLogs />} />
         </Route>
         {/* <Route path="*" element={<NoPage />} />  */}
       </Routes>

@@ -259,6 +259,16 @@ function AdminPlot() {
                     </button>
                   )}
                 </div>
+                <div className="Archieve-btn-div">
+                  {isAdmin() && (
+                    <button
+                      className="yellow-color"
+                      onClick={() => navigate(`/plot/logs/${id}`)}
+                    >
+                      Logs
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
             <div className="bottom-part-plot">

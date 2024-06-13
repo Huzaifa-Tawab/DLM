@@ -191,7 +191,17 @@ function FinancePending() {
     //       }
     //     }
     //   }
-
+ 
+    const refPlotlogs = collection(db, "PlotLogs");
+    await addDoc(refPlotlogs, {
+      verifiedBy: FinanceData.Name,
+      totalPlotValue: plot.TotalAmount,
+      paidbefore:parseInt(plot.paidAmount || 0),
+      thisAmount:parseInt(data.total),
+      approvedAt: serverTimestamp(),
+      pid:fileNumber,
+      invID:id,
+    })
       // Update transaction status to verified
       const transactionDoc = doc(db, "Transactions", id);
       await updateDoc(transactionDoc, {
