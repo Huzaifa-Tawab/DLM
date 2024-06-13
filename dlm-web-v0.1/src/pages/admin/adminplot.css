@@ -76,6 +76,7 @@
 .Archieve-btn-div {
   display: flex;
   justify-content: center;
+  gap: 10px;
 }
 .Archieve-btn-div button {
   margin-top: 10px;
