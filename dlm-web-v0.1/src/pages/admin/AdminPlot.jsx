@@ -134,7 +134,7 @@ function AdminPlot() {
               <div className="Plot-box">
                 <h1>Plot Details</h1>
                 <div className="sec-heading">
-                  <span className="first-text">Address:</span>{" "}
+                  <span className="first-text">Address:</span>
                   <span className="secon-text">{PlotDetails.Address}</span>
                 </div>
 
@@ -160,6 +160,8 @@ function AdminPlot() {
                     <span>Category:</span>
                     <span>Paid Amount:</span>
                     <span>Total Amount:</span>
+                    <span>Kin Name:</span>
+                    <span>Kin Relation:</span>
                   </div>
                   <div className="row">
                     <span className="secon-row">{PlotDetails.FileNumber}</span>
@@ -168,6 +170,8 @@ function AdminPlot() {
                       {PlotDetails.paidAmount ? PlotDetails.paidAmount : 0}
                     </span>
                     <span className="secon-row">{PlotDetails.TotalAmount}</span>
+                    <span className="secon-row">{PlotDetails.kinOverriden ?  PlotDetails.extendedKin.name:"Default" }</span>
+                    <span className="secon-row">{PlotDetails.kinOverriden ?  PlotDetails.extendedKin.relation:"Default" }</span>
                   </div>
                 </div>
 
