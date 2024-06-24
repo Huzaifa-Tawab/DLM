@@ -262,8 +262,6 @@ function AdminPlot() {
                       Archieve
                     </button>
                   )}
-                </div>
-                <div className="Archieve-btn-div">
                   {isAdmin() && (
                     <button
                       className="yellow-color"

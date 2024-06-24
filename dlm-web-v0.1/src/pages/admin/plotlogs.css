@@ -1,0 +1,25 @@
+.plot-log-container {
+  height: 100vh;
+}
+.plot-log-cards-sec {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 80%;
+  overflow-y: scroll;
+}
+.plot-log-cards-sec h3 {
+  background: #f4b266;
+  color: #fff;
+  padding: 10px;
+}
+.logs-card {
+  background: #fff;
+  padding: 20px;
+  font-size: 16px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.logs-card span {
+  color: #a4243b;
+}
