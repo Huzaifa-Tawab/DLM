@@ -42,7 +42,8 @@ function PrintFile() {
   const [OtherAmount, setOtherAmount] = useState("");
   const [OtherAmountTitle, setOtherAmountTitle] = useState("");
   const [PaidAmount, setPaidAmount] = useState("");
-  const [kinOverRiden, setkinOverRiden] = useState(false);
+  const [kinOverRiden, setkinOverRiden] = useState(null);
+  const [customerData, setCustomerData] = useState({});
   useEffect(() => {
     if (isAdmin()) {
       getPlotInfo();
@@ -57,8 +58,8 @@ function PrintFile() {
     if (UserData.exists()) {
       console.log("Customer data:", UserData.data());
       const Customer = UserData.data();
-      // Customer Data
-
+      setCustomerData(UserData.data());
+      // Customer Dat
       setUserImage(Customer.imgUrl);
       setName(Customer.Name);
       setFName(Customer.FName);
@@ -67,12 +68,7 @@ function PrintFile() {
       setGender(Customer.Gender);
       setphNo(Customer.phNo);
       setDob(Customer.Dob);
-      if (!kinOverRiden) {
-        setNexttoKin(Customer.NexttoKin || "Not Provided");
-        setCnicKin(Customer.CnicKin || "Not Provided");
-        setKinRelation(Customer.KinRelation || "Not Provided");
-        setPhNoKin(Customer.PhNoKin || "Not Provided");
-      }
+    
       setPaidAmount(Customer.paidAmount || 0);
       // setPhNo(Customer.PhNo);
       setisLoading(false);
@@ -106,13 +102,10 @@ function PrintFile() {
       const ms = Plot["creationTime"]["seconds"] * 1000;
       const time = new Date(ms).toDateString();
       setFDate(time);
+      console.log(Plot.kinOverriden);
+
       if (Plot.kinOverriden) {
-        const oK = Plot.extendedKin;
-        setkinOverRiden(true);
-        setNexttoKin(oK.name);
-        setCnicKin(oK.cnic);
-        setKinRelation(oK.relation);
-        setPhNoKin(oK.phone);
+        setkinOverRiden(Plot.extendedKin);
       }
     } else {
       navi("/notfound");
@@ -205,19 +198,24 @@ function PrintFile() {
                   <span>Name:</span>
                   <span>Relation:</span>
                 </div>
+
                 <div className="column-2">
-                  <span>{NexttoKin}</span>
-                  <span>{KinRelation}</span>
+                  <span>{kinOverRiden  ? kinOverRiden.name:customerData.NexttoKin}</span>
+                <span>{kinOverRiden  ? kinOverRiden.relation:customerData.KinRelation }</span>
+              
                 </div>
               </div>
+             
               <div className="sectop-right-33">
                 <div className="column-33">
                   <span>Phone No:</span>
                   <span>Cnic:</span>
                 </div>
                 <div className="column-44">
-                  <span>{PhNoKin}</span>
-                  <span>{cnicFormat(CnicKin)}</span>
+                <span>{kinOverRiden ? kinOverRiden.phone:customerData.PhNoKin}</span>
+                <span>{kinOverRiden ? kinOverRiden.cnic
+:cnicFormat(customerData.CnicKin) }</span>
+
                 </div>
               </div>
             </div>
