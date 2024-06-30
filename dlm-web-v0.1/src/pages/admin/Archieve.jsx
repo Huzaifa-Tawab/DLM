@@ -89,11 +89,12 @@ function Archieve() {
               <div className="hero--head">
                 <h1>Archieve</h1>
                 {/* <h1>{filteredCustomersDataMemoized.length}</h1> */}
-              </div>
-              <button onClick={openModal}>
+                <button onClick={openModal}>
                 Add New
                 <img src={arrow}></img>
               </button>
+              </div>
+             
               <div className="Admin-Home-content">
                 <div className="Admin-Home-table">
                   <div className="table-wrapper">
