@@ -71,6 +71,7 @@ import InvoicePreview from "./pages/Print/InvoicePreview";
 import Archieve from "./pages/admin/Archieve";
 import PlotLogs from "./pages/admin/PlotsLogs";
 import BallottedPlots from "./pages/admin/BallottedPlots";
+import PlotsListings from "./pages/PlotsListing/PlotsListings";
 
 function App() {
   const [open, setOpen] = useState();
@@ -89,6 +90,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/Listings" element={<PlotsListings/>}/>
         <Route path="/employe/:id" element={<Empdetafinance />} />
         <Route path="/balloting" element={<Balloting />} />
         <Route path="/archieve/:id" element={<Archieve />} />
