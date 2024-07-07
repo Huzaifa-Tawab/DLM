@@ -70,6 +70,7 @@ import AdminFiles from "./pages/admin/AdminFiles";
 import InvoicePreview from "./pages/Print/InvoicePreview";
 import Archieve from "./pages/admin/Archieve";
 import PlotLogs from "./pages/admin/PlotsLogs";
+import BallottedPlots from "./pages/admin/BallottedPlots";
 
 function App() {
   const [open, setOpen] = useState();
@@ -92,7 +93,7 @@ function App() {
         <Route path="/balloting" element={<Balloting />} />
         <Route path="/archieve/:id" element={<Archieve />} />
         <Route
-          path="/balloting/userdetails"
+          path="/balloting/:id"
           element={<Ballotinguserdetails />}
         />
 
@@ -131,7 +132,7 @@ function App() {
           }
         />
         <Route
-          path="/notfound"
+          path="*"
           element={<ErrorPage errorCode={404} errorMessage="Not Found" />}
         />
         <Route element={<FinanceRoute />}>
@@ -154,6 +155,8 @@ function App() {
         <Route path="/print/:id" element={<PrintFile />} />
 
         <Route element={<AdminRoutes />}>
+        <Route path="/balloting/plots" element={<BallottedPlots />} />
+
           <Route path="/agent/wallet" element={<Wallet />} />
 
           <Route path="/admin/marquee" element={<MarqueeInput />} />

@@ -37,7 +37,11 @@ export const superAdminNavLinks = [
     icon: <i className="fa-solid fa-file-invoice"></i>,
     title: "Invoices",
   },
-
+  {
+    to: "/balloting/plots",
+    icon: <i className="fa-solid fa-regular fa-file"></i>,
+    title: "Plots",
+  },
   {
     to: "/admin/withdraw",
     icon: <i className="fa-solid fa-file-invoice"></i>,
@@ -97,6 +101,11 @@ export const subAdminNavLinks = [
     to: "/admin/files",
     icon: <i className="fa-solid fa-regular fa-file"></i>,
     title: "Files",
+  },
+  {
+    to: "/Balloting/Plots",
+    icon: <i className="fa-solid fa-regular fa-file"></i>,
+    title: "Plots",
   },
   {
     to: "/admin/expense",

@@ -84,8 +84,8 @@ function Balloting() {
     const querySnapshot = await getDocs(collection(db, "Balloting"));
     const newCustomersData = [];
     querySnapshot.forEach((doc) => {
-      newCustomersData.push(doc.data());
-      // newCustomersData.push({ ...doc.data(), id: doc.id });
+      // newCustomersData.push(doc.data());
+      newCustomersData.push({ ...doc.data(), id: doc.id });
     });
     setCustomersData(newCustomersData);
     setFilteredCustomersData(newCustomersData);
@@ -135,14 +135,14 @@ function Balloting() {
                 </div>
                 <div className="Admin-Home-content">
                   <div className="Admin-Home-table">
-                    <form className="nosubmit">
+                    {/* <form className="nosubmit">
                       <input
                         type="text"
                         placeholder="Search by Id"
                         // onChange={(e) => debouncedFilterData(e.target.value)}
                         className="nosubmit"
                       />
-                    </form>
+                    </form> */}
                     <div className="table-wrapper">
                       <table className="fl-table">
                         <thead>
@@ -161,14 +161,12 @@ function Balloting() {
                               <td>{data.title}</td>
                               <td>{formatTimestamp(data.startDate)}</td>
                               <td>{formatTimestamp(data.endDate)}</td>
-                              <td className="tddr">
-                                <p className="adress-finance-box"></p>
-                              </td>
+                             <td>{data.winnerDeclared ? "Completed":"Pending"}</td>
                               <td>
                                 <button
                                   className="button-view"
                                   onClick={() =>
-                                    navigate("/balloting/userdetails")
+                                    navigate(`/balloting/${data.id}`)
                                   }
                                 >
                                   View

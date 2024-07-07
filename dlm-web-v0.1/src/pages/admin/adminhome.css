@@ -15,6 +15,14 @@
   padding: 3px;
   margin-left: 3px;
 }
+.button-new-view{
+  background: #a4243b;
+  color: #ffffff;
+  /* width: 60px; */
+  border-radius: 6px;
+  padding: 3px;
+  margin-left: 3px;
+}
 .hero--head {
   background: #a4243b;
   display: flex;
