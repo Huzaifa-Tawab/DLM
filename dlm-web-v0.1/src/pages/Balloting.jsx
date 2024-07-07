@@ -23,6 +23,7 @@ function Balloting() {
   const [Title, setTitle] = useState("");
   const [Startdate, setStartDate] = useState("");
   const [Enddate, setEnddate] = useState("");
+  const [limit, setLimit] = useState(0);
   const [CustomersData, setCustomersData] = useState([]);
   const [filteredCustomersData, setFilteredCustomersData] = useState([]);
 
@@ -68,6 +69,7 @@ function Balloting() {
   async function uplaodToFirebase() {
     await addDoc(collection(db, "Balloting"), {
       title: Title,
+      limit:limit,
       startDate: Timestamp.fromMillis(toTimestamp(Startdate)), //"Updated Firestore queries to include endAt parameter and added utility function to convert string date to Firebase Timestamp in Balloting.jsx"
       endDate: Timestamp.fromMillis(toTimestamp(Enddate)),
       createdAt: Timestamp.now(),
@@ -220,6 +222,14 @@ function Balloting() {
               value={Title}
               onChange={(e) => {
                 setTitle(e.target.value);
+              }}
+            ></input>
+             <label>Limit</label>
+            <input
+              type="text"
+              value={limit}
+              onChange={(e) => {
+                setLimit(e.target.value);
               }}
             ></input>
             <label>Start Date</label>

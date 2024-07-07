@@ -84,9 +84,9 @@ function BallotingSingle() {
                     <tr>
                       <th>Agent Name</th>
                       <th>Agent ID</th>
-                      <th>Submitted At</th>
-                      <th>Submitted File</th>
-                      <th>Action</th>
+                      {/* <th>Submitted At</th> */}
+                      <th>Submitted Files</th>
+               
                     </tr>
                   </thead>
                   <tbody>
@@ -94,19 +94,8 @@ function BallotingSingle() {
                       <tr>
                         <td>{submission.agentName}</td>
                         <td>{submission.agentId}</td>
-                        <td>{Date(submission.timestamp.seconds * 1000)}</td>
-
-                        <td>{submission.plot}</td>
-                        <td>
-                          {ballotingData.winnerDeclared ? (
-                            "Winner Decleared"
-                         
-                          ) : (
-                            <button className="button-new-view">
-                            Make It Winner
-                          </button>
-                          )}
-                        </td>
+                        {/* <td>{Date(submission.timestamp.seconds * 1000)}</td> */}
+                        <td>{submission.plots.split(',').map((e)=> <span className="p-span" key={e}>{e}</span>)}</td>
                       </tr>
                     ))}
                   </tbody>

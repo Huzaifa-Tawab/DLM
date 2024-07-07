@@ -36,6 +36,7 @@ function AgentDash() {
   const [BallotiongModalTitle, setBallotiongModalTitle] = useState("");
   const [BallotionEndDate, setBallotionEndDate] = useState("");
   const [BallotiongModalId, setBallotiongModalId] = useState("");
+  const [Ballotionglimit, setBallotiongLimit] = useState(0);
 
   useEffect(() => {
     getUser();
@@ -235,7 +236,8 @@ function AgentDash() {
         limit(1)
       )
     ).then((BallotingSnapshot) => {
-        const agentExists =  BallotingSnapshot.docs[0].data().submission.filter(submission => {
+      const Data= {...BallotingSnapshot.docs[0].data(),id:BallotingSnapshot.docs[0].id}
+        const agentExists = Data.submission.filter(submission => {
           console.log(submission.agentId,UUid)
        return   submission.agentId === UUid
 
@@ -244,9 +246,10 @@ function AgentDash() {
         if (agentExists.length===0) {
           console.log("no exsist");
           setModeldisplay(true);
-          setBallotiongModalTitle(doc.data().title);
-          setBallotionEndDate(doc.data().endDate);
-          setBallotiongModalId(doc.id);
+          setBallotiongModalTitle(Data.title);
+          setBallotionEndDate(Data.endDate);
+          setBallotiongModalId(Data.id);
+          setBallotiongLimit(Data.limit);
         }
         else{
           console.log("abc");
@@ -274,8 +277,8 @@ function AgentDash() {
         agentName={User ? User.Name : "Name"}
         title={BallotiongModalTitle}
         end={BallotionEndDate}
-
         modalId={BallotiongModalId}
+        limit={Ballotionglimit}
       />
 
       <SideBar
@@ -314,7 +317,7 @@ function AgentDash() {
                             <strong className="strong">CNIC:</strong>
                           </span>
                           <span>
-                            <strong className="strong">Invoice ID:</strong>{" "}
+                            <strong className="strong">Invoice ID:</strong>
                           </span>
                           <span>
                             <strong className="strong">Sponsored By:</strong>

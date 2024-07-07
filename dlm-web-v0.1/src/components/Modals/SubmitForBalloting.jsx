@@ -19,10 +19,11 @@ function SubmitForBalloting({
   title,
   end,
   modalId,
+  limit
 }) {
   const [plotText, setPlotText] = useState("");
   const [plotCount, setPlotCount] = useState(0);
-  const maxLimit = 9;
+  const maxLimit = limit;
 
   const handlePlotTextChange = (e) => {
     const value = e.target.value;

@@ -96,3 +96,12 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+.p-span{
+  margin: 2px;
+  padding: 4px;
+  background: black;
+  color: white;
+  border-radius: 99px;
+  min-width: 40px;
+  display: inline-block;
+}
