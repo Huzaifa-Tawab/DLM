@@ -34,6 +34,7 @@ function AgentDash() {
   const [isLoading, setisLoading] = useState(true);
   const [Modeldisplay, setModeldisplay] = useState(false);
   const [BallotiongModalTitle, setBallotiongModalTitle] = useState("");
+  const [BallotionEndDate, setBallotionEndDate] = useState("");
   const [BallotiongModalId, setBallotiongModalId] = useState("");
 
   useEffect(() => {
@@ -60,7 +61,7 @@ function AgentDash() {
         if (docSnap.exists()) {
           setUser(docSnap.data());
           fetchData(user.uid);
-          getBallotiong();
+          getBallotiong(user.uid);
 
           const childRef = doc(db, "Agent", docSnap.data().ChildOf);
           const childSnap = await getDoc(childRef);
@@ -225,7 +226,7 @@ function AgentDash() {
 
     setPromosWithStatus(promosWithStatus);
   }
-  async function getBallotiong() {
+  async function getBallotiong(UUid) {
     const currentTimestamp = Timestamp.fromDate(new Date());
     await getDocs(
       query(
@@ -234,22 +235,28 @@ function AgentDash() {
         limit(1)
       )
     ).then((BallotingSnapshot) => {
-      BallotingSnapshot.docs.forEach((doc) => {
-        console.log("kkk", doc.data());
-        doc.data().submission.forEach((submittionDetails) => {
-          if (submittionDetails.agentId === uid) {
-            console.log("exists");
-          } else {
-            console.log("not exsist");
-            setModeldisplay(true);
-            console.log(submittionDetails);
-            setBallotiongModalTitle(doc.data().title);
-            setBallotiongModalId(doc.id);
-          }
+        const agentExists =  BallotingSnapshot.docs[0].data().submission.filter(submission => {
+          console.log(submission.agentId,UUid)
+       return   submission.agentId === UUid
+
         });
+    console.log('Agent Exists:', agentExists.length);
+        if (agentExists.length===0) {
+          console.log("no exsist");
+          setModeldisplay(true);
+          setBallotiongModalTitle(doc.data().title);
+          setBallotionEndDate(doc.data().endDate);
+          setBallotiongModalId(doc.id);
+        }
+        else{
+          console.log("abc");
+        
+   
+        }
+       
       });
-    });
-  }
+    };
+
   useEffect(() => {
     if (Promos) {
       getPromosWithStatus();
@@ -266,6 +273,8 @@ function AgentDash() {
         agentId={uid}
         agentName={User ? User.Name : "Name"}
         title={BallotiongModalTitle}
+        end={BallotionEndDate}
+
         modalId={BallotiongModalId}
       />
 
