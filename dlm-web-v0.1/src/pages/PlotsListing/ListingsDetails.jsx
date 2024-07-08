@@ -18,10 +18,7 @@ import isAdmin from "../../../IsAdmin";
 import SideBar from "../../components/Sidebar/sidebar";
 function ListingsDetails() {
   const prams = useParams();
-  const navigate = useNavigate();
-
   const id = prams.id;
-
   const [PlotDetails, setPlotDetails] = useState({});
   const [offers, setOffers] = useState([]);
   const [isLoading, setisLoading] = useState(true);
@@ -37,6 +34,7 @@ function ListingsDetails() {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
+
       setPlotDetails(docSnap.data());
       console.log(docSnap.data());
       setisLoading(false);
