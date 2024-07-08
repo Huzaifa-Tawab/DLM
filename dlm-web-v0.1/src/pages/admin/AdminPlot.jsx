@@ -170,107 +170,122 @@ function AdminPlot() {
                       {PlotDetails.paidAmount ? PlotDetails.paidAmount : 0}
                     </span>
                     <span className="secon-row">{PlotDetails.TotalAmount}</span>
-                    <span className="secon-row">{PlotDetails.kinOverriden ?  PlotDetails.extendedKin.name:"Default" }</span>
-                    <span className="secon-row">{PlotDetails.kinOverriden ?  PlotDetails.extendedKin.relation:"Default" }</span>
+                    <span className="secon-row">
+                      {PlotDetails.kinOverriden
+                        ? PlotDetails.extendedKin.name
+                        : "Default"}
+                    </span>
+                    <span className="secon-row">
+                      {PlotDetails.kinOverriden
+                        ? PlotDetails.extendedKin.relation
+                        : "Default"}
+                    </span>
                   </div>
                 </div>
-{false? <>Converted To Plot</> :<>
-                <div className="column">
-                  {isAdmin() && (
-                    <>
+                {false ? (
+                  <>Converted To Plot</>
+                ) : (
+                  <>
+                    <div className="column">
+                      {isAdmin() && (
+                        <>
+                          <button
+                            className="red-color"
+                            onClick={() => {
+                              setShowTransferModal(true);
+                            }}
+                          >
+                            Transfer
+                          </button>
+                          <button
+                            className="red-color"
+                            onClick={() => {
+                              navigate(`/print/${PlotDetails.FileNumber}`);
+                            }}
+                          >
+                            Print
+                          </button>
+                        </>
+                      )}
                       <button
-                        className="red-color"
+                        className="yellow-color"
                         onClick={() => {
-                          setShowTransferModal(true);
+                          navigate(
+                            `/Print/plotstatment/${PlotDetails.FileNumber}`
+                          );
                         }}
                       >
-                        Transfer
+                        Statment
                       </button>
+                      {!isAdmin() && (
+                        <button
+                          className="yellow-color"
+                          onClick={() => {
+                            if (PlotDetails.invoicePending) {
+                              alert("Alreay Sent One Invoice For Aproval");
+                            } else {
+                              setShowDocModal(true);
+                            }
+                          }}
+                        >
+                          Payment
+                        </button>
+                      )}
+
                       <button
-                        className="red-color"
+                        className="yellow-color"
                         onClick={() => {
-                          navigate(`/print/${PlotDetails.FileNumber}`);
+                          setShowCommentsModal(true);
                         }}
                       >
-                        Print
+                        Comment
                       </button>
-                    </>
-                  )}
-                  <button
-                    className="yellow-color"
-                    onClick={() => {
-                      navigate(`/Print/plotstatment/${PlotDetails.FileNumber}`);
-                    }}
-                  >
-                    Statment
-                  </button>
-                  {!isAdmin() && (
-                    <button
-                      className="yellow-color"
-                      onClick={() => {
-                        if (PlotDetails.invoicePending) {
-                          alert("Alreay Sent One Invoice For Aproval");
-                        } else {
-                          setShowDocModal(true);
-                        }
-                      }}
-                    >
-                      Payment
-                    </button>
-                  )}
+                      <button
+                        className="yellow-color"
+                        onClick={() => {
+                          navigate(`/print/schedule/${PlotDetails.FileNumber}`);
+                        }}
+                      >
+                        Schedule
+                      </button>
+                      {isAdmin() && (
+                        <button
+                          className="yellow-color"
+                          onClick={() => navigate(`/edit/plot/${id}`)}
+                        >
+                          Edit
+                        </button>
+                      )}
 
-                  <button
-                    className="yellow-color"
-                    onClick={() => {
-                      setShowCommentsModal(true);
-                    }}
-                  >
-                    Comment
-                  </button>
-                  <button
-                    className="yellow-color"
-                    onClick={() => {
-                      navigate(`/print/schedule/${PlotDetails.FileNumber}`);
-                    }}
-                  >
-                    Schedule
-                  </button>
-                  {isAdmin() && (
-                    <button
-                      className="yellow-color"
-                      onClick={() => navigate(`/edit/plot/${id}`)}
-                    >
-                      Edit
-                    </button>
-                  )}
-
-                  {isAdmin() && (
-                    <button
-                      className="yellow-color"
-                      onClick={toggleBlockStatus}
-                    >
-                      {isBlocked ? "Un Block" : "Block"}File
-                    </button>
-                  )}
-                </div>
-                <div className="Archieve-btn-div">
-                  {isAdmin() && (
-                    <button
-                      className="yellow-color"
-                      onClick={() => navigate(`/archieve/${id}`)}
-                    >
-                      Archieve
-                    </button>
-                  )}
-                  {isAdmin() && (
-                    <button
-                      className="yellow-color"
-                      onClick={() => navigate(`/plot/logs/${id}`)}
-                    >
-                      Logs
-                    </button>
-                  )}
-                </div></>}
+                      {isAdmin() && (
+                        <button
+                          className="yellow-color"
+                          onClick={toggleBlockStatus}
+                        >
+                          {isBlocked ? "Un Block" : "Block"}File
+                        </button>
+                      )}
+                    </div>
+                    <div className="Archieve-btn-div">
+                      {isAdmin() && (
+                        <button
+                          className="yellow-color"
+                          onClick={() => navigate(`/archieve/${id}`)}
+                        >
+                          Archieve
+                        </button>
+                      )}
+                      {isAdmin() && (
+                        <button
+                          className="yellow-color"
+                          onClick={() => navigate(`/plot/logs/${id}`)}
+                        >
+                          Logs
+                        </button>
+                      )}
+                    </div>
+                  </>
+                )}
               </div>
             </div>
             <div className="bottom-part-plot">

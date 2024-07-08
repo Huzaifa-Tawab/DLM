@@ -77,6 +77,7 @@ import { onValue, ref } from "firebase/database";
 import WinnersAnouncement from "./components/Modals/WinnersAnouncement";
 import { rdb } from "./firebase";
 import NotificationWinner from "./components/Modals/NotificationWinner";
+import ListingsDetails from "./pages/PlotsListing/ListingsDetails";
 
 function App() {
   const [open, setOpen] = useState();
@@ -119,6 +120,8 @@ function App() {
 <NotificationWinner showModal={winner} onClose={()=>{setShowWinner(false)}} bid={bId}/>
     <BrowserRouter>
       <Routes>
+      
+        <Route path="/Listings/:id" element={<ListingsDetails/>}/>
         <Route path="/Listings" element={<PlotsListings/>}/>
         <Route path="/employe/:id" element={<Empdetafinance />} />
         <Route path="/balloting" element={<Balloting />} />

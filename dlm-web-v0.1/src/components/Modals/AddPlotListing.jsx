@@ -9,13 +9,13 @@ function AddPlotListing({ show, onClose, onAddPlot, user }) {
   const [plotNumber, setPlotNumber] = useState(plotNames[0]);
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
-  const [description, setDescription] = useState("");
+  const [type, setType] = useState("");
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-
+console.log(type);
     try {
       const q = query(
         collection(db, "PlotListings"),
@@ -33,13 +33,21 @@ function AddPlotListing({ show, onClose, onAddPlot, user }) {
         PlotNumber: plotNumber,
         Category: category,
         price: parseInt(price),
-        desc: description,
+        type: type,
         isSold: false,
         createdAt: Timestamp.now(),
         AgentId: user.Cnic,
       };
 
-      await addDoc(collection(db, "PlotListings"), newPlot);
+      await addDoc(collection(db, "PlotListings"), {
+        PlotNumber: plotNumber,
+        Category: category,
+        price: parseInt(price),
+        type: type,
+        isSold: false,
+        createdAt: Timestamp.now(),
+        AgentId: user.Cnic,
+      });
       onAddPlot();
       onClose();
     } catch (error) {
@@ -72,8 +80,16 @@ function AddPlotListing({ show, onClose, onAddPlot, user }) {
           <label>Price (PKR)</label>
           <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
 
-          <label>Description</label>
-          <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
+          <label>Negotiation Type</label>
+          {/* <textarea value={description} onChange={(e) => setDescription(e.target.value)} /> */}
+          <select name="" id="" onChange={(e)=>{
+            console.log(e.target.value);
+             setType(e.target.value)
+             }}>
+            <option value="">Select</option>
+            <option value="Negotiable">Negotiable</option>
+            <option value="Fixed">Fixed</option>
+          </select>
         </div>
         <div className="modal-footer">
           <button type="submit">Add Plot</button>

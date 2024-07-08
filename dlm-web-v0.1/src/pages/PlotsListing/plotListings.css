@@ -1,0 +1,55 @@
+.PlotsListings{
+    /* width: 40px; */
+    background-color: aliceblue;
+    display: flex;
+    overflow: scroll;
+}
+.plots-listings-logs{
+    width: 50%;
+}
+.bottom-part-listing{
+    display: flex;
+    gap: 20px;
+    /* justify-content: space-between; */
+    width: 80%;
+    flex-wrap: wrap;
+}
+.offerCard{
+    display: flex;
+    gap:10px;
+    flex-direction: column;
+align-items: center;
+    background: rgb(154, 154, 186);
+    border-radius: 10px;
+    padding: 10px;
+    /* color: white; */
+}
+.offerCardButton{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.offerCardButton button{
+    background: #000000;
+    color: white;
+padding: 20px 40px;
+    border-radius: 10px;
+}
+.offerCard h5{
+    padding: 5px;
+background: white;
+    border-radius: 10px;
+    color: black;
+}
+.offer-card{
+   border-bottom: 2px solid black; 
+}
+.offer-pending{
+    color: black;
+}
+.offer-accept{
+    color: green;
+}
+.offer-reject{
+    color: red;
+}
