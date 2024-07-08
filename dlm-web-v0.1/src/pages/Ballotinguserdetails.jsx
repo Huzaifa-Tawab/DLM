@@ -20,6 +20,16 @@ function BallotingSingle() {
   }, []);
   
     const handleClick = async () => {
+      ballotingData.winners.forEach(async winner =>{
+       
+          const plotRef= doc(db, "Plots",winner);
+          // getDoc(plotRef, ).then(result=>{
+          //   console.log(result);
+          // })
+          await updateDoc(plotDoc.ref, { isNowPlot: true });
+      
+      
+        })
      try {
       const db = getDatabase();
       await set(ref(db, '/winners/'), {

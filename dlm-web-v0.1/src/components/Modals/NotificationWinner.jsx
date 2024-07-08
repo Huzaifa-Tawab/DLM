@@ -34,7 +34,7 @@ function NotificationWinner({ showModal, onClose, bid }) {
       containerClassName="custom-modal-container"
       closeOnOuterClick={true}
     >
-    <h1>hello</h1>
+    <h1>Results</h1>
     <div>
       {winners.map((e)=><>{e} <br /></>)}
     </div>

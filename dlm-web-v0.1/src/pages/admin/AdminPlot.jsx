@@ -174,7 +174,7 @@ function AdminPlot() {
                     <span className="secon-row">{PlotDetails.kinOverriden ?  PlotDetails.extendedKin.relation:"Default" }</span>
                   </div>
                 </div>
-{PlotDetails.isNowPlot? <>Converted To Plot</> :<>
+{false? <>Converted To Plot</> :<>
                 <div className="column">
                   {isAdmin() && (
                     <>
