@@ -258,7 +258,11 @@ function ClientDetails() {
                   {/* <h1>Plots Details</h1> */}
                   <div className="plot-cards">
                     {Plots.map((plot) => (
-                      <div className="card">
+                      <div className="card" style={{position:"relative"}}>
+                       { plot.isNowPlot ?  <div className="badge-card">
+                      <span>Plot</span>
+                        </div>:<></>}
+                       
                         <h4>{plot.FileNumber}</h4>
                         <span className="first" style={{ color: "#fff" }}>
                           {userData.Address}

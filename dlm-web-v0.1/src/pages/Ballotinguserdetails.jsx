@@ -3,19 +3,42 @@ import Loader from "../components/loader/Loader";
 import SideBar from "../components/Sidebar/sidebar";
 import { useNavigate, useParams } from "react-router-dom";
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
-import { db } from "../firebase";
-import { ref } from "firebase/storage";
+import { db, rdb } from "../firebase";
+
+import DeclareWinnersModal from "../components/Modals/DeclareWinnersModal";
+import { set,ref, getDatabase, serverTimestamp } from "firebase/database";
 
 function BallotingSingle() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [isLoading, setisLoading] = useState(true);
   const [ballotingData, setBallotingData] = useState([]);
+  const [ShowModal, setShowModal] = useState(false);
 
   useEffect(() => {
     fetchDataFromFirestore();
   }, []);
+  
+    const handleClick = async () => {
+     try {
+      const db = getDatabase();
+      await set(ref(db, '/winners/'), {
+        id:id
+      }).then((e)=>{
+        setTimeout(() => { 
+           set(ref(db, '/winners/'), {
+            id:null
+          })
+        }, 5000);
 
+      })
+     } catch (error) {
+      console.log(e);
+     }
+    };
+  
+ 
+  
   async function fetchDataFromFirestore() {
     try {
       const ballotingCollectionRef = doc(db, "Balloting", id);
@@ -73,12 +96,16 @@ function BallotingSingle() {
                             : "N/A"}
                       </span>
                       <span>{ballotingData.winnerDeclared ?"Completed":"Pending"}</span>
-                      <span>{ballotingData.winner ? ballotingData.winner:"Not Declared"}</span>
                     </div>
                   </div>
+                 {ballotingData.winnerDeclared ?<></>:  <button  onClick={()=>{setShowModal(true)}}> Set Winners</button>}
+                 {ballotingData.winnerDeclared ? <button onClick={handleClick}>Announce Result</button>:  <></> }
+                
                 </div>
               </div>
               <div>
+              <div style={{display:"flex" ,flexWrap:"wrap"}}>{ballotingData.winnerDeclared ? ballotingData.winners.map((e)=> <p style={{margin:"10px",padding:"10px",background:"black",color:"white",}}> {e}</p> ):"Not Declared"}</div>
+
                 <table className="fl-table">
                   <thead>
                     <tr>
@@ -105,6 +132,7 @@ function BallotingSingle() {
           )
         }
       />
+      <DeclareWinnersModal show={ShowModal} onClose={()=>{setShowModal(false)}} ballotingId={id}/>
     </>
   );
 }

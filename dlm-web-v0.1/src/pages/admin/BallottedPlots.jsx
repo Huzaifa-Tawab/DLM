@@ -248,11 +248,13 @@ function BallottedPlots() {
                               </button>
                               <button
                                 className="button-view"
-                                onClick={() =>
-                                  navigate(`/details/ballotted/plot/${e.FileNumber}`)
+                                onClick={() =>{
+                                  alert("Print Is Not Available At The Moment")
+                                }
+                                  // navigate(`/details/ballotted/plot/${e.FileNumber}`)
                                 }
                               >
-                                View
+                               Print 
                               </button>
                             </td>
                           </tr>

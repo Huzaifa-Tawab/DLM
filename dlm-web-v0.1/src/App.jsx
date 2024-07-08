@@ -72,10 +72,18 @@ import Archieve from "./pages/admin/Archieve";
 import PlotLogs from "./pages/admin/PlotsLogs";
 import BallottedPlots from "./pages/admin/BallottedPlots";
 import PlotsListings from "./pages/PlotsListing/PlotsListings";
+import { onValue, ref } from "firebase/database";
+
+import WinnersAnouncement from "./components/Modals/WinnersAnouncement";
+import { rdb } from "./firebase";
+import NotificationWinner from "./components/Modals/NotificationWinner";
 
 function App() {
   const [open, setOpen] = useState();
+  const [winner, setShowWinner] = useState(false);
+  const [bId, setBID] = useState("");
   const [showSidebar, setShowSidebar] = useState(false);
+  
   const handleClick = () => {
     setOpen(!open);
   };
@@ -86,8 +94,29 @@ function App() {
       setShowSidebar(false);
     }
   }, []);
+  useEffect(() => {
+    if (true) {
+      const winnersRef = ref(rdb, 'winners/');
+      onValue(winnersRef, (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          console.log("DDDDTTTAAA",data);
+          setBID(data.id)
+          setShowWinner(true)
+          // const currentTime = Date.now();
+          // const winnerTime = new Date(data.time).getTime();
 
+          // if ((currentTime - winnerTime) <= 5000) {
+          //   setWinners([data.id]); // Assuming 'id' is the winner
+          //   setModalOpen(true); // Automatically open the modal
+          // }
+        }
+      });
+    }
+  }, []);
   return (
+  <>
+<NotificationWinner showModal={winner} onClose={()=>{setShowWinner(false)}} bid={bId}/>
     <BrowserRouter>
       <Routes>
         <Route path="/Listings" element={<PlotsListings/>}/>
@@ -193,6 +222,7 @@ function App() {
         {/* <Route path="*" element={<NoPage />} />  */}
       </Routes>
     </BrowserRouter>
+  </>
   );
 }
 
