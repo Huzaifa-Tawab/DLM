@@ -72,6 +72,8 @@ function Balloting() {
       limit:limit,
       startDate: Timestamp.fromMillis(toTimestamp(Startdate)), //"Updated Firestore queries to include endAt parameter and added utility function to convert string date to Firebase Timestamp in Balloting.jsx"
       endDate: Timestamp.fromMillis(toTimestamp(Enddate)),
+      winners:[],
+      submission:[],
       createdAt: Timestamp.now(),
     }).then(() => {
       setisLoading(false);
