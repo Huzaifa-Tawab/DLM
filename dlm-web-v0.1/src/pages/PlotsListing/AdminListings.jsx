@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { collection, getDocs, query } from "firebase/firestore";
+import { collection, doc, getDocs, query, updateDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../firebase";
 import Loader from "../../components/loader/Loader";
@@ -37,7 +37,7 @@ function AdminPlotsListings() {
     querySnapshot.forEach((doc) => {
       let single = doc.data();
       single["id"] = doc.id;
-      if (doc.data().offerAccepted && doc.data().isSold===false) {
+      if (doc.data().offerAccepted ) {
         temp.push(single);
       }
       temp2.push(single);
@@ -47,7 +47,10 @@ function AdminPlotsListings() {
     setOtherListings(temp2);
     setisloading(false);
   }
-
+  async function handleSold(lid){
+  await updateDoc(doc(db, 'PlotListings', lid), { isSold: true, });
+getPlotListings()
+}
   return isloading ? (
     <Loader />
   ) : (
@@ -61,7 +64,7 @@ function AdminPlotsListings() {
           </div>
           <div className="AdminPlotsListings">
             <div>
-              <div className="plots" style={{height:"40vh"}}>
+              <div className="plots" style={{height:"40vh",overflow:"scroll"}}>
                 <h1>Accepted Offers</h1>
                 <div className="plot-cards">
                   {listings.map((plot) => (
@@ -75,23 +78,29 @@ function AdminPlotsListings() {
                         border: "1px solid #ddd",
                         borderRadius: "5px",
                         backgroundColor: "#f9f9f9",
+          
                        
                       }}
                       key={plot.id}
                     >
-                      <div style={{ color:"#000"}}>
+                      <div style={{ color:"#000",}}>
                         <h4 style={{ margin: "5px 0",color:"#000" }}>{plot.PlotNumber}</h4>
                         <h4 style={{ margin: "5px 0",color:"#000" }}>
                           {plot.offerData.uid} Offered {plot.offerData.Price}PKR
                         </h4>
                         <h4 style={{ margin: "5px 0", color: "green" }}>Accepted</h4>
+                        <h4 style={{ margin: "5px 0", color: "blue" }}>
+                          Sold: {plot.isSold? "Yes" : "No"}
+                        </h4>
+                      {!plot.isSold &&  <button onClick={()=>{handleSold(plot.id)}} style={{background:"black",color:"white"}}>Mark As Sold</button>}
+                       
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
               <br />
-              <div className="plots" style={{height:"40vh"}}>
+              <div className="plots" style={{height:"40vh",overflow:"scroll"}}>
                 <h1>All Listings</h1>
                 <div className="">
                   {Otherlistings.map((plot) => {
