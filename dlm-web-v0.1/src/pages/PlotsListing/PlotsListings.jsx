@@ -190,15 +190,20 @@ function PlotsListings() {
                               {plot.price} PKR
                             </span>
                           </span>
-                          <h4>{plot.isSold ? "Sold Out" : "Available"}</h4>
+                          <h4>{plot.offerAccepted? "Sold Out" : "Available"}</h4>
                         </div>
                         <button
                           style={{ background: "none" }}
                           onClick={() => {
+                            if (plot.offerAccepted) {
+                              alert("This Has Been Sold Out")
+                            }else{
+                              setShowModal(true);
+                              setOid(plot.PlotNumber);
+                              setListingId(plot.id)
+                            }
                             // navigate(`/details/plot/${plot.id}`);
-                            setShowModal(true);
-                            setOid(plot.PlotNumber);
-                            setListingId(plot.id)
+                           
                           }}
                         >
                           <img
