@@ -27,6 +27,7 @@ function PlotsListings() {
   const [showDocModal, setShowDocModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [oid, setOid] = useState("");
+  const [listingId, setListingId ] = useState("");
   const [User, setUser] = useState({});
   useEffect(() => {
     getUser();
@@ -165,7 +166,7 @@ function PlotsListings() {
                 <div className="plots">
                   <h1> All Listings</h1>
                   <div className="plot-cards" style={{}}>
-                    {Otherlistings.map((plot) => (
+                    {listings.map((plot) => (
                       <div
                         className="card"
                         style={{
@@ -197,6 +198,7 @@ function PlotsListings() {
                             // navigate(`/details/plot/${plot.id}`);
                             setShowModal(true);
                             setOid(plot.PlotNumber);
+                            setListingId(plot.id)
                           }}
                         >
                           <img
@@ -235,6 +237,7 @@ function PlotsListings() {
       <AddOffer
         uid={User.Cnic}
         oid={oid}
+        listingId={listingId}
         showModal={showModal}
         onClose={() => setShowModal(false)}
         // onAddPlot={handleAddPlot}

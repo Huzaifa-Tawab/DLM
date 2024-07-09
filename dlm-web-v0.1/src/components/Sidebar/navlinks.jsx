@@ -121,6 +121,10 @@ export const subAdminNavLinks = [
     to: "/admin/store",
     icon: <i className="fa-solid fa-shop"></i>,
     title: "Store",
+  }, {
+    to: "/listings",
+    icon: <i className="fa-solid fa-shop"></i>,
+    title: "Trade",
   },
   {
     to: "/agent/wallet",

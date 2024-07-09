@@ -49,12 +49,13 @@ function ListingsDetails() {
     });
     setOffers(temp);
   }
-  async function handleAction(action,id){
-    console.log(id);
+  async function handleAction(action,id,Lid,offer){
     const docRef = doc(db, 'ListingOffers', id);
       await updateDoc(docRef, { status: action });
       
+      
   if (action=="accept") {
+    await updateDoc(doc(db, 'PlotListings', Lid), { offerAccepted: true,offerData:offer });
     rejectAllOffersExceptOne(id)
   }
 }
@@ -148,8 +149,8 @@ function ListingsDetails() {
                 <h5>Price <strong>{e.Price}</strong> PKR</h5>
                 </div>
                 <div className="offerCardButton">
-                 <button onClick={()=>{handleAction("accept",e.id)}}>Accept</button>
-                 <button onClick={()=>{handleAction("reject",e.id)}}>Reject</button>
+                 <button onClick={()=>{handleAction("accept",e.id,e.listingId,e)}}>Accept</button>
+                 <button onClick={()=>{handleAction("reject",e.id,e.listingId,e)}}>Reject</button>
                </div>
               </div>
                )}

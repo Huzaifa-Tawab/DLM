@@ -18,7 +18,7 @@ import {
 } from "firebase/firestore";
 import getDate from "../../../GetDDMMYY";
 
-function AddOffer({ showModal, onClose, uid,oid}) {
+function AddOffer({ showModal, onClose, uid,oid,listingId}) {
  
   const [Amount, setAmount] = useState(0);
 
@@ -31,6 +31,7 @@ function handleSubmit(){
     status:"pending",
     time:serverTimestamp(),
     uid:uid,
+    listingId:listingId,
     Plot:oid,
    })
    onClose()
