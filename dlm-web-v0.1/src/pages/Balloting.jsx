@@ -12,9 +12,10 @@ import {
   endAt,
   getDocs,
 } from "firebase/firestore";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 import { useEffect } from "react";
 import { debounce } from "lodash";
+import { onAuthStateChanged } from "firebase/auth";
 
 function Balloting() {
   const navigate = useNavigate();
@@ -26,6 +27,19 @@ function Balloting() {
   const [limit, setLimit] = useState(0);
   const [CustomersData, setCustomersData] = useState([]);
   const [filteredCustomersData, setFilteredCustomersData] = useState([]);
+  useEffect(() => {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        if (user.uid === "pjB7Lyyy6xMIim99mvbyUqjE1Op2") {
+        
+        } else {
+          navigate("/login");
+        }
+      } else {
+        navigate("/login");
+      }
+    });
+  }, [navigate]);
 
   //   setisLoading(false);
   const handleSubmit = (e) => {
