@@ -61,7 +61,7 @@ function AdminPlotsListings() {
           </div>
           <div className="AdminPlotsListings">
             <div>
-              <div className="plots">
+              <div className="plots" style={{height:"40vh"}}>
                 <h1>Accepted Offers</h1>
                 <div className="plot-cards">
                   {listings.map((plot) => (
@@ -91,7 +91,7 @@ function AdminPlotsListings() {
                 </div>
               </div>
               <br />
-              <div className="plots">
+              <div className="plots" style={{height:"40vh"}}>
                 <h1>All Listings</h1>
                 <div className="">
                   {Otherlistings.map((plot) => {
