@@ -43,6 +43,11 @@ export const superAdminNavLinks = [
     title: "Plots",
   },
   {
+    to: "/finance/History",
+    icon: <i className="fa-solid fa-file-invoice"></i>,
+    title: "Invoices 2.0",
+  },
+  {
     to: "/balloting",
     icon: <i className="fa-solid fa-regular fa-file"></i>,
     title: "Balloting",

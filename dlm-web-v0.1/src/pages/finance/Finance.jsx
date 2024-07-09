@@ -10,6 +10,8 @@ import FinanceHeader from "../../components/header/FinanceHeader";
 import arrow from "../../Assets/Plus.png";
 import SideBar from "../../components/Sidebar/sidebar";
 import { exportToExcel } from "../Print/exportToExcel";
+import isAdmin from "../../../IsAdmin";
+import isFinance from "../../../IsFinance";
 
 function Finance() {
   const navigate = useNavigate();
@@ -24,7 +26,11 @@ function Finance() {
   const [approvedBy, setApprovedBy] = useState();
 
   useEffect(() => {
-    getCustomersData();
+    if (isAdmin() || isFinance()) {
+      getCustomersData();
+
+    }
+
   }, []);
   const openNewWindow = (Link) => {
     // Open a new window

@@ -172,7 +172,7 @@ function App() {
           element={<ErrorPage errorCode={404} errorMessage="Not Found" />}
         />
         <Route element={<FinanceRoute />}>
-          <Route path="/finance/history" element={<Finance />} />
+          {/* <Route path="/finance/history" element={<Finance />} /> */}
           <Route path="/finance/dashboard" element={<Financedash />} />
           {/* <Route path="/admin/change password" element={<ChangePassword />} /> */}
           <Route path="/admin/edit profile" element={<EditProfile />} />
@@ -189,6 +189,7 @@ function App() {
           <Route path="/finance/unverified" element={<FinancePending />} />
         </Route>
         <Route path="/print/:id" element={<PrintFile />} />
+        <Route path="/finance/history" element={<Finance />} />
 
         <Route element={<AdminRoutes />}>
         <Route path="/balloting/plots" element={<BallottedPlots />} />

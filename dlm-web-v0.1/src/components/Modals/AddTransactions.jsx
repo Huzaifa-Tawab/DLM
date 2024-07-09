@@ -93,24 +93,23 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       console.log(PlotdocSnap.data());
       lastpaymentTime = PlotdocSnap.data().lastPayment;
       const dateLast = new Date(lastpaymentTime.seconds * 1000);
-      const dateNow = new Date(); // Use the current date
-      // Calculate the difference in months
-      const monthDifference =
-        (dateNow.getFullYear() - dateLast.getFullYear()) * 12 +
-        (dateNow.getMonth() - dateLast.getMonth());
-      console.log("Month Difference:", monthDifference);
-      let penalty = 0;
-      if (monthDifference >= 2 && dateNow.getDate() >= 10) {
-        // Apply penalty for the initial 2 months
-        penalty = 1000;
-        i = 2;
-        // Add 500 for every month beyond the initial 2 months
-        for (i; i < monthDifference; i++) {
-          penalty += 500;
+      const dateNow = new Date();
+      
+      const timeDifference = dateNow - dateLast; 
+      const dayDifference =Math.floor(timeDifference / (1000 * 60 * 60 * 24)) ; 
+     // console.log(`The difference in days is ${Math.floor(dayDifference)} days.`);
+      if (dayDifference -65 >0) {
+        if (parseInt(Plot.paidAmount) >=  Plot.TotalAmount) {
+          // Go Green
         }
+        else{
+          setPenalty(1000);
+
+
+        }
+       
       }
-      setPenalty(penalty);
-      setNumberOfPenelties(i);
+      // setNumberOfPenelties(i);
       // setAmount(penalty*i + Amount)
     }
     if (CatadocSnap.exists()) {
@@ -149,7 +148,6 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
     let randomNum = 0;
     let TSize = 1;
     let paidAmount = 0;
-    let penalty = 0;
     let customer = {};
     let catagory = {};
     let plot = {};
@@ -183,6 +181,7 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       TSize = querySnapshotT.size;
     }
     console.log(randomNum);
+    console.log("Panelty",penalty);
     await setDoc(doc(db, "Transactions", randomNum), {
       fileNumber: pid,
       agentID: aid,
