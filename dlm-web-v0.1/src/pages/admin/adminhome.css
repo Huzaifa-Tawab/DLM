@@ -15,7 +15,7 @@
   padding: 3px;
   margin-left: 3px;
 }
-.button-new-view{
+.button-new-view {
   background: #a4243b;
   color: #ffffff;
   /* width: 60px; */
@@ -26,7 +26,7 @@
 .hero--head {
   background: #a4243b;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between !important;
   align-items: center;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -185,11 +185,12 @@ tbody {
     height: 60px;
     vertical-align: middle;
     box-sizing: border-box;
-    overflow-x: hidden;
-    overflow-y: auto;
+    /* overflow-x: hidden;
+    overflow-y: auto; */
     width: 120px;
     font-size: 13px;
-    text-overflow: ellipsis;
+    overflow: scroll;
+    /* text-overflow: ellipsis; */
   }
   .fl-table thead th {
     text-align: left;
@@ -215,13 +216,13 @@ tbody {
     display: block;
     text-align: center;
   }
-  .hero--head {
-    /* width: 95vw; */
-    /* justify-content: space-around; */
+  .invoice-head h1 {
+    font-size: 14px;
   }
   .hero--head button {
-    width: 100px;
-    padding: 0px;
+    width: auto;
+    padding: 20px;
+    height: 20px;
     margin-right: 4rem;
   }
   .table-wrapper {

@@ -279,11 +279,12 @@
 
 .plots-num {
   background-color: black;
-  width: 20px;
+  width: auto;
   text-align: center;
   border-radius: 50%;
   margin-left: 5px;
   color: #fff;
+  padding: 5px;
 }
 .data-flex-col {
   display: flex;

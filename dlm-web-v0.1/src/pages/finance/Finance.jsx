@@ -28,9 +28,7 @@ function Finance() {
   useEffect(() => {
     if (isAdmin() || isFinance()) {
       getCustomersData();
-
     }
-
   }, []);
   const openNewWindow = (Link) => {
     // Open a new window
@@ -154,7 +152,7 @@ function Finance() {
         ) : (
           <>
             <div className="Admin-Home">
-              <div className="hero--head">
+              <div className="hero--head invoice-head">
                 <h1>Invoices v1.0.0</h1>
                 <h1>{filteredCustomersDataMemoized.length}</h1>
                 <h1>{total} PKR</h1>

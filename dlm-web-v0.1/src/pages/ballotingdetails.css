@@ -1,0 +1,70 @@
+.ballotingdata-coldata-1 {
+  display: flex;
+  background: #fff;
+  justify-content: center;
+  /* justify-content: space-between; */
+  width: 50vw;
+  height: auto;
+  align-items: center;
+  margin: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  gap: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  flex-direction: column;
+  border: 3px solid #f4b266;
+}
+.ballotingdata-coldata-1:hover {
+  background: #f4b266;
+  color: white;
+  border: 3px solid #a4243b;
+}
+.ballot-col-data-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+
+  font-weight: 500;
+}
+.ballotingdata-coldata-1 button {
+  padding: 10px;
+  background: #a4243b;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 5px;
+}
+.ballotingdata-coldata-1 button:hover {
+  border: 2px solid #a4243b;
+  scale: 1.1;
+  transition-duration: 500ms;
+  transition-property: all;
+  transition-delay: 50ms;
+  transition-timing-function: ease-in-out;
+  font-size: 16px;
+}
+.baloting-numbers {
+  display: flex;
+  /* flex-wrap: wrap; */
+  width: calc(100% - 20px);
+  overflow-x: scroll;
+  justify-content: center;
+  background: #f4b266;
+  margin: 10px;
+}
+@media (max-width: 767px) {
+  .main {
+    overflow: scroll;
+    height: 95vh;
+  }
+  .empdatafinance-main {
+    margin-top: 0px;
+  }
+  .ballotingdata-coldata-1 {
+    width: 100%;
+  }
+
+  .ballot-modal-custom-modal-container {
+    width: 300px !important;
+  }
+}

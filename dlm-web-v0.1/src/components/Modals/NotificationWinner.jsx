@@ -3,6 +3,7 @@ import Modal from "simple-react-modal";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { db, storage } from "../../firebase";
 import xIcon from "../../Assets/Xincon.png";
+import "./ballotingnotify.css";
 import {
   addDoc,
   collection,
@@ -17,7 +18,7 @@ function NotificationWinner({ showModal, onClose, bid }) {
   const [winners, setWinners] = useState([]);
 
   useEffect(() => {
-    fetchWinners()
+    fetchWinners();
   }, [bid]);
   const fetchWinners = async () => {
     const ballotingDocRef = doc(db, "Balloting", bid);
@@ -31,13 +32,21 @@ function NotificationWinner({ showModal, onClose, bid }) {
     <Modal
       show={showModal}
       onClose={onClose}
-      containerClassName="custom-modal-container"
+      containerClassName="ballot-modal-custom-modal-container"
       closeOnOuterClick={true}
     >
-    <h1>Results</h1>
-    <div>
-      {winners.map((e)=><>{e} <br /></>)}
-    </div>
+      <div className="notify-winer-head">
+        <h2 className="result">Results</h2>
+
+        <img onClick={onClose} src={xIcon} alt="" />
+      </div>
+      <div className="balot-notfy-results">
+        {winners.map((e) => (
+          <>
+            {e} <br />
+          </>
+        ))}
+      </div>
     </Modal>
   );
 }

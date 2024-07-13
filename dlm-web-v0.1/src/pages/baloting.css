@@ -1,0 +1,43 @@
+.popup-button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.bolating-form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.baloting-modal-form {
+  width: 400px;
+  position: relative;
+  margin: 10% auto;
+  padding: 5px 20px 13px;
+  background: #f4b266;
+  border: 2px solid #a4243b;
+}
+.bolating-form label {
+  color: #a4243b;
+  font-weight: 700;
+}
+.bolating-form input {
+  border: none;
+  outline-color: #a4243b;
+  padding: 5px;
+  border-radius: 10px;
+  outline-width: 2px;
+}
+.popup-button button {
+  background: #a4243b;
+  color: white;
+  font-size: 20px;
+  border-radius: 100%;
+}
+.baloting-modalform-button {
+  padding: 5px;
+  border-radius: 20px;
+  background: #a4243b;
+  color: #fff;
+  font-weight: 600;
+  margin-top: 10px;
+}

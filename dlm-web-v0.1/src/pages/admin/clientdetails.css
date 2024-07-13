@@ -313,6 +313,7 @@ form.nosubmit {
     padding: 0;
     display: flex;
     justify-content: normal;
+    flex-direction: column;
   }
   .info-box-2 {
     padding: 20px;
@@ -436,7 +437,7 @@ input.nosubmit {
 .Blocked {
   background: #a4243b;
 }
-.badge-card{
+.badge-card {
   position: absolute;
   right: 10px;
   background: #a4243b;
@@ -448,7 +449,7 @@ input.nosubmit {
   justify-content: center;
   color: white;
 }
-.badge-card span{
+.badge-card span {
   color: #fff;
   font-weight: 900;
 }

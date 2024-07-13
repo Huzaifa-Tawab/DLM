@@ -1,0 +1,27 @@
+.ballot-modal-custom-modal-container {
+  width: 400px;
+  position: relative;
+  margin: 10% auto;
+  padding: 0px !important;
+  background: #f4b266 !important;
+  color: black !important;
+  min-height: 200px;
+  border: 3px solid #a4243b;
+}
+.notify-winer-head {
+  color: #fff;
+  background: #a4243b;
+}
+.notify-winer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+.balot-notfy-results {
+  padding: 10px;
+  color: #a4243b;
+  font-weight: 600;
+  overflow-y: scroll;
+  height: 250px;
+}

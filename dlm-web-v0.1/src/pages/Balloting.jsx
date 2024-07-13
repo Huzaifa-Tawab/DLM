@@ -5,6 +5,7 @@ import SideBar from "../components/Sidebar/sidebar";
 import Loader from "../components/loader/Loader";
 import Ballotingmodel from "../components/Modals/Ballotingmodel";
 import Modal from "simple-react-modal";
+import "./baloting.css";
 import {
   collection,
   addDoc,
@@ -31,7 +32,6 @@ function Balloting() {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         if (user.uid === "pjB7Lyyy6xMIim99mvbyUqjE1Op2") {
-        
         } else {
           navigate("/login");
         }
@@ -83,11 +83,11 @@ function Balloting() {
   async function uplaodToFirebase() {
     await addDoc(collection(db, "Balloting"), {
       title: Title,
-      limit:limit,
+      limit: limit,
       startDate: Timestamp.fromMillis(toTimestamp(Startdate)), //"Updated Firestore queries to include endAt parameter and added utility function to convert string date to Firebase Timestamp in Balloting.jsx"
       endDate: Timestamp.fromMillis(toTimestamp(Enddate)),
-      winners:[],
-      submission:[],
+      winners: [],
+      submission: [],
       createdAt: Timestamp.now(),
     }).then(() => {
       setisLoading(false);
@@ -179,7 +179,9 @@ function Balloting() {
                               <td>{data.title}</td>
                               <td>{formatTimestamp(data.startDate)}</td>
                               <td>{formatTimestamp(data.endDate)}</td>
-                             <td>{data.winnerDeclared ? "Completed":"Pending"}</td>
+                              <td>
+                                {data.winnerDeclared ? "Completed" : "Pending"}
+                              </td>
                               <td>
                                 <button
                                   className="button-view"
@@ -209,26 +211,16 @@ function Balloting() {
         onClose={() => {
           setshowModal(false);
         }}
+        className="baloting-modal-form"
       >
         <div>
-          <div
-            className="popup-button"
-            style={{
-              display: "flex",
-              justifyContent: "flex-end",
-              paddingBottom: "30px",
-            }}
-          >
+          <div className="popup-button">
             <button
-              style={{ background: "#fff" }}
               onClick={() => {
                 setshowModal(false);
               }}
             >
-              <i
-                className="fa-solid fa-xmark"
-                style={{ background: "#fff" }}
-              ></i>
+              <i className="fa-solid fa-xmark"></i>
             </button>
           </div>
           <form className="bolating-form" onSubmit={handleSubmit}>
@@ -240,7 +232,7 @@ function Balloting() {
                 setTitle(e.target.value);
               }}
             ></input>
-             <label>Limit</label>
+            <label>Limit</label>
             <input
               type="text"
               value={limit}
@@ -264,7 +256,9 @@ function Balloting() {
                 setEnddate(e.target.value);
               }}
             ></input>
-            <input type="submit"></input>
+            <button type="submit" className="baloting-modalform-button">
+              Submit
+            </button>
           </form>
         </div>
       </Modal>
