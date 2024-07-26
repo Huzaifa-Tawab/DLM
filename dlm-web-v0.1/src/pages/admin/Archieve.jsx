@@ -90,11 +90,11 @@ function Archieve() {
                 <h1>Archieve</h1>
                 {/* <h1>{filteredCustomersDataMemoized.length}</h1> */}
                 <button onClick={openModal}>
-                Add New
-                <img src={arrow}></img>
-              </button>
+                  Add New
+                  <img src={arrow}></img>
+                </button>
               </div>
-             
+
               <div className="Admin-Home-content">
                 <div className="Admin-Home-table">
                   <div className="table-wrapper">
@@ -122,7 +122,7 @@ function Archieve() {
                               </td>
                               <td>{e.invId}</td>
                               <td>{e.pid}</td>
-                              <td>{getDate(e.dateTime.seconds)}</td>
+                              {/* <td>{getDate(e.dateTime.seconds)}</td> */}
 
                               <td>
                                 <button

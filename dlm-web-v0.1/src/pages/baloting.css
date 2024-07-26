@@ -41,3 +41,13 @@
   font-weight: 600;
   margin-top: 10px;
 }
+@media (max-width: 767px) {
+  .baloting-modal-form {
+    width: 300px !important;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px;
+    background: #f4b266;
+    border: 2px solid #a4243b;
+  }
+}

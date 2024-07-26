@@ -31,8 +31,21 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
   const [DisableButton, setDisableButton] = useState(false);
   const [NoOfInstallments, setNoOfInstallments] = useState(1);
 
-  const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
- const [newInstallmentAmount, setnewInstallmentAmount] = useState(false)
+  const month = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const [newInstallmentAmount, setnewInstallmentAmount] = useState(false);
   useEffect(() => {
     getDataFromDb();
   }, [0]);
@@ -43,22 +56,22 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
 
   const handleUpload = () => {
     console.log(newInstallmentAmount);
-   if (!newInstallmentAmount) {
-    alert("Please Set Installment Amount First ")
-    onClose()
-   }else{
-    setDisableButton(true);
-    if (!file) {
-      // setDisableButton(false);
-      // alert("Please upload an image first!");
-      
-      uploadTansaction(
-        "https://firebasestorage.googleapis.com/v0/b/dlm-webapp.appspot.com/o/Heliotrope-1_075509-1024x288.webp?alt=media&token=201e7d47-c9b9-487b-80bf-2393c69f1184"
-      );
+    if (!newInstallmentAmount) {
+      alert("Please Set Installment Amount First ");
+      onClose();
     } else {
-      uploadToFirebase();
+      setDisableButton(true);
+      if (!file) {
+        // setDisableButton(false);
+        // alert("Please upload an image first!");
+
+        uploadTansaction(
+          "https://firebasestorage.googleapis.com/v0/b/dlm-webapp.appspot.com/o/Heliotrope-1_075509-1024x288.webp?alt=media&token=201e7d47-c9b9-487b-80bf-2393c69f1184"
+        );
+      } else {
+        uploadToFirebase();
+      }
     }
-   }
   };
   async function getDataFromDb() {
     let installmentAmount = 0;
@@ -71,43 +84,45 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       console.log("ffff", PlotdocSnap.data().instamentVerified);
       if (!PlotdocSnap.data().instamentVerified) {
         try {
-          let x = parseInt(prompt('please set Up Installment amount once you set it it can not be changed'))
+          let x = parseInt(
+            prompt(
+              "please set Up Installment amount once you set it it can not be changed"
+            )
+          );
           while (!x) {
-            x = parseInt(prompt('please set Up Installment amount once you set it it can not be changed'))
+            x = parseInt(
+              prompt(
+                "please set Up Installment amount once you set it it can not be changed"
+              )
+            );
           }
           await updateDoc(doc(db, "Plots", pid), {
             instamentVerified: true,
-            Installment:x,
+            Installment: x,
           });
         } catch (error) {
           console.log(error);
         }
-      
-      }else{
-        setnewInstallmentAmount(true)
-    
+      } else {
+        setnewInstallmentAmount(true);
       }
       setPlot(PlotdocSnap.data());
-      setAmount(PlotdocSnap.data().Installment)
+      setAmount(PlotdocSnap.data().Installment);
 
       console.log(PlotdocSnap.data());
       lastpaymentTime = PlotdocSnap.data().lastPayment;
       const dateLast = new Date(lastpaymentTime.seconds * 1000);
       const dateNow = new Date();
-      
-      const timeDifference = dateNow - dateLast; 
-      const dayDifference =Math.floor(timeDifference / (1000 * 60 * 60 * 24)) ; 
-     // console.log(`The difference in days is ${Math.floor(dayDifference)} days.`);
-      if (dayDifference -65 >0) {
-        if (parseInt(Plot.paidAmount) >=  Plot.TotalAmount) {
+
+      const timeDifference = dateNow - dateLast;
+      const dayDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      // console.log(`The difference in days is ${Math.floor(dayDifference)} days.`);
+      if (dayDifference - 65 > 0) {
+        if (parseInt(Plot.paidAmount) >= Plot.TotalAmount) {
           // Go Green
-        }
-        else{
+        } else {
           setPenalty(1000);
-
-
         }
-       
       }
       // setNumberOfPenelties(i);
       // setAmount(penalty*i + Amount)
@@ -172,8 +187,9 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       agent = AgentSnap.data();
     }
     while (!TSize == 0) {
-      randomNum = `INV-${agent.InvId + (Math.floor(Math.random() * 1000000) + 1)
-        }`;
+      randomNum = `INV-${
+        agent.InvId + (Math.floor(Math.random() * 1000000) + 1)
+      }`;
 
       const querySnapshotT = await getDocs(
         query(collection(db, "Transactions"), where("id", "==", randomNum))
@@ -181,7 +197,7 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       TSize = querySnapshotT.size;
     }
     console.log(randomNum);
-    console.log("Panelty",penalty);
+    console.log("Panelty", penalty);
     await setDoc(doc(db, "Transactions", randomNum), {
       fileNumber: pid,
       agentID: aid,
@@ -201,14 +217,13 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       totalPaidTillNow: parseInt(Plot.paidAmount) + parseInt(Amount),
       totalPlotValue: Plot.TotalAmount,
       numberofInstallmentMonth: NoOfInstallments,
-
     });
     //     let x=Plot.lastPaymentMonth-11;
     //     let y=Plot.lastPaymentYear+1;
     // if (Plot.lastPaymentMonth>11) {
     //   x=Plot.lastPaymentMonth-11;
     //   y=Plot.lastPaymentYear+1;
-    // } 
+    // }
     await updateDoc(doc(db, "Plots", pid), {
       lastPayment: serverTimestamp(),
       // paidAmount:parseInt(Plot.paidAmount) + parseInt(Amount),
@@ -238,8 +253,20 @@ function AddTransactions({ showModal, onClose, cid, aid, pid, cata }) {
       </div>
       <div>
         <div className="modal-field-group">
-          <h6>Payment Till :{Plot.lastPaymentMonth ? month[Plot.lastPaymentMonth] + " / " + Plot.lastPaymentYear : "Only Works For New Plots"} </h6>
-          <h6>Last Payment: {Plot.lastPayment ? `${Plot.lastPayment.toDate().getDate()} / ${month[Plot.lastPayment.toDate().getMonth()]} / ${Plot.lastPayment.toDate().getFullYear()}` : "0"}</h6>
+          <h6>
+            Payment Till :
+            {Plot.lastPaymentMonth
+              ? month[Plot.lastPaymentMonth] + " / " + Plot.lastPaymentYear
+              : "Only Works For New Plots"}{" "}
+          </h6>
+          <h6>
+            Last Payment:{" "}
+            {Plot.lastPayment
+              ? `${Plot.lastPayment.toDate().getDate()} / ${
+                  month[Plot.lastPayment.toDate().getMonth()]
+                } / ${Plot.lastPayment.toDate().getFullYear()}`
+              : "0"}
+          </h6>
           <p>Number Of Installments</p>
 
           <input
