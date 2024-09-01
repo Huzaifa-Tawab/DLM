@@ -12,39 +12,39 @@ export default function PlotLogs() {
   }, []);
   async function getDataFromFirebase() {
     let temp = [];
-    if (id == "all") {
-    } else {
-      const q = query(collection(db, "PlotLogs"), where("pid", "==", id));
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        temp.push(doc.data());
-      });
-      setLogs(temp);
-    }
+    const q = query(collection(db, "PlotLogs"), where("pid", "==", id));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      temp.push(doc.data());
+      
+    });
+    setLogs(temp.sort((a, b) => {
+      return  b.approvedAt - a.approvedAt; 
+    }));
   }
   return (
     <div>
       <SideBar
         element={
-          <div>
-            {logs.map((log, i) => {
-              const thisAmount = log?.thisAmount ?? 0;
-              const verifiedBy = log?.verifiedBy ?? "N/A";
-              const invID = log?.invID ?? "N/A";
-              const pid = log?.pid ?? "N/A";
-              const totalPlotValue = log?.totalPlotValue ?? 0;
-              const paidAmount = log?.paidbefore || 0;
+          <div className="plot-log-container">
+            <div className="hero--head">
+              <h1>Plots Logs</h1>
+            </div>
+            <div className="plot-log-cards-sec">
+              <h3>LOGS</h3>
+              <div>
+                {logs.map((log, i) => {
+                  const thisAmount = log?.thisAmount ?? 0;
+                  const verifiedBy = log?.verifiedBy ?? "N/A";
+                  const invID = log?.invID ?? "N/A";
+                  const pid = log?.pid ?? "N/A";
+                  const totalPlotValue = log?.totalPlotValue ?? 0;
+                  const paidAmount = log?.paidbefore || 0;
 
-              const totalPaid = parseInt(paidAmount) + parseInt(thisAmount);
-              const remainingBalance = parseInt(totalPlotValue) - totalPaid;
-              console.log();
-              return (
-                <div className="plot-log-container">
-                  <div className="hero--head">
-                    <h1>Plots Logs</h1>
-                  </div>
-                  <div className="plot-log-cards-sec">
-                    <h3>LOGS</h3>
+                  const totalPaid = parseInt(paidAmount) + parseInt(thisAmount);
+                  const remainingBalance = parseInt(totalPlotValue) - totalPaid;
+                  console.log(log);
+                  return (
                     <div className="logs-card" key={i}>
                       Received an installment amount of <strong>PKR: </strong>
                       <span>{thisAmount}</span>, against{" "}
@@ -60,10 +60,10 @@ export default function PlotLogs() {
                       <span>{log.approvedAt.toDate().toString()}</span>
                       <br /> <br />
                     </div>
-                  </div>
-                </div>
-              );
-            })}
+                  );
+                })}
+              </div>
+            </div>
           </div>
         }
       />

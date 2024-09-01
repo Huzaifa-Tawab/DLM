@@ -79,6 +79,7 @@ import { rdb } from "./firebase";
 import NotificationWinner from "./components/Modals/NotificationWinner";
 import ListingsDetails from "./pages/PlotsListing/ListingsDetails";
 import AdminPlotsListings from "./pages/PlotsListing/AdminListings";
+import PlotFile from "./pages/Print/PlotFile";
 
 function App() {
   const [open, setOpen] = useState();
@@ -137,6 +138,7 @@ function App() {
         <Route path="/empdetailfrom" element={<Emplysdetailsform />} />
         <Route path="/print/payslip/:id" element={<Emppayslip />} />
         <Route path="/print/plotstatment/:id" element={<InvoiceStatment />} />
+        <Route path="/print/plotfile/:id" element={<PlotFile />} />
         <Route path="/employtable" element={<Employspaytable />} />
         <Route path="/print/invoice/:id" element={<PrintInvoice />} />
         <Route path="/create/payslip/:uid" element={<PaySlip />} />

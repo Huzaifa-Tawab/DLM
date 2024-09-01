@@ -139,7 +139,25 @@
   display: flex;
   align-items: center;
 }
+.top-bottom-sec-heading {
+  width: 770px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: none;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
 .top-sec-heading > h3 {
+  color: #fff;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  font-family: "Open Sans", sans-serif;
+}
+.top-bottom-sec-heading > h3 {
   color: #fff;
   font-size: 15px;
   font-style: normal;
@@ -149,6 +167,11 @@
 }
 .sectop-section-content {
   display: flex;
+  justify-content: space-between;
+}
+.sec-top-section-content {
+  display: none;
+  /* display: flex; */
   justify-content: space-between;
 }
 .sectop-right {

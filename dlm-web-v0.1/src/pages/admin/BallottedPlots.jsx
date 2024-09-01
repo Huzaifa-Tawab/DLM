@@ -249,7 +249,9 @@ function BallottedPlots() {
                               <button
                                 className="button-view"
                                 onClick={() =>{
-                                  alert("Print Is Not Available At The Moment")
+                                  // alert("Print Is Not Available At The Moment")
+                                  // navigate(`/details/ballotted/plot/${e.FileNumber}
+                                  navigate(`/print/plotfile/${e.FileNumber}`)
                                 }
                                   // navigate(`/details/ballotted/plot/${e.FileNumber}`)
                                 }
