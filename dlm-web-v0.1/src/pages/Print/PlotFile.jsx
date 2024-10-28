@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./printInvoice.css";
+import "./plotfile.css";
 
 // import imageava from "./avat.png"
 import { useNavigate, useParams } from "react-router-dom";
@@ -115,209 +115,102 @@ function PlotFile() {
   return isLoading ? (
     <Loader />
   ) : (
-    <div className="webpage">
-      <div className="main-page">
-        <div className="sub-page">
-          <div className="top-head">
-            <h1>
-              {Society === "Dyanmic Land Management"
-                ? "DYNAMIC LAND MANAGEMENT"
-                : Society}
-            </h1>
-
-            <div className="top-sec-cont">
-              <h3>PLOT DETAILS FORM</h3>
-            </div>
-
-            <h3 className="top-thrd-cont">
-              Plot No: <span>{FileNumber}</span>
-            </h3>
+    <div className="a4-page-plotfile">
+    <div className="a4-content">
+      <div className="header-plotfile">
+        <h1 className="-plotfile">{Society === "Dynamic Land Management" ? "DYNAMIC LAND MANAGEMENT" : Society}</h1>
+        <div className="header-section-plotfile">
+          <h3>Allotment Form</h3>
+        </div>
+        <h3 className="plot-info--plotfile">
+          Plot No: <span>{FileNumber}</span>
+        </h3>
+      </div>
+      <div className="main-section-plotfile">
+        <div className="committee-info-plotfile">
+          <div className="left-column-plotfile">
+            <p>Date: {FDate}</p>
+            <p>The Management Committee,</p>
+            <p>{Society === "Dynamic Land Management" ? "DYNAMIC LAND MANAGEMENT" : Society}</p>
           </div>
-          <div className="sec-section">
-            <div className="head-top-cont">
-              <div className="top-p-fle">
-                <p>Date: {FDate}</p>
-                <p>The Management committee,</p>
-                <p>
-                  {Society === "Dyanmic Land Management"
-                    ? "DYNAMIC LAND MANAGEMENT"
-                    : Society}
-                </p>
-              </div>
-              <div className="imgtop">
-                <img src={UserImage}></img>
-              </div>
-            </div>
-            <div className="head-content">
-              <p className="sec-section-last">
-                Dear Sir/ Madam,
-                <br />
-                <span>
-                  I Undertake to be bounded by all such conditions, obligations
-                  and responsibilities as printed overleaf in this respect, make
-                  there under.
-                </span>
-              </p>
-            </div>
-            <div className="top-sec-heading">
-              <h3>PERSONAL INFORMATION</h3>
-            </div>
-
-            <div className="sectop-section-content">
-              <div className="sectop-row">
-                <div className="column-1">
-                  <span>Name:</span>
-                  <span>Cnic:</span>
-                  <span>D.O.B:</span>
-                </div>
-                <div className="column-2">
-                  <span>{Name}</span>
-                  <span>{cnicFormat(Cnic)}</span>
-                  <span>{Dob}</span>
-                </div>
-              </div>
-              <div className="sectop-right">
-                <div className="column-3">
-                  <span>F/H Name:</span>
-                  <span>Phone No:</span>
-                  <span>Gender:</span>
-                </div>
-                <div className="column-4">
-                  <span>{FName}</span>
-                  <span>{phNo}</span>
-                  <span>{Gender}</span>
-                </div>
-              </div>
-            </div>
-            <div className="top-sec-heading">
-              <h3>NEXT TO KIN</h3>
-            </div>
-            <div className="sectop-section-content">
-              <div className="sectop-row">
-                <div className="column-1">
-                  <span>Name:</span>
-                  <span>Relation:</span>
-                </div>
-
-                <div className="column-2">
-                  <span>{kinOverRiden  ? kinOverRiden.name:customerData.NexttoKin}</span>
-                <span>{kinOverRiden  ? kinOverRiden.relation:customerData.KinRelation }</span>
-              
-                </div>
-              </div>
-             
-              <div className="sectop-right-33">
-                <div className="column-33">
-                  <span>Phone No:</span>
-                  <span>Cnic:</span>
-                </div>
-                <div className="column-44">
-                <span>{kinOverRiden ? kinOverRiden.phone:customerData.PhNoKin}</span>
-                <span>{kinOverRiden ? kinOverRiden.cnic
-:cnicFormat(customerData.CnicKin) }</span>
-
-                </div>
-              </div>
-            </div>
-            <div className="top-sec-heading">
-              <h3>BOOKING DETAILS</h3>
-            </div>
-
-            <div className="sectop-section-content">
-              <div className="sectop-row">
-                <div className="column-1">
-                  <span>File Number:</span>
-                  <span>Plot Size:</span>
-                </div>
-                <div className="column-2">
-                  <span>{FileNumber}</span>
-                  <span>{PlotSize}</span>
-                </div>
-              </div>
-              <div className="sectop-right-44">
-                <div className="column-333">
-                  <span>Category:</span>
-                  <span>Block:</span>
-                  <span>Status</span>
-                </div>
-                <div className="column-444">
-                  <span>{Category}</span>
-                  <span>{Block}</span>
-                  <span>
-                    {Society === "Dyanmic Land Management"
-                      ? "Non Developed"
-                      : "Developed"}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="fileaddressfield">
-              <span className="file-address-heading">Address:</span>
-              <span className="file-address">{Address}</span>
-            </div>
-
-            <div className="top-bottom-sec-heading">
-              <h3>CONTRACT DETAILS</h3>
-            </div>
-            <div className="sec-top-section-content">
-              <div className="sectop-row">
-                <div className="columnfrth-sec">
-                  <span>Adjustment:</span>
-                  <span>Other Amount Title: </span>
-                  <span>Amount:</span>
-                </div>
-                <div className="column-2">
-                  <form className="chckbox-flex">
-                    <label>#</label>
-                  </form>
-                  <span className="underline-1">{OtherAmountTitle}</span>
-                  <span className="underline-1">{OtherAmount}</span>
-                </div>
-              </div>
-              <div className="sectop-right-last">
-                <div className="column-7">
-                  <br />
-                  <h3 className="bold-700">Remaining Amount</h3>
-                </div>
-                <div className="column-8">
-
-                  <br />
-                  <h3 className="bold-400">{TotalAmount - PaidAmount}</h3>
-                </div>
-              </div>
-            </div>
-
-            <div className="signatures-text">
-              <h3>Signatures</h3>
-            </div>
-            <h4 className="Admin">
-              <img width={"200px"} src={sign}></img>
-            </h4>
-            <div className="signature-area">
-              <h3>Customer</h3>
-              <h3>Booking Officer</h3>
-              <h3>Admin</h3>
-            </div>
-
-            {/* <div className="foter-softxion">
-        <h5>This site is created by  </h5>
-        <div>
-          <img src={softx } alt=""></img>
-          <h3>Email:info@softxion.com</h3>
+          <div className="profile-image-plotfile">
+            <img src={UserImage} alt="User"></img>
           </div>
+        </div>
+        <div className="statement-plotfile">
+          <p>
+            Dear Sir/Madam,<br />
+            <strong>I undertake to be bound by all conditions, obligations, and responsibilities printed overleaf in this respect.</strong>
+          </p>
+        </div>
+        <h3 className="section-heading-plotfile">Personal Information</h3>
+        <div className="personal-info-plotfile">
+          <div className="left">
+            <span>Name:</span> <strong>{Name}</strong><br />
+            <span>CNIC:</span> <strong>{cnicFormat(Cnic)}</strong><br />
+            <span>D.O.B:</span> <strong>{Dob}</strong>
+          </div>
+          <div className="right-plotfile">
+            <span>F/H Name:</span> <strong>{FName}</strong><br />
+            <span>Phone No:</span> <strong>{phNo}</strong><br />
+            <span>Gender:</span> <strong>{Gender}</strong>
+          </div>
+        </div>
+        <h3 className="section-heading-plotfile">Next to Kin</h3>
+        <div className="next-of-kin-plotfile">
+          <div className="left-plotfile">
+            <span>Name:</span> <strong>{kinOverRiden ? kinOverRiden.name : customerData.NexttoKin}</strong><br />
+            <span>Relation:</span> <strong>{kinOverRiden ? kinOverRiden.relation : customerData.KinRelation}</strong>
+          </div>
+          <div className="right-plotfile">
+            <span>Phone No:</span> <strong>{kinOverRiden ? kinOverRiden.phone : customerData.PhNoKin}</strong><br />
+            <span>CNIC:</span> <strong>{kinOverRiden ? kinOverRiden.cnic : cnicFormat(customerData.CnicKin)}</strong>
+          </div>
+        </div>
+        <h3 className="section-heading-plotfile">Booking Details</h3>
+        <div className="booking-details-plotfile">
+          <div className="left">
+            <span>File Number:</span> <strong>{FileNumber}</strong><br />
+            <span>Plot Size:</span> <strong>{PlotSize}</strong> <br />
+          <span>Address:</span> <strong>{Address}</strong>
+
+          </div>
+          <div className="right-plotfile">
+            <span>Category:</span> <strong>{Category}</strong><br />
+            <span>Block:</span> <strong>{Block}</strong><br />
+            <span>Status:</span> <strong>{Society === "Dynamic Land Management" ? "Non Developed" : "Partial Developed"}</strong>
+            
+          </div>
+        </div>
+        {/* <div className="address-plotfile">
         </div> */}
-            {/* code is in schedule.css */}
-            <div className="print-file-footerr">
-              <div className="file-footer-left">
-                <p>
-                  Computer Generated File Printed on : <strong>{date}</strong>
-                </p>
-              </div>
-            </div>
+        <h3 className="section-heading-plotfile">Contract Details</h3>
+        <div className="contract-details-plotfile">
+          <div className="left-plotfile">
+            <span>Adjustment:</span> <strong>{OtherAmountTitle}</strong><br />
+            <span>Other Amount Title:</span> <strong>{OtherAmount}</strong>
           </div>
+          {/* <div className="right-plotfile">
+            <h3>Remaining Amount</h3>
+            <span>{TotalAmount - PaidAmount}</span>
+          </div> */}
+        </div>
+        <div className="signatures-plotfile">
+          <h3>Signatures</h3>
+          <img className="signature-plotfile" src={sign} alt="Admin Signature" />
+          <div className="signature-roles-plotfile">
+            <h3>Customer</h3>
+            <h3>Booking Officer</h3>
+            <h3>Admin</h3>
+          </div>
+        </div>
+        <div className="footer-plotfile">
+          <p>Computer Generated File Printed on: <strong>{date}</strong></p>
         </div>
       </div>
     </div>
+  </div>
+  
   );
 }
 

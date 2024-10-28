@@ -1,0 +1,154 @@
+/* General Styles */
+.a4-page-plotfile {
+  width: 210mm;
+  height: 297mm;  /* A4 Width */
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.a4-content-plotfile {
+  max-width: 100%;
+}
+
+.header-plotfile {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header-plotfile h1 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #2c3e50;
+  text-transform: uppercase;
+}
+
+.header-section-plotfile h3 {
+  /* margin-top: 10px; */
+  font-size: 16px;
+  color: #34495e;
+}
+
+.plot-info-plotfile {
+  font-size: 16px;
+  /* margin-top: 5px; */
+  color: #7f8c8d;
+}
+
+/* Section Headings */
+.section-heading-plotfile {
+  margin: 15px 0 10px;
+  font-size: 18px;
+  color: #2980b9;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+/* Main Section */
+.main-section-plotfile {
+  padding: 0 10px;
+}
+
+.committee-info-plotfile {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  /* margin-bottom: 15px; */
+}
+
+.left-column-plotfile {
+  width: 70%;
+}
+
+.profile-image-plotfile img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #2980b9;
+}
+.personal-info-plotfile, .next-of-kin-plotfile, .booking-details-plotfile, .contract-details-plotfile {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-plotfile, .right-plotfile {
+  width: 48%;
+}
+
+/* span {
+  font-weight: bold;
+  color: #2c3e50;
+} */
+
+.address-plotfile {
+  margin-top: 15px;
+}
+
+.address-plotfile span {
+  font-weight: bold;
+}
+
+/* Contract Details */
+.contract-details-plotfile .right-plotfile h3 {
+  font-size: 18px;
+  color: #e74c3c;
+}
+
+.contract-details-plotfile .right-plotfile span {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.signatures-plotfile {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.signatures-plotfile h3 {
+  font-size: 16px;
+  color: #2c3e50;
+}
+
+.signature-plotfile {
+  max-width: 150px;
+  /* margin: 10px auto; */
+}
+
+.signature-roles-plotfile {
+  display: flex;
+  justify-content: space-between;
+  /* margin-top: 15px; */
+}
+
+.signature-roles-plotfile h3 {
+  font-size: 14px;
+  color: #34495e;
+  font-weight: normal;
+}
+
+/* Footer */
+.footer-plotfile {
+  text-align: left;
+  margin-top: 70px;
+  font-size: 14px;
+  color: #7f8c8d;
+}
+
+.footer-plotfile strong {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+/* Responsive Adjustments */
+@media print {
+  .a4-page-plotfile {
+    box-shadow: none;
+    border: none;
+  }
+  
+}

@@ -80,6 +80,7 @@ import NotificationWinner from "./components/Modals/NotificationWinner";
 import ListingsDetails from "./pages/PlotsListing/ListingsDetails";
 import AdminPlotsListings from "./pages/PlotsListing/AdminListings";
 import PlotFile from "./pages/Print/PlotFile";
+import EmployeeForm from "./pages/Print/Employeeform";
 
 function App() {
   const [open, setOpen] = useState();
@@ -145,6 +146,7 @@ function App() {
         <Route path="print/schedule/:id" element={<Schedule />} />
 
         <Route path="/home" element={<Home />} />
+        <Route path="/form" element={<EmployeeForm />} />
         <Route path="/admin/files" element={<AdminFiles />} />
         <Route path="/" element={<HomeNew />} />
 
