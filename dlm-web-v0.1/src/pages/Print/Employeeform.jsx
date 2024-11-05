@@ -1,6 +1,7 @@
 // src/EmployeeForm.js
 import React, { useState } from 'react';
 import './employeeform.css';
+import dlmlogo from '../../Assets/sliderlogo.png';
 
 const EmployeeForm = () => {
   const [isLoading, setIsLoading] = useState(false);
