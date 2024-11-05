@@ -24,6 +24,9 @@ const EmployeeForm = () => {
     iban: '',
     accountNumber: '',
     employmentStatus: '',
+    relation:'',
+    designation: '',
+    blood: '',
     undertaking: false,
   });
 
@@ -68,18 +71,17 @@ const EmployeeForm = () => {
             .header-logo img { width: 250px }
             .header { text-align: center; display: flex; flex-direction: row-reverse; justify-content: space-between; align-items: center; }
             .header img { width: 100px; height: 100px; border-radius: 50%; border: 2px solid #2980b9; }
-            .section { margin: 10px 0; }
-            .section h3 { color: #2980b9; }
-            .details-table { width: 100%; margin-top: 10px; }
-            .details-table tr { margin-bottom: 5px; }
+            .section { margin: 0px 0px }
+            .details-heading { color: #2980b9; margin: 10px 0px;}
+            .details-table { width: 100%; }
             .details-table td { vertical-align: top; }
-            .details-table .label { width: 40%; font-weight: bold; color: #555; text-align: right; padding-right: 25px}
+            .details-table .label { width: 40%; font-weight: bold; color: #555; text-align: left; padding-left: 25px}
             .details-table .value { width: 60%; color: #333; }
-            .footer { margin-top: 100px; text-align: left; padding-left: 10px}
-            .footer .sign-section { display: flex; justify-content: space-between; margin-top: 50px; }
+            .footer { text-align: left;}
+            .footer .sign-section { display: flex; justify-content: space-between; margin-top: 80px; }
             .footer .sign { width: 45%; text-align: center; }
-            .footer .sign label { display: block; font-weight: bold; margin-top: 40px; }
-            .footer .computer-note { font-size: 0.9em; color: #888; margin-top: 20px; }
+            .footer .sign label { display: block; font-weight: bold;  }
+            .footer .computer-note { font-size: 0.9em; color: #888; margin-top: 30px; }
           </style>
         </head>
         <body>
@@ -91,36 +93,44 @@ const EmployeeForm = () => {
             <h1>Employee Details</h1>
           </div>
           <div class="section">
-            <h3>Personal Details</h3>
+            <h3 class="details-heading">Personal Details</h3>
             <table class="details-table">
               <tr><td class="label">Name:</td><td class="value">${formData.name}</td></tr>
               <tr><td class="label">D.O.B:</td><td class="value">${formData.dob}</td></tr>
-              <tr><td class="label">Starting Date:</td><td class="value">${formData.doj}</td></tr>
-              <tr><td class="label">Medical History:</td><td class="value">${formData.health}</td></tr>
-              <tr><td class="label">Email:</td><td class="value">${formData.email}</td></tr>
+              <tr><td class="label">Age:</td><td class="value">${formData.age}</td></tr>
+             <tr><td class="label">Email:</td><td class="value">${formData.email}</td></tr>
+             <tr><td class="label">CNIC:</td><td class="value">${formData.cnic}</td></tr>
               <tr><td class="label">Phone No:</td><td class="value">${formData.mobno}</td></tr>
-              <tr><td class="label">Emergency No:</td><td class="value">${formData.fmobno}</td></tr>
+              <tr><td class="label">Qualification:</td><td class="value">${formData.qualification}</td></tr>
               <tr><td class="label">Address:</td><td class="value">${formData.address}</td></tr>
             </table>
           </div>
           <div class="section">
-            <h3>Bank Information</h3>
+            <h3 class="details-heading">Bank Information</h3>
             <table class="details-table">
               <tr><td class="label">Account Title:</td><td class="value">${formData.acctitle}</td></tr>
-              <tr><td class="label">IBAN:</td><td class="value">${formData.iban}</td></tr>
               <tr><td class="label">Bank Name:</td><td class="value">${formData.bankName}</td></tr>
               <tr><td class="label">Account Number:</td><td class="value">${formData.accountNumber}</td></tr>
+              <tr><td class="label">IBAN:</td><td class="value">${formData.iban}</td></tr>
             </table>
           </div>
           <div class="section">
-            <h3>Employment Details</h3>
+            <h3 class="details-heading">Employment Details</h3>
             <table class="details-table">
-              <tr><td class="label">CNIC:</td><td class="value">${formData.cnic}</td></tr>
-              <tr><td class="label">Qualification:</td><td class="value">${formData.qualification}</td></tr>
-              <tr><td class="label">Father Name:</td><td class="value">${formData.fname}</td></tr>
-              <tr><td class="label">Age:</td><td class="value">${formData.age}</td></tr>
+             <tr><td class="label">Starting Date:</td><td class="value">${formData.doj}</td></tr>
+              <tr><td class="label">Designation:</td><td class="value">${formData.designation}</td></tr>
               <tr><td class="label">Employment Status:</td><td class="value">${formData.employmentStatus}</td></tr>
               <tr><td class="label">Undertaking:</td><td class="value">${formData.undertaking ? 'Yes' : 'No'}</td></tr>
+            </table>
+          </div>
+           <div class="section">
+            <h3 class="details-heading">Medical Report</h3>
+            <table class="details-table">
+              <tr><td class="label">Medical Reports:</td><td class="value">${formData.health}</td></tr>
+              <tr><td class="label">Blood Group:</td><td class="value">${formData.blood}</td></tr>
+              <tr><td class="label">Name of Emergency Contact:</td><td class="value">${formData.fname}</td></tr>
+              <tr><td class="label">Emergency No:</td><td class="value">${formData.fmobno}</td></tr>
+              <tr><td class="label">Relation to Employee:</td><td class="value">${formData.relation}</td></tr>
             </table>
           </div>
           <div class="footer">
@@ -142,7 +152,7 @@ const EmployeeForm = () => {
       </html>
     `);
     printWindow.document.close();
-    printWindow.print();
+    // printWindow.print();
   };
   
   
@@ -167,28 +177,12 @@ const EmployeeForm = () => {
           <input type="text" name="name" value={formData.name} onChange={handleChange} required />
         </div>
         <div className="input-group">
-          <label>Father Name:</label>
-          <input type="text" name="fname" value={formData.fname} onChange={handleChange} required />
-        </div>
-        <div className="input-group">
           <label>Email:</label>
           <input type="text" name="email" value={formData.email} onChange={handleChange} required />
         </div>
         <div className="input-group">
-          <label>Phone No:</label>
-          <input type="text" name="mobno" value={formData.mobno} onChange={handleChange} required />
-        </div>
-        <div className="input-group">
-          <label>Emergency No:</label>
-          <input type="number" name="fmobno" value={formData.fmobno} onChange={handleChange} required />
-        </div>
-        <div className="input-group">
           <label>CNIC:</label>
           <input type="number" name="cnic" value={formData.cnic} onChange={handleChange} required />
-        </div>
-        <div className="input-group">
-          <label>Qualification:</label>
-          <input type="text" name="qualification" value={formData.qualification} onChange={handleChange} required />
         </div>
         <div className="input-group">
           <label>D.O.B:</label>
@@ -199,8 +193,38 @@ const EmployeeForm = () => {
           <input type="number" name="age" value={formData.age} onChange={handleChange} required />
         </div>
         <div className="input-group">
+          <label>Qualification:</label>
+          <input type="text" name="qualification" value={formData.qualification} onChange={handleChange} required />
+        </div>
+        <div className="input-group">
+          <label>Phone No:</label>
+          <input type="text" name="mobno" value={formData.mobno} onChange={handleChange} required />
+        </div>
+        <div className="input-group">
+          <label>Emergency No:</label>
+          <input type="number" name="fmobno" value={formData.fmobno} onChange={handleChange} required />
+        </div>
+        <div className="input-group">
+          <label>Emergency Contact Name:</label>
+          <input type="text" name="fname" value={formData.fname} onChange={handleChange} required />
+        </div>
+        <div className="input-group">
+          <label>Relation with Employee:</label>
+          <input type="text" name="relation" value={formData.relation} onChange={handleChange} required />
+        </div>
+        
+        
+        
+       
+       
+      
+        <div className="input-group">
           <label>Medical Report:</label>
           <input type="text" name="health" value={formData.health} onChange={handleChange} required />
+        </div>
+        <div className="input-group">
+          <label>Blood Group:</label>
+          <input type="text" name="blood" value={formData.blood} onChange={handleChange} required />
         </div>
         <div className="input-group">
           <label>Address:</label>
@@ -215,12 +239,12 @@ const EmployeeForm = () => {
           <input type="text" name="acctitle" value={formData.acctitle} onChange={handleChange} required />
         </div>
         <div className="input-group">
-          <label>IBAN:</label>
-          <input type="text" name="iban" value={formData.iban} onChange={handleChange} required />
-        </div>
-        <div className="input-group">
           <label>Account Number:</label>
           <input type="text" name="accountNumber" value={formData.accountNumber} onChange={handleChange} required />
+        </div>
+        <div className="input-group">
+          <label>IBAN:</label>
+          <input type="text" name="iban" value={formData.iban} onChange={handleChange} required />
         </div>
         <div className="input-group">
           <label>Employment Status:</label>
@@ -232,7 +256,12 @@ const EmployeeForm = () => {
           </select>
         </div>
         <div className="input-group">
-          <label>Starting Date:</label>
+          <label>Designation:</label>
+          <input type="text" name="designation" value={formData.designation} onChange={handleChange} required />
+        </div>
+      
+        <div className="input-group">
+          <label>Joining Date:</label>
           <input type="date" name="doj" value={formData.doj} onChange={handleChange} required />
         </div>
         <div className="input-group">
