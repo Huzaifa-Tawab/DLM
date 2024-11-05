@@ -65,51 +65,88 @@ const EmployeeForm = () => {
           <title>Print Employee Details</title>
           <style>
             body { font-family: Arial, sans-serif; color: #333; }
-            .header { text-align: center; margin-bottom: 20px; }
+            .header-logo img { width: 250px }
+            .header { text-align: center; display: flex; flex-direction: row-reverse; justify-content: space-between; align-items: center; }
             .header img { width: 100px; height: 100px; border-radius: 50%; border: 2px solid #2980b9; }
-            .section { margin: 20px 0; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
-            .section h2 { color: #2980b9; }
-            .section p { margin: 5px 0; }
+            .section { margin: 10px 0; }
+            .section h3 { color: #2980b9; }
+            .details-table { width: 100%; margin-top: 10px; }
+            .details-table tr { margin-bottom: 5px; }
+            .details-table td { vertical-align: top; }
+            .details-table .label { width: 40%; font-weight: bold; color: #555; text-align: right; padding-right: 25px}
+            .details-table .value { width: 60%; color: #333; }
+            .footer { margin-top: 100px; text-align: left; padding-left: 10px}
+            .footer .sign-section { display: flex; justify-content: space-between; margin-top: 50px; }
+            .footer .sign { width: 45%; text-align: center; }
+            .footer .sign label { display: block; font-weight: bold; margin-top: 40px; }
+            .footer .computer-note { font-size: 0.9em; color: #888; margin-top: 20px; }
           </style>
         </head>
         <body>
+         <div class="header-logo">
+            <img src="${dlmlogo}" alt="Logo" />
+          </div>
           <div class="header">
             <img src="${formData.photo}" alt="Employee Photo" />
             <h1>Employee Details</h1>
           </div>
           <div class="section">
-            <h2>Personal Details</h2>
-            <p><strong>Name:</strong> ${formData.name}</p>
-            <p><strong>D.O.B:</strong> ${formData.dob}</p>
-            <p><strong>Starting Date:</strong> ${formData.doj}</p>
-            <p><strong>Medical History:</strong> ${formData.health}</p>
-            <p><strong>Email:</strong> ${formData.email}</p>
-            <p><strong>Phone No:</strong> ${formData.mobno}</p>
-            <p><strong>Emergency No:</strong> ${formData.fmobno}</p>
-            <p><strong>Address:</strong> ${formData.address}</p>
+            <h3>Personal Details</h3>
+            <table class="details-table">
+              <tr><td class="label">Name:</td><td class="value">${formData.name}</td></tr>
+              <tr><td class="label">D.O.B:</td><td class="value">${formData.dob}</td></tr>
+              <tr><td class="label">Starting Date:</td><td class="value">${formData.doj}</td></tr>
+              <tr><td class="label">Medical History:</td><td class="value">${formData.health}</td></tr>
+              <tr><td class="label">Email:</td><td class="value">${formData.email}</td></tr>
+              <tr><td class="label">Phone No:</td><td class="value">${formData.mobno}</td></tr>
+              <tr><td class="label">Emergency No:</td><td class="value">${formData.fmobno}</td></tr>
+              <tr><td class="label">Address:</td><td class="value">${formData.address}</td></tr>
+            </table>
           </div>
           <div class="section">
-            <h2>Bank Information</h2>
-            <p><strong>Account Title:</strong> ${formData.acctitle}</p>
-            <p><strong>IBAN:</strong> ${formData.iban}</p>
-            <p><strong>Bank Name:</strong> ${formData.bankName}</p>
-            <p><strong>Account Number:</strong> ${formData.accountNumber}</p>
+            <h3>Bank Information</h3>
+            <table class="details-table">
+              <tr><td class="label">Account Title:</td><td class="value">${formData.acctitle}</td></tr>
+              <tr><td class="label">IBAN:</td><td class="value">${formData.iban}</td></tr>
+              <tr><td class="label">Bank Name:</td><td class="value">${formData.bankName}</td></tr>
+              <tr><td class="label">Account Number:</td><td class="value">${formData.accountNumber}</td></tr>
+            </table>
           </div>
           <div class="section">
-            <h2>Employment Details</h2>
-            <p><strong>CNIC:</strong> ${formData.cnic}</p>
-            <p><strong>Qualification:</strong> ${formData.qualification}</p>
-            <p><strong>Father Name:</strong> ${formData.fname}</p>
-            <p><strong>Age:</strong> ${formData.age}</p>
-            <p><strong>Employment Status:</strong> ${formData.employmentStatus}</p>
-            <p><strong>Undertaking:</strong> ${formData.undertaking ? 'Yes' : 'No'}</p>
+            <h3>Employment Details</h3>
+            <table class="details-table">
+              <tr><td class="label">CNIC:</td><td class="value">${formData.cnic}</td></tr>
+              <tr><td class="label">Qualification:</td><td class="value">${formData.qualification}</td></tr>
+              <tr><td class="label">Father Name:</td><td class="value">${formData.fname}</td></tr>
+              <tr><td class="label">Age:</td><td class="value">${formData.age}</td></tr>
+              <tr><td class="label">Employment Status:</td><td class="value">${formData.employmentStatus}</td></tr>
+              <tr><td class="label">Undertaking:</td><td class="value">${formData.undertaking ? 'Yes' : 'No'}</td></tr>
+            </table>
+          </div>
+          <div class="footer">
+            <div class="sign-section">
+              <div class="sign">
+                <hr style="width: 70%;" />
+                <label>Applicant's Signature</label>
+              </div>
+              <div class="sign">
+                <hr style="width: 70%;" />
+                <label>CEO's Signature</label>
+              </div>
+            </div>
+            <div class="computer-note">
+              This is a computer-generated document. Date: ${formData.doj}.
+            </div>
           </div>
         </body>
       </html>
     `);
     printWindow.document.close();
-    // printWindow.print();
+    printWindow.print();
   };
+  
+  
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();

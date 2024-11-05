@@ -10,6 +10,8 @@ import softx from "../../Assets/SoftXion.png";
 import getDate from "../../../GetDDMMYY";
 import cnicFormat from "../../../cnicFormatter";
 import dlmlogo from "../../Assets/sliderlogo.png";
+import './allotmentplot.css'
+
 function PlotFile() {
   const { id } = useParams();
   console.log(id);
@@ -163,9 +165,7 @@ function PlotFile() {
         </div>
         <div className="allotment-details">
           <h4>ALLOTMENT DETAILS</h4>
-          <div>
-            <strong>File No:</strong> {FileNumber}
-          </div>
+         
           <div>
             <strong>Plot No:</strong> {allotmentnumber}
           </div>

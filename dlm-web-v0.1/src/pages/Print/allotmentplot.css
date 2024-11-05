@@ -43,12 +43,15 @@
   .applicant-details, .allotment-details {
     width: 48%;
   }
+  .applicant-details div, .allotment-details div{
+    padding-left: 10px ;
+  }
   
   .applicant-details h4, .allotment-details h4 {
     /* text-align: center; */
     background-color: #a4243b;
     color: #fff;
-    padding: 5px;
+    padding: 5px 10px;
     /* margin: -15px -15px 10px -15px; */
     border-radius: 8px 8px 0 0;
   }
