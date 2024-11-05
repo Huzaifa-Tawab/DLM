@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./plotfile.css";
 
 // import imageava from "./avat.png"
 import { useNavigate, useParams } from "react-router-dom";
@@ -10,7 +9,7 @@ import Loader from "../../components/loader/Loader";
 import softx from "../../Assets/SoftXion.png";
 import getDate from "../../../GetDDMMYY";
 import cnicFormat from "../../../cnicFormatter";
-import sign from "./assets/bilal.png";
+import dlmlogo from "../../Assets/sliderlogo.png";
 function PlotFile() {
   const { id } = useParams();
   console.log(id);
@@ -20,6 +19,7 @@ function PlotFile() {
   const [UserImage, setUserImage] = useState("");
   const [Society, setSociety] = useState();
   const [FileNumber, setFileNumber] = useState("");
+  const [allotmentnumber, setAllotmentNumber] = useState("");
   const [FDate, setFDate] = useState("");
   const [Name, setName] = useState("");
   const [Cnic, setCnic] = useState("");
@@ -91,7 +91,7 @@ function PlotFile() {
       setFileNumber(Plot.FileNumber);
       setFileNumber(Plot.FileNumber);
       setCategory(Plot.Category);
-      setFileNumber(Plot.FileNumber);
+      setAllotmentNumber(Plot.plotAllotmentNo);
       setPossessionAmount(Plot.PossessionAmount);
       setTotalAmount(Plot.TotalAmount);
       setOtherAmountTitle(Plot.OtherAmountTitle || "none");
@@ -115,102 +115,112 @@ function PlotFile() {
   return isLoading ? (
     <Loader />
   ) : (
-    <div className="a4-page-plotfile">
-    <div className="a4-content">
-      <div className="header-plotfile">
-        <h1 className="-plotfile">{Society === "Dynamic Land Management" ? "DYNAMIC LAND MANAGEMENT" : Society}</h1>
-        <div className="header-section-plotfile">
-          <h3>Allotment Form</h3>
-        </div>
-        <h3 className="plot-info--plotfile">
-          Plot No: <span>{FileNumber}</span>
-        </h3>
+    <div className="allotment-letter a4-page-plotfile">
+      <div className="top-logo-">
+      <img src={dlmlogo} alt="logo" className="logo" />
+      <div style={{fontSize: "16px"}}>
+      <strong>Plot No:</strong> {allotmentnumber}
       </div>
-      <div className="main-section-plotfile">
-        <div className="committee-info-plotfile">
-          <div className="left-column-plotfile">
-            <p>Date: {FDate}</p>
-            <p>The Management Committee,</p>
-            <p>{Society === "Dynamic Land Management" ? "DYNAMIC LAND MANAGEMENT" : Society}</p>
-          </div>
-          <div className="profile-image-plotfile">
+      </div>
+    <div className="header">
+      <div className="logo"></div>
+      <h1 className="-plotfile">{Society === "Dynamic Land Management" ? "DYNAMIC LAND MANAGEMENT" : Society}</h1>
+    </div>
+    
+
+    <div className="title-section">
+        <h3>ALLOTMENT OF PLOT</h3>
+      </div>
+      <div className="profile-image-plotfile">
+      <div className="image-user"></div>
             <img src={UserImage} alt="User"></img>
           </div>
-        </div>
-        <div className="statement-plotfile">
-          <p>
-            Dear Sir/Madam,<br />
-            <strong>I undertake to be bound by all conditions, obligations, and responsibilities printed overleaf in this respect.</strong>
-          </p>
-        </div>
-        <h3 className="section-heading-plotfile">Personal Information</h3>
-        <div className="personal-info-plotfile">
-          <div className="left">
-            <span>Name:</span> <strong>{Name}</strong><br />
-            <span>CNIC:</span> <strong>{cnicFormat(Cnic)}</strong><br />
-            <span>D.O.B:</span> <strong>{Dob}</strong>
-          </div>
-          <div className="right-plotfile">
-            <span>F/H Name:</span> <strong>{FName}</strong><br />
-            <span>Phone No:</span> <strong>{phNo}</strong><br />
-            <span>Gender:</span> <strong>{Gender}</strong>
-          </div>
-        </div>
-        <h3 className="section-heading-plotfile">Next to Kin</h3>
-        <div className="next-of-kin-plotfile">
-          <div className="left-plotfile">
-            <span>Name:</span> <strong>{kinOverRiden ? kinOverRiden.name : customerData.NexttoKin}</strong><br />
-            <span>Relation:</span> <strong>{kinOverRiden ? kinOverRiden.relation : customerData.KinRelation}</strong>
-          </div>
-          <div className="right-plotfile">
-            <span>Phone No:</span> <strong>{kinOverRiden ? kinOverRiden.phone : customerData.PhNoKin}</strong><br />
-            <span>CNIC:</span> <strong>{kinOverRiden ? kinOverRiden.cnic : cnicFormat(customerData.CnicKin)}</strong>
-          </div>
-        </div>
-        <h3 className="section-heading-plotfile">Booking Details</h3>
-        <div className="booking-details-plotfile">
-          <div className="left">
-            <span>File Number:</span> <strong>{FileNumber}</strong><br />
-            <span>Plot Size:</span> <strong>{PlotSize}</strong> <br />
-          <span>Address:</span> <strong>{Address}</strong>
 
+      <div className="details-section">
+        <div className="applicant-details">
+          <h4>APPLICANT DETAILS</h4>
+          <div>
+            <strong>Name:</strong> {Name}
           </div>
-          <div className="right-plotfile">
-            <span>Category:</span> <strong>{Category}</strong><br />
-            <span>Block:</span> <strong>{Block}</strong><br />
-            <span>Status:</span> <strong>{Society === "Dynamic Land Management" ? "Non Developed" : "Partial Developed"}</strong>
-            
+          <div>
+            <strong>F/H Name:</strong> {FName}
           </div>
-        </div>
-        {/* <div className="address-plotfile">
-        </div> */}
-        <h3 className="section-heading-plotfile">Contract Details</h3>
-        <div className="contract-details-plotfile">
-          <div className="left-plotfile">
-            <span>Adjustment:</span> <strong>{OtherAmountTitle}</strong><br />
-            <span>Other Amount Title:</span> <strong>{OtherAmount}</strong>
+          <div>
+            <strong>Phone No:</strong> {phNo}
           </div>
-          {/* <div className="right-plotfile">
-            <h3>Remaining Amount</h3>
-            <span>{TotalAmount - PaidAmount}</span>
-          </div> */}
-        </div>
-        <div className="signatures-plotfile">
-          <h3>Signatures</h3>
-          <img className="signature-plotfile" src={sign} alt="Admin Signature" />
-          <div className="signature-roles-plotfile">
-            <h3>Customer</h3>
-            <h3>Booking Officer</h3>
-            <h3>Admin</h3>
+          <div>
+            <strong>CNIC:</strong> {cnicFormat(Cnic)}
+          </div>
+          <div>
+            <strong>Gender:</strong> {Gender}
+          </div>
+          <div>
+            <strong>D.O.B:</strong> {Dob}
+          </div>
+          <div>
+            <strong>Address:</strong> {Address}
           </div>
         </div>
-        <div className="footer-plotfile">
+        <div className="allotment-details">
+          <h4>ALLOTMENT DETAILS</h4>
+          <div>
+            <strong>File No:</strong> {FileNumber}
+          </div>
+          <div>
+            <strong>Plot No:</strong> {allotmentnumber}
+          </div>
+          <div>
+            <strong>Block:</strong> {Block}
+          </div>
+          <div>
+            <strong>Size:</strong> {PlotSize}
+          </div>
+          <div>
+            <strong>Category:</strong> {Category}
+          </div>
+          <div>
+            <strong>Status:</strong> {Society === "Dynamic Land Management" ? "Non Developed" : "Partial Developed"}
+          </div>
+          <div>
+            <strong>Adjustment:</strong> {OtherAmountTitle}
+          </div>
+          <div>
+            <strong>Other Amount Title:</strong> {OtherAmount}
+          </div>
+        </div>
+        
+      </div>
+
+      <div className="terms">
+        <p>The Management of {Society === "Dynamic Land Management" ? "DYNAMIC LAND MANAGEMENT" : Society} is pleased to issue this final allotment letter on the following terms and conditions:</p>
+        <ol>
+          <li>
+            This is in continuation of provisional allotment letter issued on dated and the terms and conditions printed overleaf thereof duly accepted and signed by the allottee.
+          </li>
+          <li>
+            The plot, block number, and size are final and will not be changed by {Society === "Dynamic Land Management" ? "DYNAMIC LAND MANAGEMENT" : Society} except on technical grounds.
+          </li>
+          <li>
+            This allotment is not transferable unless authorized by the {Society === "Dynamic Land Management" ? "DYNAMIC LAND MANAGEMENT" : Society}.
+          </li>
+          <li>
+            Please acknowledge receipt of this letter.
+          </li>
+        </ol>
+      </div>
+
+      <div className="footer footer-plotfile">
+        <div className="date">
+          <strong>Dated:</strong> {date}
+        </div>
+        <div className="signature">
+          <p>Director</p>
+        </div>
+      </div>
+      <div className="footer-plotfile">
           <p>Computer Generated File Printed on: <strong>{date}</strong></p>
         </div>
       </div>
-    </div>
-  </div>
-  
   );
 }
 

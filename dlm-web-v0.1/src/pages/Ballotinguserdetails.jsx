@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Loader from "../components/loader/Loader";
 import SideBar from "../components/Sidebar/sidebar";
 import { useNavigate, useParams } from "react-router-dom";
-import { addDoc, collection, doc, getDoc } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, increment, updateDoc } from "firebase/firestore";
 import { db, rdb } from "../firebase";
 import "./ballotingdetails.css";
 import DeclareWinnersModal from "../components/Modals/DeclareWinnersModal";
@@ -20,28 +20,49 @@ function BallotingSingle() {
   }, []);
 
   const handleClick = async () => {
-    ballotingData.winners.forEach(async (winner) => {
-      const plotRef = doc(db, "Plots", winner);
-      // getDoc(plotRef, ).then(result=>{
-      //   console.log(result);
-      // })
-      await updateDoc(plotDoc.ref, { isNowPlot: true });
-    });
     try {
-      const db = getDatabase();
-      await set(ref(db, "/winners/"), {
-        id: id,
-      }).then((e) => {
-        setTimeout(() => {
-          set(ref(db, "/winners/"), {
-            id: null,
-          });
-        }, 5000);
+      const plotUpdates = ballotingData.winners.map(async (winner) => {
+        const plotRef = doc(db, "Plots", winner);
+        const docRef = doc(db, "constraints", "Data");
+  
+        // Retrieve the document snapshot
+        const docSnap = await getDoc(docRef);
+        if (!docSnap.exists()) {
+          console.error(`No such document: ${docRef.id}`);
+          return;
+        }
+  
+        // Update the plot document
+        await updateDoc(plotRef, {
+          isNowPlot: true,
+          plotAllotmentNo: docSnap.data().NoPlots + 1,
+        });
+  
+        // Increment the NoPlots in the constraints document
+        await updateDoc(docRef, {
+          NoPlots: increment(1),
+        });
       });
+  
+      // Wait for all updates to complete
+      await Promise.all(plotUpdates);
+  
+      // Handle winners in Realtime Database
+      const dbRealtime = getDatabase();
+      await set(ref(dbRealtime, "/winners/"), {
+        id: id,
+      });
+  
+      setTimeout(() => {
+        set(ref(dbRealtime, "/winners/"), {
+          id: null,
+        });
+      }, 5000);
     } catch (error) {
-      console.log(e);
+      console.error("Error in handleClick:", error);
     }
   };
+  
 
   async function fetchDataFromFirestore() {
     try {

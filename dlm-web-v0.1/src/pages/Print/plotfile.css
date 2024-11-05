@@ -132,17 +132,17 @@
 }
 
 /* Footer */
-.footer-plotfile {
+/* .footer-plotfile {
   text-align: left;
   margin-top: 70px;
   font-size: 14px;
   color: #7f8c8d;
-}
-
+} */
+/* 
 .footer-plotfile strong {
   font-weight: bold;
   color: #2c3e50;
-}
+} */
 
 /* Responsive Adjustments */
 @media print {

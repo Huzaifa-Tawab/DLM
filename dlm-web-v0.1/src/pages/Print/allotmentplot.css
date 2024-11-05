@@ -1,0 +1,118 @@
+.allotment-letter {
+    width: 210mm;
+    height: 297mm;
+    padding: 20px;
+    border: 5px solid #f4b266; /* Teal border for the document */
+    font-family: Arial, sans-serif;
+    position: relative;
+    background-color: #f9f9f9; /* Light background */
+    color: #333;
+  }
+  
+  .header {
+    text-align: center;
+    position: relative;
+    color: #f4b266; /* Dark teal color */
+  }
+  
+  .logo {
+    height: 60px;
+  }
+  
+  .title-section {
+    text-align: center;
+    margin: 20px 0;
+    color: #f4b266;
+  }
+  
+  .title-section h3, .title-section h4 {
+    margin: 5px 0;
+  }
+  
+  .details-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 15px;
+    border: 2px solid #a4243b; /* Teal border */
+    background-color: #f4cea3; /* Light teal background */
+    color: #a4243b;
+    border-radius: 8px;
+  }
+  
+  .applicant-details, .allotment-details {
+    width: 48%;
+  }
+  
+  .applicant-details h4, .allotment-details h4 {
+    /* text-align: center; */
+    background-color: #a4243b;
+    color: #fff;
+    padding: 5px;
+    /* margin: -15px -15px 10px -15px; */
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .terms {
+    margin-top: 20px;
+    font-size: 0.9em;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  .terms p {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .terms ol {
+    padding-left: 20px;
+  }
+  
+  .footer-plotfile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 130px;
+    padding-top: 5px;
+    border-top: 2px solid #a4243b; /* Teal top border */
+    background: #fff;
+  }
+  
+  .date {
+    font-size: 0.9em;
+    color: #333;
+  }
+  
+  .signature {
+    text-align: right;
+    color: #004d40;
+    font-weight: bold;
+  }
+  .profile-image-plotfile{
+    display: flex;
+    justify-content: flex-end;
+  }
+  .a4-page-plotfile {
+    width: 210mm;
+    height: 297mm; 
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #a4243b;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  .profile-image-plotfile img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #a4243b;
+  }
+  .top-logo-{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }

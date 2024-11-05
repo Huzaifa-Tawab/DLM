@@ -81,6 +81,7 @@ import ListingsDetails from "./pages/PlotsListing/ListingsDetails";
 import AdminPlotsListings from "./pages/PlotsListing/AdminListings";
 import PlotFile from "./pages/Print/PlotFile";
 import EmployeeForm from "./pages/Print/Employeeform";
+import AllotmentPlot from "./pages/Print/Plotallotment";
 
 function App() {
   const [open, setOpen] = useState();
@@ -228,6 +229,7 @@ function App() {
           <Route path="/sub-admin/" element={<SubAdmin />} />
           <Route path="/create/plot/" element={<PlotRegistrationForm />} />
           <Route path="/plot/logs/:id" element={<PlotLogs />} />
+          <Route path="/allotment" element={<AllotmentPlot />} />
         </Route>
         {/* <Route path="*" element={<NoPage />} />  */}
       </Routes>
