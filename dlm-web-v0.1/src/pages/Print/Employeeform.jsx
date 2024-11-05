@@ -1,6 +1,7 @@
 // src/EmployeeForm.js
 import React, { useState } from 'react';
 import './employeeform.css';
+import dlmlogo from '../../Assets/sliderlogo.png';
 
 const EmployeeForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -92,6 +93,7 @@ const EmployeeForm = () => {
     printWindow.document.write('</style>');
     
     printWindow.document.write('</head><body>');
+    printWindow.document.write(`<img src="${dlmlogo}" alt="Employee Photo" />`);
     printWindow.document.write('<div class="header">');
     // Assuming formData.photo is the URL or base64 string for the employee photo
     printWindow.document.write(`<img src="${formData.photo}" alt="Employee Photo" />`);
