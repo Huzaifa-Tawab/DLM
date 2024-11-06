@@ -85,15 +85,12 @@ const EmployeeForm = () => {
             .container {
               max-width: 210mm;
               margin: auto;
-              background: white;
-              border: 1px solid #ccc;
-              box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-              padding: 10px;
+              
             }
             h1 {
               text-align: center;
               color: #f4b266;
-              font-size: 24px;
+              font-size: 20px;
               margin: 0;
               padding-bottom: 10px;
               border-bottom: 2px solid #f4b266;
@@ -125,10 +122,10 @@ const EmployeeForm = () => {
             }
             .details-heading {
               color: #f4b266;
-              font-size: 18px;
+              font-size: 16px;
               border-bottom: 1px solid #a4243b;
-              padding-bottom: 5px;
-              margin: 5px 0px;
+              padding-bottom: 2px;
+              margin: 3px 0px;
             }
             .details-table {
               width: 100%;
@@ -227,6 +224,13 @@ const EmployeeForm = () => {
               <table class="details-table">
                 <tr><td class="label">Medical Reports:</td><td class="value">${formData.health}</td></tr>
                 <tr><td class="label">Blood Group:</td><td class="value">${formData.blood}</td></tr>
+                <tr><td class="label">Known Allergies:</td><td class="value">${formData.allergy}</td></tr>
+                
+              </table>
+            </div>
+            <div class="section">
+              <h3 class="details-heading">In case Of Emergency</h3>
+              <table class="details-table">
                 <tr><td class="label">Emergency Contact Name:</td><td class="value">${formData.fname}</td></tr>
                 <tr><td class="label">Emergency Contact No:</td><td class="value">${formData.fmobno}</td></tr>
                 <tr><td class="label">Relation to Employee:</td><td class="value">${formData.relation}</td></tr>
