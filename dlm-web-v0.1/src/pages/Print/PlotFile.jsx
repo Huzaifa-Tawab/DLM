@@ -165,7 +165,9 @@ function PlotFile() {
         </div>
         <div className="allotment-details">
           <h4>ALLOTMENT DETAILS</h4>
-         
+          <div>
+            <strong>File No:</strong> {FileNumber}
+          </div> 
           <div>
             <strong>Plot No:</strong> {allotmentnumber}
           </div>

@@ -27,6 +27,7 @@ const EmployeeForm = () => {
     relation:'',
     designation: '',
     blood: '',
+    allergy: '',
     undertaking: false,
   });
 
@@ -128,9 +129,16 @@ const EmployeeForm = () => {
             <table class="details-table">
               <tr><td class="label">Medical Reports:</td><td class="value">${formData.health}</td></tr>
               <tr><td class="label">Blood Group:</td><td class="value">${formData.blood}</td></tr>
+              <tr><td class="label">Known Allergies:</td><td class="value">${formData.allergy}</td></tr>
+            
+            </table>
+          </div>
+            <div class="section">
+            <h3 class="details-heading">In Case Of Emergency</h3>
+            <table class="details-table">
               <tr><td class="label">Name of Emergency Contact:</td><td class="value">${formData.fname}</td></tr>
-              <tr><td class="label">Emergency No:</td><td class="value">${formData.fmobno}</td></tr>
               <tr><td class="label">Relation to Employee:</td><td class="value">${formData.relation}</td></tr>
+              <tr><td class="label">Emergency No:</td><td class="value">${formData.fmobno}</td></tr>
             </table>
           </div>
           <div class="footer">
@@ -225,6 +233,10 @@ const EmployeeForm = () => {
         <div className="input-group">
           <label>Blood Group:</label>
           <input type="text" name="blood" value={formData.blood} onChange={handleChange} required />
+        </div>
+        <div className="input-group">
+          <label>Known Allergies:</label>
+          <input type="text" name="allergy" value={formData.allergy} onChange={handleChange} required />
         </div>
         <div className="input-group">
           <label>Address:</label>

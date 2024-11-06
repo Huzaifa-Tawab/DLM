@@ -77,6 +77,11 @@ export const superAdminNavLinks = [
     icon: <i className="fa-solid fa-circle-xmark"></i>,
     title: "Blocked Users",
   },
+  {
+    to: "/form",
+    icon: <i className="fa-solid fa-circle-xmark"></i>,
+    title: "Employee Form",
+  },
   // {
   //   to: "/notfound",
   //   icon: <i className="fa-solid fa-wallet"></i>,
