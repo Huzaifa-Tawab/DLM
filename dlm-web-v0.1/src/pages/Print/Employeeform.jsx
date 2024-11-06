@@ -27,6 +27,7 @@ const EmployeeForm = () => {
     relation:'',
     designation: '',
     blood: '',
+    allergy: '',
     undertaking: false,
   });
 
@@ -327,6 +328,10 @@ const EmployeeForm = () => {
         <div className="input-group">
           <label>Blood Group:</label>
           <input type="text" name="blood" value={formData.blood} onChange={handleChange} required />
+        </div>
+        <div className="input-group">
+          <label>Known Allergies:</label>
+          <input type="text" name="allergy" value={formData.allergy} onChange={handleChange} required />
         </div>
         <div className="input-group">
           <label>Address:</label>
