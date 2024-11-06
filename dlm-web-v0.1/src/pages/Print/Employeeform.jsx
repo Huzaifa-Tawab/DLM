@@ -65,95 +65,197 @@ const EmployeeForm = () => {
     printWindow.document.write(`
       <html>
         <head>
-          <title>Print Employee Details</title>
+          <title>Employee Details</title>
           <style>
-            body { font-family: Arial, sans-serif; color: #333; }
-            .header-logo img { width: 250px }
-            .header { text-align: center; display: flex; flex-direction: row-reverse; justify-content: space-between; align-items: center; }
-            .header img { width: 100px; height: 100px; border-radius: 50%; border: 2px solid #2980b9; }
-            .section { margin: 0px 0px }
-            .details-heading { color: #2980b9; margin: 10px 0px;}
-            .details-table { width: 100%; }
-            .details-table td { vertical-align: top; }
-            .details-table .label { width: 40%; font-weight: bold; color: #555; text-align: left; padding-left: 25px}
-            .details-table .value { width: 60%; color: #333; }
-            .footer { text-align: left;}
-            .footer .sign-section { display: flex; justify-content: space-between; margin-top: 80px; }
-            .footer .sign { width: 45%; text-align: center; }
-            .footer .sign label { display: block; font-weight: bold;  }
-            .footer .computer-note { font-size: 0.9em; color: #888; margin-top: 30px; }
+            /* Set page size and styling for A4 printing */
+            @page {
+              size: A4;
+              margin: 5mm;
+            }
+            body {
+              font-family: Arial, sans-serif;
+              color: #333;
+              margin: 0;
+              padding: 0;
+              background-color: #f7f7f7;
+            }
+  
+            /* General styling */
+            .container {
+              max-width: 210mm;
+              margin: auto;
+              background: white;
+              border: 1px solid #ccc;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+              padding: 10px;
+            }
+            h1 {
+              text-align: center;
+              color: #f4b266;
+              font-size: 24px;
+              margin: 0;
+              padding-bottom: 10px;
+              border-bottom: 2px solid #f4b266;
+            }
+  
+            /* Header */
+            .header-logo {
+              text-align: center;
+            }
+            .header-logo img {
+              width: 200px;
+            }
+            .header {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              flex-direction: row-reverse;
+            }
+            .header img {
+              width: 100px;
+              height: 100px;
+              border-radius: 50%;
+              border: 2px solid #a4243b;
+              margin-right: 20px;
+            }
+  
+            /* Section styling */
+            .section {
+            }
+            .details-heading {
+              color: #f4b266;
+              font-size: 18px;
+              border-bottom: 1px solid #a4243b;
+              padding-bottom: 5px;
+              margin: 5px 0px;
+            }
+            .details-table {
+              width: 100%;
+              border-collapse: collapse;
+              table-layout: fixed;
+              font-size: 14px;
+            }
+            .details-table td {
+              padding: 6px;
+              vertical-align: top;
+              border: 1px solid #ddd;
+            }
+            .details-table .label {
+              width: 35%;
+              font-weight: bold;
+              background: #f0f0f0;
+              color: #555;
+            }
+            .details-table .value {
+              width: 65%;
+            }
+  
+            /* Footer styling */
+            .footer {
+              text-align: center;
+            }
+            .sign-section {
+              display: flex;
+              justify-content: space-around;
+              margin-top: 80px;
+            }
+            .sign {
+              width: 40%;
+              text-align: center;
+            }
+            .sign hr {
+              width: 80%;
+              border-top: 1px solid #333;
+              margin: auto;
+            }
+            .sign label {
+              display: block;
+              font-weight: bold;
+              margin-top: 5px;
+            }
+            .computer-note {
+              font-size: 12px;
+              color: #888;
+              text-align: left;
+              margin-top: 10px;
+            }
           </style>
         </head>
         <body>
-         <div class="header-logo">
-            <img src="${dlmlogo}" alt="Logo" />
-          </div>
-          <div class="header">
-            <img src="${formData.photo}" alt="Employee Photo" />
-            <h1>Employee Details</h1>
-          </div>
-          <div class="section">
-            <h3 class="details-heading">Personal Details</h3>
-            <table class="details-table">
-              <tr><td class="label">Name:</td><td class="value">${formData.name}</td></tr>
-              <tr><td class="label">D.O.B:</td><td class="value">${formData.dob}</td></tr>
-              <tr><td class="label">Age:</td><td class="value">${formData.age}</td></tr>
-             <tr><td class="label">Email:</td><td class="value">${formData.email}</td></tr>
-             <tr><td class="label">CNIC:</td><td class="value">${formData.cnic}</td></tr>
-              <tr><td class="label">Phone No:</td><td class="value">${formData.mobno}</td></tr>
-              <tr><td class="label">Qualification:</td><td class="value">${formData.qualification}</td></tr>
-              <tr><td class="label">Address:</td><td class="value">${formData.address}</td></tr>
-            </table>
-          </div>
-          <div class="section">
-            <h3 class="details-heading">Bank Information</h3>
-            <table class="details-table">
-              <tr><td class="label">Account Title:</td><td class="value">${formData.acctitle}</td></tr>
-              <tr><td class="label">Bank Name:</td><td class="value">${formData.bankName}</td></tr>
-              <tr><td class="label">Account Number:</td><td class="value">${formData.accountNumber}</td></tr>
-              <tr><td class="label">IBAN:</td><td class="value">${formData.iban}</td></tr>
-            </table>
-          </div>
-          <div class="section">
-            <h3 class="details-heading">Employment Details</h3>
-            <table class="details-table">
-             <tr><td class="label">Starting Date:</td><td class="value">${formData.doj}</td></tr>
-              <tr><td class="label">Designation:</td><td class="value">${formData.designation}</td></tr>
-              <tr><td class="label">Employment Status:</td><td class="value">${formData.employmentStatus}</td></tr>
-              <tr><td class="label">Undertaking:</td><td class="value">${formData.undertaking ? 'Yes' : 'No'}</td></tr>
-            </table>
-          </div>
-           <div class="section">
-            <h3 class="details-heading">Medical Report</h3>
-            <table class="details-table">
-              <tr><td class="label">Medical Reports:</td><td class="value">${formData.health}</td></tr>
-              <tr><td class="label">Blood Group:</td><td class="value">${formData.blood}</td></tr>
-              <tr><td class="label">Name of Emergency Contact:</td><td class="value">${formData.fname}</td></tr>
-              <tr><td class="label">Emergency No:</td><td class="value">${formData.fmobno}</td></tr>
-              <tr><td class="label">Relation to Employee:</td><td class="value">${formData.relation}</td></tr>
-            </table>
-          </div>
-          <div class="footer">
-            <div class="sign-section">
-              <div class="sign">
-                <hr style="width: 70%;" />
-                <label>Applicant's Signature</label>
-              </div>
-              <div class="sign">
-                <hr style="width: 70%;" />
-                <label>CEO's Signature</label>
-              </div>
+          <div class="container">
+            <div class="header-logo">
+              <img src="${dlmlogo}" alt="Company Logo" />
             </div>
-            <div class="computer-note">
-              This is a computer-generated document. Date: ${formData.doj}.
+            <div class="header">
+              <img src="${formData.photo}" alt="Employee Photo" />
+              <h1>Employee Form</h1>
             </div>
+            <div class="section">
+              <h3 class="details-heading">Personal Details</h3>
+              <table class="details-table">
+                <tr><td class="label">Name:</td><td class="value">${formData.name}</td></tr>
+                <tr><td class="label">Date of Birth:</td><td class="value">${formData.dob}</td></tr>
+                <tr><td class="label">Age:</td><td class="value">${formData.age}</td></tr>
+                <tr><td class="label">Email:</td><td class="value">${formData.email}</td></tr>
+                <tr><td class="label">CNIC:</td><td class="value">${formData.cnic}</td></tr>
+                <tr><td class="label">Phone No:</td><td class="value">${formData.mobno}</td></tr>
+                <tr><td class="label">Qualification:</td><td class="value">${formData.qualification}</td></tr>
+                <tr><td class="label">Address:</td><td class="value">${formData.address}</td></tr>
+              </table>
+            </div>
+            <div class="section">
+              <h3 class="details-heading">Bank Information</h3>
+              <table class="details-table">
+                <tr><td class="label">Account Title:</td><td class="value">${formData.acctitle}</td></tr>
+                <tr><td class="label">Bank Name:</td><td class="value">${formData.bankName}</td></tr>
+                <tr><td class="label">Account Number:</td><td class="value">${formData.accountNumber}</td></tr>
+                <tr><td class="label">IBAN:</td><td class="value">${formData.iban}</td></tr>
+              </table>
+            </div>
+            <div class="section">
+              <h3 class="details-heading">Employment Details</h3>
+              <table class="details-table">
+                <tr><td class="label">Starting Date:</td><td class="value">${formData.doj}</td></tr>
+                <tr><td class="label">Designation:</td><td class="value">${formData.designation}</td></tr>
+                <tr><td class="label">Employment Status:</td><td class="value">${formData.employmentStatus}</td></tr>
+                <tr><td class="label">Undertaking:</td><td class="value">${formData.undertaking ? 'Yes' : 'No'}</td></tr>
+              </table>
+            </div>
+            <div class="section">
+              <h3 class="details-heading">Medical Report</h3>
+              <table class="details-table">
+                <tr><td class="label">Medical Reports:</td><td class="value">${formData.health}</td></tr>
+                <tr><td class="label">Blood Group:</td><td class="value">${formData.blood}</td></tr>
+                <tr><td class="label">Emergency Contact Name:</td><td class="value">${formData.fname}</td></tr>
+                <tr><td class="label">Emergency Contact No:</td><td class="value">${formData.fmobno}</td></tr>
+                <tr><td class="label">Relation to Employee:</td><td class="value">${formData.relation}</td></tr>
+              </table>
+            </div>
+            <div class="footer">
+              <div class="sign-section">
+                <div class="sign">
+                  <hr />
+                  <label>Applicant's Signature</label>
+                </div>
+                <div class="sign">
+                  <hr />
+                  <label>CEO's Signature</label>
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
+          <div class="computer-note">
+                This document is computer-generated. Date: ${formData.doj}.
+              </div>
         </body>
       </html>
     `);
     printWindow.document.close();
-    // printWindow.print();
+    printWindow.print();
   };
+  
   
   
   
