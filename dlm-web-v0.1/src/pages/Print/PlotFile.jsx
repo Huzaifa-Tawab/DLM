@@ -119,7 +119,8 @@ function PlotFile() {
   ) : (
     <div className="allotment-letter a4-page-plotfile">
       <div className="top-logo-">
-      <img src={dlmlogo} alt="logo" className="logo" />
+        
+      {/* <img src={dlmlogo} alt="logo" className="logo" /> */}
       <div style={{fontSize: "16px"}}>
       <strong>Plot No:</strong> {allotmentnumber}
       </div>
