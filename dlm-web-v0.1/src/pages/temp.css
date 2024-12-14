@@ -1,0 +1,110 @@
+.management-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .management-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .search-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .search-input {
+    width: 70%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .refresh-button {
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .refresh-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .management-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  .management-table th,
+  .management-table td {
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    text-align: center;
+  }
+  
+  .management-table th {
+    background-color: #f4f4f4;
+    color: #555;
+  }
+  
+  .status-badge {
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+  
+  .status-plot {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .status-file {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .action-button {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .plot-button {
+    background-color: #28a745;
+  }
+  
+  .plot-button:hover {
+    background-color: #218838;
+  }
+  
+  .file-button {
+    background-color: #dc3545;
+  }
+  
+  .file-button:hover {
+    background-color: #c82333;
+  }
+  
+  .no-data-message {
+    text-align: center;
+    padding: 1rem;
+    color: #777;
+    font-style: italic;
+  }
+  

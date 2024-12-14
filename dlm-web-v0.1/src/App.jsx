@@ -81,6 +81,7 @@ import ListingsDetails from "./pages/PlotsListing/ListingsDetails";
 import AdminPlotsListings from "./pages/PlotsListing/AdminListings";
 import PlotFile from "./pages/Print/PlotFile";
 import EmployeeForm from "./pages/Print/Employeeform";
+import TempToPlot from "./pages/TempToPlot";
 // import AllotmentPlot from "./pages/Print/Plotallotment";
 
 function App() {
@@ -197,6 +198,7 @@ function App() {
         <Route path="/finance/history" element={<Finance />} />
 
         <Route element={<AdminRoutes />}>
+        <Route path="/converter" element={<TempToPlot />} />
         <Route path="/balloting/plots" element={<BallottedPlots />} />
 
           <Route path="/agent/wallet" element={<Wallet />} />
