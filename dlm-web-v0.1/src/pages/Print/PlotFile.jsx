@@ -131,7 +131,7 @@ function PlotFile() {
     
 
     <div className="title-section">
-        <h3>ALLOTMENT OF PLOT</h3>
+        <h3>ALLOTMENT Letter</h3>
       </div>
       <div className="profile-image-plotfile">
       <div className="image-user"></div>
@@ -189,6 +189,10 @@ function PlotFile() {
           <div>
             <strong>Other Amount Title:</strong> {OtherAmount}
           </div>
+          <div>
+            <strong>POM:</strong>
+          </div>
+
         </div>
         
       </div>
