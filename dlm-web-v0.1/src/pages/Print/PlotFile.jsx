@@ -122,7 +122,7 @@ function PlotFile() {
         
       {/* <img src={dlmlogo} alt="logo" className="logo" /> */}
       <div style={{fontSize: "16px"}}>
-      <strong>Plot No:</strong> {allotmentnumber}
+      <strong>Plot No:</strong>OLM-{allotmentnumber}
       </div>
       </div>
     <div className="header">
@@ -132,7 +132,7 @@ function PlotFile() {
     
 
     <div className="title-section">
-        <h3>ALLOTMENT Letter</h3>
+        <h3>ALLOTMENT LETTER</h3>
       </div>
       <div className="profile-image-plotfile">
       <div className="image-user"></div>
@@ -170,7 +170,7 @@ function PlotFile() {
             <strong>File No:</strong> {FileNumber}
           </div> 
           <div>
-            <strong>Plot No:</strong> {allotmentnumber}
+            <strong>Plot No:</strong> OLM-{allotmentnumber}
           </div>
           <div>
             <strong>Block:</strong> {Block}
@@ -199,8 +199,12 @@ function PlotFile() {
       </div>
 
       <div className="terms">
-        <p>The Management of {Society === "Dynamic Land Management" ? "DYNAMIC LAND MANAGEMENT" : Society} is pleased to issue this final allotment letter on the following terms and conditions:</p>
-        <ol>
+        <p>This letter is issued solely based on the clearance of the land charges, while all other documentation ans charges remain pending</p>
+        <br />
+        <br />
+        <br />
+        <br />
+        {/* <ol>
           <li>
             This is in continuation of provisional allotment letter issued on dated and the terms and conditions printed overleaf thereof duly accepted and signed by the allottee.
           </li>
@@ -213,7 +217,7 @@ function PlotFile() {
           <li>
             Please acknowledge receipt of this letter.
           </li>
-        </ol>
+        </ol> */}
       </div>
 
       <div className="footer footer-plotfile">
