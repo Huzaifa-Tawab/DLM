@@ -170,7 +170,7 @@ function PlotFile() {
             <strong>File No:</strong> {FileNumber}
           </div> 
           <div>
-            <strong>Plot No:</strong> OLM-{allotmentnumber}
+            <strong>Alotment No:</strong> OLM-{allotmentnumber}
           </div>
           <div>
             <strong>Block:</strong> {Block}
