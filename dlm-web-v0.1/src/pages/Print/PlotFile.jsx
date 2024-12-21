@@ -122,7 +122,7 @@ function PlotFile() {
         
       {/* <img src={dlmlogo} alt="logo" className="logo" /> */}
       <div style={{fontSize: "16px"}}>
-      <strong>Plot No:</strong>OLM-{allotmentnumber}
+      <strong>O.L.M.N:</strong>{allotmentnumber}
       </div>
       </div>
     <div className="header">
@@ -170,7 +170,7 @@ function PlotFile() {
             <strong>File No:</strong> {FileNumber}
           </div> 
           <div>
-            <strong>Alotment No:</strong> OLM-{allotmentnumber}
+            <strong>O.L.M.N:</strong> {allotmentnumber}
           </div>
           <div>
             <strong>Block:</strong> {Block}
