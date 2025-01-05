@@ -1,23 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import { doc, getDocs, updateDoc, collection } from 'firebase/firestore';
+import { doc, getDocs, updateDoc, collection, getDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
-import './temp.css'
+import './temp.css';
+
 function TempToPlot() {
   const [files, setFiles] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [plotNo, setPlotNo] = useState(0);
+  const [plotPrefix, setPlotPrefix] = useState('AAA-');
+  const [constraintsLoaded, setConstraintsLoaded] = useState(false);
   const navigate = useNavigate();
 
   // Fetch data from Firestore
   const fetchData = async () => {
     try {
+      // Fetch plots collection only if it's not already loaded
       const plotsRef = collection(db, 'Plots');
       const querySnapshot = await getDocs(plotsRef);
       const fetchedFiles = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setFiles(fetchedFiles);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error fetching plots:', error);
+    }
+  };
+
+  const fetchConstraints = async () => {
+    try {
+      const dataRef = doc(db, 'constraints', 'Data');
+      const dataSnapshot = await getDoc(dataRef);
+      if (!dataSnapshot.exists()) {
+        console.error(`No such document: ${dataSnapshot.id}`);
+        return;
+      }
+
+      setPlotNo(dataSnapshot.data().plots_current_serial + 1);
+      setPlotPrefix(dataSnapshot.data().plots_prefix);
+      setConstraintsLoaded(true);
+    } catch (error) {
+      console.error('Error fetching constraints:', error);
     }
   };
 
@@ -29,39 +51,60 @@ function TempToPlot() {
       }
     });
 
-    fetchData();
+    // Fetch constraints and plots on initial load
+    fetchConstraints();
   }, [navigate]);
 
-  // Convert to File
-  const convertToFile = async (id) => {
-    try {
-      const fileRef = doc(db, 'Plots', id);
-      await updateDoc(fileRef, { isNowPlot: false });
-      fetchData();
-    } catch (error) {
-      console.error('Error converting to file:', error);
-    }
-  };
-
-  // Convert to Plot
+  // Handle converting a file to a plot
   const convertToPlot = async (id) => {
-    const allotmentNumber = prompt('Please enter Plot Number', '001');
-
+    const allotmentNumber = prompt('Please enter Plot Number', plotPrefix + plotNo);
     if (!allotmentNumber) {
       alert('User cancelled the prompt.');
       return;
     }
 
     try {
+      // Update the plot document
       const fileRef = doc(db, 'Plots', id);
       await updateDoc(fileRef, {
         isNowPlot: true,
         plotAllotmentNo: allotmentNumber,
       });
+
+      // Update the constraints data
+      const dataRef = doc(db, 'constraints', 'Data');
+      await updateDoc(dataRef, { plots_current_serial: plotNo });
+
+      // Optimistically update the state
+      setFiles((prevFiles) =>
+        prevFiles.map((file) =>
+          file.id === id
+            ? { ...file, isNowPlot: true, plotAllotmentNo: allotmentNumber }
+            : file
+        )
+      );
+
+      setPlotNo(plotNo + 1);
       alert(`Allotment Number: ${allotmentNumber}`);
-      fetchData();
     } catch (error) {
       console.error('Error converting to plot:', error);
+    }
+  };
+
+  // Handle converting a plot back to a file
+  const convertToFile = async (id) => {
+    try {
+      const fileRef = doc(db, 'Plots', id);
+      await updateDoc(fileRef, { isNowPlot: false });
+
+      // Optimistically update the state
+      setFiles((prevFiles) =>
+        prevFiles.map((file) =>
+          file.id === id ? { ...file, isNowPlot: false, plotAllotmentNo: null } : file
+        )
+      );
+    } catch (error) {
+      console.error('Error converting to file:', error);
     }
   };
 

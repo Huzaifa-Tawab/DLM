@@ -58,34 +58,15 @@ function BallottedPlots() {
     (searchText) => {
       let newData = CustomersData;
       if (searchText && searchText.length > 0) {
-        if (isAdmin()) {
-          newData = CustomersData.filter(
-            (data) =>
-              data.Name.toLowerCase().includes(searchText.toLowerCase()) ||
-              data.Cnic.toLowerCase().includes(searchText.toLowerCase()) ||
-              data.phNo.includes(searchText) ||
-              data.Plots.some((plot) =>
-                plot.toLowerCase().includes(searchText.toLowerCase())
-              )
-          );
-        } else {
-          newData = CustomersData.filter(
-            (data) =>
-              data.Name.toLowerCase() == searchText.toLowerCase() ||
-              data.Cnic == searchText ||
-              data.phNo == searchText ||
-              data.Plots.some((plot) =>
-                plot.toLowerCase().includes(searchText.toLowerCase())
-              )
-          );
-        }
-      } else {
-        if (isAdmin()) {
-          newData = CustomersData;
-        } else {
-          newData = [];
-        }
-      }
+        newData = CustomersData.filter(
+          (data) =>
+            data.FileNumber.toLowerCase() == searchText.toLowerCase() ||
+            data.plotAllotmentNo.toLowerCase() == searchText.toLowerCase() ||
+            data.CustomerName.toLowerCase() == searchText.toLowerCase() ||
+            data.AgentName.toLowerCase() == searchText.toLowerCase()
+        
+        );
+      } 
       setFilteredCustomersData(newData);
     },
     [CustomersData]
@@ -193,50 +174,29 @@ function BallottedPlots() {
                       <thead>
                         <tr>
                           <th>File Number</th>
-                          <th>Name</th>
-                          <th>FName</th>
-                          <th>Phone Number</th>
-                          {isAdmin() && <th>CNIC No</th>}
-                          <th>GENDER</th>
-                          {isAdmin() && <th>Created By</th>}
-                          {isAdmin() && <th>Agent ID</th>}
-
-                          <th>Plots</th>
-                          <th>Actions</th>
+                          <th>Plot Number</th>
+                          <th>Customer Name</th>
+                          <th>Agent Name</th>
+                       
+                          <th colSpan={2}>Actions</th>
                         </tr>
                       </thead>
                       <tbody>
                         {filteredCustomersDataMemoized.map((e) => (
-                          <tr key={e.Cnic}>
+                          <tr key={e.FileNumber}>
                             <td>
                             
                               <p>{e.FileNumber}</p>
                             </td>
                             <td>
-                              {/* <img
-                                src={
-                                  e.Gender === "female"
-                                    ? isAdmin()
-                                      ? e.imgUrl
-                                      : avatar
-                                    : e.imgUrl
-                                }
-                                alt="avatar"
-                                className="avatar-table"
-                              /> */}
-                              <p>{e.Name}</p>
+                             
+                              <p>{e.plotAllotmentNo}</p>
                             </td>
-                            <td>{e.FName}</td>
+                            <td>{e.CustomerName}</td>
 
-                            <td>{e.phNo}</td>
-                            {isAdmin() && <td>{cnicFormat(e.Cnic)}</td>}
-                            <td>{e.Gender}</td>
-                            {isAdmin() && <td>{e.agentName}</td>}
-                            {isAdmin() && <td>{cnicFormat(e.agentId)}</td>}
-
-                            <td className="tddr">
-                              {/* <p>{e.Plots.length} Plots</p> */}
-                            </td>
+                            <td>{e.AgentName}</td>
+                       
+                         
                             <td>
                               <button
                                 className="button-new-view"
@@ -246,14 +206,16 @@ function BallottedPlots() {
                               >
                                 View File Record
                               </button>
-                              <button
-                                className="button-view"
+                         
+                            </td>
+                            <td>
+                            <button
+                                className="button-new-view"
                                 onClick={() =>{
-                                  // alert("Print Is Not Available At The Moment")
-                                  // navigate(`/details/ballotted/plot/${e.FileNumber}
+                               
                                   navigate(`/print/plotfile/${e.FileNumber}`)
                                 }
-                                  // navigate(`/details/ballotted/plot/${e.FileNumber}`)
+                                
                                 }
                               >
                                Print 
