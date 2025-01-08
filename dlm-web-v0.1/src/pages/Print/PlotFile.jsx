@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 // import imageava from "./avat.png"
 import { useNavigate, useParams } from "react-router-dom";
 import { doc, getDoc, serverTimestamp } from "firebase/firestore";
@@ -199,7 +198,7 @@ function PlotFile() {
       </div>
 
       <div className="terms">
-        <p>This letter is issued solely based on the clearance of the land charges, while all other documentation ans charges remain pending</p>
+        <p>This letter is issued solely based on the clearance of the land charges, while all other documentation and charges remain pending</p>
         <br />
         <br />
         <br />
