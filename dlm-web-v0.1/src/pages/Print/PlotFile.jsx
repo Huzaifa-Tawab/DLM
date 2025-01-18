@@ -112,7 +112,14 @@ function PlotFile() {
       navi("/notfound");
     }
   }
-
+  const generateRandomString = () => {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let result = '';
+    for (let i = 0; i < 5; i++) {
+      result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
+  };
   return isLoading ? (
     <Loader />
   ) : (
@@ -171,28 +178,13 @@ function PlotFile() {
           <div>
             <strong>O.L.M.N:</strong> {allotmentnumber}
           </div>
-          <div>
-            <strong>Block:</strong> {Block}
-          </div>
+        
           <div>
             <strong>Size:</strong> {PlotSize}
           </div>
           <div>
-            <strong>Category:</strong> {Category}
+            <strong>RC:</strong> {Society === "Dynamic Land Management" ? "ND" : "PD"}-{Category[0]}-{Block[0]}-{generateRandomString()}
           </div>
-          <div>
-            <strong>Status:</strong> {Society === "Dynamic Land Management" ? "Non Developed" : "Partial Developed"}
-          </div>
-          <div>
-            <strong>Adjustment:</strong> {OtherAmountTitle}
-          </div>
-          <div>
-            <strong>Other Amount Title:</strong> {OtherAmount}
-          </div>
-          <div>
-            <strong>POM:</strong>
-          </div>
-
         </div>
         
       </div>
