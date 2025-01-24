@@ -32,12 +32,16 @@ function AdminFiles() {
   };
 
   async function getCustomersData() {
+    let admin=isAdmin()
     const newCustomersData = [];
     const q = query(collection(db, "Plots"), where("AgentId", "==", Id));
 
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      newCustomersData.push(doc.data());
+      if (!doc.data().Blocked) {
+        newCustomersData.push(doc.data());
+        
+      }
     });
     setCustomersData(newCustomersData);
     setFilteredCustomersData(newCustomersData);

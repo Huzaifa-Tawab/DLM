@@ -59,7 +59,9 @@ function ClientDetails() {
     });
   }
   async function getPlotsData(Plots) {
-    console.log(Plots);
+    let admin=isAdmin();
+    console.log(admin);
+    
     var tempList = [];
 
     for (const plot_id in Plots) {
@@ -70,8 +72,11 @@ function ClientDetails() {
 
       if (docSnap.exists()) {
         var temp = docSnap.data();
-        temp["id"] = id;
-        tempList.push(temp);
+        if (!temp.Blocked || admin ) {
+          temp["id"] = id;
+          tempList.push(temp);
+        }
+      
       }
     }
 
