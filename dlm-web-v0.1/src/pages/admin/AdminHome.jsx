@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback, useMemo } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { auth, db } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
@@ -13,6 +13,8 @@ import isAdmin from "../../../IsAdmin";
 import { onAuthStateChanged } from "firebase/auth";
 import SideBar from "../../components/Sidebar/sidebar";
 import cnicFormat from "../../../cnicFormatter";
+import * as XLSX from 'xlsx'; 
+
 function AdminHome() {
   const navigate = useNavigate();
   const [CustomersData, setCustomersData] = useState([]);
@@ -37,6 +39,55 @@ function AdminHome() {
       onAuthStateChanged();
     });
   }, []);
+
+async function generateExcelSheet() {
+   setisLoading(true)
+
+    let data = [];  // To hold the data for the Excel sheet
+
+    // Loop through each customer
+    for (const cus of CustomersData) {
+        console.log(cus.Name, cus.FName, cus.Cnic, cus.phNo);
+
+        // Loop through each plot of the customer
+        for (const plot of cus.Plots) {
+            const docRef = doc(db, "Plots", plot);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                const plotData = docSnap.data();
+                const row = {
+                    CustomerName: cus.Name,
+                    FatherName: cus.FName,
+                    CNIC: cus.Cnic,
+                    PhoneNumber: cus.phNo,
+                    PlotID: plot,
+                    TotalAmount: plotData.TotalAmount,
+                    PaidAmount: plotData.paidAmount,
+                };
+                data.push(row);
+            } else {
+                console.log("No such plot document!");
+            }
+        }
+    }
+
+    // Create a new workbook
+    const ws = XLSX.utils.json_to_sheet(data);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Customer Plots");
+
+    // Generate the Excel file
+    const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+
+    // Create a Blob from the buffer and create a download link
+    const file = new Blob([excelBuffer], { type: 'application/octet-stream' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(file);
+    link.download = 'customer_plots.xlsx';
+    link.click(); // Trigger the download
+    setisLoading(false); // Hide loading state after the download
+}
 
   async function getCustomersData() {
     const querySnapshot = await getDocs(collection(db, "Customers"));
@@ -160,6 +211,9 @@ function AdminHome() {
 
               <div className="hero--head">
                 <h1>Customers</h1>
+                <button onClick={generateExcelSheet}>
+                  download
+                </button>
                 {!isAdmin() && (
                   <button
                     onClick={() => {
