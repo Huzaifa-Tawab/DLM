@@ -47,7 +47,7 @@ async function generateExcelSheet() {
 
     // Loop through each customer
     for (const cus of CustomersData) {
-        console.log(cus.Name, cus.FName, cus.Cnic, cus.phNo);
+        // console.log(cus.Name, cus.FName, cus.Cnic, cus.phNo);
 
         // Loop through each plot of the customer
         for (const plot of cus.Plots) {
@@ -64,6 +64,8 @@ async function generateExcelSheet() {
                     PlotID: plot,
                     TotalAmount: plotData.TotalAmount,
                     PaidAmount: plotData.paidAmount,
+                    Remaining: (plotData.TotalAmount) - (plotData.paidAmount),
+
                 };
                 data.push(row);
             } else {
