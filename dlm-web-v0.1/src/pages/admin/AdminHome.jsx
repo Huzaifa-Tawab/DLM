@@ -62,6 +62,7 @@ async function generateExcelSheet() {
                     CNIC: cus.Cnic,
                     PhoneNumber: cus.phNo,
                     PlotID: plot,
+                    Block: plotData.Block,
                     TotalAmount: plotData.TotalAmount,
                     PaidAmount: plotData.paidAmount,
                     Remaining: (plotData.TotalAmount) - (plotData.paidAmount),
