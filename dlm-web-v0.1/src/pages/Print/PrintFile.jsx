@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "./printInvoice.css";
+import './printfile.css'
+
 
 // import imageava from "./avat.png"
 import { useNavigate, useParams } from "react-router-dom";
@@ -289,9 +290,34 @@ function PrintFile() {
               </div>
             </div>
 
-            <div className="signatures-text">
-              <h3>Signatures</h3>
+            {/* New Affidavit Section */}
+            <div className="top-sec-heading">
+              <h3>AFFIDAVIT</h3>
             </div>
+            <div className="affidavit-content">
+              <p>
+                This is to certify that we, Dynamic Land Management, have received the full/Partial payment for the land amount from {Name} (hereinafter referred to as "the Buyer").
+              </p>
+              <p>
+                Upon the payment of development charges, we hereby affirm and undertake the following responsibilities:
+              </p>
+              <div className="affidavit-points">
+                <p><strong>1. Provision of Plot</strong></p>
+                <p>We are responsible for providing the Buyer with a duly allocated plot as per the agreed terms and conditions.</p>
+                
+                <p><strong>2. Basic Amenities</strong></p>
+                <p>We commit to ensuring the provision of the following basic facilities for comfortable living:</p>
+                <ul>
+                  <li>Electricity</li>
+                  <li>Roads and Streets: Well-constructed roads and streets</li>
+                  <li>Other Necessary Facilities</li>
+                </ul>
+                
+                <p>We assure the Buyer that all necessary development work will be carried out in a timely and professional manner, adhering to the highest standards of quality and safety.</p>
+                <p>This affidavit serves as a formal commitment to fulfill our obligations as stated above.</p>
+              </div>
+            </div>
+
             <h4 className="Admin">
               <img width={"200px"} src={sign}></img>
             </h4>
