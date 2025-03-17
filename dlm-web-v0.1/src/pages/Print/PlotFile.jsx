@@ -215,6 +215,7 @@ function PlotFile() {
             <strong>Basic Amenities:</strong> We commit to ensuring the provision of the following basic facilities for comfortable living:
             <ul>
               <li>Electricity</li>
+              <li>Roads and Streets</li>
               <li>Other Necessary Facilities</li>
             </ul>
           </li>
@@ -228,7 +229,7 @@ function PlotFile() {
       </div>
 
 
-      <div className="footer footer-plotfile">
+      <div className="footer-plotfile">
         <div className="date">
           <strong>Dated:</strong> {date}
         </div>
