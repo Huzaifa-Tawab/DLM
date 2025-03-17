@@ -119,3 +119,29 @@
     justify-content: space-between;
     align-items: center;
   }
+  .affidavit-section {
+    /* margin-top: 20px; */
+    padding: 10px;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+  }
+  
+  .affidavit-section h4 {
+    text-align: center;
+    font-size: 18px;
+    /* margin-bottom: 10px; */
+  }
+  
+  .affidavit-section p {
+    font-size: 14px;
+    line-height: 1.5;
+    /* margin-bottom: 10px; */
+  }
+  
+  .affidavit-section ol {
+    margin-left: 20px;
+  }
+  
+  .affidavit-section ul {
+    margin-left: 20px;
+  }

@@ -132,7 +132,7 @@ function PlotFile() {
       </div>
       </div>
     <div className="header">
-      <div className="logo"></div>
+      {/* <div className="logo"></div> */}
       <h1 className="-plotfile">{Society === "Dynamic Land Management" ? "DYNAMIC LAND MANAGEMENT" : Society}</h1>
     </div>
     
@@ -196,25 +196,37 @@ function PlotFile() {
 
       <div className="terms">
         <p>This letter is issued solely based on the clearance of the land charges, while all other documentation and charges remain pending</p>
-        <br />
-        <br />
-        <br />
-        <br />
-        {/* <ol>
-          <li>
-            This is in continuation of provisional allotment letter issued on dated and the terms and conditions printed overleaf thereof duly accepted and signed by the allottee.
-          </li>
-          <li>
-            The plot, block number, and size are final and will not be changed by {Society === "Dynamic Land Management" ? "DYNAMIC LAND MANAGEMENT" : Society} except on technical grounds.
-          </li>
-          <li>
-            This allotment is not transferable unless authorized by the {Society === "Dynamic Land Management" ? "DYNAMIC LAND MANAGEMENT" : Society}.
-          </li>
-          <li>
-            Please acknowledge receipt of this letter.
-          </li>
-        </ol> */}
       </div>
+
+       {/* Affidavit Section */}
+       <div className="affidavit-section">
+        <h4>AFFIDAVIT</h4>
+        <p>
+          This is to certify that we, <strong>{Society}</strong>, have received the full/partial payment for the land amount from <strong>{Name}</strong> (hereinafter referred to as "the Buyer").
+        </p>
+        <p>
+          Upon the payment of development charges, we hereby affirm and undertake the following responsibilities:
+        </p>
+        <ol>
+          <li>
+            <strong>Provision of Plot:</strong> We are responsible for providing the Buyer with a duly allocated plot as per the agreed terms and conditions.
+          </li>
+          <li>
+            <strong>Basic Amenities:</strong> We commit to ensuring the provision of the following basic facilities for comfortable living:
+            <ul>
+              <li>Electricity</li>
+              <li>Other Necessary Facilities</li>
+            </ul>
+          </li>
+        </ol>
+        <p>
+          We assure the Buyer that all necessary development work will be carried out in a timely and professional manner, adhering to the highest standards of quality and safety.
+        </p>
+        <p>
+          This affidavit serves as a formal commitment to fulfill our obligations as stated above.
+        </p>
+      </div>
+
 
       <div className="footer footer-plotfile">
         <div className="date">
@@ -224,9 +236,9 @@ function PlotFile() {
           <p>Director</p>
         </div>
       </div>
-      <div className="footer-plotfile">
+      {/* <div className="footer-plotfile">
           <p>Computer Generated File Printed on: <strong>{date}</strong></p>
-        </div>
+        </div> */}
       </div>
   );
 }
