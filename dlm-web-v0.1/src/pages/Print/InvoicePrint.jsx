@@ -6,6 +6,7 @@ import { functions } from "lodash";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import sliderlogo from "../../Assets/sliderlogo.png";
+import './printInvoice.css';
 
 function PrintInvoice() {
   const navigate = useNavigate();
