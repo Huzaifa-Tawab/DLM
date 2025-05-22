@@ -178,7 +178,6 @@ function PlotFile() {
           <div>
             <strong>O.L.M.N:</strong> {allotmentnumber}
           </div>
-        
           <div>
             <strong>Size:</strong> {PlotSize}
           </div>
@@ -187,9 +186,10 @@ function PlotFile() {
           </div>
           <div>
             <br />
+            <strong>Plot No:</strong> ____________________________
             <br />
             <br />
-            <strong>Location:</strong> ____________________________________     </div>
+            <strong>Location:</strong> ___________________________    </div>
         </div>
         
       </div>
