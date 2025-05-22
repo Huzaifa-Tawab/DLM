@@ -186,16 +186,13 @@ function PlotFile() {
             <strong>RC:</strong> {Society === "Dynamic Land Management" ? "ND" : "PD"}-{Category[0]}-{Block[0]}-{generateRandomString()}
           </div>
             <br />
-            <strong>Plot No:</strong> ____________________________
-            <br />
-
             <div>
-            <strong>New M No:</strong>  ___________________________
-          </div>
-          <div>
-          
+            <strong>Plot No:</strong> ____________________________
+            </div>
             <br />
-            <strong>Location:</strong> ___________________________    </div>
+            <div>
+            <strong>Location:</strong> ___________________________  
+            </div>
         </div>
         
       </div>
