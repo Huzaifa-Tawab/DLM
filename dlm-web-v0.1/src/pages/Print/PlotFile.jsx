@@ -10,6 +10,7 @@ import getDate from "../../../GetDDMMYY";
 import cnicFormat from "../../../cnicFormatter";
 import dlmlogo from "../../Assets/sliderlogo.png";
 import './allotmentplot.css'
+import sign from "./assets/bilal-croped.png";
 
 function PlotFile() {
   const { id } = useParams();
@@ -184,10 +185,15 @@ function PlotFile() {
           <div>
             <strong>RC:</strong> {Society === "Dynamic Land Management" ? "ND" : "PD"}-{Category[0]}-{Block[0]}-{generateRandomString()}
           </div>
-          <div>
             <br />
             <strong>Plot No:</strong> ____________________________
             <br />
+
+            <div>
+            <strong>New M No:</strong>  ___________________________
+          </div>
+          <div>
+          
             <br />
             <strong>Location:</strong> ___________________________    </div>
         </div>
@@ -227,13 +233,14 @@ function PlotFile() {
           This affidavit serves as a formal commitment to fulfill our obligations as stated above.
         </p>
       </div>
-
+        <div style={{display:"flex",justifyContent:"end"}}> <img width={"200px"} src={sign}></img></div>
 
       <div className="footer-plotfile">
+
         <div className="date">
           <strong>Dated:</strong> {date}
         </div>
-        <div className="signature">
+        <div className="signature">   
           <p>Director</p>
         </div>
       </div>

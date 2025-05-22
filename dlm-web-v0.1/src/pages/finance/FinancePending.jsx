@@ -73,18 +73,18 @@ function FinancePending() {
     // const plotRef = doc(db, "Plots", fileNumber);
     // const PlotSnap = await getDoc(plotRef);
 
-    // if (nature === "transfer") {
-    //   const senderPending = doc(db, "Customers", data.senderCustomerID);
-    //   const receiverPending = doc(db, "Customers", data.receiverCustomerID);
+    if (nature === "transfer") {
+      const senderPending = doc(db, "Customers", data.senderCustomerID);
+      const receiverPending = doc(db, "Customers", data.receiverCustomerID);
 
-    //   await updateDoc(senderPending, {
-    //     Plots: arrayRemove(data.fileNumber),
-    //   });
+      await updateDoc(senderPending, {
+        Plots: arrayRemove(data.fileNumber),
+      });
 
-    //   await updateDoc(receiverPending, {
-    //     Plots: arrayUnion(data.fileNumber),
-    //   });
-    // }
+      await updateDoc(receiverPending, {
+        Plots: arrayUnion(data.fileNumber),
+      });
+    }
     let totalAmountPlotRemaining = parseInt(plot.TotalAmount)
     if (plot.paidAmount ) {
       totalAmountPlotRemaining =  plot.TotalAmount -  parseInt(plot.paidAmount)
